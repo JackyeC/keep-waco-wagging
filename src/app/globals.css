@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/*
+  Keep Waco Wagging — design tokens
+  Texas eco-chic: warm neutrals, soft greens, soft blues, cream backgrounds.
+  The "gold" scale is reserved for tasteful Platinum Scoops sponsor accents.
+*/
+@theme {
+  /* Warm neutral surfaces */
+  --color-cream: #fbf7ef;
+  --color-sand: #f4ecdd;
+  --color-clay: #e8dcc8;
+  --color-bark: #2f2a22;
+  --color-bark-soft: #6f6354;
+  --color-bark-faint: #998b78;
+
+  /* Soft green — primary brand */
+  --color-sage-50: #f1f6f1;
+  --color-sage-100: #ddeede;
+  --color-sage-200: #bedcc3;
+  --color-sage-300: #95c2a0;
+  --color-sage-400: #69a279;
+  --color-sage-500: #4d855f;
+  --color-sage-600: #3b6b4b;
+  --color-sage-700: #31573e;
+  --color-sage-800: #294534;
+  --color-sage-900: #21392c;
+
+  /* Soft blue — secondary accent */
+  --color-sky-50: #f0f6fa;
+  --color-sky-100: #dcecf4;
+  --color-sky-200: #bbdaeb;
+  --color-sky-300: #8ec1db;
+  --color-sky-400: #5fa4c8;
+  --color-sky-500: #3f87b0;
+  --color-sky-600: #336d92;
+  --color-sky-700: #2c5a78;
+
+  /* Platinum Scoops sponsor accent (warm gold) */
+  --color-gold-100: #f6ecd6;
+  --color-gold-200: #ecd8aa;
+  --color-gold-400: #d8b06a;
+  --color-gold-500: #c39a52;
+  --color-gold-600: #a67e3c;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --radius-card: 1.25rem;
+}
+
+:root {
+  --background: var(--color-cream);
+  --foreground: var(--color-bark);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-bark);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-bark);
+  }
+
+  ::selection {
+    background-color: var(--color-sage-200);
+    color: var(--color-sage-900);
+  }
+}
+
+@layer utilities {
+  /* Subtle, warm section dividers */
+  .bg-paper {
+    background-color: var(--color-cream);
+  }
+  .bg-paper-alt {
+    background-color: var(--color-sand);
+  }
+}
