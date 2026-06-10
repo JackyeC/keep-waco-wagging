@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { DogDirectoryCard } from "@/components/DogDirectoryCard";
+import { AdSlot } from "@/components/AdSlot";
 import type { DogDirectoryListing } from "@/lib/types";
 
 const inputClass =
@@ -89,6 +90,7 @@ export function DogDirectoryBrowser({
             Showing {filtered.length} of {listings.length} places.
           </p>
         </div>
+        <AdSlot placement="directory-sidebar" />
       </aside>
 
       <div className="grid gap-6 sm:grid-cols-2">

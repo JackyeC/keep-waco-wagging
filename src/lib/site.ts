@@ -98,6 +98,7 @@ export const mainNav: NavLink[] = [
   { label: "Platinum Scoops", href: "/platinum-scoops" },
   { label: "Pet Care", href: "/pet-care" },
   { label: "Shop", href: "/shop" },
+  { label: "Wagging Wall", href: "/pets" },
   { label: "Sponsors", href: "/sponsors" },
   { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },

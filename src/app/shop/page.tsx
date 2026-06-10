@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ProductRecommendationCard } from "@/components/ProductRecommendationCard";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
+import { AdSlot } from "@/components/AdSlot";
 import { getProductRecommendations } from "@/data/products";
 import { monetization } from "@/lib/site";
 
@@ -41,6 +42,7 @@ export default function ShopPage() {
           {products.map((product) => (
             <ProductRecommendationCard key={product.id} product={product} />
           ))}
+          <AdSlot placement="shop" />
         </div>
       </Section>
     </>

@@ -14,7 +14,7 @@ export const pets: Pet[] = [
     breed: "Mixed breed",
     ageOrStage: "Adult",
     neighborhood: "Waco",
-    ownerName: `${cityConfig.founder.name} (founder)`,
+    ownerName: `${cityConfig.founders.names} (founders)`,
     bio: "The original Platinum Scoops mascot and Keep Waco Wagging inspiration. Scoop loves patio mornings, Cameron Park trails, and supervising yard cleanup.",
     funFact: "Has visited more dog-friendly Waco patios than most humans in town.",
     petOfTheWeek: true,

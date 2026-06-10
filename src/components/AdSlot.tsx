@@ -46,7 +46,7 @@ export function AdSlot({
           This spot is open for a local pet-friendly business.
         </p>
         <Link
-          href="/get-listed"
+          href="/sponsors"
           className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-sage-700 hover:text-sage-800"
         >
           Get your ad here <ArrowRight className="h-4 w-4" />

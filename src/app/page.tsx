@@ -8,6 +8,7 @@ import { ProductRecommendationCard } from "@/components/ProductRecommendationCar
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
 import { PetCard } from "@/components/PetCard";
+import { AdSlot } from "@/components/AdSlot";
 import { platinumScoops } from "@/data/platinumScoops";
 import { getFeaturedDirectoryListings } from "@/data/directory";
 import { getFeaturedProductRecommendations } from "@/data/products";
@@ -173,6 +174,13 @@ export default function HomePage() {
       </Section>
 
       <TestimonialsSection tone="sand" />
+
+      <Section tone="paper">
+        <SectionHeading eyebrow="From our sponsors" title="Supporting Waco dog parents" align="center" />
+        <div className="mx-auto mt-8 max-w-md">
+          <AdSlot placement="home" />
+        </div>
+      </Section>
 
       <Section tone="sage">
         <div className="grid gap-8 rounded-card bg-white p-8 ring-1 ring-inset ring-clay/70 lg:grid-cols-[1.1fr_0.9fr]">

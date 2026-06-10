@@ -36,7 +36,7 @@ export const ads: Ad[] = [
     sponsor: "Your Waco Business",
     title: "Reach local dog parents here",
     body: "This premium slot is available for a Waco-area pet business. Get in front of engaged local dog owners.",
-    href: "/get-listed",
+    href: "/sponsors",
     label: "Sponsored",
     placements: ["directory-sidebar"],
     active: false,

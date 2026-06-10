@@ -78,7 +78,7 @@ export const weekendBlocks: WeekendBlock[] = [
     title: "Local business shoutout",
     icon: "store",
     body: "Woodway Pup Provisions — a locally owned pet store stocking Texas-made treats and enrichment toys. Stop in and say hi this weekend.",
-    ctaLabel: "Read the spotlight",
-    ctaHref: "/spotlights",
+    ctaLabel: "Explore the directory",
+    ctaHref: "/dog-friendly-waco",
   },
 ];
