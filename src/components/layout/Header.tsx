@@ -39,8 +39,8 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href={ctas.getListed.href} variant="secondary" size="sm">
-            {ctas.getListed.label}
+          <Button href={ctas.bookScoops.href} variant="sponsor" size="sm">
+            {ctas.bookScoops.label}
           </Button>
         </div>
 
@@ -74,12 +74,12 @@ export function Header() {
               </Link>
             ))}
             <Button
-              href={ctas.getListed.href}
+              href={ctas.bookScoops.href}
               variant="primary"
               className="mt-2 w-full"
               size="md"
             >
-              {ctas.getListed.label}
+              {ctas.bookScoops.label}
             </Button>
           </nav>
         </div>

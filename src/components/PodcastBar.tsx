@@ -15,11 +15,14 @@ export function PodcastBar() {
 
   useEffect(() => {
     if (!podcast.enabled) return;
-    try {
-      if (localStorage.getItem(DISMISS_KEY) !== "1") setVisible(true);
-    } catch {
-      setVisible(true);
-    }
+    const timer = window.setTimeout(() => {
+      try {
+        if (localStorage.getItem(DISMISS_KEY) !== "1") setVisible(true);
+      } catch {
+        setVisible(true);
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   if (!podcast.enabled || !visible) return null;

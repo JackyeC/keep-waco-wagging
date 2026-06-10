@@ -7,9 +7,9 @@ export function RoverCTA({ variant = "card" }: { variant?: "card" | "inline" }) 
     return (
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-semibold text-bark">{cityConfig.founder.roverHeadline}</p>
+          <p className="font-semibold text-bark">{cityConfig.rover.headline}</p>
           <p className="mt-1 text-sm text-bark-soft">
-            Book trusted sitting and walking with {cityConfig.founder.name} on Rover.
+            Book trusted sitting, daycare, drop-ins, and walking with Jackye and Todd on Rover.
           </p>
         </div>
         <Button
@@ -31,7 +31,7 @@ export function RoverCTA({ variant = "card" }: { variant?: "card" | "inline" }) 
       </span>
       <h3 className="mt-4 text-xl font-semibold">Need a sitter or walker?</h3>
       <p className="mt-2 text-sm leading-relaxed text-bark-soft">
-        {cityConfig.founder.name} offers dog sitting and walking on Rover across{" "}
+        Jackye and Todd offer dog sitting, daycare, drop-ins, and walking on Rover across{" "}
         {cityConfig.serviceAreas.slice(0, 3).join(", ")}, and nearby areas. Great
         for travel days, long work shifts, or extra exercise for high-energy pups.
       </p>

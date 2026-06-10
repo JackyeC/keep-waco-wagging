@@ -1,257 +1,207 @@
-import Link from "next/link";
-import { ArrowRight, GraduationCap, CalendarDays, Star } from "lucide-react";
-import { Hero } from "@/components/Hero";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import type { Metadata } from "next";
+import { ArrowRight, Heart, Home, MapPin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { CategoryCard } from "@/components/CategoryCard";
-import { DirectoryCard } from "@/components/DirectoryCard";
-import { BlogCard } from "@/components/BlogCard";
-import { BusinessSpotlightCard } from "@/components/BusinessSpotlightCard";
-import { NewsletterSignup } from "@/components/NewsletterSignup";
-import { PlatinumScoopsCTA } from "@/components/PlatinumScoopsCTA";
-import { PodcastBanner } from "@/components/PodcastBanner";
-import { SponsorStrip } from "@/components/SponsorStrip";
-import { RoverCTA } from "@/components/RoverCTA";
+import { Section, SectionHeading } from "@/components/ui/Section";
+import { DogDirectoryCard } from "@/components/DogDirectoryCard";
+import { ProductRecommendationCard } from "@/components/ProductRecommendationCard";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
-import { quickCategories } from "@/data/categories";
-import { getFeaturedListings } from "@/data/listings";
-import { getRecentPosts } from "@/data/blog";
-import { getFeaturedSpotlight } from "@/data/spotlights";
-import { getPetOfTheWeek } from "@/data/pets";
-import { ctas } from "@/lib/site";
+import { EmailSignupForm } from "@/components/EmailSignupForm";
+import { PetCard } from "@/components/PetCard";
+import { platinumScoops } from "@/data/platinumScoops";
+import { getFeaturedDirectoryListings } from "@/data/directory";
+import { getFeaturedProductRecommendations } from "@/data/products";
+import { pets } from "@/data/pets";
+import { cityConfig, ctas } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Keep Waco Wagging | Dog-Friendly Waco Guide & Pet Care Resources",
+  description:
+    "Keep Waco Wagging is a local guide for Waco dog parents, featuring dog-friendly places, Platinum Scoops yard cleanup, Rover pet care, product recommendations, and local resources.",
+};
+
+const paths = [
+  {
+    title: "Cleaner Yards",
+    icon: Sparkles,
+    body:
+      "Book reliable scooping, yard odor support, and practical cleanup help from Platinum Scoops.",
+    href: "/platinum-scoops",
+    cta: "Book a Scoop",
+  },
+  {
+    title: "Trusted Pet Care",
+    icon: Home,
+    body:
+      "Home-based boarding, daycare, drop-ins, and dog walking with Jackye and Todd.",
+    href: "/pet-care",
+    cta: "Book Pet Care",
+  },
+  {
+    title: "Dog-Friendly Waco",
+    icon: MapPin,
+    body:
+      "Find patios, parks, coffee shops, breweries, attractions, and local dog resources.",
+    href: "/dog-friendly-waco",
+    cta: "Explore the Guide",
+  },
+];
 
 export default function HomePage() {
-  const featuredListing = getFeaturedListings()[0];
-  const recentPosts = getRecentPosts(3);
-  const spotlight = getFeaturedSpotlight();
-  const petOfWeek = getPetOfTheWeek();
+  const directory = getFeaturedDirectoryListings(4);
+  const products = getFeaturedProductRecommendations(4);
 
   return (
     <>
-      <Hero />
+      <section className="bg-gradient-to-br from-sage-100 via-cream to-sky-100">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.25fr_0.75fr] lg:px-8 lg:py-24">
+          <div>
+            <Badge tone="gold">{cityConfig.sponsor.line}</Badge>
+            <h1 className="mt-5 text-4xl leading-tight sm:text-5xl lg:text-6xl">
+              Waco&apos;s local guide for happier dogs, cleaner yards, and better
+              dog-friendly days.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-bark-soft">
+              Keep Waco Wagging helps Waco dog parents find trusted pet care,
+              dog-friendly places, useful products, and practical local resources
+              — all presented by Platinum Scoops.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href={ctas.bookScoops.href} size="lg">
+                {ctas.bookScoops.label}
+              </Button>
+              <Button href={ctas.exploreDirectory.href} variant="secondary" size="lg">
+                {ctas.exploreDirectory.label}
+              </Button>
+            </div>
+            <p className="mt-5 text-sm font-medium text-bark-soft">
+              Locally owned. Family-run. Built for Waco dog families.
+            </p>
+          </div>
+          <div className="rounded-card bg-white/80 p-6 ring-1 ring-inset ring-clay/70">
+            <p className="text-sm font-semibold uppercase tracking-wide text-sage-600">
+              Quick trust check
+            </p>
+            <ul className="mt-4 space-y-3">
+              {platinumScoops.trustSignals.map((signal) => (
+                <li key={signal} className="flex items-start gap-3 text-sm text-bark-soft">
+                  <Heart className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" />
+                  {signal}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      {/* 1. Quick category cards */}
       <Section tone="paper">
-        <SectionHeading
-          eyebrow="Start here"
-          title="Everything dog-friendly in Waco"
-          description="Browse by what you need today — a patio, a trail, a weekend plan, or a little help with training."
-        />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {quickCategories.map((item) => (
-            <CategoryCard key={item.label} item={item} />
+        <div className="mx-auto max-w-3xl text-center">
+          <Badge tone="gold">Presented by Platinum Scoops</Badge>
+          <h2 className="mt-4 text-3xl">Helpful local guide first. Cleaner yards close by.</h2>
+          <p className="mt-4 leading-relaxed text-bark-soft">
+            Platinum Scoops supports Keep Waco Wagging so Waco dog parents have
+            one friendly place to find practical pet care, verified dog-friendly
+            stops, and resources that make life with dogs easier.
+          </p>
+        </div>
+      </Section>
+
+      <Section tone="sand">
+        <SectionHeading eyebrow="Start here" title="Choose what you need today" />
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {paths.map((path) => {
+            const Icon = path.icon;
+            return (
+              <article key={path.title} className="rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70">
+                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 text-xl font-semibold">{path.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-bark-soft">{path.body}</p>
+                <Button href={path.href} variant="secondary" size="sm" className="mt-5">
+                  {path.cta} <ArrowRight className="h-4 w-4" />
+                </Button>
+              </article>
+            );
+          })}
+        </div>
+      </Section>
+
+      <Section tone="paper">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            eyebrow="Featured listings"
+            title="Dog-friendly Waco places to start with"
+            description="Policies can change, so we label unverified details and encourage you to check before visiting."
+          />
+          <Button href="/dog-friendly-waco" variant="ghost">View directory</Button>
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {directory.map((listing) => (
+            <DogDirectoryCard key={listing.id} listing={listing} />
           ))}
         </div>
       </Section>
 
-      {/* 2. Featured this week */}
-      <Section tone="sand">
-        <SectionHeading
-          eyebrow="Featured this week"
-          title="Three good reasons to get out there"
-        />
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
-          {featuredListing && <DirectoryCard listing={featuredListing} />}
-
-          {/* Weekend / event idea */}
-          <article className="flex flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
-            <div className="aspect-[16/10]">
-              <ImagePlaceholder label="Where to Wag This Weekend" />
-            </div>
-            <div className="flex flex-1 flex-col p-5">
-              <Badge tone="sky">Weekend idea</Badge>
-              <h3 className="mt-3 text-lg font-semibold">
-                A dog-friendly weekend in Waco
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-bark-soft">
-                A morning trail, a shaded patio lunch, and an easy evening
-                stroll. Our weekly guide makes planning simple.
-              </p>
-              <Link
-                href="/weekend"
-                className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sage-700 hover:text-sage-800"
-              >
-                <CalendarDays className="h-4 w-4" />
-                See this weekend&apos;s guide
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </article>
-
-          {/* Training tip */}
-          <article className="flex flex-col overflow-hidden rounded-card bg-sage-700 text-white">
-            <div className="flex flex-1 flex-col p-6">
-              <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-sage-600 px-2.5 py-0.5 text-xs font-medium">
-                <GraduationCap className="h-3.5 w-3.5" /> Training tip
-              </span>
-              <h3 className="mt-4 text-xl font-semibold">
-                Practice &ldquo;settle on a mat&rdquo;
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-sage-100">
-                Five short reps at home this week sets your dog up to relax under
-                the table on your next patio outing. Calm is a skill — and it&apos;s
-                trainable.
-              </p>
-              <Button
-                href={ctas.trainingHelp.href}
-                variant="secondary"
-                size="sm"
-                className="mt-4 w-fit"
-              >
-                Get training help
-              </Button>
-            </div>
-          </article>
-        </div>
-      </Section>
-
-      {/* Podcast banner */}
-      <PodcastBanner />
-
-      {/* Pet of the Week */}
-      <Section tone="paper">
-        <div className="grid items-center gap-8 rounded-card bg-gradient-to-br from-sky-50 to-sage-50 p-6 ring-1 ring-inset ring-sage-200 sm:p-8 lg:grid-cols-[300px_1fr]">
-          <div className="overflow-hidden rounded-card ring-1 ring-inset ring-clay/70">
-            <div className="aspect-square">
-              <ImagePlaceholder
-                src={petOfWeek.photoUrl}
-                alt={petOfWeek.name}
-                label={petOfWeek.name}
-              />
-            </div>
-          </div>
-          <div>
-            <Badge tone="gold">
-              <Star className="mr-1 h-3 w-3" /> Pet of the Week
-            </Badge>
-            <h2 className="mt-3 text-2xl sm:text-3xl">Meet {petOfWeek.name}</h2>
-            <p className="mt-1 text-bark-soft">
-              {petOfWeek.breed}
-              {petOfWeek.ageOrStage ? ` · ${petOfWeek.ageOrStage}` : ""} ·{" "}
-              {petOfWeek.neighborhood}
-            </p>
-            <p className="mt-3 max-w-xl leading-relaxed text-bark-soft">
-              {petOfWeek.bio}
-            </p>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <Button href="/pets">See the Wagging Wall</Button>
-              <Button href="/pets#submit" variant="secondary">
-                Submit your pup
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* 3. Is your dog ready for public places? */}
       <Section tone="sky">
-        <div className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <div>
-            <SectionHeading
-              eyebrow="Real-life readiness"
-              title="Is your dog ready for public places?"
-            />
-            <p className="mt-4 max-w-xl leading-relaxed text-bark-soft">
-              Not every dog is ready for patios, markets, parks, or busy places
-              just yet — and that&apos;s completely okay. Calm behavior in public
-              is a set of skills you can build together. Lifestyle dog training
-              helps you and your pup develop the real-world confidence to enjoy
-              more of Waco, with less stress.
-            </p>
-            <div className="mt-6">
-              <Button href={ctas.bookTraining.href} size="lg">
-                {ctas.bookTraining.label}
-              </Button>
-            </div>
-          </div>
-          <ul className="space-y-3">
-            {[
-              "Calmly settling on a patio while you eat",
-              "Walking on a loose leash past distractions",
-              "Recovering quickly when something startles them",
-              "Greeting people and dogs politely",
-            ].map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 rounded-card bg-white p-4 ring-1 ring-inset ring-clay/70"
-              >
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-sage-100 text-xs font-bold text-sage-700">
-                  ✓
-                </span>
-                <span className="text-sm text-bark-soft">{item}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            eyebrow="Recommended products"
+            title="Practical dog gear, not random junk"
+            description="Product links are placeholders until final Amazon products are selected."
+          />
+          <Button href="/shop" variant="secondary">Visit shop</Button>
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {products.map((product) => (
+            <ProductRecommendationCard key={product.id} product={product} />
+          ))}
         </div>
       </Section>
 
-      {/* 4. Presented by Platinum Scoops */}
-      <PlatinumScoopsCTA />
-
-      {/* Rover + shop revenue surfaces */}
       <Section tone="paper">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <RoverCTA />
-          <article className="overflow-hidden rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
-            <Badge tone="sage">Shop</Badge>
-            <h3 className="mt-3 text-xl font-semibold">Dog gear we actually use</h3>
-            <p className="mt-2 text-sm leading-relaxed text-bark-soft">
-              Leashes, travel bowls, training tools, and backyard favorites —
-              curated for Waco weather and real-life dog outings.
-            </p>
-            <Button href={ctas.shopGear.href} variant="secondary" className="mt-5">
-              {ctas.shopGear.label}
-            </Button>
-          </article>
+        <SectionHeading
+          eyebrow="Meet the Platinum Scoops pack"
+          title="The dogs behind the dog people"
+          description="Real dogs, real routines, and a home that understands multi-dog life."
+        />
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {pets.map((pet) => (
+            <PetCard key={pet.id} pet={pet} />
+          ))}
         </div>
       </Section>
 
-      {/* Client testimonials */}
       <TestimonialsSection tone="sand" />
 
-      {/* 5. Latest guides */}
-      <Section tone="paper">
-        <div className="flex items-end justify-between gap-4">
+      <Section tone="sage">
+        <div className="grid gap-8 rounded-card bg-white p-8 ring-1 ring-inset ring-clay/70 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <SectionHeading
+              eyebrow="For local businesses"
+              title="Reach Waco dog parents where they already look for recommendations"
+              description="Directory listings, sponsor spots, newsletter mentions, local guides, spotlights, events, and giveaways can all fit naturally here."
+            />
+            <Button href="/sponsors" className="mt-6">
+              {ctas.becomeSponsor.label}
+            </Button>
+          </div>
+          <EmailSignupForm compact />
+        </div>
+      </Section>
+
+      <Section tone="paper" id="email-list">
+        <div className="mx-auto max-w-2xl">
           <SectionHeading
-            eyebrow="From the blog"
-            title="Latest guides & tips"
+            eyebrow="Email list"
+            title="Join the Waco Dog Parent List"
+            description="The best local dog-friendly finds, pet care updates, product recommendations, and Waco dog parent tips."
+            align="center"
           />
-          <Button href="/blog" variant="ghost" className="hidden sm:inline-flex">
-            View all <ArrowRight className="h-4 w-4" />
-          </Button>
+          <div className="mt-8">
+            <EmailSignupForm />
+          </div>
         </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {recentPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
-      </Section>
-
-      {/* 6. Local business spotlight */}
-      <Section tone="sand">
-        <SectionHeading
-          eyebrow="Local business spotlight"
-          title="Waco businesses worth knowing"
-          description="We highlight local spots that genuinely welcome and support dog parents."
-        />
-        <div className="mt-8">
-          <BusinessSpotlightCard spotlight={spotlight} />
-        </div>
-        <div className="mt-6">
-          <Button href="/spotlights" variant="secondary">
-            See more spotlights <ArrowRight className="h-4 w-4" />
-          </Button>
-        </div>
-      </Section>
-
-      {/* Sponsor showcase */}
-      <SponsorStrip />
-
-      {/* 7. Newsletter signup */}
-      <Section tone="paper">
-        <NewsletterSignup />
       </Section>
     </>
   );

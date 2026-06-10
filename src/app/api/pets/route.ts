@@ -1,26 +1,28 @@
 import { NextResponse } from "next/server";
-import { saveLead } from "@/lib/leads";
+import { saveSubmission } from "@/lib/leads";
 
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Record<string, string>;
-
-    if (!body.petName?.trim() || !body.ownerName?.trim() || !body.email?.trim()) {
+    if (!body.email?.trim() || !body.petName?.trim()) {
       return NextResponse.json(
-        { error: "Pet name, your name, and email are required." },
+        { error: "Pet name and email are required." },
         { status: 400 },
       );
     }
 
-    const result = await saveLead("pet_submission", {
-      pet_name: body.petName.trim(),
-      breed: body.breed?.trim() ?? null,
-      age_or_stage: body.ageOrStage?.trim() ?? null,
-      neighborhood: body.neighborhood?.trim() ?? null,
-      bio: body.bio?.trim() ?? null,
-      owner_name: body.ownerName.trim(),
+    const result = await saveSubmission("contact_message", {
+      name: body.ownerName?.trim() || null,
       email: body.email.trim().toLowerCase(),
-      photo_filename: body.photoFilename ?? null,
+      interest: "Pet submission",
+      message: [
+        `Pet: ${body.petName}`,
+        `Breed: ${body.breed ?? ""}`,
+        `Age/stage: ${body.ageOrStage ?? ""}`,
+        `Neighborhood: ${body.neighborhood ?? ""}`,
+        `Bio: ${body.bio ?? ""}`,
+      ].join("\n"),
+      status: "new",
     });
 
     if (!result.ok) {

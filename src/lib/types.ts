@@ -138,40 +138,17 @@ export interface CategoryItem {
   icon: string; // lucide icon key
 }
 
-/** Where an ad/sponsor unit can appear. */
+/** Where an ad / sponsor slot can render. */
 export type AdPlacement =
   | "home"
   | "directory-sidebar"
+  | "blog"
   | "blog-sidebar"
   | "weekend"
+  | "wag-wall"
   | "pets"
-  | "shop";
-
-/** Curated Amazon affiliate product for the Shop page. */
-export interface ShopProduct {
-  id: string;
-  name: string;
-  summary: string;
-  /** Amazon Standard Identification Number */
-  asin: string;
-  category: "Walk" | "Home" | "Travel" | "Training" | "Health" | "Fun";
-  /** Optional override if not using ASIN-based URL builder */
-  href?: string;
-  imageUrl?: string;
-  /** Why we recommend it — keeps affiliate content trustworthy */
-  whyWeLoveIt: string;
-  featured?: boolean;
-}
-
-/** Client testimonial for training, Rover, or Scoops services. */
-export interface Testimonial {
-  id: string;
-  quote: string;
-  author: string;
-  context: "Training" | "Rover" | "Platinum Scoops" | "General";
-  neighborhood?: string;
-  featured?: boolean;
-}
+  | "shop"
+  | "sponsors";
 
 /**
  * A paid placement / sponsor unit. Empty placements fall back to a "house ad"
@@ -192,6 +169,76 @@ export interface Ad {
   priority?: number;
 }
 
+export type DogDirectoryListing = {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  description: string;
+  address?: string;
+  phone?: string;
+  website?: string;
+  neighborhood?: string;
+  dogPolicy?: string;
+  patioDetails?: string;
+  waterBowls?: "yes" | "no" | "unknown";
+  shade?: "yes" | "no" | "unknown";
+  bestTimeToVisit?: string;
+  notes?: string;
+  isSponsored?: boolean;
+  sponsorTier?: "none" | "basic" | "featured" | "spotlight";
+  lastVerified?: string;
+  sourceUrls?: string[];
+  contactPerson?: string;
+  claimListingCta?: string;
+  badges?: string[];
+};
+
+/** Curated Amazon affiliate product for the Shop page. */
+export interface ShopProduct {
+  id: string;
+  name: string;
+  summary: string;
+  /** Amazon Standard Identification Number */
+  asin: string;
+  category: "Walk" | "Home" | "Travel" | "Training" | "Health" | "Fun";
+  /** Optional override if not using ASIN-based URL builder */
+  href?: string;
+  imageUrl?: string;
+  /** Why we recommend it — keeps affiliate content trustworthy */
+  whyWeLoveIt: string;
+  featured?: boolean;
+}
+
+export type ProductRecommendation = {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  whyWeLikeIt: string;
+  bestFor: string[];
+  amazonUrl?: string;
+  imageUrl?: string;
+  affiliateReady: boolean;
+};
+
+/** Client testimonial for training, Rover, or Scoops services. */
+export interface Testimonial {
+  id: string;
+  quote: string;
+  author: string;
+  context: "Training" | "Rover" | "Platinum Scoops" | "General";
+  neighborhood?: string;
+  featured?: boolean;
+  service?: string;
+  date?: string;
+  permissionStatus?:
+    | "public_rover_review"
+    | "permission_requested"
+    | "approved"
+    | "do_not_publish";
+}
+
 /** A community pet featured on the showcase ("Wagging Wall"). */
 export interface Pet {
   id: string;
@@ -206,4 +253,17 @@ export interface Pet {
   /** The current "Pet of the Week". */
   petOfTheWeek?: boolean;
   tags?: string[];
+  /** Legacy Wag Wall aliases kept while old routes are redirected/retired. */
+  area?: string;
+  owner?: string;
+  imageUrl?: string;
+  featured?: boolean;
 }
+
+export type SponsorProspect = {
+  id: string;
+  name: string;
+  category: string;
+  publishContactInfo: boolean;
+  notes: string;
+};

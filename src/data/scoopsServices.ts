@@ -39,6 +39,6 @@ export const scoopsServices: ScoopsService[] = [
     summary:
       "Pair a cleaner yard with calmer routines — start with a training assessment.",
     icon: "training",
-    href: "/training#assessment",
+    href: "/pet-care",
   },
 ];

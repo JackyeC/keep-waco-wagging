@@ -1,73 +1,52 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
-import { monetization, siteConfig } from "@/lib/site";
+import { cityConfig, monetization } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Affiliate Disclosure",
-  description: `Affiliate and sponsorship disclosure for ${siteConfig.name}.`,
-  robots: { index: true, follow: true },
+  description: `Affiliate and sponsorship disclosure for ${cityConfig.name}.`,
 };
 
 export default function AffiliateDisclosurePage() {
   return (
     <>
       <PageHeader
-        eyebrow="Legal"
+        eyebrow="Disclosure"
         title="Affiliate & sponsorship disclosure"
-        description="Transparency matters — here's how we earn and how we label paid content."
+        description="Transparency matters. Here's how Keep Waco Wagging earns money while staying useful and local-first."
         tone="sage"
       />
-
       <Section tone="paper">
-        <div className="prose-bark mx-auto max-w-3xl space-y-6 text-sm leading-relaxed text-bark-soft">
-          <p>{monetization.affiliateDisclosure}</p>
-
+        <div className="mx-auto max-w-3xl space-y-6 rounded-card bg-white p-7 text-sm leading-relaxed text-bark-soft ring-1 ring-inset ring-clay/70">
+          <p className="font-semibold text-bark">{monetization.affiliateDisclosure}</p>
+          <p>{monetization.productDisclosure}</p>
           <div>
-            <h2 className="text-lg font-semibold text-bark">Amazon Associates</h2>
+            <h2 className="text-lg font-semibold text-bark">Amazon links</h2>
             <p className="mt-2">
-              {siteConfig.name} is a participant in the Amazon Services LLC
-              Associates Program, an affiliate advertising program designed to
-              provide a means for sites to earn advertising fees by advertising
-              and linking to Amazon.com. Product links on our Shop page include
-              our affiliate tracking tag.
+              Some shop links may be Amazon affiliate links. Amazon does not
+              sponsor, endorse, or approve Keep Waco Wagging. Product links are
+              recommendations from practical dog-care experience and may earn a
+              commission at no extra cost to you.
             </p>
           </div>
-
           <div>
-            <h2 className="text-lg font-semibold text-bark">Rover & partners</h2>
+            <h2 className="text-lg font-semibold text-bark">Sponsored placements</h2>
             <p className="mt-2">
-              We may link to third-party services such as Rover for dog sitting
-              and walking. These are services we personally offer or genuinely
-              recommend. Compensation terms vary by platform.
+              Paid directory listings, sponsor ads, newsletter mentions, guides,
+              business spotlights, events, and giveaways are labeled when they
+              are sponsored.
             </p>
           </div>
-
-          <div>
-            <h2 className="text-lg font-semibold text-bark">
-              Sponsored listings & ads
-            </h2>
-            <p className="mt-2">
-              Paid business listings, display ads, and sponsored spotlights are
-              always labeled (Presenting Sponsor, Sponsored, or Ad). Editorial
-              recommendations are separate from paid placements unless clearly
-              marked as sponsored content.
-            </p>
-          </div>
-
           <div>
             <h2 className="text-lg font-semibold text-bark">Platinum Scoops</h2>
             <p className="mt-2">
-              {siteConfig.name} is presented by Platinum Scoops, a Waco pet care
-              company operated by the site founder. Platinum Scoops services,
-              training offerings, and yard care are core to our business model.
+              Keep Waco Wagging is presented by Platinum Scoops, a Waco-based
+              business founded by Jackye and Todd Clayton. Platinum Scoops is a
+              core part of the site, but the guide is built to be useful to Waco
+              dog parents first.
             </p>
           </div>
-
-          <p className="text-xs text-bark-faint">
-            Last updated: June 2026. Questions? Contact us through Platinum
-            Scoops or the Get Listed form.
-          </p>
         </div>
       </Section>
     </>
