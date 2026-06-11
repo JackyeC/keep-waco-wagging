@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, Heart, Home, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays, Heart, Home, MapPin, Sparkles, Users } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -125,6 +125,42 @@ export default function HomePage() {
               </article>
             );
           })}
+        </div>
+      </Section>
+
+      <Section tone="sky">
+        <SectionHeading
+          eyebrow="Happening this summer"
+          title="More ways to play, socialize, and book"
+          description="Themed daycare weeks all summer and casual dog meetups around Waco — plus members-only backyard hangs for current clients."
+        />
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <article className="flex flex-col rounded-card bg-white p-7 ring-1 ring-inset ring-clay/70">
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
+              <CalendarDays className="h-5 w-5" />
+            </span>
+            <h3 className="mt-4 text-xl font-semibold">Summer Daycare Camp</h3>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-bark-soft">
+              A new theme every week — splash days, sniff safaris, manners camp,
+              and more — with calm, full-time home care. Reserve weeks on Rover.
+            </p>
+            <Button href="/summer-daycare" variant="secondary" size="sm" className="mt-5 self-start">
+              See the summer calendar <ArrowRight className="h-4 w-4" />
+            </Button>
+          </article>
+          <article className="flex flex-col rounded-card bg-white p-7 ring-1 ring-inset ring-clay/70">
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
+              <Users className="h-5 w-5" />
+            </span>
+            <h3 className="mt-4 text-xl font-semibold">Yappy Hours</h3>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-bark-soft">
+              Free dog meetups at dog-friendly Waco spots, plus members-only
+              backyard socials for current Platinum Scoops and Rover families.
+            </p>
+            <Button href="/yappy-hours" variant="secondary" size="sm" className="mt-5 self-start">
+              RSVP for a Yappy Hour <ArrowRight className="h-4 w-4" />
+            </Button>
+          </article>
         </div>
       </Section>
 

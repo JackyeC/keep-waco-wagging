@@ -40,6 +40,11 @@ export function Footer() {
                 </li>
               ))}
               <li>
+                <Link href="/summer-daycare" className="text-bark-soft hover:text-sage-700">
+                  Summer Camp
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="text-bark-soft hover:text-sage-700">
                   Contact
                 </Link>

@@ -52,6 +52,25 @@ export default function PetCarePage() {
         </div>
       </Section>
 
+      <Section tone="sage">
+        <div className="rounded-card bg-white p-8 ring-1 ring-inset ring-clay/70 lg:flex lg:items-center lg:justify-between lg:gap-8">
+          <div className="max-w-xl">
+            <Badge tone="gold">New this summer</Badge>
+            <h2 className="mt-3 text-3xl">Summer Daycare Camp</h2>
+            <p className="mt-3 text-bark-soft">
+              A new themed week all summer long — splash days, sniff safaris,
+              manners camp, and more — with the same calm, full-time home care.
+              Reserve the weeks your dog wants on Rover.
+            </p>
+          </div>
+          <div className="mt-6 shrink-0 lg:mt-0">
+            <Button href="/summer-daycare" size="lg">
+              See the summer calendar
+            </Button>
+          </div>
+        </div>
+      </Section>
+
       <Section tone="paper">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
