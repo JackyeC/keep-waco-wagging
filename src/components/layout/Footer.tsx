@@ -2,7 +2,7 @@ import Link from "next/link";
 import { PawPrint } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { siteConfig, sponsorLinks, cityConfig, mainNav, ctas, socialLinks } from "@/lib/site";
+import { siteConfig, sponsorLinks, cityConfig, mainNav, secondaryNav, ctas, socialLinks } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -32,18 +32,13 @@ export function Footer() {
           <nav aria-label="Footer navigation">
             <h4 className="text-sm font-semibold text-bark">Explore</h4>
             <ul className="mt-3 space-y-2 text-sm">
-              {mainNav.map((link) => (
+              {[...mainNav, ...secondaryNav].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-bark-soft hover:text-sage-700">
                     {link.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="/summer-daycare" className="text-bark-soft hover:text-sage-700">
-                  Summer Camp
-                </Link>
-              </li>
               <li>
                 <Link href="/contact" className="text-bark-soft hover:text-sage-700">
                   Contact

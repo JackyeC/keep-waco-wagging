@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/dog-friendly-waco",
     "/weekend",
     "/pet-care",
+    "/pet-care/weddings-events",
     "/summer-daycare",
     "/yappy-hours",
     "/shop",

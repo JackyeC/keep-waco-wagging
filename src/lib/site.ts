@@ -93,15 +93,24 @@ export type NavLink = {
   href: string;
 };
 
+// Lean primary nav: services first, then trust/community content. Keeps the
+// header focused on paid conversion. Secondary pages live in `secondaryNav`
+// (rendered in the footer + mobile "More" group).
 export const mainNav: NavLink[] = [
+  { label: "Poop Scooping", href: "/platinum-scoops" },
+  { label: "Boarding & Daycare", href: "/pet-care" },
   { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
-  { label: "Platinum Scoops", href: "/platinum-scoops" },
-  { label: "Pet Care", href: "/pet-care" },
   { label: "Yappy Hours", href: "/yappy-hours" },
+  { label: "About", href: "/about" },
+];
+
+// De-prioritized pages — still reachable from the footer and mobile menu.
+export const secondaryNav: NavLink[] = [
+  { label: "Summer Camp", href: "/summer-daycare" },
+  { label: "Event Dog Care", href: "/pet-care/weddings-events" },
   { label: "Shop", href: "/shop" },
   { label: "Wagging Wall", href: "/pets" },
   { label: "Sponsors", href: "/sponsors" },
-  { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -117,6 +126,18 @@ export const ctas = {
   bookPetCare: {
     label: "Book Pet Care",
     href: cityConfig.rover.profileUrl,
+  },
+  summerDaycare: {
+    label: "See the Summer Calendar",
+    href: "/summer-daycare",
+  },
+  eventCare: {
+    label: "Ask About Event Dog Care",
+    href: "/pet-care/weddings-events",
+  },
+  trainingWaitlist: {
+    label: "Join the Training Waitlist",
+    href: `mailto:${cityConfig.sponsor.email}?subject=Waco%20dog%20training%20interest`,
   },
   joinList: {
     label: "Join the Waco Dog Parent List",
@@ -173,6 +194,8 @@ export const sponsorLinks = {
     { label: "Weekly Dog Waste Removal", href: "/platinum-scoops#yard-services" },
     { label: "One-Time Yard Cleanups", href: "/platinum-scoops#yard-services" },
     { label: "Boarding & Daycare", href: "/pet-care" },
+    { label: "Summer Daycare Camp", href: "/summer-daycare" },
+    { label: "Platinum Pup Event Care", href: "/pet-care/weddings-events" },
     { label: "Dog Walking", href: "/pet-care" },
   ],
 } as const;

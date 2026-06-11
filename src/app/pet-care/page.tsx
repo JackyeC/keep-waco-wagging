@@ -64,14 +64,33 @@ export default function PetCarePage() {
             </p>
           </div>
           <div className="mt-6 shrink-0 lg:mt-0">
-            <Button href="/summer-daycare" size="lg">
-              See the summer calendar
+            <Button href={ctas.summerDaycare.href} size="lg">
+              {ctas.summerDaycare.label}
             </Button>
           </div>
         </div>
       </Section>
 
       <Section tone="paper">
+        <div className="grid items-center gap-6 rounded-card bg-gradient-to-br from-gold-100 via-cream to-cream p-8 ring-1 ring-inset ring-gold-200 lg:grid-cols-[1.4fr_auto]">
+          <div>
+            <Badge tone="gold">Premium event service</Badge>
+            <h2 className="mt-3 text-3xl">Platinum Pup Event Care</h2>
+            <p className="mt-3 max-w-2xl text-bark-soft">
+              A dedicated dog attendant for weddings, parties, photos, proposals,
+              and special events — so your pup can be part of the moment while we
+              handle leash time, potty and water breaks, and calm rest.
+            </p>
+          </div>
+          <div className="shrink-0">
+            <Button href={ctas.eventCare.href} size="lg">
+              {ctas.eventCare.label}
+            </Button>
+          </div>
+        </div>
+      </Section>
+
+      <Section tone="sand">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
             <SectionHeading eyebrow="What dogs can expect" title="Care with rhythm, updates, and rest" />

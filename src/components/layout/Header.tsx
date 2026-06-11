@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/Button";
-import { mainNav, ctas } from "@/lib/site";
+import { mainNav, secondaryNav, ctas } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -69,6 +69,19 @@ export function Header() {
                     ? "bg-sage-100 text-sage-700"
                     : "text-bark hover:bg-sage-50",
                 )}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wide text-bark-faint">
+              More
+            </p>
+            {secondaryNav.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-3 py-2 text-sm text-bark-soft hover:bg-sage-50"
               >
                 {link.label}
               </Link>
