@@ -14,10 +14,24 @@ import {
 } from "@/data/eventCare";
 import { ctas } from "@/lib/site";
 
+const eventCareTitle = "Platinum Pup Event Care | Wedding Dog Attendant in Waco";
+const eventCareDescription =
+  "Include your dog in your Waco wedding, party, photo session, or special event with Platinum Pup Event Care from Platinum Scoops. We help with calm handling, potty breaks, photos, ceremony support, and post-event decompression.";
+
 export const metadata: Metadata = {
-  title: "Platinum Pup Event Care | Wedding Dog Attendant in Waco",
-  description:
-    "Include your dog in your Waco wedding, party, photo session, or special event with Platinum Pup Event Care from Platinum Scoops. We help with calm handling, potty breaks, photos, ceremony support, and post-event decompression.",
+  title: eventCareTitle,
+  description: eventCareDescription,
+  openGraph: {
+    title: eventCareTitle,
+    description: eventCareDescription,
+    url: "/pet-care/weddings-events",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: eventCareTitle,
+    description: eventCareDescription,
+  },
 };
 
 export default function EventCarePage() {
