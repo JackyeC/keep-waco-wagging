@@ -13,19 +13,18 @@ function getResend(): Resend | null {
 }
 
 export function isEmailConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY && process.env.NOTIFY_EMAIL);
+  return Boolean(process.env.RESEND_API_KEY && process.env.LEAD_NOTIFICATION_EMAIL);
 }
 
-/** Send a plain-text notification email for new leads/signups. */
 export async function sendLeadNotification(
   subject: string,
   body: string,
 ): Promise<{ ok: boolean; error?: string }> {
   const resend = getResend();
-  const to = process.env.NOTIFY_EMAIL;
+  const to = process.env.LEAD_NOTIFICATION_EMAIL;
+  const bcc = process.env.LEAD_NOTIFICATION_BCC;
   const from =
-    process.env.RESEND_FROM_EMAIL ??
-    `${cityConfig.name} <onboarding@resend.dev>`;
+    process.env.RESEND_FROM_EMAIL ?? `hello@${new URL(cityConfig.url).hostname}`;
 
   if (!resend || !to) {
     console.info("[lead notification skipped]", subject, body);
@@ -35,7 +34,8 @@ export async function sendLeadNotification(
   const { error } = await resend.emails.send({
     from,
     to,
-    subject: `[${cityConfig.name}] ${subject}`,
+    bcc: bcc ? [bcc] : undefined,
+    subject,
     text: body,
   });
 

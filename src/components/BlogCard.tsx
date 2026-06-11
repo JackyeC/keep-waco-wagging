@@ -13,10 +13,10 @@ function formatDate(iso: string) {
 }
 
 export function BlogCard({ post }: { post: BlogPost }) {
+  const href = `/blog/${post.slug}`;
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70 transition-all hover:-translate-y-0.5 hover:shadow-md hover:ring-sage-200">
-      {/* TODO: links resolve to /blog (single-post routes can be added later). */}
-      <Link href="/blog" className="block">
+      <Link href={href} className="block">
         <div className="aspect-[16/9] overflow-hidden">
           <ImagePlaceholder src={post.imageUrl} alt={post.title} label={post.category} />
         </div>
@@ -26,7 +26,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
           <Badge tone="sky">{post.category}</Badge>
         </div>
         <h3 className="mt-3 text-lg font-semibold leading-snug">
-          <Link href="/blog" className="hover:text-sage-700">
+          <Link href={href} className="hover:text-sage-700">
             {post.title}
           </Link>
         </h3>

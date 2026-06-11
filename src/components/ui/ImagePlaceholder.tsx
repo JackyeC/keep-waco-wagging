@@ -21,8 +21,8 @@ export function ImagePlaceholder({
     return (
       // Using a plain <img> keeps the MVP free of image-domain config; swap to
       // next/image with real Waco photography later.
+      // eslint-disable-next-line @next/next/no-img-element
       <img
-        // eslint-disable-next-line @next/next/no-img-element
         src={src}
         alt={alt ?? ""}
         className={cn("h-full w-full object-cover", className)}

@@ -1,84 +1,75 @@
 /**
  * Central city + site configuration for Keep Waco Wagging.
  *
- * To clone this site for another "W" city, swap `cityConfig` values and replace
- * the data files under `src/data/`. See README.md for the full checklist.
+ * Clone-to-another-city rule: update this file plus the data files in
+ * `src/data/`. Do not hide city-specific facts inside components.
  */
 
 export const cityConfig = {
-  /** Core geography */
   city: "Waco",
   state: "Texas",
   stateAbbr: "TX",
   county: "McLennan County",
   slug: "waco",
-
-  /** Brand */
   name: "Keep Waco Wagging",
-  tagline: "Your dog-friendly guide to Waco.",
-  // TODO: confirm final production domain before launch.
+  tagline: "Dog-friendly Waco, practical pet care, and cleaner dog days.",
   url: "https://keepwacowagging.com",
   description:
-    "Keep Waco Wagging is the dog-friendly lifestyle guide for Waco pet parents — find dog-friendly patios, parks, trails, events, local pet businesses, and real-life training tips. Presented by Platinum Scoops.",
+    "Keep Waco Wagging is a local guide for Waco dog parents, featuring dog-friendly places, Platinum Scoops yard cleanup, Rover pet care, product recommendations, and local resources.",
   keywords: [
     "dog-friendly Waco",
+    "Waco dog parents",
+    "Platinum Scoops",
+    "dog waste removal Waco",
+    "Waco dog boarding",
+    "Waco dog daycare",
     "dog-friendly patios Waco",
-    "dog parks Waco",
-    "Waco dog training",
-    "lifestyle dog training Waco",
-    "puppy training Waco",
-    "dog trainer Waco Texas",
-    "Waco pet services",
-    "things to do with dogs in Waco",
-    "dog-friendly restaurants Waco",
-    "pet waste removal Waco",
-    "poop scoop service Waco",
-    "dog yard cleanup Waco",
-    "Platinum Scoops Waco",
+    "Waco pet care",
   ],
   serviceAreas: [
     "Waco",
-    "Woodway",
     "Hewitt",
+    "Woodway",
     "Robinson",
     "China Spring",
     "Bellmead",
+    "McLennan County",
   ],
-
-  /** Presenting sponsor / company */
+  // TODO: Confirm expanded service area before publishing: Lorena, McGregor,
+  // Lacy Lakeview, Bruceville-Eddy, West, Riesel, Crawford, Hallsburg, Elm Mott,
+  // Axtell, Ross.
   sponsor: {
     name: "Platinum Scoops",
     line: "Presented by Platinum Scoops",
     website: "https://platinumscoops.com",
-    // TODO: replace with your real booking URL (Square, Jobber, etc.).
-    bookingUrl: "https://platinumscoops.com",
-    phone: "(254) 555-0100",
-    phoneHref: "tel:+12545550100",
-    email: "hello@platinumscoops.com",
+    bookingUrl:
+      "https://clienthub.getjobber.com/booking/29462df8-88c9-4075-aa13-000fc4c8b80c",
+    phoneDisplay: "(254) SCOOPER",
+    phoneNumeric: "(254) 726-6737",
+    phoneHref: "tel:+12547266737",
+    email: "info@platinumscoops.com",
     pricingNote:
-      "Plans start around $19/week for weekly scooping in most Waco-area neighborhoods. Pricing varies by yard size and service frequency — book online for a quote.",
+      "Recurring scooping starts at $25/week, with the first cleanup included. No long-term commitment. Cancel anytime.",
   },
-
-  /** Founder / personal brand */
-  founder: {
-    name: "Jacky Clayton",
-    title: "Founder, Platinum Scoops & Keep Waco Wagging",
-    bio: "I'm a Waco dog parent, pet waste removal operator, lifestyle dog trainer, and Rover sitter. I built Keep Waco Wagging because local dog families kept asking the same questions — where to go, who to trust, and how to enjoy more of Waco with less stress.",
-    // TODO: replace with your real Rover profile URL.
-    roverProfileUrl: "https://www.rover.com/",
-    roverHeadline: "Trusted Waco dog sitting & walking on Rover",
+  rover: {
+    profileUrl:
+      "https://www.rover.com/members/jacqueline-todd-c-full-time-pet-care-professionals/",
+    rating: "5.0",
+    reviewCount: 73,
+    headline: "Full-Time Pet Care Professionals",
+    subhead: "Our Empty Nest, Your Dog's Retreat",
   },
-
-  /** Revenue / affiliate settings */
+  founders: {
+    names: "Jackye and Todd Clayton",
+    jackye: "Jackye Clayton",
+    todd: "Todd Clayton",
+  },
   monetization: {
-    // TODO: replace with your Amazon Associates tracking ID once approved.
-    amazonAssociatesTag: "keepwacowag-20",
     affiliateDisclosure:
-      "Keep Waco Wagging earns commissions from qualifying purchases through Amazon and other partner links at no extra cost to you. Sponsored placements are always labeled. We only recommend products and partners we genuinely use or trust for Waco dog families.",
-    roverProfileUrl: "https://www.rover.com/",
+      "As an Amazon Associate I earn from qualifying purchases.",
+    productDisclosure:
+      "Product recommendations are based on practical dog care experience. Always choose what fits your dog's size, health, and behavior needs.",
   },
-
-  /** Social — swap in real handles when available */
   social: [
     { label: "Instagram", href: "#" },
     { label: "Facebook", href: "#" },
@@ -86,7 +77,6 @@ export const cityConfig = {
   ],
 } as const;
 
-/** Backward-compatible alias used across the codebase. */
 export const siteConfig = {
   name: cityConfig.name,
   tagline: cityConfig.tagline,
@@ -103,87 +93,133 @@ export type NavLink = {
   href: string;
 };
 
-/** Primary navigation shown in the header. */
+// Lean primary nav: services first, then trust/community content. Keeps the
+// header focused on paid conversion. Secondary pages live in `secondaryNav`
+// (rendered in the footer + mobile "More" group).
 export const mainNav: NavLink[] = [
-  { label: "Directory", href: "/directory" },
-  { label: "Where to Wag", href: "/weekend" },
-  { label: "Training", href: "/training" },
-  { label: "Shop", href: "/shop" },
-  { label: "Pets", href: "/pets" },
-  { label: "Spotlights", href: "/spotlights" },
-  { label: "Blog", href: "/blog" },
-  { label: "Platinum Scoops", href: "/platinum-scoops" },
+  { label: "Poop Scooping", href: "/platinum-scoops" },
+  { label: "Boarding & Daycare", href: "/pet-care" },
+  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
+  { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "About", href: "/about" },
 ];
 
-/** Reusable primary calls to action used across the site. */
+// De-prioritized pages — still reachable from the footer and mobile menu.
+export const secondaryNav: NavLink[] = [
+  { label: "Summer Camp", href: "/summer-daycare" },
+  { label: "Event Dog Care", href: "/pet-care/weddings-events" },
+  { label: "Shop", href: "/shop" },
+  { label: "Wagging Wall", href: "/pets" },
+  { label: "Sponsors", href: "/sponsors" },
+  { label: "Blog", href: "/blog" },
+];
+
 export const ctas = {
-  exploreDirectory: { label: "Explore Dog-Friendly Waco", href: "/directory" },
-  bookTraining: {
-    label: "Book a Lifestyle Training Assessment",
-    href: "/training#assessment",
+  bookScoops: {
+    label: "Book a Scoop",
+    href: cityConfig.sponsor.bookingUrl,
   },
-  trainingHelp: { label: "Get Lifestyle Training Help", href: "/training" },
+  exploreDirectory: {
+    label: "Explore Dog-Friendly Waco",
+    href: "/dog-friendly-waco",
+  },
+  bookPetCare: {
+    label: "Book Pet Care",
+    href: cityConfig.rover.profileUrl,
+  },
+  summerDaycare: {
+    label: "See the Summer Calendar",
+    href: "/summer-daycare",
+  },
+  eventCare: {
+    label: "Ask About Event Dog Care",
+    href: "/pet-care/weddings-events",
+  },
+  trainingWaitlist: {
+    label: "Join the Training Waitlist",
+    href: `mailto:${cityConfig.sponsor.email}?subject=Waco%20dog%20training%20interest`,
+  },
+  joinList: {
+    label: "Join the Waco Dog Parent List",
+    href: "#email-list",
+  },
   joinWeekend: {
-    label: "Join Where to Wag This Weekend",
-    href: "/weekend#newsletter",
+    label: "Join the Waco Dog Parent List",
+    href: "#email-list",
   },
-  getListed: { label: "Get Listed", href: "/get-listed" },
+  becomeSponsor: {
+    label: "Become a Local Sponsor",
+    href: "/sponsors#sponsor-inquiry",
+  },
+  submitPlace: {
+    label: "Submit a Dog-Friendly Place",
+    href: "/submit-a-place",
+  },
   learnScoops: {
     label: "Learn About Platinum Scoops",
     href: "/platinum-scoops",
   },
-  bookScoops: {
-    label: "Book Platinum Scoops",
-    href: cityConfig.sponsor.bookingUrl,
+  shopGear: {
+    label: "Shop Dog Gear",
+    href: "/shop",
+  },
+  // Backward-compatible aliases used by older components/pages.
+  bookTraining: {
+    label: "Ask About Lifestyle Support",
+    href: `mailto:${cityConfig.sponsor.email}?subject=Lifestyle%20dog%20support`,
+  },
+  trainingHelp: {
+    label: "Get Lifestyle Support",
+    href: "/pet-care",
+  },
+  getListed: {
+    label: "Submit a Dog-Friendly Place",
+    href: "/submit-a-place",
   },
   bookRover: {
-    label: "Book on Rover",
-    href: cityConfig.monetization.roverProfileUrl,
+    label: "Book Pet Care",
+    href: cityConfig.rover.profileUrl,
   },
-  shopGear: { label: "Shop Dog Gear We Love", href: "/shop" },
 } as const;
 
-/** External / sponsor links */
 export const sponsorLinks = {
   website: cityConfig.sponsor.website,
   booking: cityConfig.sponsor.bookingUrl,
-  phone: cityConfig.sponsor.phone,
+  phone: cityConfig.sponsor.phoneDisplay,
+  phoneNumeric: cityConfig.sponsor.phoneNumeric,
   phoneHref: cityConfig.sponsor.phoneHref,
   email: cityConfig.sponsor.email,
   pricingNote: cityConfig.sponsor.pricingNote,
   services: [
-    { label: "Weekly Pet Waste Removal", href: "/platinum-scoops#services" },
-    { label: "Every-Other-Week Scooping", href: "/platinum-scoops#services" },
-    { label: "Pre-Party Yard Prep", href: "/platinum-scoops#services" },
-    { label: "OSO Fresh Yard Refresh", href: "/platinum-scoops#services" },
-    {
-      label: "Lifestyle Dog Training Assessment",
-      href: "/training#assessment",
-    },
+    { label: "Weekly Dog Waste Removal", href: "/platinum-scoops#yard-services" },
+    { label: "One-Time Yard Cleanups", href: "/platinum-scoops#yard-services" },
+    { label: "Boarding & Daycare", href: "/pet-care" },
+    { label: "Summer Daycare Camp", href: "/summer-daycare" },
+    { label: "Platinum Pup Event Care", href: "/pet-care/weddings-events" },
+    { label: "Dog Walking", href: "/pet-care" },
   ],
 } as const;
 
 export const socialLinks = cityConfig.social;
-
 export const monetization = cityConfig.monetization;
 
-/** Build an Amazon affiliate product URL from an ASIN. */
-export function buildAmazonAffiliateUrl(asin: string): string {
-  return `https://www.amazon.com/dp/${asin}?tag=${cityConfig.monetization.amazonAssociatesTag}`;
+export function getAmazonAssociatesTag(): string | undefined {
+  return process.env.AMAZON_ASSOCIATES_TAG;
 }
 
-/**
- * Podcast promo config.
- * Set `enabled: false` to hide the banner everywhere.
- */
+export function buildAmazonAffiliateUrl(asin?: string): string | undefined {
+  const tag = getAmazonAssociatesTag();
+  if (!asin || !tag) return undefined;
+  return `https://www.amazon.com/dp/${asin}?tag=${tag}`;
+}
+
 export const podcast = {
-  enabled: true,
+  enabled: false,
   name: "The Keep Waco Wagging Podcast",
   tagline: "Dog-friendly Waco, in your ears.",
   description:
-    "Local stories, real-life training tips, and the dog-friendly finds that make life with your pup in Waco more fun — a new episode every week.",
-  barText: "New — The Keep Waco Wagging Podcast is here.",
+    "Local stories, practical pet care, and dog-friendly Waco finds.",
+  barText: "The Keep Waco Wagging Podcast is coming soon.",
   subscribeUrl: "#",
   platforms: [
     { label: "Spotify", href: "#" },

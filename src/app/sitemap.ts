@@ -1,19 +1,24 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
-import { listings } from "@/data/listings";
+import { directoryListings } from "@/data/directory";
+import { blogPosts } from "@/data/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
   const staticRoutes = [
     "",
-    "/directory",
+    "/dog-friendly-waco",
     "/weekend",
-    "/training",
+    "/pet-care",
+    "/pet-care/weddings-events",
+    "/summer-daycare",
+    "/yappy-hours",
     "/shop",
     "/pets",
     "/platinum-scoops",
-    "/spotlights",
-    "/get-listed",
+    "/sponsors",
+    "/submit-a-place",
+    "/contact",
     "/blog",
     "/about",
     "/affiliate-disclosure",
@@ -28,8 +33,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: route === "" ? 1 : 0.8,
     })),
-    ...listings.map((l) => ({
-      url: `${base}/directory/${l.slug}`,
+    ...directoryListings.map((l) => ({
+      url: `${base}/dog-friendly-waco/${l.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...blogPosts.map((l) => ({
+      url: `${base}/blog/${l.slug}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.6,

@@ -8,31 +8,31 @@ export const quickCategories: CategoryItem[] = [
   {
     label: "Patios",
     description: "Dog-friendly bites & brews where your pup is welcome.",
-    href: "/directory?category=Dog-Friendly%20Patios",
+    href: "/dog-friendly-waco",
     icon: "patio",
   },
   {
     label: "Parks + Trails",
     description: "Green space, shade, and room to sniff around Waco.",
-    href: "/directory?category=Parks",
+    href: "/dog-friendly-waco",
     icon: "park",
   },
   {
     label: "Events",
     description: "Local happenings where dogs are part of the fun.",
-    href: "/directory?category=Events",
+    href: "/dog-friendly-waco",
     icon: "calendar",
   },
   {
     label: "Training",
     description: "Real-life skills for calmer walks, patios, and guests.",
-    href: "/training",
+    href: "/pet-care",
     icon: "training",
   },
   {
     label: "Local Pet Businesses",
     description: "Vets, groomers, stores, and pet services you can trust.",
-    href: "/directory?category=Pet%20Services",
+    href: "/dog-friendly-waco",
     icon: "store",
   },
   {

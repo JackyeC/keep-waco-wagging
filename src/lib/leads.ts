@@ -1,74 +1,82 @@
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { sendLeadNotification } from "@/lib/email";
 
-export type LeadType = "newsletter" | "get_listed" | "pet_submission";
+export type SubmissionType =
+  | "lead"
+  | "directory_submission"
+  | "sponsor_inquiry"
+  | "contact_message";
 
-export type LeadResult =
+type SubmissionConfig = {
+  table: string;
+  subject: string;
+};
+
+const configs: Record<SubmissionType, SubmissionConfig> = {
+  lead: {
+    table: "leads",
+    subject: "New Keep Waco Wagging email signup",
+  },
+  directory_submission: {
+    table: "directory_submissions",
+    subject: "New dog-friendly place submitted",
+  },
+  sponsor_inquiry: {
+    table: "sponsor_inquiries",
+    subject: "New Keep Waco Wagging sponsor inquiry",
+  },
+  contact_message: {
+    table: "contact_messages",
+    subject: "New Keep Waco Wagging contact message",
+  },
+};
+
+export type SubmissionResult =
   | { ok: true; stored: boolean; notified: boolean }
   | { ok: false; error: string };
 
 function formatPayload(payload: Record<string, unknown>): string {
   return Object.entries(payload)
-    .map(([key, value]) => `${key}: ${String(value ?? "")}`)
+    .map(([key, value]) => {
+      const formatted = Array.isArray(value) ? value.join(", ") : String(value ?? "");
+      return `${key}: ${formatted}`;
+    })
     .join("\n");
 }
 
-/** Persist a lead to Supabase (if configured) and notify via email. */
-export async function saveLead(
-  type: LeadType,
+export async function saveSubmission(
+  type: SubmissionType,
   payload: Record<string, unknown>,
-): Promise<LeadResult> {
-  const email =
-    typeof payload.email === "string" ? payload.email.trim().toLowerCase() : null;
-
-  if (type === "newsletter" && !email) {
-    return { ok: false, error: "Email is required." };
-  }
-
-  let stored = false;
+): Promise<SubmissionResult> {
+  const config = configs[type];
   const supabase = getSupabaseAdmin();
+  let stored = false;
 
   if (supabase) {
-    const table =
-      type === "newsletter"
-        ? "newsletter_signups"
-        : type === "get_listed"
-          ? "business_listings"
-          : "pet_submissions";
-
-    const { error } = await supabase.from(table).insert({
-      ...payload,
-      source: "website",
-    });
-
+    const { error } = await supabase.from(config.table).insert(payload);
     if (error) {
-      console.error(`[supabase insert ${table}]`, error);
-      // Continue — email notification may still succeed.
+      console.error(`[supabase insert ${config.table}]`, error);
     } else {
       stored = true;
     }
   }
 
-  const subject =
-    type === "newsletter"
-      ? "New newsletter signup"
-      : type === "get_listed"
-        ? "New Get Listed submission"
-        : "New pet submission";
+  const notification = await sendLeadNotification(
+    config.subject,
+    formatPayload(payload),
+  );
 
-  const notify = await sendLeadNotification(subject, formatPayload(payload));
-
-  // Succeed if stored OR notified OR neither backend is configured (dev mode).
   const hasBackend =
     Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) ||
     Boolean(process.env.RESEND_API_KEY);
 
-  if (!stored && !notify.ok && hasBackend) {
+  if (!stored && !notification.ok && hasBackend) {
     return {
       ok: false,
-      error: "Unable to save your submission. Please try again or email us directly.",
+      error:
+        "Unable to save your submission. Please try again or email us directly.",
     };
   }
 
-  return { ok: true, stored, notified: notify.ok };
+  return { ok: true, stored, notified: notification.ok };
 }

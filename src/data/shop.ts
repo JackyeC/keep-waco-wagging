@@ -74,7 +74,7 @@ export function getFeaturedShopProducts(): ShopProduct[] {
 }
 
 export function getShopProductUrl(product: ShopProduct): string {
-  return product.href ?? buildAmazonAffiliateUrl(product.asin);
+  return product.href ?? buildAmazonAffiliateUrl(product.asin) ?? "#";
 }
 
 export const shopCategories = [

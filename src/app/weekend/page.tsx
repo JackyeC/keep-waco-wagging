@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { WeekendGuideBlock } from "@/components/WeekendGuideBlock";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { AdSlot } from "@/components/AdSlot";
 import { Badge } from "@/components/ui/Badge";
 import { weekendBlocks, weekendEdition } from "@/data/weekend";
 
@@ -33,6 +34,7 @@ export default function WeekendPage() {
           {weekendBlocks.map((block) => (
             <WeekendGuideBlock key={block.id} block={block} />
           ))}
+          <AdSlot placement="weekend" />
         </div>
       </Section>
 

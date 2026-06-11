@@ -1,53 +1,67 @@
 -- Supabase schema for Keep Waco Wagging lead capture.
--- Run in the Supabase SQL editor or via `supabase db push`.
+-- Uses server-side inserts with SUPABASE_SERVICE_ROLE_KEY. Do not create public
+-- read policies for these tables.
 
-create table if not exists newsletter_signups (
+create table if not exists leads (
   id uuid primary key default gen_random_uuid(),
-  email text not null unique,
-  source text default 'website',
-  created_at timestamptz default now()
+  created_at timestamptz default now(),
+  first_name text,
+  email text not null,
+  dog_name text,
+  neighborhood text,
+  interests text[],
+  source text default 'keep_waco_wagging',
+  consent boolean default true
 );
 
-create table if not exists business_listings (
+create table if not exists directory_submissions (
   id uuid primary key default gen_random_uuid(),
+  created_at timestamptz default now(),
+  submitter_name text,
+  submitter_email text,
+  place_name text not null,
+  category text,
+  address text,
+  website text,
+  phone text,
+  neighborhood text,
+  dog_policy text,
+  patio_details text,
+  water_bowls text,
+  shade text,
+  best_time_to_visit text,
+  notes text,
+  owner_or_manager boolean default false,
+  status text default 'pending'
+);
+
+create table if not exists sponsor_inquiries (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz default now(),
   business_name text not null,
-  contact_name text not null,
+  contact_name text,
   email text not null,
   phone text,
   website text,
-  social text,
-  category text,
-  address text,
-  dogs_allowed text,
-  dog_areas text,
-  dog_rules text,
-  water_bowls text,
-  shade text,
-  best_time text,
-  sponsor text,
+  sponsor_type text,
   notes text,
-  source text default 'website',
-  status text default 'pending',
-  created_at timestamptz default now()
+  status text default 'new'
 );
 
-create table if not exists pet_submissions (
+create table if not exists contact_messages (
   id uuid primary key default gen_random_uuid(),
-  pet_name text not null,
-  breed text,
-  age_or_stage text,
-  neighborhood text,
-  bio text,
-  owner_name text not null,
+  created_at timestamptz default now(),
+  name text,
   email text not null,
-  photo_filename text,
-  source text default 'website',
-  status text default 'pending',
-  created_at timestamptz default now()
+  interest text,
+  message text not null,
+  status text default 'new'
 );
 
-alter table newsletter_signups enable row level security;
-alter table business_listings enable row level security;
-alter table pet_submissions enable row level security;
+alter table leads enable row level security;
+alter table directory_submissions enable row level security;
+alter table sponsor_inquiries enable row level security;
+alter table contact_messages enable row level security;
 
--- Service role bypasses RLS; no public policies needed for server-only inserts.
+-- No public policies are created. The Next.js API routes insert with the
+-- service-role key on the server only.

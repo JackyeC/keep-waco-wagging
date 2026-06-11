@@ -1,34 +1,35 @@
 import { NextResponse } from "next/server";
-import { saveLead } from "@/lib/leads";
+import { saveSubmission } from "@/lib/leads";
 
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Record<string, string>;
+    const placeName = body.placeName || body.businessName;
 
-    if (!body.businessName?.trim() || !body.contactName?.trim() || !body.email?.trim()) {
+    if (!placeName?.trim()) {
       return NextResponse.json(
-        { error: "Business name, contact name, and email are required." },
+        { error: "Business or place name is required." },
         { status: 400 },
       );
     }
 
-    const result = await saveLead("get_listed", {
-      business_name: body.businessName.trim(),
-      contact_name: body.contactName.trim(),
-      email: body.email.trim().toLowerCase(),
-      phone: body.phone?.trim() ?? null,
-      website: body.website?.trim() ?? null,
-      social: body.social?.trim() ?? null,
-      category: body.category ?? null,
-      address: body.address?.trim() ?? null,
-      dogs_allowed: body.dogsAllowed ?? null,
-      dog_areas: body.dogAreas ?? null,
-      dog_rules: body.dogRules?.trim() ?? null,
-      water_bowls: body.waterBowls ?? null,
-      shade: body.shade ?? null,
-      best_time: body.bestTime?.trim() ?? null,
-      sponsor: body.sponsor ?? null,
-      notes: body.notes?.trim() ?? null,
+    const result = await saveSubmission("directory_submission", {
+      submitter_name: body.contactName?.trim() || null,
+      submitter_email: body.email?.trim().toLowerCase() || null,
+      place_name: placeName.trim(),
+      category: body.category || null,
+      address: body.address?.trim() || null,
+      website: body.website?.trim() || null,
+      phone: body.phone?.trim() || null,
+      neighborhood: null,
+      dog_policy: body.dogsAllowed || null,
+      patio_details: body.dogAreas || null,
+      water_bowls: body.waterBowls || null,
+      shade: body.shade || null,
+      best_time_to_visit: body.bestTime?.trim() || null,
+      notes: body.notes?.trim() || null,
+      owner_or_manager: false,
+      status: "pending",
     });
 
     if (!result.ok) {
