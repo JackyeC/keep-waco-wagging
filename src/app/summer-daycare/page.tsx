@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { CalendarDays, Check, Sun, PawPrint } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -10,7 +11,7 @@ import {
   daycareMonthOrder,
   type DaycareTheme,
 } from "@/data/summerDaycare";
-import { cityConfig } from "@/lib/site";
+import { cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Summer Dog Daycare Camp in ${cityConfig.city} | Weekly Themes`,
@@ -29,7 +30,7 @@ export default function SummerDaycarePage() {
         showSponsor
       >
         <div className="flex flex-wrap items-center gap-3">
-          <Button href={summerDaycare.bookingUrl} size="lg">
+          <Button href={ctas.bookPetCare.href} size="lg">
             Reserve your dog&apos;s spot on Rover
           </Button>
           <Badge tone="gold">{summerDaycare.dailyRate} daycare</Badge>
@@ -103,7 +104,7 @@ export default function SummerDaycarePage() {
             Pick the weeks your dog wants to come and request the dates on Rover.
             That&apos;s where you&apos;ll see current openings and confirm a spot.
           </p>
-          <Button href={summerDaycare.bookingUrl} size="lg" className="mt-6">
+          <Button href={ctas.bookPetCare.href} size="lg" className="mt-6">
             Reserve on Rover
           </Button>
         </div>
@@ -135,7 +136,7 @@ function ThemeCard({ theme }: { theme: DaycareTheme }) {
         </p>
       )}
       <div className="mt-5 pt-2">
-        <Button href={summerDaycare.bookingUrl} variant="secondary" size="sm">
+        <Button href={ctas.bookPetCare.href} variant="secondary" size="sm">
           Reserve this week on Rover
         </Button>
       </div>
@@ -148,7 +149,7 @@ function HowItem({
   title,
   body,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   body: string;
 }) {
