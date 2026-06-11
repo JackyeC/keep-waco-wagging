@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { SponsorBadge } from "@/components/SponsorBadge";
+import { SitePhoto } from "@/components/SitePhoto";
 import { cn } from "@/lib/utils";
 
 type Tone = "sage" | "sky" | "sand" | "gold";
@@ -18,6 +19,7 @@ export function PageHeader({
   description,
   tone = "sage",
   showSponsor = false,
+  image,
   children,
 }: {
   eyebrow?: string;
@@ -25,12 +27,18 @@ export function PageHeader({
   description?: string;
   tone?: Tone;
   showSponsor?: boolean;
+  image?: { src: string; alt: string };
   children?: React.ReactNode;
 }) {
   return (
     <section className={cn("bg-gradient-to-b", toneBg[tone])}>
-      <Container className="py-14 sm:py-20">
-        <div className="max-w-3xl">
+      <Container
+        className={cn(
+          "py-14 sm:py-20",
+          image && "grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]",
+        )}
+      >
+        <div className={cn(image ? "max-w-xl" : "max-w-3xl")}>
           {eyebrow && (
             <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-sage-600">
               {eyebrow}
@@ -51,6 +59,16 @@ export function PageHeader({
           )}
           {children && <div className="mt-6">{children}</div>}
         </div>
+        {image && (
+          <div className="relative aspect-[4/3] overflow-hidden rounded-card shadow-md ring-1 ring-inset ring-clay/60 lg:aspect-[5/4]">
+            <SitePhoto
+              src={image.src}
+              alt={image.alt}
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+            />
+          </div>
+        )}
       </Container>
     </section>
   );

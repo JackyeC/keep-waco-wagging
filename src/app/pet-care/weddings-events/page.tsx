@@ -12,6 +12,7 @@ import {
   eventCarePackages,
   eventCarePolicies,
 } from "@/data/eventCare";
+import { sitePhotos } from "@/data/sitePhotos";
 import { ctas } from "@/lib/site";
 
 const eventCareTitle = "Platinum Pup Event Care | Wedding Dog Attendant in Waco";
@@ -42,6 +43,7 @@ export default function EventCarePage() {
         title="Include your dog in the big day — without making your guests manage the leash."
         description="Platinum Pup Event Care gives Waco pet parents a dedicated dog attendant for weddings, parties, photos, proposals, and special events. We help your pup show up for the sweet moments, then step away for breaks, water, rest, and calm support."
         tone="gold"
+        image={sitePhotos.community}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href="#inquiry" size="lg">

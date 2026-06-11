@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { rover } from "@/data/rover";
+import { SitePhoto } from "@/components/SitePhoto";
+import { sitePhotos } from "@/data/sitePhotos";
 import { ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -22,6 +24,7 @@ export default function PetCarePage() {
         title="Home-based Waco dog boarding, daycare, drop-ins, and walks"
         description={`${rover.positioning}. ${rover.tagline}. Dogs get practical care, structure, updates, and a family-run environment.`}
         tone="sky"
+        image={sitePhotos.boarding}
       >
         <Button href={ctas.bookPetCare.href} size="lg">
           {ctas.bookPetCare.label}
@@ -91,10 +94,17 @@ export default function PetCarePage() {
       </Section>
 
       <Section tone="sand">
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
           <div>
             <SectionHeading eyebrow="What dogs can expect" title="Care with rhythm, updates, and rest" />
             <p className="mt-4 leading-relaxed text-bark-soft">{rover.bio}</p>
+            <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-card ring-1 ring-inset ring-clay/60">
+              <SitePhoto
+                src={sitePhotos.boardingHome.src}
+                alt={sitePhotos.boardingHome.alt}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
           </div>
           <div className="rounded-card bg-sage-50 p-6 ring-1 ring-inset ring-sage-200">
             <h3 className="text-xl font-semibold">Home environment</h3>

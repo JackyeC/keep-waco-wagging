@@ -19,6 +19,8 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
 import { platinumScoops } from "@/data/platinumScoops";
 import { getFeaturedDirectoryListings } from "@/data/directory";
+import { SitePhoto } from "@/components/SitePhoto";
+import { sitePhotos } from "@/data/sitePhotos";
 import { cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -30,6 +32,7 @@ export const metadata: Metadata = {
 const services = [
   {
     icon: Sparkles,
+    image: sitePhotos.scooping,
     title: "Poop Scooping",
     body:
       "Reliable weekly and every-other-week yard cleanups, plus odor support and the Platinum Fresh enzyme treatment. The same technician, every visit.",
@@ -40,6 +43,7 @@ const services = [
   },
   {
     icon: Home,
+    image: sitePhotos.boardingDogs,
     title: "Boarding & Daycare",
     body:
       "Full-time, home-based care with Jackye and Todd — routines, socialization, structured rest, and real updates. Boarding, daycare, drop-ins, and walks.",
@@ -50,6 +54,7 @@ const services = [
   },
   {
     icon: GraduationCap,
+    image: sitePhotos.training,
     title: "Training Support",
     body:
       "Practical, real-life help for walks, manners, and calmer days. Now forming — join the waitlist and we'll reach out as spots open.",
@@ -119,18 +124,28 @@ export default function HomePage() {
               </li>
             </ul>
           </div>
-          <div className="rounded-card bg-white/85 p-6 ring-1 ring-inset ring-clay/70 backdrop-blur">
-            <p className="text-sm font-semibold uppercase tracking-wide text-sage-600">
-              Why families trust us
-            </p>
-            <ul className="mt-4 space-y-3">
-              {platinumScoops.trustSignals.map((signal) => (
-                <li key={signal} className="flex items-start gap-3 text-sm text-bark-soft">
-                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" />
-                  {signal}
-                </li>
-              ))}
-            </ul>
+          <div className="space-y-4">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-card shadow-md ring-1 ring-inset ring-clay/60">
+              <SitePhoto
+                src={sitePhotos.hero.src}
+                alt={sitePhotos.hero.alt}
+                priority
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+            <div className="rounded-card bg-white/85 p-6 ring-1 ring-inset ring-clay/70 backdrop-blur">
+              <p className="text-sm font-semibold uppercase tracking-wide text-sage-600">
+                Why families trust us
+              </p>
+              <ul className="mt-4 space-y-3">
+                {platinumScoops.trustSignals.map((signal) => (
+                  <li key={signal} className="flex items-start gap-3 text-sm text-bark-soft">
+                    <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" />
+                    {signal}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -148,8 +163,16 @@ export default function HomePage() {
             return (
               <article
                 key={service.title}
-                className="flex flex-col rounded-card bg-white p-7 shadow-sm ring-1 ring-inset ring-clay/70"
+                className="flex flex-col overflow-hidden rounded-card bg-white shadow-sm ring-1 ring-inset ring-clay/70"
               >
+                <div className="relative aspect-[16/10]">
+                  <SitePhoto
+                    src={service.image.src}
+                    alt={service.image.alt}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-7">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
                   <Icon className="h-6 w-6" />
                 </span>
@@ -167,14 +190,22 @@ export default function HomePage() {
                 >
                   {service.cta.label} <ArrowRight className="h-4 w-4" />
                 </Button>
+                </div>
               </article>
             );
           })}
         </div>
 
         {/* Platinum Pup Event Care — smaller supporting teaser */}
-        <div className="mt-6 grid items-center gap-6 rounded-card bg-gradient-to-br from-gold-100 via-cream to-cream p-7 ring-1 ring-inset ring-gold-200 sm:grid-cols-[1fr_auto]">
-          <div>
+        <div className="mt-6 grid items-center gap-0 overflow-hidden rounded-card bg-gradient-to-br from-gold-100 via-cream to-cream ring-1 ring-inset ring-gold-200 lg:grid-cols-[220px_1fr_auto]">
+          <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[200px]">
+            <SitePhoto
+              src={sitePhotos.community.src}
+              alt={sitePhotos.community.alt}
+              sizes="220px"
+            />
+          </div>
+          <div className="p-7">
             <div className="flex items-center gap-2">
               <Sparkle className="h-5 w-5 text-gold-600" />
               <Badge tone="gold">Premium add-on service</Badge>
@@ -186,9 +217,11 @@ export default function HomePage() {
               without a guest managing the leash all day.
             </p>
           </div>
-          <Button href={ctas.eventCare.href} variant="primary" size="lg" className="shrink-0">
-            {ctas.eventCare.label}
-          </Button>
+          <div className="px-7 pb-7 lg:p-7">
+            <Button href={ctas.eventCare.href} variant="primary" size="lg" className="shrink-0">
+              {ctas.eventCare.label}
+            </Button>
+          </div>
         </div>
       </Section>
 
