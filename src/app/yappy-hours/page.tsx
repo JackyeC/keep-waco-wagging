@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { YappyHourRSVP } from "@/components/YappyHourRSVP";
 import { yappyHours, yappyHourEvents, type YappyHourEvent } from "@/data/yappyHours";
+import { sitePhotos } from "@/data/sitePhotos";
 import { cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function YappyHoursPage() {
         description={yappyHours.intro}
         tone="sky"
         showSponsor
+        image={sitePhotos.community}
       >
         <div className="flex flex-wrap gap-3">
           <Button href="#rsvp" size="lg">

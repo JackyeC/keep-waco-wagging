@@ -270,7 +270,15 @@ export default function HomePage() {
           description="Once your routine is handled, the fun begins — themed daycare weeks and casual dog meetups around Waco."
         />
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <article className="flex flex-col rounded-card bg-white p-7 ring-1 ring-inset ring-clay/70">
+          <article className="flex flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
+            <div className="relative aspect-[16/9]">
+              <SitePhoto
+                src={sitePhotos.boarding.src}
+                alt={sitePhotos.boarding.alt}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-7">
             <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
               <CalendarDays className="h-5 w-5" />
             </span>
@@ -282,8 +290,17 @@ export default function HomePage() {
             <Button href={ctas.summerDaycare.href} variant="secondary" size="sm" className="mt-5 self-start">
               {ctas.summerDaycare.label} <ArrowRight className="h-4 w-4" />
             </Button>
+            </div>
           </article>
-          <article className="flex flex-col rounded-card bg-white p-7 ring-1 ring-inset ring-clay/70">
+          <article className="flex flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
+            <div className="relative aspect-[16/9]">
+              <SitePhoto
+                src={sitePhotos.community.src}
+                alt={sitePhotos.community.alt}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="flex flex-1 flex-col p-7">
             <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
               <Users className="h-5 w-5" />
             </span>
@@ -295,6 +312,7 @@ export default function HomePage() {
             <Button href="/yappy-hours" variant="secondary" size="sm" className="mt-5 self-start">
               RSVP for a Yappy Hour <ArrowRight className="h-4 w-4" />
             </Button>
+            </div>
           </article>
         </div>
       </Section>

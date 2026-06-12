@@ -5,7 +5,8 @@ import { Section } from "@/components/ui/Section";
 import { BlogCard } from "@/components/BlogCard";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { AdSlot } from "@/components/AdSlot";
-import { blogPosts, blogCategories } from "@/data/blog";
+import { blogPostsWithImages, blogCategories } from "@/data/blog";
+import { sitePhotos } from "@/data/sitePhotos";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -26,8 +27,8 @@ export default async function BlogPage({
 
   const filtered =
     active === "All"
-      ? blogPosts
-      : blogPosts.filter((p) => p.category === active);
+      ? blogPostsWithImages
+      : blogPostsWithImages.filter((p) => p.category === active);
 
   const sorted = [...filtered].sort(
     (a, b) => +new Date(b.date) - +new Date(a.date),
@@ -40,6 +41,7 @@ export default async function BlogPage({
         title="Guides & tips for Waco dog parents"
         description="Practical, local advice for calmer outings, cleaner yards, better manners, and more fun with your dog."
         tone="sky"
+        image={sitePhotos.training}
       />
 
       <Section tone="paper">

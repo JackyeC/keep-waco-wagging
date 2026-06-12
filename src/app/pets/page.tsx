@@ -7,7 +7,9 @@ import { PetSubmitForm } from "@/components/PetSubmitForm";
 import { AdSlot } from "@/components/AdSlot";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Badge } from "@/components/ui/Badge";
+import { SitePhoto } from "@/components/SitePhoto";
 import { getPetOfTheWeek, getWallPets } from "@/data/pets";
+import { sitePhotos } from "@/data/sitePhotos";
 
 export const metadata: Metadata = {
   title: "Waco Pets — The Wagging Wall",
@@ -26,16 +28,23 @@ export default function PetsPage() {
         title="Meet the dogs of Waco"
         description="A community showcase of local pups from across McLennan County. Submit your dog, say hi to your neighbors' pets, and meet our weekly Pet of the Week."
         tone="sky"
+        image={sitePhotos.hero}
       />
 
       {/* Pet of the Week */}
       <Section tone="paper">
         <SectionHeading eyebrow="Pet of the Week" title={`Say hi to ${star.name}`} />
         <div className="mt-8 grid gap-8 overflow-hidden rounded-card bg-gradient-to-br from-sage-50 to-sky-50 p-6 ring-1 ring-inset ring-sage-200 sm:p-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-          <div className="overflow-hidden rounded-card ring-1 ring-inset ring-clay/70">
-            <div className="aspect-square">
+          <div className="relative aspect-square overflow-hidden rounded-card ring-1 ring-inset ring-clay/70">
+            {star.photoUrl ? (
+              <SitePhoto
+                src={star.photoUrl}
+                alt={star.name}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            ) : (
               <ImagePlaceholder src={star.photoUrl} alt={star.name} label={star.name} />
-            </div>
+            )}
           </div>
           <div>
             <Badge tone="gold">

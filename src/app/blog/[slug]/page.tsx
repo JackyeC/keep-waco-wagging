@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
-import { blogPosts } from "@/data/blog";
+import { blogPostsWithImages } from "@/data/blog";
+import { getBlogCategoryImage } from "@/data/sitePhotos";
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return blogPostsWithImages.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -14,11 +15,15 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = blogPostsWithImages.find((item) => item.slug === slug);
   if (!post) return { title: "Guide not found" };
+  const image = getBlogCategoryImage(post.category);
   return {
     title: post.title,
     description: post.excerpt,
+    openGraph: {
+      images: [{ url: image.src, alt: image.alt }],
+    },
   };
 }
 
@@ -28,8 +33,9 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = blogPostsWithImages.find((item) => item.slug === slug);
   if (!post) notFound();
+  const image = getBlogCategoryImage(post.category);
 
   return (
     <>
@@ -38,6 +44,7 @@ export default async function BlogPostPage({
         title={post.title}
         description={post.excerpt}
         tone="sage"
+        image={image}
       />
       <Section tone="paper">
         <article className="mx-auto max-w-3xl rounded-card bg-white p-7 ring-1 ring-inset ring-clay/70">

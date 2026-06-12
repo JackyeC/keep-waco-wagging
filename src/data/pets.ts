@@ -19,8 +19,7 @@ export const pets: Pet[] = [
     funFact: "Has visited more dog-friendly Waco patios than most humans in town.",
     petOfTheWeek: true,
     tags: ["founder pup", "patio pro", "trail dog"],
-    // TODO: drop in a real photo at /public/pets/scoop.jpg
-    // photoUrl: "/pets/scoop.jpg",
+    photoUrl: "/pets/scoop.webp",
   },
   {
     id: "p-002",

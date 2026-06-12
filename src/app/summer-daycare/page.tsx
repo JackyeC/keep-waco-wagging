@@ -11,6 +11,7 @@ import {
   daycareMonthOrder,
   type DaycareTheme,
 } from "@/data/summerDaycare";
+import { sitePhotos } from "@/data/sitePhotos";
 import { cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function SummerDaycarePage() {
         description={summerDaycare.intro}
         tone="gold"
         showSponsor
+        image={sitePhotos.boarding}
       >
         <div className="flex flex-wrap items-center gap-3">
           <Button href={ctas.bookPetCare.href} size="lg">

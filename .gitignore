@@ -20,6 +20,10 @@
 # production
 /build
 
+# original uploads (optimized copies live in public/)
+/source-photos/*
+!/source-photos/README.md
+
 # misc
 .DS_Store
 *.pem

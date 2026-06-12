@@ -4,7 +4,8 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { PetCard } from "@/components/PetCard";
-import { pets } from "@/data/pets";
+import { founderPack } from "@/data/founderPack";
+import { sitePhotos } from "@/data/sitePhotos";
 import { cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -22,10 +23,11 @@ export default function AboutPage() {
         description="Keep Waco Wagging was created by Jackye and Todd Clayton, the Waco family behind Platinum Scoops."
         tone="sage"
         showSponsor
+        image={sitePhotos.founders}
       />
 
       <Section tone="paper">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
+        <div className="grid gap-8 lg:grid-cols-2">
           <article className="rounded-card bg-white p-7 ring-1 ring-inset ring-clay/70">
             <Heart className="h-8 w-8 text-sage-600" />
             <h2 className="mt-4 text-2xl">Why we started Keep Waco Wagging</h2>
@@ -81,10 +83,10 @@ export default function AboutPage() {
         <SectionHeading
           eyebrow="Meet the Pack"
           title={`The ${cityConfig.founders.names} dog crew`}
-          description="Placeholder images are shown until real pack photos are uploaded."
+          description="The dogs who inspired Platinum Scoops and Keep Waco Wagging."
         />
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {pets.map((pet) => (
+          {founderPack.map((pet) => (
             <PetCard key={pet.id} pet={pet} />
           ))}
         </div>

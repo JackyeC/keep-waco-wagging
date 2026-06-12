@@ -4,7 +4,9 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { SitePhoto } from "@/components/SitePhoto";
 import { platinumScoops } from "@/data/platinumScoops";
+import { sitePhotos } from "@/data/sitePhotos";
 import { ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -21,6 +23,7 @@ export default function PlatinumScoopsPage() {
         title="Cleaner yards for Waco dog families"
         description={platinumScoops.description}
         tone="gold"
+        image={sitePhotos.scooping}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href={ctas.bookScoops.href} size="lg">
@@ -57,30 +60,39 @@ export default function PlatinumScoopsPage() {
       </Section>
 
       <Section tone="paper">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-          <div>
-            <SectionHeading
-              eyebrow="Pet care services"
-              title="More ways Platinum Scoops supports dog families"
-              description={platinumScoops.petCarePricing}
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-card shadow-md ring-1 ring-inset ring-clay/60">
+            <SitePhoto
+              src={sitePhotos.boarding.src}
+              alt={sitePhotos.boarding.alt}
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {platinumScoops.petCareServices.map((service) => (
-                <ServiceCard key={service} title={service} />
-              ))}
-            </div>
           </div>
-          <div className="rounded-card bg-gradient-to-br from-gold-100 via-cream to-sage-50 p-8 ring-1 ring-inset ring-gold-200">
-            <Sparkles className="h-8 w-8 text-gold-500" />
-            <h3 className="mt-4 text-2xl">Spotless yard from $3.57/day</h3>
-            <p className="mt-3 text-sm leading-relaxed text-bark-soft">
-              First cleanup included. No commitment. Cancel anytime. Platinum
-              Fresh enzyme treatment is included to support cleaner, fresher dog
-              spaces.
-            </p>
-            <Button href={ctas.bookScoops.href} variant="sponsor" className="mt-6">
-              Book a Scoop
-            </Button>
+          <div className="space-y-8">
+            <div>
+              <SectionHeading
+                eyebrow="Pet care services"
+                title="More ways Platinum Scoops supports dog families"
+                description={platinumScoops.petCarePricing}
+              />
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {platinumScoops.petCareServices.map((service) => (
+                  <ServiceCard key={service} title={service} />
+                ))}
+              </div>
+            </div>
+            <div className="rounded-card bg-gradient-to-br from-gold-100 via-cream to-sage-50 p-8 ring-1 ring-inset ring-gold-200">
+              <Sparkles className="h-8 w-8 text-gold-500" />
+              <h3 className="mt-4 text-2xl">Spotless yard from $3.57/day</h3>
+              <p className="mt-3 text-sm leading-relaxed text-bark-soft">
+                First cleanup included. No commitment. Cancel anytime. Platinum
+                Fresh enzyme treatment is included to support cleaner, fresher dog
+                spaces.
+              </p>
+              <Button href={ctas.bookScoops.href} variant="sponsor" className="mt-6">
+                Book a Scoop
+              </Button>
+            </div>
           </div>
         </div>
       </Section>

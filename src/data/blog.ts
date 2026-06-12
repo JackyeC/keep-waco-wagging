@@ -1,4 +1,5 @@
 import type { BlogPost } from "@/lib/types";
+import { getBlogCategoryImage } from "@/data/sitePhotos";
 
 /** All blog categories, in display order. */
 export const blogCategories = [
@@ -154,8 +155,14 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+/** Blog posts with category-matched photography. */
+export const blogPostsWithImages: BlogPost[] = blogPosts.map((post) => {
+  const image = getBlogCategoryImage(post.category);
+  return { ...post, imageUrl: image.src };
+});
+
 export function getRecentPosts(limit = 3): BlogPost[] {
-  return [...blogPosts]
+  return [...blogPostsWithImages]
     .sort((a, b) => +new Date(b.date) - +new Date(a.date))
     .slice(0, limit);
 }
