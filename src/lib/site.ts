@@ -65,6 +65,7 @@ export const cityConfig = {
     todd: "Todd Clayton",
   },
   monetization: {
+    amazonAssociatesTag: "platinumpet05-20",
     affiliateDisclosure:
       "As an Amazon Associate I earn from qualifying purchases.",
     productDisclosure:
@@ -204,7 +205,10 @@ export const socialLinks = cityConfig.social;
 export const monetization = cityConfig.monetization;
 
 export function getAmazonAssociatesTag(): string | undefined {
-  return process.env.AMAZON_ASSOCIATES_TAG;
+  return (
+    process.env.AMAZON_ASSOCIATES_TAG ||
+    cityConfig.monetization.amazonAssociatesTag
+  );
 }
 
 export function buildAmazonAffiliateUrl(asin?: string): string | undefined {

@@ -39,7 +39,7 @@ export function ProductRecommendationCard({
           rel="noopener noreferrer sponsored"
           className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sage-700 hover:text-sage-800"
         >
-          View product <ExternalLink className="h-4 w-4" />
+          View on Amazon <ExternalLink className="h-4 w-4" />
         </Link>
       ) : (
         <p className="mt-4 text-xs text-bark-faint">

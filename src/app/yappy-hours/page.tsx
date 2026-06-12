@@ -24,7 +24,7 @@ export default function YappyHoursPage() {
         description={yappyHours.intro}
         tone="sky"
         showSponsor
-        image={sitePhotos.community}
+        image={sitePhotos.yappyHours}
       >
         <div className="flex flex-wrap gap-3">
           <Button href="#rsvp" size="lg">

@@ -28,6 +28,14 @@ export const sitePhotos = {
     src: "/pictures/community-walk.webp",
     alt: "Dogs relaxing together in a shaded Waco backyard",
   },
+  yappyHours: {
+    src: "/pictures/yappy-hours-party.webp",
+    alt: "Dogs in colorful bandanas at a festive Yappy Hour backyard party in Waco",
+  },
+  yappyHoursCard: {
+    src: "/pictures/yappy-hours-card.webp",
+    alt: "Happy dogs socializing at a Yappy Hour meetup with string lights and bandanas",
+  },
   founders: {
     src: "/pictures/founders-jackye-todd.webp",
     alt: "Jackye and Todd Clayton, founders of Platinum Scoops and Keep Waco Wagging",

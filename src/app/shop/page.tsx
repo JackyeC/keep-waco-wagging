@@ -21,7 +21,7 @@ export default function ShopPage() {
       <PageHeader
         eyebrow="Shop"
         title="Dog products we recommend"
-        description="Practical dog-care basics for Waco pet parents. Product links are placeholders until final Amazon URLs are added."
+        description="Practical dog-care basics for Waco pet parents. Purchases through our Amazon links support Keep Waco Wagging at no extra cost to you."
         tone="sage"
       />
       <Section tone="paper">

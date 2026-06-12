@@ -217,6 +217,8 @@ export type ProductRecommendation = {
   description: string;
   whyWeLikeIt: string;
   bestFor: string[];
+  /** Amazon Standard Identification Number for affiliate link */
+  asin?: string;
   amazonUrl?: string;
   imageUrl?: string;
   affiliateReady: boolean;

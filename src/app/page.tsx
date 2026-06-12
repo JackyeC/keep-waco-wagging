@@ -295,8 +295,8 @@ export default function HomePage() {
           <article className="flex flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
             <div className="relative aspect-[16/9]">
               <SitePhoto
-                src={sitePhotos.community.src}
-                alt={sitePhotos.community.alt}
+                src={sitePhotos.yappyHoursCard.src}
+                alt={sitePhotos.yappyHoursCard.alt}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>

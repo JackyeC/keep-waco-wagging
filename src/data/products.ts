@@ -1,6 +1,10 @@
+import { buildAmazonAffiliateUrl } from "@/lib/site";
 import type { ProductRecommendation } from "@/lib/types";
 
-export const productRecommendations: ProductRecommendation[] = [
+const productRecommendations: Omit<
+  ProductRecommendation,
+  "amazonUrl" | "affiliateReady"
+>[] = [
   {
     id: "crates",
     title: "Crates",
@@ -9,7 +13,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Useful for safe rest, feeding, decompression, boarding routines, and helping dogs settle.",
     bestFor: ["Boarding routines", "Structured rest", "Puppies", "Decompression"],
-    affiliateReady: false,
+    asin: "B0002DIKLG",
   },
   {
     id: "slow-feeders",
@@ -19,7 +23,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Helpful for dogs who eat too quickly or need a little extra mealtime enrichment.",
     bestFor: ["Fast eaters", "Mealtime enrichment", "Multi-dog homes"],
-    affiliateReady: false,
+    asin: "B00FQTU9H0",
   },
   {
     id: "puzzle-feeders",
@@ -29,7 +33,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Great for mental stimulation, confidence building, and calmer indoor routines.",
     bestFor: ["Rainy days", "Confidence building", "Calmer routines"],
-    affiliateReady: false,
+    asin: "B07D4JWF4Z",
   },
   {
     id: "enzyme-cleaner",
@@ -39,7 +43,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Useful for pet messes, accidents, odor control, and multi-dog homes.",
     bestFor: ["Puppies", "Senior dogs", "Multi-dog homes", "Accidents"],
-    affiliateReady: false,
+    asin: "B0002AS47G",
   },
   {
     id: "poop-bags",
@@ -49,7 +53,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "An everyday basic for dog walks, travel, daycare, and yard cleanup.",
     bestFor: ["Walks", "Travel", "Daycare bags", "Yard cleanup"],
-    affiliateReady: false,
+    asin: "B00BSYR7K8",
   },
   {
     id: "long-leash",
@@ -59,7 +63,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Helpful for safe recall practice and controlled outdoor freedom.",
     bestFor: ["Recall practice", "Puppies", "Open fields", "Confidence"],
-    affiliateReady: false,
+    asin: "B0092LSKR6",
   },
   {
     id: "front-clip-harness",
@@ -69,7 +73,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Useful for dogs who pull and need better walking support.",
     bestFor: ["Pullers", "Neighborhood walks", "Training support"],
-    affiliateReady: false,
+    asin: "B00HQAHSFA",
   },
   {
     id: "lick-mats",
@@ -79,7 +83,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Good for calming, grooming support, crate comfort, and decompression.",
     bestFor: ["Grooming support", "Crate comfort", "Decompression"],
-    affiliateReady: false,
+    asin: "B07MFQZSMF",
   },
   {
     id: "dog-wipes-paw-cleaner",
@@ -89,7 +93,7 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Helpful after yard time, rain, mud, or daycare.",
     bestFor: ["Muddy paws", "Daycare bags", "Rainy days"],
-    affiliateReady: false,
+    asin: "B01EIG7A9C",
   },
   {
     id: "washable-beds-crate-mats",
@@ -99,14 +103,29 @@ export const productRecommendations: ProductRecommendation[] = [
     whyWeLikeIt:
       "Easier to clean and safer than sending sentimental blankets or precious items to boarding/daycare.",
     bestFor: ["Boarding", "Crates", "Senior dogs", "Easy cleanup"],
-    affiliateReady: false,
+    asin: "B075CYMYK6",
   },
 ];
 
+function withAffiliateLinks(
+  products: Omit<ProductRecommendation, "amazonUrl" | "affiliateReady">[],
+): ProductRecommendation[] {
+  return products.map((product) => {
+    const amazonUrl = buildAmazonAffiliateUrl(product.asin);
+    return {
+      ...product,
+      amazonUrl,
+      affiliateReady: Boolean(amazonUrl),
+    };
+  });
+}
+
+const hydratedProducts = withAffiliateLinks(productRecommendations);
+
 export function getProductRecommendations() {
-  return productRecommendations;
+  return hydratedProducts;
 }
 
 export function getFeaturedProductRecommendations(limit = 4) {
-  return productRecommendations.slice(0, limit);
+  return hydratedProducts.slice(0, limit);
 }
