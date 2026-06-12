@@ -4,7 +4,7 @@ export const photoLibraryStats = {
   featured: 17,
   slotOutputs: 17,
   petFolders: 1,
-  generatedAt: "2026-06-12T01:44:19.302Z",
+  generatedAt: "2026-06-12T13:02:23.620Z",
 } as const;
 
 export type PhotoLibraryEntry = {
@@ -356,14 +356,21 @@ export const photoLibrary: PhotoLibraryEntry[] = [
   }
 ];
 
-export const petFolderPhotos = [
+export type PetFolderPhoto = {
+  folder: string;
+  slug: string;
+  photoUrl: string;
+  count: number;
+};
+
+export const petFolderPhotos: PetFolderPhoto[] = [
   {
     "folder": "Freddie",
     "slug": "freddie",
     "photoUrl": "/pets/freddie.webp",
     "count": 36
   }
-] as const;
+];
 
 export function getPhotoByIndex(index: number): PhotoLibraryEntry {
   return photoLibrary[index % photoLibrary.length]!;

@@ -4,4 +4,5 @@ export {
   petFolderPhotos,
   getPhotoByIndex,
   type PhotoLibraryEntry,
+  type PetFolderPhoto,
 } from "./photoLibrary.generated";

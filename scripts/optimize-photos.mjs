@@ -219,6 +219,15 @@ function titleCase(name) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+const allImages = walkAllImages(SOURCE);
+
+if (allImages.length === 0) {
+  console.log(
+    "No source photos found — skipping sync (Vercel/production uses committed public/ assets).",
+  );
+  process.exit(0);
+}
+
 // --- Phase 1: primary slots (curated picks first) ---
 let slotOutputs = 0;
 
@@ -276,7 +285,6 @@ for (const entry of fs.readdirSync(SOURCE, { withFileTypes: true })) {
 // --- Phase 3: full library ---
 console.log("\n── Photo library ──\n");
 
-const allImages = walkAllImages(SOURCE);
 const relToEntry = new Map();
 const slugCounts = new Map();
 let libraryOutputs = 0;
@@ -354,7 +362,14 @@ export type PhotoLibraryEntry = {
 
 export const photoLibrary: PhotoLibraryEntry[] = ${JSON.stringify(libraryEntries, null, 2)};
 
-export const petFolderPhotos = ${JSON.stringify(petFolders, null, 2)} as const;
+export type PetFolderPhoto = {
+  folder: string;
+  slug: string;
+  photoUrl: string;
+  count: number;
+};
+
+export const petFolderPhotos: PetFolderPhoto[] = ${JSON.stringify(petFolders, null, 2)};
 
 export function getPhotoByIndex(index: number): PhotoLibraryEntry {
   return photoLibrary[index % photoLibrary.length]!;
