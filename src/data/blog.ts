@@ -1,5 +1,6 @@
 import type { BlogPost } from "@/lib/types";
 import { getBlogCategoryImage } from "@/data/sitePhotos";
+import { photoLibrary } from "@/data/photoLibrary";
 
 /** All blog categories, in display order. */
 export const blogCategories = [
@@ -155,10 +156,11 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
-/** Blog posts with category-matched photography. */
-export const blogPostsWithImages: BlogPost[] = blogPosts.map((post) => {
-  const image = getBlogCategoryImage(post.category);
-  return { ...post, imageUrl: image.src };
+/** Blog posts with a unique photo from the uploaded library when available. */
+export const blogPostsWithImages: BlogPost[] = blogPosts.map((post, index) => {
+  const libraryPhoto = photoLibrary[index];
+  const fallback = getBlogCategoryImage(post.category);
+  return { ...post, imageUrl: libraryPhoto?.src ?? fallback.src };
 });
 
 export function getRecentPosts(limit = 3): BlogPost[] {

@@ -1,37 +1,41 @@
 # Upload photos here
 
-Drop images into the **labeled folder** for where you want them on the site.
-**Any filename works** — JPG, PNG, WebP, HEIC all fine.
+**Every image you add gets used on the site** — not just one per folder.
 
-| Folder | Shows up on |
-|--------|-------------|
-| `hero/` | Homepage hero, social link previews, blog “Dog-Friendly Waco” cards |
-| `scooping/` | Platinum Scoops page, poop-scooping service cards |
-| `boarding-backyard/` | Summer daycare, Yappy Hours, backyard/community sections |
-| `boarding-home/` | Boarding & daycare cards, “dogs at home” sections |
-| `boarding-indoor/` | Pet care page living-room photo |
-| `training/` | Training service cards, blog training articles |
-| `founders/` | About page — Jackye & Todd photo |
-| `pets-scoop/` | Wagging Wall — Scoop (Pet of the Week) |
-| `pets-stella/` | About page — Stella |
-| `pets-diesel/` | About page — Diesel |
-| `pets-shiloh/` | About page — Shiloh |
+## Best picks (`curated.json`)
 
-## What happens automatically
+The sync script uses **`curated.json`** to choose the best photo for each page (★ in the terminal output). Slot folders are only a fallback.
 
-Photos sync when you run the dev server or build:
+## Labeled folders (optional fallback)
+
+Drop a photo in each folder if you want to override without editing `curated.json`:
+
+| Folder | Primary use on the site |
+|--------|-------------------------|
+| `hero/` | Homepage hero, social previews |
+| `scooping/` | Platinum Scoops |
+| `boarding-backyard/` | Summer daycare, Yappy Hours |
+| `boarding-home/` | Boarding cards |
+| `boarding-indoor/` | Pet care page |
+| `training/` | Training sections |
+| `founders/` | About page — Jackye & Todd |
+| `pets-scoop/`, `pets-stella/`, etc. | Pack photos on About |
+
+## Everything else counts too
+
+- **Loose files** in this folder (e.g. `IMG_1234.jpeg`) → photo gallery + blog cards
+- **Named folders** (e.g. `Freddie/`) → pet card + all photos in the gallery
+- **Multiple photos in one folder** → every image appears in the gallery
+
+Videos (`.mov`, `.mp4`) are skipped — images only.
+
+## Sync
 
 ```bash
-npm run dev      # optimizes photos first, then starts the site
-npm run build    # same before production build
+npm run dev      # optimizes all photos, then starts the site
+npm run optimize:photos   # sync manually
 ```
 
-Or sync manually anytime:
+You'll see a summary like: `65 source images → 17 site slots + 1 pet folder + 65 library images`
 
-```bash
-npm run optimize:photos
-```
-
-Optimized files land in `public/pictures/` and `public/pets/` — those are what the live site uses.
-
-Originals in this folder stay on your computer only (not committed to git).
+Originals stay on your computer (gitignored). Optimized files in `public/` are what deploy to keepwacowagging.com — commit those after syncing.

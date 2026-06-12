@@ -1,0 +1,39 @@
+{
+  "_note": "Hand-picked best photos — edit paths or re-run after adding uploads",
+  "slots": {
+    "hero": "IMG_3292.jpeg",
+    "scooping": "scooping/Diesel.webp",
+    "boarding-backyard": "Freddie/IMG_4785.JPG",
+    "boarding-home": "boarding-home/shi and diesel.webp",
+    "boarding-indoor": "boarding-indoor/Diesel1.webp",
+    "training": "training/stella puzzlw.webp",
+    "founders": "founders/jackye and todd.jpg",
+    "community": "IMG_9496.jpeg",
+    "pets-scoop": "scooping/Diesel.webp",
+    "pets-stella": "hero/stella diesel walkies.webp",
+    "pets-diesel": "boarding-indoor/Diesel1.webp",
+    "pets-shiloh": "boarding-home/shi and diesel.webp"
+  },
+  "petFolders": {
+    "Freddie": "Freddie/IMG_4910.JPG"
+  },
+  "featured": [
+    "IMG_3292.jpeg",
+    "IMG_9496.jpeg",
+    "Freddie/IMG_4785.JPG",
+    "scooping/Diesel.webp",
+    "founders/jackye and todd.jpg",
+    "boarding-home/shi and diesel.webp",
+    "boarding-indoor/Diesel1.webp",
+    "training/stella puzzlw.webp",
+    "boarding-backyard/IMG_5285.JPG",
+    "IMG_3738.jpeg",
+    "IMG_4814.JPG",
+    "Freddie/IMG_4910.JPG",
+    "hero/stella diesel walkies.webp",
+    "IMG_2683.JPG",
+    "Freddie/IMG_4924.JPG",
+    "IMG_8954.JPG",
+    "IMG_4813.JPG"
+  ]
+}

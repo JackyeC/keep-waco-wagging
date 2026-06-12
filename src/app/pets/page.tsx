@@ -8,7 +8,8 @@ import { AdSlot } from "@/components/AdSlot";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Badge } from "@/components/ui/Badge";
 import { SitePhoto } from "@/components/SitePhoto";
-import { getPetOfTheWeek, getWallPets } from "@/data/pets";
+import { getPetOfTheWeek, getUploadedPets, getWallPets } from "@/data/pets";
+import { photoLibrary, photoLibraryStats } from "@/data/photoLibrary";
 import { sitePhotos } from "@/data/sitePhotos";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 export default function PetsPage() {
   const star = getPetOfTheWeek();
   const wall = getWallPets();
+  const uploaded = getUploadedPets();
 
   return (
     <>
@@ -70,6 +72,41 @@ export default function PetsPage() {
           </div>
         </div>
       </Section>
+
+      {uploaded.length > 0 && (
+        <Section tone="sky">
+          <SectionHeading
+            eyebrow="From our camera roll"
+            title="Dogs in the pack"
+            description="Photos from your upload folders — drop more into source-photos/ and they sync automatically."
+          />
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {uploaded.map((pet) => (
+              <PetCard key={pet.id} pet={pet} />
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {photoLibraryStats.total > 0 && (
+        <Section tone="paper">
+          <SectionHeading
+            eyebrow="Photo gallery"
+            title={`${photoLibraryStats.total} moments from Waco dog life`}
+            description="Every image you add to source-photos/ lands here and across the site."
+          />
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {photoLibrary.map((photo) => (
+              <div
+                key={photo.src}
+                className="relative aspect-[4/3] overflow-hidden rounded-card ring-1 ring-inset ring-clay/70"
+              >
+                <SitePhoto src={photo.src} alt={photo.alt} sizes="(max-width: 768px) 50vw, 25vw" />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* The Wagging Wall + sponsor rail */}
       <Section tone="sand">

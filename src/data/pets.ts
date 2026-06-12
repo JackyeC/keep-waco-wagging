@@ -1,5 +1,6 @@
 import type { Pet } from "@/lib/types";
 import { cityConfig } from "@/lib/site";
+import { getPhotoByIndex, petFolderPhotos } from "@/data/photoLibrary";
 
 /**
  * Community pet showcase — "The Wagging Wall".
@@ -83,5 +84,23 @@ export function getPetOfTheWeek(): Pet {
 }
 
 export function getWallPets(): Pet[] {
-  return pets.filter((p) => !p.petOfTheWeek);
+  const wall = pets.filter((p) => !p.petOfTheWeek);
+  return wall.map((pet, index) => ({
+    ...pet,
+    photoUrl: pet.photoUrl ?? getPhotoByIndex(index + 2).src,
+  }));
+}
+
+/** Dogs from named upload folders (e.g. source-photos/Freddie/). */
+export function getUploadedPets(): Pet[] {
+  return petFolderPhotos.map((folder) => ({
+    id: `upload-${folder.slug}`,
+    name: folder.folder,
+    breed: "Waco dog",
+    neighborhood: "Waco",
+    ownerName: cityConfig.founders.names,
+    bio: `${folder.count} photos from our pack — part of the Keep Waco Wagging story.`,
+    photoUrl: folder.photoUrl,
+    tags: ["pack", "local"],
+  }));
 }
