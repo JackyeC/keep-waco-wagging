@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run optimize:photos && next dev",
+    "build": "npm run optimize:photos && next build",
     "start": "next start",
     "lint": "eslint",
     "seed:sources": "node --env-file=.env.local --import tsx scripts/seed-dog-sources.ts",

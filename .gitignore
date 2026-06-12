@@ -21,8 +21,9 @@
 /build
 
 # original uploads (optimized copies live in public/)
-/source-photos/*
+/source-photos/**
 !/source-photos/README.md
+!/source-photos/**/.gitkeep
 
 # misc
 .DS_Store
