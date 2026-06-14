@@ -10,7 +10,29 @@ export const sitePhotos = {
   },
   boarding: {
     src: "/pictures/boarding-backyard.webp",
-    alt: "Dogs relaxing in a shaded backyard during home-based daycare",
+    alt: "Dogs relaxing together in a shaded Waco backyard during home-based daycare",
+  },
+  summerCamp: {
+    src: "/pictures/summer-camp-hero.webp",
+    alt: "A dog cooling off in a splash pool during summer daycare camp in Waco",
+  },
+  summerCampCard: {
+    src: "/pictures/summer-camp-card.webp",
+    alt: "Summer splash pool play at home-based dog daycare in Waco",
+  },
+  summerMonths: {
+    june: {
+      src: "/pictures/summer-month-june.webp",
+      alt: "Dogs playing with water during a June summer daycare week in Waco",
+    },
+    july: {
+      src: "/pictures/summer-month-july.webp",
+      alt: "Happy dogs socializing in a shaded Waco backyard during summer camp",
+    },
+    august: {
+      src: "/pictures/summer-month-august.webp",
+      alt: "Dogs on a group walk during an August summer daycare week in Waco",
+    },
   },
   boardingDogs: {
     src: "/pictures/boarding-home-dogs.webp",

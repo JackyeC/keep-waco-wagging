@@ -63,8 +63,8 @@ export default function PlatinumScoopsPage() {
         <div className="grid gap-8 lg:grid-cols-2">
           <div className="relative aspect-[4/3] overflow-hidden rounded-card shadow-md ring-1 ring-inset ring-clay/60">
             <SitePhoto
-              src={sitePhotos.boarding.src}
-              alt={sitePhotos.boarding.alt}
+              src={sitePhotos.community.src}
+              alt={sitePhotos.community.alt}
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>

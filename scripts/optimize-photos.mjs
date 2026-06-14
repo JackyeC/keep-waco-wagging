@@ -33,8 +33,8 @@ const slots = [
     key: "hero",
     folder: "hero",
     outputs: [
-      { dir: PICTURES, file: "hero-group-walk.webp", width: 1400, height: 900 },
-      { dir: PICTURES, file: "og-share.webp", width: 1200, height: 630 },
+      { dir: PICTURES, file: "hero-group-walk.webp", width: 1200, height: 780, quality: 75 },
+      { dir: PICTURES, file: "og-share.webp", width: 1200, height: 630, quality: 78 },
       { dir: PICTURES, file: "blog-dog-friendly.webp", width: 800, height: 450 },
     ],
   },
@@ -50,8 +50,37 @@ const slots = [
     key: "boarding-backyard",
     folder: "boarding-backyard",
     outputs: [
-      { dir: PICTURES, file: "boarding-backyard.webp", width: 1400, height: 900 },
+      { dir: PICTURES, file: "boarding-backyard.webp", width: 1200, height: 800, quality: 75 },
       { dir: PICTURES, file: "blog-events.webp", width: 800, height: 450 },
+    ],
+  },
+  {
+    key: "summer-camp",
+    folder: "summer-camp",
+    outputs: [
+      { dir: PICTURES, file: "summer-camp-hero.webp", width: 1200, height: 800, quality: 75 },
+      { dir: PICTURES, file: "summer-camp-card.webp", width: 800, height: 450, quality: 75 },
+    ],
+  },
+  {
+    key: "summer-month-june",
+    folder: "summer-camp",
+    outputs: [
+      { dir: PICTURES, file: "summer-month-june.webp", width: 960, height: 420, quality: 75 },
+    ],
+  },
+  {
+    key: "summer-month-july",
+    folder: "summer-camp",
+    outputs: [
+      { dir: PICTURES, file: "summer-month-july.webp", width: 960, height: 420, quality: 75 },
+    ],
+  },
+  {
+    key: "summer-month-august",
+    folder: "summer-camp",
+    outputs: [
+      { dir: PICTURES, file: "summer-month-august.webp", width: 960, height: 420, quality: 75 },
     ],
   },
   {
@@ -203,13 +232,13 @@ function toSlug(relPath) {
   return base.slice(0, 96) || "photo";
 }
 
-async function writeWebp(input, output, width, height) {
+async function writeWebp(input, output, width, height, quality = 82) {
   await sharp(input)
     .rotate()
     .resize(width, height, { fit: "cover", position: "attention" })
     .modulate({ brightness: 1.02, saturation: 1.05 })
     .sharpen({ sigma: 0.8 })
-    .webp({ quality: 82 })
+    .webp({ quality, effort: 4 })
     .toFile(output);
 }
 
@@ -244,7 +273,13 @@ for (const slot of slots) {
 
   const tag = input.curated ? "★" : " ";
   for (const output of slot.outputs) {
-    await writeWebp(input.path, path.join(output.dir, output.file), output.width, output.height);
+    await writeWebp(
+      input.path,
+      path.join(output.dir, output.file),
+      output.width,
+      output.height,
+      output.quality ?? 82,
+    );
     console.log(`${tag} ✓ ${path.relative(ROOT, path.join(output.dir, output.file))} ← ${input.label}`);
     slotOutputs++;
   }
@@ -296,7 +331,7 @@ for (const image of allImages) {
   if (count > 0) slug = `${slug}-${count + 1}`;
 
   const outFile = `${slug}.webp`;
-  await writeWebp(image.path, path.join(LIBRARY, outFile), 1200, 800);
+  await writeWebp(image.path, path.join(LIBRARY, outFile), 1200, 800, 78);
 
   const folderLabel = image.folder ? titleCase(image.folder) : "Uploads";
   const entry = {

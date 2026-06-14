@@ -1,4 +1,4 @@
-import { buildAmazonAffiliateUrl } from "@/lib/site";
+import { buildAmazonAffiliateUrl, buildAmazonProductImageUrl } from "@/lib/site";
 import type { ProductRecommendation } from "@/lib/types";
 
 /**
@@ -243,6 +243,8 @@ function withAffiliateLinks(
     return {
       ...product,
       amazonUrl,
+      imageUrl:
+        product.imageUrl ?? buildAmazonProductImageUrl(product.asin),
       affiliateReady: Boolean(amazonUrl),
     };
   });

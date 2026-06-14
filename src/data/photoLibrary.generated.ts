@@ -2,9 +2,9 @@
 export const photoLibraryStats = {
   total: 68,
   featured: 17,
-  slotOutputs: 17,
+  slotOutputs: 22,
   petFolders: 1,
-  generatedAt: "2026-06-12T13:02:23.620Z",
+  generatedAt: "2026-06-14T17:15:24.807Z",
 } as const;
 
 export type PhotoLibraryEntry = {

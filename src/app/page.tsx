@@ -273,8 +273,8 @@ export default function HomePage() {
           <article className="flex flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
             <div className="relative aspect-[16/9]">
               <SitePhoto
-                src={sitePhotos.boarding.src}
-                alt={sitePhotos.boarding.alt}
+                src={sitePhotos.summerCampCard.src}
+                alt={sitePhotos.summerCampCard.alt}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
@@ -336,21 +336,32 @@ export default function HomePage() {
 
       {/* 7. Shop — de-emphasized, last */}
       <Section tone="sand">
-        <div className="flex flex-col items-start gap-4 rounded-card bg-white p-7 ring-1 ring-inset ring-clay/70 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
-              <MapPin className="h-5 w-5" />
-            </span>
-            <div>
-              <h3 className="text-lg font-semibold">Dog gear we actually recommend</h3>
-              <p className="mt-1 text-sm text-bark-soft">
-                Practical picks for Waco dog life — leashes, cleanup, enrichment, and more.
-              </p>
+        <div className="overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
+          <div className="grid items-center gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-full">
+              <SitePhoto
+                src={sitePhotos.training.src}
+                alt={sitePhotos.training.alt}
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+            <div className="flex flex-col items-start gap-4 p-7 sm:flex-row sm:items-center sm:justify-between lg:flex-col lg:items-start">
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
+                  <MapPin className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold">Dog gear we actually recommend</h3>
+                  <p className="mt-1 text-sm text-bark-soft">
+                    Practical picks for Waco dog life — leashes, cleanup, enrichment, and more.
+                  </p>
+                </div>
+              </div>
+              <Button href="/shop" variant="secondary" className="shrink-0">
+                Visit the shop <ArrowRight className="h-4 w-4" />
+              </Button>
             </div>
           </div>
-          <Button href="/shop" variant="secondary" className="shrink-0">
-            Visit the shop <ArrowRight className="h-4 w-4" />
-          </Button>
         </div>
       </Section>
     </>

@@ -217,6 +217,15 @@ export function buildAmazonAffiliateUrl(asin?: string): string | undefined {
   return `https://www.amazon.com/dp/${asin}?tag=${tag}`;
 }
 
+/** Public Amazon CDN image for an ASIN (no affiliate tag required). */
+export function buildAmazonProductImageUrl(
+  asin?: string,
+  size = 500,
+): string | undefined {
+  if (!asin) return undefined;
+  return `https://m.media-amazon.com/images/P/${asin}.01._SL${size}_.jpg`;
+}
+
 export const podcast = {
   enabled: false,
   name: "The Keep Waco Wagging Podcast",

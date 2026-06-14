@@ -1,4 +1,4 @@
-import { buildAmazonAffiliateUrl } from "@/lib/site";
+import { buildAmazonAffiliateUrl, buildAmazonProductImageUrl } from "@/lib/site";
 import type { ShopProduct } from "@/lib/types";
 
 /**
@@ -66,11 +66,15 @@ export const shopProducts: ShopProduct[] = [
 ];
 
 export function getShopProducts(): ShopProduct[] {
-  return shopProducts;
+  return shopProducts.map((product) => ({
+    ...product,
+    imageUrl:
+      product.imageUrl ?? buildAmazonProductImageUrl(product.asin),
+  }));
 }
 
 export function getFeaturedShopProducts(): ShopProduct[] {
-  return shopProducts.filter((p) => p.featured);
+  return getShopProducts().filter((p) => p.featured);
 }
 
 export function getShopProductUrl(product: ShopProduct): string {
