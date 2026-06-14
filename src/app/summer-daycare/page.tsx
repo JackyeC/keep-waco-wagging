@@ -24,11 +24,12 @@ export default function SummerDaycarePage() {
   return (
     <>
       <PageHeader
+        showSiteName
+        showSponsor
         eyebrow={summerDaycare.seasonLabel}
         title={`${summerDaycare.title} in ${cityConfig.city}`}
         description={summerDaycare.intro}
         tone="gold"
-        showSponsor
         image={sitePhotos.boarding}
       >
         <div className="flex flex-wrap items-center gap-3">

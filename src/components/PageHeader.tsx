@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { SponsorBadge } from "@/components/SponsorBadge";
 import { SitePhoto } from "@/components/SitePhoto";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type Tone = "sage" | "sky" | "sand" | "gold";
@@ -18,6 +20,7 @@ export function PageHeader({
   title,
   description,
   tone = "sage",
+  showSiteName = false,
   showSponsor = false,
   image,
   children,
@@ -26,6 +29,8 @@ export function PageHeader({
   title: string;
   description?: string;
   tone?: Tone;
+  /** Show the site name above the eyebrow (e.g. summer camp calendar pages). */
+  showSiteName?: boolean;
   showSponsor?: boolean;
   image?: { src: string; alt: string };
   children?: React.ReactNode;
@@ -39,19 +44,34 @@ export function PageHeader({
         )}
       >
         <div className={cn(image ? "max-w-xl" : "max-w-3xl")}>
+          {showSiteName && (
+            <p className="font-display text-xl font-semibold tracking-tight text-bark sm:text-2xl">
+              <Link
+                href="/"
+                className="transition-colors hover:text-sage-700"
+              >
+                {siteConfig.name}
+              </Link>
+            </p>
+          )}
+          {showSponsor && (
+            <div className={cn(showSiteName ? "mt-2" : undefined)}>
+              <SponsorBadge />
+            </div>
+          )}
           {eyebrow && (
-            <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-sage-600">
+            <p
+              className={cn(
+                "text-sm font-semibold uppercase tracking-wide text-sage-600",
+                showSiteName || showSponsor ? "mt-3 mb-2" : "mb-2",
+              )}
+            >
               {eyebrow}
             </p>
           )}
           <h1 className="text-3xl leading-tight sm:text-4xl md:text-5xl">
             {title}
           </h1>
-          {showSponsor && (
-            <div className="mt-4">
-              <SponsorBadge />
-            </div>
-          )}
           {description && (
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-bark-soft sm:text-lg">
               {description}
