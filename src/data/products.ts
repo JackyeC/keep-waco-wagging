@@ -239,7 +239,10 @@ function withAffiliateLinks(
   products: Omit<ProductRecommendation, "amazonUrl" | "affiliateReady">[],
 ): ProductRecommendation[] {
   return products.map((product) => {
-    const amazonUrl = buildAmazonAffiliateUrl(product.asin);
+    // Pass product id as ascsubtag for per-product click reporting in
+    // the Amazon Associates dashboard (Reports → Link Type Performance).
+    const subId = `kww-shop-${product.id}`;
+    const amazonUrl = buildAmazonAffiliateUrl(product.asin, subId);
     return {
       ...product,
       amazonUrl,

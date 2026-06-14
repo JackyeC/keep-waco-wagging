@@ -211,10 +211,36 @@ export function getAmazonAssociatesTag(): string | undefined {
   );
 }
 
-export function buildAmazonAffiliateUrl(asin?: string): string | undefined {
+/**
+ * Build an Amazon affiliate URL in SiteStripe text-link format.
+ *
+ * This matches the structure Amazon's SiteStripe "Text" button generates:
+ * `https://www.amazon.com/dp/<ASIN>?tag=<tag>&linkCode=ogi&th=1&psc=1`
+ *
+ * - `linkCode=ogi` — identifies the link as an Associates text link (Amazon
+ *   uses `ogi` for SiteStripe-generated text links).
+ * - `th=1&psc=1` — preserves product variation selection across the click.
+ *
+ * Commission attribution is identical to a manually-copied SiteStripe link.
+ * For per-page click reporting, you can pass a `subId` which becomes Amazon's
+ * `ascsubtag` parameter (max 100 chars, alphanumeric + hyphens/underscores).
+ */
+export function buildAmazonAffiliateUrl(
+  asin?: string,
+  subId?: string,
+): string | undefined {
   const tag = getAmazonAssociatesTag();
   if (!asin || !tag) return undefined;
-  return `https://www.amazon.com/dp/${asin}?tag=${tag}`;
+  const params = new URLSearchParams({
+    tag,
+    linkCode: "ogi",
+    th: "1",
+    psc: "1",
+  });
+  if (subId) {
+    params.set("ascsubtag", subId.slice(0, 100));
+  }
+  return `https://www.amazon.com/dp/${asin}?${params.toString()}`;
 }
 
 export const podcast = {
