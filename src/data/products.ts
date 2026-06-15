@@ -1,4 +1,5 @@
-import { buildAmazonAffiliateUrl, buildAmazonProductImageUrl } from "@/lib/site";
+import { buildAmazonAffiliateUrl } from "@/lib/site";
+import { shopProductImages } from "@/data/shopProductImages";
 import type { ProductRecommendation } from "@/lib/types";
 
 /**
@@ -243,8 +244,7 @@ function withAffiliateLinks(
     return {
       ...product,
       amazonUrl,
-      imageUrl:
-        product.imageUrl ?? buildAmazonProductImageUrl(product.asin),
+      imageUrl: product.imageUrl ?? shopProductImages[product.id],
       affiliateReady: Boolean(amazonUrl),
     };
   });
