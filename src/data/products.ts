@@ -35,7 +35,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Goes in the crate, under their favorite couch spot, or by the back door. No water to refill, no gel to puncture. Uses Q-max cooling fabric — same tech as human cooling sheets. The single best buy for dogs who crate during the day in Texas summer.",
     bestFor: ["Crate cooling", "Senior dogs", "Indoor heat", "Travel kennels"],
-    asin: "B07CJDX1KH",
+    asin: "B0DN6XYM74",
   },
   {
     id: "cooling-vest",
@@ -46,7 +46,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Three-layer fabric: reflects heat, holds water for evaporative cooling, keeps your dog dry against the skin. The Cameron Park hike unlock — and the BSR Cable Park unlock. If your dog still needs to move in 100° heat, this is the gear that makes it possible.",
     bestFor: ["Hikes", "Outdoor events", "Yappy hours", "Heavy-coated breeds"],
-    asin: "B00C3R6XOG",
+    asin: "B09MSKT5GN",
   },
   {
     id: "travel-water-bottle",
@@ -57,7 +57,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Squeeze the bottle, water fills the silicone bowl. Release, the water drains back in. No spills in the car, no empty cup holders, no wrestling with a separate bowl. You cannot walk a Waco dog from June through September without one of these.",
     bestFor: ["Walks", "Hikes", "Car trips", "Patio outings"],
-    asin: "B0028N50LU",
+    asin: "B018YECUPQ",
   },
   {
     id: "calming-chews",
@@ -68,7 +68,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Give 30–90 minutes before a known stressor. The bestseller in the calming-supplement category for a reason — Waco gets thunderstorms most summer nights, plus July 4th, plus Baylor games, plus the neighbor's truck backfiring. Stock up by late June.",
     bestFor: ["Thunderstorms", "Fireworks", "Vet visits", "Travel anxiety"],
-    asin: "B0716M3PVL",
+    asin: "B077MDJ58Y",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -94,7 +94,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Safer than sending sentimental blankets to boarding. Machine washable, holds up to chewers, dries fast. Pair with the cooling mat above for summer crate setups.",
     bestFor: ["Boarding", "Crates", "Senior dogs", "Easy cleanup"],
-    asin: "B075CYMYK6",
+    asin: "B0B58ZB22X",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -109,7 +109,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "The padding is the move in Texas heat — nylon-only harnesses get hot against the chest and your dog will hesitate to put it on. Ruffwear breathes. Front clip helps with pullers, back clip for relaxed walks. Reflective trim for early-morning and after-sunset walks (which is when Waco dogs walk in summer).",
     bestFor: ["Daily walks", "Pullers", "Hot weather", "Loose-leash training"],
-    asin: "B00HQAHSFA",
+    asin: "B0CLB4ZBWF",
   },
   {
     id: "long-leash",
@@ -120,7 +120,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Bigger than a regular leash, smaller than the freedom of a fenced yard. Perfect for sniff walks at McLane Stadium fields or recall work at Brazos Park East — your dog feels free, you stay in control.",
     bestFor: ["Recall practice", "Puppies", "Open fields", "Confidence building"],
-    asin: "B0092LSKR6",
+    asin: "B072MNCJ8K",
   },
   {
     id: "poop-bags",
@@ -131,7 +131,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "The category leader, full stop. Don't tear when it matters. The lavender scent actually works. Get the multi-roll boxes — you'll go through them faster than you think, and bulk is half the price per bag.",
     bestFor: ["Daily walks", "Yard cleanup", "Travel", "Daycare bags"],
-    asin: "B003ALMW0M",
+    asin: "B00BSYR7K8",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -146,7 +146,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "If your dog has a habit of testing fences like they're auditioning for the Olympics, this is the difference between panic and 'oh, there you are.' Live tracking on your phone, virtual fence alerts, works anywhere with cell signal. Requires a small monthly subscription — worth every cent the first time you need it.",
     bestFor: ["Runners", "Escape artists", "Off-leash dogs", "Peace of mind"],
-    asin: "B07YFCY2J5",
+    asin: "B0D6Z4L6BW",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -172,7 +172,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Stick to the wall of the shower for bath time, the side of the crate for grooming, or the kitchen floor for everyday calm. The single best calming tool for thunderstorms (we get those) and fireworks (those too). Smear with peanut butter, plain yogurt, or wet food.",
     bestFor: ["Grooming", "Crate comfort", "Storm anxiety", "Slow feeding"],
-    asin: "B07MFQZSMF",
+    asin: "B09FPTDBRZ",
   },
   {
     id: "slow-feeders",
@@ -182,7 +182,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Helpful for dogs who eat too fast (bloat risk for deep-chested breeds) or need a little mental work before training. A daily win for busy dog parents.",
     bestFor: ["Fast eaters", "Mealtime enrichment", "Deep-chested breeds"],
-    asin: "B00FQTU9H0",
+    asin: "B00FPKNRG4",
   },
   {
     id: "puzzle-feeders",
@@ -192,7 +192,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Great for thunderstorm afternoons, vet-recovery days, and confidence building. Mental work tires dogs out faster than a walk in Texas heat.",
     bestFor: ["Rainy days", "Recovery", "Confidence building", "Calmer routines"],
-    asin: "B07D4JWF4Z",
+    asin: "B0711Y9XTF",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -207,17 +207,17 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Doesn't just mask the smell — breaks down the proteins so your dog stops re-marking the spot. Essential for new puppies, senior dogs with leaks, and multi-dog homes. Keep a bottle in the laundry room and one in the car.",
     bestFor: ["Puppies", "Senior dogs", "Multi-dog homes", "Carpet accidents"],
-    asin: "B0002AS47G",
+    asin: "B071W6CQ7S",
   },
   {
     id: "dog-wipes",
-    title: "Dog-safe wipes / paw cleaner",
+    title: "Nature's Miracle Deodorizing Bath Wipes",
     category: "Cleaning",
     description: "Quick cleanup wipes for paws, butts, and post-walk grime.",
     whyWeLikeIt:
       "For paws after walks (Waco mud + summer creek visits), for butts in between baths, for the back of the car. Keep a pack by the back door and one in the dog bag.",
     bestFor: ["Muddy paws", "Daycare bags", "Travel", "Between baths"],
-    asin: "B01EIG7A9C",
+    asin: "B0CCB4XW1M",
   },
 
   // ────────────────────────────────────────────────────────────
@@ -231,7 +231,7 @@ const productRecommendations: Omit<
     whyWeLikeIt:
       "Airflow underneath = cooler dog. Indestructible outdoors (we're talking years on the back porch). The bestseller in elevated beds for a reason. Pairs with the cooling mat for a serious summer setup.",
     bestFor: ["Backyards", "Hot dogs", "Senior dogs", "Outdoor patios"],
-    asin: "B000RPJ464",
+    asin: "B001HX4294",
   },
 ];
 

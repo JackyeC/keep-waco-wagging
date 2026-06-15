@@ -10,7 +10,7 @@ export const shopProducts: ShopProduct[] = [
     id: "shop-001",
     name: "Ruffwear Front Range Harness",
     summary: "Our go-to everyday harness for Waco walks and patio outings.",
-    asin: "B00HQAHSFA",
+    asin: "B0CLB4ZBWF",
     category: "Walk",
     whyWeLoveIt:
       "Comfortable, easy to adjust, and holds up to Texas heat. Great for loose-leash training sessions around Cameron Park.",
@@ -20,7 +20,7 @@ export const shopProducts: ShopProduct[] = [
     id: "shop-002",
     name: "Kurgo Dog Seat Belt",
     summary: "Keeps your pup secure on drives to trails and vet visits.",
-    asin: "B003H9Q4BC",
+    asin: "B07D8XRNWR",
     category: "Travel",
     whyWeLoveIt:
       "Simple clip-in for car trips across greater Waco — less sliding, more calm arrivals.",
@@ -30,7 +30,7 @@ export const shopProducts: ShopProduct[] = [
     id: "shop-003",
     name: "Outward Hound Slow Feeder",
     summary: "Slows fast eaters and adds a little mental enrichment at home.",
-    asin: "B00FQTU9H0",
+    asin: "B00FPKNRG4",
     category: "Home",
     whyWeLoveIt:
       "A small daily win for busy dog parents — especially helpful before training sessions.",
@@ -48,7 +48,7 @@ export const shopProducts: ShopProduct[] = [
     id: "shop-005",
     name: "PetSafe Gentle Leader",
     summary: "Head collar option for dogs who pull on neighborhood walks.",
-    asin: "B00074H4H6",
+    asin: "B00074L4RW",
     category: "Training",
     whyWeLoveIt:
       "A practical tool we reach for when building loose-leash skills before busy patio season.",
@@ -58,7 +58,7 @@ export const shopProducts: ShopProduct[] = [
     id: "shop-006",
     name: "Portable Collapsible Water Bowl",
     summary: "Clip-on bowl for trails, patios, and summer outings.",
-    asin: "B07CZPKLJ5",
+    asin: "B07VT1468W",
     category: "Travel",
     whyWeLoveIt:
       "Essential for Waco heat — easy to stash in a bag for weekend wag plans.",
