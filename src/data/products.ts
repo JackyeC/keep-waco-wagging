@@ -59,6 +59,7 @@ const productRecommendations: Omit<
       "Squeeze the bottle, water fills the silicone bowl. Release, the water drains back in. No spills in the car, no empty cup holders, no wrestling with a separate bowl. You cannot walk a Waco dog from June through September without one of these.",
     bestFor: ["Walks", "Hikes", "Car trips", "Patio outings"],
     asin: "B018YECUPQ",
+    amazonUrl: "https://a.co/d/0gvbC7W1",
   },
   {
     id: "calming-chews",
@@ -237,10 +238,13 @@ const productRecommendations: Omit<
 ];
 
 function withAffiliateLinks(
-  products: Omit<ProductRecommendation, "amazonUrl" | "affiliateReady">[],
+  products: (Omit<ProductRecommendation, "amazonUrl" | "affiliateReady"> & {
+    amazonUrl?: string;
+  })[],
 ): ProductRecommendation[] {
   return products.map((product) => {
-    const amazonUrl = buildAmazonAffiliateUrl(product.asin);
+    const amazonUrl =
+      product.amazonUrl ?? buildAmazonAffiliateUrl(product.asin);
     return {
       ...product,
       amazonUrl,
