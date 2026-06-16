@@ -93,6 +93,7 @@ export function EditorialTeaser({
   href,
   ctaLabel,
   external,
+  image,
   className,
 }: {
   department: string;
@@ -101,6 +102,7 @@ export function EditorialTeaser({
   href: string;
   ctaLabel: string;
   external?: boolean;
+  image?: { src: string; alt: string };
   className?: string;
 }) {
   const linkClass = "editorial-link mt-4 inline-block";
@@ -110,6 +112,18 @@ export function EditorialTeaser({
       <p className="eyebrow">{department}</p>
       <h3 className="headline-tertiary mt-2">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-bark-soft">{dek}</p>
+      {image && (
+        <figure className="mt-4">
+          <div className="relative aspect-[16/10] overflow-hidden bg-sand">
+            <SitePhoto
+              src={image.src}
+              alt={image.alt}
+              sizes="(max-width: 1024px) 100vw, 40vw"
+            />
+          </div>
+          <figcaption className="caption mt-2">{image.alt}</figcaption>
+        </figure>
+      )}
       {external ? (
         <a href={href} target="_blank" rel="noopener noreferrer" className={linkClass}>
           {ctaLabel}

@@ -5,9 +5,10 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { EditorialTeaser } from "@/components/EditorialFeature";
+import { EditorialPhotoSpread } from "@/components/EditorialPhotoSpread";
 import { rover } from "@/data/rover";
 import { SitePhoto } from "@/components/SitePhoto";
-import { sitePhotos } from "@/data/sitePhotos";
+import { editorialSpreads, sitePhotos } from "@/data/sitePhotos";
 import { ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -67,25 +68,35 @@ export default function PetCarePage() {
       </Section>
 
       <Section tone="paper">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <SectionHeading
-              eyebrow="What dogs can expect"
-              title="Care with rhythm, updates, and rest"
-              size="compact"
-            />
-            <p className="mt-4 leading-relaxed text-bark-soft">{rover.bio}</p>
-            <figure className="mt-8">
-              <div className="relative aspect-[16/10] overflow-hidden bg-sand">
-                <SitePhoto
-                  src={sitePhotos.boardingHome.src}
-                  alt={sitePhotos.boardingHome.alt}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-              <figcaption className="caption mt-2">{sitePhotos.boardingHome.alt}</figcaption>
-            </figure>
-          </div>
+        <SectionHeading
+          eyebrow="What dogs can expect"
+          title="Care with rhythm, updates, and rest"
+          size="compact"
+        />
+        <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-14">
+          <p className="leading-relaxed text-bark-soft">{rover.bio}</p>
+          <figure>
+            <div className="relative aspect-[16/10] overflow-hidden bg-sand">
+              <SitePhoto
+                src={sitePhotos.boardingDogs.src}
+                alt={sitePhotos.boardingDogs.alt}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <figcaption className="caption mt-2">{sitePhotos.boardingDogs.alt}</figcaption>
+          </figure>
+        </div>
+        <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
+          <figure>
+            <div className="relative aspect-[16/10] overflow-hidden bg-sand">
+              <SitePhoto
+                src={sitePhotos.boardingHome.src}
+                alt={sitePhotos.boardingHome.alt}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <figcaption className="caption mt-2">{sitePhotos.boardingHome.alt}</figcaption>
+          </figure>
           <div className="space-y-0 divide-y divide-clay border-y border-clay">
             <aside className="py-6">
               <p className="eyebrow">Environment</p>
@@ -101,6 +112,7 @@ export default function PetCarePage() {
               dek="Themed weeks all summer — splash days, sniff safaris, manners camp, and more. Reserve weeks on Rover."
               href={ctas.summerDaycare.href}
               ctaLabel={ctas.summerDaycare.label}
+              image={sitePhotos.summerCamp}
               className="border-t-0 pt-6"
             />
             <EditorialTeaser
@@ -113,6 +125,15 @@ export default function PetCarePage() {
             />
           </div>
         </div>
+      </Section>
+
+      <Section tone="sand">
+        <EditorialPhotoSpread
+          eyebrow="Home Stay"
+          title="Summer camp in the backyard"
+          photos={editorialSpreads.summerWeeks}
+          layout="strip"
+        />
       </Section>
 
       <Section tone="sand">

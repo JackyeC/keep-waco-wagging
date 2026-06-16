@@ -5,8 +5,9 @@ import { PetCard } from "@/components/PetCard";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { SitePhoto } from "@/components/SitePhoto";
+import { EditorialPhotoSpread } from "@/components/EditorialPhotoSpread";
 import { founderPack } from "@/data/founderPack";
-import { sitePhotos } from "@/data/sitePhotos";
+import { editorialSpreads, sitePhotos } from "@/data/sitePhotos";
 import { cityConfig, ctas, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -79,6 +80,15 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      <Section tone="paper" className="!py-12">
+        <EditorialPhotoSpread
+          photos={editorialSpreads.homeLife}
+          layout="duo"
+          eyebrow="Behind the guide"
+          title="The home where it all happens"
+        />
+      </Section>
+
       <figure className="relative min-h-[20rem] w-full border-y border-clay sm:min-h-[24rem]">
         <SitePhoto
           src={sitePhotos.founders.src}
@@ -90,7 +100,16 @@ export default function AboutPage() {
         </figcaption>
       </figure>
 
-      <Section tone="sand">
+      <Section tone="sand" className="!py-12">
+        <EditorialPhotoSpread
+          photos={editorialSpreads.yappyHours}
+          layout="strip"
+          eyebrow="Field Guide"
+          title="Yappy Hours in Waco"
+        />
+      </Section>
+
+      <Section tone="paper">
         <SectionHeading
           eyebrow="Editorial stance"
           title="How we think about dog care in Waco"

@@ -3,9 +3,10 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { EditorialServiceCard } from "@/components/EditorialServiceCard";
+import { EditorialPhotoSpread } from "@/components/EditorialPhotoSpread";
 import { SitePhoto } from "@/components/SitePhoto";
 import { platinumScoops } from "@/data/platinumScoops";
-import { sitePhotos } from "@/data/sitePhotos";
+import { editorialSpreads, sitePhotos } from "@/data/sitePhotos";
 import { ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -48,6 +49,14 @@ export default function PlatinumScoopsPage() {
             <EditorialServiceCard key={signal} title={signal} />
           ))}
         </div>
+        <div className="mt-12">
+          <EditorialPhotoSpread
+            photos={editorialSpreads.yardLife}
+            layout="strip"
+            eyebrow="Yard Notes"
+            title="Yards we care for across Waco"
+          />
+        </div>
         {/* TODO: Confirm Platinum Scoops review count and licensing details for public marketing copy. */}
       </Section>
 
@@ -71,13 +80,13 @@ export default function PlatinumScoopsPage() {
           <figure>
             <div className="relative aspect-[4/3] overflow-hidden bg-sand">
               <SitePhoto
-                src={sitePhotos.community.src}
-                alt={sitePhotos.community.alt}
+                src={sitePhotos.blog.yardHome.src}
+                alt={sitePhotos.blog.yardHome.alt}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <figcaption className="caption mt-2 border-l-2 border-clay pl-3">
-              {sitePhotos.community.alt}
+              {sitePhotos.blog.yardHome.alt}
             </figcaption>
           </figure>
           <div>

@@ -4,11 +4,12 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
 import { ProductRecommendationCard } from "@/components/ProductRecommendationCard";
 import { EditorialFeature, EditorialTeaser } from "@/components/EditorialFeature";
+import { EditorialPhotoSpread } from "@/components/EditorialPhotoSpread";
 import { PublisherNote } from "@/components/PublisherNote";
 import { ServiceIndex } from "@/components/ServiceIndex";
 import { SitePhoto } from "@/components/SitePhoto";
 import { Button } from "@/components/ui/Button";
-import { sitePhotos } from "@/data/sitePhotos";
+import { editorialSpreads, sitePhotos } from "@/data/sitePhotos";
 import { getFeaturedProductRecommendations } from "@/data/products";
 import { cityConfig, ctas, siteConfig } from "@/lib/site";
 
@@ -116,6 +117,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Photo spread — community & events */}
+      <section className="border-t border-clay bg-sand py-14 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <EditorialPhotoSpread
+            eyebrow="Field Guide"
+            title="Yappy Hours & community events"
+            photos={editorialSpreads.yappyHours}
+            layout="strip"
+          />
+        </div>
+      </section>
+
       {/* Lead feature — Yard Notes */}
       <section className="border-t border-clay bg-paper-grain py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -157,41 +170,83 @@ export default function HomePage() {
                 dek={`Presented by ${cityConfig.sponsor.name}. Dog-friendly places, Yappy Hours, summer camp, and practical recommendations for Central Texas.`}
                 href="/dog-friendly-waco"
                 ctaLabel="Explore dog-friendly Waco"
+                image={sitePhotos.yappyHours}
               />
-              <figure className="mt-auto">
-                <div className="relative aspect-[16/10] overflow-hidden bg-sand">
-                  <SitePhoto
-                    src={sitePhotos.community.src}
-                    alt={sitePhotos.community.alt}
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
-                </div>
-                <figcaption className="caption mt-2">{sitePhotos.community.alt}</figcaption>
-              </figure>
+              <EditorialPhotoSpread
+                photos={[sitePhotos.blog.dogFriendly, sitePhotos.community]}
+                layout="duo"
+                className="mt-auto"
+              />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Summer camp — photo strip */}
+      <section className="border-t border-clay bg-paper-grain py-14 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 max-w-xl">
+            <p className="eyebrow eyebrow-brass">Home Stay</p>
+            <h2 className="headline-tertiary mt-2">Summer daycare camp weeks</h2>
+            <p className="mt-2 text-sm leading-relaxed text-bark-soft">
+              Themed weeks June through August — splash days, group play, and
+              heat-smart routines at our Waco home.
+            </p>
+            <Link href={ctas.summerDaycare.href} className="editorial-link mt-4 inline-block">
+              {ctas.summerDaycare.label}
+            </Link>
+          </div>
+          <EditorialPhotoSpread photos={editorialSpreads.summerWeeks} layout="strip" />
+        </div>
+      </section>
+
+      {/* Home life spread */}
+      <section className="border-t border-clay bg-cream py-14 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <EditorialPhotoSpread
+            eyebrow="Home Stay"
+            title="What home-based care looks like"
+            photos={editorialSpreads.homeLife}
+            layout="mosaic"
+          />
         </div>
       </section>
 
       {/* The Edit — shop module (smaller visual weight) */}
       <section className="border-t border-clay bg-sand py-14 md:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-4 border-b border-clay pb-6 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-xl">
-              <p className="eyebrow eyebrow-brass">The Edit</p>
-              <h2 className="headline-tertiary mt-2">Dog gear we actually use</h2>
-              <p className="mt-2 text-sm leading-relaxed text-bark-soft">
-                Curated for Central Texas — linked to Amazon with our affiliate tag.
-              </p>
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-end lg:gap-14">
+            <div>
+              <div className="flex flex-col gap-4 border-b border-clay pb-6 sm:flex-row sm:items-end sm:justify-between lg:border-0 lg:pb-0">
+                <div className="max-w-xl">
+                  <p className="eyebrow eyebrow-brass">The Edit</p>
+                  <h2 className="headline-tertiary mt-2">Dog gear we actually use</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-bark-soft">
+                    Curated for Central Texas — linked to Amazon with our affiliate tag.
+                  </p>
+                </div>
+                <Link href="/shop" className="editorial-link">
+                  See all picks
+                </Link>
+              </div>
+              <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+                {featuredProducts.map((product) => (
+                  <ProductRecommendationCard key={product.id} product={product} compact />
+                ))}
+              </div>
             </div>
-            <Link href="/shop" className="editorial-link">
-              See all picks
-            </Link>
-          </div>
-          <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
-            {featuredProducts.map((product) => (
-              <ProductRecommendationCard key={product.id} product={product} compact />
-            ))}
+            <figure className="hidden lg:block">
+              <div className="relative aspect-[3/4] overflow-hidden bg-sand">
+                <SitePhoto
+                  src={sitePhotos.training.src}
+                  alt={sitePhotos.training.alt}
+                  sizes="35vw"
+                />
+              </div>
+              <figcaption className="caption mt-2 border-l-2 border-clay pl-3">
+                {sitePhotos.training.alt}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>

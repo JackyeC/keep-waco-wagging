@@ -6,6 +6,7 @@ import { AdSlot } from "@/components/AdSlot";
 import { Section } from "@/components/ui/Section";
 import { getProductRecommendations } from "@/data/products";
 import { monetization, siteConfig } from "@/lib/site";
+import { sitePhotos } from "@/data/sitePhotos";
 import type { ProductRecommendation } from "@/lib/types";
 
 export const metadata: Metadata = {
@@ -45,6 +46,10 @@ export default function ShopPage() {
         description="An editor's picks page for Central Texas dog parents — vetted in real Waco yards and linked to Amazon. Part of the Keep Waco Wagging guide."
         tone="cream"
         showPublisher
+        image={{
+          ...sitePhotos.training,
+          caption: sitePhotos.training.alt,
+        }}
       />
 
       <Section tone="paper" className="!py-10">

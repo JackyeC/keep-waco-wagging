@@ -52,12 +52,47 @@ export const sitePhotos = {
   },
   yappyHours: {
     src: "/pictures/yappy-hours-party.webp",
-    alt: "Dogs in colorful bandanas at a festive Yappy Hour backyard party in Waco",
+    alt: "Dogs and guests at a Yappy Hour at Brotherwell Brewing in Waco",
   },
   yappyHoursCard: {
     src: "/pictures/yappy-hours-card.webp",
-    alt: "Happy dogs socializing at a Yappy Hour meetup with string lights and bandanas",
+    alt: "A guest and her dog at an outdoor patio Yappy Hour in Waco",
   },
+  /** Real Yappy Hour event photography — curated in source-photos/curated.json */
+  yappyHoursGallery: [
+    {
+      src: "/pictures/yappy-hours/IMG_3544.webp",
+      alt: "Dogs and guests at a Yappy Hour at Brotherwell Brewing in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3540.webp",
+      alt: "Dogs and dog parents socializing at an indoor Yappy Hour in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3488.webp",
+      alt: "A guest and her dog at an outdoor patio Yappy Hour in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3525.webp",
+      alt: "Dog parents and a dog in the Austin Avenue District in downtown Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3533.webp",
+      alt: "Dog parents and dogs at a Yappy Hour on a painted alley mural in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3519.webp",
+      alt: "Guests and dogs gathered at a Yappy Hour on a colorful ground mural in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/FullSizeRender-hot-dog-crawl.webp",
+      alt: "Guests and a dog at a Waco Hot Dog Crawl community event",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_2466.webp",
+      alt: "Dog parents and dogs at an outdoor patio Yappy Hour in Waco",
+    },
+  ],
   founders: {
     src: "/pictures/founders-jackye-todd.webp",
     alt: "Jackye and Todd Clayton, founders of Platinum Scoops and Keep Waco Wagging",
@@ -89,6 +124,34 @@ export const sitePhotos = {
     },
   },
 } as const;
+
+/** Curated multi-photo spreads for editorial pages — all real site assets. */
+export const editorialSpreads = {
+  /** Community, events, and summer — Field Guide energy */
+  wacoCommunity: [
+    sitePhotos.yappyHoursGallery[0],
+    sitePhotos.yappyHoursGallery[2],
+    sitePhotos.summerCamp,
+  ],
+  /** Yappy Hour event spreads */
+  yappyHours: sitePhotos.yappyHoursGallery,
+  /** Home-based care and daily rhythm */
+  homeLife: [
+    sitePhotos.boardingDogs,
+    sitePhotos.boardingHome,
+    sitePhotos.training,
+  ],
+  /** Yard work and outdoor dog life */
+  yardLife: [sitePhotos.scooping, sitePhotos.blog.yardHome, sitePhotos.blog.events],
+  /** Summer camp weeks */
+  summerWeeks: [
+    sitePhotos.summerMonths.june,
+    sitePhotos.summerMonths.july,
+    sitePhotos.summerMonths.august,
+  ],
+} as const;
+
+export type SitePhotoRef = { src: string; alt: string };
 
 const blogCategoryImages: Record<string, { src: string; alt: string }> = {
   "Dog-Friendly Waco": sitePhotos.blog.dogFriendly,
