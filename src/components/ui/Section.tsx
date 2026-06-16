@@ -46,11 +46,7 @@ export function SectionHeading({
         align === "center" && "mx-auto text-center",
       )}
     >
-      {eyebrow && (
-        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-sage-600">
-          {eyebrow}
-        </p>
-      )}
+      {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
       <h2 className="text-2xl sm:text-3xl md:text-4xl">{title}</h2>
       {description && (
         <p className="mt-3 text-base leading-relaxed text-bark-soft sm:text-lg">

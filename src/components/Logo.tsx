@@ -8,11 +8,11 @@ type LogoVariant = "mark" | "full";
 export function Logo({
   className,
   variant = "mark",
-  badge = variant === "mark",
+  badge = false,
 }: {
   className?: string;
   variant?: LogoVariant;
-  /** Dark badge wraps the mark so the black logo matte reads intentional on cream. */
+  /** Optional dark badge for compact mark on light backgrounds. */
   badge?: boolean;
 }) {
   const asset =

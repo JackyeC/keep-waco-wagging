@@ -5,13 +5,14 @@ import { SitePhoto } from "@/components/SitePhoto";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-type Tone = "sage" | "sky" | "sand" | "gold";
+type Tone = "sage" | "sky" | "sand" | "gold" | "cream";
 
 const toneBg: Record<Tone, string> = {
   sage: "from-sage-100 via-sage-50 to-cream",
   sky: "from-sky-100 via-sky-50 to-cream",
   sand: "from-sand via-sand to-cream",
   gold: "from-gold-100 via-cream to-cream",
+  cream: "from-cream via-cream to-sand",
 };
 
 /** Reusable header band for interior pages. */
@@ -59,16 +60,7 @@ export function PageHeader({
               <SponsorBadge />
             </div>
           )}
-          {eyebrow && (
-            <p
-              className={cn(
-                "text-sm font-semibold uppercase tracking-wide text-sage-600",
-                showSiteName || showSponsor ? "mt-3 mb-2" : "mb-2",
-              )}
-            >
-              {eyebrow}
-            </p>
-          )}
+          {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
           <h1 className="text-3xl leading-tight sm:text-4xl md:text-5xl">
             {title}
           </h1>

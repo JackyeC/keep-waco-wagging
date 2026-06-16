@@ -11,92 +11,79 @@ import { sitePhotos } from "@/data/sitePhotos";
 import { ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Waco Dog Boarding, Daycare & Pet Care | Jackye and Todd",
+  title: "Daycare & Boarding Waco | Platinum Scoops Pet Care",
   description:
-    "Home-based dog boarding, daycare, drop-ins, and dog walking in Waco with Jackye and Todd, full-time pet care professionals.",
+    "Home-based dog boarding, daycare, drop-ins, and walks in Waco with Jackye and Todd — full-time pet care professionals on Rover.",
 };
 
 export default function PetCarePage() {
   return (
     <>
       <PageHeader
-        eyebrow="Pet care"
-        title="Home-based Waco dog boarding, daycare, drop-ins, and walks"
-        description={`${rover.positioning}. ${rover.tagline}. Dogs get practical care, structure, updates, and a family-run environment.`}
-        tone="sky"
+        eyebrow="Platinum Scoops · Pet care"
+        title="Daycare and boarding in a calm Waco home"
+        description={`${rover.positioning}. ${rover.tagline}. Check Rover for current availability, rates, and open dates.`}
+        tone="cream"
         image={sitePhotos.boarding}
       >
-        <Button href={ctas.bookPetCare.href} size="lg">
-          {ctas.bookPetCare.label}
+        <Button href={ctas.bookPetCare.href} variant="primary" size="lg">
+          Check availability on Rover
         </Button>
       </PageHeader>
 
       <Section tone="paper">
         <div className="grid gap-4 rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70 sm:grid-cols-3">
-          <TrustItem icon={<Star className="h-5 w-5" />} title={`${rover.rating} stars`} body={`${rover.reviewCount} Rover reviews`} />
-          <TrustItem icon={<Heart className="h-5 w-5" />} title="Full-time care" body="Pet care is the profession, not a side gig." />
-          <TrustItem icon={<Check className="h-5 w-5" />} title="Home routine" body="Walks, play, enrichment, structured rest, and updates." />
+          <TrustItem
+            icon={<Star className="h-5 w-5" />}
+            title={`${rover.rating} stars`}
+            body={`${rover.reviewCount} Rover reviews`}
+          />
+          <TrustItem
+            icon={<Heart className="h-5 w-5" />}
+            title="Full-time care"
+            body="Pet care is the profession, not a side gig."
+          />
+          <TrustItem
+            icon={<Check className="h-5 w-5" />}
+            title="Home routine"
+            body="Walks, play, enrichment, structured rest, and updates."
+          />
         </div>
       </Section>
 
       <Section tone="sand">
         <SectionHeading
-          eyebrow="Services and prices"
-          title="Rover services"
+          eyebrow="Services on Rover"
+          title="Boarding, daycare, drop-ins, and walks"
           description={rover.pricingNote}
         />
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {rover.services.map((service) => (
-            <article key={service.name} className="rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70">
+            <article
+              key={service.name}
+              className="rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70"
+            >
               <h3 className="text-lg font-semibold">{service.name}</h3>
-              <p className="mt-2 text-2xl font-semibold text-sage-700">{service.price}</p>
+              <p className="mt-2 text-2xl font-semibold text-sage-700">
+                {service.price}
+              </p>
             </article>
           ))}
         </div>
-      </Section>
-
-      <Section tone="sage">
-        <div className="rounded-card bg-white p-8 ring-1 ring-inset ring-clay/70 lg:flex lg:items-center lg:justify-between lg:gap-8">
-          <div className="max-w-xl">
-            <Badge tone="gold">New this summer</Badge>
-            <h2 className="mt-3 text-3xl">Summer Daycare Camp</h2>
-            <p className="mt-3 text-bark-soft">
-              A new themed week all summer long — splash days, sniff safaris,
-              manners camp, and more — with the same calm, full-time home care.
-              Reserve the weeks your dog wants on Rover.
-            </p>
-          </div>
-          <div className="mt-6 shrink-0 lg:mt-0">
-            <Button href={ctas.summerDaycare.href} size="lg">
-              {ctas.summerDaycare.label}
-            </Button>
-          </div>
+        <div className="mt-8 text-center">
+          <Button href={ctas.bookPetCare.href} size="lg">
+            {ctas.bookPetCare.label}
+          </Button>
         </div>
       </Section>
 
       <Section tone="paper">
-        <div className="grid items-center gap-6 rounded-card bg-gradient-to-br from-gold-100 via-cream to-cream p-8 ring-1 ring-inset ring-gold-200 lg:grid-cols-[1.4fr_auto]">
+        <div className="grid gap-8 lg:grid-cols-2">
           <div>
-            <Badge tone="gold">Premium event service</Badge>
-            <h2 className="mt-3 text-3xl">Platinum Pup Event Care</h2>
-            <p className="mt-3 max-w-2xl text-bark-soft">
-              A dedicated dog attendant for weddings, parties, photos, proposals,
-              and special events — so your pup can be part of the moment while we
-              handle leash time, potty and water breaks, and calm rest.
-            </p>
-          </div>
-          <div className="shrink-0">
-            <Button href={ctas.eventCare.href} size="lg">
-              {ctas.eventCare.label}
-            </Button>
-          </div>
-        </div>
-      </Section>
-
-      <Section tone="sand">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-          <div>
-            <SectionHeading eyebrow="What dogs can expect" title="Care with rhythm, updates, and rest" />
+            <SectionHeading
+              eyebrow="What dogs can expect"
+              title="Care with rhythm, updates, and rest"
+            />
             <p className="mt-4 leading-relaxed text-bark-soft">{rover.bio}</p>
             <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-card ring-1 ring-inset ring-clay/60">
               <SitePhoto
@@ -106,18 +93,42 @@ export default function PetCarePage() {
               />
             </div>
           </div>
-          <div className="rounded-card bg-sage-50 p-6 ring-1 ring-inset ring-sage-200">
-            <h3 className="text-xl font-semibold">Home environment</h3>
-            <p className="mt-3 text-sm leading-relaxed text-bark-soft">
-              A lived-in Waco dog home with three resident dogs and a foster.
-              Visiting dogs are supported with routine, supervision, and
-              attention to group dynamics.
-            </p>
+          <div className="space-y-6">
+            <div className="rounded-card bg-sage-50 p-6 ring-1 ring-inset ring-sage-200">
+              <h3 className="text-xl font-semibold">Home environment</h3>
+              <p className="mt-3 text-sm leading-relaxed text-bark-soft">
+                A lived-in Waco dog home with resident dogs and experience
+                supporting group dynamics, high-energy dogs, puppies, seniors,
+                and medication support.
+              </p>
+            </div>
+            <div className="rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70">
+              <Badge tone="gold">Summer camp</Badge>
+              <h3 className="mt-3 text-xl font-semibold">Summer Daycare Camp</h3>
+              <p className="mt-2 text-sm leading-relaxed text-bark-soft">
+                Themed weeks all summer — splash days, sniff safaris, manners
+                camp, and more. Reserve weeks on Rover.
+              </p>
+              <Button href={ctas.summerDaycare.href} variant="secondary" className="mt-4">
+                {ctas.summerDaycare.label}
+              </Button>
+            </div>
+            <div className="rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70">
+              <Badge tone="gold">Events</Badge>
+              <h3 className="mt-3 text-xl font-semibold">Platinum Pup Event Care</h3>
+              <p className="mt-2 text-sm leading-relaxed text-bark-soft">
+                A dedicated dog attendant for weddings, parties, photos, and
+                special events in the Waco area.
+              </p>
+              <Button href={ctas.eventCare.href} variant="secondary" className="mt-4">
+                {ctas.eventCare.label}
+              </Button>
+            </div>
           </div>
         </div>
       </Section>
 
-      <Section tone="sky">
+      <Section tone="sand">
         <div className="grid gap-8 lg:grid-cols-2">
           <FitList title="Good fit for" items={rover.goodFit} tone="sage" />
           <FitList
@@ -133,13 +144,13 @@ export default function PetCarePage() {
 
       <Section tone="sand">
         <div className="rounded-card bg-white p-8 text-center ring-1 ring-inset ring-clay/70">
-          <h2 className="text-3xl">Ready to check dates on Rover?</h2>
+          <h2 className="font-display text-3xl">Ready to check dates?</h2>
           <p className="mx-auto mt-3 max-w-xl text-bark-soft">
-            Availability and prices can change, so Rover is the best place to see
+            Availability and prices can change. Rover is the best place to see
             current openings and request care.
           </p>
           <Button href={ctas.bookPetCare.href} size="lg" className="mt-6">
-            Book Pet Care
+            {ctas.bookPetCare.label}
           </Button>
         </div>
       </Section>
@@ -191,7 +202,9 @@ function FitList({
           </li>
         ))}
       </ul>
-      {note && <p className="mt-4 text-xs leading-relaxed text-bark-faint">{note}</p>}
+      {note && (
+        <p className="mt-4 text-xs leading-relaxed text-bark-faint">{note}</p>
+      )}
     </div>
   );
 }
