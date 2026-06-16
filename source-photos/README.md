@@ -20,6 +20,11 @@ Drop a photo in each folder if you want to override without editing `curated.jso
 | `training/` | Training sections |
 | `founders/` | About page — Jackye & Todd |
 | `pets-scoop/`, `pets-stella/`, etc. | Pack photos on About |
+| `shop/` | Optional overrides for `/shop` product cards (name files `{product-id}.jpg`) |
+
+## Shop product photos
+
+The `/shop` page uses **your Waco dog photos**, not Amazon packshots. Defaults are mapped in `curated.json` under `"shop"`. To override one product, drop a photo in `shop/` named like `cooling-mat.jpg` (see product ids in `src/data/products.ts`).
 
 ## Everything else counts too
 

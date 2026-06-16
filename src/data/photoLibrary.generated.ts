@@ -4,7 +4,7 @@ export const photoLibraryStats = {
   featured: 17,
   slotOutputs: 22,
   petFolders: 1,
-  generatedAt: "2026-06-14T17:15:24.807Z",
+  generatedAt: "2026-06-16T13:35:23.176Z",
 } as const;
 
 export type PhotoLibraryEntry = {

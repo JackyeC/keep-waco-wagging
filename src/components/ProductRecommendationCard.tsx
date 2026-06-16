@@ -11,11 +11,12 @@ export function ProductRecommendationCard({
 }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70 transition-all hover:-translate-y-0.5 hover:shadow-md hover:ring-sage-200">
-      <div className="aspect-square bg-sand/40">
+      <div className="relative aspect-[16/10] overflow-hidden bg-sand/50">
         <ImagePlaceholder
           src={product.imageUrl}
           alt={product.title}
           label={product.title}
+          className="object-cover"
         />
       </div>
       <div className="flex flex-1 flex-col p-5">

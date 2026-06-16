@@ -16,6 +16,7 @@ const CURATED_PATH = path.join(SOURCE, "curated.json");
 const PICTURES = path.join(ROOT, "public", "pictures");
 const LIBRARY = path.join(PICTURES, "library");
 const PETS = path.join(ROOT, "public", "pets");
+const SHOP = path.join(ROOT, "public", "shop");
 const MANIFEST = path.join(ROOT, "src", "data", "photoLibrary.generated.ts");
 
 const IMAGE_EXT = new Set([
@@ -151,6 +152,7 @@ if (fs.existsSync(CURATED_PATH)) {
 fs.mkdirSync(PICTURES, { recursive: true });
 fs.mkdirSync(LIBRARY, { recursive: true });
 fs.mkdirSync(PETS, { recursive: true });
+fs.mkdirSync(SHOP, { recursive: true });
 
 function isImageFile(name) {
   return IMAGE_EXT.has(path.extname(name).toLowerCase());
@@ -202,6 +204,7 @@ function walkAllImages(dir, results = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith(".")) continue;
     if (entry.name === "curated.json") continue;
+    if (entry.name === "shop") continue;
 
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
@@ -238,6 +241,16 @@ async function writeWebp(input, output, width, height, quality = 82) {
     .resize(width, height, { fit: "cover", position: "attention" })
     .modulate({ brightness: 1.02, saturation: 1.05 })
     .sharpen({ sigma: 0.8 })
+    .webp({ quality, effort: 4 })
+    .toFile(output);
+}
+
+async function writeShopWebp(input, output, width, height, quality = 78) {
+  await sharp(input)
+    .rotate()
+    .resize(width, height, { fit: "cover", position: "attention" })
+    .modulate({ brightness: 1.02, saturation: 1.05 })
+    .sharpen({ sigma: 0.6 })
     .webp({ quality, effort: 4 })
     .toFile(output);
 }
@@ -295,6 +308,7 @@ for (const entry of fs.readdirSync(SOURCE, { withFileTypes: true })) {
   if (!entry.isDirectory() || entry.name.startsWith(".")) continue;
   if (SLOT_FOLDERS.has(entry.name)) continue;
   if (entry.name.startsWith("pets-")) continue;
+  if (entry.name === "shop") continue;
 
   const folderPath = path.join(SOURCE, entry.name);
   const images = listImagesInFolder(folderPath);
@@ -315,6 +329,37 @@ for (const entry of fs.readdirSync(SOURCE, { withFileTypes: true })) {
   });
   console.log(`✓ pets/${slug}.webp ← ${sourceLabel} (${images.length} in folder)`);
   petOutputs++;
+}
+
+// --- Phase 2b: shop product cards (your photos, not Amazon packshots) ---
+let shopOutputs = 0;
+const shopIds = Object.keys(curated.shop ?? {});
+
+console.log("\n── Shop product cards ──\n");
+
+for (const id of shopIds) {
+  const shopFolderPath = path.join(SOURCE, "shop");
+  const override = listImagesInFolder(shopFolderPath).find((img) => {
+    const base = path.basename(img.name, path.extname(img.name));
+    return base === id;
+  });
+
+  const curatedPick = curated.shop?.[id];
+  const curatedPath = curatedPick ? resolveCurated(curatedPick) : null;
+  const sourcePath = override?.path ?? curatedPath;
+
+  if (!sourcePath) {
+    console.warn(`○ shop/${id} — no image`);
+    continue;
+  }
+
+  const label = override
+    ? `shop/${override.name} ★`
+    : `${curatedPick} ★`;
+
+  await writeShopWebp(sourcePath, path.join(SHOP, `${id}.webp`), 640, 400);
+  console.log(`✓ shop/${id}.webp ← ${label}`);
+  shopOutputs++;
 }
 
 // --- Phase 3: full library ---
@@ -416,5 +461,5 @@ fs.writeFileSync(MANIFEST, manifest);
 console.log(`✓ ${libraryOutputs} library images (${featuredEntries.length} featured first)`);
 console.log(`✓ manifest → src/data/photoLibrary.generated.ts`);
 console.log(
-  `\nSummary: ${allImages.length} source images → ${slotOutputs} site outputs + ${petOutputs} pets + ${libraryOutputs} library`,
+  `\nSummary: ${allImages.length} source images → ${slotOutputs} site outputs + ${petOutputs} pets + ${shopOutputs} shop + ${libraryOutputs} library`,
 );
