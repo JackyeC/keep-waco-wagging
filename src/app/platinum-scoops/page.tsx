@@ -51,10 +51,10 @@ export default function PlatinumScoopsPage() {
         </div>
         <div className="mt-12">
           <EditorialPhotoSpread
-            photos={editorialSpreads.yardLife}
+            photos={editorialSpreads.scooping}
             layout="strip"
             eyebrow="Yard Notes"
-            title="Yards we care for across Waco"
+            title="Real yard service across Waco"
           />
         </div>
         {/* TODO: Confirm Platinum Scoops review count and licensing details for public marketing copy. */}

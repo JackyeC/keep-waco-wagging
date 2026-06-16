@@ -6,8 +6,39 @@ export const sitePhotos = {
   },
   scooping: {
     src: "/pictures/scooping-yard.webp",
-    alt: "A happy brindle dog in a green Waco yard wearing a harness",
+    alt: "Three dogs enjoying a green Waco backyard",
   },
+  /** Real Platinum Scoops yard service photography */
+  scoopingGallery: [
+    {
+      src: "/pictures/scooping-gallery/IMG_3627.webp",
+      alt: "Three dogs enjoying a green Waco backyard",
+    },
+    {
+      src: "/pictures/scooping-gallery/IMG_1286.webp",
+      alt: "Platinum Fresh enzyme treatment during a yard service visit in Waco",
+    },
+    {
+      src: "/pictures/scooping-gallery/scoop-pointing-hand.webp",
+      alt: "Platinum Scoops technician marking waste for pickup during a Waco yard service",
+    },
+    {
+      src: "/pictures/scooping-gallery/IMG_1200.webp",
+      alt: "Platinum Scoops equipment during a residential yard cleanup in Waco",
+    },
+    {
+      src: "/pictures/scooping-gallery/IMG_7388.webp",
+      alt: "Platinum Scoops yard service on a commercial lawn in Waco",
+    },
+    {
+      src: "/pictures/scooping-gallery/IMG_1201.webp",
+      alt: "On-route Platinum Scoops yard cleanup equipment in Waco",
+    },
+    {
+      src: "/pictures/scooping-gallery/scoop-commercial-lawn.webp",
+      alt: "Platinum Scoops service along a commercial property fence line in Waco",
+    },
+  ],
   boarding: {
     src: "/pictures/boarding-backyard.webp",
     alt: "Dogs relaxing together in a shaded Waco backyard during home-based daycare",
@@ -135,6 +166,8 @@ export const editorialSpreads = {
   ],
   /** Yappy Hour event spreads */
   yappyHours: sitePhotos.yappyHoursGallery,
+  /** Platinum Scoops yard service */
+  scooping: sitePhotos.scoopingGallery,
   /** Home-based care and daily rhythm */
   homeLife: [
     sitePhotos.boardingDogs,
@@ -142,7 +175,11 @@ export const editorialSpreads = {
     sitePhotos.training,
   ],
   /** Yard work and outdoor dog life */
-  yardLife: [sitePhotos.scooping, sitePhotos.blog.yardHome, sitePhotos.blog.events],
+  yardLife: [
+    sitePhotos.scoopingGallery[0],
+    sitePhotos.scoopingGallery[2],
+    sitePhotos.scoopingGallery[3],
+  ],
   /** Summer camp weeks */
   summerWeeks: [
     sitePhotos.summerMonths.june,

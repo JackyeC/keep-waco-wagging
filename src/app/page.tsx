@@ -144,6 +144,13 @@ export default function HomePage() {
               { label: "About scooping", href: "/platinum-scoops", variant: "secondary" },
             ]}
           />
+          <EditorialPhotoSpread
+            className="mt-16 border-t border-clay pt-14"
+            eyebrow="Yard Notes"
+            title="On the route in Waco"
+            photos={editorialSpreads.scooping.slice(1)}
+            layout="strip"
+          />
         </div>
       </section>
 

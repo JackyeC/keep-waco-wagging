@@ -398,6 +398,28 @@ for (const rel of curated.yappyGallery ?? []) {
   yappyGalleryOutputs++;
 }
 
+// --- Phase 2d: Scooping gallery (real yard service photography) ---
+const SCOOP_GALLERY = path.join(PICTURES, "scooping-gallery");
+let scoopGalleryOutputs = 0;
+
+console.log("\n── Scooping gallery ──\n");
+
+fs.mkdirSync(SCOOP_GALLERY, { recursive: true });
+
+for (const rel of curated.scoopGallery ?? []) {
+  const sourcePath = resolveCurated(rel);
+  if (!sourcePath) {
+    console.warn(`○ scoop gallery miss: ${rel}`);
+    continue;
+  }
+
+  const base = path.basename(rel, path.extname(rel));
+  const outFile = `${base}.webp`;
+  await writeWebp(sourcePath, path.join(SCOOP_GALLERY, outFile), 1200, 800, 78);
+  console.log(`✓ pictures/scooping-gallery/${outFile} ← ${rel} ★`);
+  scoopGalleryOutputs++;
+}
+
 // --- Phase 3: full library ---
 console.log("\n── Photo library ──\n");
 
@@ -497,5 +519,5 @@ fs.writeFileSync(MANIFEST, manifest);
 console.log(`✓ ${libraryOutputs} library images (${featuredEntries.length} featured first)`);
 console.log(`✓ manifest → src/data/photoLibrary.generated.ts`);
 console.log(
-  `\nSummary: ${allImages.length} source images → ${slotOutputs} site outputs + ${petOutputs} pets + ${shopOutputs} shop + ${yappyGalleryOutputs} yappy gallery + ${libraryOutputs} library`,
+  `\nSummary: ${allImages.length} source images → ${slotOutputs} site outputs + ${petOutputs} pets + ${shopOutputs} shop + ${yappyGalleryOutputs} yappy gallery + ${scoopGalleryOutputs} scoop gallery + ${libraryOutputs} library`,
 );
