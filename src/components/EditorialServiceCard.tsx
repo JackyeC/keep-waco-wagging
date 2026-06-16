@@ -1,4 +1,3 @@
-import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function EditorialServiceCard({
@@ -11,12 +10,11 @@ export function EditorialServiceCard({
   return (
     <article
       className={cn(
-        "rounded-card bg-white p-5 ring-1 ring-inset ring-clay/70",
+        "border-l-2 border-gold-400 py-3 pl-4",
         className,
       )}
     >
-      <Check className="h-5 w-5 text-sage-600" aria-hidden="true" />
-      <h3 className="mt-3 text-base font-semibold text-bark">{title}</h3>
+      <h3 className="text-sm font-medium leading-snug text-bark">{title}</h3>
     </article>
   );
 }

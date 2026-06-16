@@ -18,15 +18,18 @@ export default function PlatinumScoopsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Platinum Scoops"
+        eyebrow="Yard Notes"
         title="Dog waste removal for cleaner Waco yards"
         description={platinumScoops.description}
         tone="sand"
-        image={sitePhotos.scooping}
+        image={{
+          ...sitePhotos.scooping,
+          caption: sitePhotos.scooping.alt,
+        }}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href={ctas.bookScoops.href} variant="sponsor" size="lg">
-            {ctas.bookScoops.label}
+            Book a Scoop
           </Button>
           <Button href={platinumScoops.phoneHref} variant="secondary" size="lg">
             Call {platinumScoops.phoneDisplay}
@@ -40,7 +43,7 @@ export default function PlatinumScoopsPage() {
           title="Reliable scooping, same technician every visit"
           description={platinumScoops.pricing}
         />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
           {platinumScoops.trustSignals.map((signal) => (
             <EditorialServiceCard key={signal} title={signal} />
           ))}
@@ -54,51 +57,59 @@ export default function PlatinumScoopsPage() {
           title="What we scoop and how often"
           description="Residential and commercial pet waste cleanup across greater Waco."
         />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 divide-y divide-clay border-y border-clay">
           {platinumScoops.yardServices.map((service) => (
-            <EditorialServiceCard key={service} title={service} />
+            <li key={service} className="py-4">
+              <p className="font-medium text-bark">{service}</p>
+            </li>
           ))}
-        </div>
+        </ul>
       </Section>
 
       <Section tone="paper">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-card ring-1 ring-inset ring-clay/60">
-            <SitePhoto
-              src={sitePhotos.community.src}
-              alt={sitePhotos.community.alt}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <figure>
+            <div className="relative aspect-[4/3] overflow-hidden bg-sand">
+              <SitePhoto
+                src={sitePhotos.community.src}
+                alt={sitePhotos.community.alt}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <figcaption className="caption mt-2 border-l-2 border-clay pl-3">
+              {sitePhotos.community.alt}
+            </figcaption>
+          </figure>
           <div>
             <SectionHeading
               eyebrow="Service area"
               title="Greater Waco and nearby communities"
               description={`We serve ${platinumScoops.serviceAreas.join(", ")}.`}
+              size="compact"
             />
             <p className="mt-4 text-sm leading-relaxed text-bark-soft">
               Platinum Fresh enzyme treatment is included to support cleaner,
               fresher outdoor spaces for your dogs and your family.
             </p>
             <Button href={ctas.bookScoops.href} variant="sponsor" className="mt-6">
-              {ctas.bookScoops.label}
+              Book a Scoop
             </Button>
           </div>
         </div>
       </Section>
 
       <Section tone="sand">
-        <div className="rounded-card bg-white p-8 text-center ring-1 ring-inset ring-clay/70 sm:p-10">
-          <p className="eyebrow">Ready when you are</p>
-          <h2 className="mt-3 font-display text-3xl">Book your first cleanup</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-bark-soft">
+        <div className="editorial-panel mx-auto max-w-2xl p-8 text-center sm:p-10">
+          <p className="eyebrow eyebrow-brass">Classified</p>
+          <h2 className="headline-secondary mt-3">Book your first cleanup</h2>
+          <p className="dek mx-auto mt-3">
             First cleanup included. No long-term commitment. Cancel anytime.
             Book online for current availability or call with questions about
             your yard.
           </p>
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Button href={ctas.bookScoops.href} variant="sponsor">
-              {ctas.bookScoops.label}
+              Book a Scoop
             </Button>
             <Button href={platinumScoops.phoneHref} variant="secondary">
               {platinumScoops.phoneNumeric}

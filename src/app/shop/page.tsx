@@ -3,13 +3,13 @@ import { PageHeader } from "@/components/PageHeader";
 import { ShopProductCard } from "@/components/ShopProductCard";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { AdSlot } from "@/components/AdSlot";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { Section } from "@/components/ui/Section";
 import { getProductRecommendations } from "@/data/products";
 import { monetization, siteConfig } from "@/lib/site";
 import type { ProductRecommendation } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Dog Products We Recommend | Keep Waco Wagging",
+  title: "Dog Gear We Actually Use | Keep Waco Wagging",
   description:
     "Practical dog product recommendations for Waco pet parents, including crates, slow feeders, puzzle toys, cleaning supplies, and everyday dog care basics.",
 };
@@ -40,62 +40,51 @@ export default function ShopPage() {
   return (
     <>
       <PageHeader
-        eyebrow={siteConfig.name}
+        eyebrow="The Edit"
         title="Dog gear we actually use"
-        description="Practical picks for Central Texas dog parents — vetted in real Waco yards and linked to Amazon. Part of the Keep Waco Wagging guide, presented by Platinum Scoops."
+        description="An editor's picks page for Central Texas dog parents — vetted in real Waco yards and linked to Amazon. Part of the Keep Waco Wagging guide."
         tone="cream"
+        showPublisher
       />
 
-      <Section tone="paper" className="!py-8">
-        <div className="rounded-card bg-white px-4 py-3 ring-1 ring-inset ring-clay/60 sm:px-5">
-          <AffiliateDisclosure />
-          <p className="mt-1 text-xs leading-relaxed text-bark-soft">
-            {monetization.productDisclosure}
+      <Section tone="paper" className="!py-10">
+        <div className="max-w-3xl border-l-2 border-gold-400 pl-5">
+          <p className="lede">
+            We only list products we reach for in our own work — boarding, scooping,
+            and daily dog life in Waco heat.
           </p>
+          <div className="mt-5 border-t border-clay pt-4">
+            <AffiliateDisclosure />
+            <p className="caption mt-2">{monetization.productDisclosure}</p>
+          </div>
         </div>
       </Section>
 
-      {/* Category quick links */}
+      {/* Category index — editorial table of contents */}
       <Section tone="sand" className="!py-10">
-        <SectionHeading
-          eyebrow="Browse"
-          title="Shop by category"
-          description="Jump to the section you need."
-        />
-        <div className="mt-6 flex gap-3 overflow-x-auto pb-1">
-          {categories.map((category) => {
-            const cover = byCategory.get(category)![0];
-            return (
-              <a
-                key={category}
-                href={`#${slugifyCategory(category)}`}
-                className="group w-28 shrink-0 text-center sm:w-32"
-              >
-                <div className="aspect-square overflow-hidden rounded-xl bg-white p-3 ring-1 ring-inset ring-clay/60 transition group-hover:shadow-md group-hover:ring-sage-200">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={cover.imageUrl}
-                    alt=""
-                    className="h-full w-full object-contain"
-                  />
-                </div>
-                <p className="mt-2 text-xs font-medium leading-tight text-bark group-hover:text-sage-700">
-                  {category}
-                </p>
-              </a>
-            );
-          })}
-        </div>
-      </Section>
-
-      {/* Sticky category pills */}
-      <div className="sticky top-16 z-20 border-b border-clay/50 bg-cream/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
+        <p className="eyebrow">Contents</p>
+        <h2 className="headline-tertiary mt-2">Shop by category</h2>
+        <nav className="mt-6 flex flex-wrap gap-x-6 gap-y-2" aria-label="Shop categories">
           {categories.map((category) => (
             <a
               key={category}
               href={`#${slugifyCategory(category)}`}
-              className="shrink-0 rounded-full bg-white px-4 py-1.5 text-sm font-medium text-bark ring-1 ring-inset ring-clay/70 transition hover:bg-sage-50 hover:ring-sage-200"
+              className="editorial-link text-xs"
+            >
+              {category}
+            </a>
+          ))}
+        </nav>
+      </Section>
+
+      {/* Sticky category bar */}
+      <div className="sticky top-16 z-20 border-b border-clay bg-cream/95 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
+          {categories.map((category) => (
+            <a
+              key={category}
+              href={`#${slugifyCategory(category)}`}
+              className="shrink-0 border border-transparent px-3 py-1.5 text-xs font-medium uppercase tracking-wide text-bark-soft transition hover:border-clay hover:text-bark"
             >
               {category}
             </a>
@@ -112,13 +101,16 @@ export default function ShopPage() {
               id={slugifyCategory(category)}
               className={index === 0 ? "" : "mt-16 scroll-mt-32 md:mt-20"}
             >
-              <div className="flex items-end justify-between gap-4 border-b border-clay/60 pb-4">
-                <h2 className="font-display text-2xl sm:text-3xl">{category}</h2>
-                <span className="text-sm text-bark-faint">
-                  {items.length} {items.length === 1 ? "item" : "items"}
+              <header className="flex items-baseline justify-between gap-4 border-b border-clay pb-3">
+                <div>
+                  <p className="eyebrow eyebrow-brass">{siteConfig.name}</p>
+                  <h2 className="headline-tertiary mt-1">{category}</h2>
+                </div>
+                <span className="caption">
+                  {items.length} {items.length === 1 ? "pick" : "picks"}
                 </span>
-              </div>
-              <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              </header>
+              <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {items.map((product) => (
                   <ShopProductCard key={product.id} product={product} />
                 ))}
@@ -127,7 +119,7 @@ export default function ShopPage() {
           );
         })}
 
-        <div className="mt-16 md:mt-20">
+        <div className="mt-16 border-t border-clay pt-12 md:mt-20">
           <AdSlot placement="shop" />
         </div>
       </Section>

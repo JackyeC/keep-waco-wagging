@@ -95,7 +95,7 @@
     font-size: 1.375rem;
   }
 
-  /* Eyebrow utility for editorial labels */
+  /* Eyebrow / overline — magazine section labels */
   .eyebrow {
     font-family: var(--font-sans);
     font-size: 0.6875rem;
@@ -105,11 +105,104 @@
     color: var(--color-bark-faint);
   }
 
-  /* Lede paragraph — first sentence after a hero */
-  .lede {
-    font-size: 1.125rem;
-    line-height: 1.55;
+  .eyebrow-brass {
+    color: var(--color-gold-600);
+  }
+
+  /* Kicker — short line above a headline */
+  .kicker {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.01em;
     color: var(--color-bark-soft);
+  }
+
+  /* Dek — subheadline beneath a headline */
+  .dek {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-bark-soft);
+  }
+
+  @media (min-width: 640px) {
+    .dek {
+      font-size: 1.1875rem;
+      line-height: 1.55;
+    }
+  }
+
+  /* Lede paragraph — opening body copy */
+  .lede {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--color-bark);
+  }
+
+  /* Photo caption */
+  .caption {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--color-bark-faint);
+  }
+
+  /* Publisher / sponsor line — quiet, print-style */
+  .publisher-note {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-bark-faint);
+  }
+
+  /* Editorial text link */
+  .editorial-link {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-bark);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-clay);
+    padding-bottom: 2px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .editorial-link:hover {
+    color: var(--color-gold-600);
+    border-color: var(--color-gold-400);
+  }
+
+  /* Headline scale helpers */
+  .headline-lead {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .headline-secondary {
+    font-family: var(--font-display);
+    font-size: clamp(1.625rem, 2.8vw, 2.375rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .headline-tertiary {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2vw, 1.625rem);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
   }
 
   /* Editorial rule — thin divider */
@@ -117,6 +210,18 @@
     border: 0;
     border-top: 1px solid var(--color-clay);
     margin: 0;
+  }
+
+  .rule-double {
+    border: 0;
+    border-top: 3px double var(--color-clay);
+    margin: 0;
+  }
+
+  /* Magazine module panel — sharp corners, thin border */
+  .editorial-panel {
+    border: 1px solid var(--color-clay);
+    background-color: var(--color-cream);
   }
 
   /* Pull-quote / display block */

@@ -14,7 +14,7 @@ export function ShopProductCard({ product }: { product: ProductRecommendation })
         rel="noopener noreferrer sponsored"
         className="block"
       >
-        <div className="relative aspect-square overflow-hidden rounded-xl bg-[#f6f6f6] p-4 ring-1 ring-inset ring-black/[0.04] transition-shadow group-hover:shadow-md">
+        <div className="relative aspect-square overflow-hidden bg-sand/80 p-4 transition-colors group-hover:bg-sand">
           {product.imageUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -49,7 +49,7 @@ export function ShopProductCard({ product }: { product: ProductRecommendation })
             href={product.amazonUrl}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="mt-3 inline-flex w-full items-center justify-center rounded-full bg-bark px-4 py-2.5 text-sm font-semibold text-cream transition-colors hover:bg-bark/90"
+            className="mt-3 inline-flex w-full items-center justify-center border border-bark bg-bark px-4 py-2.5 text-xs font-semibold uppercase tracking-wide text-cream transition-colors hover:bg-bark/90"
           >
             Shop on Amazon
           </Link>
