@@ -71,7 +71,7 @@ export const sitePhotos = {
   },
   boardingHome: {
     src: "/pictures/boarding-living-room.webp",
-    alt: "A dog settled by the window in a calm home environment",
+    alt: "A dog working on a puzzle enrichment toy in a calm home environment",
   },
   training: {
     src: "/pictures/training-enrichment.webp",
@@ -172,7 +172,7 @@ export const editorialSpreads = {
   homeLife: [
     sitePhotos.boardingDogs,
     sitePhotos.boardingHome,
-    sitePhotos.training,
+    sitePhotos.boarding,
   ],
   /** Yard work and outdoor dog life */
   yardLife: [
