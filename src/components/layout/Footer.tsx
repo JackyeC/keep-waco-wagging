@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { PawPrint } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/Logo";
 import { siteConfig, sponsorLinks, cityConfig, mainNav, secondaryNav, ctas, socialLinks } from "@/lib/site";
 
 export function Footer() {
@@ -12,14 +12,7 @@ export function Footer() {
       <Container className="py-12 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.9fr_0.9fr_1.1fr]">
           <div>
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sage-600 text-white">
-                <PawPrint className="h-5 w-5" />
-              </span>
-              <span className="font-display text-lg font-semibold text-bark">
-                {siteConfig.name}
-              </span>
-            </div>
+            <Logo variant="mark" />
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-bark-soft">
               Keep Waco Wagging is a local resource presented by Platinum Scoops.
             </p>

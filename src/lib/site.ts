@@ -76,6 +76,26 @@ export const cityConfig = {
     { label: "Facebook", href: "#" },
     { label: "TikTok", href: "#" },
   ],
+  brand: {
+    logo: {
+      // TODO: Replace with transparent PNG/SVG exports from the designer. Current
+      // files are JPEG-on-black; the header uses a dark badge until then.
+      /** Full lockup — merch, print, hero sections, stickers, social graphics */
+      full: {
+        src: "/brand/keep-waco-wagging-logo.webp",
+        alt: "Keep Waco Wagging, presented by Platinum Scoops",
+        width: 682,
+        height: 1024,
+      },
+      /** Cropped dogs + Waco bridge — site header and compact placements */
+      mark: {
+        src: "/brand/keep-waco-wagging-mark.webp",
+        alt: "Keep Waco Wagging",
+        width: 622,
+        height: 390,
+      },
+    },
+  },
 } as const;
 
 export const siteConfig = {
@@ -87,6 +107,7 @@ export const siteConfig = {
   description: cityConfig.description,
   keywords: cityConfig.keywords,
   serviceAreas: cityConfig.serviceAreas,
+  brand: cityConfig.brand,
 } as const;
 
 export type NavLink = {

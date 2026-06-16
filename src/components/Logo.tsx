@@ -1,30 +1,52 @@
+import Image from "next/image";
 import Link from "next/link";
-import { PawPrint } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
 
+type LogoVariant = "mark" | "full";
+
 export function Logo({
   className,
-  showSponsor = false,
+  variant = "mark",
+  badge = variant === "mark",
 }: {
   className?: string;
-  showSponsor?: boolean;
+  variant?: LogoVariant;
+  /** Dark badge wraps the mark so the black logo matte reads intentional on cream. */
+  badge?: boolean;
 }) {
+  const asset =
+    variant === "full" ? siteConfig.brand.logo.full : siteConfig.brand.logo.mark;
+
+  const image = (
+    <Image
+      src={asset.src}
+      alt={asset.alt}
+      width={asset.width}
+      height={asset.height}
+      priority={variant === "mark"}
+      className={cn(
+        "w-auto object-contain transition-transform group-hover:scale-[1.02]",
+        variant === "mark"
+          ? "h-8 max-w-[5.75rem] sm:h-9 sm:max-w-[6.25rem]"
+          : "h-28 sm:h-36 md:h-44",
+      )}
+    />
+  );
+
   return (
-    <Link href="/" className={cn("group inline-flex items-center gap-2.5", className)}>
-      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sage-600 text-white shadow-sm transition-transform group-hover:-rotate-6">
-        <PawPrint className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className="font-display text-lg font-semibold tracking-tight text-bark">
-          {siteConfig.name}
+    <Link
+      href="/"
+      className={cn("group inline-flex shrink-0 items-center", className)}
+      aria-label={`${siteConfig.name} home`}
+    >
+      {badge ? (
+        <span className="inline-flex items-center justify-center rounded-lg bg-bark px-1.5 py-1 ring-1 ring-inset ring-white/10 shadow-sm">
+          {image}
         </span>
-        {showSponsor && (
-          <span className="mt-0.5 text-[11px] font-medium text-gold-600">
-            {siteConfig.sponsorLine}
-          </span>
-        )}
-      </span>
+      ) : (
+        image
+      )}
     </Link>
   );
 }
