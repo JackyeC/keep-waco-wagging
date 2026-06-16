@@ -1,52 +1,56 @@
 @import "tailwindcss";
 
 /*
-  Keep Waco Wagging — design tokens
-  Texas eco-chic: warm neutrals, soft greens, soft blues, cream backgrounds.
-  The "gold" scale is reserved for tasteful Platinum Scoops sponsor accents.
+  Keep Waco Wagging — design tokens (editorial rebuild, June 2026)
+  Direction: boutique hotel / editorial magazine.
+  Palette: warm sandstone + ivory base, deep navy ink for type & links,
+           brass accent reserved for sponsor/CTA emphasis, sage as quiet support.
+  Typography: Fraunces (serif display) + Inter (sans body). Real editorial pairing.
 */
 @theme {
-  /* Warm neutral surfaces */
-  --color-cream: #fbf7ef;
-  --color-sand: #f4ecdd;
-  --color-clay: #e8dcc8;
-  --color-bark: #2f2a22;
-  --color-bark-soft: #6f6354;
-  --color-bark-faint: #998b78;
+  /* Surfaces (warm sand + ivory) */
+  --color-cream: #f6f1e7;     /* page background (warm ivory) */
+  --color-sand: #ece3d2;      /* alt section background */
+  --color-clay: #d8cbb1;      /* dividers, soft borders */
 
-  /* Soft green — primary brand */
-  --color-sage-50: #f1f6f1;
-  --color-sage-100: #ddeede;
-  --color-sage-200: #bedcc3;
-  --color-sage-300: #95c2a0;
-  --color-sage-400: #69a279;
-  --color-sage-500: #4d855f;
-  --color-sage-600: #3b6b4b;
-  --color-sage-700: #31573e;
-  --color-sage-800: #294534;
-  --color-sage-900: #21392c;
+  /* Ink (navy + warm black) */
+  --color-bark: #1a2a3d;        /* primary text — deep navy ink */
+  --color-bark-soft: #4f5e72;   /* secondary text — muted navy */
+  --color-bark-faint: #8e9aa9;  /* tertiary, eyebrow text */
 
-  /* Soft blue — secondary accent */
-  --color-sky-50: #f0f6fa;
-  --color-sky-100: #dcecf4;
-  --color-sky-200: #bbdaeb;
-  --color-sky-300: #8ec1db;
-  --color-sky-400: #5fa4c8;
-  --color-sky-500: #3f87b0;
-  --color-sky-600: #336d92;
-  --color-sky-700: #2c5a78;
+  /* Sage scale — secondary accent (kept for backward compat, retuned editorial) */
+  --color-sage-50: #f1efe8;
+  --color-sage-100: #e6e2d4;
+  --color-sage-200: #cfc7b1;
+  --color-sage-300: #a8a386;
+  --color-sage-400: #7e7d5b;
+  --color-sage-500: #5a5d44;
+  --color-sage-600: #424733;
+  --color-sage-700: #1a2a3d;   /* alias to navy ink */
+  --color-sage-800: #15243a;
+  --color-sage-900: #0f1c2f;
 
-  /* Platinum Scoops sponsor accent (warm gold) */
-  --color-gold-100: #f6ecd6;
-  --color-gold-200: #ecd8aa;
-  --color-gold-400: #d8b06a;
-  --color-gold-500: #c39a52;
-  --color-gold-600: #a67e3c;
+  /* Sky scale — retuned to navy ink family */
+  --color-sky-50: #eef2f7;
+  --color-sky-100: #dbe4ed;
+  --color-sky-200: #b4c5d7;
+  --color-sky-300: #84a0bc;
+  --color-sky-400: #5982a4;
+  --color-sky-500: #36658c;
+  --color-sky-600: #244e72;
+  --color-sky-700: #1a2a3d;
+
+  /* Brass — primary editorial accent (replaces gold) */
+  --color-gold-100: #f3e5c5;
+  --color-gold-200: #e6cf94;
+  --color-gold-400: #c39a52;
+  --color-gold-500: #a87f3a;
+  --color-gold-600: #8a6629;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
 
-  --radius-card: 1.25rem;
+  --radius-card: 0.25rem;  /* editorial: nearly-square corners */
 }
 
 :root {
@@ -59,6 +63,8 @@
     background-color: var(--color-cream);
     color: var(--color-bark);
     font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -68,23 +74,85 @@
   h3,
   h4 {
     font-family: var(--font-display);
+    font-weight: 500;             /* lighter weight — editorial restraint */
+    letter-spacing: -0.02em;
+    color: var(--color-bark);
+    line-height: 1.08;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-size: 1.375rem;
+  }
+
+  /* Eyebrow utility for editorial labels */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-bark-faint);
+  }
+
+  /* Lede paragraph — first sentence after a hero */
+  .lede {
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: var(--color-bark-soft);
+  }
+
+  /* Editorial rule — thin divider */
+  .rule {
+    border: 0;
+    border-top: 1px solid var(--color-clay);
+    margin: 0;
+  }
+
+  /* Pull-quote / display block */
+  .display-quote {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
     color: var(--color-bark);
   }
 
+  a {
+    color: inherit;
+    text-decoration-color: var(--color-clay);
+    text-underline-offset: 3px;
+  }
+
   ::selection {
-    background-color: var(--color-sage-200);
-    color: var(--color-sage-900);
+    background-color: var(--color-gold-200);
+    color: var(--color-bark);
   }
 }
 
 @layer utilities {
-  /* Subtle, warm section dividers */
   .bg-paper {
     background-color: var(--color-cream);
   }
   .bg-paper-alt {
     background-color: var(--color-sand);
+  }
+  /* Subtle grain for sand backgrounds — feels editorial */
+  .bg-paper-grain {
+    background-color: var(--color-sand);
+    background-image:
+      radial-gradient(rgba(26, 42, 61, 0.025) 1px, transparent 1px);
+    background-size: 14px 14px;
   }
 }

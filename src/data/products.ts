@@ -177,13 +177,13 @@ const productRecommendations: Omit<
   },
   {
     id: "slow-feeders",
-    title: "Outward Hound Slow Feeder",
+    title: "Outward Hound Fun Feeder Slow Bowl",
     category: "Enrichment",
-    description: "Maze-style bowl that slows fast eaters and adds mealtime enrichment.",
+    description: "Maze-pattern bowl that slows fast eaters and adds mealtime enrichment.",
     whyWeLikeIt:
       "Helpful for dogs who eat too fast (bloat risk for deep-chested breeds) or need a little mental work before training. A daily win for busy dog parents.",
     bestFor: ["Fast eaters", "Mealtime enrichment", "Deep-chested breeds"],
-    asin: "B00FPKNRG4",
+    asin: "B00FPKNRCS",
   },
   {
     id: "puzzle-feeders",
