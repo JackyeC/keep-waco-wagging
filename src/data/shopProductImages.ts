@@ -1,21 +1,24 @@
-/** Local shop card photos — generated from source-photos via npm run optimize:photos */
+/**
+ * Amazon product photos (images/I/… URLs).
+ * ASIN-based P/… URLs return 1×1 placeholders — these map to real listing images.
+ */
 export const shopProductImages: Record<string, string> = {
-  "paw-wax": "/shop/paw-wax.webp",
-  "cooling-mat": "/shop/cooling-mat.webp",
-  "cooling-vest": "/shop/cooling-vest.webp",
-  "travel-water-bottle": "/shop/travel-water-bottle.webp",
-  "calming-chews": "/shop/calming-chews.webp",
-  "midwest-icrate": "/shop/midwest-icrate.webp",
-  "washable-crate-mats": "/shop/washable-crate-mats.webp",
-  "front-clip-harness": "/shop/front-clip-harness.webp",
-  "long-leash": "/shop/long-leash.webp",
-  "poop-bags": "/shop/poop-bags.webp",
-  "gps-tracker": "/shop/gps-tracker.webp",
-  "kong-classic": "/shop/kong-classic.webp",
-  "lick-mats": "/shop/lick-mats.webp",
-  "slow-feeders": "/shop/slow-feeders.webp",
-  "puzzle-feeders": "/shop/puzzle-feeders.webp",
-  "enzyme-cleaner": "/shop/enzyme-cleaner.webp",
-  "dog-wipes": "/shop/dog-wipes.webp",
-  "elevated-bed": "/shop/elevated-bed.webp",
+  "paw-wax": "https://m.media-amazon.com/images/I/716VEpvp99L._AC_SL500_.jpg",
+  "cooling-mat": "https://m.media-amazon.com/images/I/81QMaeQ3m4L._AC_SL500_.jpg",
+  "cooling-vest": "https://m.media-amazon.com/images/I/71CjrUbyTWL._AC_SL500_.jpg",
+  "travel-water-bottle": "https://m.media-amazon.com/images/I/11+Bx5fo15L._AC_SL500_.jpg",
+  "calming-chews": "https://m.media-amazon.com/images/I/81+JUP19VvL._AC_SL500_.jpg",
+  "midwest-icrate": "https://m.media-amazon.com/images/I/91GScjmpNXL._AC_SL500_.jpg",
+  "washable-crate-mats": "https://m.media-amazon.com/images/I/61WaKQ0ayYL._AC_SL500_.jpg",
+  "front-clip-harness": "https://m.media-amazon.com/images/I/71wGnoVwblL._AC_SL500_.jpg",
+  "long-leash": "https://m.media-amazon.com/images/I/71SqwCKYrPL._AC_SL500_.jpg",
+  "poop-bags": "https://m.media-amazon.com/images/I/71l4DqotI3L._AC_SL500_.jpg",
+  "gps-tracker": "https://m.media-amazon.com/images/I/81OB0BI6LkL._AC_SL500_.jpg",
+  "kong-classic": "https://m.media-amazon.com/images/I/61eVAqrR7uL._AC_SL500_.jpg",
+  "lick-mats": "https://m.media-amazon.com/images/I/81fHamWK39L._AC_SL500_.jpg",
+  "slow-feeders": "https://m.media-amazon.com/images/I/71qjzsDJPBL._AC_SL500_.jpg",
+  "puzzle-feeders": "https://m.media-amazon.com/images/I/41gtioPTlcL._AC_SL500_.jpg",
+  "enzyme-cleaner": "https://m.media-amazon.com/images/I/71IjtTv+RhL._AC_SL500_.jpg",
+  "dog-wipes": "https://m.media-amazon.com/images/I/711EabU2NwL._AC_SL500_.jpg",
+  "elevated-bed": "https://m.media-amazon.com/images/I/61e-toCLdgL._AC_SL500_.jpg",
 };
