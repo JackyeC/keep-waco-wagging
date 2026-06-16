@@ -9,10 +9,11 @@ import type { ProductRecommendation } from "@/lib/types";
  * for Waco pet parents — summer-heavy, treat-your-dog-like-family voice.
  * Affiliate tag is configured in src/lib/site.ts (cityConfig.monetization.amazonAssociatesTag).
  */
-const productRecommendations: Omit<
-  ProductRecommendation,
-  "amazonUrl" | "affiliateReady"
->[] = [
+type ProductSeed = Omit<ProductRecommendation, "amazonUrl" | "affiliateReady"> & {
+  amazonUrl?: string;
+};
+
+const productRecommendations: ProductSeed[] = [
   // ────────────────────────────────────────────────────────────
   // SUMMER ESSENTIALS — front of the page from May to September
   // ────────────────────────────────────────────────────────────
@@ -237,11 +238,7 @@ const productRecommendations: Omit<
   },
 ];
 
-function withAffiliateLinks(
-  products: (Omit<ProductRecommendation, "amazonUrl" | "affiliateReady"> & {
-    amazonUrl?: string;
-  })[],
-): ProductRecommendation[] {
+function withAffiliateLinks(products: ProductSeed[]): ProductRecommendation[] {
   return products.map((product) => {
     const amazonUrl =
       product.amazonUrl ?? buildAmazonAffiliateUrl(product.asin);
