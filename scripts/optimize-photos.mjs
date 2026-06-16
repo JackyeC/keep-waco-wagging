@@ -121,6 +121,20 @@ const slots = [
     ],
   },
   {
+    key: "yappy-hours-hero",
+    folder: "yappy-hours",
+    outputs: [
+      { dir: PICTURES, file: "yappy-hours-party.webp", width: 1200, height: 800, quality: 75 },
+    ],
+  },
+  {
+    key: "yappy-hours-card",
+    folder: "yappy-hours",
+    outputs: [
+      { dir: PICTURES, file: "yappy-hours-card.webp", width: 960, height: 540, quality: 78 },
+    ],
+  },
+  {
     key: "pets-scoop",
     folder: "pets-scoop",
     outputs: [{ dir: PETS, file: "scoop.webp", width: 800, height: 800 }],
@@ -362,6 +376,50 @@ for (const id of shopIds) {
   shopOutputs++;
 }
 
+// --- Phase 2c: Yappy Hours gallery (real event photography) ---
+const YAPPY_GALLERY = path.join(PICTURES, "yappy-hours");
+let yappyGalleryOutputs = 0;
+
+console.log("\n── Yappy Hours gallery ──\n");
+
+fs.mkdirSync(YAPPY_GALLERY, { recursive: true });
+
+for (const rel of curated.yappyGallery ?? []) {
+  const sourcePath = resolveCurated(rel);
+  if (!sourcePath) {
+    console.warn(`○ yappy gallery miss: ${rel}`);
+    continue;
+  }
+
+  const base = path.basename(rel, path.extname(rel));
+  const outFile = `${base}.webp`;
+  await writeWebp(sourcePath, path.join(YAPPY_GALLERY, outFile), 1200, 800, 78);
+  console.log(`✓ pictures/yappy-hours/${outFile} ← ${rel} ★`);
+  yappyGalleryOutputs++;
+}
+
+// --- Phase 2d: Scooping gallery (real yard service photography) ---
+const SCOOP_GALLERY = path.join(PICTURES, "scooping-gallery");
+let scoopGalleryOutputs = 0;
+
+console.log("\n── Scooping gallery ──\n");
+
+fs.mkdirSync(SCOOP_GALLERY, { recursive: true });
+
+for (const rel of curated.scoopGallery ?? []) {
+  const sourcePath = resolveCurated(rel);
+  if (!sourcePath) {
+    console.warn(`○ scoop gallery miss: ${rel}`);
+    continue;
+  }
+
+  const base = path.basename(rel, path.extname(rel));
+  const outFile = `${base}.webp`;
+  await writeWebp(sourcePath, path.join(SCOOP_GALLERY, outFile), 1200, 800, 78);
+  console.log(`✓ pictures/scooping-gallery/${outFile} ← ${rel} ★`);
+  scoopGalleryOutputs++;
+}
+
 // --- Phase 3: full library ---
 console.log("\n── Photo library ──\n");
 
@@ -461,5 +519,5 @@ fs.writeFileSync(MANIFEST, manifest);
 console.log(`✓ ${libraryOutputs} library images (${featuredEntries.length} featured first)`);
 console.log(`✓ manifest → src/data/photoLibrary.generated.ts`);
 console.log(
-  `\nSummary: ${allImages.length} source images → ${slotOutputs} site outputs + ${petOutputs} pets + ${shopOutputs} shop + ${libraryOutputs} library`,
+  `\nSummary: ${allImages.length} source images → ${slotOutputs} site outputs + ${petOutputs} pets + ${shopOutputs} shop + ${yappyGalleryOutputs} yappy gallery + ${scoopGalleryOutputs} scoop gallery + ${libraryOutputs} library`,
 );

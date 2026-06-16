@@ -2,7 +2,7 @@
   "_note": "Hand-picked best photos — edit paths or re-run after adding uploads",
   "slots": {
     "hero": "IMG_3292.jpeg",
-    "scooping": "scooping/Diesel.webp",
+    "scooping": "scooping/IMG_3627.png",
     "boarding-backyard": "boarding-backyard/IMG_5285.JPG",
     "summer-camp": "Freddie/IMG_4785.JPG",
     "summer-month-june": "Freddie/IMG_4786.JPG",
@@ -13,6 +13,8 @@
     "training": "training/stella puzzlw.webp",
     "founders": "founders/jackye and todd.jpg",
     "community": "IMG_9496.jpeg",
+    "yappy-hours-hero": "yappy-hours/IMG_3544.png",
+    "yappy-hours-card": "yappy-hours/IMG_3488.png",
     "pets-scoop": "scooping/Diesel.webp",
     "pets-stella": "hero/stella diesel walkies.webp",
     "pets-diesel": "boarding-indoor/Diesel1.webp",
@@ -41,10 +43,30 @@
     "dog-wipes": "Freddie/IMG_4785.JPG",
     "elevated-bed": "boarding-backyard/IMG_5285.JPG"
   },
+  "yappyGallery": [
+    "yappy-hours/IMG_3544.png",
+    "yappy-hours/IMG_3540.png",
+    "yappy-hours/IMG_3488.png",
+    "yappy-hours/IMG_3525.png",
+    "yappy-hours/IMG_3533.png",
+    "yappy-hours/IMG_3519.png",
+    "yappy-hours/FullSizeRender-hot-dog-crawl.png",
+    "yappy-hours/IMG_2466.png"
+  ],
+  "scoopGallery": [
+    "scooping/IMG_3627.png",
+    "scooping/IMG_1286.png",
+    "scooping/scoop-pointing-hand.png",
+    "scooping/IMG_1200.png",
+    "scooping/IMG_7388.png",
+    "scooping/IMG_1201.png",
+    "scooping/scoop-commercial-lawn.png"
+  ],
   "featured": [
     "IMG_3292.jpeg",
     "IMG_9496.jpeg",
     "Freddie/IMG_4785.JPG",
+    "scooping/IMG_3627.png",
     "scooping/Diesel.webp",
     "founders/jackye and todd.jpg",
     "boarding-home/shi and diesel.webp",
@@ -58,6 +80,9 @@
     "IMG_2683.JPG",
     "Freddie/IMG_4924.JPG",
     "IMG_8954.JPG",
-    "IMG_4813.JPG"
+    "IMG_4813.JPG",
+    "yappy-hours/IMG_3544.png",
+    "yappy-hours/IMG_3488.png",
+    "yappy-hours/IMG_3525.png"
   ]
 }

@@ -6,8 +6,39 @@ export const sitePhotos = {
   },
   scooping: {
     src: "/pictures/scooping-yard.webp",
-    alt: "A happy brindle dog in a green Waco yard wearing a harness",
+    alt: "Three dogs enjoying a green Waco backyard",
   },
+  /** Real Platinum Scoops yard service photography */
+  scoopingGallery: [
+    {
+      src: "/pictures/scooping-gallery/IMG_3627.webp",
+      alt: "Three dogs enjoying a green Waco backyard",
+    },
+    {
+      src: "/pictures/scooping-gallery/IMG_1286.webp",
+      alt: "Platinum Fresh enzyme treatment during a yard service visit in Waco",
+    },
+    {
+      src: "/pictures/scooping-gallery/scoop-pointing-hand.webp",
+      alt: "Platinum Scoops technician marking waste for pickup during a Waco yard service",
+    },
+    {
+      src: "/pictures/scooping-gallery/IMG_1200.webp",
+      alt: "Platinum Scoops equipment during a residential yard cleanup in Waco",
+    },
+    {
+      src: "/pictures/scooping-gallery/IMG_7388.webp",
+      alt: "Platinum Scoops yard service on a commercial lawn in Waco",
+    },
+    {
+      src: "/pictures/scooping-gallery/IMG_1201.webp",
+      alt: "On-route Platinum Scoops yard cleanup equipment in Waco",
+    },
+    {
+      src: "/pictures/scooping-gallery/scoop-commercial-lawn.webp",
+      alt: "Platinum Scoops service along a commercial property fence line in Waco",
+    },
+  ],
   boarding: {
     src: "/pictures/boarding-backyard.webp",
     alt: "Dogs relaxing together in a shaded Waco backyard during home-based daycare",
@@ -52,12 +83,47 @@ export const sitePhotos = {
   },
   yappyHours: {
     src: "/pictures/yappy-hours-party.webp",
-    alt: "Dogs in colorful bandanas at a festive Yappy Hour backyard party in Waco",
+    alt: "Dogs and guests at a Yappy Hour at Brotherwell Brewing in Waco",
   },
   yappyHoursCard: {
     src: "/pictures/yappy-hours-card.webp",
-    alt: "Happy dogs socializing at a Yappy Hour meetup with string lights and bandanas",
+    alt: "A guest and her dog at an outdoor patio Yappy Hour in Waco",
   },
+  /** Real Yappy Hour event photography — curated in source-photos/curated.json */
+  yappyHoursGallery: [
+    {
+      src: "/pictures/yappy-hours/IMG_3544.webp",
+      alt: "Dogs and guests at a Yappy Hour at Brotherwell Brewing in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3540.webp",
+      alt: "Dogs and dog parents socializing at an indoor Yappy Hour in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3488.webp",
+      alt: "A guest and her dog at an outdoor patio Yappy Hour in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3525.webp",
+      alt: "Dog parents and a dog in the Austin Avenue District in downtown Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3533.webp",
+      alt: "Dog parents and dogs at a Yappy Hour on a painted alley mural in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_3519.webp",
+      alt: "Guests and dogs gathered at a Yappy Hour on a colorful ground mural in Waco",
+    },
+    {
+      src: "/pictures/yappy-hours/FullSizeRender-hot-dog-crawl.webp",
+      alt: "Guests and a dog at a Waco Hot Dog Crawl community event",
+    },
+    {
+      src: "/pictures/yappy-hours/IMG_2466.webp",
+      alt: "Dog parents and dogs at an outdoor patio Yappy Hour in Waco",
+    },
+  ],
   founders: {
     src: "/pictures/founders-jackye-todd.webp",
     alt: "Jackye and Todd Clayton, founders of Platinum Scoops and Keep Waco Wagging",
@@ -89,6 +155,40 @@ export const sitePhotos = {
     },
   },
 } as const;
+
+/** Curated multi-photo spreads for editorial pages — all real site assets. */
+export const editorialSpreads = {
+  /** Community, events, and summer — Field Guide energy */
+  wacoCommunity: [
+    sitePhotos.yappyHoursGallery[0],
+    sitePhotos.yappyHoursGallery[2],
+    sitePhotos.summerCamp,
+  ],
+  /** Yappy Hour event spreads */
+  yappyHours: sitePhotos.yappyHoursGallery,
+  /** Platinum Scoops yard service */
+  scooping: sitePhotos.scoopingGallery,
+  /** Home-based care and daily rhythm */
+  homeLife: [
+    sitePhotos.boardingDogs,
+    sitePhotos.boardingHome,
+    sitePhotos.training,
+  ],
+  /** Yard work and outdoor dog life */
+  yardLife: [
+    sitePhotos.scoopingGallery[0],
+    sitePhotos.scoopingGallery[2],
+    sitePhotos.scoopingGallery[3],
+  ],
+  /** Summer camp weeks */
+  summerWeeks: [
+    sitePhotos.summerMonths.june,
+    sitePhotos.summerMonths.july,
+    sitePhotos.summerMonths.august,
+  ],
+} as const;
+
+export type SitePhotoRef = { src: string; alt: string };
 
 const blogCategoryImages: Record<string, { src: string; alt: string }> = {
   "Dog-Friendly Waco": sitePhotos.blog.dogFriendly,

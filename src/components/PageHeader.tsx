@@ -1,27 +1,29 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { SponsorBadge } from "@/components/SponsorBadge";
+import { PublisherNote } from "@/components/PublisherNote";
 import { SitePhoto } from "@/components/SitePhoto";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-type Tone = "sage" | "sky" | "sand" | "gold";
+type Tone = "sage" | "sky" | "sand" | "gold" | "cream";
 
 const toneBg: Record<Tone, string> = {
-  sage: "from-sage-100 via-sage-50 to-cream",
-  sky: "from-sky-100 via-sky-50 to-cream",
-  sand: "from-sand via-sand to-cream",
-  gold: "from-gold-100 via-cream to-cream",
+  sage: "bg-sage-50",
+  sky: "bg-sky-50",
+  sand: "bg-sand",
+  gold: "bg-cream",
+  cream: "bg-cream",
 };
 
-/** Reusable header band for interior pages. */
+/** Magazine-style interior page header — overline, headline, dek. */
 export function PageHeader({
   eyebrow,
   title,
   description,
-  tone = "sage",
+  tone = "cream",
   showSiteName = false,
-  showSponsor = false,
+  showPublisher = false,
+  showSponsor,
   image,
   children,
 }: {
@@ -29,65 +31,62 @@ export function PageHeader({
   title: string;
   description?: string;
   tone?: Tone;
-  /** Show the site name above the eyebrow (e.g. summer camp calendar pages). */
   showSiteName?: boolean;
+  showPublisher?: boolean;
+  /** Alias for showPublisher */
   showSponsor?: boolean;
-  image?: { src: string; alt: string };
+  image?: { src: string; alt: string; caption?: string };
   children?: React.ReactNode;
 }) {
+  const showPub = showPublisher || showSponsor;
   return (
-    <section className={cn("bg-gradient-to-b", toneBg[tone])}>
+    <section className={cn("border-b border-clay", toneBg[tone])}>
       <Container
         className={cn(
-          "py-14 sm:py-20",
-          image && "grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]",
+          "py-16 sm:py-20 md:py-24",
+          image && "grid items-start gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-14",
         )}
       >
         <div className={cn(image ? "max-w-xl" : "max-w-3xl")}>
           {showSiteName && (
-            <p className="font-display text-xl font-semibold tracking-tight text-bark sm:text-2xl">
-              <Link
-                href="/"
-                className="transition-colors hover:text-sage-700"
-              >
+            <p className="font-display text-lg tracking-tight text-bark sm:text-xl">
+              <Link href="/" className="transition-colors hover:text-gold-600">
                 {siteConfig.name}
               </Link>
             </p>
           )}
-          {showSponsor && (
-            <div className={cn(showSiteName ? "mt-2" : undefined)}>
-              <SponsorBadge />
+          {showPub && (
+            <div className={cn(showSiteName ? "mt-3" : undefined)}>
+              <PublisherNote />
             </div>
           )}
           {eyebrow && (
-            <p
-              className={cn(
-                "text-sm font-semibold uppercase tracking-wide text-sage-600",
-                showSiteName || showSponsor ? "mt-3 mb-2" : "mb-2",
-              )}
-            >
+            <p className={cn("eyebrow eyebrow-brass", showPub || showSiteName ? "mt-4" : undefined)}>
               {eyebrow}
             </p>
           )}
-          <h1 className="text-3xl leading-tight sm:text-4xl md:text-5xl">
+          <h1 className="mt-4 text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-[-0.03em]">
             {title}
           </h1>
-          {description && (
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-bark-soft sm:text-lg">
-              {description}
-            </p>
-          )}
-          {children && <div className="mt-6">{children}</div>}
+          {description && <p className="dek mt-5 max-w-2xl">{description}</p>}
+          {children && <div className="mt-8">{children}</div>}
         </div>
         {image && (
-          <div className="relative aspect-[4/3] overflow-hidden rounded-card shadow-md ring-1 ring-inset ring-clay/60 lg:aspect-[5/4]">
-            <SitePhoto
-              src={image.src}
-              alt={image.alt}
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-            />
-          </div>
+          <figure className="min-w-0">
+            <div className="relative aspect-[4/3] overflow-hidden bg-sand lg:aspect-[5/4]">
+              <SitePhoto
+                src={image.src}
+                alt={image.alt}
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+              />
+            </div>
+            {image.caption && (
+              <figcaption className="caption mt-2 border-l-2 border-clay pl-3">
+                {image.caption}
+              </figcaption>
+            )}
+          </figure>
         )}
       </Container>
     </section>

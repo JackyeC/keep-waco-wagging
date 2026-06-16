@@ -78,21 +78,19 @@ export const cityConfig = {
   ],
   brand: {
     logo: {
-      // TODO: Replace with transparent PNG/SVG exports from the designer. Current
-      // files are JPEG-on-black; the header uses a dark badge until then.
       /** Full lockup — merch, print, hero sections, stickers, social graphics */
       full: {
         src: "/brand/keep-waco-wagging-logo.webp",
         alt: "Keep Waco Wagging, presented by Platinum Scoops",
-        width: 682,
+        width: 1024,
         height: 1024,
       },
-      /** Cropped dogs + Waco bridge — site header and compact placements */
+      /** Cropped dogs + Waco skyline — site header and compact placements */
       mark: {
         src: "/brand/keep-waco-wagging-mark.webp",
         alt: "Keep Waco Wagging",
-        width: 622,
-        height: 390,
+        width: 1024,
+        height: 635,
       },
     },
   },
@@ -113,27 +111,30 @@ export const siteConfig = {
 export type NavLink = {
   label: string;
   href: string;
+  external?: boolean;
 };
 
-// Lean primary nav: services first, then trust/community content. Keeps the
-// header focused on paid conversion. Secondary pages live in `secondaryNav`
-// (rendered in the footer + mobile "More" group).
+// Primary nav — service business first, then community shop and story.
 export const mainNav: NavLink[] = [
+  { label: "Home", href: "/" },
   { label: "Poop Scooping", href: "/platinum-scoops" },
-  { label: "Boarding & Daycare", href: "/pet-care" },
-  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
-  { label: "Yappy Hours", href: "/yappy-hours" },
+  { label: "Daycare & Boarding", href: "/pet-care" },
+  { label: "Shop", href: "/shop" },
   { label: "About", href: "/about" },
 ];
 
-// De-prioritized pages — still reachable from the footer and mobile menu.
+// Community & secondary pages — footer and mobile "More" group.
 export const secondaryNav: NavLink[] = [
+  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
+  { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "Summer Camp", href: "/summer-daycare" },
   { label: "Event Dog Care", href: "/pet-care/weddings-events" },
-  { label: "Shop", href: "/shop" },
-  { label: "Wagging Wall", href: "/pets" },
-  { label: "Sponsors", href: "/sponsors" },
-  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
+  {
+    label: "Rover Profile",
+    href: cityConfig.rover.profileUrl,
+    external: true,
+  },
 ];
 
 export const ctas = {
