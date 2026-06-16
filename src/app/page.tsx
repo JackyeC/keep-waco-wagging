@@ -1,26 +1,12 @@
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  CalendarDays,
-  GraduationCap,
-  Home,
-  MapPin,
-  ShieldCheck,
-  Sparkles,
-  Sparkle,
-  Star,
-  Users,
-} from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
-import { Section, SectionHeading } from "@/components/ui/Section";
-import { DogDirectoryCard } from "@/components/DogDirectoryCard";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
-import { platinumScoops } from "@/data/platinumScoops";
-import { getFeaturedDirectoryListings } from "@/data/directory";
+import { ProductRecommendationCard } from "@/components/ProductRecommendationCard";
 import { SitePhoto } from "@/components/SitePhoto";
 import { sitePhotos } from "@/data/sitePhotos";
+import { getFeaturedProductRecommendations } from "@/data/products";
 import { cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -31,339 +17,220 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    icon: Sparkles,
-    image: sitePhotos.scooping,
-    title: "Poop Scooping",
+    title: "Rover Boarding & Daycare",
     body:
-      "Reliable weekly and every-other-week yard cleanups, plus odor support and the Platinum Fresh enzyme treatment. The same technician, every visit.",
-    price: "Starts at $25/week · first cleanup included",
-    cta: ctas.bookScoops,
-    variant: "sponsor" as const,
+      "Full-time, home-based care with Jackye and Todd — routines, socialization, structured rest, and honest updates while you are away.",
+    href: "/pet-care",
+    label: "Explore boarding",
+  },
+  {
+    title: "Platinum Scoops Yard Care",
+    body:
+      "Reliable weekly and every-other-week yard cleanups with the Platinum Fresh enzyme treatment — the same technician, every visit.",
     href: "/platinum-scoops",
+    label: "Learn about scooping",
   },
   {
-    icon: Home,
-    image: sitePhotos.boardingDogs,
-    title: "Boarding & Daycare",
+    title: "Summer Daycare Camp",
     body:
-      "Full-time, home-based care with Jackye and Todd — routines, socialization, structured rest, and real updates. Boarding, daycare, drop-ins, and walks.",
-    price: `${cityConfig.rover.rating}★ on Rover · ${cityConfig.rover.reviewCount} reviews`,
-    cta: ctas.bookPetCare,
-    variant: "primary" as const,
-    href: "/pet-care",
-  },
-  {
-    icon: GraduationCap,
-    image: sitePhotos.training,
-    title: "Training Support",
-    body:
-      "Practical, real-life help for walks, manners, and calmer days. Now forming — join the waitlist and we'll reach out as spots open.",
-    price: "Now forming · waitlist open",
-    cta: ctas.trainingWaitlist,
-    variant: "secondary" as const,
-    href: "/pet-care",
-  },
-];
-
-const reasons = [
-  {
-    icon: ShieldCheck,
-    title: "Licensed, insured, and local",
-    body: "A family-run Waco business — not a faceless app or a side gig.",
-  },
-  {
-    icon: Star,
-    title: "Trusted by Waco dog families",
-    body: `${cityConfig.rover.rating}-star care on Rover and 35+ scooping reviews.`,
-  },
-  {
-    icon: Users,
-    title: "One team for the whole routine",
-    body: "Cleaner yards, trusted care, and community — all in one place.",
+      "Thirteen themed weeks of supervised play, enrichment, and rest — small groups, heat-smart days, real care from the people who own the home.",
+    href: "/summer-daycare",
+    label: "See the calendar",
   },
 ];
 
 export default function HomePage() {
-  const directory = getFeaturedDirectoryListings(3);
+  const featuredProducts = getFeaturedProductRecommendations(3);
 
   return (
     <>
-      {/* 1. Hero — service-first */}
-      <section className="bg-gradient-to-br from-sage-100 via-cream to-sky-100">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-24">
-          <div>
-            <Badge tone="gold">{cityConfig.sponsor.line}</Badge>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-              Waco dog care that makes life easier.
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-bark-soft">
-              Recurring poop scooping, trusted boarding and daycare, training
-              support, and premium event dog care — for dog families who want
-              cleaner yards, better routines, and more fun together.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href={ctas.bookScoops.href} variant="sponsor" size="lg">
-                {ctas.bookScoops.label}
-              </Button>
-              <Button href={ctas.bookPetCare.href} variant="secondary" size="lg">
-                {ctas.bookPetCare.label}
-              </Button>
-            </div>
-            <ul className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-bark-soft">
-              <li className="flex items-center gap-1.5">
-                <Star className="h-4 w-4 fill-gold-500 text-gold-500" />
-                {cityConfig.rover.rating} on Rover ({cityConfig.rover.reviewCount} reviews)
-              </li>
-              <li className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-sage-600" />
-                Licensed &amp; insured
-              </li>
-              <li className="flex items-center gap-1.5">
-                <Home className="h-4 w-4 text-sage-600" />
-                Family-run in Waco
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-4">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-card shadow-md ring-1 ring-inset ring-clay/60">
-              <SitePhoto
-                src={sitePhotos.hero.src}
-                alt={sitePhotos.hero.alt}
-                priority
-                sizes="(max-width: 1024px) 100vw, 40vw"
-              />
-            </div>
-            <div className="rounded-card bg-white/85 p-6 ring-1 ring-inset ring-clay/70 backdrop-blur">
-              <p className="text-sm font-semibold uppercase tracking-wide text-sage-600">
-                Why families trust us
-              </p>
-              <ul className="mt-4 space-y-3">
-                {platinumScoops.trustSignals.map((signal) => (
-                  <li key={signal} className="flex items-start gap-3 text-sm text-bark-soft">
-                    <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-sage-600" />
-                    {signal}
-                  </li>
-                ))}
-              </ul>
+      {/* Hero — full-bleed photo with overlaid serif display */}
+      <section className="relative">
+        <div className="relative h-[78vh] min-h-[34rem] w-full">
+          <SitePhoto
+            src={sitePhotos.hero.src}
+            alt={sitePhotos.hero.alt}
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-bark/70 via-bark/25 to-transparent" />
+          <div className="absolute inset-0 flex items-end">
+            <div className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+              <p className="eyebrow text-cream/80">{cityConfig.sponsor.line}</p>
+              <h1 className="mt-4 max-w-3xl font-display text-4xl text-cream md:text-6xl lg:text-7xl">
+                Waco dog care that makes life easier.
+              </h1>
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+                <Link
+                  href={ctas.bookPetCare.href}
+                  className="inline-flex items-center gap-2 bg-cream px-7 py-3.5 text-sm font-semibold text-bark transition-colors hover:bg-sand"
+                >
+                  Book pet care on Rover
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/summer-daycare"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-cream underline decoration-cream/40 underline-offset-4 transition-colors hover:decoration-cream"
+                >
+                  Or explore summer daycare
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Core services */}
-      <Section tone="paper">
-        <SectionHeading
-          eyebrow="Our services"
-          title="Pick the help your dog family needs"
-          description="We handle the messy and practical parts so you get cleaner yards, trusted care, and more good days together."
-        />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <article
-                key={service.title}
-                className="flex flex-col overflow-hidden rounded-card bg-white shadow-sm ring-1 ring-inset ring-clay/70"
+      {/* Lede — Rover stats woven into prose */}
+      <section className="bg-cream py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
+            <div className="md:col-span-3">
+              <p className="eyebrow">Central Texas, since 1996</p>
+            </div>
+            <div className="md:col-span-8 md:col-start-4">
+              <p className="lede max-w-2xl text-balance">
+                Five-star rated across {cityConfig.rover.reviewCount} reviews on
+                Rover, a recognized Star Sitter with repeat families who keep
+                coming back, and three decades caring for dogs in and around
+                Waco. We are a family-run home — not an app, not a side gig.
+              </p>
+              <Link
+                href="/about"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 underline-offset-4 hover:underline"
               >
-                <div className="relative aspect-[16/10]">
-                  <SitePhoto
-                    src={service.image.src}
-                    alt={service.image.alt}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-7">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <h3 className="mt-5 text-xl font-semibold">{service.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-bark-soft">
+                Meet Jackye and Todd
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What we do — clean 3-column editorial */}
+      <section className="bg-sand py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="eyebrow">What we do</p>
+            <h2 className="mt-4 font-display text-3xl md:text-5xl">
+              Three ways we keep Waco wagging
+            </h2>
+          </div>
+          <hr className="rule mt-12" />
+          <div className="grid grid-cols-1 gap-px md:grid-cols-3">
+            {services.map((service) => (
+              <article key={service.title} className="py-12 md:px-8 md:py-14 md:first:pl-0 md:last:pr-0">
+                <h3 className="font-display text-2xl">{service.title}</h3>
+                <p className="mt-4 max-w-prose leading-relaxed text-bark-soft">
                   {service.body}
                 </p>
-                <p className="mt-4 text-sm font-semibold text-sage-700">
-                  {service.price}
-                </p>
-                <Button
-                  href={service.cta.href}
-                  variant={service.variant}
-                  className="mt-5 self-start"
+                <Link
+                  href={service.href}
+                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 underline-offset-4 hover:underline"
                 >
-                  {service.cta.label} <ArrowRight className="h-4 w-4" />
-                </Button>
-                </div>
+                  {service.label}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </article>
-            );
-          })}
-        </div>
-
-        {/* Platinum Pup Event Care — smaller supporting teaser */}
-        <div className="mt-6 grid items-center gap-0 overflow-hidden rounded-card bg-gradient-to-br from-gold-100 via-cream to-cream ring-1 ring-inset ring-gold-200 lg:grid-cols-[220px_1fr_auto]">
-          <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-[200px]">
-            <SitePhoto
-              src={sitePhotos.community.src}
-              alt={sitePhotos.community.alt}
-              sizes="220px"
-            />
+            ))}
           </div>
-          <div className="p-7">
-            <div className="flex items-center gap-2">
-              <Sparkle className="h-5 w-5 text-gold-600" />
-              <Badge tone="gold">Premium add-on service</Badge>
+        </div>
+      </section>
+
+      {/* Pull-quote moment — full-bleed clay */}
+      <section className="bg-clay py-24 md:py-32">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <hr className="rule mx-auto w-16 border-bark/30" />
+          <blockquote className="display-quote my-8 italic">
+            “They treat our dog like one of their own. We leave town without a
+            second thought — and come home to a calmer, happier dog every time.”
+          </blockquote>
+          <hr className="rule mx-auto w-16 border-bark/30" />
+          <p className="eyebrow mt-8 text-bark-soft">A repeat Rover family</p>
+        </div>
+      </section>
+
+      {/* Editor's picks — sparse product grid */}
+      <section className="bg-cream py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="eyebrow">From the shop</p>
+              <h2 className="mt-4 font-display text-3xl md:text-5xl">
+                Things we actually use
+              </h2>
             </div>
-            <h3 className="mt-3 text-2xl font-semibold">Platinum Pup Event Care</h3>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-bark-soft">
-              A dedicated dog attendant for Waco weddings, parties, photos, and
-              special events — so your pup can be there for the sweet moments
-              without a guest managing the leash all day.
-            </p>
+            <Link
+              href="/shop"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 underline-offset-4 hover:underline"
+            >
+              See all picks
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
-          <div className="px-7 pb-7 lg:p-7">
-            <Button href={ctas.eventCare.href} variant="primary" size="lg" className="shrink-0">
-              {ctas.eventCare.label}
-            </Button>
-          </div>
-        </div>
-      </Section>
-
-      {/* 3. Trust proof / reviews */}
-      <Section tone="sand">
-        <div className="grid gap-5 sm:grid-cols-3">
-          {reasons.map((reason) => {
-            const Icon = reason.icon;
-            return (
-              <div key={reason.title} className="flex items-start gap-3 rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <div>
-                  <p className="font-semibold">{reason.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-bark-soft">{reason.body}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </Section>
-
-      <TestimonialsSection tone="paper" />
-
-      {/* 4. Email capture */}
-      <Section tone="sage" id="email-list">
-        <div className="mx-auto max-w-2xl">
-          <SectionHeading
-            eyebrow="Stay in the loop"
-            title="Join the Waco Dog Parent List"
-            description="Pet care updates, dog-friendly Waco finds, Yappy Hour invites, and first dibs on event spots — straight to your inbox."
-            align="center"
-          />
-          <div className="mt-8">
-            <EmailSignupForm />
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProducts.map((product) => (
+              <ProductRecommendationCard key={product.id} product={product} />
+            ))}
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* 5. Events / community preview */}
-      <Section tone="sky">
-        <SectionHeading
-          eyebrow="Community & events"
-          title="More ways to play, socialize, and stay connected"
-          description="Once your routine is handled, the fun begins — themed daycare weeks and casual dog meetups around Waco."
-        />
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <article className="flex flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
-            <div className="relative aspect-[16/9]">
+      <TestimonialsSection tone="sand" />
+
+      {/* Newsletter — minimal framing */}
+      <section id="email-list" className="bg-cream py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+            <div className="md:col-span-4">
+              <p className="eyebrow">Stay in the loop</p>
+              <h2 className="mt-4 font-display text-3xl md:text-4xl">
+                The Waco dog parent list
+              </h2>
+              <p className="mt-4 max-w-prose leading-relaxed text-bark-soft">
+                Pet care updates, dog-friendly Waco finds, Yappy Hour invites,
+                and first dibs on event spots — sent occasionally, never spam.
+              </p>
+            </div>
+            <div className="md:col-span-7 md:col-start-6">
+              <EmailSignupForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founders teaser — full-bleed photo break */}
+      <section className="bg-sand py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-sm md:col-span-6">
               <SitePhoto
-                src={sitePhotos.summerCampCard.src}
-                alt={sitePhotos.summerCampCard.alt}
+                src={sitePhotos.founders.src}
+                alt={sitePhotos.founders.alt}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="flex flex-1 flex-col p-7">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
-              <CalendarDays className="h-5 w-5" />
-            </span>
-            <h3 className="mt-4 text-xl font-semibold">Summer Daycare Camp</h3>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-bark-soft">
-              A new theme every week — splash days, sniff safaris, manners camp,
-              and more — with calm, full-time home care. Reserve weeks on Rover.
-            </p>
-            <Button href={ctas.summerDaycare.href} variant="secondary" size="sm" className="mt-5 self-start">
-              {ctas.summerDaycare.label} <ArrowRight className="h-4 w-4" />
-            </Button>
-            </div>
-          </article>
-          <article className="flex flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
-            <div className="relative aspect-[16/9]">
-              <SitePhoto
-                src={sitePhotos.yappyHoursCard.src}
-                alt={sitePhotos.yappyHoursCard.alt}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="flex flex-1 flex-col p-7">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
-              <Users className="h-5 w-5" />
-            </span>
-            <h3 className="mt-4 text-xl font-semibold">Yappy Hours</h3>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-bark-soft">
-              Free dog meetups at dog-friendly Waco spots, plus members-only
-              backyard socials for current Platinum Scoops and Rover families.
-            </p>
-            <Button href="/yappy-hours" variant="secondary" size="sm" className="mt-5 self-start">
-              RSVP for a Yappy Hour <ArrowRight className="h-4 w-4" />
-            </Button>
-            </div>
-          </article>
-        </div>
-      </Section>
-
-      {/* 6. Dog-friendly guide preview — supporting trust content */}
-      <Section tone="paper">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            eyebrow="Dog-friendly Waco"
-            title="Where to take your pup around town"
-            description="A free local guide to patios, parks, and dog-friendly stops. Policies change, so we label unverified details — check before you go."
-          />
-          <Button href="/dog-friendly-waco" variant="ghost">View the guide</Button>
-        </div>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {directory.map((listing) => (
-            <DogDirectoryCard key={listing.id} listing={listing} />
-          ))}
-        </div>
-      </Section>
-
-      {/* 7. Shop — de-emphasized, last */}
-      <Section tone="sand">
-        <div className="overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70">
-          <div className="grid items-center gap-0 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-full">
-              <SitePhoto
-                src={sitePhotos.training.src}
-                alt={sitePhotos.training.alt}
-                sizes="(max-width: 1024px) 100vw, 40vw"
-              />
-            </div>
-            <div className="flex flex-col items-start gap-4 p-7 sm:flex-row sm:items-center sm:justify-between lg:flex-col lg:items-start">
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-sage-100 text-sage-700">
-                  <MapPin className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold">Dog gear we actually recommend</h3>
-                  <p className="mt-1 text-sm text-bark-soft">
-                    Practical picks for Waco dog life — leashes, cleanup, enrichment, and more.
-                  </p>
-                </div>
-              </div>
-              <Button href="/shop" variant="secondary" className="shrink-0">
-                Visit the shop <ArrowRight className="h-4 w-4" />
-              </Button>
+            <div className="md:col-span-5 md:col-start-8">
+              <p className="eyebrow">The people</p>
+              <h2 className="mt-4 font-display text-3xl md:text-5xl">
+                A family-run home for Waco dogs
+              </h2>
+              <p className="mt-6 max-w-prose leading-relaxed text-bark-soft">
+                Jackye and Todd Clayton have spent their lives around dogs.
+                What began as a practical way to help neighbors keep cleaner
+                yards grew into full-time, home-based care and a local guide to
+                dog-friendly Waco.
+              </p>
+              <Link
+                href="/about"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 underline-offset-4 hover:underline"
+              >
+                Read our story
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </div>
-      </Section>
+      </section>
     </>
   );
 }
