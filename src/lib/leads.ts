@@ -106,6 +106,20 @@ export async function saveSubmission(
   const emailSucceeded = emailReady && notified;
 
   if (supabaseSucceeded || emailSucceeded) {
+    if (supabaseSucceeded && emailReady && !notified) {
+      console.error(
+        `[lead submission] PARTIAL_SUCCESS notified=false table=${config.table} subject="${config.subject}" — lead saved to Supabase but Resend notification failed. Check RESEND_API_KEY, RESEND_FROM_EMAIL, and Resend domain verification.`,
+      );
+    } else if (supabaseSucceeded && !emailReady && isProductionEnvironment()) {
+      console.warn(
+        `[lead submission] PARTIAL_SUCCESS notified=false table=${config.table} — lead saved but email notifications are not fully configured (RESEND_API_KEY and/or LEAD_NOTIFICATION_EMAIL).`,
+      );
+    } else if (emailSucceeded && !stored && supabaseReady) {
+      console.warn(
+        `[lead submission] PARTIAL_SUCCESS stored=false table=${config.table} — notification sent but Supabase insert failed.`,
+      );
+    }
+
     return { ok: true, stored, notified };
   }
 
