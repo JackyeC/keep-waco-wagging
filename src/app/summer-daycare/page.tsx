@@ -76,7 +76,7 @@ export default function SummerDaycarePage() {
             <h1 className="display mt-4 max-w-3xl text-white" style={{textShadow: "0 2px 24px rgba(0,0,0,0.7)"}}>
               Thirteen weeks of summer.
             </h1>
-            <p className="dek mt-5 inline-block max-w-xl rounded-sm bg-bark/80 px-5 py-3 text-cream backdrop-blur-sm">
+            <p className="dek mt-5 inline-block max-w-xl rounded-sm bg-bark/80 px-5 py-3 backdrop-blur-sm" style={{color: "#f6f1e7"}}>
               A small-group summer camp run out of our home — a new theme every
               week, plenty of shade and water, and the same calm care your dog
               already knows.
