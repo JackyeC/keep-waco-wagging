@@ -224,6 +224,56 @@ export type ProductRecommendation = {
   affiliateReady: boolean;
 };
 
+/** Badge for the Keep Waco Wagging Gear Guide — accuracy-first labeling. */
+export type GearGuideBadge =
+  | "Used by Platinum Scoops"
+  | "On Our Shopping List"
+  | "Similar to What We Use"
+  | "Worth Considering"
+  | "Use Carefully";
+
+export type GearGuideProduct = {
+  id: string;
+  name: string;
+  department: string;
+  badge: GearGuideBadge;
+  whyItMadeTheList: string;
+  bestFor: string[];
+  notIdealFor: string[];
+  platinumScoopsNote?: string;
+  /** Keys into shopProductImages or gearGuideImages */
+  imageKey?: string;
+  imageUrl?: string;
+  imageAlt: string;
+  asin?: string;
+  amazonUrl?: string;
+  affiliateReady: boolean;
+  featured?: boolean;
+  priority?: number;
+};
+
+export type GearGuideServiceCta = {
+  headline: string;
+  copy: string;
+  buttonLabel: string;
+  href: string;
+};
+
+export type GearGuideDepartment = {
+  id: string;
+  number: string;
+  title: string;
+  slug: string;
+  tocBlurb: string;
+  intro: string;
+  pullQuote?: string;
+  callout?: string;
+  safetyNote?: string;
+  featuredProductId?: string;
+  serviceCta?: GearGuideServiceCta;
+  products: GearGuideProduct[];
+};
+
 /** Client testimonial for training, Rover, or Scoops services. */
 export interface Testimonial {
   id: string;
