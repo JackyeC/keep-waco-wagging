@@ -79,7 +79,7 @@ export default function HomePage() {
             <h1 className="display mt-4 max-w-3xl text-white" style={{textShadow: "0 2px 24px rgba(0,0,0,0.7)"}}>
               Waco dog care that makes life easier.
             </h1>
-            <p className="dek mt-5 max-w-xl text-white" style={{textShadow: "0 1px 16px rgba(0,0,0,0.95), 0 1px 4px rgba(0,0,0,0.9)"}}>
+            <p className="dek mt-5 inline-block max-w-xl rounded-sm bg-bark/80 px-5 py-3 text-cream backdrop-blur-sm">
               Boarding, daycare, yard care, and summer camp — from one family who
               has cared for Central Texas dogs since 1996.
             </p>
