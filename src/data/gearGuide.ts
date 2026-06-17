@@ -14,12 +14,18 @@ export const gearGuideCoverLines = [
   "Things we use carefully",
 ] as const;
 
-type ProductSeed = Omit<GearGuideProduct, "amazonUrl" | "affiliateReady" | "imageUrl"> & {
+type ProductSeed = Omit<
+  GearGuideProduct,
+  "amazonUrl" | "link" | "affiliateReady" | "affiliateDisclosureRequired" | "imageUrl" | "category"
+> & {
   asin?: string;
+  category?: string;
+  link?: string;
+  affiliateDisclosureRequired?: boolean;
 };
 
 function hydrateProduct(seed: ProductSeed): GearGuideProduct {
-  const amazonUrl = seed.amazonUrl ?? buildAmazonAffiliateUrl(seed.asin);
+  const amazonUrl = seed.link ?? seed.amazonUrl ?? buildAmazonAffiliateUrl(seed.asin);
   const imageUrl =
     seed.imageUrl ??
     (seed.imageKey ? shopProductImages[seed.imageKey] : undefined) ??
@@ -27,9 +33,12 @@ function hydrateProduct(seed: ProductSeed): GearGuideProduct {
 
   return {
     ...seed,
+    category: seed.category ?? seed.department,
+    link: amazonUrl,
     amazonUrl,
     imageUrl,
     affiliateReady: Boolean(amazonUrl),
+    affiliateDisclosureRequired: seed.affiliateDisclosureRequired ?? Boolean(amazonUrl),
   };
 }
 
@@ -84,6 +93,18 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         priority: 1,
       },
       {
+        id: "stainless-bowls",
+        name: "Stainless Steel Dog Bowls",
+        department: "The Daycare Setup",
+        badge: "Worth Considering",
+        whyItMadeTheList:
+          "Stainless bowls are easy to sanitize between dogs, do not hold odors, and survive daily daycare meal routines.",
+        bestFor: ["Daycare feeding", "Shared water stations", "Easy sanitizing", "Allergy-sensitive setups"],
+        notIdealFor: ["Dogs who flip lightweight bowls", "Unsupervised chewers who dent thin metal"],
+        imageAlt: "Stainless steel dog bowls for daycare feeding stations",
+        priority: 2,
+      },
+      {
         id: "washable-blankets",
         name: "Washable Blankets",
         department: "The Daycare Setup",
@@ -133,8 +154,21 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         platinumScoopsNote:
           "We are still testing what works best for our setup, so this is a product type we are considering, not something we are claiming as part of our current gear.",
         imageAlt: "Generic elevated dog cot for supervised rest in a daycare space",
+        imageKey: "elevated-bed",
         priority: 4,
         featured: true,
+      },
+      {
+        id: "baby-gate-play-yard",
+        name: "Baby Gate / Play Yard",
+        department: "The Daycare Setup",
+        badge: "Worth Considering",
+        whyItMadeTheList:
+          "Gates and play yards help create safe zones, separate rest from play, and keep transitions calmer in busy spaces.",
+        bestFor: ["Zone management", "Puppy areas", "Rest boundaries", "Supervised separation"],
+        notIdealFor: ["Escape artists", "Unsupervised use", "Replacing proper supervision"],
+        imageAlt: "Baby gate or play yard for dog daycare zone management",
+        priority: 5,
       },
       {
         id: "storage-bins",
@@ -147,7 +181,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         notIdealFor: ["Dogs with bin-opening superpowers"],
         imageKey: "midwest-icrate",
         imageAlt: "Stackable storage for dog daycare leashes bowls and toys",
-        priority: 5,
+        priority: 6,
       },
     ],
   ),
@@ -315,6 +349,21 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         asin: "B00BSYR7K8",
         priority: 4,
       },
+      {
+        id: "arm-hammer-deodorizer",
+        name: "Arm & Hammer Deodorizing Dog Spray",
+        department: "The Cleanup Cabinet",
+        badge: "Worth Considering",
+        whyItMadeTheList:
+          "Deodorizing sprays can help between deep cleans — useful for fabric, crates, and car seats after muddy or smelly dog days.",
+        bestFor: ["Fabric refresh", "Crate areas", "Car cleanup", "Between full washes"],
+        notIdealFor: [
+          "Replacing enzyme cleaners on fresh accidents",
+          "Dogs with scent sensitivities without checking ingredients",
+        ],
+        imageAlt: "Arm and Hammer deodorizing spray for dog areas and fabric",
+        priority: 5,
+      },
     ],
   ),
   dept(
@@ -386,6 +435,42 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         asin: "B09MSKT5GN",
         priority: 4,
       },
+      {
+        id: "collapsible-bowl",
+        name: "Collapsible Travel Bowl",
+        department: "The Waco Summer Kit",
+        badge: "Worth Considering",
+        whyItMadeTheList:
+          "A bowl that packs flat is easy to keep in the car, daycare bag, or patio kit for summer outings.",
+        bestFor: ["Car trips", "Patio visits", "Travel", "Backup water dish"],
+        notIdealFor: ["Dogs who flip lightweight bowls", "Replacing fresh water checks"],
+        imageAlt: "Collapsible dog travel bowl for summer outings",
+        priority: 5,
+      },
+      {
+        id: "portable-shade",
+        name: "Portable Shade / Canopy",
+        department: "The Waco Summer Kit",
+        badge: "Worth Considering",
+        whyItMadeTheList:
+          "Shade is the real summer essential — portable options help at events, yards, and outdoor stops.",
+        bestFor: ["Outdoor events", "Backyard rest", "Supervised patio time", "Event setups"],
+        notIdealFor: ["Unsupervised outdoor use", "Replacing water and timing"],
+        imageAlt: "Portable shade canopy for dogs at outdoor summer events",
+        priority: 6,
+      },
+      {
+        id: "cooling-bandana",
+        name: "Cooling Bandana",
+        department: "The Waco Summer Kit",
+        badge: "Worth Considering",
+        whyItMadeTheList:
+          "Soak-and-wear cooling bandanas can add a little relief on short supervised outings — not a substitute for shade.",
+        bestFor: ["Short walks", "Outdoor events", "Supervised patio time"],
+        notIdealFor: ["Unsupervised use", "Heavy-coated dogs without monitoring", "Peak heat hours"],
+        imageAlt: "Cooling bandana for dogs during supervised summer outings",
+        priority: 7,
+      },
     ],
   ),
   dept(
@@ -444,7 +529,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
       },
       {
         id: "long-training-lead",
-        name: "Long Dog Training Lead, 15 ft",
+        name: "NTR Long Dog Leash, 15 ft Training Lead",
         department: "Walks, Leashes & Handling",
         badge: "Similar to What We Use",
         whyItMadeTheList:
@@ -486,7 +571,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
     [
       {
         id: "puzzle-toy",
-        name: "Dog Puzzle Toy",
+        name: "PETSTA Dog Puzzle Toys",
         department: "Enrichment & Play",
         badge: "On Our Shopping List",
         whyItMadeTheList:
@@ -494,7 +579,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         bestFor: ["Smart dogs", "Bored dogs", "Meal enrichment", "Decompression time"],
         notIdealFor: ["Dogs who destroy plastic", "Dogs who resource guard food"],
         imageKey: "puzzle-feeders",
-        imageAlt: "Dog puzzle toy for mental enrichment and mealtime",
+        imageAlt: "PETSTA dog puzzle toy for mental enrichment and mealtime",
         asin: "B0711Y9XTF",
         priority: 1,
         featured: true,
@@ -515,7 +600,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
       },
       {
         id: "tough-toy-pack",
-        name: "Tough Dog Toy Pack",
+        name: "LECHONG 5 Pack Tough Dog Toys",
         department: "Enrichment & Play",
         badge: "Worth Considering",
         whyItMadeTheList:
@@ -523,8 +608,20 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         bestFor: ["Power chewers", "Toy rotation", "Supervised play", "Daycare downtime"],
         notIdealFor: ["Unsupervised destruction tests", "Dogs who swallow fabric or squeakers"],
         imageKey: "kong-classic",
-        imageAlt: "Durable dog toy pack for supervised enrichment play",
+        imageAlt: "LECHONG tough dog toy pack for supervised enrichment play",
         priority: 3,
+      },
+      {
+        id: "dog-soccer-ball",
+        name: "QDAN Dog Soccer Ball",
+        department: "Enrichment & Play",
+        badge: "Worth Considering",
+        whyItMadeTheList:
+          "A soccer-style ball gives high-energy dogs a different kind of chase-and-push play in the yard.",
+        bestFor: ["Backyard play", "High-energy dogs", "Supervised outdoor time", "Novel enrichment"],
+        notIdealFor: ["Indoor fragile zones", "Dogs who destroy plastic", "Unsupervised use"],
+        imageAlt: "QDAN dog soccer ball for backyard enrichment play",
+        priority: 4,
       },
       {
         id: "fetch-stick",
@@ -536,7 +633,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         bestFor: ["Fetch", "Backyard play", "High-energy dogs", "Park trips"],
         notIdealFor: ["Indoor fragile decor zones", "Dogs who guard toys"],
         imageAlt: "Chuckit ultra fetch stick for outdoor dog play",
-        priority: 4,
+        priority: 5,
       },
       {
         id: "freeze-dried-treats",
@@ -551,7 +648,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         ],
         imageKey: "puzzle-feeders",
         imageAlt: "Freeze-dried dog training treats for recall and rewards",
-        priority: 5,
+        priority: 6,
       },
     ],
   ),
@@ -617,6 +714,18 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         imageAlt: "Dog shampoo and conditioner for coat care after muddy play",
         priority: 4,
       },
+      {
+        id: "styptic-powder",
+        name: "Styptic Powder",
+        department: "Grooming & Care",
+        badge: "Use Carefully",
+        whyItMadeTheList:
+          "Styptic powder can help stop minor nail bleeding during trims — a small kit item worth having with context.",
+        bestFor: ["Nail trim accidents", "Grooming kits", "Quick minor bleeding"],
+        notIdealFor: ["Deep wounds", "Replacing vet care", "Unfamiliar use without guidance"],
+        imageAlt: "Styptic powder for minor dog nail bleeding during grooming",
+        priority: 5,
+      },
     ],
   ),
   dept(
@@ -634,7 +743,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
     [
       {
         id: "calming-chews-careful",
-        name: "Calming Soft Chews",
+        name: "Mighty Paw Calming Chews",
         department: "Things We Use Carefully",
         badge: "Use Carefully",
         whyItMadeTheList:
@@ -642,13 +751,26 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         bestFor: ["Thunderstorms", "Fireworks", "Vet visits", "Travel anxiety"],
         notIdealFor: ["Starting without owner or vet approval", "Unknown ingredient sensitivities"],
         imageKey: "calming-chews",
-        imageAlt: "Calming soft chews for dogs — use with owner or vet approval",
+        imageAlt: "Mighty Paw calming chews for dogs — use with owner or vet approval",
         asin: "B077MDJ58Y",
         priority: 1,
       },
       {
+        id: "melatonin-careful",
+        name: "Advanced Melatonin for Dogs",
+        department: "Things We Use Carefully",
+        badge: "Use Carefully",
+        whyItMadeTheList:
+          "Some households use melatonin under vet direction — never a casual add without checking what is appropriate for that dog.",
+        bestFor: ["Vet-guided plans", "Owner-approved support"],
+        notIdealFor: ["Self-prescribing", "Unknown drug interactions", "Replacing training and environment management"],
+        imageKey: "calming-chews",
+        imageAlt: "Advanced melatonin for dogs — use carefully with professional guidance",
+        priority: 2,
+      },
+      {
         id: "calming-supplement-careful",
-        name: "Calming Support Supplement",
+        name: "Nutramax Solliquin Calming Support",
         department: "Things We Use Carefully",
         badge: "Use Carefully",
         whyItMadeTheList:
@@ -656,8 +778,8 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         bestFor: ["Owner-approved anxiety support", "Vet-guided plans"],
         notIdealFor: ["Self-prescribing", "Replacing training and environment management"],
         imageKey: "calming-chews",
-        imageAlt: "Dog calming supplement — use carefully with professional guidance",
-        priority: 2,
+        imageAlt: "Nutramax Solliquin calming support for dogs — use carefully with professional guidance",
+        priority: 3,
       },
       {
         id: "dog-muzzle",
@@ -669,7 +791,7 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         bestFor: ["Vet safety", "Grooming", "Temporary management", "Professional guidance"],
         notIdealFor: ["Punishment", "Unfitted or untrained use", "Extended unsupervised wear"],
         imageAlt: "Dog muzzle set for safety and management with proper training",
-        priority: 3,
+        priority: 4,
       },
       {
         id: "dog-whistle",
@@ -681,19 +803,19 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
         bestFor: ["Recall practice", "Consistent training cues", "Open spaces"],
         notIdealFor: ["Noise-sensitive neighbors", "Emergency interruption"],
         imageAlt: "Dog training whistle for recall practice",
-        priority: 4,
+        priority: 5,
       },
       {
         id: "air-horn",
-        name: "Dog Horn / Air Horn",
+        name: "Dog Horn XL Air Horn",
         department: "Things We Use Carefully",
         badge: "Use Carefully",
         whyItMadeTheList:
           "Emergency interruption tools for serious situations — not for everyday training annoyance.",
         bestFor: ["Emergency deterrence", "Wildlife encounters", "Professional guidance"],
         notIdealFor: ["Routine training", "Indoor use", "Noise-sensitive dogs without plan"],
-        imageAlt: "Air horn for emergency dog safety interruption",
-        priority: 5,
+        imageAlt: "Dog Horn XL air horn for emergency dog safety interruption",
+        priority: 6,
       },
     ],
   ),

@@ -2,8 +2,7 @@ import { cityConfig } from "@/lib/site";
 import { rover } from "@/data/rover";
 
 // Summer daycare camp themes for Keep Waco Wagging / Platinum Scoops pet care.
-// Booking always happens through Rover. Update dates each year and adjust
-// holiday closure notes as needed.
+// Booking always happens through Rover. Update dates each year as needed.
 
 export type DaycareMonth = "June" | "July" | "August";
 
@@ -14,7 +13,7 @@ export type DaycareTheme = {
   name: string;
   blurb: string;
   activities: string[];
-  // Optional callout for holidays, heat, or closures.
+  // Optional callout for heat, themes, or booking reminders.
   note?: string;
 };
 
@@ -31,8 +30,8 @@ export const summerDaycare = {
   hours: "Weekdays, drop-off and pick-up times confirmed on Rover.",
   heatNote:
     "Waco summers get hot. We schedule active play for cooler parts of the day, keep fresh water everywhere, use shaded and air-conditioned rest areas, and watch every dog for signs of overheating.",
-  closures:
-    "We follow major holiday closures and limited availability around July 4th and other holidays. Always confirm open days and request your dog's spot on Rover.",
+  bookingNote:
+    "We do not close for major holidays. Spots can still fill up, so request your dates on Rover to confirm availability.",
 } as const;
 
 export const daycareThemes: DaycareTheme[] = [
@@ -77,7 +76,6 @@ export const daycareThemes: DaycareTheme[] = [
       "Friday \u201cshow-and-tail\u201d",
       "A badge for every pup",
     ],
-    note: "Hours may shift around the Juneteenth holiday \u2014 check Rover for open days.",
   },
   {
     week: 4,
@@ -106,7 +104,7 @@ export const daycareThemes: DaycareTheme[] = [
       "Cozy \u201cchill zone\u201d time",
       "Quiet enrichment games",
     ],
-    note: "Limited availability around the July 4th holiday \u2014 please book early on Rover.",
+    note: "Fireworks-season week — extra calm enrichment built in. Book on Rover.",
   },
   {
     week: 6,

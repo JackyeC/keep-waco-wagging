@@ -229,8 +229,8 @@ export default function SummerDaycarePage() {
                 </p>
               </div>
               <div>
-                <h3 className="font-display text-xl text-bark">Holidays &amp; closures</h3>
-                <p className="dek mt-2 max-w-prose text-base">{summerDaycare.closures}</p>
+                <h3 className="font-display text-xl text-bark">Availability</h3>
+                <p className="dek mt-2 max-w-prose text-base">{summerDaycare.bookingNote}</p>
               </div>
             </div>
             <div className="md:col-span-4 md:col-start-9">

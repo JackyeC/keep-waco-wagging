@@ -73,7 +73,7 @@ export default function ShopPage() {
                   <Button href="#guide-contents" variant="secondary" size="lg" className="border-cream/30 bg-cream/10 text-cream hover:bg-cream/20">
                     Read the Guide
                   </Button>
-                  <Button href={ctas.bookPetCare.href} variant="sponsor" size="lg">
+                  <Button href="/pet-care" variant="sponsor" size="lg">
                     Book Platinum Scoops Care
                   </Button>
                 </div>

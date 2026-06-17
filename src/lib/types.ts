@@ -235,6 +235,8 @@ export type GearGuideBadge =
 export type GearGuideProduct = {
   id: string;
   name: string;
+  /** Same as department title unless a narrower shelf label is needed. */
+  category: string;
   department: string;
   badge: GearGuideBadge;
   whyItMadeTheList: string;
@@ -246,8 +248,11 @@ export type GearGuideProduct = {
   imageUrl?: string;
   imageAlt: string;
   asin?: string;
+  /** Product URL (Amazon affiliate when configured). */
+  link?: string;
   amazonUrl?: string;
   affiliateReady: boolean;
+  affiliateDisclosureRequired: boolean;
   featured?: boolean;
   priority?: number;
 };

@@ -41,7 +41,12 @@ export function GearGuideProductCard({
       </div>
 
       <div className={cn("flex flex-1 flex-col p-5 sm:p-6", featured && "lg:justify-center lg:border-l lg:border-clay")}>
-        <GearGuideBadgePill badge={product.badge} />
+        <div className="flex flex-wrap items-center gap-2">
+          <GearGuideBadgePill badge={product.badge} />
+          <span className="text-[10px] font-medium uppercase tracking-wide text-bark-faint">
+            {product.category}
+          </span>
+        </div>
         <h3
           className={cn(
             "mt-3 font-display text-bark",
@@ -82,17 +87,19 @@ export function GearGuideProductCard({
           )}
         </dl>
 
-        {product.affiliateReady && product.amazonUrl ? (
-          <Link
-            href={product.amazonUrl}
+        {product.affiliateReady && product.link ? (
+          <a
+            href={product.link}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="editorial-link mt-5 inline-flex items-center gap-1.5 text-sm font-semibold"
+            className="mt-5 inline-flex items-center justify-center gap-2 self-start rounded-sm border border-clay bg-transparent px-4 py-2 text-sm font-semibold tracking-wide text-bark transition-colors hover:border-bark/40 hover:bg-sand/50"
           >
             View Product <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-          </Link>
+          </a>
         ) : (
-          <p className="caption mt-5">Product link coming soon — we verify listings before adding affiliate links.</p>
+          <p className="caption mt-5">
+            Product link coming soon — we verify listings before adding affiliate links.
+          </p>
         )}
       </div>
     </article>
