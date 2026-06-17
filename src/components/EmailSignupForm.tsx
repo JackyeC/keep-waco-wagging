@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
+import { NeighborhoodField } from "@/components/NeighborhoodField";
 
 const inputClass =
   "w-full rounded-xl border-0 bg-white px-3.5 py-2.5 text-sm text-bark ring-1 ring-inset ring-clay placeholder:text-bark-faint focus:outline-none focus:ring-2 focus:ring-sage-400 disabled:opacity-60";
@@ -92,10 +93,14 @@ export function EmailSignupForm({ compact = false }: { compact?: boolean }) {
               Dog name <span className="text-bark-faint">(optional)</span>
               <input name="dogName" disabled={loading} className={`${inputClass} mt-1.5`} />
             </label>
-            <label className="text-sm font-medium text-bark">
+            <div className="text-sm font-medium text-bark">
               Neighborhood <span className="text-bark-faint">(optional)</span>
-              <input name="neighborhood" disabled={loading} className={`${inputClass} mt-1.5`} />
-            </label>
+              <NeighborhoodField
+                disabled={loading}
+                inputClass={inputClass}
+                id="email-list-neighborhood"
+              />
+            </div>
           </>
         )}
       </div>
