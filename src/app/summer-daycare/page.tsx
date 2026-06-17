@@ -61,14 +61,22 @@ export default function SummerDaycarePage() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-tr from-bark/75 via-bark/20 to-transparent" />
+        {/* Layered overlays: vertical bottom shade + bottom-left radial for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bark/85 via-bark/40 to-bark/10" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 70% at 20% 85%, rgba(26,42,61,0.85) 0%, rgba(26,42,61,0.55) 35%, rgba(26,42,61,0) 70%)",
+          }}
+        />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-            <p className="eyebrow text-gold-200">Summer 2026</p>
+            <p className="eyebrow text-gold-200" style={{textShadow: "0 1px 8px rgba(26,42,61,0.8)"}}>Summer 2026</p>
             <h1 className="display mt-4 max-w-3xl text-cream">
               Thirteen weeks of summer.
             </h1>
-            <p className="dek mt-5 max-w-xl text-cream/85">
+            <p className="dek mt-5 max-w-xl text-cream" style={{textShadow: "0 1px 12px rgba(26,42,61,0.7)"}}>
               A small-group summer camp run out of our home — a new theme every
               week, plenty of shade and water, and the same calm care your dog
               already knows.

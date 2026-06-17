@@ -64,14 +64,22 @@ export default function HomePage() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-tr from-bark/75 via-bark/20 to-transparent" />
+        {/* Layered overlays: vertical bottom shade + bottom-left radial for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bark/85 via-bark/40 to-bark/10" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 70% at 20% 85%, rgba(26,42,61,0.85) 0%, rgba(26,42,61,0.55) 35%, rgba(26,42,61,0) 70%)",
+          }}
+        />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
             <p className="eyebrow text-gold-200">{`Presented by ${cityConfig.sponsor.name}`}</p>
             <h1 className="display mt-4 max-w-3xl text-cream">
               Waco dog care that makes life easier.
             </h1>
-            <p className="dek mt-5 max-w-xl text-cream/85">
+            <p className="dek mt-5 max-w-xl text-cream" style={{textShadow: "0 1px 12px rgba(26,42,61,0.7)"}}>
               Boarding, daycare, yard care, and summer camp — from one family who
               has cared for Central Texas dogs since 1996.
             </p>
