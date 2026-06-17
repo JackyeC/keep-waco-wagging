@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { PageHeader } from "@/components/PageHeader";
+import { ArrowRight } from "lucide-react";
 import { SitePhoto } from "@/components/SitePhoto";
 import { summerDaycare, daycareThemes } from "@/data/summerDaycare";
 import { sitePhotos } from "@/data/sitePhotos";
@@ -9,160 +7,237 @@ import { cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Summer Dog Daycare Camp in ${cityConfig.city} | Thirteen Weeks of Summer`,
-  description:
-    `A themed weekly summer daycare calendar for ${cityConfig.city} dogs — splash days, sniff safaris, manners camp, and more. Home-based, full-time care. Reserve your dog's spot on Rover.`,
+  description: `A themed weekly summer daycare calendar for ${cityConfig.city} dogs — splash days, sniff safaris, manners camp, and more. Home-based, full-time care. Reserve your dog's spot on Rover.`,
 };
+
+const masthead = [
+  { label: "Weeks", value: "13" },
+  { label: "Days", value: "Mon to Fri" },
+  { label: "Ages", value: "All dogs" },
+  { label: "Location", value: "Waco, TX" },
+];
+
+const howItWorks = [
+  { title: "Drop in for a day", body: "Need coverage for a single day? Book it. No weekly commitment required." },
+  { title: "Join the week", body: "Lean into the theme — five days of play, enrichment, and rest built around one idea." },
+  { title: "Small group", body: "Groups stay small on purpose, so every dog gets real attention, not crowd control." },
+  { title: "Same calm care", body: "The same two people who own the home run every day. No rotating crew." },
+];
+
+const timeline = [
+  { time: "7:30 AM", caption: "Morning play", photo: sitePhotos.campTimeline1 },
+  { time: "11:00 AM", caption: "Cool-down", photo: sitePhotos.campTimeline2 },
+  { time: "2:00 PM", caption: "Quiet hour", photo: sitePhotos.campTimeline3 },
+  { time: "5:30 PM", caption: "Last walk", photo: sitePhotos.campTimeline4 },
+];
+
+const faqs = [
+  {
+    q: "Do you have to book the whole week?",
+    a: "No. Drop in for a single day or join the full themed week — whatever fits your schedule. Availability lives on our Rover profile.",
+  },
+  {
+    q: "What about the Texas heat?",
+    a: summerDaycare.heatNote,
+  },
+  {
+    q: "What kinds of dogs are a good fit?",
+    a: "Social dogs of all ages who enjoy a home environment. We keep groups small and read every dog — if a day should be quieter, we make it quieter.",
+  },
+  {
+    q: "How do I reserve a spot?",
+    a: "Request your dates on our Rover profile. That is where current openings live, and we will confirm from there.",
+  },
+];
 
 export default function SummerDaycarePage() {
   return (
     <>
-      <PageHeader
-        eyebrow={summerDaycare.seasonLabel}
-        title="Thirteen Weeks of Summer"
-        description={summerDaycare.intro}
-        tone="gold"
-      />
-
-      {/* Lede + Rover stats as prose */}
-      <section className="bg-cream py-24 md:py-32">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
-          <p className="lede">
-            A small-group summer camp run out of our home — a new theme every
-            week, plenty of shade and water, and the same calm, full-time care
-            your dog already knows.
-          </p>
-          <div className="mt-8 space-y-6 leading-relaxed text-bark-soft">
-            <p>
-              Each week runs Monday through Friday. Drop in for a single day or
-              join the whole themed week of play, enrichment, and rest. Because
-              groups stay small, every dog gets real attention from the people
-              who own the home — not a rotating crew.
+      {/* ── HERO ── full-bleed poolProperty */}
+      <section className="relative h-[80vh] min-h-[32rem] w-full">
+        <SitePhoto
+          src={sitePhotos.poolProperty.src}
+          alt={sitePhotos.poolProperty.alt}
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-tr from-bark/75 via-bark/20 to-transparent" />
+        <div className="absolute inset-0 flex items-end">
+          <div className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+            <p className="eyebrow text-gold-200">Summer 2026</p>
+            <h1 className="display mt-4 max-w-3xl text-cream">
+              Thirteen weeks of summer.
+            </h1>
+            <p className="dek mt-5 max-w-xl text-cream/85">
+              A small-group summer camp run out of our home — a new theme every
+              week, plenty of shade and water, and the same calm care your dog
+              already knows.
             </p>
-            <p>
-              {summerDaycare.heatNote}
-            </p>
-            <p className="text-bark">
-              {cityConfig.rover.rating} · {cityConfig.rover.reviewCount} Rover
-              reviews · Star Sitter with repeat families · 30 years caring for
-              dogs in Central Texas.
-            </p>
+            <a
+              href="#weeks"
+              className="mt-8 inline-flex items-center gap-2 rounded-sm bg-gold-400 px-6 py-3 text-sm font-semibold tracking-wide text-bark transition-colors hover:bg-gold-500"
+            >
+              See the weeks ↓
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Full-bleed photo break */}
-      <section className="relative h-[56vh] min-h-[22rem] w-full">
-        <SitePhoto
-          src={sitePhotos.summerCamp.src}
-          alt={sitePhotos.summerCamp.alt}
-          sizes="100vw"
-        />
+      {/* ── METADATA RAIL ── */}
+      <section className="bg-cream">
+        <hr className="hairline" />
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <dl className="grid grid-cols-2 divide-gold-400/30 md:grid-cols-4 md:divide-x">
+            {masthead.map((item, i) => (
+              <div
+                key={item.label}
+                className={"py-6 md:px-8 md:first:pl-0 md:last:pr-0" + (i > 0 ? " md:pl-8" : "")}
+              >
+                <dt className="smallcaps text-gold-500">{item.label}</dt>
+                <dd className="smallcaps mt-2 text-bark">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <hr className="hairline" />
       </section>
 
-      {/* The calendar — editorial timeline */}
-      <section className="bg-sand py-24 md:py-32">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <p className="eyebrow">The calendar</p>
-            <h2 className="mt-4 font-display text-3xl md:text-5xl">
-              A new theme every week
-            </h2>
-            <p className="mt-4 leading-relaxed text-bark-soft">
-              Reserve any week your dog wants to join. Availability lives on our
-              Rover profile — request the dates and we will confirm.
-            </p>
+      {/* ── SECTION 01 — HOW IT WORKS ── */}
+      <section className="bg-cream py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="eyebrow">No. 01 — How it works</p>
+          <hr className="hairline mt-6" />
+          <div className="mt-12 grid grid-cols-1 divide-gold-400/30 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x">
+            {howItWorks.map((col, i) => (
+              <div
+                key={col.title}
+                className={"py-6 lg:px-8 lg:first:pl-0 lg:last:pr-0" + (i > 0 ? " lg:pl-8" : "")}
+              >
+                <h3 className="font-display text-xl text-bark">{col.title}</h3>
+                <p className="dek mt-3 text-base">{col.body}</p>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-16">
+      {/* ── SECTION 02 — A DAY AT CAMP ── editorial timeline */}
+      <section className="bg-sand py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="eyebrow">No. 02 — A day at camp</p>
+          <hr className="hairline mt-6" />
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {timeline.map((moment, i) => (
+              <figure
+                key={moment.time}
+                className={"py-2 lg:px-6 lg:first:pl-0 lg:last:pr-0" + (i > 0 ? " lg:border-l lg:border-gold-400/30" : "")}
+              >
+                <p className="smallcaps text-gold-500">{moment.time}</p>
+                <div className="relative mt-3 aspect-[4/5] w-full overflow-hidden rounded-sm bg-cream">
+                  <SitePhoto
+                    src={moment.photo.src}
+                    alt={moment.photo.alt}
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                  />
+                </div>
+                <figcaption className="caption mt-3">{moment.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 03 — THE THEMED WEEKS ── editorial table-like list */}
+      <section id="weeks" className="bg-cream py-24 md:py-32">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <p className="eyebrow">No. 03 — The themed weeks</p>
+          <h2 className="heading mt-3">A new theme every week.</h2>
+          <p className="dek mt-4 max-w-2xl">
+            Reserve any week your dog wants to join. Availability lives on our
+            Rover profile — request the dates and we will confirm.
+          </p>
+          <div className="mt-12">
             {daycareThemes.map((theme) => (
               <article
                 key={theme.week}
-                className="grid grid-cols-1 gap-4 border-t border-clay py-10 md:grid-cols-12 md:gap-8"
+                className="grid grid-cols-1 gap-2 border-t border-gold-400/30 py-7 md:grid-cols-12 md:gap-8"
               >
-                <div className="md:col-span-2">
-                  <p className="eyebrow text-gold-600">
+                <div className="md:col-span-3">
+                  <p className="smallcaps text-gold-500">
                     {`Week ${String(theme.week).padStart(2, "0")}`}
                   </p>
-                  <p className="mt-1 text-sm text-bark-faint">
-                    {theme.dateRange}
-                  </p>
+                  <p className="caption mt-1">{theme.dateRange}</p>
                 </div>
-                <div className="md:col-span-7">
-                  <h3 className="font-display text-2xl">{theme.name}</h3>
-                  <p className="mt-3 max-w-prose leading-relaxed text-bark-soft">
-                    {theme.blurb}
-                  </p>
+                <div className="md:col-span-9">
+                  <h3 className="font-display text-xl text-bark">{theme.name}</h3>
+                  <p className="caption mt-2 max-w-prose">{theme.blurb}</p>
                   {theme.note && (
-                    <p className="mt-3 max-w-prose text-sm italic text-bark-soft">
-                      {theme.note}
-                    </p>
+                    <p className="caption mt-2 max-w-prose text-bark-faint">{theme.note}</p>
                   )}
-                </div>
-                <div className="md:col-span-3">
-                  <ul className="space-y-1.5 text-sm text-bark-soft">
-                    {theme.activities.map((activity) => (
-                      <li key={activity}>{activity}</li>
-                    ))}
-                  </ul>
                 </div>
               </article>
             ))}
-            <hr className="rule" />
+            <hr className="hairline" />
           </div>
         </div>
       </section>
 
-      {/* How it works + pricing — clean prose */}
+      {/* ── SECTION 04 — FAQ ── editorial Q&A */}
+      <section className="bg-sand py-24 md:py-32">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <p className="eyebrow">No. 04 — Questions</p>
+          <hr className="hairline mt-6" />
+          <dl className="mt-8">
+            {faqs.map((faq) => (
+              <div key={faq.q} className="border-t border-gold-400/30 py-7 first:border-t-0">
+                <dt className="font-display text-xl italic text-bark">{faq.q}</dt>
+                <dd className="dek mt-3 text-base">{faq.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* ── SECTION 05 — PRICING / CTA ── */}
       <section className="bg-cream py-24 md:py-32">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-            <div className="md:col-span-3">
-              <p className="eyebrow">How it works</p>
+          <p className="eyebrow">No. 05 — Pricing & booking</p>
+          <hr className="hairline mt-6" />
+          <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-12">
+            <div className="md:col-span-7 space-y-8 leading-relaxed text-bark-soft">
+              <div>
+                <h3 className="font-display text-xl text-bark">Pricing</h3>
+                <p className="dek mt-2 max-w-prose text-base">
+                  Daycare runs {summerDaycare.dailyRate}. Book a single day or the
+                  full themed week. Boarding rates and add-ons are listed on our
+                  Rover profile.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-display text-xl text-bark">Hours &amp; booking</h3>
+                <p className="dek mt-2 max-w-prose text-base">
+                  {summerDaycare.hours} When your dog wants in, request the dates
+                  on Rover — that is where current openings live.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-display text-xl text-bark">Holidays &amp; closures</h3>
+                <p className="dek mt-2 max-w-prose text-base">{summerDaycare.closures}</p>
+              </div>
             </div>
-            <div className="md:col-span-8 md:col-start-4">
-              <div className="space-y-8 leading-relaxed text-bark-soft">
-                <div>
-                  <h3 className="font-display text-xl text-bark">Pricing</h3>
-                  <p className="mt-2 max-w-prose">
-                    Daycare runs {summerDaycare.dailyRate}. Book a single day or
-                    the full themed week. Boarding rates and add-ons are listed
-                    on our Rover profile.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-display text-xl text-bark">
-                    Hours &amp; booking
-                  </h3>
-                  <p className="mt-2 max-w-prose">
-                    {summerDaycare.hours} When your dog wants in, request the
-                    dates on Rover — that is where current openings live.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-display text-xl text-bark">
-                    Holidays &amp; closures
-                  </h3>
-                  <p className="mt-2 max-w-prose">{summerDaycare.closures}</p>
-                </div>
-              </div>
-              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <Link
-                  href={ctas.bookPetCare.href}
-                  className="inline-flex items-center gap-2 bg-bark px-7 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-bark-soft"
-                >
-                  Reserve on Rover
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <a
-                  href="/downloads/summer-daycare-2026.pdf"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600 underline-offset-4 hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Download the 2026 calendar (PDF)
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </div>
+            <div className="md:col-span-4 md:col-start-9">
+              <a
+                href={ctas.bookPetCare.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-bark px-7 py-3.5 text-sm font-semibold tracking-wide text-cream transition-colors hover:bg-bark-soft"
+              >
+                Reserve on Rover
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <p className="smallcaps mt-6 text-bark-soft">
+                {cityConfig.rover.rating} ★ · {cityConfig.rover.reviewCount} reviews · Star Sitter
+              </p>
             </div>
           </div>
         </div>

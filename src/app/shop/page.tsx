@@ -1,133 +1,193 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
-import { ShopProductCard } from "@/components/ShopProductCard";
-import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
-import { AdSlot } from "@/components/AdSlot";
-import { Section } from "@/components/ui/Section";
+import Link from "next/link";
+import Image from "next/image";
 import { getProductRecommendations } from "@/data/products";
-import { monetization, siteConfig } from "@/lib/site";
 import { sitePhotos } from "@/data/sitePhotos";
+import { monetization } from "@/lib/site";
 import type { ProductRecommendation } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "Dog Gear We Actually Use | Keep Waco Wagging",
+  title: "Things We Actually Use — Dog Gear We Recommend | Keep Waco Wagging",
   description:
-    "Practical dog product recommendations for Waco pet parents, including crates, slow feeders, puzzle toys, cleaning supplies, and everyday dog care basics.",
+    "Practical dog-care gear vetted by 30 years of Central Texas dog people — slow feeders, cooling mats, paw balm, GPS trackers, and enrichment toys.",
 };
 
-function slugifyCategory(category: string) {
-  return category.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-}
+/**
+ * Local in-use photography overrides for select products. Where present, the
+ * real Waco product-detail photo wins over the Amazon CDN image.
+ */
+const localPhotoByProduct: Record<string, { src: string; alt: string }> = {
+  "slow-feeders": sitePhotos.productDetail1,
+  "cooling-mat": sitePhotos.productDetail2,
+  "paw-wax": sitePhotos.productDetail3,
+  "gps-tracker": sitePhotos.productDetail4,
+  "puzzle-feeders": sitePhotos.productToy1,
+  "kong-classic": sitePhotos.productToy2,
+  "lick-mats": sitePhotos.productToy3,
+};
 
-function groupByCategory(products: ProductRecommendation[]) {
-  const categories: string[] = [];
-  const byCategory = new Map<string, ProductRecommendation[]>();
+/** Editorial product sections — map real category data into three dividers. */
+const sectionPlan: { no: string; title: string; categories: string[] }[] = [
+  { no: "No. 01", title: "Summer essentials", categories: ["Summer essentials"] },
+  {
+    no: "No. 02",
+    title: "Calm & enrichment",
+    categories: ["Enrichment", "Crates", "Home", "Walks", "Safety"],
+  },
+  { no: "No. 03", title: "Cleanup & yard", categories: ["Cleaning"] },
+];
 
-  for (const product of products) {
-    if (!byCategory.has(product.category)) {
-      byCategory.set(product.category, []);
-      categories.push(product.category);
-    }
-    byCategory.get(product.category)!.push(product);
-  }
+function ProductCard({
+  product,
+  index,
+}: {
+  product: ProductRecommendation;
+  index: number;
+}) {
+  const local = localPhotoByProduct[product.id];
+  const imageSrc = local?.src ?? product.imageUrl;
+  const imageAlt = local?.alt ?? product.title;
+  const no = `No. ${String(index + 1).padStart(2, "0")}`;
 
-  return { categories, byCategory };
+  return (
+    <article className="flex flex-col">
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-cream">
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover"
+          />
+        ) : null}
+      </div>
+      <hr className="hairline mt-5" />
+      <p className="smallcaps mt-4 text-gold-500">{no}</p>
+      <h3 className="mt-2 font-display text-xl leading-snug text-bark">
+        {product.title}
+      </h3>
+      <p className="caption mt-2 flex-1">{product.description}</p>
+      {product.amazonUrl ? (
+        <a
+          href={product.amazonUrl}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="smallcaps mt-4 inline-flex items-center gap-1.5 text-gold-500 hover:text-gold-600"
+        >
+          Shop on Amazon →
+        </a>
+      ) : (
+        <p className="caption mt-4 text-bark-faint">Link coming soon</p>
+      )}
+    </article>
+  );
 }
 
 export default function ShopPage() {
   const products = getProductRecommendations();
-  const { categories, byCategory } = groupByCategory(products);
+  const byCategory = new Map<string, ProductRecommendation[]>();
+  for (const product of products) {
+    if (!byCategory.has(product.category)) byCategory.set(product.category, []);
+    byCategory.get(product.category)!.push(product);
+  }
 
   return (
     <>
-      <PageHeader
-        eyebrow="The Edit"
-        title="Dog gear we actually use"
-        description="An editor's picks page for Central Texas dog parents — vetted in real Waco yards and linked to Amazon. Part of the Keep Waco Wagging guide."
-        tone="cream"
-        showPublisher
-        image={{
-          ...sitePhotos.training,
-          caption: sitePhotos.training.alt,
-        }}
-      />
-
-      <Section tone="paper" className="!py-10">
-        <div className="max-w-3xl border-l-2 border-gold-400 pl-5">
-          <p className="lede">
-            We only list products we reach for in our own work — boarding, scooping,
-            and daily dog life in Waco heat.
+      {/* ── EDITORIAL HEADER ── tight, not a giant empty band */}
+      <section className="bg-cream pt-16 md:pt-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="eyebrow">Shop — Affiliate</p>
+          <h1 className="display mt-5 max-w-3xl">Things we actually use.</h1>
+          <p className="dek mt-6 max-w-2xl">
+            Practical dog-care gear we reach for every day in Central Texas —
+            vetted, used, and recommended. No filler, no fads, no products we
+            would not put in front of our own pack.
           </p>
-          <div className="mt-5 border-t border-clay pt-4">
-            <AffiliateDisclosure />
-            <p className="caption mt-2">{monetization.productDisclosure}</p>
-          </div>
+          <p className="caption mt-4 max-w-2xl">
+            *Amazon Associate — we earn from qualifying purchases.{" "}
+            <Link href="#disclosure" className="underline underline-offset-2">
+              Read full disclosure
+            </Link>
+            .
+          </p>
         </div>
-      </Section>
+      </section>
 
-      {/* Category index — editorial table of contents */}
-      <Section tone="sand" className="!py-10">
-        <p className="eyebrow">Contents</p>
-        <h2 className="headline-tertiary mt-2">Shop by category</h2>
-        <nav className="mt-6 flex flex-wrap gap-x-6 gap-y-2" aria-label="Shop categories">
-          {categories.map((category) => (
-            <a
-              key={category}
-              href={`#${slugifyCategory(category)}`}
-              className="editorial-link text-xs"
-            >
-              {category}
-            </a>
-          ))}
-        </nav>
-      </Section>
-
-      {/* Sticky category bar */}
-      <div className="sticky top-16 z-20 border-b border-clay bg-cream/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
-          {categories.map((category) => (
-            <a
-              key={category}
-              href={`#${slugifyCategory(category)}`}
-              className="shrink-0 border border-transparent px-3 py-1.5 text-xs font-medium uppercase tracking-wide text-bark-soft transition hover:border-clay hover:text-bark"
-            >
-              {category}
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <Section tone="paper">
-        {categories.map((category, index) => {
-          const items = byCategory.get(category)!;
-          return (
-            <div
-              key={category}
-              id={slugifyCategory(category)}
-              className={index === 0 ? "" : "mt-16 scroll-mt-32 md:mt-20"}
-            >
-              <header className="flex items-baseline justify-between gap-4 border-b border-clay pb-3">
-                <div>
-                  <p className="eyebrow eyebrow-brass">{siteConfig.name}</p>
-                  <h2 className="headline-tertiary mt-1">{category}</h2>
+      {/* ── PRODUCT SECTIONS ── */}
+      <section className="bg-cream py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          {sectionPlan.map((section, sIdx) => {
+            const items = section.categories.flatMap(
+              (cat) => byCategory.get(cat) ?? [],
+            );
+            if (items.length === 0) return null;
+            return (
+              <div key={section.title} className={sIdx === 0 ? "" : "mt-24 md:mt-32"}>
+                <p className="eyebrow">{`${section.no} — ${section.title}`}</p>
+                <h2 className="heading mt-3">{section.title}</h2>
+                <hr className="hairline mt-6" />
+                <div className="mt-12 grid grid-cols-1 gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+                  {items.map((product, i) => (
+                    <ProductCard key={product.id} product={product} index={i} />
+                  ))}
                 </div>
-                <span className="caption">
-                  {items.length} {items.length === 1 ? "pick" : "picks"}
-                </span>
-              </header>
-              <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                {items.map((product) => (
-                  <ShopProductCard key={product.id} product={product} />
-                ))}
+              </div>
+            );
+          })}
+
+          {/* ── SECTION DIVIDER — Platinum Scoops soft link ── */}
+          <div className="mt-24 md:mt-32">
+            <hr className="hairline" />
+            <div className="mt-12 grid grid-cols-1 items-center gap-12 md:grid-cols-12">
+              <div className="md:col-span-6">
+                <p className="eyebrow">No. 04 — Cleanup & yard</p>
+                <h2 className="heading mt-3">The yard, handled for you.</h2>
+                <p className="dek mt-5">
+                  Some cleanup you do not want to buy a gadget for — you want it
+                  off your list entirely. That is what Platinum Scoops is for:
+                  recurring yard cleanup so your yard stays usable all summer.
+                </p>
+                <a
+                  href="https://platinumscoops.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="smallcaps mt-6 inline-flex items-center gap-1.5 text-gold-500 hover:text-gold-600"
+                >
+                  See Platinum Scoops service →
+                </a>
+              </div>
+              <div className="md:col-span-6">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-sand">
+                  <Image
+                    src={sitePhotos.platinumScoopsSprayer.src}
+                    alt={sitePhotos.platinumScoopsSprayer.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
               </div>
             </div>
-          );
-        })}
-
-        <div className="mt-16 border-t border-clay pt-12 md:mt-20">
-          <AdSlot placement="shop" />
+          </div>
         </div>
-      </Section>
+      </section>
+
+      {/* ── END DISCLOSURE ── quiet section */}
+      <section id="disclosure" className="bg-sand py-16 md:py-20">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+          <hr className="hairline" />
+          <p className="eyebrow mt-6">Disclosure</p>
+          <p className="caption mt-4">{monetization.affiliateDisclosure}</p>
+          <p className="caption mt-3">{monetization.productDisclosure}</p>
+          <p className="caption mt-3">
+            <Link href="/affiliate-disclosure" className="underline underline-offset-2">
+              Read the full affiliate disclosure
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
     </>
   );
 }

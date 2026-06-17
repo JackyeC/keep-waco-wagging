@@ -1,8 +1,8 @@
 /** Optimized local photography — files live in /public/pictures/ */
 export const sitePhotos = {
   hero: {
-    src: "/pictures/hero-group-walk.webp",
-    alt: "Jackye walking a group of happy dogs on leashes in Waco",
+    src: "/pictures/jackye-collie-tree.webp",
+    alt: "Jackye Clayton with a border collie under a big Waco tree on a sunny afternoon",
   },
   scooping: {
     src: "/pictures/scooping-yard.webp",
@@ -40,16 +40,16 @@ export const sitePhotos = {
     },
   ],
   boarding: {
-    src: "/pictures/boarding-backyard.webp",
-    alt: "Dogs relaxing together in a shaded Waco backyard during home-based daycare",
+    src: "/pictures/pool-property.webp",
+    alt: "A backyard splash pool with a white house and fenced Waco property behind it",
   },
   summerCamp: {
-    src: "/pictures/summer-camp-hero.webp",
-    alt: "A dog cooling off in a splash pool during summer daycare camp in Waco",
+    src: "/pictures/pool-property.webp",
+    alt: "A backyard splash pool with a white house and fenced Waco property behind it",
   },
   summerCampCard: {
-    src: "/pictures/summer-camp-card.webp",
-    alt: "Summer splash pool play at home-based dog daycare in Waco",
+    src: "/pictures/pool-pack.webp",
+    alt: "Three dogs playing together around a backyard splash pool",
   },
   summerMonths: {
     june: {
@@ -125,9 +125,100 @@ export const sitePhotos = {
     },
   ],
   founders: {
-    src: "/pictures/founders-jackye-todd.webp",
-    alt: "Jackye and Todd Clayton, founders of Platinum Scoops and Keep Waco Wagging",
+    src: "/pictures/jackye-goldendoodle-tee.webp",
+    alt: "Jackye Clayton on the couch with a goldendoodle, founder of Keep Waco Wagging",
   },
+
+  // ── New approved photos (editorial final pass, June 2026) ──
+  jackyeCollieTree: {
+    src: "/pictures/jackye-collie-tree.webp",
+    alt: "Jackye Clayton with a border collie under a big Waco tree, outdoors in summer",
+  },
+  jackyeGoldendoodleTee: {
+    src: "/pictures/jackye-goldendoodle-tee.webp",
+    alt: "Jackye Clayton in a 'linkedin user' tee with a goldendoodle relaxing on the couch",
+  },
+  jackyeKitchenPoodle: {
+    src: "/pictures/jackye-kitchen-poodle.webp",
+    alt: "Jackye Clayton nose-to-nose with a poodle in the kitchen",
+  },
+  toddGoldendoodle: {
+    src: "/pictures/todd-goldendoodle.webp",
+    alt: "Todd Clayton, founder of Platinum Scoops, with a goldendoodle",
+  },
+  jackyeSmallDog: {
+    src: "/pictures/jackye-small-dog.webp",
+    alt: "Jackye Clayton holding a small black-and-tan dog",
+  },
+  jackyeVisorMums: {
+    src: "/pictures/jackye-visor-mums.webp",
+    alt: "Jackye Clayton in a rainbow visor beside bright yellow mums",
+  },
+  borderCollieJoy: {
+    src: "/pictures/border-collie-joy.webp",
+    alt: "A border collie mid-joy, ears up and grinning in a Waco yard",
+  },
+  platinumScoopsSprayer: {
+    src: "/pictures/platinum-scoops-sprayer.webp",
+    alt: "A real Platinum Scoops sprayer on a freshly cleaned green Waco lawn",
+  },
+  frenchieSinkBath: {
+    src: "/pictures/frenchie-sink-bath.webp",
+    alt: "A cream French bulldog mid-bath in a white farmhouse sink, Jackye's hand and a blue checkered towel in frame, soft window light",
+  },
+  poolProperty: {
+    src: "/pictures/pool-property.webp",
+    alt: "A boxer's-eye view of a backyard splash pool with a white house and property behind it",
+  },
+  poolPack: {
+    src: "/pictures/pool-pack.webp",
+    alt: "Three dogs playing together around a backyard splash pool — full pack",
+  },
+  productToy1: {
+    src: "/pictures/product-toy-1.webp",
+    alt: "Dog enrichment puzzle toy",
+  },
+  productToy2: {
+    src: "/pictures/product-toy-2.webp",
+    alt: "Durable dog chew toy",
+  },
+  productToy3: {
+    src: "/pictures/product-toy-3.webp",
+    alt: "Dog lick mat enrichment toy",
+  },
+  productDetail1: {
+    src: "/pictures/product-detail-1.webp",
+    alt: "Slow feeder bowl in use",
+  },
+  productDetail2: {
+    src: "/pictures/product-detail-2.webp",
+    alt: "Cooling mat in use",
+  },
+  productDetail3: {
+    src: "/pictures/product-detail-3.webp",
+    alt: "Paw balm in use",
+  },
+  productDetail4: {
+    src: "/pictures/product-detail-4.webp",
+    alt: "GPS tracker on a dog harness",
+  },
+  campTimeline1: {
+    src: "/pictures/camp-timeline-1.webp",
+    alt: "Morning play at summer dog camp in Waco",
+  },
+  campTimeline2: {
+    src: "/pictures/camp-timeline-2.webp",
+    alt: "Cool-down time at summer dog camp in Waco",
+  },
+  campTimeline3: {
+    src: "/pictures/camp-timeline-3.webp",
+    alt: "Quiet hour at summer dog camp in Waco",
+  },
+  campTimeline4: {
+    src: "/pictures/camp-timeline-4.webp",
+    alt: "Last walk of the day at summer dog camp in Waco",
+  },
+
   og: {
     src: "/pictures/og-share.webp",
     alt: "Keep Waco Wagging — group dog walk in Waco, Texas",

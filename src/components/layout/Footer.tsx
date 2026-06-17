@@ -21,6 +21,9 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.85fr_0.85fr_1fr]">
           <div>
             <Logo variant="mark" />
+            <p className="smallcaps mt-3 text-gold-500">
+              Presented by {cityConfig.sponsor.name}
+            </p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-bark-soft">
               <span className="font-semibold text-bark">{siteConfig.name}</span>{" "}
               is a local Waco dog-parent guide presented by{" "}
@@ -104,7 +107,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-clay pt-6 text-xs leading-relaxed text-bark-faint">
+        <hr className="hairline mt-12" />
+        <p className="smallcaps mt-6 text-bark-soft">
+          Filed under: Boarding · Daycare · Yard care · Summer camp · {cityConfig.city} · Since 1996
+        </p>
+
+        <hr className="hairline mt-6" />
+        <div className="mt-6 text-xs leading-relaxed text-bark-faint">
           <p>{cityConfig.monetization.affiliateDisclosure}</p>
           <p className="mt-2">
             <NavLinkItem

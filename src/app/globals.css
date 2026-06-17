@@ -261,3 +261,99 @@
     background-size: 14px 14px;
   }
 }
+
+@layer utilities {
+  /* ──────────────────────────────────────────────────────────────
+     Editorial typography system (final pass, June 2026)
+     Kinfolk / Cereal / Apartamento caliber furniture.
+     Appended after remote utilities so these definitions win.
+  ─────────────────────────────────────────────────────────────── */
+
+  /* Eyebrow — tracked caps, brass */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-gold-400);
+  }
+
+  /* Display — big serif hero */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  /* Heading — section serif */
+  .heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  /* Dek — body sans subtitle */
+  .dek {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--color-bark) 70%, transparent);
+  }
+
+  /* Caption — serif italic */
+  .caption {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--color-bark) 60%, transparent);
+  }
+
+  /* Small caps — masthead / metadata rail */
+  .smallcaps {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Hairline — 1px brass rule */
+  .hairline {
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--color-gold-400) 30%, transparent);
+  }
+
+  /* Drop cap — brass serif initial */
+  .drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-size: 5.5rem;
+    line-height: 1;
+    font-weight: 400;
+    color: var(--color-gold-400);
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+  }
+
+  /* Marquee scroll */
+  .marquee-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: kww-marquee 38s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+  @keyframes kww-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}

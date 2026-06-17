@@ -117,7 +117,7 @@ export type NavLink = {
 // Primary nav — service business first, then community shop and story.
 export const mainNav: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "Poop Scooping", href: "/platinum-scoops" },
+  { label: "Poop Scooping", href: "https://platinumscoops.com", external: true },
   { label: "Daycare & Boarding", href: "/pet-care" },
   { label: "Shop", href: "/shop" },
   { label: "About", href: "/about" },

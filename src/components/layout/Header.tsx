@@ -34,7 +34,7 @@ export function Header() {
         </nav>
 
         <div className="hidden shrink-0 lg:block">
-          <Button href={ctas.bookScoops.href} variant="sponsor" size="sm">
+          <Button href={ctas.bookScoops.href} variant="sponsor" size="sm" className="rounded-sm px-4 py-1.5">
             {ctas.bookScoops.label}
           </Button>
         </div>
