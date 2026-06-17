@@ -31,6 +31,5 @@ export const rover = {
     "Dogs who cannot safely be around other dogs",
     "Dogs who are destructive in a home setting",
     "Dogs with unmanaged bite history",
-    "Dogs who need a kennel-free environment 100% of the time",
   ],
 } as const;
