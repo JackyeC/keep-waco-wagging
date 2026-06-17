@@ -1,5 +1,8 @@
 import { Resend } from "resend";
-import { cityConfig } from "@/lib/site";
+import {
+  getConfiguredFromEmail,
+  recordNotificationAttempt,
+} from "@/lib/leadPipelineHealth";
 
 let resendClient: Resend | null = null;
 
@@ -23,11 +26,11 @@ export async function sendLeadNotification(
   const resend = getResend();
   const to = process.env.LEAD_NOTIFICATION_EMAIL;
   const bcc = process.env.LEAD_NOTIFICATION_BCC;
-  const from =
-    process.env.RESEND_FROM_EMAIL ?? `hello@${new URL(cityConfig.url).hostname}`;
+  const from = getConfiguredFromEmail();
 
   if (!resend || !to) {
     console.info("[lead notification skipped]", subject, body);
+    recordNotificationAttempt({ ok: false, error: "Email not configured" });
     return { ok: false, error: "Email not configured" };
   }
 
@@ -41,8 +44,10 @@ export async function sendLeadNotification(
 
   if (error) {
     console.error("[resend error]", error);
+    recordNotificationAttempt({ ok: false, error: error.message });
     return { ok: false, error: error.message };
   }
 
+  recordNotificationAttempt({ ok: true });
   return { ok: true };
 }
