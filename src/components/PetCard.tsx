@@ -6,7 +6,11 @@ export function PetCard({ pet }: { pet: Pet }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70 transition-all hover:-translate-y-0.5 hover:shadow-md hover:ring-sage-200">
       <div className="aspect-square overflow-hidden">
-        <ImagePlaceholder src={pet.photoUrl} alt={pet.name} label={pet.name} />
+        <ImagePlaceholder
+          src={pet.photoUrl}
+          alt={pet.name}
+          showCaption={!pet.photoUrl}
+        />
       </div>
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-baseline justify-between gap-2">

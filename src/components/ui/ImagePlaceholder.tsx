@@ -1,26 +1,31 @@
-import { PawPrint } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+const brandMark = siteConfig.brand.logo.mark;
+
 /**
- * Local photography placeholder. When `src` is provided it renders the image;
- * otherwise it shows a warm branded gradient. Swap in <Image> + real Waco
- * photography here once available.
+ * Renders a real photo when `src` is set; otherwise an editorial KWW mark
+ * placeholder (cream/sage, rule line, optional caption).
  */
 export function ImagePlaceholder({
   src,
   alt,
-  label,
+  showCaption = false,
+  caption = "Photo coming soon",
+  variant = "cream",
   className,
 }: {
   src?: string;
   alt?: string;
+  /** @deprecated Ignored — card copy carries the title. Use showCaption instead. */
   label?: string;
+  showCaption?: boolean;
+  caption?: string;
+  variant?: "cream" | "sage";
   className?: string;
 }) {
   if (src) {
     return (
-      // Using a plain <img> keeps the MVP free of image-domain config; swap to
-      // next/image with real Waco photography later.
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={src}
@@ -32,18 +37,35 @@ export function ImagePlaceholder({
 
   return (
     <div
+      role="img"
+      aria-label={
+        alt
+          ? showCaption
+            ? `${alt}. ${caption}`
+            : alt
+          : showCaption
+            ? caption
+            : brandMark.alt
+      }
       className={cn(
-        "flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-sage-100 via-sand to-sky-100 text-sage-500",
+        "flex h-full w-full flex-col items-center justify-center border border-clay/70",
+        variant === "sage" ? "bg-sage-50" : "bg-cream",
         className,
       )}
-      aria-hidden="true"
     >
-      <PawPrint className="h-8 w-8" strokeWidth={1.5} />
-      {label && (
-        <span className="mt-1 px-3 text-center text-xs font-medium text-sage-600/80">
-          {label}
-        </span>
-      )}
+      <div className="flex max-w-[85%] flex-col items-center px-4 py-6 sm:px-6 sm:py-8">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={brandMark.src}
+          alt=""
+          aria-hidden="true"
+          className="h-auto w-[min(58%,10rem)] max-h-[min(42%,7rem)] object-contain opacity-[0.88]"
+        />
+        <div className="mt-4 h-px w-10 bg-clay/80" aria-hidden="true" />
+        {showCaption && (
+          <p className="caption mt-3 text-center text-bark-faint">{caption}</p>
+        )}
+      </div>
     </div>
   );
 }

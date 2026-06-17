@@ -58,7 +58,7 @@ export function ListingDetail({
                 <ImagePlaceholder
                   src={listing.imageUrl}
                   alt={listing.name}
-                  label={listing.name}
+                  showCaption={!listing.imageUrl}
                 />
               </div>
             </div>

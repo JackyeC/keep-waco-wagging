@@ -28,7 +28,6 @@ export function ProductRecommendationCard({
         <ImagePlaceholder
           src={product.imageUrl}
           alt={product.title}
-          label={product.title}
           className="object-contain p-4"
         />
       </div>

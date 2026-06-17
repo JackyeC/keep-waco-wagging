@@ -18,7 +18,11 @@ export function BlogCard({ post }: { post: BlogPost }) {
     <article className="group flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70 transition-all hover:-translate-y-0.5 hover:shadow-md hover:ring-sage-200">
       <Link href={href} className="block">
         <div className="aspect-[16/9] overflow-hidden">
-          <ImagePlaceholder src={post.imageUrl} alt={post.title} label={post.category} />
+          <ImagePlaceholder
+            src={post.imageUrl}
+            alt={post.title}
+            showCaption={!post.imageUrl}
+          />
         </div>
       </Link>
       <div className="flex flex-1 flex-col p-5">

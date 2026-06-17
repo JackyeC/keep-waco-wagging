@@ -45,7 +45,11 @@ export default function PetsPage() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
             ) : (
-              <ImagePlaceholder src={star.photoUrl} alt={star.name} label={star.name} />
+              <ImagePlaceholder
+                src={star.photoUrl}
+                alt={star.name}
+                showCaption
+              />
             )}
           </div>
           <div>
