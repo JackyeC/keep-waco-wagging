@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
+import { LeadSignupConsent } from "@/components/LeadSignupConsent";
 import { yappyHourEvents } from "@/data/yappyHours";
 
 const inputClass =
@@ -35,8 +36,10 @@ export function YappyHourRSVP() {
         }),
       });
 
-      const data = (await res.json()) as { error?: string };
-      if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
+      const data = (await res.json()) as { ok?: boolean; error?: string };
+      if (!res.ok || data.ok !== true) {
+        throw new Error(data.error ?? "Something went wrong.");
+      }
 
       setSubmitted(true);
       form.reset();
@@ -105,14 +108,17 @@ export function YappyHourRSVP() {
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-sage-700 disabled:opacity-60 sm:w-auto"
-      >
-        {loading ? "Sending..." : "RSVP for a Yappy Hour"}
-        <Send className="h-4 w-4" />
-      </button>
+      <div className="mt-5 space-y-4">
+        <LeadSignupConsent />
+        <button
+          type="submit"
+          disabled={loading}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-sage-700 disabled:opacity-60 sm:w-auto"
+        >
+          {loading ? "Sending..." : "RSVP for a Yappy Hour"}
+          <Send className="h-4 w-4" />
+        </button>
+      </div>
       <p className="mt-3 text-xs leading-relaxed text-bark-faint">
         Members-only backyard events are for current Platinum Scoops and Rover
         clients. We&apos;ll confirm your spot by email.

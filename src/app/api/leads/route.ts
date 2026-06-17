@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { saveSubmission } from "@/lib/leads";
+import { isValidLeadEmail, saveSubmission } from "@/lib/leads";
 
 export async function POST(request: Request) {
   try {
@@ -11,13 +11,22 @@ export async function POST(request: Request) {
       interests?: string[];
     };
 
-    if (!body.email?.trim()) {
+    const rawEmail = body.email?.trim();
+    if (!rawEmail) {
       return NextResponse.json({ error: "Email is required." }, { status: 400 });
+    }
+
+    const email = rawEmail.toLowerCase();
+    if (!isValidLeadEmail(email)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 },
+      );
     }
 
     const result = await saveSubmission("lead", {
       first_name: body.firstName?.trim() ?? null,
-      email: body.email.trim().toLowerCase(),
+      email,
       dog_name: body.dogName?.trim() ?? null,
       neighborhood: body.neighborhood?.trim() ?? null,
       interests: body.interests ?? [],
