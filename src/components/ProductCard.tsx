@@ -11,11 +11,7 @@ export function ProductCard({ product }: { product: ShopProduct }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70 transition-all hover:-translate-y-0.5 hover:shadow-md hover:ring-sage-200">
       <div className="aspect-square">
-        <ImagePlaceholder
-          src={product.imageUrl}
-          alt={product.name}
-          label={product.name}
-        />
+        <ImagePlaceholder src={product.imageUrl} alt={product.name} />
       </div>
       <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap items-center gap-2">

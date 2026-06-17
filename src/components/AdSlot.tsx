@@ -69,7 +69,7 @@ export function AdSlot({
     >
       {ad.imageUrl !== undefined && (
         <div className="aspect-[16/9]">
-          <ImagePlaceholder src={ad.imageUrl} alt={ad.sponsor} label={ad.sponsor} />
+          <ImagePlaceholder src={ad.imageUrl} alt={ad.sponsor} />
         </div>
       )}
       <div className="p-5">

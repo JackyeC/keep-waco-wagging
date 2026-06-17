@@ -8,7 +8,11 @@ export function DirectoryCard({ listing }: { listing: Listing }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70 transition-all hover:-translate-y-0.5 hover:shadow-md hover:ring-sage-200">
       <div className="relative aspect-[16/10] overflow-hidden">
-        <ImagePlaceholder src={listing.imageUrl} alt={listing.name} label={listing.name} />
+        <ImagePlaceholder
+          src={listing.imageUrl}
+          alt={listing.name}
+          showCaption={!listing.imageUrl}
+        />
         <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
           <Badge tone="sage">{listing.category}</Badge>
           {listing.featured && <Badge tone="gold">Featured</Badge>}

@@ -23,7 +23,7 @@ export function ShopProductCard({ product }: { product: ProductRecommendation })
               className="h-full w-full object-contain"
             />
           ) : (
-            <ImagePlaceholder alt={product.title} label={product.title} />
+            <ImagePlaceholder alt={product.title} />
           )}
         </div>
       </Link>

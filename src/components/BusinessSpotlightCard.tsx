@@ -17,7 +17,7 @@ export function BusinessSpotlightCard({
           <ImagePlaceholder
             src={spotlight.imageUrl}
             alt={spotlight.businessName}
-            label={spotlight.businessName}
+            showCaption={!spotlight.imageUrl}
           />
         </div>
 
