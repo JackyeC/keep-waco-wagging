@@ -1,5 +1,5 @@
-import { getSupabaseAdmin } from "@/lib/supabase/server";
-import { sendLeadNotification } from "@/lib/email";
+import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase/server";
+import { isEmailConfigured, sendLeadNotification } from "@/lib/email";
 
 export type SubmissionType =
   | "lead"
@@ -35,6 +35,22 @@ export type SubmissionResult =
   | { ok: true; stored: boolean; notified: boolean }
   | { ok: false; error: string };
 
+const USER_SAFE_ERROR =
+  "Unable to save your submission. Please try again or email us directly.";
+
+const PRODUCTION_MISCONFIG_ERROR =
+  "Signups are temporarily unavailable. Please try again later or email us directly.";
+
+/** Practical server-side check — not exhaustive RFC validation. */
+export function isValidLeadEmail(email: string): boolean {
+  if (email.length > 254) return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isProductionEnvironment(): boolean {
+  return process.env.NODE_ENV === "production";
+}
+
 function formatPayload(payload: Record<string, unknown>): string {
   return Object.entries(payload)
     .map(([key, value]) => {
@@ -49,34 +65,60 @@ export async function saveSubmission(
   payload: Record<string, unknown>,
 ): Promise<SubmissionResult> {
   const config = configs[type];
-  const supabase = getSupabaseAdmin();
+  const supabaseReady = isSupabaseConfigured();
+  const emailReady = isEmailConfigured();
+
+  if (isProductionEnvironment() && !supabaseReady && !emailReady) {
+    console.error(
+      `[lead submission] Production misconfiguration: neither Supabase nor email notifications are fully configured (${config.table}).`,
+    );
+    return { ok: false, error: PRODUCTION_MISCONFIG_ERROR };
+  }
+
   let stored = false;
 
-  if (supabase) {
-    const { error } = await supabase.from(config.table).insert(payload);
-    if (error) {
-      console.error(`[supabase insert ${config.table}]`, error);
-    } else {
-      stored = true;
+  if (supabaseReady) {
+    const supabase = getSupabaseAdmin();
+    if (supabase) {
+      const { error } = await supabase.from(config.table).insert(payload);
+      if (error) {
+        console.error(`[supabase insert ${config.table}]`, error);
+      } else {
+        stored = true;
+      }
     }
   }
 
-  const notification = await sendLeadNotification(
-    config.subject,
-    formatPayload(payload),
-  );
+  let notified = false;
 
-  const hasBackend =
-    Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) ||
-    Boolean(process.env.RESEND_API_KEY);
-
-  if (!stored && !notification.ok && hasBackend) {
-    return {
-      ok: false,
-      error:
-        "Unable to save your submission. Please try again or email us directly.",
-    };
+  if (emailReady) {
+    const notification = await sendLeadNotification(
+      config.subject,
+      formatPayload(payload),
+    );
+    notified = notification.ok;
+    if (!notification.ok) {
+      console.error(`[lead notification ${config.table}]`, notification.error);
+    }
   }
 
-  return { ok: true, stored, notified: notification.ok };
+  const supabaseSucceeded = supabaseReady && stored;
+  const emailSucceeded = emailReady && notified;
+
+  if (supabaseSucceeded || emailSucceeded) {
+    return { ok: true, stored, notified };
+  }
+
+  if (supabaseReady || emailReady) {
+    console.error(
+      `[lead submission] All configured backends failed for ${config.table}.`,
+    );
+    return { ok: false, error: USER_SAFE_ERROR };
+  }
+
+  console.warn(
+    `[lead submission] No backend configured — submission not persisted (${config.table}).`,
+    formatPayload(payload),
+  );
+  return { ok: false, error: USER_SAFE_ERROR };
 }

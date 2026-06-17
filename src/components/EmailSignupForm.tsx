@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 import { NeighborhoodField } from "@/components/NeighborhoodField";
+import { LeadSignupConsent } from "@/components/LeadSignupConsent";
 
 const inputClass =
   "w-full rounded-xl border-0 bg-white px-3.5 py-2.5 text-sm text-bark ring-1 ring-inset ring-clay placeholder:text-bark-faint focus:outline-none focus:ring-2 focus:ring-sage-400 disabled:opacity-60";
@@ -42,8 +43,10 @@ export function EmailSignupForm({ compact = false }: { compact?: boolean }) {
         }),
       });
 
-      const data = (await res.json()) as { error?: string };
-      if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
+      const data = (await res.json()) as { ok?: boolean; error?: string };
+      if (!res.ok || data.ok !== true) {
+        throw new Error(data.error ?? "Something went wrong.");
+      }
 
       setSubmitted(true);
       form.reset();
@@ -131,14 +134,17 @@ export function EmailSignupForm({ compact = false }: { compact?: boolean }) {
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-sage-700 disabled:opacity-60 sm:w-auto"
-      >
-        {loading ? "Joining..." : "Join the Waco Dog Parent List"}
-        <Send className="h-4 w-4" />
-      </button>
+      <div className="mt-5 space-y-4">
+        <LeadSignupConsent />
+        <button
+          type="submit"
+          disabled={loading}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-sage-700 disabled:opacity-60 sm:w-auto"
+        >
+          {loading ? "Joining..." : "Join the Waco Dog Parent List"}
+          <Send className="h-4 w-4" />
+        </button>
+      </div>
     </form>
   );
 }

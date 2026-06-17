@@ -22,7 +22,7 @@ dog training — with a replicable model for other cities.
 
 ```bash
 npm install
-cp .env.example .env.local   # optional — forms work in dev without backend
+cp .env.example .env.local   # required for lead capture in production; optional locally
 npm run dev
 ```
 
@@ -46,7 +46,8 @@ Copy `.env.example` to `.env.local` and fill in:
 | `SUPABASE_SERVICE_ROLE_KEY` | Server-side inserts (keep secret) |
 | `RESEND_API_KEY` | Send lead notification emails |
 | `RESEND_FROM_EMAIL` | Verified sender in Resend |
-| `NOTIFY_EMAIL` | Where new leads are emailed |
+| `LEAD_NOTIFICATION_EMAIL` | Where new lead/signup notifications are emailed |
+| `LEAD_NOTIFICATION_BCC` | Optional BCC copy for lead notifications |
 
 Run `supabase/schema.sql` in your Supabase SQL editor to create the lead tables.
 
