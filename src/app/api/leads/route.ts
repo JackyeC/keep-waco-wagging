@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { isValidLeadEmail, saveSubmission } from "@/lib/leads";
 import { signupCopy, sanitizeLeadInterests } from "@/lib/signup";
-import { isEmailConfigured } from "@/lib/email";
 
 export async function POST(request: Request) {
   try {
@@ -55,26 +54,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: signupCopy.error }, { status: 500 });
     }
 
-    const response: {
-      ok: true;
-      stored: boolean;
-      notified: boolean;
-      warning?: string;
-    } = {
-      ok: true,
-      stored: result.stored,
-      notified: result.notified,
-    };
-
-    if (result.stored && !result.notified && !isEmailConfigured()) {
-      response.warning =
-        "You're signed up. Email alerts to our team are temporarily unavailable — we'll still have your info.";
-    } else if (result.stored && !result.notified) {
-      response.warning =
-        "You're signed up. We saved your info but couldn't send our team an alert email this time.";
-    }
-
-    return NextResponse.json(response);
+    // Notification failures are logged server-side only — visitors see standard success copy.
+    return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: signupCopy.error }, { status: 400 });
   }

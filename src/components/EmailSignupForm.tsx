@@ -26,13 +26,11 @@ export function EmailSignupForm({
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [warning, setWarning] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setWarning(null);
 
     const form = e.currentTarget;
     const fd = new FormData(form);
@@ -62,7 +60,6 @@ export function EmailSignupForm({
       const data = (await res.json()) as {
         ok?: boolean;
         error?: string;
-        warning?: string;
       };
 
       if (!res.ok || data.ok !== true) {
@@ -70,9 +67,6 @@ export function EmailSignupForm({
       }
 
       setSubmitted(true);
-      if (data.warning) {
-        setWarning(data.warning);
-      }
       form.reset();
     } catch (err) {
       setError(err instanceof Error ? err.message : signupCopy.error);
@@ -93,9 +87,6 @@ export function EmailSignupForm({
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-bark-soft">
               {signupCopy.successSocial}
             </p>
-          )}
-          {warning && (
-            <p className="mx-auto mt-3 max-w-md text-xs text-bark-faint">{warning}</p>
           )}
         </div>
         {showSocialOnSuccess && (
