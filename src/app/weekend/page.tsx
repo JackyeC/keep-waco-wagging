@@ -40,7 +40,7 @@ export default function WeekendPage() {
 
       <Section tone="sand" id="newsletter">
         <div className="mx-auto max-w-2xl">
-          <NewsletterSignup />
+          <NewsletterSignup variant="card" sourcePage="/weekend" />
         </div>
       </Section>
     </>

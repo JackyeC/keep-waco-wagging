@@ -9,10 +9,16 @@ create table if not exists leads (
   email text not null,
   dog_name text,
   neighborhood text,
+  zip_code text,
   interests text[],
   source text default 'keep_waco_wagging',
+  source_page text,
   consent boolean default true
 );
+
+-- Migration for existing projects:
+-- alter table leads add column if not exists zip_code text;
+-- alter table leads add column if not exists source_page text;
 
 create table if not exists directory_submissions (
   id uuid primary key default gen_random_uuid(),

@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { Megaphone } from "lucide-react";
+import { CommunityPartners } from "@/components/CommunityPartners";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { SponsorInquiryForm } from "@/components/SponsorInquiryForm";
+import { sponsorTiers } from "@/data/communityPartners";
 import { sponsorTypes } from "@/data/sponsors";
+import { brandLanguage } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Sponsor Keep Waco Wagging | Reach Waco Dog Parents",
   description:
-    "Sponsor Keep Waco Wagging to reach local dog parents through directory listings, featured placements, newsletter mentions, local guides, spotlights, events, and giveaways.",
+    `${brandLanguage.communityLine}. Sponsor placements include camp weeks, photo booths, treats, and community partner spots.`,
 };
 
 export default function SponsorsPage() {
@@ -17,9 +21,30 @@ export default function SponsorsPage() {
       <PageHeader
         eyebrow="Sponsors"
         title="Reach Waco dog parents where they are already looking for trusted local recommendations."
-        description="Keep Waco Wagging connects local dog parents with places, services, products, and businesses that make life with dogs easier in Waco."
+        description={`${brandLanguage.primaryName} connects local dog parents with places, services, products, and businesses that make life with dogs easier in Waco. ${brandLanguage.communityPartnersWelcome}.`}
         tone="gold"
+        showPublisher
       />
+      <Section tone="paper">
+        <CommunityPartners showInquiryLink={false} />
+      </Section>
+      <Section tone="sand">
+        <SectionHeading
+          eyebrow="Camp & event tiers"
+          title="Sponsor a week, booth, or treat table"
+          description={brandLanguage.sponsorCampInquiry}
+        />
+        <ul className="mt-8 flex flex-wrap gap-2">
+          {sponsorTiers.map((tier) => (
+            <li
+              key={tier}
+              className="rounded-full bg-cream px-4 py-2 text-sm font-medium text-bark ring-1 ring-inset ring-clay"
+            >
+              {tier}
+            </li>
+          ))}
+        </ul>
+      </Section>
       <Section tone="paper">
         <SectionHeading
           eyebrow="Sponsor options"
@@ -45,6 +70,8 @@ export default function SponsorsPage() {
           <SponsorInquiryForm />
         </div>
       </Section>
+
+      <NewsletterSignup sourcePage="/sponsors" variant="section" />
     </>
   );
 }

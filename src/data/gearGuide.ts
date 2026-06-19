@@ -21,6 +21,9 @@ type ProductSeed = Omit<
   asin?: string;
   category?: string;
   link?: string;
+  /** Backward-compatible alias — prefer `link` in new seed entries. */
+  amazonUrl?: string;
+  imageUrl?: string;
   affiliateDisclosureRequired?: boolean;
 };
 

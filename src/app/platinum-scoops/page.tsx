@@ -7,12 +7,11 @@ import { EditorialPhotoSpread } from "@/components/EditorialPhotoSpread";
 import { SitePhoto } from "@/components/SitePhoto";
 import { platinumScoops } from "@/data/platinumScoops";
 import { editorialSpreads, sitePhotos } from "@/data/sitePhotos";
-import { ctas } from "@/lib/site";
+import { ctas, brandLanguage } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Poop Scooping Waco | Platinum Scoops Dog Waste Removal",
-  description:
-    "Book local dog waste removal in Waco with Platinum Scoops. Weekly scooping starts at $25/week with the first cleanup included.",
+  title: "Poop Scooping Waco | Presented by Platinum Scoops",
+  description: `${brandLanguage.sponsorServices} Book local dog waste removal in Waco.`,
 };
 
 export default function PlatinumScoopsPage() {
@@ -23,6 +22,8 @@ export default function PlatinumScoopsPage() {
         title="Dog waste removal for cleaner Waco yards"
         description={platinumScoops.description}
         tone="sand"
+        showSiteName
+        showPublisher
         image={{
           ...sitePhotos.scooping,
           caption: sitePhotos.scooping.alt,

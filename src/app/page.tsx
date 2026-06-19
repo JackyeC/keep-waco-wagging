@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { SitePhoto } from "@/components/SitePhoto";
+import { PresentingSponsor } from "@/components/PresentingSponsor";
 import { sitePhotos } from "@/data/sitePhotos";
-import { cityConfig, ctas } from "@/lib/site";
+import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Waco Dog Care: Boarding, Daycare & Yard Care | Platinum Scoops",
-  description:
-    "Platinum Scoops makes Waco dog life easier: trusted boarding and daycare, recurring yard cleanup, and a themed summer camp. Cleaner yards, better routines, more fun together.",
+  title: "Keep Waco Wagging | Waco Dog Parent Resources & Events",
+  description: `${brandLanguage.communityLine}. ${brandLanguage.servicesLine}. ${brandLanguage.presentedBy}.`,
 };
 
 const marqueeItems = [
   "30 YEARS",
   "5.0 ★ ROVER",
-  "76 REVIEWS",
+  `${cityConfig.rover.reviewCount} REVIEWS`,
   "STAR SITTER",
   "WACO, TEXAS",
   "SINCE 1996",
@@ -24,21 +25,21 @@ const services = [
   {
     title: "Boarding & Daycare",
     photo: sitePhotos.poolProperty,
-    dek: "Star Sitter on Rover. Full-time, home-based, all-day attention. 5.0 stars, 76 reviews.",
+    dek: `Star Sitter on Rover. Full-time, home-based, all-day attention. ${cityConfig.rover.rating} stars, ${cityConfig.rover.reviewCount} reviews.`,
     href: cityConfig.rover.profileUrl,
     external: true,
     label: "Book on Rover",
   },
   {
-    title: "Yard Care by Platinum Scoops",
+    title: "Yard care",
     photo: sitePhotos.platinumScoopsSprayer,
-    dek: "Recurring yard cleanup so your yard stays usable. Texas heat means weekly is the move.",
+    dek: "Recurring poop scoop and yard cleanup so your yard stays usable. Texas heat means weekly is the move.",
     href: "https://platinumscoops.com",
     external: true,
-    label: "See the service",
+    label: "Book a scoop",
   },
   {
-    title: "Summer Camp",
+    title: brandLanguage.dogCampName,
     photo: sitePhotos.poolPack,
     dek: "Themed weeks of supervised play, enrichment, and rest. Drop in for a day or join the week.",
     href: "/summer-daycare",
@@ -75,29 +76,28 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-            <p className="eyebrow text-gold-200" style={{textShadow: "0 1px 8px rgba(0,0,0,0.85)"}}>{`Presented by ${cityConfig.sponsor.name}`}</p>
+            <div style={{textShadow: "0 1px 8px rgba(0,0,0,0.85)"}}>
+              <PresentingSponsor light />
+            </div>
             <h1 className="display mt-4 max-w-3xl text-white" style={{textShadow: "0 2px 24px rgba(0,0,0,0.7)"}}>
-              Waco dog care that makes life easier.
+              {brandLanguage.primaryName}
             </h1>
             <p className="dek mt-5 inline-block max-w-xl rounded-sm bg-bark/80 px-5 py-3 backdrop-blur-sm" style={{color: "#f6f1e7"}}>
-              Boarding, daycare, yard care, and summer camp — from one family who
-              has cared for Central Texas dogs since 1996.
+              {brandLanguage.communityLine}. {brandLanguage.servicesLine}.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <a
-                href={ctas.bookPetCare.href}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/book"
                 className="inline-flex items-center gap-2 rounded-sm bg-gold-400 px-7 py-3.5 text-sm font-semibold tracking-wide text-bark transition-colors hover:bg-gold-500"
               >
-                Book pet care on Rover
+                Book pet care
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
               <Link
-                href="/summer-daycare"
+                href="/dog-friendly-waco"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-cream underline decoration-cream/40 underline-offset-4 transition-colors hover:decoration-cream"
               >
-                Or explore summer daycare
+                Explore dog-friendly Waco
               </Link>
             </div>
           </div>
@@ -253,6 +253,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <NewsletterSignup id="updates-signup" sourcePage="/" />
     </>
   );
 }

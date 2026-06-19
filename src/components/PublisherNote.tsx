@@ -1,6 +1,5 @@
-import Link from "next/link";
+import { PresentingSponsor } from "@/components/PresentingSponsor";
 import { cn } from "@/lib/utils";
-import { cityConfig } from "@/lib/site";
 
 /** Quiet publisher line — "Presented by Platinum Scoops" */
 export function PublisherNote({
@@ -14,17 +13,11 @@ export function PublisherNote({
   light?: boolean;
 }) {
   return (
-    <p className={cn("publisher-note", light && "text-cream/60", className)}>
-      Presented by{" "}
-      <Link
-        href={href}
-        className={cn(
-          "border-b border-transparent transition-colors hover:border-current",
-          light ? "text-cream/85 hover:text-cream" : "text-bark-soft hover:text-bark",
-        )}
-      >
-        {cityConfig.sponsor.name}
-      </Link>
-    </p>
+    <PresentingSponsor
+      className={cn("publisher-note", className)}
+      href={href}
+      light={light}
+      size="sm"
+    />
   );
 }

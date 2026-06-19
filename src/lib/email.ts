@@ -22,7 +22,7 @@ export function isEmailConfigured(): boolean {
 export async function sendLeadNotification(
   subject: string,
   body: string,
-): Promise<{ ok: boolean; error?: string }> {
+): Promise<{ ok: boolean; error?: string; messageId?: string }> {
   const resend = getResend();
   const to = process.env.LEAD_NOTIFICATION_EMAIL;
   const bcc = process.env.LEAD_NOTIFICATION_BCC;
@@ -34,7 +34,7 @@ export async function sendLeadNotification(
     return { ok: false, error: "Email not configured" };
   }
 
-  const { error } = await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from,
     to,
     bcc: bcc ? [bcc] : undefined,
@@ -43,11 +43,18 @@ export async function sendLeadNotification(
   });
 
   if (error) {
-    console.error("[resend error]", error);
+    console.error(
+      `[KWW_LEAD_PIPELINE] resend_send_failed ${JSON.stringify({
+        subject,
+        to,
+        from,
+        error: error.message,
+      })}`,
+    );
     recordNotificationAttempt({ ok: false, error: error.message });
     return { ok: false, error: error.message };
   }
 
   recordNotificationAttempt({ ok: true });
-  return { ok: true };
+  return { ok: true, messageId: data?.id };
 }

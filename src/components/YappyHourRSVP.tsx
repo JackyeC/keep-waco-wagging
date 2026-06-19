@@ -33,6 +33,7 @@ export function YappyHourRSVP() {
           email: fd.get("email"),
           dogName: fd.get("dogName"),
           interests: ["Local dog events", `Yappy Hour RSVP: ${eventTitle}`],
+          sourcePage: `/yappy-hours — Yappy Hour RSVP: ${eventTitle}`,
         }),
       });
 

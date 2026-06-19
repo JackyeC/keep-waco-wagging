@@ -9,12 +9,11 @@ import { EditorialPhotoSpread } from "@/components/EditorialPhotoSpread";
 import { rover } from "@/data/rover";
 import { SitePhoto } from "@/components/SitePhoto";
 import { editorialSpreads, sitePhotos } from "@/data/sitePhotos";
-import { ctas } from "@/lib/site";
+import { ctas, brandLanguage } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Daycare & Boarding Waco | Platinum Scoops Pet Care",
-  description:
-    "Home-based dog boarding, daycare, drop-ins, and walks in Waco with Jackye and Todd — full-time pet care professionals on Rover.",
+  title: "Daycare & Boarding Waco | Keep Waco Wagging",
+  description: `${brandLanguage.servicesLine}. Home-based dog boarding and daycare in Waco. ${brandLanguage.presentedBy}.`,
 };
 
 export default function PetCarePage() {
@@ -108,7 +107,7 @@ export default function PetCarePage() {
             </aside>
             <EditorialTeaser
               department="Summer camp"
-              title="Summer Daycare Camp"
+              title={brandLanguage.dogCampName}
               dek="Themed weeks all summer — splash days, sniff safaris, manners camp, and more. Reserve weeks on Rover."
               href={ctas.summerDaycare.href}
               ctaLabel={ctas.summerDaycare.label}

@@ -88,7 +88,7 @@ export default async function BlogPage({
 
       <Section tone="sand">
         <div className="mx-auto max-w-2xl">
-          <NewsletterSignup />
+          <NewsletterSignup variant="card" sourcePage="/blog" />
         </div>
       </Section>
     </>

@@ -1,29 +1,94 @@
 import { EmailSignupForm } from "@/components/EmailSignupForm";
+import { PresentingSponsor } from "@/components/PresentingSponsor";
+import { SocialLinksBlock } from "@/components/SocialLinksBlock";
+import { signupCopy } from "@/lib/signup";
+import { brandLanguage } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
-export function NewsletterSignup({
-  variant = "card",
-  className,
-}: {
-  variant?: "card" | "inline";
+type NewsletterSignupProps = {
+  /** full = all fields; compact = email only */
+  compact?: boolean;
+  /** Page path for owner notification emails */
+  sourcePage?: string;
+  /** Visual wrapper style */
+  variant?: "section" | "card" | "inline";
   className?: string;
-}) {
+  showSocial?: boolean;
+  id?: string;
+};
+
+/**
+ * Keep Waco Wagging updates signup — primary list-building block.
+ */
+export function NewsletterSignup({
+  compact = false,
+  sourcePage,
+  variant = "section",
+  className,
+  showSocial = true,
+  id,
+}: NewsletterSignupProps) {
+  const isSection = variant === "section";
+  const isCard = variant === "card";
+  const Wrapper = isSection ? "section" : "div";
+
   return (
-    <div className={className}>
-      <div className={variant === "card" ? "rounded-card bg-sage-700 p-6 text-white sm:p-8" : ""}>
-        <p className={variant === "card" ? "text-sm font-semibold uppercase tracking-wide text-sage-200" : "text-sm font-semibold uppercase tracking-wide text-sage-600"}>
-          Join the Waco Dog Parent List
-        </p>
-        <h3 className={variant === "card" ? "mt-1 text-xl text-white sm:text-2xl" : "mt-1 text-xl text-bark sm:text-2xl"}>
-          Dog-friendly Waco, in your inbox.
-        </h3>
-        <p className={variant === "card" ? "mt-2 text-sm leading-relaxed text-sage-100" : "mt-2 text-sm leading-relaxed text-bark-soft"}>
-          Local dog-friendly finds, pet care updates, product recommendations,
-          and practical Waco dog parent tips.
-        </p>
-        <div className="mt-4">
-          <EmailSignupForm compact={variant === "inline"} />
+    <Wrapper
+      id={id}
+      className={cn(
+        isSection && "bg-sand py-24 md:py-32",
+        className,
+      )}
+    >
+      <div
+        className={cn(
+          isSection && "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8",
+          isCard && "rounded-card bg-cream p-6 ring-1 ring-inset ring-clay sm:p-8",
+        )}
+      >
+        <div
+          className={cn(
+            "grid gap-10",
+            !compact && "lg:grid-cols-[1fr_1.1fr] lg:items-start",
+          )}
+        >
+          <div className={compact ? undefined : "max-w-lg"}>
+            <p className="eyebrow eyebrow-brass">Updates</p>
+            <h2
+              className={cn(
+                "heading mt-3",
+                compact ? "text-xl" : "text-3xl md:text-4xl",
+              )}
+            >
+              {signupCopy.headline}
+            </h2>
+            <p className="dek mt-4 text-base">{signupCopy.subheadline}</p>
+            {!compact && (
+              <p className="dek mt-4 text-base text-bark-soft">
+                {brandLanguage.instagram.socialLine}
+              </p>
+            )}
+            {!compact && (
+              <div className="mt-4">
+                <PresentingSponsor size="sm" />
+              </div>
+            )}
+            {showSocial && !compact && (
+              <SocialLinksBlock className="mt-8 hidden lg:block" size="sm" />
+            )}
+          </div>
+          <div className={compact ? "max-w-md" : undefined}>
+            <EmailSignupForm
+              compact={compact}
+              sourcePage={sourcePage}
+              showSocialOnSuccess={showSocial}
+            />
+            {showSocial && compact && (
+              <SocialLinksBlock className="mt-5" size="sm" />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </Wrapper>
   );
 }

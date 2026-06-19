@@ -20,6 +20,11 @@ export function isResendApiKeyConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY?.trim());
 }
 
+export function resendApiKeyLooksValid(): boolean {
+  const key = process.env.RESEND_API_KEY?.trim() ?? "";
+  return key.startsWith("re_") && key.length > 20;
+}
+
 export function isNotificationRecipientConfigured(): boolean {
   return Boolean(process.env.LEAD_NOTIFICATION_EMAIL?.trim());
 }
@@ -69,6 +74,7 @@ async function getLastLeadSavedAtFromDb(): Promise<string | null> {
 export type LeadPipelineHealth = {
   supabaseConfigured: boolean;
   resendConfigured: boolean;
+  resendApiKeyLooksValid: boolean;
   notificationRecipientConfigured: boolean;
   fromEmailConfigured: boolean;
   emailSendPathConfigured: boolean;
@@ -86,6 +92,7 @@ export async function getLeadPipelineHealth(): Promise<LeadPipelineHealth> {
   return {
     supabaseConfigured: isSupabaseConfigured(),
     resendConfigured: isResendApiKeyConfigured(),
+    resendApiKeyLooksValid: resendApiKeyLooksValid(),
     notificationRecipientConfigured: isNotificationRecipientConfigured(),
     fromEmailConfigured: isFromEmailConfigured(),
     emailSendPathConfigured: isEmailConfigured(),

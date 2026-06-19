@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
   const staticRoutes = [
     "",
+    "/book",
     "/dog-friendly-waco",
     "/weekend",
     "/pet-care",

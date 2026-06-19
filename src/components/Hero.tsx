@@ -2,13 +2,12 @@ import { PawPrint, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { SponsorBadge } from "@/components/SponsorBadge";
-import { siteConfig, ctas } from "@/lib/site";
+import { ctas, brandLanguage } from "@/lib/site";
 
-/** Homepage hero. */
+/** Homepage hero — community brand first, sponsor second. */
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-sage-50 via-cream to-cream">
-      {/* soft decorative paw motif */}
       <PawPrint
         className="pointer-events-none absolute -right-8 -top-8 h-48 w-48 text-sage-100"
         aria-hidden="true"
@@ -31,18 +30,11 @@ export function Hero() {
           </div>
 
           <h1 className="text-4xl leading-[1.05] sm:text-5xl md:text-6xl">
-            Your Dog-Friendly
-            <br />
-            Guide to Waco
+            {brandLanguage.primaryName}
           </h1>
 
-          <p className="mt-3 text-sm font-medium text-gold-600">
-            {siteConfig.sponsorLine}
-          </p>
-
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-bark-soft">
-            Find dog-friendly patios, parks, events, local businesses, and
-            real-life training tips for calmer adventures with your pup.
+            {brandLanguage.communityLine}. {brandLanguage.servicesLine}.
           </p>
 
           <div className="mt-8 flex flex-col flex-wrap gap-3 sm:flex-row">
@@ -50,8 +42,8 @@ export function Hero() {
               <PawPrint className="h-5 w-5" aria-hidden="true" />
               {ctas.exploreDirectory.label}
             </Button>
-            <Button href={ctas.trainingHelp.href} variant="secondary" size="lg">
-              {ctas.trainingHelp.label}
+            <Button href="/book" variant="secondary" size="lg">
+              Book pet care
             </Button>
             <Button href={ctas.learnScoops.href} variant="ghost" size="lg">
               {ctas.learnScoops.label}

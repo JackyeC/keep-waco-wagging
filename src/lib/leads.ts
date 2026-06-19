@@ -1,5 +1,7 @@
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase/server";
 import { isEmailConfigured, sendLeadNotification } from "@/lib/email";
+import { logLeadPipelineOutcome } from "@/lib/leadPipelineLog";
+import { formatLeadSignupEmail } from "@/lib/signup";
 
 export type SubmissionType =
   | "lead"
@@ -15,7 +17,7 @@ type SubmissionConfig = {
 const configs: Record<SubmissionType, SubmissionConfig> = {
   lead: {
     table: "leads",
-    subject: "New Keep Waco Wagging email signup",
+    subject: "New Keep Waco Wagging signup",
   },
   directory_submission: {
     table: "directory_submissions",
@@ -51,7 +53,22 @@ function isProductionEnvironment(): boolean {
   return process.env.NODE_ENV === "production";
 }
 
-function formatPayload(payload: Record<string, unknown>): string {
+function formatPayload(
+  type: SubmissionType,
+  payload: Record<string, unknown>,
+): string {
+  if (type === "lead") {
+    return formatLeadSignupEmail({
+      first_name: payload.first_name as string | null | undefined,
+      email: String(payload.email ?? ""),
+      dog_name: payload.dog_name as string | null | undefined,
+      zip_code: payload.zip_code as string | null | undefined,
+      interests: payload.interests as string[] | undefined,
+      source_page: payload.source_page as string | null | undefined,
+      created_at: new Date().toISOString(),
+    });
+  }
+
   return Object.entries(payload)
     .map(([key, value]) => {
       const formatted = Array.isArray(value) ? value.join(", ") : String(value ?? "");
@@ -90,13 +107,17 @@ export async function saveSubmission(
   }
 
   let notified = false;
+  let notificationError: string | undefined;
+  let resendMessageId: string | undefined;
 
   if (emailReady) {
     const notification = await sendLeadNotification(
       config.subject,
-      formatPayload(payload),
+      formatPayload(type, payload),
     );
     notified = notification.ok;
+    notificationError = notification.error;
+    resendMessageId = notification.messageId;
     if (!notification.ok) {
       console.error(`[lead notification ${config.table}]`, notification.error);
     }
@@ -107,17 +128,42 @@ export async function saveSubmission(
 
   if (supabaseSucceeded || emailSucceeded) {
     if (supabaseSucceeded && emailReady && !notified) {
-      console.error(
-        `[lead submission] PARTIAL_SUCCESS notified=false table=${config.table} subject="${config.subject}" — lead saved to Supabase but Resend notification failed. Check RESEND_API_KEY, RESEND_FROM_EMAIL, and Resend domain verification.`,
-      );
+      logLeadPipelineOutcome({
+        event: "partial_success_notification_failed",
+        table: config.table,
+        stored: true,
+        notified: false,
+        subject: config.subject,
+        error: notificationError ??
+          "Lead saved to Supabase but Resend notification failed. Check RESEND_API_KEY, RESEND_FROM_EMAIL, and Resend domain verification.",
+      });
     } else if (supabaseSucceeded && !emailReady && isProductionEnvironment()) {
-      console.warn(
-        `[lead submission] PARTIAL_SUCCESS notified=false table=${config.table} — lead saved but email notifications are not fully configured (RESEND_API_KEY and/or LEAD_NOTIFICATION_EMAIL).`,
-      );
+      logLeadPipelineOutcome({
+        event: "partial_success_email_not_configured",
+        table: config.table,
+        stored: true,
+        notified: false,
+        subject: config.subject,
+        error:
+          "Lead saved but email notifications are not fully configured (RESEND_API_KEY and/or LEAD_NOTIFICATION_EMAIL).",
+      });
     } else if (emailSucceeded && !stored && supabaseReady) {
-      console.warn(
-        `[lead submission] PARTIAL_SUCCESS stored=false table=${config.table} — notification sent but Supabase insert failed.`,
-      );
+      logLeadPipelineOutcome({
+        event: "partial_success_supabase_insert_failed",
+        table: config.table,
+        stored: false,
+        notified: true,
+        subject: config.subject,
+      });
+    } else {
+      logLeadPipelineOutcome({
+        event: "submission_complete",
+        table: config.table,
+        stored: supabaseSucceeded,
+        notified: emailSucceeded,
+        subject: config.subject,
+        resendMessageId,
+      });
     }
 
     return { ok: true, stored, notified };
@@ -132,7 +178,7 @@ export async function saveSubmission(
 
   console.warn(
     `[lead submission] No backend configured — submission not persisted (${config.table}).`,
-    formatPayload(payload),
+    formatPayload(type, payload),
   );
   return { ok: false, error: USER_SAFE_ERROR };
 }

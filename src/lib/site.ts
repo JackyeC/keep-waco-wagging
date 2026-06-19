@@ -5,17 +5,43 @@
  * `src/data/`. Do not hide city-specific facts inside components.
  */
 
+/** Reusable brand copy — primary community brand with Platinum Scoops as presenter. */
+export const brandLanguage = {
+  primaryName: "Keep Waco Wagging",
+  presentedBy: "Presented by Platinum Scoops",
+  poweredBy: "Keep Waco Wagging is powered by Platinum Scoops.",
+  servicesLine:
+    "Doggy daycare, boarding, pet care, and poop scoop services in Waco",
+  communityLine: "Waco dog parent resources, events, and camp experiences",
+  sponsorServices:
+    "Platinum Scoops provides pet waste removal, doggy daycare, boarding, and pet care services in Waco.",
+  dogCampName: "Keep Waco Wagging Dog Camp",
+  sponsorCampInquiry: "Interested in sponsoring a future camp week? Contact us.",
+  communityPartnersWelcome: "Community partners welcome",
+  instagram: {
+    handle: "@platinum_scoops",
+    url: "https://www.instagram.com/platinum_scoops/",
+    cta: "Follow @platinum_scoops",
+    followLine:
+      "Follow @platinum_scoops for dog daycare moments, local pet care updates, and Waco pup fun.",
+    socialLine:
+      "Follow the pups, community updates, and behind-the-scenes fun on Instagram at @platinum_scoops.",
+    actionLine:
+      "Want to see the dogs in action? Follow Platinum Scoops on Instagram: @platinum_scoops.",
+  },
+} as const;
+
 export const cityConfig = {
   city: "Waco",
   state: "Texas",
   stateAbbr: "TX",
   county: "McLennan County",
   slug: "waco",
-  name: "Keep Waco Wagging",
-  tagline: "Dog-friendly Waco, practical pet care, and cleaner dog days.",
+  name: brandLanguage.primaryName,
+  tagline: brandLanguage.communityLine,
   url: "https://keepwacowagging.com",
   description:
-    "Keep Waco Wagging is a local guide for Waco dog parents, featuring dog-friendly places, Platinum Scoops yard cleanup, Rover pet care, product recommendations, and local resources.",
+    "Keep Waco Wagging is the public-facing community brand for Waco dog parents — local resources, events, and camp experiences, presented by Platinum Scoops.",
   keywords: [
     "dog-friendly Waco",
     "Waco dog parents",
@@ -40,7 +66,10 @@ export const cityConfig = {
   // Axtell, Ross.
   sponsor: {
     name: "Platinum Scoops",
-    line: "Presented by Platinum Scoops",
+    line: brandLanguage.presentedBy,
+    description: brandLanguage.sponsorServices,
+    /** Set when `/public/brand/platinum-scoops-logo.webp` is added. */
+    logo: undefined as string | undefined,
     website: "https://platinumscoops.com",
     bookingUrl:
       "https://clienthub.getjobber.com/booking/29462df8-88c9-4075-aa13-000fc4c8b80c",
@@ -71,11 +100,6 @@ export const cityConfig = {
     productDisclosure:
       "Product recommendations are based on practical dog care experience. Always choose what fits your dog's size, health, and behavior needs.",
   },
-  social: [
-    { label: "Instagram", href: "#" },
-    { label: "Facebook", href: "#" },
-    { label: "TikTok", href: "#" },
-  ],
   brand: {
     logo: {
       /** Full lockup — merch, print, hero sections, stickers, social graphics */
@@ -106,6 +130,7 @@ export const siteConfig = {
   keywords: cityConfig.keywords,
   serviceAreas: cityConfig.serviceAreas,
   brand: cityConfig.brand,
+  brandLanguage,
 } as const;
 
 export type NavLink = {
@@ -125,6 +150,7 @@ export const mainNav: NavLink[] = [
 
 // Community & secondary pages — footer and mobile "More" group.
 export const secondaryNav: NavLink[] = [
+  { label: "Book", href: "/book" },
   { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
   { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "Summer Camp", href: "/summer-daycare" },
@@ -163,12 +189,12 @@ export const ctas = {
     href: `mailto:${cityConfig.sponsor.email}?subject=Waco%20dog%20training%20interest`,
   },
   joinList: {
-    label: "Join the Waco Dog Parent List",
-    href: "#email-list",
+    label: "Get Keep Waco Wagging updates",
+    href: "#updates-signup",
   },
   joinWeekend: {
-    label: "Join the Waco Dog Parent List",
-    href: "#email-list",
+    label: "Get Keep Waco Wagging updates",
+    href: "#updates-signup",
   },
   becomeSponsor: {
     label: "Become a Local Sponsor",
@@ -223,7 +249,82 @@ export const sponsorLinks = {
   ],
 } as const;
 
-export const socialLinks = cityConfig.social;
+export type SocialLink = {
+  id: string;
+  label: string;
+  /** Omit or leave undefined until the URL is confirmed live. */
+  href?: string;
+  external?: boolean;
+};
+
+/** Verified Platinum Scoops channel URLs — add entries here as accounts go live. */
+const platinumScoopsSocialChannels: SocialLink[] = [
+  {
+    id: "facebook",
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61574612007831",
+    external: true,
+  },
+  {
+    id: "instagram",
+    label: brandLanguage.instagram.handle,
+    href: brandLanguage.instagram.url,
+    external: true,
+  },
+  {
+    id: "tiktok",
+    label: "TikTok",
+    href: "https://www.tiktok.com/@platinumscoops",
+    external: true,
+  },
+  {
+    id: "youtube",
+    label: "YouTube",
+    href: "https://www.youtube.com/@platinumscoops",
+    external: true,
+  },
+  {
+    id: "rover",
+    label: "Rover",
+    href: cityConfig.rover.profileUrl,
+    external: true,
+  },
+  {
+    id: "google",
+    label: "Google Business Profile",
+    href: "https://maps.google.com/maps?cid=14215484891628278653",
+    external: true,
+  },
+  {
+    id: "email",
+    label: "Email",
+    href: `mailto:${cityConfig.sponsor.email}`,
+  },
+  {
+    id: "phone",
+    label: "Phone",
+    href: cityConfig.sponsor.phoneHref,
+  },
+];
+
+/** Returns only social links with a confirmed, non-placeholder URL. */
+export function getLiveSocialLinks(links: readonly SocialLink[] = platinumScoopsSocialChannels): SocialLink[] {
+  return links.filter(
+    (link): link is SocialLink & { href: string } =>
+      Boolean(link.href && link.href !== "#"),
+  );
+}
+
+/** Social + contact links — Platinum Scoops accounts, KWW audience. */
+export const socialLinksConfig = {
+  sectionTitle: brandLanguage.poweredBy,
+  sectionBlurb: brandLanguage.instagram.followLine,
+  instagramCta: brandLanguage.instagram.cta,
+  links: getLiveSocialLinks(),
+} as const;
+
+/** @deprecated Use socialLinksConfig.links */
+export const socialLinks = socialLinksConfig.links;
 export const monetization = cityConfig.monetization;
 
 export function getAmazonAssociatesTag(): string | undefined {

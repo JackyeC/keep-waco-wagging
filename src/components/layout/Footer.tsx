@@ -1,6 +1,9 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/Logo";
+import { PresentingSponsor } from "@/components/PresentingSponsor";
+import { SocialLinksBlock } from "@/components/SocialLinksBlock";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { NavLinkItem } from "@/components/NavLinkItem";
 import {
   siteConfig,
@@ -9,7 +12,7 @@ import {
   mainNav,
   secondaryNav,
   ctas,
-  socialLinks,
+  brandLanguage,
 } from "@/lib/site";
 
 export function Footer() {
@@ -17,19 +20,28 @@ export function Footer() {
 
   return (
     <footer className="border-t border-clay bg-sand">
+      <NewsletterSignup
+        sourcePage="footer"
+        compact
+        variant="inline"
+        className="border-b border-clay bg-cream py-12"
+        showSocial
+      />
+
       <Container className="py-12 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.85fr_0.85fr_1fr]">
           <div>
             <Logo variant="mark" />
-            <p className="smallcaps mt-3 text-gold-500">
-              Presented by {cityConfig.sponsor.name}
-            </p>
+            <div className="mt-3">
+              <PresentingSponsor size="sm" />
+            </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-bark-soft">
-              <span className="font-semibold text-bark">{siteConfig.name}</span>{" "}
-              is a local Waco dog-parent guide presented by{" "}
-              <span className="font-semibold text-bark">{cityConfig.sponsor.name}</span>
-              .
+              {brandLanguage.communityLine}. {brandLanguage.presentedBy}.
             </p>
+            <p className="mt-2 max-w-xs text-xs leading-relaxed text-bark-faint">
+              {brandLanguage.sponsorServices}
+            </p>
+            <SocialLinksBlock className="mt-5" size="sm" />
             <p className="mt-3 text-xs leading-relaxed text-bark-faint">
               Dog policies, hours, prices, and availability may change. Please
               verify directly before visiting or booking.
@@ -67,14 +79,14 @@ export function Footer() {
           <div className="rounded-card bg-cream p-5 ring-1 ring-inset ring-clay">
             <p className="text-sm font-semibold text-bark">Book with us</p>
             <p className="mt-1 text-sm text-bark-soft">
-              Yard scooping through Platinum Scoops. Boarding and daycare on Rover.
+              {brandLanguage.servicesLine}
             </p>
             <div className="mt-4 flex flex-col gap-2">
+              <Button href="/book" variant="primary" size="sm">
+                Book pet care
+              </Button>
               <Button href={ctas.bookScoops.href} variant="sponsor" size="sm">
                 {ctas.bookScoops.label}
-              </Button>
-              <Button href={ctas.bookPetCare.href} variant="secondary" size="sm">
-                {ctas.bookPetCare.label}
               </Button>
             </div>
             <ul className="mt-4 space-y-1.5 text-xs text-bark-soft">
@@ -92,18 +104,6 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-xs text-bark-faint hover:text-sage-700"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            {/* TODO: Replace placeholder social URLs in cityConfig.social with live handles. */}
           </div>
         </div>
 

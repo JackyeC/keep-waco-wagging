@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { NavLinkItem, isNavActive } from "@/components/NavLinkItem";
 import { Button } from "@/components/ui/Button";
-import { mainNav, secondaryNav, ctas } from "@/lib/site";
+import { mainNav, secondaryNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
@@ -34,8 +34,8 @@ export function Header() {
         </nav>
 
         <div className="hidden shrink-0 lg:block">
-          <Button href={ctas.bookScoops.href} variant="sponsor" size="sm" className="rounded-sm px-4 py-1.5">
-            {ctas.bookScoops.label}
+          <Button href="/book" variant="sponsor" size="sm" className="rounded-sm px-4 py-1.5">
+            Book
           </Button>
         </div>
 
@@ -78,12 +78,12 @@ export function Header() {
               />
             ))}
             <Button
-              href={ctas.bookScoops.href}
+              href="/book"
               variant="sponsor"
               className="mt-3 w-full"
               size="md"
             >
-              {ctas.bookScoops.label}
+              Book
             </Button>
           </nav>
         </div>

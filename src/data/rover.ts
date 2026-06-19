@@ -3,7 +3,7 @@ import { cityConfig } from "@/lib/site";
 export const rover = {
   profileUrl: cityConfig.rover.profileUrl,
   rating: "5.0",
-  reviewCount: 73,
+  reviewCount: cityConfig.rover.reviewCount,
   positioning: "Full-Time Pet Care Professionals",
   tagline: "Our Empty Nest, Your Dog's Retreat",
   pricingNote:

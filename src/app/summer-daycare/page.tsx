@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
+import { CampSponsorCallout } from "@/components/CampSponsorCallout";
+import { CommunityPartners } from "@/components/CommunityPartners";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { PresentingSponsor } from "@/components/PresentingSponsor";
 import { SitePhoto } from "@/components/SitePhoto";
 import { summerDaycare, daycareThemes } from "@/data/summerDaycare";
 import { sitePhotos } from "@/data/sitePhotos";
-import { cityConfig, ctas } from "@/lib/site";
+import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Summer Dog Daycare Camp in ${cityConfig.city} | Thirteen Weeks of Summer`,
-  description: `A themed weekly summer daycare calendar for ${cityConfig.city} dogs — splash days, sniff safaris, manners camp, and more. Home-based, full-time care. Reserve your dog's spot on Rover.`,
+  title: `${brandLanguage.dogCampName} | Thirteen Weeks of Summer`,
+  description: `${brandLanguage.dogCampName} — themed weekly summer daycare in ${cityConfig.city}. ${brandLanguage.presentedBy}.`,
 };
 
 const masthead = [
@@ -74,8 +78,11 @@ export default function SummerDaycarePage() {
           <div className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
             <p className="eyebrow text-gold-200" style={{textShadow: "0 1px 8px rgba(0,0,0,0.85)"}}>Summer 2026</p>
             <h1 className="display mt-4 max-w-3xl text-white" style={{textShadow: "0 2px 24px rgba(0,0,0,0.7)"}}>
-              Thirteen weeks of summer.
+              {brandLanguage.dogCampName}
             </h1>
+            <div className="mt-4" style={{textShadow: "0 1px 8px rgba(0,0,0,0.85)"}}>
+              <PresentingSponsor light />
+            </div>
             <p className="dek mt-5 inline-block max-w-xl rounded-sm bg-bark/80 px-5 py-3 backdrop-blur-sm" style={{color: "#f6f1e7"}}>
               A small-group summer camp run out of our home — a new theme every
               week, plenty of shade and water, and the same calm care your dog
@@ -233,7 +240,8 @@ export default function SummerDaycarePage() {
                 <p className="dek mt-2 max-w-prose text-base">{summerDaycare.bookingNote}</p>
               </div>
             </div>
-            <div className="md:col-span-4 md:col-start-9">
+            <div className="md:col-span-4 md:col-start-9 space-y-6">
+              <CampSponsorCallout />
               <a
                 href={ctas.bookPetCare.href}
                 target="_blank"
@@ -243,13 +251,21 @@ export default function SummerDaycarePage() {
                 Reserve on Rover
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <p className="smallcaps mt-6 text-bark-soft">
+              <p className="smallcaps text-bark-soft">
                 {cityConfig.rover.rating} ★ · {cityConfig.rover.reviewCount} reviews · Star Sitter
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      <section className="bg-sand py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <CommunityPartners compact />
+        </div>
+      </section>
+
+      <NewsletterSignup sourcePage="/summer-daycare" variant="section" />
     </>
   );
 }

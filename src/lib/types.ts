@@ -324,3 +324,21 @@ export type SponsorProspect = {
   publishContactInfo: boolean;
   notes: string;
 };
+
+/** Tier labels for community partner / camp sponsor placements. */
+export type SponsorTier =
+  | "Presenting Sponsor"
+  | "Weekly Camp Sponsor"
+  | "Photo Booth Sponsor"
+  | "Treat Sponsor"
+  | "Community Partner";
+
+/** A verified community partner shown in sponsor sections. */
+export interface CommunityPartner {
+  id: string;
+  sponsorName: string;
+  sponsorLogo?: string;
+  sponsorTier: SponsorTier;
+  sponsorUrl?: string;
+  sponsorDescription: string;
+}
