@@ -57,14 +57,14 @@ const galleryStrip = [
 export default function HomePage() {
   return (
     <>
-      {/* ── HERO ── full-bleed curated group walk, 88vh, bottom-left legibility overlay */}
-      <section className="relative h-[88vh] min-h-[34rem] w-full overflow-hidden">
+      {/* ── HERO ── curated group walk; contain on narrow viewports to show full pack */}
+      <section className="relative h-[40vh] min-h-[15rem] w-full overflow-hidden bg-bark sm:h-[44vh] sm:min-h-[18rem] lg:h-[88vh] lg:min-h-[34rem]">
         <SitePhoto
           src={sitePhotos.hero.src}
           alt={sitePhotos.hero.alt}
           priority
           sizes="100vw"
-          className="object-[50%_62%] sm:object-[50%_55%] lg:object-center"
+          className="!object-contain object-center"
         />
         {/* Layered overlays: vertical bottom shade + strong bottom-left radial for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-bark/95 via-bark/55 to-bark/15" />
