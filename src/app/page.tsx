@@ -57,13 +57,14 @@ const galleryStrip = [
 export default function HomePage() {
   return (
     <>
-      {/* ── HERO ── full-bleed jackyeCollieTree, 88vh, bottom-left legibility overlay */}
-      <section className="relative h-[88vh] min-h-[34rem] w-full">
+      {/* ── HERO ── full-bleed curated group walk, 88vh, bottom-left legibility overlay */}
+      <section className="relative h-[88vh] min-h-[34rem] w-full overflow-hidden">
         <SitePhoto
-          src={sitePhotos.jackyeCollieTree.src}
-          alt={sitePhotos.jackyeCollieTree.alt}
+          src={sitePhotos.hero.src}
+          alt={sitePhotos.hero.alt}
           priority
           sizes="100vw"
+          className="object-[50%_62%] sm:object-[50%_55%] lg:object-center"
         />
         {/* Layered overlays: vertical bottom shade + strong bottom-left radial for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-t from-bark/95 via-bark/55 to-bark/15" />

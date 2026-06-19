@@ -1,8 +1,8 @@
 /** Optimized local photography — files live in /public/pictures/ */
 export const sitePhotos = {
   hero: {
-    src: "/pictures/jackye-collie-tree.webp",
-    alt: "Jackye Clayton with a border collie under a big Waco tree on a sunny afternoon",
+    src: "/pictures/hero-group-walk.webp",
+    alt: "Five dogs on a group walk down a sunny Waco neighborhood street, seen from the handler's point of view",
   },
   scooping: {
     src: "/pictures/scooping-yard.webp",
