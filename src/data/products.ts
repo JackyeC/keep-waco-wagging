@@ -167,6 +167,39 @@ const productRecommendations: ProductSeed[] = [
     asin: "B0002AR0I8",
   },
   {
+    id: "rigby-beef-squeeze",
+    title: "Rigby Organic Grass-Fed Beef Dog Treat Squeeze Pouches",
+    category: "Enrichment",
+    description:
+      "One pouch every day for meal topping, training, pill pockets, lick mats, and enrichment — low-calorie real food for muscle and recovery support.",
+    whyWeLikeIt:
+      "We use Rigby squeeze pouches daily — smear on lick mats, squeeze into Kongs, or top meals. Real-food format beats dry treats for picky dogs and high-value training moments.",
+    bestFor: ["Meal topping", "Training", "Pill pockets", "Lick mats", "Enrichment"],
+    amazonUrl: "https://amzn.to/4eBQf6j",
+  },
+  {
+    id: "rigby-chicken-squeeze",
+    title: "Rigby Organic Chicken Dog Treat Squeeze Pouches",
+    category: "Enrichment",
+    description:
+      "Chicken squeeze pouches for training, pill pockets, lick mats, and everyday enrichment.",
+    whyWeLikeIt:
+      "Same Rigby pouch format we use at home — easy to portion, lick-safe, and a good poultry option when beef or salmon is not the right fit.",
+    bestFor: ["Training", "Pill pockets", "Lick mats", "Poultry-loving dogs"],
+    amazonUrl: "https://amzn.to/4w4Wvee",
+  },
+  {
+    id: "rigby-salmon-squeeze",
+    title: "Rigby Organic Salmon Dog Treat Squeeze Pouches",
+    category: "Enrichment",
+    description:
+      "Salmon squeeze pouches for high-value rewards, lick mats, and enrichment rotation.",
+    whyWeLikeIt:
+      "Fishy flavor dogs notice — helpful for picky eaters and novelty rewards without opening a can every time.",
+    bestFor: ["Lick mats", "Training", "Pill pockets", "Picky dogs"],
+    amazonUrl: "https://amzn.to/4wan4id",
+  },
+  {
     id: "lick-mats",
     title: "Lick mats",
     category: "Enrichment",

@@ -584,6 +584,77 @@ export const gearGuideDepartments: GearGuideDepartment[] = [
     },
     [
       {
+        id: "rigby-beef-squeeze",
+        name: "Rigby Organic Grass-Fed Beef Dog Treat Squeeze Pouches",
+        department: "Enrichment & Play",
+        badge: "Used by Platinum Scoops",
+        whyItMadeTheList:
+          "One pouch every day for meal topping, training, pill pockets, lick mats, and enrichment — low-calorie real food for muscle and recovery support.",
+        bestFor: [
+          "Meal topping",
+          "Training rewards",
+          "Pill pockets",
+          "Lick mats",
+          "Enrichment",
+        ],
+        notIdealFor: [
+          "Dogs with beef sensitivities without vet guidance",
+          "Unsupervised pouch chewing",
+        ],
+        platinumScoopsNote: "We use Rigby squeeze pouches for daily enrichment and lick-mat prep.",
+        imageAlt:
+          "Rigby organic grass-fed beef dog treat squeeze pouch for meal topping and enrichment",
+        link: "https://amzn.to/4eBQf6j",
+        priority: 0,
+        featured: true,
+      },
+      {
+        id: "rigby-chicken-squeeze",
+        name: "Rigby Organic Chicken Dog Treat Squeeze Pouches",
+        department: "Enrichment & Play",
+        badge: "Used by Platinum Scoops",
+        whyItMadeTheList:
+          "Same squeeze-pouch format as our beef pick — easy to portion for training, pill pockets, lick mats, and everyday enrichment with a chicken recipe.",
+        bestFor: [
+          "Training rewards",
+          "Pill pockets",
+          "Lick mats",
+          "Meal topping",
+          "Dogs who prefer poultry",
+        ],
+        notIdealFor: [
+          "Dogs with chicken sensitivities without vet guidance",
+          "Unsupervised pouch chewing",
+        ],
+        platinumScoopsNote: "Chicken is one of the Rigby flavors we rotate for enrichment.",
+        imageAlt: "Rigby organic chicken dog treat squeeze pouch",
+        link: "https://amzn.to/4w4Wvee",
+        priority: 0,
+      },
+      {
+        id: "rigby-salmon-squeeze",
+        name: "Rigby Organic Salmon Dog Treat Squeeze Pouches",
+        department: "Enrichment & Play",
+        badge: "Used by Platinum Scoops",
+        whyItMadeTheList:
+          "Salmon squeeze pouches for dogs who love fishy high-value rewards — great for lick mats, training moments, and picky eaters who need something novel.",
+        bestFor: [
+          "Lick mats",
+          "Training rewards",
+          "Pill pockets",
+          "Picky dogs",
+          "Enrichment rotation",
+        ],
+        notIdealFor: [
+          "Dogs with fish sensitivities without vet guidance",
+          "Unsupervised pouch chewing",
+        ],
+        platinumScoopsNote: "Salmon is another Rigby flavor we keep on hand for enrichment days.",
+        imageAlt: "Rigby organic salmon dog treat squeeze pouch",
+        link: "https://amzn.to/4wan4id",
+        priority: 0,
+      },
+      {
         id: "puzzle-toy",
         name: "PETSTA Dog Puzzle Toys",
         department: "Enrichment & Play",
