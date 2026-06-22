@@ -37,6 +37,8 @@ export const shopProductImages: Record<string, string> = {
     "https://m.media-amazon.com/images/I/71IjtTv+RhL._AC_SL500_.jpg",
   "dog-wipes":
     "https://m.media-amazon.com/images/I/71+HBi9rw3L._AC_SL500_.jpg",
+  "stainless-bowls":
+    "/shop/stainless-bowls.webp",
   "elevated-bed":
     "https://m.media-amazon.com/images/I/61e-toCLdgL._AC_SL500_.jpg",
 };
