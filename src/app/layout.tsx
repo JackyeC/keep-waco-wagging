@@ -4,8 +4,9 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
 import { PodcastBar } from "@/components/PodcastBar";
-import { siteConfig } from "@/lib/site";
+import { brandLanguage, siteConfig } from "@/lib/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,13 +24,13 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
-    template: `%s — ${siteConfig.name}`,
+    default: `${siteConfig.name} — ${brandLanguage.heroLine}`,
+    template: "%s",
   },
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
   openGraph: {
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: `${siteConfig.name} — ${brandLanguage.heroLine}`,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: `${siteConfig.name} — ${brandLanguage.heroLine}`,
     description: siteConfig.description,
     images: ["/pictures/og-share.webp"],
   },
@@ -63,6 +64,7 @@ export default function RootLayout({
       className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-bark">
+        <OrganizationJsonLd />
         <PodcastBar />
         <Header />
         <main className="flex-1">{children}</main>

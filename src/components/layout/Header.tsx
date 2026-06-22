@@ -18,13 +18,13 @@ export function Header() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
         <Logo variant="mark" className="min-w-0 shrink-0" />
 
-        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-0 lg:flex xl:gap-0.5" aria-label="Primary">
           {mainNav.map((link) => (
             <NavLinkItem
               key={link.href}
               link={link}
               className={cn(
-                "rounded-full px-3 py-2 text-sm font-medium transition-colors",
+                "rounded-full px-2.5 py-2 text-[0.8125rem] font-medium transition-colors xl:px-3 xl:text-sm",
                 isNavActive(pathname, link.href)
                   ? "bg-sage-100 text-sage-700"
                   : "text-bark-soft hover:bg-sage-50 hover:text-bark",
@@ -35,7 +35,7 @@ export function Header() {
 
         <div className="hidden shrink-0 lg:block">
           <Button href="/book" variant="sponsor" size="sm" className="rounded-sm px-4 py-1.5">
-            Book
+            Book a service
           </Button>
         </div>
 
@@ -67,7 +67,7 @@ export function Header() {
               />
             ))}
             <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wide text-bark-faint">
-              Community
+              More
             </p>
             {secondaryNav.map((link) => (
               <NavLinkItem
@@ -83,7 +83,7 @@ export function Header() {
               className="mt-3 w-full"
               size="md"
             >
-              Book
+              Book a service
             </Button>
           </nav>
         </div>

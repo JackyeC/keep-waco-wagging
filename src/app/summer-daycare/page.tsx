@@ -7,17 +7,24 @@ import { PresentingSponsor } from "@/components/PresentingSponsor";
 import { SitePhoto } from "@/components/SitePhoto";
 import { summerDaycare, daycareThemes } from "@/data/summerDaycare";
 import { sitePhotos } from "@/data/sitePhotos";
+import { servicePageMetadata } from "@/lib/metadata";
+import { roverCredentialsLine } from "@/lib/roverCredentials";
 import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: `${brandLanguage.dogCampName} | Thirteen Weeks of Summer`,
-  description: `${brandLanguage.dogCampName} — themed weekly summer daycare in ${cityConfig.city}. ${brandLanguage.presentedBy}.`,
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/summer-daycare",
+  `${brandLanguage.dogCampName} | Thirteen Weeks of Summer`,
+  `${brandLanguage.dogCampName} — themed weekly summer daycare in ${cityConfig.city}. ${brandLanguage.brandByLine}.`,
+);
 
 const masthead = [
   { label: "Weeks", value: "13" },
   { label: "Days", value: "Mon to Fri" },
-  { label: "Ages", value: "All dogs" },
+  {
+    label: "Fit",
+    value: "Small-group home camp",
+    detail: "Dogs who fit a supervised home environment. New clients complete a Fit Check.",
+  },
   { label: "Location", value: "Waco, TX" },
 ];
 
@@ -46,7 +53,7 @@ const faqs = [
   },
   {
     q: "What kinds of dogs are a good fit?",
-    a: "Social dogs of all ages who enjoy a home environment. We keep groups small and read every dog — if a day should be quieter, we make it quieter.",
+    a: "Dogs who fit a small, supervised home environment. New dogs complete a Fit Check before joining group care — not every dog participates in group play, and we adjust the day to what each dog needs.",
   },
   {
     q: "How do I reserve a spot?",
@@ -88,12 +95,23 @@ export default function SummerDaycarePage() {
               week, plenty of shade and water, and the same calm care your dog
               already knows.
             </p>
-            <a
-              href="#weeks"
-              className="mt-8 inline-flex items-center gap-2 rounded-sm bg-gold-400 px-6 py-3 text-sm font-semibold tracking-wide text-bark transition-colors hover:bg-gold-500"
-            >
-              See the weeks ↓
-            </a>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href={ctas.bookPetCare.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-sm bg-gold-400 px-6 py-3 text-sm font-semibold tracking-wide text-bark transition-colors hover:bg-gold-500"
+              >
+                Reserve on Rover
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href="#weeks"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-cream underline decoration-cream/40 underline-offset-4 transition-colors hover:decoration-cream"
+              >
+                See the weeks
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -110,6 +128,9 @@ export default function SummerDaycarePage() {
               >
                 <dt className="smallcaps text-gold-500">{item.label}</dt>
                 <dd className="smallcaps mt-2 text-bark">{item.value}</dd>
+                {"detail" in item && item.detail && (
+                  <dd className="caption mt-2 text-bark-soft">{item.detail}</dd>
+                )}
               </div>
             ))}
           </dl>
@@ -251,9 +272,7 @@ export default function SummerDaycarePage() {
                 Reserve on Rover
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <p className="smallcaps text-bark-soft">
-                {cityConfig.rover.rating} ★ · {cityConfig.rover.reviewCount} reviews · Star Sitter
-              </p>
+              <p className="smallcaps text-bark-soft">{roverCredentialsLine}</p>
             </div>
           </div>
         </div>

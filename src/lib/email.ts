@@ -3,6 +3,10 @@ import {
   getConfiguredFromEmail,
   recordNotificationAttempt,
 } from "@/lib/leadPipelineHealth";
+import {
+  getLeadNotificationEmail,
+  isLeadNotificationRecipientConfigured,
+} from "@/lib/leadNotificationConfig";
 
 let resendClient: Resend | null = null;
 
@@ -16,7 +20,7 @@ function getResend(): Resend | null {
 }
 
 export function isEmailConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY && process.env.LEAD_NOTIFICATION_EMAIL);
+  return Boolean(process.env.RESEND_API_KEY?.trim() && isLeadNotificationRecipientConfigured());
 }
 
 /** Classify Resend API errors for server logs — never expose to visitors. */
@@ -40,17 +44,28 @@ export function categorizeResendError(message: string): string {
   return "other_resend_error";
 }
 
+export type LeadNotificationOptions = {
+  replyTo?: string;
+};
+
 export async function sendLeadNotification(
   subject: string,
   body: string,
+  options?: LeadNotificationOptions,
 ): Promise<{ ok: boolean; error?: string; messageId?: string }> {
   const resend = getResend();
-  const to = process.env.LEAD_NOTIFICATION_EMAIL;
-  const bcc = process.env.LEAD_NOTIFICATION_BCC;
+  const to = getLeadNotificationEmail();
+  const bcc = process.env.LEAD_NOTIFICATION_BCC?.trim();
   const from = getConfiguredFromEmail();
+  const replyTo = options?.replyTo?.trim();
 
   if (!resend || !to) {
-    console.info("[lead notification skipped]", subject, body);
+    console.error(
+      `[KWW_LEAD_PIPELINE] lead_notification_skipped ${JSON.stringify({
+        reason: !resend ? "missing_resend_api_key" : "missing_lead_notification_email",
+        subject,
+      })}`,
+    );
     recordNotificationAttempt({ ok: false, error: "Email not configured" });
     return { ok: false, error: "Email not configured" };
   }
@@ -59,6 +74,7 @@ export async function sendLeadNotification(
     from,
     to,
     bcc: bcc ? [bcc] : undefined,
+    replyTo: replyTo || undefined,
     subject,
     text: body,
   });

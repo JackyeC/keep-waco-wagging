@@ -1,5 +1,7 @@
 import { cityConfig } from "@/lib/site";
 
+// TODO(owner): Confirm licensed & insured status before any public marketing claim.
+
 export const platinumScoops = {
   name: "Platinum Scoops",
   website: "https://platinumscoops.com",
@@ -15,11 +17,7 @@ export const platinumScoops = {
   petCarePricing:
     "Boarding and daycare availability may vary. Visit our booking page for current availability and service details.",
   trustSignals: [
-    "5.0 star rating",
-    "35+ reviews",
-    "Licensed & insured",
     "Platinum Fresh enzyme treatment included",
-    "Same technician every visit",
     "Family-run Waco business",
   ],
   yardServices: [

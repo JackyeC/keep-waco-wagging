@@ -8,12 +8,14 @@ import { PresentingSponsor } from "@/components/PresentingSponsor";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { communityPartners } from "@/data/communityPartners";
+import { servicePageMetadata } from "@/lib/metadata";
 import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Book Pet Care & Camp | Keep Waco Wagging",
-  description: `${brandLanguage.servicesLine}. ${brandLanguage.communityLine}. Presented by Platinum Scoops.`,
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/book",
+  "Book Pet Care & Camp in Waco",
+  `${brandLanguage.heroLine}. ${brandLanguage.brandByLine}.`,
+);
 
 const bookingPaths = [
   {
@@ -23,6 +25,7 @@ const bookingPaths = [
     href: ctas.bookScoops.href,
     external: true,
     label: ctas.bookScoops.label,
+    learnHref: "/platinum-scoops",
   },
   {
     title: "Daycare & boarding",
@@ -31,22 +34,35 @@ const bookingPaths = [
     href: ctas.bookPetCare.href,
     external: true,
     label: "Book on Rover",
+    learnHref: "/pet-care",
+  },
+  {
+    title: "Lifestyle training",
+    description:
+      "Patio manners, loose-leash walks, puppy field trips, and calm-home coaching in Waco.",
+    href: ctas.trainingWaitlist.href,
+    external: true,
+    label: "Ask about training",
+    learnHref: "/training",
   },
   {
     title: brandLanguage.dogCampName,
     description:
-      "Thirteen themed summer weeks — drop in for a day or join the full week.",
-    href: ctas.summerDaycare.href,
-    external: false,
-    label: ctas.summerDaycare.label,
+      "Thirteen themed summer weeks — drop in for a day or join the full week. Reserve on Rover.",
+    href: ctas.bookPetCare.href,
+    external: true,
+    label: "Reserve on Rover",
+    learnHref: "/summer-daycare",
+    learnLabel: "View camp details",
   },
   {
-    title: "Event dog care",
+    title: "Platinum Pup event care",
     description:
       "A dedicated dog attendant for weddings, parties, and special events.",
     href: ctas.eventCare.href,
     external: false,
     label: ctas.eventCare.label,
+    learnHref: "/pet-care/weddings-events",
   },
 ];
 
@@ -62,10 +78,7 @@ export default function BookPage() {
           <h1 className="mt-6 text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-[-0.03em]">
             Book pet care in Waco
           </h1>
-          <p className="dek mt-5 max-w-2xl">{brandLanguage.servicesLine}</p>
-          <p className="mt-3 max-w-2xl text-sm text-bark-soft">
-            {brandLanguage.communityLine}
-          </p>
+          <p className="dek mt-5 max-w-2xl">{brandLanguage.heroLine}</p>
         </div>
       </section>
 
@@ -84,6 +97,12 @@ export default function BookPage() {
               <div>
                 <h3 className="font-display text-xl text-bark">{path.title}</h3>
                 <p className="dek mt-2 text-sm">{path.description}</p>
+                <Link
+                  href={path.learnHref}
+                  className="mt-2 inline-block text-xs font-medium text-sage-700 hover:underline"
+                >
+                  {path.learnLabel ?? "Learn more about this service"} →
+                </Link>
               </div>
               {path.external ? (
                 <a
@@ -109,7 +128,7 @@ export default function BookPage() {
         <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-start">
           <CampSponsorCallout tone="cream" />
           <div>
-            <p className="eyebrow">Presenting sponsor</p>
+            <p className="eyebrow">{brandLanguage.brandByLine}</p>
             <h2 className="headline-secondary mt-3">{cityConfig.sponsor.name}</h2>
             <p className="dek mt-4 text-base">
               {communityPartners[0]?.sponsorDescription}

@@ -1,5 +1,5 @@
 import { cityConfig } from "@/lib/site";
-import { rover } from "@/data/rover";
+import { getRoverDaycareStandardRate } from "@/data/rover";
 
 // Summer daycare camp themes for Keep Waco Wagging / Platinum Scoops pet care.
 // Booking always happens through Rover. Update dates each year as needed.
@@ -17,8 +17,7 @@ export type DaycareTheme = {
   note?: string;
 };
 
-const daycareRate =
-  rover.services.find((s) => s.name === "Doggy daycare")?.price ?? "$30/day";
+const daycareRate = getRoverDaycareStandardRate();
 
 export const summerDaycare = {
   seasonLabel: "Summer 2026",
@@ -26,7 +25,7 @@ export const summerDaycare = {
   intro:
     "A themed week of supervised play, enrichment, and rest at our home-based Waco dog daycare. Each week brings a new theme, plenty of shade and water, and the same calm, full-time care your dog already knows. Drop in for a day or join the whole week.",
   dailyRate: daycareRate,
-  bookingUrl: rover.profileUrl,
+  bookingUrl: cityConfig.rover.profileUrl,
   hours: "Weekdays, drop-off and pick-up times confirmed on Rover.",
   heatNote:
     "Waco summers get hot. We schedule active play for cooler parts of the day, keep fresh water everywhere, use shaded and air-conditioned rest areas, and watch every dog for signs of overheating.",

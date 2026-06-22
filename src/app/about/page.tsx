@@ -2,18 +2,20 @@ import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { SitePhoto } from "@/components/SitePhoto";
 import { sitePhotos } from "@/data/sitePhotos";
-import { cityConfig, ctas } from "@/lib/site";
+import { servicePageMetadata } from "@/lib/metadata";
+import { roverCredentialsLine } from "@/lib/roverCredentials";
+import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About Keep Waco Wagging",
-  description:
-    "Meet Jackye and Todd Clayton, the Waco family behind Platinum Scoops and Keep Waco Wagging — caring for Central Texas dogs since 1996.",
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/about",
+  "About Keep Waco Wagging",
+  `Meet Jackye and Todd Clayton — full-time Waco pet care professionals. ${brandLanguage.brandByLine}.`,
+);
 
 const masthead = [
   { label: "Founders", value: "Jackye + Todd Clayton" },
   { label: "Based", value: "Waco, Texas" },
-  { label: "Established", value: "1996" },
+  { label: "On Rover", value: roverCredentialsLine },
   { label: "Filed under", value: "Boarding · Yard care · Summer camp" },
 ];
 
@@ -23,7 +25,7 @@ const whatYouGet = [
   "Routine kept exactly",
   "Real attention not rotating crew",
   "Real home not a kennel",
-  "Star Sitter status on Rover",
+  "Rover Star Sitter on Rover",
 ];
 
 export default function AboutPage() {
@@ -36,13 +38,12 @@ export default function AboutPage() {
             <div className="md:col-span-5">
               <p className="eyebrow">About</p>
               <h1 className="display mt-5 text-[clamp(2.25rem,4.5vw,3.75rem)]">
-                Caring for dogs in Central Texas since 1996.
+                Full-time pet care for Waco dog families.
               </h1>
               <p className="dek mt-6">
                 Keep Waco Wagging is the work of one family — Jackye and Todd
-                Clayton — who have spent three decades looking after other
-                people&rsquo;s dogs as if they were their own. Not an app, not a
-                side gig. A home.
+                Clayton — who look after other people&rsquo;s dogs as if they were
+                their own. Not an app, not a side gig. A home.
               </p>
             </div>
             <div className="md:col-span-6 md:col-start-7">
@@ -107,8 +108,7 @@ export default function AboutPage() {
                   Our own pack — three resident dogs and a rotating foster — keeps
                   us honest. We know what high energy looks like, what a senior
                   dog needs, how to give medication without a fight, and how to
-                  read the moment a play session should become a nap. Thirty years
-                  of dogs will teach you that.
+                  read the moment a play session should become a nap.
                 </p>
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <hr className="hairline" />
           <p className="smallcaps mt-6 text-bark-soft">
-            Filed under: Boarding · Daycare · Yard care · Summer camp · {cityConfig.city} · Since 1996
+            Filed under: Boarding · Daycare · Yard care · Summer camp · {cityConfig.city} · {brandLanguage.brandByLine}
           </p>
         </div>
       </section>

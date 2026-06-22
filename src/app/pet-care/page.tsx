@@ -9,12 +9,15 @@ import { EditorialPhotoSpread } from "@/components/EditorialPhotoSpread";
 import { rover } from "@/data/rover";
 import { SitePhoto } from "@/components/SitePhoto";
 import { editorialSpreads, sitePhotos } from "@/data/sitePhotos";
-import { ctas, brandLanguage } from "@/lib/site";
+import { servicePageMetadata } from "@/lib/metadata";
+import { roverCredentialsLine } from "@/lib/roverCredentials";
+import { brandLanguage, ctas } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Daycare & Boarding Waco | Keep Waco Wagging",
-  description: `${brandLanguage.servicesLine}. Home-based dog boarding and daycare in Waco. ${brandLanguage.presentedBy}.`,
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/pet-care",
+  "Daycare & Boarding Waco",
+  `${brandLanguage.servicesLine}. Home-based dog boarding and daycare in Waco. ${brandLanguage.brandByLine}.`,
+);
 
 export default function PetCarePage() {
   return (
@@ -36,7 +39,7 @@ export default function PetCarePage() {
 
       <Section tone="paper" className="!py-10">
         <dl className="grid divide-y divide-clay border-y border-clay sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          <Stat label="Rover rating" value={`${rover.rating} stars`} detail={`${rover.reviewCount} reviews`} />
+          <Stat label="On Rover" value={roverCredentialsLine} detail="Pet care ratings and reviews on Rover." />
           <Stat label="Care model" value="Full-time" detail="Pet care is the profession, not a side gig." />
           <Stat label="Daily rhythm" value="Structured" detail="Walks, play, enrichment, rest, and updates." />
         </dl>
@@ -48,14 +51,21 @@ export default function PetCarePage() {
           title="Boarding, daycare, drop-ins, and walks"
           description={rover.pricingNote}
         />
-        <div className="mt-10 divide-y divide-clay border-y border-clay">
-          {rover.services.map((service) => (
-            <div
-              key={service.name}
-              className="flex items-baseline justify-between gap-4 py-4 sm:py-5"
-            >
-              <h3 className="font-medium text-bark">{service.name}</h3>
-              <p className="shrink-0 font-display text-xl text-bark">{service.price}</p>
+        <div className="mt-10 space-y-10">
+          {rover.rateCategories.map((category) => (
+            <div key={category.title}>
+              <h3 className="font-display text-xl text-bark">{category.title}</h3>
+              <div className="mt-4 divide-y divide-clay border-y border-clay">
+                {category.lines.map((line) => (
+                  <div
+                    key={line.label}
+                    className="flex items-baseline justify-between gap-4 py-3 sm:py-4"
+                  >
+                    <p className="text-bark-soft">{line.label}</p>
+                    <p className="shrink-0 font-medium text-bark">{line.price}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>

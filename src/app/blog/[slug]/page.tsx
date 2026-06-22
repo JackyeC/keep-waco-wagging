@@ -18,12 +18,14 @@ export async function generateMetadata({
   const post = blogPostsWithImages.find((item) => item.slug === slug);
   if (!post) return { title: "Guide not found" };
   const image = getBlogCategoryImage(post.category);
+  const indexable = post.indexable === true;
   return {
     title: post.title,
     description: post.excerpt,
     openGraph: {
       images: [{ url: image.src, alt: image.alt }],
     },
+    robots: indexable ? undefined : { index: false, follow: false },
   };
 }
 

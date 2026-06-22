@@ -1,5 +1,6 @@
 import { cityConfig } from "@/lib/site";
 import { isEmailConfigured } from "@/lib/email";
+import { isLeadNotificationRecipientConfigured } from "@/lib/leadNotificationConfig";
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase/server";
 
 export type NotificationResult = "success" | "failure";
@@ -26,7 +27,7 @@ export function resendApiKeyLooksValid(): boolean {
 }
 
 export function isNotificationRecipientConfigured(): boolean {
-  return Boolean(process.env.LEAD_NOTIFICATION_EMAIL?.trim());
+  return isLeadNotificationRecipientConfigured();
 }
 
 export function isFromEmailConfigured(): boolean {

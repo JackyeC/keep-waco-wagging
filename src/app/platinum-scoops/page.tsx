@@ -7,12 +7,14 @@ import { EditorialPhotoSpread } from "@/components/EditorialPhotoSpread";
 import { SitePhoto } from "@/components/SitePhoto";
 import { platinumScoops } from "@/data/platinumScoops";
 import { editorialSpreads, sitePhotos } from "@/data/sitePhotos";
+import { servicePageMetadata } from "@/lib/metadata";
 import { ctas, brandLanguage } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Poop Scooping Waco | Presented by Platinum Scoops",
-  description: `${brandLanguage.sponsorServices} Book local dog waste removal in Waco.`,
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/platinum-scoops",
+  "Poop Scooping Waco",
+  `${brandLanguage.sponsorServices} Book local dog waste removal in Waco.`,
+);
 
 export default function PlatinumScoopsPage() {
   return (
@@ -42,7 +44,7 @@ export default function PlatinumScoopsPage() {
       <Section tone="paper">
         <SectionHeading
           eyebrow="Why families choose us"
-          title="Reliable scooping, same technician every visit"
+          title="Reliable scooping for Waco yards"
           description={platinumScoops.pricing}
         />
         <div className="mt-10 grid gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -58,7 +60,6 @@ export default function PlatinumScoopsPage() {
             title="Real yard service across Waco"
           />
         </div>
-        {/* TODO: Confirm Platinum Scoops review count and licensing details for public marketing copy. */}
       </Section>
 
       <Section tone="sand" id="yard-services">

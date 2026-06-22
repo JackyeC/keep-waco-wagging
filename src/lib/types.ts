@@ -107,6 +107,8 @@ export interface BlogPost {
   author: string;
   imageUrl?: string;
   featured?: boolean;
+  /** When true, post is indexable and included in sitemap. Draft/stub posts stay false. */
+  indexable?: boolean;
 }
 
 /** A block within the "Where to Wag This Weekend" guide. */

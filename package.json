@@ -7,6 +7,8 @@
     "build": "npm run optimize:photos && next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "node --import tsx --test src/lib/**/*.test.ts",
+    "typecheck": "tsc --noEmit",
     "seed:sources": "node --env-file=.env.local --import tsx scripts/seed-dog-sources.ts",
     "optimize:photos": "node scripts/optimize-photos.mjs"
   },

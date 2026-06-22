@@ -1,50 +1,44 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 import { directoryListings } from "@/data/directory";
-import { blogPosts } from "@/data/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
-  const staticRoutes = [
-    "",
-    "/book",
-    "/dog-friendly-waco",
-    "/weekend",
-    "/pet-care",
-    "/pet-care/weddings-events",
-    "/summer-daycare",
-    "/yappy-hours",
-    "/shop",
-    "/pets",
-    "/platinum-scoops",
-    "/sponsors",
-    "/submit-a-place",
-    "/contact",
-    "/blog",
-    "/about",
-    "/affiliate-disclosure",
+  const staticRoutes: { route: string; priority: number }[] = [
+    { route: "", priority: 1 },
+    { route: "/book", priority: 0.95 },
+    { route: "/platinum-scoops", priority: 0.9 },
+    { route: "/pet-care", priority: 0.9 },
+    { route: "/training", priority: 0.85 },
+    { route: "/pet-care/weddings-events", priority: 0.85 },
+    { route: "/summer-daycare", priority: 0.85 },
+    { route: "/dog-friendly-waco", priority: 0.75 },
+    { route: "/contact", priority: 0.75 },
+    { route: "/about", priority: 0.7 },
+    { route: "/weekend", priority: 0.6 },
+    { route: "/yappy-hours", priority: 0.6 },
+    { route: "/blog", priority: 0.55 },
+    { route: "/shop", priority: 0.4 },
+    { route: "/pets", priority: 0.4 },
+    { route: "/sponsors", priority: 0.4 },
+    { route: "/submit-a-place", priority: 0.4 },
+    { route: "/affiliate-disclosure", priority: 0.3 },
   ];
 
   const now = new Date();
 
   return [
-    ...staticRoutes.map((route) => ({
+    ...staticRoutes.map(({ route, priority }) => ({
       url: `${base}${route}`,
       lastModified: now,
       changeFrequency: "weekly" as const,
-      priority: route === "" ? 1 : 0.8,
+      priority,
     })),
     ...directoryListings.map((l) => ({
       url: `${base}/dog-friendly-waco/${l.slug}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
-    })),
-    ...blogPosts.map((l) => ({
-      url: `${base}/blog/${l.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
     })),
   ];
 }

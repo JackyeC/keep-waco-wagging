@@ -5,14 +5,24 @@
  * `src/data/`. Do not hide city-specific facts inside components.
  */
 
-/** Reusable brand copy — primary community brand with Platinum Scoops as presenter. */
+/** Reusable brand copy — local service brand with Platinum Scoops as the service engine. */
 export const brandLanguage = {
   primaryName: "Keep Waco Wagging",
-  presentedBy: "Presented by Platinum Scoops",
-  poweredBy: "Keep Waco Wagging is powered by Platinum Scoops.",
+  /** Short brand lockup for headers and attribution lines. */
+  brandByLine: "Keep Waco Wagging by Platinum Scoops",
+  /** Longer relationship line for hero and footer context. */
+  brandRelationship:
+    "Keep Waco Wagging is the community and pet-care home of Platinum Scoops.",
+  /** @deprecated Use brandByLine */
+  presentedBy: "Keep Waco Wagging by Platinum Scoops",
+  poweredBy:
+    "Keep Waco Wagging is the community and pet-care home of Platinum Scoops.",
+  heroLine:
+    "Full-time pet care, poop scooping, and yard service for Waco dog families",
   servicesLine:
-    "Doggy daycare, boarding, pet care, and poop scoop services in Waco",
-  communityLine: "Waco dog parent resources, events, and camp experiences",
+    "Poop scooping, boarding, daycare, training, event care, and summer camp in Waco",
+  communityLine:
+    "Local dog-friendly guides, events, and editorial resources for Waco dog parents",
   sponsorServices:
     "Platinum Scoops provides pet waste removal, doggy daycare, boarding, and pet care services in Waco.",
   dogCampName: "Keep Waco Wagging Dog Camp",
@@ -41,16 +51,19 @@ export const cityConfig = {
   tagline: brandLanguage.communityLine,
   url: "https://keepwacowagging.com",
   description:
-    "Keep Waco Wagging is the public-facing community brand for Waco dog parents — local resources, events, and camp experiences, presented by Platinum Scoops.",
+    "Keep Waco Wagging is the community and pet-care home of Platinum Scoops — family-run poop scooping, boarding, daycare, training, and event dog care in Waco, Texas.",
+  publicEmail: "info@keepwacowagging.com",
   keywords: [
-    "dog-friendly Waco",
-    "Waco dog parents",
-    "Platinum Scoops",
-    "dog waste removal Waco",
     "Waco dog boarding",
     "Waco dog daycare",
-    "dog-friendly patios Waco",
+    "dog waste removal Waco",
+    "poop scooping Waco",
     "Waco pet care",
+    "Platinum Scoops",
+    "Waco dog training",
+    "wedding dog attendant Waco",
+    "dog-friendly Waco",
+    "Waco dog parents",
   ],
   serviceAreas: [
     "Waco",
@@ -66,7 +79,7 @@ export const cityConfig = {
   // Axtell, Ross.
   sponsor: {
     name: "Platinum Scoops",
-    line: brandLanguage.presentedBy,
+    line: brandLanguage.brandByLine,
     description: brandLanguage.sponsorServices,
     /** Set when `/public/brand/platinum-scoops-logo.webp` is added. */
     logo: undefined as string | undefined,
@@ -76,7 +89,7 @@ export const cityConfig = {
     phoneDisplay: "(254) SCOOPER",
     phoneNumeric: "(254) 726-6737",
     phoneHref: "tel:+12547266737",
-    email: "info@platinumscoops.com",
+    email: "info@keepwacowagging.com",
     pricingNote:
       "Recurring scooping starts at $25/week, with the first cleanup included. No long-term commitment. Cancel anytime.",
   },
@@ -105,7 +118,7 @@ export const cityConfig = {
       /** Full lockup — merch, print, hero sections, stickers, social graphics */
       full: {
         src: "/brand/keep-waco-wagging-logo.webp",
-        alt: "Keep Waco Wagging, presented by Platinum Scoops",
+        alt: "Keep Waco Wagging by Platinum Scoops",
         width: 1024,
         height: 1024,
       },
@@ -139,23 +152,35 @@ export type NavLink = {
   external?: boolean;
 };
 
-// Primary nav — service business first, then community shop and story.
+/** Dedicated service landing pages — homepage teasers, footer, and /book hub. */
+export const servicesNav: NavLink[] = [
+  { label: "Poop Scooping", href: "/platinum-scoops" },
+  { label: "Daycare & Boarding", href: "/pet-care" },
+  { label: "Lifestyle Training", href: "/training" },
+  { label: "Platinum Pup Event Care", href: "/pet-care/weddings-events" },
+  { label: "Summer Dog Camp", href: "/summer-daycare" },
+];
+
+// Primary nav — services first; guides and story; shop stays secondary.
 export const mainNav: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "Poop Scooping", href: "https://platinumscoops.com", external: true },
+  { label: "Poop Scooping", href: "/platinum-scoops" },
   { label: "Daycare & Boarding", href: "/pet-care" },
-  { label: "Shop", href: "/shop" },
+  { label: "Training", href: "/training" },
+  { label: "Event Care", href: "/pet-care/weddings-events" },
+  { label: "Guides", href: "/dog-friendly-waco" },
   { label: "About", href: "/about" },
 ];
 
-// Community & secondary pages — footer and mobile "More" group.
+// Community, booking, and secondary pages — footer and mobile overflow.
 export const secondaryNav: NavLink[] = [
-  { label: "Book", href: "/book" },
-  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
+  { label: "Book a Service", href: "/book" },
+  { label: "Summer Dog Camp", href: "/summer-daycare" },
+  { label: "Blog", href: "/blog" },
   { label: "Yappy Hours", href: "/yappy-hours" },
-  { label: "Summer Camp", href: "/summer-daycare" },
-  { label: "Event Dog Care", href: "/pet-care/weddings-events" },
+  { label: "Weekend Guide", href: "/weekend" },
   { label: "Contact", href: "/contact" },
+  { label: "Shop", href: "/shop" },
   {
     label: "Rover Profile",
     href: cityConfig.rover.profileUrl,
@@ -164,6 +189,10 @@ export const secondaryNav: NavLink[] = [
 ];
 
 export const ctas = {
+  bookService: {
+    label: "Book a service",
+    href: "/book",
+  },
   bookScoops: {
     label: "Book a Scoop",
     href: cityConfig.sponsor.bookingUrl,
@@ -186,7 +215,7 @@ export const ctas = {
   },
   trainingWaitlist: {
     label: "Join the Training Waitlist",
-    href: `mailto:${cityConfig.sponsor.email}?subject=Waco%20dog%20training%20interest`,
+    href: `mailto:${cityConfig.publicEmail}?subject=Waco%20dog%20training%20interest`,
   },
   joinList: {
     label: "Get Keep Waco Wagging updates",
@@ -215,7 +244,7 @@ export const ctas = {
   // Backward-compatible aliases used by older components/pages.
   bookTraining: {
     label: "Ask About Lifestyle Support",
-    href: `mailto:${cityConfig.sponsor.email}?subject=Lifestyle%20dog%20support`,
+    href: `mailto:${cityConfig.publicEmail}?subject=Lifestyle%20dog%20support`,
   },
   trainingHelp: {
     label: "Get Lifestyle Support",
@@ -298,7 +327,7 @@ const platinumScoopsSocialChannels: SocialLink[] = [
   {
     id: "email",
     label: "Email",
-    href: `mailto:${cityConfig.sponsor.email}`,
+    href: `mailto:${cityConfig.publicEmail}`,
   },
   {
     id: "phone",

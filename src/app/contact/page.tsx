@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/ContactForm";
-import { platinumScoops } from "@/data/platinumScoops";
+import { cityConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Keep Waco Wagging",
@@ -28,13 +28,13 @@ export default function ContactPage() {
               Platinum Scoops and Keep Waco Wagging are family-run in Waco.
             </p>
             <p className="mt-4 text-sm">
-              <a className="font-semibold text-sage-700" href={`mailto:${platinumScoops.email}`}>
-                {platinumScoops.email}
+              <a className="font-semibold text-sage-700" href={`mailto:${cityConfig.publicEmail}`}>
+                {cityConfig.publicEmail}
               </a>
             </p>
             <p className="mt-2 text-sm">
-              <a className="font-semibold text-sage-700" href={platinumScoops.phoneHref}>
-                {platinumScoops.phoneDisplay} ({platinumScoops.phoneNumeric})
+              <a className="font-semibold text-sage-700" href={cityConfig.sponsor.phoneHref}>
+                {cityConfig.sponsor.phoneDisplay} ({cityConfig.sponsor.phoneNumeric})
               </a>
             </p>
           </aside>

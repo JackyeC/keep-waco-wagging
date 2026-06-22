@@ -34,7 +34,9 @@ export function NavLinkItem({
 
 export function isNavActive(pathname: string, href: string) {
   if (href.startsWith("http")) return false;
-  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  if (href === "/") return pathname === "/";
+  if (href === "/pet-care") return pathname === "/pet-care";
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export function navLinkClass(active: boolean, base = "") {

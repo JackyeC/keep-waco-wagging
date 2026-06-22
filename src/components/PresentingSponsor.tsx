@@ -9,15 +9,13 @@ type PresentingSponsorProps = {
   light?: boolean;
   /** Link sponsor name/logo to sponsor page */
   href?: string;
-  /** Show the one-line service explanation below the sponsor name */
+  /** Show the one-line service explanation below the brand line */
   showServices?: boolean;
   /** Typography scale */
   size?: "sm" | "md";
 };
 
-/**
- * Quiet "Presented by Platinum Scoops" attribution — sponsor is secondary to KWW.
- */
+/** Brand attribution — Keep Waco Wagging by Platinum Scoops. */
 export function PresentingSponsor({
   className,
   light = false,
@@ -37,20 +35,16 @@ export function PresentingSponsor({
     light ? "text-cream/85 hover:text-cream" : "text-bark-soft hover:text-bark",
   );
 
-  const SponsorName = (
-    <span className={nameClass}>{cityConfig.sponsor.name}</span>
-  );
-
   return (
     <div className={labelClass}>
-      <p>
-        Presented by{" "}
+      <p className={light ? "text-cream/85" : undefined}>
+        {brandLanguage.primaryName} by{" "}
         {href ? (
           <Link href={href} className={nameClass}>
             {cityConfig.sponsor.name}
           </Link>
         ) : (
-          SponsorName
+          <span className={nameClass}>{cityConfig.sponsor.name}</span>
         )}
       </p>
       {cityConfig.sponsor.logo && (

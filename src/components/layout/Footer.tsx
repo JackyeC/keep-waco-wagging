@@ -9,7 +9,7 @@ import {
   siteConfig,
   sponsorLinks,
   cityConfig,
-  mainNav,
+  servicesNav,
   secondaryNav,
   ctas,
   brandLanguage,
@@ -36,7 +36,7 @@ export function Footer() {
               <PresentingSponsor size="sm" />
             </div>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-bark-soft">
-              {brandLanguage.communityLine}. {brandLanguage.presentedBy}.
+              {brandLanguage.heroLine}. {brandLanguage.brandByLine}.
             </p>
             <p className="mt-2 max-w-xs text-xs leading-relaxed text-bark-faint">
               {brandLanguage.sponsorServices}
@@ -51,7 +51,7 @@ export function Footer() {
           <nav aria-label="Services">
             <h4 className="text-sm font-semibold text-bark">Services</h4>
             <ul className="mt-3 space-y-2 text-sm">
-              {mainNav.map((link) => (
+              {servicesNav.map((link) => (
                 <li key={link.href}>
                   <NavLinkItem
                     link={link}
@@ -59,11 +59,17 @@ export function Footer() {
                   />
                 </li>
               ))}
+              <li>
+                <NavLinkItem
+                  link={{ label: "Book a service", href: "/book" }}
+                  className="text-bark-soft hover:text-sage-700"
+                />
+              </li>
             </ul>
           </nav>
 
-          <nav aria-label="Community">
-            <h4 className="text-sm font-semibold text-bark">Community</h4>
+          <nav aria-label="Guides and more">
+            <h4 className="text-sm font-semibold text-bark">Guides & more</h4>
             <ul className="mt-3 space-y-2 text-sm">
               {secondaryNav.map((link) => (
                 <li key={link.href}>
@@ -83,7 +89,7 @@ export function Footer() {
             </p>
             <div className="mt-4 flex flex-col gap-2">
               <Button href="/book" variant="primary" size="sm">
-                Book pet care
+                Book a service
               </Button>
               <Button href={ctas.bookScoops.href} variant="sponsor" size="sm">
                 {ctas.bookScoops.label}
@@ -109,7 +115,8 @@ export function Footer() {
 
         <hr className="hairline mt-12" />
         <p className="smallcaps mt-6 text-bark-soft">
-          Filed under: Boarding · Daycare · Yard care · Summer camp · {cityConfig.city} · Since 1996
+          Filed under: Poop scooping · Daycare · Boarding · Training · Event care ·{" "}
+          {cityConfig.city} · {brandLanguage.brandByLine}
         </p>
 
         <hr className="hairline mt-6" />

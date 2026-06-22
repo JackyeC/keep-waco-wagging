@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { getLeadNotificationEmail } from "@/lib/leadNotificationConfig";
 import { siteConfig } from "@/lib/site";
 import type { DraftSummary } from "./draftBriefs";
 
@@ -23,7 +24,8 @@ export async function notifyDraftsReady(
 
   const resend = getResend();
   const to =
-    process.env.DAILY_SNIFF_NOTIFICATION_EMAIL ?? process.env.LEAD_NOTIFICATION_EMAIL;
+    process.env.DAILY_SNIFF_NOTIFICATION_EMAIL?.trim() ??
+    getLeadNotificationEmail();
   const from =
     process.env.RESEND_FROM_EMAIL ?? `hello@${new URL(siteConfig.url).hostname}`;
   const reviewUrl = adminReviewUrl();

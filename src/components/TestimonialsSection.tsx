@@ -38,7 +38,7 @@ export function TestimonialsSection({
       <SectionHeading
         eyebrow="From our clients"
         title="Real Waco dog families, real results"
-        description="Training, yard care, and Rover clients who've worked with our team."
+        description="Rover boarding and daycare clients who've stayed with our team."
       />
       <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (

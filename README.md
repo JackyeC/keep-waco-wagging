@@ -46,7 +46,7 @@ Copy `.env.example` to `.env.local` and fill in:
 | `SUPABASE_SERVICE_ROLE_KEY` | Server-side inserts (keep secret) |
 | `RESEND_API_KEY` | Send lead notification emails |
 | `RESEND_FROM_EMAIL` | Verified sender in Resend |
-| `LEAD_NOTIFICATION_EMAIL` | Where new lead/signup notifications are emailed |
+| `LEAD_NOTIFICATION_EMAIL` | Internal inbox for form notifications (e.g. `info@keepwacowagging.com`) |
 | `LEAD_NOTIFICATION_BCC` | Optional BCC copy for lead notifications |
 
 Run `supabase/schema.sql` in your Supabase SQL editor to create the lead tables.

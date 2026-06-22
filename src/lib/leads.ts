@@ -1,5 +1,6 @@
 import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase/server";
 import { isEmailConfigured, sendLeadNotification } from "@/lib/email";
+import { isLeadNotificationRecipientConfigured } from "@/lib/leadNotificationConfig";
 import { logLeadPipelineOutcome } from "@/lib/leadPipelineLog";
 import { formatLeadSignupEmail } from "@/lib/signup";
 
@@ -77,6 +78,16 @@ function formatPayload(
     .join("\n");
 }
 
+/** Customer email for Resend replyTo — not used as the From address. */
+export function extractCustomerReplyTo(
+  payload: Record<string, unknown>,
+): string | undefined {
+  const raw = payload.email ?? payload.submitter_email;
+  if (typeof raw !== "string") return undefined;
+  const trimmed = raw.trim().toLowerCase();
+  return isValidLeadEmail(trimmed) ? trimmed : undefined;
+}
+
 export async function saveSubmission(
   type: SubmissionType,
   payload: Record<string, unknown>,
@@ -84,6 +95,13 @@ export async function saveSubmission(
   const config = configs[type];
   const supabaseReady = isSupabaseConfigured();
   const emailReady = isEmailConfigured();
+
+  if (isProductionEnvironment() && !isLeadNotificationRecipientConfigured()) {
+    console.error(
+      `[lead submission] Production misconfiguration: LEAD_NOTIFICATION_EMAIL is not set (${config.table}).`,
+    );
+    return { ok: false, error: PRODUCTION_MISCONFIG_ERROR };
+  }
 
   if (isProductionEnvironment() && !supabaseReady && !emailReady) {
     console.error(
@@ -114,6 +132,7 @@ export async function saveSubmission(
     const notification = await sendLeadNotification(
       config.subject,
       formatPayload(type, payload),
+      { replyTo: extractCustomerReplyTo(payload) },
     );
     notified = notification.ok;
     notificationError = notification.error;
@@ -145,8 +164,9 @@ export async function saveSubmission(
         notified: false,
         subject: config.subject,
         error:
-          "Lead saved but email notifications are not fully configured (RESEND_API_KEY and/or LEAD_NOTIFICATION_EMAIL).",
+          "Lead saved but email notifications are not fully configured (RESEND_API_KEY and LEAD_NOTIFICATION_EMAIL).",
       });
+      return { ok: false, error: PRODUCTION_MISCONFIG_ERROR };
     } else if (emailSucceeded && !stored && supabaseReady) {
       logLeadPipelineOutcome({
         event: "partial_success_supabase_insert_failed",

@@ -1,7 +1,7 @@
 import { PresentingSponsor } from "@/components/PresentingSponsor";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { brandLanguage, ctas } from "@/lib/site";
+import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
 /**
  * Presenting sponsor callout — Platinum Scoops as supporter, not the main brand.
@@ -26,7 +26,7 @@ export function PlatinumScoopsCTA() {
             </div>
             <div className="flex flex-col gap-3 lg:items-end">
               <Button href={ctas.learnScoops.href} variant="secondary" size="lg">
-                About {brandLanguage.presentedBy.replace("Presented by ", "")}
+                About {cityConfig.sponsor.name}
               </Button>
               <Button href={ctas.bookScoops.href} variant="sponsor" size="lg">
                 {ctas.bookScoops.label}
