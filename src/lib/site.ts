@@ -170,6 +170,7 @@ export const mainNav: NavLink[] = [
   { label: "Event Care", href: "/pet-care/weddings-events" },
   { label: "Guides", href: "/dog-friendly-waco" },
   { label: "About", href: "/about" },
+  { label: "Shop", href: "/shop" },
 ];
 
 // Community, booking, and secondary pages — footer and mobile overflow.
@@ -180,7 +181,7 @@ export const secondaryNav: NavLink[] = [
   { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "Weekend Guide", href: "/weekend" },
   { label: "Contact", href: "/contact" },
-  { label: "Shop", href: "/shop" },
+  { label: "Gear Guide", href: "/gear-guide" },
   {
     label: "Rover Profile",
     href: cityConfig.rover.profileUrl,
@@ -237,8 +238,17 @@ export const ctas = {
     label: "Learn About Platinum Scoops",
     href: "/platinum-scoops",
   },
+  visitShop: {
+    label: "Visit the Shop",
+    href: "/shop",
+  },
+  gearGuide: {
+    label: "Gear Guide",
+    href: "/gear-guide",
+  },
+  /** @deprecated Use visitShop */
   shopGear: {
-    label: "Shop Dog Gear",
+    label: "Visit the Shop",
     href: "/shop",
   },
   // Backward-compatible aliases used by older components/pages.

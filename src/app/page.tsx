@@ -6,6 +6,7 @@ import { CTASection } from "@/components/CTASection";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { PresentingSponsor } from "@/components/PresentingSponsor";
 import { SitePhoto } from "@/components/SitePhoto";
+import { MerchStoreTeaser } from "@/components/merch/MerchStoreTeaser";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { getRecentPosts } from "@/data/blog";
 import { sitePhotos } from "@/data/sitePhotos";
@@ -256,6 +257,8 @@ export default function HomePage() {
       </section>
 
       <TestimonialsSection tone="paper" limit={3} />
+
+      <MerchStoreTeaser />
 
       <section className="bg-sand py-20 md:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

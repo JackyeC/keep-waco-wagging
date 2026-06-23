@@ -79,6 +79,18 @@ export function Footer() {
                   />
                 </li>
               ))}
+              <li>
+                <NavLinkItem
+                  link={{ label: "Shop", href: "/shop" }}
+                  className="text-bark-soft hover:text-sage-700"
+                />
+              </li>
+              <li>
+                <NavLinkItem
+                  link={{ label: "Gear Guide", href: "/gear-guide" }}
+                  className="text-bark-soft hover:text-sage-700"
+                />
+              </li>
             </ul>
           </nav>
 

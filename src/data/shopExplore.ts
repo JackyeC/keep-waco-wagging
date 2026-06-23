@@ -28,7 +28,11 @@ export const shopExploreLinks = [
     description: "Enzyme cleaners and poop bags pair well with a cleaner yard routine.",
   },
   {
-    label: "Reserve pet care on Rover",
+    label: "Gear Guide",
+    href: "/gear-guide",
+    description: "Amazon affiliate picks — leashes, cleaners, treats, and gear we use in Waco.",
+  },
+  {
     href: ctas.bookPetCare.href,
     description: "Book boarding, daycare, or drop-ins with Jackye and Todd.",
     external: ctas.bookPetCare.href.startsWith("http"),
