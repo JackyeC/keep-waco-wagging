@@ -56,9 +56,9 @@ const bookingPaths = [
     learnLabel: "View camp details",
   },
   {
-    title: "Platinum Pup event care",
+    title: "Dog of Honor Wedding Pet Care",
     description:
-      "A dedicated dog attendant for weddings, parties, and special events.",
+      "A dedicated wedding pet attendant for Waco weddings and special celebrations.",
     href: ctas.eventCare.href,
     external: false,
     label: ctas.eventCare.label,

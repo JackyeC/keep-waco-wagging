@@ -14,34 +14,67 @@ import {
 } from "@/data/eventCare";
 import { sitePhotos } from "@/data/sitePhotos";
 import { servicePageMetadata } from "@/lib/metadata";
-import { ctas } from "@/lib/site";
+import { cityConfig, ctas } from "@/lib/site";
 
-const eventCareTitle = "Platinum Pup Event Care | Wedding Dog Attendant in Waco";
-const eventCareDescription =
-  "Include your dog in your Waco wedding, party, photo session, or special event with Platinum Pup Event Care from Platinum Scoops. We help with calm handling, potty breaks, photos, ceremony support, and post-event decompression.";
+const pageTitle = "Wedding Dog Attendant in Waco | Dog of Honor";
+const pageDescription =
+  "Include your dog in your wedding with a dedicated Dog of Honor wedding pet attendant in Waco. Ceremony support, photo handling, potty breaks, water, quiet time, and safe handoff.";
 
-export const metadata: Metadata = servicePageMetadata(
-  "/pet-care/weddings-events",
-  eventCareTitle,
-  eventCareDescription,
-);
+export const metadata: Metadata = {
+  ...servicePageMetadata("/pet-care/weddings-events", pageTitle, pageDescription),
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: `${cityConfig.url}/pet-care/weddings-events`,
+    siteName: cityConfig.name,
+    type: "website",
+    images: [
+      {
+        url: cityConfig.brand.logo.full.src,
+        alt: cityConfig.brand.logo.full.alt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: pageDescription,
+    images: [cityConfig.brand.logo.full.src],
+  },
+};
 
 export default function EventCarePage() {
   return (
     <>
       <PageHeader
-        eyebrow="Platinum Pup Event Care"
-        title="Include your dog in the big day — without making your guests manage the leash."
-        description="Platinum Pup Event Care gives Waco pet parents a dedicated dog attendant for weddings, parties, photos, proposals, and special events. We help your pup show up for the sweet moments, then step away for breaks, water, rest, and calm support."
+        eyebrow="Dog of Honor by Keep Waco Wagging"
+        title="Wedding Dog Attendant in Waco"
+        description={
+          <>
+            <p className="font-display text-xl text-bark sm:text-2xl">
+              Make Your Dog Part of the Big Day
+            </p>
+            <p>
+              Your dog can be part of your wedding, proposal, photo session, or
+              special celebration without asking a guest to manage the leash.
+            </p>
+            <p>
+              Our dedicated wedding pet attendant handles leash support, potty
+              breaks, water, ceremony participation, photos, quiet breaks, and a
+              safe handoff when your dog&apos;s part of the celebration is
+              complete.
+            </p>
+          </>
+        }
         tone="gold"
         image={sitePhotos.community}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href="#inquiry" size="lg">
-            Ask About Event Dog Care
+            {ctas.planDogBigDay.label}
           </Button>
-          <Button href="#packages" variant="secondary" size="lg">
-            Plan My Pup&apos;s Big Day
+          <Button href="#inquiry" variant="secondary" size="lg">
+            {ctas.eventCare.label}
           </Button>
         </div>
       </PageHeader>
@@ -51,14 +84,14 @@ export default function EventCarePage() {
         <div className="mx-auto max-w-3xl text-center">
           <Sparkle className="mx-auto h-7 w-7 text-gold-600" />
           <h2 className="mt-4 text-3xl">
-            Dogs are family, and sometimes they belong in the memory too.
+            Your Dog Is Family. Let Them Be Part of the Memory.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-bark-soft">
             Whether your dog is walking down the aisle, joining family photos,
-            greeting guests, or simply making a short appearance, Platinum Pup
-            Event Care helps make the moment smoother. We focus on your dog&apos;s
-            comfort, timing, safety, and routine so you can stay present at your
-            event.
+            greeting guests, or making a short appearance, your wedding pet
+            attendant helps everything go more smoothly. We manage your
+            dog&apos;s comfort, safety, timing, and routine so you can stay
+            present and enjoy the moment.
           </p>
         </div>
       </Section>
@@ -67,8 +100,8 @@ export default function EventCarePage() {
       <Section tone="sand">
         <SectionHeading
           eyebrow="What's involved"
-          title="What event care can include"
-          description="Every event is different. We build the right level of support around your timeline, your venue, and your dog."
+          title="What Your Wedding Pet Attendant Can Provide"
+          description="Every wedding and celebration is different. We build the right level of wedding pet care around your timeline, your venue, and your dog."
         />
         <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {eventCareIncludes.map((item) => (
@@ -121,7 +154,7 @@ export default function EventCarePage() {
                 {pkg.startingAt}
               </p>
               <Button href="#inquiry" variant={pkg.featured ? "primary" : "secondary"} className="mt-5">
-                Ask About This Package
+                {ctas.eventCare.label}
               </Button>
             </article>
           ))}
@@ -181,7 +214,7 @@ export default function EventCarePage() {
       <Section tone="paper">
         <SectionHeading
           eyebrow="Good to know"
-          title="Our event care policies"
+          title="Our Wedding Pet Attendant Policies"
           description="A few ground rules keep every dog, guest, and moment safe."
         />
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -198,8 +231,8 @@ export default function EventCarePage() {
       <Section tone="sand" id="inquiry">
         <SectionHeading
           eyebrow="Tell us about your event"
-          title="Start your Platinum Pup Event Care inquiry"
-          description="Share your event, your dog, and the moment you're hoping to create. We'll help you decide what level of support makes sense."
+          title="Start Your Wedding Pet Care Inquiry"
+          description="Tell us about your wedding or special event, your dog, and the moment you are hoping to create. We will help you decide what level of support makes sense."
         />
         <div className="mt-8">
           <EventCareInquiryForm />
@@ -210,15 +243,15 @@ export default function EventCarePage() {
       <Section tone="sage">
         <div className="rounded-card bg-white p-8 text-center ring-1 ring-inset ring-clay/70 sm:p-12">
           <h2 className="mx-auto max-w-2xl text-3xl">
-            Want your dog there without handing the leash to your maid of honor?
+            Let Your Dog Be Part of the Day Without Handing the Leash to Your Maid
+            of Honor.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-bark-soft">
-            Tell us about your event, your dog, and the moment you&apos;re hoping
-            to create. We&apos;ll help you decide what level of support makes
-            sense.
+            Tell us about your wedding or special event, your dog, and the role you
+            would love them to play. We will help you build a safe, realistic plan.
           </p>
           <Button href="#inquiry" size="lg" className="mt-6">
-            {ctas.eventCare.label}
+            {ctas.planDogBigDay.label}
           </Button>
         </div>
       </Section>

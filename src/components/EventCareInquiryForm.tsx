@@ -148,7 +148,8 @@ export function EventCareInquiryForm() {
         disabled={loading}
         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-base font-semibold text-white hover:bg-sage-700 disabled:opacity-60 sm:w-auto"
       >
-        {loading ? "Sending..." : "Ask About Event Dog Care"} <CalendarHeart className="h-4 w-4" />
+        {loading ? "Sending..." : "Ask About Wedding Pet Care"}{" "}
+        <CalendarHeart className="h-4 w-4" />
       </button>
       <p className="mt-3 text-xs leading-relaxed text-bark-faint">
         Final pricing depends on location, duration, number of dogs, and event

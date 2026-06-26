@@ -72,11 +72,11 @@ const serviceTeasers = [
     label: "Training & real-life skills",
   },
   {
-    title: "Platinum Pup event care",
+    title: "Dog of Honor Wedding Pet Care",
     photo: sitePhotos.frenchieSinkBath,
-    dek: "A dedicated dog attendant for weddings, parties, and special events — calm handling, ceremony support, and safe handoff.",
+    dek: "A dedicated wedding pet attendant for your Waco wedding — ceremony support, photos, potty breaks, and safe handoff.",
     href: "/pet-care/weddings-events",
-    label: "Event dog care",
+    label: "Wedding pet care",
   },
   {
     title: brandLanguage.dogCampName,

@@ -20,7 +20,7 @@ export const brandLanguage = {
   heroLine:
     "Full-time pet care, poop scooping, and yard service for Waco dog families",
   servicesLine:
-    "Poop scooping, boarding, daycare, training, event care, and summer camp in Waco",
+    "Poop scooping, boarding, daycare, training, wedding pet attendant services, and summer camp in Waco",
   communityLine:
     "Local dog-friendly guides, events, and editorial resources for Waco dog parents",
   sponsorServices:
@@ -157,7 +157,7 @@ export const servicesNav: NavLink[] = [
   { label: "Poop Scooping", href: "/platinum-scoops" },
   { label: "Daycare & Boarding", href: "/pet-care" },
   { label: "Lifestyle Training", href: "/training" },
-  { label: "Platinum Pup Event Care", href: "/pet-care/weddings-events" },
+  { label: "Dog of Honor Wedding Pet Care", href: "/pet-care/weddings-events" },
   { label: "Summer Dog Camp", href: "/summer-daycare" },
 ];
 
@@ -167,7 +167,7 @@ export const mainNav: NavLink[] = [
   { label: "Poop Scooping", href: "/platinum-scoops" },
   { label: "Daycare & Boarding", href: "/pet-care" },
   { label: "Training", href: "/training" },
-  { label: "Event Care", href: "/pet-care/weddings-events" },
+  { label: "Weddings & Events", href: "/pet-care/weddings-events" },
   { label: "Guides", href: "/dog-friendly-waco" },
   { label: "About", href: "/about" },
   { label: "Waco Wag Club", href: "/waco-wag-club" },
@@ -212,8 +212,12 @@ export const ctas = {
     href: "/summer-daycare",
   },
   eventCare: {
-    label: "Ask About Event Dog Care",
+    label: "Ask About Wedding Pet Care",
     href: "/pet-care/weddings-events",
+  },
+  planDogBigDay: {
+    label: "Plan My Dog\u2019s Big Day",
+    href: "/pet-care/weddings-events#inquiry",
   },
   trainingWaitlist: {
     label: "Join the Training Waitlist",
@@ -284,7 +288,7 @@ export const sponsorLinks = {
     { label: "One-Time Yard Cleanups", href: "/platinum-scoops#yard-services" },
     { label: "Boarding & Daycare", href: "/pet-care" },
     { label: "Summer Daycare Camp", href: "/summer-daycare" },
-    { label: "Platinum Pup Event Care", href: "/pet-care/weddings-events" },
+    { label: "Dog of Honor Wedding Pet Care", href: "/pet-care/weddings-events" },
     { label: "Dog Walking", href: "/pet-care" },
   ],
 } as const;

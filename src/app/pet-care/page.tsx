@@ -125,9 +125,9 @@ export default function PetCarePage() {
               className="border-t-0 pt-6"
             />
             <EditorialTeaser
-              department="Events"
-              title="Platinum Pup Event Care"
-              dek="A dedicated dog attendant for weddings, parties, photos, and special events in the Waco area."
+              department="Weddings & events"
+              title="Dog of Honor Wedding Pet Care"
+              dek="A dedicated wedding pet attendant for Waco weddings and celebrations — ceremony support, photos, and safe handoff."
               href={ctas.eventCare.href}
               ctaLabel={ctas.eventCare.label}
               className="border-t-0"

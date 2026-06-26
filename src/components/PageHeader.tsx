@@ -29,7 +29,7 @@ export function PageHeader({
 }: {
   eyebrow?: string;
   title: string;
-  description?: string;
+  description?: React.ReactNode;
   tone?: Tone;
   showSiteName?: boolean;
   showPublisher?: boolean;
@@ -68,7 +68,9 @@ export function PageHeader({
           <h1 className="mt-4 text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] tracking-[-0.03em]">
             {title}
           </h1>
-          {description && <p className="dek mt-5 max-w-2xl">{description}</p>}
+          {description && (
+            <div className="dek mt-5 max-w-2xl space-y-4">{description}</div>
+          )}
           {children && <div className="mt-8">{children}</div>}
         </div>
         {image && (

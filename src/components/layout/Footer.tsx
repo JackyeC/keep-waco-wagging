@@ -133,7 +133,7 @@ export function Footer() {
 
         <hr className="hairline mt-12" />
         <p className="smallcaps mt-6 text-bark-soft">
-          Filed under: Poop scooping · Daycare · Boarding · Training · Event care ·{" "}
+          Filed under: Poop scooping · Daycare · Boarding · Training · Weddings & events ·{" "}
           {cityConfig.city} · {brandLanguage.brandByLine}
         </p>
 

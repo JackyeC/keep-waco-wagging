@@ -1,5 +1,5 @@
 /**
- * Platinum Pup Event Care — wedding & special event dog attendant service.
+ * Dog of Honor — wedding pet attendant service (Waco weddings & special events).
  *
  * Copy rules (intentional): original wording only; no competitor names or
  * package names; no claims of CPR/first aid/certified trainer/AKC unless those
@@ -44,7 +44,7 @@ export const eventCarePackages: readonly EventCarePackage[] = [
     startingAt: "Starting at $125",
   },
   {
-    name: "The Best Pup Package",
+    name: "The Dog of Honor Package",
     bestFor: "Dogs included in the ceremony and photos.",
     includes: [
       "1 dog",
@@ -82,19 +82,19 @@ export const eventCarePackages: readonly EventCarePackage[] = [
 export const eventCareAddOn = {
   name: "Event Readiness Visit",
   description:
-    "Some dogs need practice before a big day. This add-on helps your dog get more comfortable with the basics they may need at the event, such as leash manners, settling, greeting calmly, waiting, and moving through busy environments.",
+    "Some dogs need practice before a wedding or big day. This add-on helps your dog get more comfortable with wedding-day basics — leash manners, settling, calm greetings, waiting, and moving safely through busy environments.",
   includes: [
     "Owner instructions",
     "Practice session",
-    "Event handling notes",
-    "Recommendation for whether your dog is ready for the event environment",
+    "Wedding handling notes",
+    "Recommendation for whether your dog is ready for the planned wedding environment",
   ],
   startingAt: "Starting at $75/session",
 } as const;
 
 export const eventCareFit = {
   goodFit:
-    "This service is best for dogs who can be safely handled on leash, recover from excitement, and tolerate new people, sounds, smells, and environments.",
+    "This wedding pet attendant service is best for dogs who can be safely handled on leash, recover from excitement, and tolerate new people, sounds, smells, and environments.",
   notFit:
     "This may not be the right fit for dogs with unmanaged aggression, severe fear, a recent bite history, or dogs who become unsafe in crowded spaces. If we are unsure, we may recommend a practice visit, a shorter appearance, or a different plan that keeps everyone safe.",
 } as const;

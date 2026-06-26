@@ -59,12 +59,12 @@ export default function TrainingPage() {
         <SectionHeading
           eyebrow="Also on the site"
           title="Training & events"
-          description="Lifestyle training pairs with our event dog care for weddings and special occasions."
+          description="Lifestyle training pairs with our wedding pet attendant services for weddings and special celebrations."
           size="compact"
         />
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <Button href="/pet-care/weddings-events" variant="secondary">
-            Platinum Pup event care
+            Dog of Honor Wedding Pet Care
           </Button>
           <Button href="/pet-care" variant="ghost">
             Daycare & boarding

@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     const result = await saveSubmission("contact_message", {
       name: body.name.trim(),
       email: body.email.trim().toLowerCase(),
-      interest: "Platinum Pup Event Care",
+      interest: "Dog of Honor Wedding Pet Care",
       message: [
         `Phone: ${body.phone ?? ""}`,
         `Event date: ${body.eventDate ?? ""}`,
