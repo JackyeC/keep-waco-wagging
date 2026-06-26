@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Heart, PawPrint } from "lucide-react";
-import Image from "next/image";
 import { MerchProductCard } from "@/components/merch/MerchProductCard";
 import { PublisherNote } from "@/components/PublisherNote";
 import { Button } from "@/components/ui/Button";
@@ -10,16 +9,15 @@ import {
   getFeaturedMerchProducts,
   getShopifyCollectionUrl,
   getShopifyStorefrontUrl,
-  hasMerchStorefrontUrl,
-  isMerchStoreLive,
   shopifyStoreConfig,
 } from "@/data/merchStore";
 import { servicePageMetadata } from "@/lib/metadata";
+import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
 import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
 const pageTitle = "Keep Waco Wagging Merch | Waco Dog Apparel";
 const pageDescription =
-  "Keep Waco Wagging shirts and merch for Waco dog people. Made to order through our Shopify store — wear and share your love for Waco dogs.";
+  "Shop Keep Waco Wagging hoodies, crewnecks, totes, mugs, and stickers for Waco dog people. Made to order through our Shopify store.";
 
 export const metadata: Metadata = {
   ...servicePageMetadata("/shop", pageTitle, pageDescription),
@@ -44,9 +42,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ShopPage() {
-  const featured = getFeaturedMerchProducts(5);
-  const storeLive = isMerchStoreLive();
+export default async function ShopPage() {
+  const catalog = await fetchShopifyCatalog();
+  const fallbackFeatured = getFeaturedMerchProducts(5);
+  const products = catalog.length > 0 ? catalog : fallbackFeatured;
+  const storeLive = products.length > 0;
   const storefrontUrl = getShopifyStorefrontUrl();
   const collectionUrl = getShopifyCollectionUrl();
 
@@ -55,15 +55,15 @@ export default function ShopPage() {
       <section className="border-b border-clay bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <PublisherNote />
-          <p className="eyebrow mt-6">Merch</p>
+          <p className="eyebrow mt-6">Shop</p>
           <h1 className="display mt-3 max-w-3xl text-bark">Keep Waco Wagging Merch</h1>
           <p className="dek mt-5 max-w-2xl text-base">
-            Wear and share your love for Waco dogs. Our shirts are made to order
-            for dog parents, camp families, and anyone who keeps this town wagging.
+            Shop hoodies, crewnecks, totes, mugs, and stickers made for Waco dog people.
+            Browse here on Keep Waco Wagging — checkout opens on our Shopify store for
+            sizes, payment, and shipping.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-bark-soft">
-            {brandLanguage.brandByLine}. Pet care and booking stay on this site;
-            shirt checkout happens on our Shopify store when products are live.{" "}
+            {brandLanguage.brandByLine}.{" "}
             <Link href={ctas.gearGuide.href} className="font-medium text-sage-700 hover:underline">
               Browse the Gear Guide
             </Link>{" "}
@@ -104,19 +104,19 @@ export default function ShopPage() {
 
       <Section tone="paper">
         <SectionHeading
-          eyebrow="Featured merch"
+          eyebrow="Keep Waco Wagging shop"
           title={storeLive ? "Shop the collection" : "Merch coming soon"}
           description={
             storeLive
-              ? "Featured picks below — browse hoodies, crewnecks, totes, mugs, and stickers on our Shopify store."
-              : "We are preparing our Shopify collection. Nothing on this page can be purchased until product images and links are connected."
+              ? `${products.length} products — hoodies, crewnecks, totes, mugs, and stickers. Tap a product to choose options and checkout on Shopify.`
+              : "Our Shopify catalog is loading. If this message persists, visit our store directly."
           }
         />
 
         {storeLive ? (
           <>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {featured.map((product) => (
+              {products.map((product) => (
                 <MerchProductCard key={product.id} product={product} />
               ))}
             </div>
@@ -128,7 +128,7 @@ export default function ShopPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-sm bg-bark px-6 py-3 text-sm font-semibold tracking-wide text-cream transition-colors hover:bg-bark-soft"
                 >
-                  Shop all products on Shopify
+                  Open full catalog on Shopify
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
                 {storefrontUrl && (
@@ -138,34 +138,21 @@ export default function ShopPage() {
                     rel="noopener noreferrer"
                     className="text-sm font-medium text-sage-700 hover:underline"
                   >
-                    Visit store home
+                    Shopify store home
                   </a>
                 )}
               </div>
             )}
           </>
         ) : (
-          <div className="mt-10 flex flex-col items-center rounded-sm border border-clay bg-cream px-6 py-12 text-center sm:px-12">
-            <Image
-              src={cityConfig.brand.logo.full.src}
-              alt={cityConfig.brand.logo.full.alt}
-              width={240}
-              height={240}
-              className="h-auto w-40 sm:w-48"
-            />
-            <p className="mt-8 font-display text-2xl text-bark">Merch coming soon</p>
-            <p className="mt-3 max-w-lg text-sm leading-relaxed text-bark-soft">
-              Our Shopify store is being set up. Shirt designs include Keep Waco Wagging,
-              Waco Dog Mom, Waco Dog Dad, My Dog Goes to Camp, and Scoop Happens. We will
-              publish each product here only after images, prices, and Shopify URLs are
-              confirmed.
-            </p>
-            {hasMerchStorefrontUrl() && storefrontUrl && (
+          <div className="mt-10 rounded-sm border border-clay bg-cream px-6 py-12 text-center sm:px-12">
+            <p className="font-display text-2xl text-bark">Merch coming soon</p>
+            {storefrontUrl && (
               <a
                 href={storefrontUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 rounded-sm border border-clay bg-white px-5 py-2.5 text-sm font-semibold tracking-wide text-bark transition-colors hover:bg-sand/60"
+                className="mt-6 inline-flex items-center gap-2 rounded-sm border border-clay bg-white px-5 py-2.5 text-sm font-semibold tracking-wide text-bark transition-colors hover:bg-sand/60"
               >
                 Visit Shopify store
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
