@@ -44,7 +44,7 @@ export function MerchProductCard({ product }: { product: MerchProduct }) {
           rel="noopener noreferrer"
           className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-sm bg-bark px-4 py-2.5 text-sm font-semibold tracking-wide text-cream transition-colors hover:bg-bark-soft"
         >
-          Shop this shirt
+          Shop now
           <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
         </a>
         <p className="mt-2 text-[11px] leading-relaxed text-bark-faint">

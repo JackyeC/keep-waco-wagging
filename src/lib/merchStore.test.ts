@@ -22,10 +22,10 @@ describe("merchStore", () => {
     }
   });
 
-  it("does not report live store while disabled or empty", () => {
-    assert.equal(shopifyStoreConfig.enabled, false);
-    assert.equal(liveMerchProducts.length, 0);
-    assert.equal(isMerchStoreLive(), false);
-    assert.equal(getFeaturedMerchProducts(3).length, 0);
+  it("reports live store when Shopify products are configured", () => {
+    assert.equal(shopifyStoreConfig.enabled, true);
+    assert.equal(liveMerchProducts.length > 0, true);
+    assert.equal(isMerchStoreLive(), true);
+    assert.equal(getFeaturedMerchProducts(3).length, 3);
   });
 });

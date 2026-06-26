@@ -3,11 +3,6 @@
  *
  * Checkout, payment, and fulfillment happen on Shopify. This file is the
  * single source of truth for storefront URL, shop status, and live products.
- *
- * Owner setup:
- * 1. Set `storefrontUrl` when the Shopify store is live (e.g. shop.keepwacowagging.com).
- * 2. Set `enabled: true` after the storefront URL is verified.
- * 3. Add products to `liveMerchProducts` with Shopify images, prices, and product URLs.
  */
 
 export type MerchAvailability = "available" | "coming_soon";
@@ -17,12 +12,9 @@ export type MerchProduct = {
   name: string;
   slug: string;
   description: string;
-  /** Shopify product image or owner-approved creative — required when available. */
   image?: { src: string; alt: string };
-  /** Customer-facing price from the Shopify listing, e.g. "$24.99". */
   price?: string;
   sizesOrColorsNote?: string;
-  /** Individual Shopify product page URL — required when available. */
   shopifyProductUrl?: string;
   availability: MerchAvailability;
   featured?: boolean;
@@ -37,27 +29,102 @@ export const proposedMerchConcepts = [
   { id: "concept-scoop-happens", name: "Scoop Happens" },
 ] as const;
 
+const SHOPIFY_STORE = "https://keepwacowagging.myshopify.com";
+
 export const shopifyStoreConfig = {
-  /**
-   * Set to true only after `storefrontUrl` is live and at least one product is ready.
-   * While false, the shop stays in preview with a “Merch coming soon” state.
-   */
-  enabled: false,
-  /** Preferred custom domain — confirm matches your live Shopify domain. */
+  enabled: true,
   preferredDomain: "shop.keepwacowagging.com",
-  /**
-   * Full Shopify storefront URL. Example when live:
-   * `https://shop.keepwacowagging.com`
-   */
-  storefrontUrl: null as string | null,
+  storefrontUrl: SHOPIFY_STORE,
+  /** Full catalog on Shopify (hoodies, crewnecks, totes, mugs, stickers). */
+  collectionUrl: `${SHOPIFY_STORE}/collections/all`,
   fulfillmentNote:
-    "Products are made to order and fulfilled through our merchandise partner. Shipping details are shown at checkout.",
+    "Products are made to order and fulfilled through Printify via our Shopify store. Shipping details are shown at checkout.",
   externalCheckoutNote:
     "Checkout happens on our Shopify store — you will leave keepwacowagging.com to complete your order.",
 } as const;
 
-/** Live Shopify products — add rows here when images, prices, and URLs are ready. */
-export const liveMerchProducts: readonly MerchProduct[] = [];
+export const liveMerchProducts: readonly MerchProduct[] = [
+  {
+    id: "golden-retriever-hoodie",
+    name: "Keep Waco Wagging — Golden Retriever Hoodie",
+    slug: "keep-waco-wagging-golden-retriever-hoodie",
+    description:
+      "Premium unisex hoodie with the Waco skyline and a Golden Retriever. Printed on demand on Gildan Heavy Blend fleece.",
+    image: {
+      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/34606626669541465_2048.jpg?v=1782334790",
+      alt: "Keep Waco Wagging Golden Retriever hoodie with Waco skyline design",
+    },
+    price: "$58.00",
+    sizesOrColorsNote: "Black, Navy, White · S–2XL",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-golden-retriever-hoodie`,
+    availability: "available",
+    featured: true,
+  },
+  {
+    id: "frenchie-hoodie",
+    name: "Keep Waco Wagging — Frenchie Hoodie",
+    slug: "keep-waco-wagging-frenchie-hoodie",
+    description:
+      "Waco skyline Frenchie edition hoodie — same premium fleece, local design, printed on demand.",
+    image: {
+      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/10022311326708646766_2048.jpg?v=1782333221",
+      alt: "Keep Waco Wagging Frenchie hoodie with Waco skyline design",
+    },
+    price: "$58.00",
+    sizesOrColorsNote: "Black, Navy, White · S–2XL",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-frenchie-hoodie`,
+    availability: "available",
+    featured: true,
+  },
+  {
+    id: "rescue-mutt-hoodie",
+    name: "Keep Waco Wagging — Rescue Mutt Hoodie",
+    slug: "keep-waco-wagging-rescue-mutt-hoodie",
+    description:
+      "Rescue mutt edition with the iconic Waco skyline — for every dog who found their person.",
+    image: {
+      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/5846209191690200474_2048.jpg?v=1782334777",
+      alt: "Keep Waco Wagging Rescue Mutt hoodie with Waco skyline design",
+    },
+    price: "$58.00",
+    sizesOrColorsNote: "Black, Navy, White · S–2XL",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-rescue-mutt-hoodie`,
+    availability: "available",
+    featured: true,
+  },
+  {
+    id: "ceramic-mug",
+    name: "Keep Waco Wagging Ceramic Mug",
+    slug: "keep-waco-wagging-ceramic-mug",
+    description:
+      "Ceramic mug with the Keep Waco Wagging panoramic wrap — golden retriever, Waco skyline, and Platinum Scoops badge.",
+    image: {
+      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/10156724552256787043_2048.jpg?v=1782333039",
+      alt: "Keep Waco Wagging ceramic mug with Waco skyline and golden retriever design",
+    },
+    price: "$18.00",
+    sizesOrColorsNote: "11oz and 15oz",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-ceramic-mug`,
+    availability: "available",
+    featured: true,
+  },
+  {
+    id: "golden-retriever-tote",
+    name: "Keep Waco Wagging — Golden Retriever Tote Bag",
+    slug: "keep-waco-wagging-golden-retriever-tote-bag",
+    description:
+      "Sturdy cotton canvas tote with the Waco skyline and Golden Retriever — great for dog walks and market runs.",
+    image: {
+      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/4046125557823106859_2048.jpg?v=1782333320",
+      alt: "Keep Waco Wagging Golden Retriever tote bag",
+    },
+    price: "$25.00",
+    sizesOrColorsNote: "Natural or Black · 15\" × 16\"",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-golden-retriever-tote-bag`,
+    availability: "available",
+    featured: true,
+  },
+];
 
 function isPurchasable(product: MerchProduct): boolean {
   return (
@@ -70,6 +137,11 @@ function isPurchasable(product: MerchProduct): boolean {
 
 export function getShopifyStorefrontUrl(): string | null {
   const url = shopifyStoreConfig.storefrontUrl?.trim();
+  return url || null;
+}
+
+export function getShopifyCollectionUrl(): string | null {
+  const url = shopifyStoreConfig.collectionUrl?.trim();
   return url || null;
 }
 
