@@ -170,6 +170,7 @@ export const mainNav: NavLink[] = [
   { label: "Event Care", href: "/pet-care/weddings-events" },
   { label: "Guides", href: "/dog-friendly-waco" },
   { label: "About", href: "/about" },
+  { label: "Waco Wag Club", href: "/waco-wag-club" },
   { label: "Shop", href: "/shop" },
 ];
 

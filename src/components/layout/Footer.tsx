@@ -81,6 +81,12 @@ export function Footer() {
               ))}
               <li>
                 <NavLinkItem
+                  link={{ label: "Waco Wag Club", href: "/waco-wag-club" }}
+                  className="text-bark-soft hover:text-sage-700"
+                />
+              </li>
+              <li>
+                <NavLinkItem
                   link={{ label: "Shop", href: "/shop" }}
                   className="text-bark-soft hover:text-sage-700"
                 />

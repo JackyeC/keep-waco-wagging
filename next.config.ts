@@ -11,6 +11,25 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "m.media-amazon.com" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/cool-dog-owner",
+        destination: "/waco-wag-club",
+        permanent: true,
+      },
+      {
+        source: "/cool-dog-owner-club",
+        destination: "/waco-wag-club",
+        permanent: true,
+      },
+      {
+        source: "/the-cool-dog-owner-club",
+        destination: "/waco-wag-club",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

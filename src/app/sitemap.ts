@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/blog", priority: 0.55 },
     { route: "/gear-guide", priority: 0.55 },
     { route: "/shop", priority: 0.45 },
+    { route: "/waco-wag-club", priority: 0.45 },
     { route: "/pets", priority: 0.4 },
     { route: "/sponsors", priority: 0.4 },
     { route: "/submit-a-place", priority: 0.4 },
