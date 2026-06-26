@@ -7,6 +7,45 @@
 
 export type MerchAvailability = "available" | "coming_soon";
 
+export type MerchCategory =
+  | "pet_accessories"
+  | "apparel"
+  | "bags"
+  | "drinkware"
+  | "stickers"
+  | "other";
+
+export const merchCategoryMeta: Record<
+  MerchCategory,
+  { label: string; description: string }
+> = {
+  pet_accessories: {
+    label: "Pet accessories",
+    description:
+      "Bandanas, collars, bowls, mats, and gear for dogs — customized with Waco skyline and breed editions.",
+  },
+  apparel: {
+    label: "Apparel",
+    description: "Hoodies, crewnecks, and tees for Waco dog people.",
+  },
+  bags: {
+    label: "Tote bags",
+    description: "Canvas totes for walks, camp, and market runs.",
+  },
+  drinkware: {
+    label: "Drinkware",
+    description: "Mugs and bowls for coffee breaks and kibble time.",
+  },
+  stickers: {
+    label: "Stickers",
+    description: "Skyline, breed, and Platinum Scoops sticker packs.",
+  },
+  other: {
+    label: "More merch",
+    description: "Additional items from our Shopify catalog.",
+  },
+};
+
 export type MerchProduct = {
   id: string;
   name: string;
@@ -18,6 +57,7 @@ export type MerchProduct = {
   shopifyProductUrl?: string;
   availability: MerchAvailability;
   featured?: boolean;
+  category?: MerchCategory;
 };
 
 /** Internal planning concepts — never rendered on the public site. */

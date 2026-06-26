@@ -26,6 +26,11 @@
 !/source-photos/curated.json
 !/source-photos/**/.gitkeep
 
+# print-ready merch masters (manifest in src/data/merchDesignAssets.ts)
+/source-designs/merch/**
+!/source-designs/merch/README.md
+!/source-designs/merch/**/.gitkeep
+
 # misc
 .DS_Store
 *.pem

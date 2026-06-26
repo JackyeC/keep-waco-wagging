@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Heart, PawPrint } from "lucide-react";
 import { MerchProductCard } from "@/components/merch/MerchProductCard";
+import { PlannedPetAccessoriesPanel } from "@/components/merch/PlannedPetAccessoriesPanel";
 import { PublisherNote } from "@/components/PublisherNote";
 import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -12,12 +13,12 @@ import {
   shopifyStoreConfig,
 } from "@/data/merchStore";
 import { servicePageMetadata } from "@/lib/metadata";
-import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
+import { fetchShopifyCatalog, groupMerchByCategory } from "@/lib/shopifyCatalog";
 import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
 const pageTitle = "Keep Waco Wagging Merch | Waco Dog Apparel";
 const pageDescription =
-  "Shop Keep Waco Wagging hoodies, crewnecks, totes, mugs, and stickers for Waco dog people. Made to order through our Shopify store.";
+  "Shop Keep Waco Wagging hoodies, pet bandanas, bowls, totes, mugs, and stickers for Waco dog people. Made to order through our Shopify store.";
 
 export const metadata: Metadata = {
   ...servicePageMetadata("/shop", pageTitle, pageDescription),
@@ -46,6 +47,10 @@ export default async function ShopPage() {
   const catalog = await fetchShopifyCatalog();
   const fallbackFeatured = getFeaturedMerchProducts(5);
   const products = catalog.length > 0 ? catalog : fallbackFeatured;
+  const categoryGroups =
+    catalog.length > 0
+      ? groupMerchByCategory(catalog)
+      : [{ category: "other" as const, label: "Featured", description: "", products }];
   const storeLive = products.length > 0;
   const storefrontUrl = getShopifyStorefrontUrl();
   const collectionUrl = getShopifyCollectionUrl();
@@ -58,7 +63,7 @@ export default async function ShopPage() {
           <p className="eyebrow mt-6">Shop</p>
           <h1 className="display mt-3 max-w-3xl text-bark">Keep Waco Wagging Merch</h1>
           <p className="dek mt-5 max-w-2xl text-base">
-            Shop hoodies, crewnecks, totes, mugs, and stickers made for Waco dog people.
+            Shop hoodies, pet accessories, totes, mugs, and stickers made for Waco dog people.
             Browse here on Keep Waco Wagging — checkout opens on our Shopify store for
             sizes, payment, and shipping.
           </p>
@@ -108,18 +113,31 @@ export default async function ShopPage() {
           title={storeLive ? "Shop the collection" : "Merch coming soon"}
           description={
             storeLive
-              ? `${products.length} products — hoodies, crewnecks, totes, mugs, and stickers. Tap a product to choose options and checkout on Shopify.`
+              ? `${products.length} products — pet accessories, apparel, totes, mugs, and stickers. Tap a product to choose options and checkout on Shopify.`
               : "Our Shopify catalog is loading. If this message persists, visit our store directly."
           }
         />
 
         {storeLive ? (
           <>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {products.map((product) => (
-                <MerchProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            {categoryGroups.map((group) => (
+              <div key={group.category} className="mt-10 first:mt-10">
+                <div className="max-w-3xl">
+                  <h3 className="font-display text-2xl text-bark">{group.label}</h3>
+                  {group.description && (
+                    <p className="mt-2 text-sm leading-relaxed text-bark-soft">
+                      {group.description}
+                    </p>
+                  )}
+                </div>
+                <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {group.products.map((product) => (
+                    <MerchProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+                {group.category === "pet_accessories" && <PlannedPetAccessoriesPanel />}
+              </div>
+            ))}
             {collectionUrl && (
               <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <a
