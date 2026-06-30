@@ -10,7 +10,7 @@ import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { WagBand } from "@/components/layout/WagBand";
-import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
+import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
 import { PodcastBar } from "@/components/PodcastBar";
 import { brandLanguage, siteConfig } from "@/lib/site";
 
@@ -44,6 +44,16 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+  process.env.GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google:
+            process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
+            process.env.GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
   openGraph: {
     title: `${siteConfig.name} — ${brandLanguage.heroLine}`,
     description: siteConfig.description,

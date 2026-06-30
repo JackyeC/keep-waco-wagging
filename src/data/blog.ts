@@ -31,6 +31,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-05-28",
     author: "Keep Waco Wagging",
     featured: true,
+    indexable: true,
   },
   {
     id: "b-002",
@@ -43,6 +44,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-05-24",
     author: "Keep Waco Wagging",
     featured: true,
+    indexable: true,
   },
   {
     id: "b-003",
@@ -54,6 +56,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "7 min read",
     date: "2026-05-20",
     author: "Keep Waco Wagging",
+    indexable: true,
   },
   {
     id: "b-004",
@@ -167,4 +170,8 @@ export function getRecentPosts(limit = 3): BlogPost[] {
   return [...blogPostsWithImages]
     .sort((a, b) => +new Date(b.date) - +new Date(a.date))
     .slice(0, limit);
+}
+
+export function getIndexablePosts(): BlogPost[] {
+  return blogPostsWithImages.filter((post) => post.indexable === true);
 }

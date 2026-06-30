@@ -1,0 +1,127 @@
+import { JsonLd } from "@/components/seo/JsonLd";
+import type { ServicePageConfig } from "@/data/servicePages";
+import { cityConfig } from "@/lib/site";
+
+export type ServiceFaqItem = { question: string; answer: string };
+
+function servicePath(slug: string): string {
+  if (slug === "weddings-events") return "/pet-care/weddings-events";
+  return `/${slug}`;
+}
+
+function serviceName(config: ServicePageConfig): string {
+  if (config.slug === "platinum-scoops") return "Platinum Scoops pet waste removal";
+  if (config.slug === "pet-care") return "Home-based dog daycare and boarding";
+  if (config.slug === "training") return "Lifestyle dog training";
+  if (config.slug === "weddings-events") return "Dog of Honor wedding pet care";
+  if (config.slug === "summer-daycare") return cityConfig.name + " summer dog camp";
+  return config.hero.eyebrow;
+}
+
+export function ServicePageJsonLd({
+  config,
+  faqs,
+}: {
+  config: ServicePageConfig;
+  faqs?: ServiceFaqItem[];
+}) {
+  const path = servicePath(config.slug);
+  const url = `${cityConfig.url}${path}`;
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: cityConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: config.seo.title.split("|")[0]?.trim() ?? config.hero.eyebrow,
+        item: url,
+      },
+    ],
+  };
+
+  const service = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: serviceName(config),
+    description: config.seo.description,
+    url,
+    provider: {
+      "@type": "ProfessionalService",
+      name: cityConfig.sponsor.name,
+      url: cityConfig.url,
+    },
+    areaServed: cityConfig.serviceAreas.map((name) => ({
+      "@type": "City",
+      name,
+    })),
+  };
+
+  const blocks: Record<string, unknown>[] = [breadcrumb, service];
+
+  if (faqs && faqs.length > 0) {
+    blocks.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+
+  return <JsonLd data={blocks} />;
+}
+
+export function ArticleJsonLd({
+  title,
+  description,
+  path,
+  datePublished,
+  image,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  image: string;
+}) {
+  const url = `${cityConfig.url}${path}`;
+
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: title,
+        description,
+        datePublished,
+        author: {
+          "@type": "Organization",
+          name: cityConfig.name,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: cityConfig.name,
+          logo: {
+            "@type": "ImageObject",
+            url: `${cityConfig.url}${cityConfig.brand.logo.full.src}`,
+          },
+        },
+        mainEntityOfPage: url,
+        image: image.startsWith("http") ? image : `${cityConfig.url}${image}`,
+      }}
+    />
+  );
+}

@@ -9,6 +9,7 @@ export const metadata: Metadata = servicePageMetadata(
   "/pet-care",
   config.seo.title,
   config.seo.description,
+  config.hero.image,
 );
 
 export default function PetCarePage() {

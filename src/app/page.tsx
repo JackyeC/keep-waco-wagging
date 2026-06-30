@@ -9,6 +9,7 @@ import { MarqueeStrip } from "@/components/home/MarqueeStrip";
 import { MerchBand } from "@/components/home/MerchBand";
 import { ServiceCardGrid } from "@/components/home/ServiceCardGrid";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { designPhotos } from "@/data/designPhotos";
 import { getRecentPosts } from "@/data/blog";
 import { servicePageMetadata } from "@/lib/metadata";
 import { brandLanguage, cityConfig } from "@/lib/site";
@@ -17,6 +18,7 @@ export const metadata: Metadata = servicePageMetadata(
   "/",
   "Waco Dog Boarding, Daycare & Poop Scooping",
   `${brandLanguage.heroLine}. ${brandLanguage.brandByLine}. Serving ${cityConfig.serviceAreas.slice(0, 4).join(", ")}, and greater ${cityConfig.county}.`,
+  designPhotos.homeHero,
 );
 
 export default function HomePage() {

@@ -1,3 +1,5 @@
+import { ServicePageJsonLd } from "@/components/seo/StructuredData";
+import { ServiceFaqSection } from "@/components/service/ServiceFaqSection";
 import {
   ServiceIncludedGrid,
   ServicePageHero,
@@ -76,10 +78,11 @@ export function ServicePageView({
   config: ServicePageConfig;
   children?: React.ReactNode;
 }) {
-  const { hero, included, steps, quote, cta } = config;
+  const { hero, included, steps, quote, faq, cta } = config;
 
   return (
     <>
+      <ServicePageJsonLd config={config} faqs={faq} />
       <ServicePageHero {...hero} />
       <ServiceIncludedGrid {...included} />
       {steps && steps.length > 0 && <ServiceStepsPanel steps={steps} />}
@@ -87,6 +90,7 @@ export function ServicePageView({
         <ServiceQuotePanel text={quote.text} attribution={quote.attribution} />
       )}
       {children}
+      {faq && faq.length > 0 && <ServiceFaqSection items={faq} />}
       {cta.variant === "clay" ? (
         <ServiceClayCta cta={cta} />
       ) : (

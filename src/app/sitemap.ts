@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getIndexablePosts } from "@/data/blog";
 import { siteConfig } from "@/lib/site";
 import { directoryListings } from "@/data/directory";
 
@@ -41,6 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...getIndexablePosts().map((post) => ({
+      url: `${base}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
     })),
   ];
 }

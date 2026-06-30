@@ -32,6 +32,7 @@ export type ServicePageConfig = {
   };
   steps?: ServiceStep[];
   quote?: { text: string; attribution: string };
+  faq?: { question: string; answer: string }[];
   cta: ServiceCtaConfig;
 };
 
@@ -105,7 +106,28 @@ export const servicePages: Record<string, ServicePageConfig> = {
           "A quick note when we're done, gate latched, ready for zoomies.",
       },
     ],
+    faq: [
+      {
+        question: "What is Platinum Scoops?",
+        answer:
+          "Platinum Scoops is family-run pet waste removal and yard care in Waco — not a side gig. Keep Waco Wagging is the community home of Platinum Scoops.",
+      },
+      {
+        question: "How much does poop scooping cost in Waco?",
+        answer: `Recurring scooping starts at $25 per week, with the first cleanup included. ${cityConfig.sponsor.pricingNote}`,
+      },
+      {
+        question: "Where do you scoop?",
+        answer: `We serve ${cityConfig.serviceAreas.slice(0, 6).join(", ")}, and surrounding ${cityConfig.county} communities.`,
+      },
+      {
+        question: "How do I book a scoop?",
+        answer:
+          "Use the Book a Scoop button on this page to schedule through our Jobber booking page, or call (254) 726-6737.",
+      },
+    ],
     cta: {
+      variant: "clay",
       eyebrow: "Ready for a cleaner yard?",
       title: "Start weekly scooping from $25",
       scriptWord: "$25",
@@ -159,6 +181,23 @@ export const servicePages: Record<string, ServicePageConfig> = {
       text: "She was sick with pancreatitis — they followed all my detailed instructions and sent photos and videos daily. I can only give them my highest recommendation.",
       attribution: "Linda · Rover",
     },
+    faq: [
+      {
+        question: "Is this a kennel or warehouse boarding?",
+        answer:
+          "No. Your dog stays in our Waco home with full-time attention, daily walks, enrichment, and rest — not an industrial kennel setup.",
+      },
+      {
+        question: "How do I book daycare or boarding?",
+        answer:
+          "Start at keepwacowagging.com/book to choose the right service. Our primary booking hub walks you through scooping, boarding, training, camp, and wedding care.",
+      },
+      {
+        question: "Do you send updates while I am away?",
+        answer:
+          "Yes. Expect photos and videos so you can see how your dog is doing — part of how we care for Waco families every week.",
+      },
+    ],
     cta: {
       eyebrow: "Going out of town?",
       title: "Book your dog's home away from home",
@@ -209,6 +248,23 @@ export const servicePages: Record<string, ServicePageConfig> = {
         },
       ],
     },
+    faq: [
+      {
+        question: "What kind of training do you offer?",
+        answer:
+          "Practical lifestyle coaching: patio manners, loose-leash walks, puppy field trips, and calm-home skills — built for real Waco outings, not a sterile classroom.",
+      },
+      {
+        question: "How do I get started?",
+        answer:
+          "Visit keepwacowagging.com/book and choose training. We will talk through your goals and the skills that matter most at home and around town.",
+      },
+      {
+        question: "Is my dog ready for a Waco patio?",
+        answer:
+          "Not every dog is ready on day one. Read our patio-readiness guide at keepwacowagging.com/blog/how-to-know-if-your-dog-is-ready-for-a-patio before you book a table.",
+      },
+    ],
     cta: {
       eyebrow: "Ready when you are",
       title: "Let's build a calmer, happier pup",
@@ -258,6 +314,18 @@ export const servicePages: Record<string, ServicePageConfig> = {
         },
       ],
     },
+    faq: [
+      {
+        question: "What is a Dog of Honor?",
+        answer:
+          "Your dog participates in your wedding with a dedicated pet attendant who handles ceremony support, photos, potty breaks, and a calm handoff afterward.",
+      },
+      {
+        question: "How do I reserve wedding pet care?",
+        answer:
+          "Start at keepwacowagging.com/book or contact us with your date and venue. Seasonal dates fill quickly.",
+      },
+    ],
     cta: {
       variant: "clay",
       eyebrow: "Limited dates each season",
@@ -309,6 +377,18 @@ export const servicePages: Record<string, ServicePageConfig> = {
         },
       ],
     },
+    faq: [
+      {
+        question: "What is Keep Waco Wagging Dog Camp?",
+        answer:
+          "Thirteen themed summer weeks of supervised play, enrichment, splash time, and real rest at our Waco home — drop in for a day or join a full week.",
+      },
+      {
+        question: "How do I enroll?",
+        answer:
+          "Visit keepwacowagging.com/book to choose camp, view the summer calendar on this page, or call (254) 726-6737 to plan your weeks.",
+      },
+    ],
     cta: {
       eyebrow: "Weeks fill fast",
       title: "Save your dog's spot at camp",

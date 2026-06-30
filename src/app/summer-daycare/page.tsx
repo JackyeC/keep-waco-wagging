@@ -10,6 +10,7 @@ export const metadata: Metadata = servicePageMetadata(
   "/summer-daycare",
   config.seo.title,
   config.seo.description,
+  config.hero.image,
 );
 
 export default function SummerDaycarePage() {
