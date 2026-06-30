@@ -1,24 +1,39 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Jost,
+  Parisienne,
+} from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
+import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { WagBand } from "@/components/layout/WagBand";
 import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
 import { PodcastBar } from "@/components/PodcastBar";
 import { brandLanguage, siteConfig } from "@/lib/site";
 
-const inter = Inter({
-  variable: "--font-inter",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const parisienne = Parisienne({
+  variable: "--font-parisienne",
   subsets: ["latin"],
   display: "swap",
-  axes: ["opsz"],
+  weight: "400",
+});
+
+const jost = Jost({
+  variable: "--font-jost",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -61,14 +76,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${parisienne.variable} ${jost.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-cream text-bark">
+      <body className="flex min-h-full flex-col bg-cream text-bark">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-wag-sage focus:px-4 focus:py-2 focus:text-cream focus:outline-none"
+        >
+          Skip to content
+        </a>
         <OrganizationJsonLd />
+        <AnnouncementBar />
         <PodcastBar />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <Footer />
+        <WagBand />
         <Analytics />
       </body>
     </html>

@@ -4,7 +4,7 @@ export const photoLibraryStats = {
   featured: 21,
   slotOutputs: 24,
   petFolders: 1,
-  generatedAt: "2026-06-22T22:07:25.074Z",
+  generatedAt: "2026-06-30T20:15:16.553Z",
 } as const;
 
 export type PhotoLibraryEntry = {
@@ -16,458 +16,367 @@ export type PhotoLibraryEntry = {
 export const photoLibrary: PhotoLibraryEntry[] = [
   {
     "src": "/pictures/library/img-3292.webp",
-    "alt": "Keep Waco Wagging — IMG_3292",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_3292"
   },
   {
     "src": "/pictures/library/img-9496.webp",
-    "alt": "Keep Waco Wagging — IMG_9496",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_9496"
   },
   {
     "src": "/pictures/library/freddie-img-4785.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-img-3627.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-diesel.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/founders-jackye-and-todd.webp",
-    "alt": "Founders — Waco dog life",
-    "folder": "founders"
+    "alt": "Founders — Waco dog life"
   },
   {
     "src": "/pictures/library/boarding-home-shi-and-diesel.webp",
-    "alt": "Boarding Home — Waco dog life",
-    "folder": "boarding-home"
+    "alt": "Boarding Home — Waco dog life"
   },
   {
     "src": "/pictures/library/boarding-indoor-diesel1.webp",
-    "alt": "Boarding Indoor — Waco dog life",
-    "folder": "boarding-indoor"
+    "alt": "Boarding Indoor — Waco dog life"
   },
   {
     "src": "/pictures/library/training-stella-puzzlw.webp",
-    "alt": "Training — Waco dog life",
-    "folder": "training"
+    "alt": "Training — Waco dog life"
   },
   {
     "src": "/pictures/library/boarding-backyard-img-5285.webp",
-    "alt": "Boarding Backyard — Waco dog life",
-    "folder": "boarding-backyard"
+    "alt": "Boarding Backyard — Waco dog life"
   },
   {
     "src": "/pictures/library/img-3738.webp",
-    "alt": "Keep Waco Wagging — IMG_3738",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_3738"
   },
   {
     "src": "/pictures/library/img-4814.webp",
-    "alt": "Keep Waco Wagging — IMG_4814",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_4814"
   },
   {
     "src": "/pictures/library/freddie-img-4910.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/hero-stella-diesel-walkies.webp",
-    "alt": "Hero — Waco dog life",
-    "folder": "hero"
+    "alt": "Hero — Waco dog life"
   },
   {
     "src": "/pictures/library/img-2683.webp",
-    "alt": "Keep Waco Wagging — IMG_2683",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_2683"
   },
   {
     "src": "/pictures/library/freddie-img-4924.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/img-8954.webp",
-    "alt": "Keep Waco Wagging — IMG_8954",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_8954"
   },
   {
     "src": "/pictures/library/img-4813.webp",
-    "alt": "Keep Waco Wagging — IMG_4813",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_4813"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3544.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3488.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3525.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-2462.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-2463.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-2465.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-2466.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-2569.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-2658.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-2660.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4784.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4786.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4787.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4788.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4789.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4866.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4905.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4906.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4907.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4908.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4909.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4911.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4914.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4915.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4916.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4917.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4918.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4919.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4920.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4921.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4922.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4923.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4925.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4926.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4927.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/freddie-img-4928.webp",
-    "alt": "Freddie — Waco dog life",
-    "folder": "Freddie"
+    "alt": "Freddie — Waco dog life"
   },
   {
     "src": "/pictures/library/img-0037.webp",
-    "alt": "Keep Waco Wagging — IMG_0037",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_0037"
   },
   {
     "src": "/pictures/library/img-0728.webp",
-    "alt": "Keep Waco Wagging — IMG_0728",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_0728"
   },
   {
     "src": "/pictures/library/img-0729.webp",
-    "alt": "Keep Waco Wagging — IMG_0729",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_0729"
   },
   {
     "src": "/pictures/library/img-0912.webp",
-    "alt": "Keep Waco Wagging — IMG_0912",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_0912"
   },
   {
     "src": "/pictures/library/img-0916.webp",
-    "alt": "Keep Waco Wagging — IMG_0916",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_0916"
   },
   {
     "src": "/pictures/library/img-0943.webp",
-    "alt": "Keep Waco Wagging — IMG_0943",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_0943"
   },
   {
     "src": "/pictures/library/img-1007.webp",
-    "alt": "Keep Waco Wagging — IMG_1007",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_1007"
   },
   {
     "src": "/pictures/library/img-1338.webp",
-    "alt": "Keep Waco Wagging — IMG_1338",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_1338"
   },
   {
     "src": "/pictures/library/img-1506.webp",
-    "alt": "Keep Waco Wagging — IMG_1506",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_1506"
   },
   {
     "src": "/pictures/library/img-3285.webp",
-    "alt": "Keep Waco Wagging — IMG_3285",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_3285"
   },
   {
     "src": "/pictures/library/img-3291.webp",
-    "alt": "Keep Waco Wagging — IMG_3291",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_3291"
   },
   {
     "src": "/pictures/library/img-3305.webp",
-    "alt": "Keep Waco Wagging — IMG_3305",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_3305"
   },
   {
     "src": "/pictures/library/img-3675.webp",
-    "alt": "Keep Waco Wagging — IMG_3675",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_3675"
   },
   {
     "src": "/pictures/library/img-3678.webp",
-    "alt": "Keep Waco Wagging — IMG_3678",
-    "folder": "uploads"
+    "alt": "Keep Waco Wagging — IMG_3678"
   },
   {
     "src": "/pictures/library/pets-diesel-diesel1.webp",
-    "alt": "Pets Diesel — Waco dog life",
-    "folder": "pets-diesel"
+    "alt": "Pets Diesel — Waco dog life"
   },
   {
     "src": "/pictures/library/pets-scoop-diesel.webp",
-    "alt": "Pets Scoop — Waco dog life",
-    "folder": "pets-scoop"
+    "alt": "Pets Scoop — Waco dog life"
   },
   {
     "src": "/pictures/library/pets-shiloh-shi-and-diesel.webp",
-    "alt": "Pets Shiloh — Waco dog life",
-    "folder": "pets-shiloh"
+    "alt": "Pets Shiloh — Waco dog life"
   },
   {
     "src": "/pictures/library/pets-stella-stella-puzzlw.webp",
-    "alt": "Pets Stella — Waco dog life",
-    "folder": "pets-stella"
+    "alt": "Pets Stella — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-img-1200.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-img-1201.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-img-1286.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-img-7388.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-scoop-commercial-lawn.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-scoop-fence-line.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/scooping-scoop-pointing-hand.webp",
-    "alt": "Scooping — Waco dog life",
-    "folder": "scooping"
+    "alt": "Scooping — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-fullsizerender-hot-dog-crawl.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-fullsizerender-indoor.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-2466.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3484.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3492.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3494.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3507.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3519.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3527.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3533.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3538.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   },
   {
     "src": "/pictures/library/yappy-hours-img-3540.webp",
-    "alt": "Yappy Hours — Waco dog life",
-    "folder": "yappy-hours"
+    "alt": "Yappy Hours — Waco dog life"
   }
 ];
 

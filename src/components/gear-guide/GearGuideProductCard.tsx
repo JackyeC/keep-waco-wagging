@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { GearGuideBadgePill } from "@/components/gear-guide/GearGuideBadge";

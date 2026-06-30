@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  ::selection{background:#E5C9C4;color:#4C463E;}
+  a{text-decoration:none;color:inherit;}
+  @keyframes kwwToast{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+  image-slot{--is-bg:#E9DDCC;}
+</style>
+</helmet>
+<div style="font-family:'Jost',system-ui,sans-serif;color:#4C463E;background:#F4EDE4;min-height:100vh;-webkit-font-smoothing:antialiased;">
+
+  <sc-if value="{{ showAnnouncement }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#6E7E63;color:#F4EDE4;text-align:center;font-size:12.5px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;padding:9px 16px;">
+      Free local Waco pickup · Ships nationwide · Printed on demand with love <span style="color:#E5B6B0;">♥</span>
+    </div>
+  </sc-if>
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(244,237,228,.9);backdrop-filter:blur(10px);border-bottom:1px solid #E6DBCB;">
+    <div style="max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:26px;">
+      <a href="Keep%20Waco%20Wagging%20Home.dc.html" style="display:flex;flex-direction:column;line-height:.86;flex-shrink:0;">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;letter-spacing:.14em;color:#6E7E63;">KEEP WACO</span>
+        <span style="font-family:'Parisienne',cursive;font-size:26px;color:#C68C86;margin-top:-4px;margin-left:30px;">wagging</span>
+      </a>
+      <nav style="display:flex;gap:2px;margin-left:14px;">
+        <a href="Keep%20Waco%20Wagging%20Home.dc.html" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Home</a>
+        <a href="Keep%20Waco%20Wagging%20Home.dc.html#services" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Services</a>
+        <a href="#shop" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#54513F;" style-hover="color:#C68C86;">Shop</a>
+        <a href="Keep%20Waco%20Wagging%20Home.dc.html#guides" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Guides</a>
+        <a href="About.dc.html" target="_blank" rel="noopener" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">About</a>
+      </nav>
+      <a href="https://keepwacowagging.com/book" target="_blank" rel="noopener" style="margin-left:auto;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#B97D77;border-bottom:1px solid #D9B7B2;padding-bottom:2px;" style-hover="color:#6E7E63;border-color:#6E7E63;">Book a service</a>
+      <button onClick="{{ open }}" style="position:relative;display:flex;align-items:center;gap:9px;background:#6E7E63;color:#F4EDE4;border:none;border-radius:999px;padding:10px 19px 10px 17px;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;" style-hover="background:#5C6A51;">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Bag
+        <sc-if value="{{ showBadge }}" hint-placeholder-val="">
+          <span style="position:absolute;top:-6px;right:-6px;min-width:21px;height:21px;padding:0 5px;border-radius:999px;background:#C68C86;color:#FBF6EF;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F4EDE4;">{{ count }}</span>
+        </sc-if>
+      </button>
+    </div>
+  </header>
+
+  <a id="top"></a>
+  <section style="max-width:1200px;margin:0 auto;padding:40px 24px 8px;">
+    <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;">
+      <div>
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99483;">Keep Waco Wagging · by Platinum Scoops</span>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:78px;line-height:.95;letter-spacing:-.01em;margin:14px 0 0;color:#54513F;text-wrap:balance;">Wear the <span style="font-family:'Parisienne',cursive;font-weight:400;color:#C68C86;font-size:90px;">Wag</span></h1>
+        <p style="font-size:17px;line-height:1.65;color:#7A7165;font-weight:300;max-width:438px;margin:22px 0 0;">Keep Waco Wagging hoodies, made for Waco dog people. Local Waco-skyline designs, printed on demand on premium Gildan Heavy Blend fleece.</p>
+        <div style="display:flex;gap:13px;margin-top:28px;flex-wrap:wrap;">
+          <a href="#shop" style="background:#6E7E63;color:#F4EDE4;border-radius:999px;padding:15px 30px;font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;" style-hover="background:#5C6A51;">Shop the hoodies</a>
+          <a href="https://keepwacowagging.com/book" target="_blank" rel="noopener" style="background:transparent;color:#B97D77;border:1.4px solid #C68C86;border-radius:999px;padding:13.6px 28px;font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;" style-hover="background:#C68C86;color:#FBF6EF;">Book a service</a>
+        </div>
+        <div style="margin-top:26px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#A99E8D;">★ 5.0 on Rover · Family-run in Waco, Texas</div>
+      </div>
+      <div style="position:relative;">
+        <image-slot id="kwwp-hero" shape="rounded" radius="28" placeholder="Drop a hoodie / dog photo" style="width:100%;height:460px;display:block;border:1px solid #E6DBCB;"></image-slot>
+        <div style="position:absolute;bottom:-20px;left:-20px;width:118px;height:118px;border-radius:50%;background:#6E7E63;color:#F4EDE4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1;box-shadow:0 10px 26px rgba(0,0,0,.16);transform:rotate(-7deg);">
+          <span style="font-family:'Parisienne',cursive;font-size:34px;color:#E5C9C4;">waco</span>
+          <span style="font-size:11px;font-weight:500;letter-spacing:.24em;margin-top:5px;">STRONG</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showImpact }}" hint-placeholder-val="{{ true }}">
+    <section style="max-width:1200px;margin:46px auto 0;padding:0 24px;">
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:22px;padding:30px;display:grid;grid-template-columns:repeat(3,1fr);">
+        <div style="text-align:center;padding:0 22px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;color:#6E7E63;">5.0 ★</div>
+          <p style="font-size:13px;font-weight:300;line-height:1.5;color:#8A8073;margin:6px 0 0;letter-spacing:.02em;">on Rover · 73 reviews · Star Sitter</p>
+        </div>
+        <div style="text-align:center;padding:0 22px;border-left:1px solid #E6DBCB;border-right:1px solid #E6DBCB;">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;color:#6E7E63;">Family-run</div>
+          <p style="font-size:13px;font-weight:300;line-height:1.5;color:#8A8073;margin:6px 0 0;letter-spacing:.02em;">by Jackye &amp; Todd Clayton in Waco</p>
+        </div>
+        <div style="text-align:center;padding:0 22px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;color:#6E7E63;">Printed here</div>
+          <p style="font-size:13px;font-weight:300;line-height:1.5;color:#8A8073;margin:6px 0 0;letter-spacing:.02em;">on demand · premium Gildan fleece</p>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <a id="shop"></a>
+  <section style="max-width:1200px;margin:56px auto 0;padding:0 24px;">
+    <div style="text-align:center;">
+      <div style="font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#A99E8D;">The Collection</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:44px;letter-spacing:-.01em;margin:6px 0 0;color:#54513F;">Waco skyline hoodies</h2>
+      <p style="font-size:15px;font-weight:300;color:#8A8073;margin:8px 0 0;">Three designs · Black, Navy &amp; White · S–2XL · $58</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(322px,1fr));gap:24px;margin-top:30px;">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="3">
+        <article style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;">
+          <div style="position:relative;">
+            <image-slot id="{{ p.slot }}" shape="rect" placeholder="Drop hoodie photo" style="width:100%;height:300px;display:block;"></image-slot>
+            <sc-if value="{{ p.tag }}" hint-placeholder-val="">
+              <span style="position:absolute;top:14px;left:14px;background:#FBF6EF;color:#B97D77;font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:999px;">{{ p.tag }}</span>
+            </sc-if>
+          </div>
+          <div style="padding:19px 19px 21px;display:flex;flex-direction:column;flex:1;">
+            <span style="font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#A99E8D;">Keep Waco Wagging</span>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;line-height:1.08;margin:5px 0 0;color:#54513F;">{{ p.name }}</h3>
+            <p style="font-size:13px;font-weight:300;line-height:1.55;color:#8A8073;margin:8px 0 0;flex:1;">{{ p.blurb }}</p>
+
+            <div style="margin-top:16px;display:flex;align-items:center;gap:10px;">
+              <span style="font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#A99E8D;">Color</span>
+              <div style="display:flex;gap:9px;">
+                <sc-for list="{{ p.colors }}" as="cl" hint-placeholder-count="3">
+                  <button onClick="{{ cl.pick }}" title="{{ cl.name }}" style="width:24px;height:24px;border-radius:50%;cursor:pointer;border:1px solid #C9BDAB;background:{{ cl.hex }};box-shadow:{{ cl.ring }};"></button>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;display:flex;align-items:center;gap:10px;">
+              <span style="font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#A99E8D;">Size</span>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <sc-for list="{{ p.sizes }}" as="sz" hint-placeholder-count="5">
+                  <button onClick="{{ sz.pick }}" style="min-width:36px;padding:6px 7px;border-radius:9px;cursor:pointer;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;border:1px solid {{ sz.bc }};background:{{ sz.bg }};color:{{ sz.fg }};">{{ sz.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;">
+              <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25px;color:#6E7E63;">{{ p.priceLabel }}</span>
+              <button onClick="{{ p.add }}" style="background:#6E7E63;color:#F4EDE4;border:none;border-radius:999px;padding:11px 20px;font-family:'Jost',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;" style-hover="background:#5C6A51;">Add to bag</button>
+            </div>
+            <a href="{{ p.url }}" target="_blank" rel="noopener" style="margin-top:11px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#A99E8D;text-align:center;" style-hover="color:#C68C86;">View on Shopify ↗</a>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </section>
+
+  <a id="services"></a>
+  <section style="max-width:1200px;margin:62px auto 0;padding:0 24px;">
+    <div style="background:#6E7E63;border-radius:26px;overflow:hidden;display:grid;grid-template-columns:.95fr 1.05fr;">
+      <image-slot id="kwwp-services" shape="rect" placeholder="Drop a group-walk photo" style="width:100%;height:100%;min-height:360px;display:block;"></image-slot>
+      <div style="padding:44px 46px;color:#F4EDE4;">
+        <span style="font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#E5C9C4;">More than merch</span>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:40px;line-height:1.04;margin:14px 0 0;">We keep tails <span style="font-family:'Parisienne',cursive;color:#E5C9C4;font-size:46px;">wagging</span> in person, too</h2>
+        <p style="font-size:15.5px;font-weight:300;line-height:1.6;opacity:.92;margin:14px 0 0;max-width:430px;">Keep Waco Wagging is the pet-care home of Platinum Scoops — full-time, family-run care for Waco dog families across McLennan County.</p>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:22px;">
+          <a href="Poop%20Scooping.dc.html" target="_blank" rel="noopener" style="border:1px solid rgba(244,237,228,.5);border-radius:999px;padding:8px 15px;font-size:11.5px;font-weight:400;letter-spacing:.08em;color:#F4EDE4;" style-hover="background:rgba(244,237,228,.14)">Poop scooping</a>
+          <a href="Daycare%20and%20Boarding.dc.html" target="_blank" rel="noopener" style="border:1px solid rgba(244,237,228,.5);border-radius:999px;padding:8px 15px;font-size:11.5px;font-weight:400;letter-spacing:.08em;color:#F4EDE4;" style-hover="background:rgba(244,237,228,.14)">Daycare &amp; boarding</a>
+          <a href="Training.dc.html" target="_blank" rel="noopener" style="border:1px solid rgba(244,237,228,.5);border-radius:999px;padding:8px 15px;font-size:11.5px;font-weight:400;letter-spacing:.08em;color:#F4EDE4;" style-hover="background:rgba(244,237,228,.14)">Training</a>
+          <a href="Weddings%20and%20Events.dc.html" target="_blank" rel="noopener" style="border:1px solid rgba(244,237,228,.5);border-radius:999px;padding:8px 15px;font-size:11.5px;font-weight:400;letter-spacing:.08em;color:#F4EDE4;" style-hover="background:rgba(244,237,228,.14)">Wedding pet care</a>
+          <a href="Summer%20Dog%20Camp.dc.html" target="_blank" rel="noopener" style="border:1px solid rgba(244,237,228,.5);border-radius:999px;padding:8px 15px;font-size:11.5px;font-weight:400;letter-spacing:.08em;color:#F4EDE4;" style-hover="background:rgba(244,237,228,.14)">Summer dog camp</a>
+        </div>
+        <a href="https://keepwacowagging.com/book" target="_blank" rel="noopener" style="display:inline-block;margin-top:26px;background:#F4EDE4;color:#6E7E63;border-radius:999px;padding:14px 28px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;" style-hover="background:#E5C9C4;color:#4C463E;">Book a service →</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:56px auto 0;padding:0 24px;">
+    <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:22px;padding:38px;display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;">
+      <div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;margin:0;color:#54513F;">Get Keep Waco Wagging updates</h3>
+        <p style="font-size:14.5px;font-weight:300;color:#8A8073;margin:7px 0 0;">Dog-camp openings, new drops, and helpful notes for Waco dog families. No spam.</p>
+      </div>
+      <form onSubmit="{{ noop }}" style="display:flex;gap:10px;flex:1;min-width:290px;max-width:450px;">
+        <input type="email" placeholder="you@email.com" style="flex:1;border:1.4px solid #E0D4C3;background:#F4EDE4;border-radius:999px;padding:13px 20px;font-family:'Jost',sans-serif;font-weight:400;font-size:14.5px;color:#4C463E;outline:none;">
+        <button type="submit" style="background:#6E7E63;color:#F4EDE4;border:none;border-radius:999px;padding:13px 26px;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;" style-hover="background:#5C6A51;">Sign up</button>
+      </form>
+    </div>
+  </section>
+
+  <footer style="max-width:1200px;margin:50px auto 0;padding:0 24px 40px;">
+    <div style="border-top:1px solid #E6DBCB;padding-top:30px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start;">
+      <div style="max-width:280px;">
+        <a href="Keep%20Waco%20Wagging%20Home.dc.html" style="display:flex;flex-direction:column;line-height:.86;">
+          <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;letter-spacing:.14em;color:#6E7E63;">KEEP WACO</span>
+          <span style="font-family:'Parisienne',cursive;font-size:22px;color:#C68C86;margin-top:-3px;margin-left:24px;">wagging</span>
+        </a>
+        <p style="font-size:13px;font-weight:300;line-height:1.55;color:#8A8073;margin:14px 0 0;">The community &amp; pet-care home of Platinum Scoops. Full-time, family-run care for Waco dog families.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#A99E8D;">Explore</span>
+        <a href="#shop" style="font-size:13.5px;font-weight:300;color:#6E6457;" style-hover="color:#C68C86;">Shop hoodies</a>
+        <a href="https://keepwacowagging.com/book" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:300;color:#6E6457;" style-hover="color:#C68C86;">Book a service</a>
+        <a href="https://keepwacowagging.com/waco-wag-club" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:300;color:#6E6457;" style-hover="color:#C68C86;">Waco Wag Club</a>
+        <a href="https://keepwacowagging.com/blog" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:300;color:#6E6457;" style-hover="color:#C68C86;">Blog &amp; guides</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <span style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#A99E8D;">Say hello</span>
+        <a href="tel:+12547266737" style="font-size:13.5px;font-weight:300;color:#6E6457;" style-hover="color:#C68C86;">(254) SCOOPER</a>
+        <a href="mailto:info@keepwacowagging.com" style="font-size:13.5px;font-weight:300;color:#6E6457;" style-hover="color:#C68C86;">info@keepwacowagging.com</a>
+        <a href="https://www.instagram.com/platinum_scoops/" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:300;color:#6E6457;" style-hover="color:#C68C86;">@platinum_scoops</a>
+      </div>
+    </div>
+    <div style="margin-top:28px;font-size:12px;font-weight:300;color:#A99E8D;letter-spacing:.04em;">© 2026 Keep Waco Wagging · by Platinum Scoops · Waco, Texas</div>
+  </footer>
+
+  <div style="background:#6E7E63;text-align:center;padding:18px 16px;color:#F4EDE4;font-size:12.5px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;">
+    Celebrate · Connect · Support · Wag <span style="color:#E5C9C4;">♥</span>
+  </div>
+
+  <div onClick="{{ close }}" style="position:fixed;inset:0;background:rgba(76,70,62,.42);z-index:55;opacity:{{ overlayOpacity }};pointer-events:{{ overlayEvents }};transition:opacity .3s;"></div>
+
+  <aside style="position:fixed;top:0;right:0;height:100vh;width:404px;max-width:92vw;background:#F4EDE4;z-index:60;box-shadow:-18px 0 50px rgba(0,0,0,.2);transform:{{ cartTransform }};transition:transform .35s cubic-bezier(.4,0,.1,1);display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:21px 24px;border-bottom:1px solid #E6DBCB;">
+      <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25px;color:#54513F;">Your bag</span>
+      <button onClick="{{ close }}" style="background:#EFE5D6;border:none;width:34px;height:34px;border-radius:50%;font-size:16px;color:#6E7E63;cursor:pointer;line-height:1;" style-hover="background:#E5C9C4;">✕</button>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding:8px 24px;">
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ true }}">
+        <div style="text-align:center;padding:70px 16px;color:#8A8073;">
+          <div style="color:#C68C86;font-size:32px;">♥</div>
+          <p style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:#54513F;margin:12px 0 4px;">Your bag is empty</p>
+          <p style="font-size:14px;font-weight:300;margin:0;">Add a hoodie and wear the wag.</p>
+        </div>
+      </sc-if>
+      <sc-for list="{{ lines }}" as="l" hint-placeholder-count="0">
+        <div style="display:flex;gap:14px;align-items:center;padding:17px 0;border-bottom:1px solid #E6DBCB;">
+          <div style="flex:1;min-width:0;">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;line-height:1.15;color:#54513F;">{{ l.name }}</div>
+            <div style="font-size:12.5px;font-weight:300;color:#8A8073;margin-top:3px;">{{ l.variant }} · {{ l.priceLabel }}</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+              <button onClick="{{ l.dec }}" style="width:27px;height:27px;border-radius:8px;border:1px solid #DACEBC;background:#FBF6EF;font-size:16px;cursor:pointer;color:#6E7E63;line-height:1;" style-hover="background:#EFE5D6;">−</button>
+              <span style="font-weight:500;font-size:14px;min-width:18px;text-align:center;">{{ l.qty }}</span>
+              <button onClick="{{ l.inc }}" style="width:27px;height:27px;border-radius:8px;border:1px solid #DACEBC;background:#FBF6EF;font-size:15px;cursor:pointer;color:#6E7E63;line-height:1;" style-hover="background:#EFE5D6;">+</button>
+              <button onClick="{{ l.remove }}" style="margin-left:6px;background:none;border:none;color:#A99E8D;font-size:11.5px;font-weight:400;letter-spacing:.06em;cursor:pointer;text-decoration:underline;">Remove</button>
+            </div>
+          </div>
+          <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:#6E7E63;">{{ l.lineLabel }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="border-top:1px solid #E6DBCB;padding:22px 24px;background:#FBF6EF;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+        <span style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8A8073;">Subtotal</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:27px;color:#54513F;">{{ subtotalLabel }}</span>
+      </div>
+      <p style="font-size:12px;font-weight:300;color:#8A8073;margin:0 0 14px;">Secure checkout completes on our Shopify store. Shipping calculated at checkout.</p>
+      <button onClick="{{ checkout }}" style="width:100%;background:#6E7E63;color:#F4EDE4;border:none;border-radius:999px;padding:15px;font-family:'Jost',sans-serif;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;" style-hover="background:#5C6A51;">Checkout on Shopify ↗</button>
+    </div>
+  </aside>
+
+  <sc-if value="{{ showToast }}" hint-placeholder-val="">
+    <div style="position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:80;background:#54513F;color:#F4EDE4;font-size:13px;font-weight:400;letter-spacing:.06em;padding:13px 24px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.24);animation:kwwToast .28s ease;display:flex;align-items:center;gap:9px;">
+      <span style="color:#E5B6B0;">♥</span>{{ toast }}
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;showAnnouncement&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showImpact&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;autoOpenCart&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+class Component extends DCLogic {
+  state = {
+    cart:{}, cartOpen:false, toast:'',
+    sel:{ gr:{color:'Black',size:'M'}, fr:{color:'Black',size:'M'}, rm:{color:'Black',size:'M'} }
+  };
+
+  products = [
+    { id:'gr', name:'Golden Retriever Hoodie', slot:'p-gr', tag:'Bestseller',
+      url:'https://keepwacowagging.myshopify.com/products/keep-waco-wagging-golden-retriever-hoodie',
+      blurb:'Waco skyline with a Golden Retriever. Premium unisex fleece, printed on demand.' },
+    { id:'fr', name:'Frenchie Hoodie', slot:'p-fr',
+      url:'https://keepwacowagging.myshopify.com/products/keep-waco-wagging-frenchie-hoodie',
+      blurb:'Waco-skyline Frenchie edition — same premium fleece, proudly local.' },
+    { id:'rm', name:'Rescue Mutt Hoodie', slot:'p-rm',
+      url:'https://keepwacowagging.myshopify.com/products/keep-waco-wagging-rescue-mutt-hoodie',
+      blurb:'Rescue mutt edition with the iconic Waco skyline — for every dog who found their person.' },
+  ];
+
+  colorDefs = [ {name:'Black',hex:'#2B2B2B'}, {name:'Navy',hex:'#2B3A55'}, {name:'White',hex:'#F2EEE6'} ];
+  sizeDefs = ['S','M','L','XL','2XL'];
+  price = 58;
+
+  money(n){ return '$' + n.toFixed(2); }
+
+  setColor(id,c){ this.setState(s => ({ sel:{...s.sel, [id]:{...s.sel[id], color:c}} })); }
+  setSize(id,sz){ this.setState(s => ({ sel:{...s.sel, [id]:{...s.sel[id], size:sz}} })); }
+
+  add(id){
+    const p = this.products.find(x => x.id===id);
+    const sel = this.state.sel[id];
+    const key = id + '|' + sel.color + '|' + sel.size;
+    this.setState(s => {
+      const c = {...s.cart};
+      if (c[key]) c[key] = {...c[key], qty:c[key].qty+1};
+      else c[key] = { name:p.name, color:sel.color, size:sel.size, price:this.price, qty:1, url:p.url };
+      return { cart:c, cartOpen: (this.props.autoOpenCart ?? false) ? true : s.cartOpen };
+    });
+    this.flash(p.name + ' (' + sel.color + ' · ' + sel.size + ') added');
+  }
+  inc(k){ this.setState(s => { const c={...s.cart}; c[k]={...c[k], qty:c[k].qty+1}; return {cart:c}; }); }
+  dec(k){ this.setState(s => { const c={...s.cart}; const q=c[k].qty-1; if(q<=0) delete c[k]; else c[k]={...c[k],qty:q}; return {cart:c}; }); }
+  removeLine(k){ this.setState(s => { const c={...s.cart}; delete c[k]; return {cart:c}; }); }
+  flash(msg){ clearTimeout(this._t); this.setState({ toast:msg }); this._t = setTimeout(()=>this.setState({toast:''}), 2400); }
+  checkout(){ window.open('https://keepwacowagging.myshopify.com/', '_blank', 'noopener'); }
+
+  componentWillUnmount(){ clearTimeout(this._t); }
+
+  renderVals(){
+    const products = this.products.map(p => {
+      const sel = this.state.sel[p.id];
+      return {
+        id:p.id, name:p.name, blurb:p.blurb, slot:p.slot, tag:p.tag, url:p.url,
+        priceLabel:this.money(this.price),
+        colors: this.colorDefs.map(c => ({
+          name:c.name, hex:c.hex,
+          ring: sel.color===c.name ? '0 0 0 2px #FBF6EF, 0 0 0 4px #6E7E63' : 'none',
+          pick: ()=>this.setColor(p.id, c.name)
+        })),
+        sizes: this.sizeDefs.map(sz => {
+          const on = sel.size===sz;
+          return { label:sz, pick:()=>this.setSize(p.id, sz),
+            bg: on ? '#6E7E63' : '#FBF6EF', fg: on ? '#F4EDE4' : '#6E6457', bc: on ? '#6E7E63' : '#DACEBC' };
+        }),
+        add: ()=>this.add(p.id),
+      };
+    });
+
+    const lines = Object.keys(this.state.cart).map(k => {
+      const it = this.state.cart[k];
+      return { key:k, name:it.name, variant:it.color + ' · ' + it.size, qty:it.qty,
+        priceLabel:this.money(it.price), lineLabel:this.money(it.price*it.qty),
+        inc:()=>this.inc(k), dec:()=>this.dec(k), remove:()=>this.removeLine(k) };
+    });
+    const count = lines.reduce((a,l)=>a+l.qty,0);
+    const subtotal = Object.values(this.state.cart).reduce((a,it)=>a+it.price*it.qty,0);
+
+    return {
+      products, lines,
+      count, showBadge: count>0, isEmpty: lines.length===0,
+      subtotalLabel: this.money(subtotal),
+      cartTransform: this.state.cartOpen ? 'translateX(0)' : 'translateX(106%)',
+      overlayOpacity: this.state.cartOpen ? 1 : 0,
+      overlayEvents: this.state.cartOpen ? 'auto' : 'none',
+      toast: this.state.toast, showToast: !!this.state.toast,
+      open:()=>this.setState({cartOpen:true}), close:()=>this.setState({cartOpen:false}),
+      checkout:()=>this.checkout(), noop:(e)=>e.preventDefault(),
+      showAnnouncement: this.props.showAnnouncement ?? true,
+      showImpact: this.props.showImpact ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

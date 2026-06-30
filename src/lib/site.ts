@@ -161,17 +161,13 @@ export const servicesNav: NavLink[] = [
   { label: "Summer Dog Camp", href: "/summer-daycare" },
 ];
 
-// Primary nav — services first; guides and story; shop stays secondary.
+// Primary nav — rendered in Header.tsx (5 items + services dropdown).
 export const mainNav: NavLink[] = [
   { label: "Home", href: "/" },
-  { label: "Poop Scooping", href: "/platinum-scoops" },
-  { label: "Daycare & Boarding", href: "/pet-care" },
-  { label: "Training", href: "/training" },
-  { label: "Weddings & Events", href: "/pet-care/weddings-events" },
+  { label: "Services", href: "/#services" },
+  { label: "Shop", href: "/shop" },
   { label: "Guides", href: "/dog-friendly-waco" },
   { label: "About", href: "/about" },
-  { label: "Waco Wag Club", href: "/waco-wag-club" },
-  { label: "Shop", href: "/shop" },
 ];
 
 // Community, booking, and secondary pages — footer and mobile overflow.
@@ -392,6 +388,14 @@ export function buildAmazonProductImageUrl(
   if (!asin) return undefined;
   return `https://m.media-amazon.com/images/P/${asin}.01._SL${size}_.jpg`;
 }
+
+/** Sage announcement bar — edit copy here without touching the component. */
+export const announcementBar = {
+  enabled: true,
+  message:
+    "Free local Waco pickup · Ships nationwide · Printed on demand with love",
+  showHeart: true,
+} as const;
 
 export const podcast = {
   enabled: false,

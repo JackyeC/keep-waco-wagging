@@ -37,16 +37,16 @@ export function PodcastBar() {
   };
 
   return (
-    <div className="relative bg-sage-800 text-sage-50">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-center gap-3 px-10 py-2 sm:px-6">
+    <div className="relative bg-wag-sage text-cream">
+      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-center gap-3 px-10 py-2 sm:px-6">
         <p className="flex items-center gap-2 text-center text-sm">
-          <Podcast className="hidden h-4 w-4 shrink-0 text-gold-400 sm:inline" aria-hidden="true" />
+          <Podcast className="hidden h-4 w-4 shrink-0 text-blush sm:inline" aria-hidden="true" />
           <span className="font-medium">{podcast.barText}</span>
           <a
             href={podcast.subscribeUrl}
             target={podcast.subscribeUrl.startsWith("http") ? "_blank" : undefined}
             rel={podcast.subscribeUrl.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="inline-flex shrink-0 items-center rounded-full bg-gold-400 px-3 py-0.5 text-xs font-semibold text-bark transition-colors hover:bg-gold-500"
+            className="inline-flex shrink-0 items-center rounded-full bg-blush px-3 py-0.5 text-xs font-semibold text-bark transition-colors hover:bg-blush-warm"
           >
             Subscribe
           </a>
@@ -56,7 +56,7 @@ export function PodcastBar() {
         type="button"
         onClick={dismiss}
         aria-label="Dismiss podcast announcement"
-        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1.5 text-sage-200 transition-colors hover:bg-sage-700 hover:text-white"
+        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1.5 text-cream/80 transition-colors hover:bg-sage-hover hover:text-white"
       >
         <X className="h-4 w-4" />
       </button>

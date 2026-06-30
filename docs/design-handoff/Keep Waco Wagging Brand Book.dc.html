@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  ::selection{background:#E5C9C4;color:#4C463E;}
+  a{text-decoration:none;color:inherit;}
+  @keyframes kwwToast{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+</style>
+</helmet>
+<div style="font-family:'Jost',system-ui,sans-serif;color:#4C463E;background:#F4EDE4;min-height:100vh;-webkit-font-smoothing:antialiased;">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(244,237,228,.92);backdrop-filter:blur(10px);border-bottom:1px solid #E6DBCB;">
+    <div style="max-width:1160px;margin:0 auto;padding:13px 30px;display:flex;align-items:center;gap:22px;">
+      <div style="display:flex;flex-direction:column;line-height:.86;">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;letter-spacing:.14em;color:#6E7E63;">KEEP WACO</span>
+        <span style="font-family:'Parisienne',cursive;font-size:22px;color:#C68C86;margin-top:-3px;margin-left:24px;">wagging</span>
+      </div>
+      <span style="font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;border-left:1px solid #D9CDBC;padding-left:18px;">Brand Book</span>
+      <nav style="display:flex;gap:2px;margin-left:auto;">
+        <a href="#logo" style="padding:8px 11px;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Logo</a>
+        <a href="#color" style="padding:8px 11px;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Color</a>
+        <a href="#type" style="padding:8px 11px;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Type</a>
+        <a href="#merch" style="padding:8px 11px;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Merch</a>
+        <a href="#wild" style="padding:8px 11px;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">In the wild</a>
+      </nav>
+    </div>
+  </header>
+
+  <section style="max-width:1160px;margin:0 auto;padding:70px 30px 30px;text-align:center;">
+    <span style="font-size:12px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#A99E8D;">Brand &amp; Identity System · 2026</span>
+    <div style="display:flex;flex-direction:column;align-items:center;line-height:.82;margin:22px 0 0;">
+      <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:84px;letter-spacing:.1em;color:#6E7E63;">KEEP WACO</span>
+      <span style="font-family:'Parisienne',cursive;font-size:104px;color:#C68C86;margin-top:-10px;">wagging</span>
+    </div>
+    <p style="font-size:13px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#8A8073;margin:18px 0 0;">Community · Connection · Compassion</p>
+    <p style="font-size:17px;font-weight:300;line-height:1.6;color:#7A7165;max-width:560px;margin:24px auto 0;">The community and pet-care home of Platinum Scoops. This is how Keep Waco Wagging looks, sounds, and feels — everywhere, so a Waco dog family knows us on sight.</p>
+  </section>
+
+  <div style="max-width:1160px;margin:10px auto 0;padding:0 30px;"><div style="height:1px;background:#E6DBCB;"></div></div>
+
+  <!-- ESSENCE -->
+  <section style="max-width:1160px;margin:54px auto 0;padding:0 30px;display:grid;grid-template-columns:.8fr 1.2fr;gap:46px;">
+    <div>
+      <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;">01 — Essence</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:38px;line-height:1.08;margin:12px 0 0;color:#54513F;">Warm, local, and built around real dogs.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;align-content:start;padding-top:8px;">
+      <div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:23px;color:#C68C86;margin:0;">We are</h3>
+        <p style="font-size:14px;font-weight:300;line-height:1.6;color:#7A7165;margin:8px 0 0;">Family-run. Inclusive &amp; multicultural. Multi-ability &amp; welcoming. Hands-on and present. Proudly Waco. The good-towels, kitchen-sink kind of care.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:23px;color:#C68C86;margin:0;">We are not</h3>
+        <p style="font-size:14px;font-weight:300;line-height:1.6;color:#7A7165;margin:8px 0 0;">A warehouse kennel. A faceless franchise. Cold or corporate. Loud or gimmicky. An after-hours side gig. Anything that treats a dog like a number.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGO -->
+  <a id="logo"></a>
+  <section style="max-width:1160px;margin:64px auto 0;padding:0 30px;">
+    <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;">02 — Logo system</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;margin:8px 0 0;color:#54513F;">The lockup &amp; its family</h2>
+
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:22px;margin-top:26px;">
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:20px;padding:48px;display:flex;align-items:center;justify-content:center;">
+        <div style="display:flex;flex-direction:column;align-items:center;line-height:.84;">
+          <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:52px;letter-spacing:.12em;color:#6E7E63;">KEEP WACO</span>
+          <span style="font-family:'Parisienne',cursive;font-size:64px;color:#C68C86;margin-top:-6px;">wagging</span>
+          <span style="font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#A99E8D;margin-top:12px;">Community · Connection · Compassion</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-rows:1fr 1fr;gap:22px;">
+        <div style="background:#6E7E63;border-radius:20px;display:flex;align-items:center;justify-content:center;">
+          <div style="display:flex;flex-direction:column;align-items:center;line-height:.84;">
+            <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;letter-spacing:.12em;color:#F4EDE4;">KEEP WACO</span>
+            <span style="font-family:'Parisienne',cursive;font-size:34px;color:#E5C9C4;margin-top:-3px;">wagging</span>
+          </div>
+        </div>
+        <div style="background:#E5C9C4;border-radius:20px;display:flex;align-items:center;justify-content:center;">
+          <div style="width:96px;height:96px;border-radius:50%;background:#6E7E63;color:#F4EDE4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1;">
+            <span style="font-family:'Parisienne',cursive;font-size:30px;color:#E5C9C4;">waco</span>
+            <span style="font-size:9.5px;font-weight:500;letter-spacing:.24em;margin-top:4px;">STRONG</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:22px;">
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:16px;padding:24px;">
+        <div style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#6E7E63;">Do</div>
+        <p style="font-size:13.5px;font-weight:300;line-height:1.55;color:#7A7165;margin:8px 0 0;">Keep the serif/script pairing intact. Give it clear space equal to the cap-height of "KEEP." Let it sit on cream, sage, or rose.</p>
+      </div>
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:16px;padding:24px;">
+        <div style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#B97D77;">Don't</div>
+        <p style="font-size:13.5px;font-weight:300;line-height:1.55;color:#7A7165;margin:8px 0 0;">Don't swap the fonts, stretch it, add a drop shadow, recolor "wagging" to anything but rose/blush, or crowd it with other marks.</p>
+      </div>
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:16px;padding:24px;">
+        <div style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#A99E8D;">Motifs</div>
+        <div style="display:flex;align-items:center;gap:16px;margin-top:12px;">
+          <span style="color:#C68C86;font-size:26px;">♥</span>
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="#6E7E63"><circle cx="6.2" cy="10.2" r="2.3"/><circle cx="11" cy="7.4" r="2.3"/><circle cx="16.1" cy="8.9" r="2.3"/><path d="M11.2 12.4c-2.7 0-4.9 1.9-4.9 4.1 0 1.7 1.6 2.3 3.1 2.3 1 0 1.2-.3 1.8-.3s.8.3 1.8.3c1.6 0 3.1-.6 3.1-2.3 0-2.2-2.2-4.1-4.9-4.1z"/></svg>
+          <span style="font-family:'Parisienne',cursive;font-size:30px;color:#C68C86;">wag</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOR -->
+  <a id="color"></a>
+  <section style="max-width:1160px;margin:64px auto 0;padding:0 30px;">
+    <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;">03 — Color</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;margin:8px 0 0;color:#54513F;">Known from the palette alone</h2>
+    <p style="font-size:15px;font-weight:300;color:#8A8073;margin:8px 0 0;max-width:560px;">Tap any swatch to copy its hex. Hand these exact values to a printer, sign shop, or embroiderer.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px;">
+      <button onClick="{{ copySage }}" style="text-align:left;border:none;cursor:pointer;border-radius:18px;overflow:hidden;background:#FBF6EF;border:1px solid #E6DBCB;padding:0;">
+        <div style="height:128px;background:#6E7E63;"></div>
+        <div style="padding:16px 18px 18px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#54513F;">Wag Sage</div>
+          <div style="font-size:13px;font-weight:400;color:#8A8073;margin-top:3px;letter-spacing:.04em;">#6E7E63 · primary</div>
+        </div>
+      </button>
+      <button onClick="{{ copyCream }}" style="text-align:left;border:none;cursor:pointer;border-radius:18px;overflow:hidden;background:#FBF6EF;border:1px solid #E6DBCB;padding:0;">
+        <div style="height:128px;background:#F4EDE4;border-bottom:1px solid #E6DBCB;"></div>
+        <div style="padding:16px 18px 18px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#54513F;">Kitchen Cream</div>
+          <div style="font-size:13px;font-weight:400;color:#8A8073;margin-top:3px;letter-spacing:.04em;">#F4EDE4 · background</div>
+        </div>
+      </button>
+      <button onClick="{{ copyRose }}" style="text-align:left;border:none;cursor:pointer;border-radius:18px;overflow:hidden;background:#FBF6EF;border:1px solid #E6DBCB;padding:0;">
+        <div style="height:128px;background:#C68C86;"></div>
+        <div style="padding:16px 18px 18px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#54513F;">Good-Towel Rose</div>
+          <div style="font-size:13px;font-weight:400;color:#8A8073;margin-top:3px;letter-spacing:.04em;">#C68C86 · accent</div>
+        </div>
+      </button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px;">
+      <button onClick="{{ copyBark }}" style="text-align:left;border:1px solid #E6DBCB;cursor:pointer;border-radius:14px;overflow:hidden;background:#FBF6EF;padding:0;">
+        <div style="height:64px;background:#4C463E;"></div>
+        <div style="padding:11px 13px;"><div style="font-weight:500;font-size:13.5px;color:#54513F;">Bark Brown</div><div style="font-size:12px;color:#8A8073;">#4C463E</div></div>
+      </button>
+      <button onClick="{{ copyBlue }}" style="text-align:left;border:1px solid #E6DBCB;cursor:pointer;border-radius:14px;overflow:hidden;background:#FBF6EF;padding:0;">
+        <div style="height:64px;background:#A9C2CF;"></div>
+        <div style="padding:11px 13px;"><div style="font-weight:500;font-size:13.5px;color:#54513F;">Brazos Blue</div><div style="font-size:12px;color:#8A8073;">#A9C2CF</div></div>
+      </button>
+      <button onClick="{{ copyTaupe }}" style="text-align:left;border:1px solid #E6DBCB;cursor:pointer;border-radius:14px;overflow:hidden;background:#FBF6EF;padding:0;">
+        <div style="height:64px;background:#B3A48E;"></div>
+        <div style="padding:11px 13px;"><div style="font-weight:500;font-size:13.5px;color:#54513F;">Trail Taupe</div><div style="font-size:12px;color:#8A8073;">#B3A48E</div></div>
+      </button>
+      <button onClick="{{ copyBlush }}" style="text-align:left;border:1px solid #E6DBCB;cursor:pointer;border-radius:14px;overflow:hidden;background:#FBF6EF;padding:0;">
+        <div style="height:64px;background:#E5C9C4;"></div>
+        <div style="padding:11px 13px;"><div style="font-weight:500;font-size:13.5px;color:#54513F;">Blush</div><div style="font-size:12px;color:#8A8073;">#E5C9C4</div></div>
+      </button>
+    </div>
+
+    <div style="margin-top:22px;">
+      <div style="font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#A99E8D;margin-bottom:9px;">Usage balance</div>
+      <div style="display:flex;height:30px;border-radius:999px;overflow:hidden;border:1px solid #E6DBCB;">
+        <div style="flex:55;background:#F4EDE4;"></div>
+        <div style="flex:25;background:#6E7E63;"></div>
+        <div style="flex:8;background:#4C463E;"></div>
+        <div style="flex:7;background:#C68C86;"></div>
+        <div style="flex:5;background:#A9C2CF;"></div>
+      </div>
+      <div style="display:flex;gap:20px;margin-top:9px;font-size:12px;font-weight:300;color:#8A8073;flex-wrap:wrap;">
+        <span>55% Cream</span><span>25% Sage</span><span>8% Bark</span><span>7% Rose</span><span>5% Blue / Taupe</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <a id="type"></a>
+  <section style="max-width:1160px;margin:64px auto 0;padding:0 30px;">
+    <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;">04 — Typography</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;margin:8px 0 0;color:#54513F;">Three voices, one tone</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:26px;">
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;padding:26px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:64px;line-height:1;color:#6E7E63;">Aa</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#54513F;margin-top:14px;">Cormorant Garamond</div>
+        <p style="font-size:13px;font-weight:300;color:#8A8073;margin:6px 0 0;line-height:1.5;">Headlines &amp; prices. Elegant, editorial. Caps + wide tracking for the logo line.</p>
+      </div>
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;padding:26px;">
+        <div style="font-family:'Parisienne',cursive;font-size:64px;line-height:1;color:#C68C86;">Aa</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#54513F;margin-top:14px;">Parisienne</div>
+        <p style="font-size:13px;font-weight:300;color:#8A8073;margin:6px 0 0;line-height:1.5;">The signature accent. One or two words only — "wagging," "wag," "service." Never body text.</p>
+      </div>
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;padding:26px;">
+        <div style="font-family:'Jost',sans-serif;font-weight:300;font-size:64px;line-height:1;color:#6E7E63;">Aa</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#54513F;margin-top:14px;">Jost</div>
+        <p style="font-size:13px;font-weight:300;color:#8A8073;margin:6px 0 0;line-height:1.5;">Body, labels, buttons &amp; nav. Airy. Uppercase + tracking for small labels.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICE -->
+  <section style="max-width:1160px;margin:60px auto 0;padding:0 30px;">
+    <div style="background:#6E7E63;border-radius:24px;padding:46px;color:#F4EDE4;">
+      <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#E5C9C4;">05 — Voice &amp; taglines</div>
+      <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:40px;margin-top:22px;align-items:center;">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1.25;color:#F4EDE4;">"Together, we keep waco <span style="font-family:'Parisienne',cursive;color:#E5C9C4;font-size:42px;">wagging</span>."</div>
+          <p style="font-size:14.5px;font-weight:300;line-height:1.6;opacity:.9;margin:18px 0 0;max-width:430px;">Talk like a neighbor who loves dogs. Warm, plainspoken, a little playful — never salesy. Lead with the dog and the family, then the service.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="border:1px solid rgba(244,237,228,.32);border-radius:14px;padding:14px 18px;font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;">Celebrate · Connect · Support · Wag</div>
+          <div style="border:1px solid rgba(244,237,228,.32);border-radius:14px;padding:14px 18px;font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;">Community · Connection · Compassion</div>
+          <div style="border:1px solid rgba(244,237,228,.32);border-radius:14px;padding:14px 18px;font-size:13px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;">Wear the Wag</div>
+          <div style="border:1px solid rgba(244,237,228,.32);border-radius:14px;padding:14px 18px;font-size:13px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">Full-time care for Waco's dog families</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOGRAPHY -->
+  <section style="max-width:1160px;margin:64px auto 0;padding:0 30px;">
+    <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;">06 — Photography</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;margin:8px 0 0;color:#54513F;">Real dogs, real Waco, warm light</h2>
+    <p style="font-size:15px;font-weight:300;color:#8A8073;margin:8px 0 0;max-width:600px;">Natural golden-hour light, candid moments, soft film tones. Kitchen-sink baths, riverside walks, the suspension bridge, dogs mid-joy. Drop real photos into every slot across the site — they save automatically.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px;">
+      <image-slot id="bb-photo-1" shape="rounded" radius="16" placeholder="Group walk" style="width:100%;height:200px;display:block;border:1px solid #E6DBCB;"></image-slot>
+      <image-slot id="bb-photo-2" shape="rounded" radius="16" placeholder="Sink bath" style="width:100%;height:200px;display:block;border:1px solid #E6DBCB;"></image-slot>
+      <image-slot id="bb-photo-3" shape="rounded" radius="16" placeholder="Dog mid-joy" style="width:100%;height:200px;display:block;border:1px solid #E6DBCB;"></image-slot>
+      <image-slot id="bb-photo-4" shape="rounded" radius="16" placeholder="Bridge / Waco" style="width:100%;height:200px;display:block;border:1px solid #E6DBCB;"></image-slot>
+    </div>
+  </section>
+
+  <!-- MERCH / APPAREL -->
+  <a id="merch"></a>
+  <section style="max-width:1160px;margin:70px auto 0;padding:0 30px;">
+    <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;">07 — Apparel line</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;margin:8px 0 0;color:#54513F;">Wear the <span style="font-family:'Parisienne',cursive;font-weight:400;color:#C68C86;">Wag</span></h2>
+    <p style="font-size:15px;font-weight:300;color:#8A8073;margin:8px 0 0;max-width:600px;">Typographic designs straight from the brand — so a tee reads as KWW across a room. Signature Waco-skyline hoodies live in the Shop.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;">
+
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;overflow:hidden;">
+        <div style="background:#EFE7DB;height:230px;display:flex;align-items:center;justify-content:center;">
+          <div style="position:relative;width:74%;aspect-ratio:1.08/1;background:#6E7E63;clip-path:polygon(28% 12%,40% 12%,50% 19%,60% 12%,72% 12%,93% 24%,79% 37%,79% 95%,21% 95%,21% 37%,7% 24%);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Parisienne',cursive;font-size:28px;color:#E5C9C4;max-width:54%;text-align:center;">wagging</span>
+          </div>
+        </div>
+        <div style="padding:16px 18px 18px;">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:0;color:#54513F;">Script Tee</h3>
+          <p style="font-size:12.5px;font-weight:300;color:#8A8073;margin:5px 0 0;">Sage · Cream · Rose colorways</p>
+        </div>
+      </div>
+
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;overflow:hidden;">
+        <div style="background:#EFE7DB;height:230px;display:flex;align-items:center;justify-content:center;">
+          <div style="position:relative;width:74%;aspect-ratio:1.08/1;background:#F4EDE4;clip-path:polygon(28% 12%,40% 12%,50% 19%,60% 12%,72% 12%,93% 24%,79% 37%,79% 95%,21% 95%,21% 37%,7% 24%);display:flex;flex-direction:column;align-items:center;justify-content:center;">
+            <span style="color:#C68C86;font-size:16px;">♥</span>
+            <span style="font-family:'Jost',sans-serif;font-weight:600;font-size:12px;letter-spacing:.08em;color:#6E7E63;margin-top:4px;max-width:62%;text-align:center;">WEAR THE WAG</span>
+          </div>
+        </div>
+        <div style="padding:16px 18px 18px;">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:0;color:#54513F;">Wear the Wag Tee</h3>
+          <p style="font-size:12.5px;font-weight:300;color:#8A8073;margin:5px 0 0;">Cream · Blush colorways</p>
+        </div>
+      </div>
+
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;overflow:hidden;">
+        <div style="background:#EFE7DB;height:230px;display:flex;align-items:center;justify-content:center;">
+          <div style="position:relative;width:74%;aspect-ratio:1.08/1;background:#C68C86;clip-path:polygon(28% 12%,40% 12%,50% 19%,60% 12%,72% 12%,93% 24%,79% 37%,79% 95%,21% 95%,21% 37%,7% 24%);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.92;">
+            <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:15px;letter-spacing:.08em;color:#FBF6EF;">KEEP WACO</span>
+            <span style="font-family:'Parisienne',cursive;font-size:26px;color:#F4EDE4;margin-top:-2px;">wagging</span>
+          </div>
+        </div>
+        <div style="padding:16px 18px 18px;">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:0;color:#54513F;">Logo Crewneck</h3>
+          <p style="font-size:12.5px;font-weight:300;color:#8A8073;margin:5px 0 0;">Rose · Sage colorways</p>
+        </div>
+      </div>
+
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;overflow:hidden;">
+        <div style="background:#EFE7DB;height:230px;display:flex;align-items:center;justify-content:center;">
+          <div style="position:relative;width:74%;aspect-ratio:1.08/1;background:#4C463E;clip-path:polygon(28% 12%,40% 12%,50% 19%,60% 12%,72% 12%,93% 24%,79% 37%,79% 95%,21% 95%,21% 37%,7% 24%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.5;">
+            <span style="font-family:'Jost',sans-serif;font-weight:500;font-size:11px;letter-spacing:.2em;color:#E5C9C4;">CELEBRATE<br>CONNECT<br>SUPPORT<br>WAG</span>
+          </div>
+        </div>
+        <div style="padding:16px 18px 18px;">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:0;color:#54513F;">Values Tee</h3>
+          <p style="font-size:12.5px;font-weight:300;color:#8A8073;margin:5px 0 0;">Bark · Sage colorways</p>
+        </div>
+      </div>
+
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;overflow:hidden;">
+        <div style="background:#EFE7DB;height:230px;display:flex;align-items:center;justify-content:center;">
+          <div style="position:relative;width:74%;aspect-ratio:1.08/1;background:#8C9B7E;clip-path:polygon(28% 12%,40% 12%,50% 19%,60% 12%,72% 12%,93% 24%,79% 37%,79% 95%,21% 95%,21% 37%,7% 24%);display:flex;align-items:center;justify-content:center;">
+            <div style="width:74px;height:74px;border-radius:50%;background:#6E7E63;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;">
+              <span style="font-family:'Parisienne',cursive;font-size:22px;color:#E5C9C4;">waco</span>
+              <span style="font-size:8px;font-weight:500;letter-spacing:.2em;color:#F4EDE4;margin-top:3px;">STRONG</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:16px 18px 18px;">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:0;color:#54513F;">Waco Strong Tee</h3>
+          <p style="font-size:12.5px;font-weight:300;color:#8A8073;margin:5px 0 0;">Sage · Cream colorways</p>
+        </div>
+      </div>
+
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;overflow:hidden;">
+        <div style="background:#EFE7DB;height:230px;display:flex;align-items:center;justify-content:center;">
+          <div style="position:relative;width:74%;aspect-ratio:1.08/1;background:#F4EDE4;clip-path:polygon(28% 12%,40% 12%,50% 19%,60% 12%,72% 12%,93% 24%,79% 37%,79% 95%,21% 95%,21% 37%,7% 24%);display:flex;flex-direction:column;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="#6E7E63"><circle cx="6.2" cy="10.2" r="2.3"/><circle cx="11" cy="7.4" r="2.3"/><circle cx="16.1" cy="8.9" r="2.3"/><path d="M11.2 12.4c-2.7 0-4.9 1.9-4.9 4.1 0 1.7 1.6 2.3 3.1 2.3 1 0 1.2-.3 1.8-.3s.8.3 1.8.3c1.6 0 3.1-.6 3.1-2.3 0-2.2-2.2-4.1-4.9-4.1z"/></svg>
+            <span style="font-family:'Jost',sans-serif;font-weight:600;font-size:12px;letter-spacing:.12em;color:#54513F;margin-top:6px;max-width:64%;text-align:center;">DOG PARENT</span>
+          </div>
+        </div>
+        <div style="padding:16px 18px 18px;">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:0;color:#54513F;">Dog Parent Tee</h3>
+          <p style="font-size:12.5px;font-weight:300;color:#8A8073;margin:5px 0 0;">Cream · Blue colorways</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCT LINE -->
+  <section style="max-width:1160px;margin:64px auto 0;padding:0 30px;">
+    <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;">08 — Product line</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;margin:8px 0 0;color:#54513F;">Beyond the tee</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px;">
+
+      <div style="background:#B3A48E;border-radius:18px;padding:30px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;color:#FBF6EF;">
+        <div style="display:flex;flex-direction:column;line-height:.86;">
+          <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;letter-spacing:.1em;">KEEP WACO</span>
+          <span style="font-family:'Parisienne',cursive;font-size:24px;margin-top:-2px;color:#F4EDE4;">wagging</span>
+        </div>
+        <span style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;">Canvas tote</span>
+      </div>
+
+      <div style="background:#A9C2CF;border-radius:18px;padding:30px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;color:#3F4A4E;">
+        <span style="color:#C68C86;font-size:30px;">♥</span>
+        <span style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;">Dad cap · heart-paw</span>
+      </div>
+
+      <div style="background:#F4EDE4;border:1px solid #E6DBCB;border-radius:18px;padding:30px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;color:#54513F;">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:700;font-size:22px;letter-spacing:.08em;">WACO<br>TEXAS</span>
+        <span style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8A8073;">Enamel mug</span>
+      </div>
+
+      <div style="background:#C68C86;border-radius:18px;padding:30px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;color:#FBF6EF;">
+        <span style="font-family:'Parisienne',cursive;font-size:34px;color:#F4EDE4;">wag</span>
+        <span style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;">Bandana</span>
+      </div>
+
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;padding:30px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;color:#54513F;">
+        <div style="display:flex;gap:12px;align-items:center;">
+          <span style="color:#C68C86;font-size:22px;">♥</span>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="#6E7E63"><circle cx="6.2" cy="10.2" r="2.3"/><circle cx="11" cy="7.4" r="2.3"/><circle cx="16.1" cy="8.9" r="2.3"/><path d="M11.2 12.4c-2.7 0-4.9 1.9-4.9 4.1 0 1.7 1.6 2.3 3.1 2.3 1 0 1.2-.3 1.8-.3s.8.3 1.8.3c1.6 0 3.1-.6 3.1-2.3 0-2.2-2.2-4.1-4.9-4.1z"/></svg>
+          <span style="font-family:'Parisienne',cursive;font-size:24px;color:#C68C86;">waco</span>
+        </div>
+        <span style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8A8073;">Sticker pack</span>
+      </div>
+
+      <div style="background:#6E7E63;border-radius:18px;padding:30px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;color:#F4EDE4;">
+        <div style="display:flex;flex-direction:column;line-height:.86;">
+          <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;letter-spacing:.1em;">KEEP WACO</span>
+          <span style="font-family:'Parisienne',cursive;font-size:22px;color:#E5C9C4;margin-top:-2px;">wagging</span>
+        </div>
+        <span style="font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;">Yard sign · A-frame</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- IN THE WILD -->
+  <a id="wild"></a>
+  <section style="max-width:1160px;margin:64px auto 0;padding:0 30px;">
+    <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99E8D;">09 — In the wild</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;margin:8px 0 0;color:#54513F;">Recognizable on sight</h2>
+    <p style="font-size:15px;font-weight:300;color:#8A8073;margin:8px 0 0;max-width:560px;">Where the brand shows up out in Waco — on the van, on the team, on the porch.</p>
+
+    <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-top:26px;">
+      <div style="border-radius:20px;overflow:hidden;border:1px solid #E6DBCB;display:flex;flex-direction:column;">
+        <div style="background:#6E7E63;height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <span style="font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#E5C9C4;">Platinum Scoops presents</span>
+          <div style="display:flex;flex-direction:column;align-items:center;line-height:.84;margin-top:10px;">
+            <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:40px;letter-spacing:.12em;color:#F4EDE4;">KEEP WACO</span>
+            <span style="font-family:'Parisienne',cursive;font-size:48px;color:#E5C9C4;margin-top:-5px;">wagging</span>
+          </div>
+        </div>
+        <div style="padding:16px 18px;background:#FBF6EF;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8A8073;">Van wrap / vehicle decal</div>
+      </div>
+      <div style="border-radius:20px;overflow:hidden;border:1px solid #E6DBCB;display:flex;flex-direction:column;">
+        <div style="background:#EFE7DB;flex:1;min-height:210px;display:flex;align-items:center;justify-content:center;padding:24px;">
+          <div style="position:relative;width:62%;aspect-ratio:1.08/1;background:#6E7E63;clip-path:polygon(28% 12%,40% 12%,50% 19%,60% 12%,72% 12%,93% 24%,79% 37%,79% 95%,21% 95%,21% 37%,7% 24%);display:flex;align-items:flex-start;justify-content:center;padding-top:24%;">
+            <span style="font-family:'Parisienne',cursive;font-size:24px;color:#E5C9C4;">wagging</span>
+          </div>
+        </div>
+        <div style="padding:16px 18px;background:#FBF6EF;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8A8073;">Team uniform · sage polo</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px;">
+      <div style="border-radius:18px;overflow:hidden;border:1px solid #E6DBCB;">
+        <div style="height:150px;background:#FBF6EF;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #E6DBCB;">
+          <div style="width:78%;height:62%;background:#6E7E63;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.84;">
+            <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:15px;letter-spacing:.1em;color:#F4EDE4;">KEEP WACO</span>
+            <span style="font-family:'Parisienne',cursive;font-size:18px;color:#E5C9C4;margin-top:-2px;">wagging</span>
+          </div>
+        </div>
+        <div style="padding:13px 16px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8A8073;">Business card</div>
+      </div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid #E6DBCB;">
+        <div style="height:150px;background:#B3A48E;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Parisienne',cursive;font-size:30px;color:#F4EDE4;">thank you</span>
+        </div>
+        <div style="padding:13px 16px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8A8073;">Mailer / packaging</div>
+      </div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid #E6DBCB;">
+        <div style="height:150px;background:#C68C86;display:flex;align-items:center;justify-content:center;text-align:center;">
+          <span style="font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:#FBF6EF;line-height:2;">Celebrate<br>Connect · Support<br>Wag ♥</span>
+        </div>
+        <div style="padding:13px 16px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#8A8073;">Social template</div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width:1160px;margin:64px auto 0;padding:0 30px 50px;">
+    <div style="border-top:1px solid #E6DBCB;padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+      <div style="display:flex;flex-direction:column;line-height:.86;">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;letter-spacing:.14em;color:#6E7E63;">KEEP WACO</span>
+        <span style="font-family:'Parisienne',cursive;font-size:20px;color:#C68C86;margin-top:-3px;margin-left:20px;">wagging</span>
+      </div>
+      <div style="display:flex;gap:20px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#8A8073;flex-wrap:wrap;">
+        <a href="Keep%20Waco%20Wagging%20Home.dc.html" style-hover="color:#C68C86;">Home</a>
+        <a href="KWWP%20Storefront.dc.html" style-hover="color:#C68C86;">Shop</a>
+        <a href="https://keepwacowagging.com" target="_blank" rel="noopener" style-hover="color:#C68C86;">keepwacowagging.com</a>
+      </div>
+      <span style="font-size:12px;font-weight:300;color:#A99E8D;">© 2026 · by Platinum Scoops</span>
+    </div>
+  </footer>
+
+  <sc-if value="{{ showToast }}" hint-placeholder-val="">
+    <div style="position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:80;background:#54513F;color:#F4EDE4;font-size:13px;font-weight:400;letter-spacing:.06em;padding:13px 24px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.24);animation:kwwToast .28s ease;display:flex;align-items:center;gap:9px;">
+      <span style="color:#E5B6B0;">♥</span>{{ toast }}
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { toast:'' };
+  copy(hex){
+    try { navigator.clipboard && navigator.clipboard.writeText(hex); } catch(e){}
+    clearTimeout(this._t);
+    this.setState({ toast:'Copied ' + hex });
+    this._t = setTimeout(()=>this.setState({toast:''}), 1800);
+  }
+  componentWillUnmount(){ clearTimeout(this._t); }
+  renderVals(){
+    return {
+      showToast: !!this.state.toast, toast: this.state.toast,
+      copySage:()=>this.copy('#6E7E63'), copyCream:()=>this.copy('#F4EDE4'),
+      copyRose:()=>this.copy('#C68C86'), copyBark:()=>this.copy('#4C463E'),
+      copyBlue:()=>this.copy('#A9C2CF'), copyTaupe:()=>this.copy('#B3A48E'),
+      copyBlush:()=>this.copy('#E5C9C4'),
+    };
+  }
+}
+</script>
+</body>
+</html>

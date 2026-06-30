@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  *{box-sizing:border-box;} html,body{margin:0;}
+  ::selection{background:#E5C9C4;color:#4C463E;} a{text-decoration:none;color:inherit;}
+  image-slot{--is-bg:#E9DDCC;}
+</style>
+</helmet>
+<div style="font-family:'Jost',system-ui,sans-serif;color:#4C463E;background:#F4EDE4;min-height:100vh;-webkit-font-smoothing:antialiased;">
+
+  <div style="background:#6E7E63;color:#F4EDE4;text-align:center;font-size:12.5px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;padding:9px 16px;">
+    Real-life skills, coached in real Waco settings <span style="color:#E5B6B0;">♥</span>
+  </div>
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(244,237,228,.9);backdrop-filter:blur(10px);border-bottom:1px solid #E6DBCB;">
+    <div style="max-width:1160px;margin:0 auto;padding:14px 30px;display:flex;align-items:center;gap:22px;">
+      <a href="Keep%20Waco%20Wagging%20Home.dc.html" style="display:flex;flex-direction:column;line-height:.86;flex-shrink:0;">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;letter-spacing:.14em;color:#6E7E63;">KEEP WACO</span>
+        <span style="font-family:'Parisienne',cursive;font-size:25px;color:#C68C86;margin-top:-4px;margin-left:28px;">wagging</span>
+      </a>
+      <nav style="display:flex;gap:2px;margin-left:14px;">
+        <a href="Keep%20Waco%20Wagging%20Home.dc.html" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Home</a>
+        <a href="Keep%20Waco%20Wagging%20Home.dc.html#services" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#54513F;" style-hover="color:#C68C86;">Services</a>
+        <a href="KWWP%20Storefront.dc.html" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">Shop</a>
+        <a href="About.dc.html" style="padding:8px 11px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#7A7165;" style-hover="color:#C68C86;">About</a>
+      </nav>
+      <a href="https://keepwacowagging.com/book" target="_blank" rel="noopener" style="margin-left:auto;background:#6E7E63;color:#F4EDE4;border-radius:999px;padding:11px 22px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;" style-hover="background:#5C6A51;">Start training</a>
+    </div>
+  </header>
+
+  <section style="max-width:1160px;margin:0 auto;padding:40px 30px 8px;">
+    <div style="display:grid;grid-template-columns:1.02fr .98fr;gap:46px;align-items:center;">
+      <div>
+        <span style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#A99483;">Lifestyle training</span>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:62px;line-height:.98;letter-spacing:-.01em;margin:14px 0 0;color:#54513F;">A dog you can take <span style="font-family:'Parisienne',cursive;font-weight:400;color:#C68C86;font-size:68px;">anywhere</span></h1>
+        <p style="font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#A99E8D;margin:16px 0 0;">Patio manners · Loose-leash · Calm-home skills</p>
+        <p style="font-size:17px;line-height:1.65;color:#7A7165;font-weight:300;max-width:452px;margin:14px 0 0;">Practical coaching for real life — not a sterile classroom. We build skills where you'll actually use them: patios, sidewalks, and your living room.</p>
+        <div style="display:flex;gap:13px;margin-top:28px;flex-wrap:wrap;">
+          <a href="https://keepwacowagging.com/book" target="_blank" rel="noopener" style="background:#6E7E63;color:#F4EDE4;border-radius:999px;padding:15px 30px;font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;" style-hover="background:#5C6A51;">Start training</a>
+          <a href="https://keepwacowagging.com/blog/how-to-know-if-your-dog-is-ready-for-a-patio" target="_blank" rel="noopener" style="background:transparent;color:#B97D77;border:1.4px solid #C68C86;border-radius:999px;padding:13.6px 28px;font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;" style-hover="background:#C68C86;color:#FBF6EF;">Is my dog ready?</a>
+        </div>
+      </div>
+      <image-slot id="train-hero" shape="rounded" radius="28" placeholder="Drop a happy / training photo" style="width:100%;height:440px;display:block;border:1px solid #E6DBCB;"></image-slot>
+    </div>
+  </section>
+
+  <section style="max-width:1160px;margin:60px auto 0;padding:0 30px;">
+    <div style="text-align:center;"><div style="font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#A99E8D;">What we work on</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;margin:6px 0 0;color:#54513F;">Skills for the real world</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:26px;">
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;padding:26px;"><div style="color:#C68C86;font-size:18px;">♥</div><h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:8px 0 0;color:#54513F;">Patio manners</h3><p style="font-size:13.5px;font-weight:300;line-height:1.55;color:#8A8073;margin:7px 0 0;">Settle under the table while you enjoy a Waco patio in peace.</p></div>
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;padding:26px;"><div style="color:#C68C86;font-size:18px;">♥</div><h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:8px 0 0;color:#54513F;">Loose-leash walks</h3><p style="font-size:13.5px;font-weight:300;line-height:1.55;color:#8A8073;margin:7px 0 0;">No more dragging — calm, connected walks around the block.</p></div>
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;padding:26px;"><div style="color:#C68C86;font-size:18px;">♥</div><h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:8px 0 0;color:#54513F;">Puppy field trips</h3><p style="font-size:13.5px;font-weight:300;line-height:1.55;color:#8A8073;margin:7px 0 0;">Confident socialization in new places, at a happy pace.</p></div>
+      <div style="background:#FBF6EF;border:1px solid #E6DBCB;border-radius:18px;padding:26px;"><div style="color:#C68C86;font-size:18px;">♥</div><h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin:8px 0 0;color:#54513F;">Calm-home skills</h3><p style="font-size:13.5px;font-weight:300;line-height:1.55;color:#8A8073;margin:7px 0 0;">Door manners, settling, and recovering from distractions.</p></div>
+    </div>
+  </section>
+
+  <section style="max-width:1160px;margin:60px auto 0;padding:0 30px;">
+    <div style="background:#6E7E63;border-radius:26px;padding:52px;text-align:center;color:#F4EDE4;">
+      <div style="font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#E5C9C4;">Ready when you are</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:40px;line-height:1.08;margin:12px auto 0;max-width:600px;">Let's build a calmer, happier <span style="font-family:'Parisienne',cursive;color:#E5C9C4;font-size:46px;">pup</span></h2>
+      <p style="font-size:15px;font-weight:300;opacity:.92;margin:12px 0 0;">Call (254) SCOOPER · info@keepwacowagging.com · or start online.</p>
+      <div style="display:flex;gap:13px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+        <a href="https://keepwacowagging.com/book" target="_blank" rel="noopener" style="background:#F4EDE4;color:#6E7E63;border-radius:999px;padding:15px 32px;font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;" style-hover="background:#E5C9C4;color:#4C463E;">Start training</a>
+        <a href="Keep%20Waco%20Wagging%20Home.dc.html#services" style="background:transparent;color:#F4EDE4;border:1.4px solid rgba(244,237,228,.6);border-radius:999px;padding:13.6px 30px;font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;" style-hover="background:rgba(244,237,228,.14)">All services</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width:1160px;margin:54px auto 0;padding:0 30px 40px;">
+    <div style="border-top:1px solid #E6DBCB;padding-top:26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+      <a href="Keep%20Waco%20Wagging%20Home.dc.html" style="display:flex;flex-direction:column;line-height:.86;">
+        <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:16px;letter-spacing:.14em;color:#6E7E63;">KEEP WACO</span>
+        <span style="font-family:'Parisienne',cursive;font-size:20px;color:#C68C86;margin-top:-3px;margin-left:20px;">wagging</span>
+      </a>
+      <div style="display:flex;gap:20px;font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:#8A8073;flex-wrap:wrap;">
+        <a href="tel:+12547266737" style-hover="color:#C68C86;">(254) SCOOPER</a>
+        <a href="mailto:info@keepwacowagging.com" style-hover="color:#C68C86;">Email</a>
+        <a href="https://www.instagram.com/platinum_scoops/" target="_blank" rel="noopener" style-hover="color:#C68C86;">@platinum_scoops</a>
+      </div>
+      <span style="font-size:12px;font-weight:300;color:#A99E8D;">© 2026 · by Platinum Scoops</span>
+    </div>
+  </footer>
+
+  <div style="background:#6E7E63;text-align:center;padding:18px 16px;color:#F4EDE4;font-size:12.5px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;">
+    Celebrate · Connect · Support · Wag <span style="color:#E5C9C4;">♥</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

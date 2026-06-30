@@ -1,0 +1,17 @@
+{
+  "capturedAt": "2026-06-30",
+  "baseUrl": "http://localhost:3000",
+  "viewports": ["mobile-390", "tablet-768", "desktop-1440"],
+  "routes": [
+    "/",
+    "/platinum-scoops",
+    "/pet-care",
+    "/training",
+    "/pet-care/weddings-events",
+    "/summer-daycare",
+    "/about",
+    "/shop",
+    "/brand"
+  ],
+  "notes": "Full-page PNGs in this folder. Naming: {route-slug}-{viewport}.png"
+}

@@ -470,9 +470,11 @@ for (const image of allImages) {
   restEntries.push(entry);
 }
 
-const libraryEntries = [...featuredEntries, ...restEntries].map(
-  ({ rel: _rel, featured: _f, ...e }) => e,
-);
+const libraryEntries = [...featuredEntries, ...restEntries].map((entry) => ({
+  src: entry.src,
+  alt: entry.alt,
+  folder: entry.folder,
+}));
 
 if (fs.existsSync(LIBRARY)) {
   const keep = new Set(libraryEntries.map((e) => path.basename(e.src)));

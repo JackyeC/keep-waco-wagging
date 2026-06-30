@@ -1,6 +1,17 @@
 import type { MerchCategory, MerchProduct } from "@/data/merchStore";
+import { curateCatalog } from "@/data/merchCuration";
 import { merchCategoryMeta, shopifyStoreConfig } from "@/data/merchStore";
+import {
+  parseProductCartOptions,
+  type ProductCartOptions,
+  type ShopifyRawVariant,
+} from "@/lib/shopifyProductDetails";
 
+/**
+ * Full catalog JSON exceeds Next.js Data Cache 2MB limit (~2.3MB).
+ * Use cache: 'no-store' so the page still revalidates on its own schedule
+ * without persisting the oversized payload in the Data Cache.
+ */
 const SHOPIFY_PRODUCTS_URL = `${shopifyStoreConfig.storefrontUrl}/products.json?limit=250`;
 
 const CATEGORY_ORDER: MerchCategory[] = [
@@ -19,13 +30,9 @@ type ShopifyApiProduct = {
   body_html?: string;
   product_type?: string;
   tags?: string[];
+  options?: { name: string; values: string[] }[];
   images?: { src: string; alt?: string | null }[];
-  variants?: {
-    price: string;
-    option1?: string | null;
-    option2?: string | null;
-    available?: boolean;
-  }[];
+  variants?: ShopifyRawVariant[];
 };
 
 export type MerchCategoryGroup = {
@@ -35,11 +42,16 @@ export type MerchCategoryGroup = {
   products: MerchProduct[];
 };
 
+export type ShopifyCatalogResult = {
+  products: MerchProduct[];
+  cartOptionsByHandle: Record<string, ProductCartOptions>;
+  error?: string;
+};
+
 function stripHtml(html: string): string {
   return html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-/** Remove internal Shopify draft boilerplate — keep listings visible on /shop. */
 function cleanListingDescription(html: string): string {
   return stripHtml(html)
     .replace(/DRAFT\s*[—-]\s*pending review\.?\s*/gi, "")
@@ -79,7 +91,7 @@ function variantNote(product: ShopifyApiProduct): string | undefined {
   const colors = new Set<string>();
   const sizes = new Set<string>();
   for (const v of product.variants ?? []) {
-    if (v.option1) colors.add(v.option1);
+    if (v.option1 && v.option1 !== "Default Title") colors.add(v.option1);
     if (v.option2) sizes.add(v.option2);
   }
   const parts: string[] = [];
@@ -88,13 +100,28 @@ function variantNote(product: ShopifyApiProduct): string | undefined {
   return parts.length ? parts.join(" · ") : undefined;
 }
 
-function mapProduct(product: ShopifyApiProduct): MerchProduct | null {
+function mapProduct(
+  product: ShopifyApiProduct,
+  cartOptionsByHandle: Record<string, ProductCartOptions>,
+): MerchProduct | null {
   const storefront = shopifyStoreConfig.storefrontUrl;
   if (!storefront) return null;
 
   const image = product.images?.[0];
-  const variant = product.variants?.find((v) => v.available) ?? product.variants?.[0];
+  const variant =
+    product.variants?.find((v) => v.available !== false) ?? product.variants?.[0];
   if (!image?.src || !variant?.price) return null;
+
+  const optionNames = {
+    option1: product.options?.[0]?.name,
+    option2: product.options?.[1]?.name,
+  };
+  const cartOptions = parseProductCartOptions(
+    product.handle,
+    product.variants ?? [],
+    optionNames,
+  );
+  cartOptionsByHandle[product.handle] = cartOptions;
 
   const description = cleanListingDescription(product.body_html ?? "");
   const shortDescription =
@@ -114,6 +141,11 @@ function mapProduct(product: ShopifyApiProduct): MerchProduct | null {
     shopifyProductUrl: `${storefront}/products/${product.handle}`,
     availability: "available",
     category: getMerchCategory(product),
+    supportsLocalCart: cartOptions.supportsLocalCart,
+    cartOption1Label: cartOptions.option1Label,
+    cartOption1Values: cartOptions.option1Values,
+    cartOption2Label: cartOptions.option2Label,
+    cartOption2Values: cartOptions.option2Values,
   };
 }
 
@@ -138,21 +170,37 @@ function sortProducts(products: MerchProduct[]): MerchProduct[] {
 }
 
 /** Live catalog from Shopify — used on /shop so the grid stays in sync with the store. */
-export async function fetchShopifyCatalog(): Promise<MerchProduct[]> {
+export async function fetchShopifyCatalog(): Promise<ShopifyCatalogResult> {
+  const cartOptionsByHandle: Record<string, ProductCartOptions> = {};
+
   try {
     const res = await fetch(SHOPIFY_PRODUCTS_URL, {
-      next: { revalidate: 600 },
+      cache: "no-store",
     });
-    if (!res.ok) return [];
+
+    if (!res.ok) {
+      return {
+        products: [],
+        cartOptionsByHandle,
+        error: "Could not load products from Shopify.",
+      };
+    }
 
     const data = (await res.json()) as { products?: ShopifyApiProduct[] };
     const mapped = (data.products ?? [])
-      .map(mapProduct)
+      .map((p) => mapProduct(p, cartOptionsByHandle))
       .filter((p): p is MerchProduct => p !== null);
 
-    return sortProducts(mapped);
+    return {
+      products: curateCatalog(sortProducts(mapped)),
+      cartOptionsByHandle,
+    };
   } catch {
-    return [];
+    return {
+      products: [],
+      cartOptionsByHandle,
+      error: "Shopify catalog request failed.",
+    };
   }
 }
 
@@ -165,12 +213,12 @@ export function groupMerchByCategory(products: MerchProduct[]): MerchCategoryGro
     buckets.set(category, list);
   }
 
-  return CATEGORY_ORDER
-    .filter((category) => buckets.has(category))
-    .map((category) => ({
+  return CATEGORY_ORDER.filter((category) => buckets.has(category)).map(
+    (category) => ({
       category,
       label: merchCategoryMeta[category].label,
       description: merchCategoryMeta[category].description,
       products: buckets.get(category)!,
-    }));
+    }),
+  );
 }

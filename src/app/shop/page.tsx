@@ -1,24 +1,37 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Heart, PawPrint } from "lucide-react";
-import { MerchProductCard } from "@/components/merch/MerchProductCard";
-import { PlannedPetAccessoriesPanel } from "@/components/merch/PlannedPetAccessoriesPanel";
-import { PublisherNote } from "@/components/PublisherNote";
-import { Button } from "@/components/ui/Button";
-import { Section, SectionHeading } from "@/components/ui/Section";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import {
-  getFeaturedMerchProducts,
+  HoodieImpactPanel,
+  HoodieShopHero,
+  featuredHoodieHandles,
+} from "@/components/merch/HoodieShopSection";
+import { MerchPurposePanel } from "@/components/merch/MerchPurposePanel";
+import { ShopBagButton } from "@/components/merch/ShopCartDrawer";
+import { ShopByBreedPicker } from "@/components/merch/ShopByBreedPicker";
+import { ShopExperience } from "@/components/merch/ShopExperience";
+import { ShopProductGrid } from "@/components/merch/ShopProductGrid";
+import { Button } from "@/components/ui/Button";
+import {
+  getAccessoryProducts,
+  groupByDesign,
+  merchAnchorLine,
+  pickFeaturedProducts,
+} from "@/data/merchCuration";
+import {
   getShopifyCollectionUrl,
   getShopifyStorefrontUrl,
   shopifyStoreConfig,
 } from "@/data/merchStore";
 import { servicePageMetadata } from "@/lib/metadata";
-import { fetchShopifyCatalog, groupMerchByCategory } from "@/lib/shopifyCatalog";
+import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
 import { brandLanguage, cityConfig, ctas } from "@/lib/site";
+
+export const revalidate = 600;
 
 const pageTitle = "Keep Waco Wagging Merch | Waco Dog Apparel";
 const pageDescription =
-  "Shop Keep Waco Wagging hoodies, pet bandanas, bowls, totes, mugs, and stickers for Waco dog people. Made to order through our Shopify store.";
+  "Shop Dog Mom & Dog Dad tees, breed editions, Waco skyline hoodies, totes, and mugs. Cute shirts. Local impact. Every order helps Waco dogs through Pet Circle.";
 
 export const metadata: Metadata = {
   ...servicePageMetadata("/shop", pageTitle, pageDescription),
@@ -43,188 +56,221 @@ export const metadata: Metadata = {
   },
 };
 
+function ShopBagBar() {
+  return (
+    <div className="border-b border-border bg-cream/95 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-end px-6 py-2">
+        <ShopBagButton />
+      </div>
+    </div>
+  );
+}
+
 export default async function ShopPage() {
-  const catalog = await fetchShopifyCatalog();
-  const fallbackFeatured = getFeaturedMerchProducts(5);
-  const products = catalog.length > 0 ? catalog : fallbackFeatured;
-  const categoryGroups =
-    catalog.length > 0
-      ? groupMerchByCategory(catalog)
-      : [{ category: "other" as const, label: "Featured", description: "", products }];
-  const storeLive = products.length > 0;
+  const { products: catalog, cartOptionsByHandle, error } =
+    await fetchShopifyCatalog();
+  const storeLive = catalog.length > 0;
+  const featured = pickFeaturedProducts(catalog);
+  const hoodies = catalog.filter((p) => featuredHoodieHandles.includes(p.slug));
+  const designGroups = groupByDesign(catalog);
+  const accessories = getAccessoryProducts(catalog);
   const storefrontUrl = getShopifyStorefrontUrl();
   const collectionUrl = getShopifyCollectionUrl();
 
   return (
-    <>
-      <section className="border-b border-clay bg-cream">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-          <PublisherNote />
-          <p className="eyebrow mt-6">Shop</p>
-          <h1 className="display mt-3 max-w-3xl text-bark">Keep Waco Wagging Merch</h1>
-          <p className="dek mt-5 max-w-2xl text-base">
-            Shop hoodies, pet accessories, totes, mugs, and stickers made for Waco dog people.
-            Browse here on Keep Waco Wagging — checkout opens on our Shopify store for
-            sizes, payment, and shipping.
-          </p>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-bark-soft">
-            {brandLanguage.brandByLine}.{" "}
-            <Link href={ctas.gearGuide.href} className="font-medium text-sage-700 hover:underline">
-              Browse the Gear Guide
-            </Link>{" "}
-            for Amazon affiliate dog gear we use and recommend.
+    <ShopExperience cartOptionsByHandle={cartOptionsByHandle}>
+      <ShopBagBar />
+      <HoodieShopHero />
+      <HoodieImpactPanel />
+
+      <section id="hoodies" className="mx-auto max-w-[1200px] px-6 pb-10">
+        <div className="text-center">
+          <p className="eyebrow tracking-[0.22em]">Shop hoodies</p>
+          <h2 className="heading mt-1.5 text-[38px]">
+            Waco skyline editions
+          </h2>
+          <p className="dek mx-auto mt-3 max-w-xl">
+            Pick color and size, add to bag, and checkout on Shopify with your
+            selections. Mixed bags welcome.
           </p>
         </div>
-      </section>
-
-      <section className="border-b border-clay bg-sage-50 py-12 sm:py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="editorial-panel mx-auto max-w-3xl p-8 sm:p-10">
-            <div className="flex items-center gap-3 text-sage-600">
-              <PawPrint className="h-5 w-5 shrink-0" aria-hidden="true" />
-              <Heart className="h-5 w-5 shrink-0 text-gold-500" aria-hidden="true" />
-              <span className="eyebrow !mb-0 text-sage-600">Purpose-driven merch</span>
-            </div>
-            <h2 className="headline-secondary mt-5 text-bark">
-              Wear Your Love. Help Waco Dogs.
-            </h2>
-            <div className="mt-5 space-y-4 text-sm leading-relaxed text-bark-soft sm:text-base">
-              <p>
-                Keep Waco Wagging is more than cute dog apparel. We volunteer with Pet
-                Circle Regional Animal Center and are committed to helping local dogs get
-                the care, enrichment, and second chances they deserve.
-              </p>
-              <p>
-                Every purchase helps us continue supporting dogs in need right here in
-                the Waco community. Wear your love for dogs with purpose-driven apparel
-                that gives back.
-              </p>
-            </div>
-            <p className="mt-6 border-t border-clay pt-5 font-display text-lg text-bark sm:text-xl">
-              Cute shirts. Local impact. More tails wagging.
-            </p>
+        {storeLive && hoodies.length > 0 ? (
+          <div className="mt-8">
+            <ShopProductGrid products={hoodies} columns={3} />
           </div>
-        </div>
+        ) : (
+          <p className="body-light mt-8 text-center text-sm">
+            Hoodie listings are loading — refresh shortly or visit Shopify directly.
+          </p>
+        )}
       </section>
 
-      <Section tone="paper">
-        <SectionHeading
-          eyebrow="Keep Waco Wagging shop"
-          title={storeLive ? "Shop the collection" : "Merch coming soon"}
-          description={
-            storeLive
-              ? `${products.length} products — pet accessories, apparel, totes, mugs, and stickers. Tap a product to choose options and checkout on Shopify.`
-              : "Our Shopify catalog is loading. If this message persists, visit our store directly."
-          }
-        />
+      <section className="mx-auto max-w-[1200px] px-6 pb-6 pt-4">
+        <p className="eyebrow tracking-[0.22em]">More merch</p>
+        <h2 className="heading mt-2 max-w-3xl text-[36px]">
+          Tees, totes, mugs &{" "}
+          <span className="font-script text-rose">more</span>
+        </h2>
+        <p className="dek mt-4 max-w-2xl text-[17px]">{merchAnchorLine}</p>
+        <p className="body-light mt-3 max-w-2xl">
+          {brandLanguage.brandByLine}. Add to bag when options are shown — otherwise
+          open the product on Shopify.{" "}
+          <Link href={ctas.gearGuide.href} className="text-rose-deep hover:text-wag-sage">
+            Gear Guide
+          </Link>{" "}
+          for affiliate dog gear we recommend separately.
+        </p>
+      </section>
 
-        {storeLive ? (
-          <>
-            {categoryGroups.map((group) => (
-              <div key={group.category} className="mt-10 first:mt-10">
-                <div className="max-w-3xl">
-                  <h3 className="font-display text-2xl text-bark">{group.label}</h3>
-                  {group.description && (
-                    <p className="mt-2 text-sm leading-relaxed text-bark-soft">
-                      {group.description}
-                    </p>
-                  )}
-                </div>
-                <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {group.products.map((product) => (
-                    <MerchProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-                {group.category === "pet_accessories" && <PlannedPetAccessoriesPanel />}
+      <section className="mx-auto max-w-[1200px] px-6 pb-10">
+        <MerchPurposePanel />
+      </section>
+
+      {error && (
+        <section className="mx-auto max-w-[1200px] px-6 pb-6">
+          <div className="rounded-[18px] border border-rose/40 bg-soft-cream px-6 py-4 text-sm text-body-muted-light">
+            {error} You can still browse on{" "}
+            {storefrontUrl && (
+              <a href={storefrontUrl} className="text-rose-deep hover:text-wag-sage">
+                Shopify
+              </a>
+            )}
+            .
+          </div>
+        </section>
+      )}
+
+      {storeLive ? (
+        <div className="mx-auto max-w-[1200px] px-6 pb-16">
+          <section>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="eyebrow tracking-[0.22em]">Featured</p>
+                <h2 className="heading mt-1.5 text-[36px]">Launch favorites</h2>
               </div>
-            ))}
-            {collectionUrl && (
-              <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <p className="text-xs font-light text-label-muted">
+                {catalog.length} curated products · {shopifyStoreConfig.priceDisplayNote}
+              </p>
+            </div>
+            <div className="mt-6">
+              <ShopProductGrid products={featured} columns={3} />
+            </div>
+          </section>
+
+          <ShopByBreedPicker catalog={catalog} />
+
+          {designGroups.map((group) => (
+            <section key={group.id} className="mt-16">
+              <div className="max-w-2xl">
+                <p className="eyebrow tracking-[0.22em]">Shop by design</p>
+                <h2 className="heading mt-1.5 text-[32px]">{group.label}</h2>
+                <p className="dek mt-2 text-[15px]">{group.description}</p>
+              </div>
+              <div className="mt-6">
+                <ShopProductGrid products={group.products} columns={3} />
+              </div>
+            </section>
+          ))}
+
+          {accessories.length > 0 && (
+            <section className="mt-16">
+              <div className="max-w-2xl">
+                <p className="eyebrow tracking-[0.22em]">Accessories</p>
+                <h2 className="heading mt-1.5 text-[32px]">
+                  Totes, mugs & more
+                </h2>
+                <p className="dek mt-2 text-[15px]">
+                  Market runs, coffee breaks, bandanas, and sticker packs.
+                </p>
+              </div>
+              <div className="mt-6">
+                <ShopProductGrid products={accessories.slice(0, 12)} columns={3} />
+              </div>
+            </section>
+          )}
+
+          {collectionUrl && (
+            <div className="mt-14 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <a
+                href={collectionUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pill btn-sage inline-flex items-center gap-2 px-7 py-3"
+              >
+                Open full catalog on Shopify
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
+              {storefrontUrl && (
                 <a
-                  href={collectionUrl}
+                  href={storefrontUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-sm bg-bark px-6 py-3 text-sm font-semibold tracking-wide text-cream transition-colors hover:bg-bark-soft"
+                  className="text-xs font-medium tracking-[0.12em] text-rose-deep uppercase hover:text-wag-sage"
                 >
-                  Open full catalog on Shopify
-                  <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  Shopify store home
                 </a>
-                {storefrontUrl && (
-                  <a
-                    href={storefrontUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm font-medium text-sage-700 hover:underline"
-                  >
-                    Shopify store home
-                  </a>
-                )}
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="mt-10 rounded-sm border border-clay bg-cream px-6 py-12 text-center sm:px-12">
-            <p className="font-display text-2xl text-bark">Merch coming soon</p>
+              )}
+            </div>
+          )}
+
+          <aside className="mt-10 max-w-2xl rounded-[18px] border border-border bg-soft-cream p-5">
+            <p className="text-sm font-light leading-relaxed text-body-muted-light">
+              {shopifyStoreConfig.fulfillmentNote}
+            </p>
+            <p className="mt-2 text-xs font-light text-label-muted">
+              {shopifyStoreConfig.externalCheckoutNote}
+            </p>
+          </aside>
+        </div>
+      ) : (
+        <section className="mx-auto max-w-[1200px] px-6 pb-16">
+          <div className="card-panel px-8 py-12 text-center">
+            <p className="font-display text-2xl text-serif-ink">
+              {error ? "Merch temporarily unavailable" : "Merch loading…"}
+            </p>
+            <p className="body-light mx-auto mt-3 max-w-md text-sm">
+              {error ??
+                "We could not reach Shopify. Try again in a moment or visit the store directly."}
+            </p>
             {storefrontUrl && (
               <a
                 href={storefrontUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-sm border border-clay bg-white px-5 py-2.5 text-sm font-semibold tracking-wide text-bark transition-colors hover:bg-sand/60"
+                className="btn-pill btn-sage mt-6 inline-flex items-center gap-2 px-6 py-3"
               >
                 Visit Shopify store
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                <ExternalLink className="h-4 w-4" />
               </a>
             )}
           </div>
-        )}
+        </section>
+      )}
 
-        <aside className="mt-10 max-w-3xl border-l-2 border-gold-400 pl-5">
-          <p className="text-sm leading-relaxed text-bark-soft">
-            {shopifyStoreConfig.fulfillmentNote}
-          </p>
-          {storeLive && (
-            <p className="mt-3 text-xs leading-relaxed text-bark-faint">
-              {shopifyStoreConfig.externalCheckoutNote}
-            </p>
-          )}
-        </aside>
-      </Section>
-
-      <section className="border-y border-clay bg-sand/60 py-10 sm:py-12">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-sm leading-relaxed text-bark-soft sm:text-base">
-            Every purchase helps Keep Waco Wagging support dogs in need through our
-            volunteer work with Pet Circle Regional Animal Center.
-          </p>
-        </div>
-      </section>
-
-      <Section tone="sand">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="border-t border-border bg-soft-cream py-12">
+        <div className="mx-auto max-w-[1200px] px-6 text-center">
           <p className="eyebrow">Pet care first</p>
-          <h2 className="headline-tertiary mt-3">Need boarding, scooping, or training?</h2>
-          <p className="dek mt-4 text-base">
-            Merch supports the brand — services are how we take care of Waco dogs
+          <h2 className="heading mt-2 text-[28px]">
+            Need boarding, scooping, or training?
+          </h2>
+          <p className="dek mx-auto mt-3 max-w-lg">
+            Merch supports the mission — services are how we care for Waco dogs
             every day.
           </p>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-            <Button href={ctas.bookService.href} variant="sponsor" size="lg">
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button href={ctas.bookService.href} variant="sage" size="lg">
               {ctas.bookService.label}
-            </Button>
-            <Button href={ctas.gearGuide.href} variant="secondary" size="lg">
-              {ctas.gearGuide.label}
             </Button>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-bark-soft hover:text-bark"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-body-muted hover:text-rose"
             >
               Contact us
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
         </div>
-      </Section>
-    </>
+      </section>
+    </ShopExperience>
   );
 }

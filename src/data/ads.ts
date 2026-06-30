@@ -24,7 +24,7 @@ export const ads: Ad[] = [
     id: "ad-rover",
     sponsor: "Rover",
     title: "Trusted Waco dog sitting & walking",
-    body: "Book Jacky on Rover for sitting, walking, and drop-in visits across the Waco area.",
+    body: "Book Jackye on Rover for sitting, walking, and drop-in visits across the Waco area.",
     href: ctas.bookRover.href,
     label: "Sponsored",
     placements: ["home", "shop", "weekend"],

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost" | "sponsor";
+type Variant = "primary" | "secondary" | "ghost" | "sponsor" | "sage" | "rose-outline";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -14,6 +14,9 @@ const variants: Record<Variant, string> = {
   ghost: "text-bark hover:bg-sand/60",
   sponsor:
     "border border-gold-400 bg-gold-100/80 text-bark hover:bg-gold-100 hover:border-gold-500",
+  sage: "rounded-full bg-wag-sage text-cream hover:bg-sage-hover",
+  "rose-outline":
+    "rounded-full border-[1.4px] border-rose bg-transparent text-rose-deep hover:bg-rose hover:text-soft-cream",
 };
 
 const sizes: Record<Size, string> = {

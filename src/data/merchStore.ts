@@ -2,7 +2,7 @@
  * Keep Waco Wagging merchandise — Shopify storefront configuration.
  *
  * Checkout, payment, and fulfillment happen on Shopify. This file is the
- * single source of truth for storefront URL, shop status, and live products.
+ * single source of truth for storefront URL, shop status, and curated fallbacks.
  */
 
 export type MerchAvailability = "available" | "coming_soon";
@@ -22,7 +22,7 @@ export const merchCategoryMeta: Record<
   pet_accessories: {
     label: "Pet accessories",
     description:
-      "Bandanas, collars, bowls, mats, and gear for dogs — customized with Waco skyline and breed editions.",
+      "Bandanas, collars, and gear for dogs — Waco skyline and breed editions.",
   },
   apparel: {
     label: "Apparel",
@@ -34,7 +34,7 @@ export const merchCategoryMeta: Record<
   },
   drinkware: {
     label: "Drinkware",
-    description: "Mugs and bowls for coffee breaks and kibble time.",
+    description: "Mugs and tumblers for coffee breaks and kibble time.",
   },
   stickers: {
     label: "Stickers",
@@ -58,111 +58,111 @@ export type MerchProduct = {
   availability: MerchAvailability;
   featured?: boolean;
   category?: MerchCategory;
+  /** Local bag support — populated from live Shopify variant data */
+  supportsLocalCart?: boolean;
+  cartOption1Label?: string | null;
+  cartOption1Values?: string[];
+  cartOption2Label?: string | null;
+  cartOption2Values?: string[];
 };
 
 /** Internal planning concepts — never rendered on the public site. */
 export const proposedMerchConcepts = [
-  { id: "concept-keep-waco-wagging", name: "Keep Waco Wagging" },
-  { id: "concept-waco-dog-mom", name: "Waco Dog Mom" },
-  { id: "concept-waco-dog-dad", name: "Waco Dog Dad" },
-  { id: "concept-my-dog-goes-to-camp", name: "My Dog Goes to Camp" },
-  { id: "concept-scoop-happens", name: "Scoop Happens" },
+  { id: "concept-dog-mama-script", name: "Dog Mama Tee — Waco, Texas" },
+  { id: "concept-coffee-kisses", name: "Raised on Coffee & Dog Kisses Tee" },
+  { id: "concept-dogs-make-waco", name: "Dogs Make Waco Better Tee" },
+  { id: "concept-treat-people", name: "Treat People, Love Dogs Tee" },
+  { id: "concept-personalized", name: 'Personalized "Shirts for [Name]" Dog Tee' },
 ] as const;
 
 const SHOPIFY_STORE = "https://keepwacowagging.myshopify.com";
 
 export const shopifyStoreConfig = {
   enabled: true,
+  /** Connect in Shopify admin — links use storefrontUrl until live. */
   preferredDomain: "shop.keepwacowagging.com",
   storefrontUrl: SHOPIFY_STORE,
-  /** Full catalog on Shopify (hoodies, crewnecks, totes, mugs, stickers). */
   collectionUrl: `${SHOPIFY_STORE}/collections/all`,
   fulfillmentNote:
     "Products are made to order and fulfilled through Printify via our Shopify store. Shipping details are shown at checkout.",
   externalCheckoutNote:
     "Checkout happens on our Shopify store — you will leave keepwacowagging.com to complete your order.",
+  priceDisplayNote:
+    "Prices shown are our standard rates. Checkout on Shopify reflects your size and color selection.",
 } as const;
 
+/** Fallback when products.json is unavailable — matches featuredProductHandles in merchCuration.ts */
 export const liveMerchProducts: readonly MerchProduct[] = [
   {
-    id: "golden-retriever-hoodie",
-    name: "Keep Waco Wagging — Golden Retriever Hoodie",
-    slug: "keep-waco-wagging-golden-retriever-hoodie",
+    id: "waco-dog-mom-tee",
+    name: "Waco Dog Mom Tee",
+    slug: "waco-dog-mom-tee-cute-city-dog-mom-graphic-t-shirt",
     description:
-      "Premium unisex hoodie with the Waco skyline and a Golden Retriever. Printed on demand on Gildan Heavy Blend fleece.",
-    image: {
-      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/34606626669541465_2048.jpg?v=1782334790",
-      alt: "Keep Waco Wagging Golden Retriever hoodie with Waco skyline design",
-    },
-    price: "$58.00",
-    sizesOrColorsNote: "Black, Navy, White · S–2XL",
-    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-golden-retriever-hoodie`,
+      "For the woman whose camera roll is 90% dog. Soft, true-to-size, made to order.",
+    price: "$27.99",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/waco-dog-mom-tee-cute-city-dog-mom-graphic-t-shirt`,
     availability: "available",
     featured: true,
+    category: "apparel",
   },
   {
-    id: "frenchie-hoodie",
-    name: "Keep Waco Wagging — Frenchie Hoodie",
-    slug: "keep-waco-wagging-frenchie-hoodie",
+    id: "waco-dog-dad-tee",
+    name: "Waco Dog Dad Tee — Skyline",
+    slug: "waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
     description:
-      "Waco skyline Frenchie edition hoodie — same premium fleece, local design, printed on demand.",
-    image: {
-      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/10022311326708646766_2048.jpg?v=1782333221",
-      alt: "Keep Waco Wagging Frenchie hoodie with Waco skyline design",
-    },
-    price: "$58.00",
-    sizesOrColorsNote: "Black, Navy, White · S–2XL",
-    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-frenchie-hoodie`,
+      "Hand-drawn Waco skyline for Texas dog dads. Relaxed fit, made to order.",
+    price: "$27.99",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/waco-skyline-t-shirt-waco-dog-dad-graphic-tee`,
     availability: "available",
     featured: true,
+    category: "apparel",
+  },
+  {
+    id: "anti-social-tee",
+    name: "Anti-Social Dog Club — Waco, Texas",
+    slug: "anti-social-dog-club-t-shirt-where-people-arent-pet-lover-tee",
+    description: "Membership requirements: one dog, zero plans.",
+    price: "$27.99",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/anti-social-dog-club-t-shirt-where-people-arent-pet-lover-tee`,
+    availability: "available",
+    featured: true,
+    category: "apparel",
   },
   {
     id: "rescue-mutt-hoodie",
     name: "Keep Waco Wagging — Rescue Mutt Hoodie",
     slug: "keep-waco-wagging-rescue-mutt-hoodie",
-    description:
-      "Rescue mutt edition with the iconic Waco skyline — for every dog who found their person.",
-    image: {
-      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/5846209191690200474_2048.jpg?v=1782334777",
-      alt: "Keep Waco Wagging Rescue Mutt hoodie with Waco skyline design",
-    },
-    price: "$58.00",
+    description: "No papers, all heart — Waco skyline rescue mutt edition.",
+    price: "$57.99",
     sizesOrColorsNote: "Black, Navy, White · S–2XL",
     shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-rescue-mutt-hoodie`,
     availability: "available",
     featured: true,
+    category: "apparel",
   },
   {
     id: "ceramic-mug",
     name: "Keep Waco Wagging Ceramic Mug",
     slug: "keep-waco-wagging-ceramic-mug",
     description:
-      "Ceramic mug with the Keep Waco Wagging panoramic wrap — golden retriever, Waco skyline, and Platinum Scoops badge.",
-    image: {
-      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/10156724552256787043_2048.jpg?v=1782333039",
-      alt: "Keep Waco Wagging ceramic mug with Waco skyline and golden retriever design",
-    },
-    price: "$18.00",
+      "Wrap-around Waco skyline and golden retriever — 11oz or 15oz.",
+    price: "$17.99",
     sizesOrColorsNote: "11oz and 15oz",
     shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-ceramic-mug`,
     availability: "available",
     featured: true,
+    category: "drinkware",
   },
   {
     id: "golden-retriever-tote",
     name: "Keep Waco Wagging — Golden Retriever Tote Bag",
     slug: "keep-waco-wagging-golden-retriever-tote-bag",
-    description:
-      "Sturdy cotton canvas tote with the Waco skyline and Golden Retriever — great for dog walks and market runs.",
-    image: {
-      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/4046125557823106859_2048.jpg?v=1782333320",
-      alt: "Keep Waco Wagging Golden Retriever tote bag",
-    },
-    price: "$25.00",
-    sizesOrColorsNote: "Natural or Black · 15\" × 16\"",
+    description: "Heavy cotton canvas with the Waco skyline and your breed.",
+    price: "$24.99",
     shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-golden-retriever-tote-bag`,
     availability: "available",
     featured: true,
+    category: "bags",
   },
 ];
 
@@ -170,7 +170,6 @@ function isPurchasable(product: MerchProduct): boolean {
   return (
     product.availability === "available" &&
     Boolean(product.shopifyProductUrl?.trim()) &&
-    Boolean(product.image?.src) &&
     Boolean(product.price?.trim())
   );
 }
@@ -194,7 +193,7 @@ export function getPurchasableMerchProducts(): MerchProduct[] {
   return liveMerchProducts.filter(isPurchasable);
 }
 
-export function getFeaturedMerchProducts(limit = 5): MerchProduct[] {
+export function getFeaturedMerchProducts(limit = 6): MerchProduct[] {
   const purchasable = getPurchasableMerchProducts();
   const featured = purchasable.filter((p) => p.featured);
   const source = featured.length > 0 ? featured : purchasable;

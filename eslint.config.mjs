@@ -13,6 +13,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Design handoff HTML prototypes (reference only, not app code):
+    "docs/design-handoff/**",
   ]),
 ]);
 
