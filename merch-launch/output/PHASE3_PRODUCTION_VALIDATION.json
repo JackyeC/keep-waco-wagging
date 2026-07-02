@@ -1,0 +1,272 @@
+{
+  "phase": 3,
+  "generated_at": "2026-07-01T21:12:21.761824+00:00",
+  "target_dimensions": "4500x5400",
+  "min_margin_px": 150,
+  "typography": {
+    "keep_waco": "Cormorant Garamond SemiBold",
+    "wagging": "Parisienne",
+    "breed_label": "Jost Medium"
+  },
+  "waco_reconstruction": {
+    "dot_count": 9626,
+    "source": "output/recovered-assets/_packet_alpha/waco_skyline_light_x26.png",
+    "out_dir": "artwork/shared/waco-skyline"
+  },
+  "illustration_references": {
+    "french_bulldog": "output/recovered-assets/_packet_alpha/french_bulldog_light_x62.png",
+    "golden_retriever": "output/recovered-assets/_packet_alpha/golden_retriever_light_x66.png",
+    "waco_skyline": "output/recovered-assets/_packet_alpha/waco_skyline_light_x26.png"
+  },
+  "deprecated": "reference/REFERENCE_ONLY_DEPRECATED",
+  "validations": [
+    {
+      "path": "artwork/shared/waco-skyline/waco-skyline-light.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins": [
+          184,
+          1446,
+          184,
+          2046
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0182,
+        "line_thickness": {
+          "ok": true,
+          "p10_diameter_px": 3.82000732421875,
+          "min_required_px": 3.0
+        },
+        "halo_ratio": 0.00279,
+        "halo_ok": true,
+        "white_box": false,
+        "sha256": "4e9c0693c56557f17cd4e678ccb8de3ebfff1788bfad83087db055be4f5de369"
+      }
+    },
+    {
+      "path": "artwork/shared/waco-skyline/waco-skyline-dark.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins": [
+          184,
+          1446,
+          184,
+          2046
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0182,
+        "line_thickness": {
+          "ok": true,
+          "p10_diameter_px": 3.82000732421875,
+          "min_required_px": 3.0
+        },
+        "halo_ratio": 0.00279,
+        "halo_ok": true,
+        "white_box": false,
+        "sha256": "0f86c1a635a87e8ef5ca5090ddf9e0e0e5c4004de46265bb7938c44f562e0be1"
+      }
+    },
+    {
+      "path": "artwork/waco-skyline-tee/light.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins": [
+          224,
+          1040,
+          224,
+          1450
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0188,
+        "line_thickness": {
+          "ok": true,
+          "p10_diameter_px": 3.82000732421875,
+          "min_required_px": 3.0
+        },
+        "halo_ratio": 0.00295,
+        "halo_ok": true,
+        "white_box": false,
+        "sha256": "662bb8c2803453ff9aab512a6376b929de20350cee29dc1d6dc00ad29e16c586"
+      }
+    },
+    {
+      "path": "artwork/waco-skyline-tee/dark.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins": [
+          224,
+          1040,
+          224,
+          1450
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0188,
+        "line_thickness": {
+          "ok": true,
+          "p10_diameter_px": 3.82000732421875,
+          "min_required_px": 3.0
+        },
+        "halo_ratio": 0.00295,
+        "halo_ok": true,
+        "white_box": false,
+        "sha256": "5c1bf72a8d0bbb66c3139abef8019e2979d1b1715120806b42b100c397abb6b9"
+      }
+    },
+    {
+      "path": "artwork/french-bulldog-tee/light.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins": [
+          1206,
+          553,
+          1206,
+          1318
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0095,
+        "line_thickness": {
+          "ok": true,
+          "p10_diameter_px": 3.82000732421875,
+          "min_required_px": 3.0
+        },
+        "halo_ratio": 0.004,
+        "halo_ok": true,
+        "white_box": false,
+        "sha256": "771ac279ad082d9bdf61d066bca9bf74259ae894156251005dd027a045a7376c"
+      }
+    },
+    {
+      "path": "artwork/french-bulldog-tee/dark.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins": [
+          1207,
+          553,
+          1207,
+          1318
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0092,
+        "line_thickness": {
+          "ok": true,
+          "p10_diameter_px": 3.82000732421875,
+          "min_required_px": 3.0
+        },
+        "halo_ratio": 0.00399,
+        "halo_ok": true,
+        "white_box": false,
+        "sha256": "1a578d91530b868e9f8e7ce43b4cf9b437b2875625b014376d383eb5fc00deaa"
+      }
+    },
+    {
+      "path": "artwork/golden-retriever-tee/light.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins": [
+          1378,
+          553,
+          1378,
+          1318
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0161,
+        "line_thickness": {
+          "ok": true,
+          "p10_diameter_px": 3.82000732421875,
+          "min_required_px": 3.0
+        },
+        "halo_ratio": 0.00499,
+        "halo_ok": true,
+        "white_box": false,
+        "sha256": "b5a254e35a04f9d71ebfc44aa6972ab85e647f6fe3cb9a62d80d0bcc049c696a"
+      }
+    },
+    {
+      "path": "artwork/golden-retriever-tee/dark.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins": [
+          1378,
+          553,
+          1378,
+          1318
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0153,
+        "line_thickness": {
+          "ok": true,
+          "p10_diameter_px": 3.82000732421875,
+          "min_required_px": 3.0
+        },
+        "halo_ratio": 0.005,
+        "halo_ok": true,
+        "white_box": false,
+        "sha256": "943dce1c04ca7d59f1fc2a4dbf36972e52953d7c06a0bd1c22fbab89670d364e"
+      }
+    }
+  ],
+  "duplicate_files": {},
+  "mockups": [
+    "output/test-batch-mockups/waco-skyline/ivory-mockup.png",
+    "output/test-batch-mockups/waco-skyline/bay-mockup.png",
+    "output/test-batch-mockups/waco-skyline/blossom-mockup.png",
+    "output/test-batch-mockups/waco-skyline/pepper-mockup.png",
+    "output/test-batch-mockups/french-bulldog/ivory-mockup.png",
+    "output/test-batch-mockups/french-bulldog/bay-mockup.png",
+    "output/test-batch-mockups/french-bulldog/blossom-mockup.png",
+    "output/test-batch-mockups/french-bulldog/pepper-mockup.png",
+    "output/test-batch-mockups/golden-retriever/ivory-mockup.png",
+    "output/test-batch-mockups/golden-retriever/bay-mockup.png",
+    "output/test-batch-mockups/golden-retriever/blossom-mockup.png",
+    "output/test-batch-mockups/golden-retriever/pepper-mockup.png"
+  ],
+  "printify_connected": false
+}

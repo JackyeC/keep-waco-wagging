@@ -1,0 +1,340 @@
+{
+  "target_hashes": {
+    "french_xref62": "9fca843ddb339b0626e95dc7882d2be31b55474e4b63f8af15bf58a4e9f7c54f",
+    "golden_xref66": "55caf227395ae914fb294e16cb2caebe60dfb31e4b4c6629cc6f7679133aff2c",
+    "img038": "f5c7ef15c563cf1b65f76541a0238f6dd5e57bb588c7914eeaa4148bfe0e2707",
+    "img039": "c20c12e40929f28ed4380b3b2b07852d44d996d15ae5696df985b0c131a0a553"
+  },
+  "candidate_count": 47,
+  "candidates": [
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/frenchie-source-comparison.png",
+      "sha256_12": "c87442097072",
+      "size_bytes": 488223,
+      "dimensions": "1140x844",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/golden-source-comparison.png",
+      "sha256_12": "7c67608bcbab",
+      "size_bytes": 166605,
+      "dimensions": "1140x844",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/reference/rejected-phase2/french-bulldog-tee_light_NOT_FOR_PRODUCTION.png",
+      "sha256_12": "92b564aac609",
+      "size_bytes": 453515,
+      "dimensions": "4500x5400",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/reference/rejected-phase2/golden-retriever-tee_light_NOT_FOR_PRODUCTION.png",
+      "sha256_12": "225e22e2cf9a",
+      "size_bytes": 610166,
+      "dimensions": "4500x5400",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/contact-sheets/golden-retriever.png",
+      "sha256_12": "03c429927ced",
+      "size_bytes": 43710,
+      "dimensions": "1280x430",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/contact-sheets/french-bulldog.png",
+      "sha256_12": "0e6dd102a211",
+      "size_bytes": 39992,
+      "dimensions": "1280x430",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/recovered-assets/_packet_alpha/golden_retriever_light_x66.png",
+      "sha256_12": "55caf227395a",
+      "size_bytes": 209039,
+      "dimensions": "1024x1024",
+      "mode": "RGBA",
+      "exact_match": "golden_xref66"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/recovered-assets/_packet_alpha/french_bulldog_light_x62.png",
+      "sha256_12": "9fca843ddb33",
+      "size_bytes": 165111,
+      "dimensions": "1024x1024",
+      "mode": "RGBA",
+      "exact_match": "french_xref62"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/recovered-assets/keep_waco_wagging_golden_mockups/keep_waco_wagging_golden_black_mockup_ace9c0fe.png",
+      "sha256_12": "ace9c0fe9c8e",
+      "size_bytes": 1378918,
+      "dimensions": "768x1024",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/recovered-assets/keep_waco_wagging_golden_mockups/keep_waco_wagging_golden_navy_mockup_98c7dba3.png",
+      "sha256_12": "98c7dba33bf0",
+      "size_bytes": 1391796,
+      "dimensions": "768x1024",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/contact-sheets/thumbs/golden-retriever-tee_light.png",
+      "sha256_12": "b5897119914c",
+      "size_bytes": 60370,
+      "dimensions": "517x620",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/contact-sheets/thumbs/french-bulldog-tee_light.png",
+      "sha256_12": "6370587247ba",
+      "size_bytes": 47960,
+      "dimensions": "517x620",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/pdf-object-audit/page6_mockups/mockup_xref82_1254x1254.png",
+      "sha256_12": "92b0d189d3ff",
+      "size_bytes": 2887435,
+      "dimensions": "1254x1254",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/pdf-object-audit/page6_mockups/mockup_xref84_1024x1536.png",
+      "sha256_12": "93155c5552e3",
+      "size_bytes": 2740710,
+      "dimensions": "1024x1536",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/public/pictures/jackye-goldendoodle-tee.webp",
+      "sha256_12": "1509ba638be0",
+      "size_bytes": 177484,
+      "dimensions": "1080x1440",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/public/pictures/todd-goldendoodle.webp",
+      "sha256_12": "fac44773e772",
+      "size_bytes": 94032,
+      "dimensions": "1080x1308",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/public/pictures/frenchie-sink-bath.webp",
+      "sha256_12": "3222b29d4b2a",
+      "size_bytes": 80096,
+      "dimensions": "1080x1440",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/public/brand/keep-waco-wagging-logo.png",
+      "sha256_12": "1aa1db249d1f",
+      "size_bytes": 274532,
+      "dimensions": "1024x1024",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/public/brand/keep-waco-wagging-logo.webp",
+      "sha256_12": "dbe88adb9269",
+      "size_bytes": 178882,
+      "dimensions": "1024x1024",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/public/brand/keep-waco-wagging-mark.webp",
+      "sha256_12": "c8c41cc0fb0e",
+      "size_bytes": 121568,
+      "dimensions": "1024x635",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/source-designs/merch/dog-moms/waco-golden-retriever-crewneck.svg",
+      "sha256_12": "cc1b41a5bb73",
+      "size_bytes": 2919
+    },
+    {
+      "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/source-designs/merch/dog-moms/waco-golden-retriever-crewneck-300dpi.png",
+      "sha256_12": "5913dd056b59",
+      "size_bytes": 168867,
+      "dimensions": "3300x2357",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/keep-waco-wagging-logo.png",
+      "sha256_12": "b13d681a7451",
+      "size_bytes": 1502291,
+      "dimensions": "1024x1024",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/kwwgolden.png",
+      "sha256_12": "465a7065329b",
+      "size_bytes": 1285704,
+      "dimensions": "1254x1254",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_03_light_shirt.png",
+      "sha256_12": "90675061a46d",
+      "size_bytes": 366062,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden waco.png",
+      "sha256_12": "72a20cb6ac7d",
+      "size_bytes": 1538273,
+      "dimensions": "1254x1254",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_07_navy_shirt_whiteink.png",
+      "sha256_12": "6bdaa476ba03",
+      "size_bytes": 339944,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_06_dark_shirt_whiteink (2).png",
+      "sha256_12": "bf23a97cff99",
+      "size_bytes": 269191,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_01_original.jpg",
+      "sha256_12": "7a58b2fd9c7a",
+      "size_bytes": 392620,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_05_transparent_whiteink (2).png",
+      "sha256_12": "4e5e795f61ad",
+      "size_bytes": 666125,
+      "dimensions": "1080x1080",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_07_navy_shirt_whiteink (1).png",
+      "sha256_12": "3b2d775a3fed",
+      "size_bytes": 279758,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/Adobe_Chat_Transcript_3-3-25.jpg",
+      "sha256_12": "661d028f96e0",
+      "size_bytes": 74482,
+      "dimensions": "595x841",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/KWW Frenchie.png",
+      "sha256_12": "d7af19021556",
+      "size_bytes": 1306582,
+      "dimensions": "1254x1254",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/kwwfrenchie.png",
+      "sha256_12": "2bbdb29e2868",
+      "size_bytes": 1330737,
+      "dimensions": "1254x1254",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_05_transparent_whiteink (1).png",
+      "sha256_12": "6dfa4a4a786c",
+      "size_bytes": 635803,
+      "dimensions": "1080x1080",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_06_dark_shirt_whiteink (1).png",
+      "sha256_12": "fb628823927c",
+      "size_bytes": 244667,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_10_dark_v11_navy.png",
+      "sha256_12": "12caa5369b40",
+      "size_bytes": 340899,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/KWW Golden.png",
+      "sha256_12": "6527f612b7c6",
+      "size_bytes": 1290594,
+      "dimensions": "1254x1254",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/provenbase_mockup_estimated_salary_insights.png",
+      "sha256_12": "cf702c824464",
+      "size_bytes": 17896,
+      "dimensions": "1000x600",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_05_transparent_whiteink.png",
+      "sha256_12": "841494271e7b",
+      "size_bytes": 698362,
+      "dimensions": "1080x1080",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_08_dark_v11_transparent.png",
+      "sha256_12": "ab51cd3f3db6",
+      "size_bytes": 660974,
+      "dimensions": "1080x1080",
+      "mode": "RGBA"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_06_dark_shirt_whiteink.png",
+      "sha256_12": "dc864d9cd0cb",
+      "size_bytes": 291953,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_09_dark_v11_black.png",
+      "sha256_12": "6ede95087136",
+      "size_bytes": 295653,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/golden_04_dark_shirt.png",
+      "sha256_12": "1741fcfaa2ff",
+      "size_bytes": 270989,
+      "dimensions": "1080x1080",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/keepwacowagginggraphic.png",
+      "sha256_12": "0ad031cb9f7e",
+      "size_bytes": 1059926,
+      "dimensions": "1024x1024",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/Your-AI-Hiring-Compliance-Action-Journal/21_Scripts-for-Difficult-Conversations.png",
+      "sha256_12": "b44332c24f4a",
+      "size_bytes": 206976,
+      "dimensions": "2400x1350",
+      "mode": "RGB"
+    },
+    {
+      "path": "/Users/jackyeclayton/Downloads/who-do-i-work-for-e9ae81b6-main 2/public/posters/poster-golden-parachute.jpg",
+      "sha256_12": "7d901ade1f83",
+      "size_bytes": 106819,
+      "dimensions": "480x678",
+      "mode": "RGB"
+    }
+  ]
+}

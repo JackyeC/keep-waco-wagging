@@ -1,0 +1,35 @@
+{
+  "shopify_public": {
+    "domain": "keepwacowagging.myshopify.com",
+    "product_count": 84,
+    "conflicts": [
+      {
+        "handle": "waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
+        "title": "Waco Skyline T-Shirt \u2014 'Waco Dog Dad' Graphic Tee"
+      },
+      {
+        "handle": "keep-waco-wagging-t-shirt-waco-landmark-dog-tee",
+        "title": "Keep Waco Wagging T-Shirt \u2014 Waco Landmark Dog Tee"
+      },
+      {
+        "handle": "keep-waco-wagging-frenchie-edition-1",
+        "title": "Keep Waco Wagging Frenchie Edition"
+      },
+      {
+        "handle": "keep-waco-wagging-golden-retriever-edition-1",
+        "title": "Keep Waco Wagging Golden Retriever Edition"
+      },
+      {
+        "handle": "keep-waco-wagging-golden-retriever-hoodie",
+        "title": "Keep Waco Wagging \u2014 Golden Retriever Hoodie"
+      },
+      {
+        "handle": "keep-waco-wagging-frenchie-hoodie",
+        "title": "Keep Waco Wagging \u2014 Frenchie Hoodie"
+      }
+    ]
+  },
+  "shopify_admin_api": false,
+  "etsy_api": false,
+  "errors": []
+}

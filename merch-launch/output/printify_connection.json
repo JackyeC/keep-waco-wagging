@@ -1,0 +1,13 @@
+{
+  "dry_run": true,
+  "credentials": {
+    "PRINTIFY_API_TOKEN": false,
+    "PRINTIFY_SHOP_ID": false
+  },
+  "blueprint_target": 706,
+  "shops": [],
+  "blueprint": null,
+  "errors": [
+    "PRINTIFY_API_TOKEN not set in merch-launch/.env"
+  ]
+}

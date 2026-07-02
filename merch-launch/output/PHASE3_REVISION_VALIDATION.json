@@ -1,0 +1,298 @@
+{
+  "phase": "3-revision",
+  "generated_at": "2026-07-02T00:07:12.080686+00:00",
+  "target_dimensions": "4500x5400",
+  "min_margin_px": 160,
+  "skyline_method": "hand-authored deliberate vector paths",
+  "tracing_shortcuts_used_on_skyline": false,
+  "rejected_archive": "reference/rejected-phase3-visual/",
+  "contrast": {
+    "ivory": {
+      "primary": "#4C463E",
+      "ratio": 7.924463170990783,
+      "ok": true
+    },
+    "blossom": {
+      "primary": "#4C463E",
+      "ratio": 6.022346274008834,
+      "ok": true
+    },
+    "bay": {
+      "primary": "#F4EDE4",
+      "ratio": 3.7453211360198773,
+      "ok": true
+    },
+    "pepper": {
+      "primary": "#F4EDE4",
+      "ratio": 9.7369146499067,
+      "ok": true
+    }
+  },
+  "validations": [
+    {
+      "path": "artwork/waco-skyline-tee/ivory.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          230,
+          1801,
+          230,
+          809
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.049,
+        "halo_ratio": 0.0038,
+        "sha256": "26de0abb1b2a97551db1a77f6c17f0fc2fb9f3b3387269f91d108692ed9c92f6"
+      }
+    },
+    {
+      "path": "artwork/french-bulldog-tee/ivory.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          759,
+          523,
+          759,
+          869
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0588,
+        "halo_ratio": 0.01346,
+        "sha256": "44ab725c5e7a9f09a1e50efe37777c940e0b9509f506cc675f5673cd0a6c9448"
+      }
+    },
+    {
+      "path": "artwork/golden-retriever-tee/ivory.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          759,
+          523,
+          759,
+          869
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.053,
+        "halo_ratio": 0.01902,
+        "sha256": "a4d7ed182d38a4ece741c7eb7bba38d795f2a164b708f069eb918afabf27bc24"
+      }
+    },
+    {
+      "path": "artwork/waco-skyline-tee/blossom.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          230,
+          1801,
+          230,
+          809
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.049,
+        "halo_ratio": 0.0038,
+        "sha256": "445e4596a191ef85423b005d67fcb172d0267a5d7cdea3c0a93740ac860f18bb"
+      }
+    },
+    {
+      "path": "artwork/french-bulldog-tee/blossom.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          759,
+          523,
+          759,
+          869
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0588,
+        "halo_ratio": 0.01346,
+        "sha256": "25f3776bbdf2e529c0d206ff40ca762202496059ecf56b3c560caac7a3ad73b1"
+      }
+    },
+    {
+      "path": "artwork/golden-retriever-tee/blossom.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          759,
+          523,
+          759,
+          869
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.053,
+        "halo_ratio": 0.01902,
+        "sha256": "f5ecfdc28964bfb43aa8738b49168bd82522f37afeaebf302e20026c0ceb3070"
+      }
+    },
+    {
+      "path": "artwork/waco-skyline-tee/bay.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          230,
+          1801,
+          230,
+          809
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0507,
+        "halo_ratio": 0.0037,
+        "sha256": "25333eef135fdf3dd780f2240dfadadaaa25277f20fc91cf0d35fe584a95994c"
+      }
+    },
+    {
+      "path": "artwork/french-bulldog-tee/bay.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          759,
+          523,
+          759,
+          869
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0597,
+        "halo_ratio": 0.01339,
+        "sha256": "1302d1db8d9ea2d380aa985dd13e9e7ee9df8201ca26a301f455be03858a8eeb"
+      }
+    },
+    {
+      "path": "artwork/golden-retriever-tee/bay.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          759,
+          523,
+          759,
+          869
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.054,
+        "halo_ratio": 0.01895,
+        "sha256": "785c413409b97039a201ea749488a0142c8f49d5eebdd74ad7ed1d5db425b0c5"
+      }
+    },
+    {
+      "path": "artwork/waco-skyline-tee/pepper.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          230,
+          1801,
+          230,
+          809
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0507,
+        "halo_ratio": 0.0037,
+        "sha256": "110f7e43769d387076c3462ea61bc7a4fcaf9f33cf61609ca6df0f13ab669f5f"
+      }
+    },
+    {
+      "path": "artwork/french-bulldog-tee/pepper.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          759,
+          523,
+          759,
+          869
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.0597,
+        "halo_ratio": 0.01339,
+        "sha256": "c1de38f8de2560b8c2bb63e062792dd7c8131c24640da0f0a159f7e81fbe15f7"
+      }
+    },
+    {
+      "path": "artwork/golden-retriever-tee/pepper.png",
+      "status": "PASS",
+      "checks": {
+        "dimensions_ok": true,
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_corners": true,
+        "margins_LTRB": [
+          759,
+          523,
+          759,
+          869
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.054,
+        "halo_ratio": 0.01895,
+        "sha256": "3ed4e028ada49824ca7b5fbd0a25cd08f5812b02a4458ef2706c3f61ebffa585"
+      }
+    }
+  ],
+  "printify_connected": false
+}

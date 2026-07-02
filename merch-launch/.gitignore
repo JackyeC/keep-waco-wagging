@@ -1,0 +1,10 @@
+.env
+.env.local
+*.log
+logs/*.log
+__pycache__/
+*.pyc
+.venv/
+output/*.tmp
+output/pdf-object-audit/
+artwork/

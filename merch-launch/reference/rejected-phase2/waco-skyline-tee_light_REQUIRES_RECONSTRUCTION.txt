@@ -1,0 +1,1 @@
+No production master generated. Source cannot be faithfully rendered at 300 DPI without collapsing the ALICO Building detail. See notes.md.

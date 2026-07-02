@@ -1,0 +1,635 @@
+[
+  {
+    "product_id": "city-waco-skyline",
+    "product_name": "Keep Waco Wagging \u2014 Waco Skyline Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 5,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork",
+      "Pepper curated but no validated dark/white-ink artwork"
+    ],
+    "files": [
+      {
+        "path": "/Users/jackyeclayton/Downloads/waco skyline drip.jpeg",
+        "size": "447x447",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 447x447 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/waco skyline.jpeg",
+        "size": "446x448",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 446x448 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/waco skyline.jpg",
+        "size": "566x240",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 566x240 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/waco skyline.png",
+        "size": "447x447",
+        "mode": "P",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 447x447 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/waco skyline4.webp",
+        "size": "3000x2182",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 3000x2182 (target ~4500x5400)"
+        ]
+      }
+    ]
+  },
+  {
+    "product_id": "city-austin-pup-culture",
+    "product_name": "Keep Waco Wagging \u2014 Austin Pup Culture Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 1,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": [
+      {
+        "path": "/Users/jackyeclayton/Downloads/austin_skyline_lineart.png",
+        "size": "1536x1024",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 1536x1024 (target ~4500x5400)"
+        ]
+      }
+    ]
+  },
+  {
+    "product_id": "city-dallas-dog-scene",
+    "product_name": "Keep Waco Wagging \u2014 Dallas Dog Scene Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 0,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": []
+  },
+  {
+    "product_id": "city-san-antonio-sniffari",
+    "product_name": "Keep Waco Wagging \u2014 San Antonio Sniffari Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 0,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": []
+  },
+  {
+    "product_id": "city-houston-howling",
+    "product_name": "Keep Waco Wagging \u2014 Houston Howling Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 1,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": [
+      {
+        "path": "/Users/jackyeclayton/Downloads/houston_skyline_lineart.png",
+        "size": "1536x1024",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 1536x1024 (target ~4500x5400)"
+        ]
+      }
+    ]
+  },
+  {
+    "product_id": "breed-french-bulldog",
+    "product_name": "Keep Waco Wagging \u2014 French Bulldog Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 2,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": [
+      {
+        "path": "/Users/jackyeclayton/Downloads/KWW Frenchie.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/kwwfrenchie.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      }
+    ]
+  },
+  {
+    "product_id": "breed-dachshund",
+    "product_name": "Keep Waco Wagging \u2014 Dachshund Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 0,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": []
+  },
+  {
+    "product_id": "breed-golden-retriever",
+    "product_name": "Keep Waco Wagging \u2014 Golden Retriever Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 25,
+    "production_ready_files": 0,
+    "light_candidates": 1,
+    "dark_candidates": 16,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec"
+    ],
+    "files": [
+      {
+        "path": "/Users/jackyeclayton/Downloads/KWW Golden.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden waco.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_01_original.jpg",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_03_light_shirt.png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_04_dark_shirt.png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_05_transparent_whiteink (1).png",
+        "size": "1080x1080",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_05_transparent_whiteink (2).png",
+        "size": "1080x1080",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_05_transparent_whiteink (3).png",
+        "size": "1080x1080",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_05_transparent_whiteink.png",
+        "size": "1080x1080",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_06_dark_shirt_whiteink (1).png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_06_dark_shirt_whiteink (2).png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_06_dark_shirt_whiteink (3).png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_06_dark_shirt_whiteink.png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_07_navy_shirt_whiteink (1).png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_07_navy_shirt_whiteink.png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_08_dark_v11_transparent.png",
+        "size": "1080x1080",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_09_dark_v11_black.png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/golden_10_dark_v11_navy.png",
+        "size": "1080x1080",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1080x1080 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/keep_waco_wagging_golden_black_mockup.png",
+        "size": "768x1024",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 768x1024 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/keep_waco_wagging_golden_navy_mockup.png",
+        "size": "768x1024",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 768x1024 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/kww-crewneck-art/waco-golden-retriever-crewneck-300dpi.png",
+        "size": "3300x2357",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 3300x2357 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/kwwgolden.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/who-do-i-work-for-e9ae81b6-main/public/posters/poster-golden-parachute.jpg",
+        "size": "480x678",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 480x678 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/who-do-i-work-for-e9ae81b6-main 2/public/posters/poster-golden-parachute.jpg",
+        "size": "480x678",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 480x678 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Projects/keep-waco-wagging/source-designs/merch/dog-moms/waco-golden-retriever-crewneck-300dpi.png",
+        "size": "3300x2357",
+        "mode": "RGBA",
+        "alpha": true,
+        "valid_dimensions": false,
+        "issues": [
+          "dimensions 3300x2357 (target ~4500x5400)"
+        ]
+      }
+    ]
+  },
+  {
+    "product_id": "breed-labrador-retriever",
+    "product_name": "Keep Waco Wagging \u2014 Labrador Retriever Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 0,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": []
+  },
+  {
+    "product_id": "breed-german-shepherd",
+    "product_name": "Keep Waco Wagging \u2014 German Shepherd Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 0,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": []
+  },
+  {
+    "product_id": "breed-corgi",
+    "product_name": "Keep Waco Wagging \u2014 Corgi Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 2,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": [
+      {
+        "path": "/Users/jackyeclayton/Downloads/KWW Corgie.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/corgie.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      }
+    ]
+  },
+  {
+    "product_id": "breed-chihuahua",
+    "product_name": "Keep Waco Wagging \u2014 Chihuahua Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 3,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": [
+      {
+        "path": "/Users/jackyeclayton/Downloads/KWW Chihuahua.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/Keep Waco waging Chihuahua.png",
+        "size": "1122x1402",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1122x1402 (target ~4500x5400)"
+        ]
+      },
+      {
+        "path": "/Users/jackyeclayton/Downloads/kwwchihuahua.png",
+        "size": "1254x1254",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 1254x1254 (target ~4500x5400)"
+        ]
+      }
+    ]
+  },
+  {
+    "product_id": "breed-australian-shepherd",
+    "product_name": "Keep Waco Wagging \u2014 Australian Shepherd Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 1,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": [
+      {
+        "path": "/Users/jackyeclayton/Downloads/australian-shepherd-in-easter-costumes-scaled.jpg",
+        "size": "2560x1707",
+        "mode": "RGB",
+        "alpha": false,
+        "valid_dimensions": false,
+        "issues": [
+          "no transparency (likely white background)",
+          "dimensions 2560x1707 (target ~4500x5400)"
+        ]
+      }
+    ]
+  },
+  {
+    "product_id": "breed-siberian-husky",
+    "product_name": "Keep Waco Wagging \u2014 Siberian Husky Tee",
+    "artwork_status": "BLOCKED_ARTWORK",
+    "files_found": 0,
+    "production_ready_files": 0,
+    "light_candidates": 0,
+    "dark_candidates": 0,
+    "issues": [
+      "No file meets ~4500x5400 transparent PNG spec",
+      "Missing validated light-garment artwork"
+    ],
+    "files": []
+  }
+]

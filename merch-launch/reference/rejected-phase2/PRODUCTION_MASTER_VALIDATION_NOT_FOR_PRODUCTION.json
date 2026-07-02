@@ -1,0 +1,81 @@
+{
+  "target": "4500x5400",
+  "min_margin_px": 150,
+  "results": [
+    {
+      "path": "artwork/waco-skyline-tee/light.png",
+      "exists": false,
+      "checks": {},
+      "status": "REQUIRES_RECONSTRUCTION",
+      "note": "No production master generated. Source cannot be faithfully rendered at 300 DPI without collapsing the ALICO Building detail. See notes.md."
+    },
+    {
+      "path": "artwork/waco-skyline-tee/dark.png",
+      "exists": false,
+      "checks": {},
+      "status": "REQUIRES_RECONSTRUCTION",
+      "note": "Dark (cream-line) version blocked on the same reconstruction. See notes.md."
+    },
+    {
+      "path": "artwork/french-bulldog-tee/light.png",
+      "exists": true,
+      "checks": {
+        "dimensions": "4500x5400",
+        "dimensions_ok": true,
+        "mode": "RGBA",
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_bg": true,
+        "file_size_bytes": 453515,
+        "dpi": [
+          300,
+          300
+        ],
+        "color_profile": "sRGB (no ICC tag)",
+        "margins_LTRB": [
+          1147,
+          1102,
+          1147,
+          1281
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.051279711934156376,
+        "sha256_8": "92b564aa"
+      },
+      "status": "PASS"
+    },
+    {
+      "path": "artwork/golden-retriever-tee/light.png",
+      "exists": true,
+      "checks": {
+        "dimensions": "4500x5400",
+        "dimensions_ok": true,
+        "mode": "RGBA",
+        "rgba": true,
+        "has_alpha": true,
+        "transparent_bg": true,
+        "file_size_bytes": 610166,
+        "dpi": [
+          300,
+          300
+        ],
+        "color_profile": "sRGB (no ICC tag)",
+        "margins_LTRB": [
+          1441,
+          1134,
+          1153,
+          1285
+        ],
+        "margins_ok": true,
+        "edge_clipping": false,
+        "blank_canvas": false,
+        "ink_coverage": 0.039635637860082305,
+        "sha256_8": "225e22e2"
+      },
+      "status": "PASS"
+    }
+  ],
+  "duplicate_files": {}
+}

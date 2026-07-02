@@ -1,0 +1,15 @@
+product_id,channel,product_name,retail_price,base_cost_low,base_cost_high,gross_profit_at_high_cost,gross_margin_at_high_cost,margin_target,meets_target_at_high_cost,highest_cost_size,highest_cost_estimate,notes
+city-waco-skyline,shopify,Keep Waco Wagging — Waco Skyline Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+city-austin-pup-culture,shopify,Keep Waco Wagging — Austin Pup Culture Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+city-dallas-dog-scene,shopify,Keep Waco Wagging — Dallas Dog Scene Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+city-san-antonio-sniffari,shopify,Keep Waco Wagging — San Antonio Sniffari Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+city-houston-howling,shopify,Keep Waco Wagging — Houston Howling Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-french-bulldog,shopify,Keep Waco Wagging — French Bulldog Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-dachshund,shopify,Keep Waco Wagging — Dachshund Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-golden-retriever,shopify,Keep Waco Wagging — Golden Retriever Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-labrador-retriever,shopify,Keep Waco Wagging — Labrador Retriever Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-german-shepherd,shopify,Keep Waco Wagging — German Shepherd Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-corgi,shopify,Keep Waco Wagging — Corgi Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-chihuahua,shopify,Keep Waco Wagging — Chihuahua Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-australian-shepherd,shopify,Keep Waco Wagging — Australian Shepherd Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection
+breed-siberian-husky,shopify,Keep Waco Wagging — Siberian Husky Tee,34.00,11.50,16.75,17.25,50.74%,55%,NO,3XL,16.75,Estimated costs — rerun after Printify provider selection

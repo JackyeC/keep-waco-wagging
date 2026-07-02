@@ -1,0 +1,23 @@
+[
+  {
+    "product_id": "city-waco-skyline",
+    "product_name": "Keep Waco Wagging \u2014 Waco Skyline Tee",
+    "action": "skipped",
+    "reason": "artwork_status=BLOCKED_ARTWORK",
+    "printify_product_id": ""
+  },
+  {
+    "product_id": "breed-french-bulldog",
+    "product_name": "Keep Waco Wagging \u2014 French Bulldog Tee",
+    "action": "skipped",
+    "reason": "artwork_status=BLOCKED_ARTWORK",
+    "printify_product_id": ""
+  },
+  {
+    "product_id": "breed-golden-retriever",
+    "product_name": "Keep Waco Wagging \u2014 Golden Retriever Tee",
+    "action": "skipped",
+    "reason": "artwork_status=BLOCKED_ARTWORK",
+    "printify_product_id": ""
+  }
+]

@@ -1,0 +1,11 @@
+Keep Waco Wagging merch launch report — 2026-07-01T19:21:24.305722+00:00
+
+build_manifest: OK
+validate_source_files: OK
+validate_artwork: OK
+validate_manifest: OK
+inspect_sales_channels: OK
+inspect_printify_connection: exit 1
+calculate_margins: OK
+export_shopify_copy: OK
+export_etsy_copy: OK
