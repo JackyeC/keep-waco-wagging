@@ -92,7 +92,12 @@ export default async function CuratedCollectionPage() {
 
       <div className="mx-auto max-w-[1200px] px-6 pb-16">
         {curated.length > 0 ? (
-          <ShopProductGrid products={curated} columns={3} />
+          <ShopProductGrid
+            products={curated}
+            columns={3}
+            trackDetailView
+            detailViewSource="collection"
+          />
         ) : (
           <div className="card-panel px-8 py-12 text-center">
             <p className="font-display text-2xl text-serif-ink">

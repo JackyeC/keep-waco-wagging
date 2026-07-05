@@ -9,6 +9,7 @@ import {
 import { MerchPurposePanel } from "@/components/merch/MerchPurposePanel";
 import { ShopBagButton } from "@/components/merch/ShopCartDrawer";
 import { ShopByBreedPicker } from "@/components/merch/ShopByBreedPicker";
+import { ShopCollectionLink } from "@/components/merch/ShopCollectionLink";
 import { ShopExperience } from "@/components/merch/ShopExperience";
 import { ShopProductGrid } from "@/components/merch/ShopProductGrid";
 import { Button } from "@/components/ui/Button";
@@ -176,13 +177,10 @@ export default async function ShopPage() {
 
           {curatedCollection.length > 0 && (
             <div className="mt-14 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link
+              <ShopCollectionLink
                 href={batch1CuratedCollectionMeta.localRoute}
                 className="btn-pill btn-sage inline-flex items-center gap-2 px-7 py-3"
-              >
-                Shop the Collection
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
+              />
               {storefrontUrl && (
                 <a
                   href={storefrontUrl}

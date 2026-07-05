@@ -16,6 +16,7 @@ import {
   formatShopPrice,
   productStorefrontUrl,
 } from "@/lib/shopifyProductDetails";
+import { trackShopEvent } from "@/lib/shopAnalytics";
 
 export type CartLine = {
   key: string;
@@ -172,6 +173,12 @@ export function ShopCartProvider({
       });
       setToast(`${input.name} (${label}) added to your bag`);
       setCartOpen(true);
+      trackShopEvent("add_to_bag", {
+        handle: input.handle,
+        title: input.name,
+        price: formatShopPrice(variant.price),
+        source: "shop_bag",
+      });
       return { ok: true };
     },
     [cartOptionsByHandle],
@@ -201,6 +208,14 @@ export function ShopCartProvider({
   const checkout = useCallback(() => {
     const payload = lines.map((l) => ({ variantId: l.variantId, qty: l.qty }));
     if (payload.length === 0) return;
+    const cartSubtotal = lines.reduce((sum, line) => sum + line.price * line.qty, 0);
+    trackShopEvent("checkout_handoff", {
+      handle: "shop-cart",
+      title: "Checkout handoff",
+      price: formatShopPrice(cartSubtotal),
+      line_count: lines.length,
+      source: "shop_bag",
+    });
     window.open(buildShopifyCartUrl(payload), "_blank", "noopener");
   }, [lines]);
 

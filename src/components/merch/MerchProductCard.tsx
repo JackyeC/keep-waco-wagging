@@ -4,15 +4,12 @@ import { ExternalLink } from "lucide-react";
 import { useMemo, useState } from "react";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { useShopCart } from "@/components/merch/ShopCartContext";
+import { useProductDetailViewTracking } from "@/components/merch/useProductDetailViewTracking";
 import type { MerchProduct } from "@/data/merchStore";
 import { findVariant } from "@/lib/shopifyProductDetails";
 import { productStorefrontUrl } from "@/lib/shopifyProductDetails";
-
-const colorHex: Record<string, string> = {
-  Black: "#2B2B2B",
-  Navy: "#2B3A55",
-  White: "#F2EEE6",
-};
+import { garmentColorHex, isGarmentColorOption } from "@/lib/merchColors";
+import { trackShopEvent } from "@/lib/shopAnalytics";
 
 function OptionPills({
   label,
@@ -29,7 +26,7 @@ function OptionPills({
 }) {
   if (values.length === 0) return null;
 
-  const isColor = values.every((v) => colorHex[v]);
+  const isColor = isGarmentColorOption(values);
 
   return (
     <div className="mt-4">
@@ -52,7 +49,7 @@ function OptionPills({
                 aria-pressed={active}
                 className="h-8 w-8 rounded-full border-2 transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage disabled:cursor-not-allowed disabled:opacity-40"
                 style={{
-                  backgroundColor: colorHex[value] ?? "#ccc",
+                  backgroundColor: garmentColorHex[value] ?? "#ccc",
                   borderColor: active ? "#6E7E63" : "#DACEBC",
                   boxShadow: active
                     ? "0 0 0 2px #FBF6EF, 0 0 0 4px #6E7E63"
@@ -84,7 +81,15 @@ function OptionPills({
   );
 }
 
-export function MerchProductCard({ product }: { product: MerchProduct }) {
+export function MerchProductCard({
+  product,
+  trackDetailView = false,
+  detailViewSource = "shop",
+}: {
+  product: MerchProduct;
+  trackDetailView?: boolean;
+  detailViewSource?: string;
+}) {
   const { addProduct, cartOptionsByHandle } = useShopCart();
   const [option1, setOption1] = useState<string | null>(
     product.cartOption1Values?.[0] ?? null,
@@ -107,6 +112,23 @@ export function MerchProductCard({ product }: { product: MerchProduct }) {
     ? `$${selectedVariant.price.toFixed(2)}`
     : product.price;
 
+  const viewRef = useProductDetailViewTracking(
+    product.slug,
+    product.name,
+    displayPrice ?? undefined,
+    trackDetailView,
+    detailViewSource,
+  );
+
+  function analyticsPayload() {
+    return {
+      handle: product.slug,
+      title: product.name,
+      price: displayPrice ?? undefined,
+      source: detailViewSource,
+    };
+  }
+
   function handleAdd() {
     setError(null);
     const result = addProduct({
@@ -119,13 +141,29 @@ export function MerchProductCard({ product }: { product: MerchProduct }) {
     if (!result.ok) setError(result.reason);
   }
 
+  function handleOptionSelect(
+    label: string,
+    value: string,
+    onSelect: (value: string) => void,
+  ) {
+    trackShopEvent("product_card_click", {
+      ...analyticsPayload(),
+      source: `${detailViewSource}:${label}`,
+    });
+    onSelect(value);
+  }
+
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-[20px] border border-border bg-soft-cream transition-colors hover:border-rose">
+    <article
+      ref={viewRef}
+      className="flex h-full flex-col overflow-hidden rounded-[20px] border border-border bg-soft-cream transition-colors hover:border-rose"
+    >
       <a
         href={storefrontUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="block"
+        onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
       >
         <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray p-4 sm:p-5">
           {product.image?.src ? (
@@ -153,7 +191,9 @@ export function MerchProductCard({ product }: { product: MerchProduct }) {
               label={product.cartOption1Label ?? "Option"}
               values={product.cartOption1Values ?? []}
               selected={option1}
-              onSelect={setOption1}
+              onSelect={(value) =>
+                handleOptionSelect(product.cartOption1Label ?? "Option", value, setOption1)
+              }
               soldOut={(value) =>
                 !findVariant(cart, value, option2)?.available
               }
@@ -162,7 +202,9 @@ export function MerchProductCard({ product }: { product: MerchProduct }) {
               label={product.cartOption2Label ?? "Size"}
               values={product.cartOption2Values ?? []}
               selected={option2}
-              onSelect={setOption2}
+              onSelect={(value) =>
+                handleOptionSelect(product.cartOption2Label ?? "Size", value, setOption2)
+              }
               soldOut={(value) =>
                 !findVariant(cart, option1, value)?.available
               }
@@ -207,6 +249,7 @@ export function MerchProductCard({ product }: { product: MerchProduct }) {
             target="_blank"
             rel="noopener noreferrer"
             className="btn-pill btn-rose-outline inline-flex w-full items-center justify-center gap-1.5 py-2.5 text-[11px]"
+            onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
           >
             View on Shopify
             <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
