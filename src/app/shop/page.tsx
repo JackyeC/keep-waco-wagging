@@ -16,22 +16,25 @@ import {
   getAccessoryProducts,
   groupByDesign,
   merchAnchorLine,
+  pickCuratedCollectionProducts,
   pickFeaturedProducts,
 } from "@/data/merchCuration";
 import {
-  getShopifyCollectionUrl,
+  batch1CuratedCollectionMeta,
+} from "@/data/batch1CuratedCollection";
+import {
   getShopifyStorefrontUrl,
   shopifyStoreConfig,
 } from "@/data/merchStore";
 import { servicePageMetadata } from "@/lib/metadata";
 import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
-import { brandLanguage, cityConfig, ctas } from "@/lib/site";
+import { cityConfig, ctas } from "@/lib/site";
 
 export const revalidate = 600;
 
 const pageTitle = "Keep Waco Wagging Merch | Waco Dog Apparel";
 const pageDescription =
-  "Shop Dog Mom & Dog Dad tees, breed editions, Waco skyline hoodies, totes, and mugs. Cute shirts. Local impact. Every order helps Waco dogs through Pet Circle.";
+  "Celebrating dog parents + Waco. Shop skyline tees, dog mom & dad shirts, breed hoodies, totes, and mugs — cute shirts, local impact.";
 
 export const metadata: Metadata = {
   ...servicePageMetadata("/shop", pageTitle, pageDescription),
@@ -70,12 +73,12 @@ export default async function ShopPage() {
   const { products: catalog, cartOptionsByHandle, error } =
     await fetchShopifyCatalog();
   const storeLive = catalog.length > 0;
-  const featured = pickFeaturedProducts(catalog);
+  const featured = pickFeaturedProducts(catalog, batch1CuratedCollectionMeta.maxProducts);
+  const curatedCollection = pickCuratedCollectionProducts(catalog);
   const hoodies = catalog.filter((p) => featuredHoodieHandles.includes(p.slug));
   const designGroups = groupByDesign(catalog);
   const accessories = getAccessoryProducts(catalog);
   const storefrontUrl = getShopifyStorefrontUrl();
-  const collectionUrl = getShopifyCollectionUrl();
 
   return (
     <ShopExperience cartOptionsByHandle={cartOptionsByHandle}>
@@ -83,46 +86,7 @@ export default async function ShopPage() {
       <HoodieShopHero />
       <HoodieImpactPanel />
 
-      <section id="hoodies" className="mx-auto max-w-[1200px] px-6 pb-10">
-        <div className="text-center">
-          <p className="eyebrow tracking-[0.22em]">Shop hoodies</p>
-          <h2 className="heading mt-1.5 text-[38px]">
-            Waco skyline editions
-          </h2>
-          <p className="dek mx-auto mt-3 max-w-xl">
-            Pick color and size, add to bag, and checkout on Shopify with your
-            selections. Mixed bags welcome.
-          </p>
-        </div>
-        {storeLive && hoodies.length > 0 ? (
-          <div className="mt-8">
-            <ShopProductGrid products={hoodies} columns={3} />
-          </div>
-        ) : (
-          <p className="body-light mt-8 text-center text-sm">
-            Hoodie listings are loading — refresh shortly or visit Shopify directly.
-          </p>
-        )}
-      </section>
-
-      <section className="mx-auto max-w-[1200px] px-6 pb-6 pt-4">
-        <p className="eyebrow tracking-[0.22em]">More merch</p>
-        <h2 className="heading mt-2 max-w-3xl text-[36px]">
-          Tees, totes, mugs &{" "}
-          <span className="font-script text-rose">more</span>
-        </h2>
-        <p className="dek mt-4 max-w-2xl text-[17px]">{merchAnchorLine}</p>
-        <p className="body-light mt-3 max-w-2xl">
-          {brandLanguage.brandByLine}. Add to bag when options are shown — otherwise
-          open the product on Shopify.{" "}
-          <Link href={ctas.gearGuide.href} className="text-rose-deep hover:text-wag-sage">
-            Gear Guide
-          </Link>{" "}
-          for affiliate dog gear we recommend separately.
-        </p>
-      </section>
-
-      <section className="mx-auto max-w-[1200px] px-6 pb-10">
+      <section className="mx-auto max-w-[1200px] px-6 pb-6 pt-2">
         <MerchPurposePanel />
       </section>
 
@@ -142,11 +106,12 @@ export default async function ShopPage() {
 
       {storeLive ? (
         <div className="mx-auto max-w-[1200px] px-6 pb-16">
-          <section>
+          <section id="featured" className="scroll-mt-24">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="eyebrow tracking-[0.22em]">Featured</p>
                 <h2 className="heading mt-1.5 text-[36px]">Launch favorites</h2>
+                <p className="dek mt-2 max-w-xl text-[15px]">{merchAnchorLine}</p>
               </div>
               <p className="text-xs font-light text-label-muted">
                 {catalog.length} curated products · {shopifyStoreConfig.priceDisplayNote}
@@ -155,6 +120,26 @@ export default async function ShopPage() {
             <div className="mt-6">
               <ShopProductGrid products={featured} columns={3} />
             </div>
+          </section>
+
+          <section id="hoodies" className="mt-16 scroll-mt-24">
+            <div className="text-center">
+              <p className="eyebrow tracking-[0.22em]">Hoodies</p>
+              <h2 className="heading mt-1.5 text-[38px]">Waco skyline fleece</h2>
+              <p className="dek mx-auto mt-3 max-w-xl">
+                Breed editions with the Waco skyline — pick color and size, add to
+                bag, checkout on Shopify. Mixed bags welcome.
+              </p>
+            </div>
+            {hoodies.length > 0 ? (
+              <div className="mt-8">
+                <ShopProductGrid products={hoodies} columns={3} />
+              </div>
+            ) : (
+              <p className="body-light mt-8 text-center text-sm">
+                Hoodie listings are loading — refresh shortly or visit Shopify directly.
+              </p>
+            )}
           </section>
 
           <ShopByBreedPicker catalog={catalog} />
@@ -189,25 +174,23 @@ export default async function ShopPage() {
             </section>
           )}
 
-          {collectionUrl && (
+          {curatedCollection.length > 0 && (
             <div className="mt-14 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <a
-                href={collectionUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={batch1CuratedCollectionMeta.localRoute}
                 className="btn-pill btn-sage inline-flex items-center gap-2 px-7 py-3"
               >
-                Open full catalog on Shopify
-                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              </a>
+                Shop the Collection
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
               {storefrontUrl && (
                 <a
                   href={storefrontUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-medium tracking-[0.12em] text-rose-deep uppercase hover:text-wag-sage"
+                  className="text-[11px] font-light text-label-muted hover:text-wag-sage"
                 >
-                  Shopify store home
+                  Full Shopify catalog (operational)
                 </a>
               )}
             </div>

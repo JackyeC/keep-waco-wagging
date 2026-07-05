@@ -10,7 +10,7 @@ import {
 } from "@/lib/site";
 
 const exploreLinks = [
-  { label: "Shop hoodies", href: "/shop" },
+  { label: "Shop merch", href: "/shop" },
   { label: "Waco Wag Club", href: "/waco-wag-club" },
   { label: "Blog & guides", href: "/blog" },
   { label: "Dog-friendly directory", href: "/dog-friendly-waco" },

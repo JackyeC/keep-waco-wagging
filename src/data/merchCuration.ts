@@ -1,4 +1,10 @@
 import type { MerchProduct } from "@/data/merchStore";
+import {
+  batch1ArtworkHoldHandles,
+  batch1CuratedHandles,
+  batch1ExcludedHandles,
+  batch1HeldFromCuratedSet,
+} from "@/data/batch1CuratedCollection";
 
 /** Anchor copy — used on /shop and launch materials. */
 export const merchAnchorLine =
@@ -8,28 +14,17 @@ export const merchPurposeLine =
   "Every Keep Waco Wagging order helps local dogs through our volunteer work with Pet Circle Regional Animal Center.";
 
 /**
- * Curated hero row for /shop — canonical Shopify handles (see docs/merch-launch-kit.md).
- * Order matters for display.
+ * Curated hero row for /shop — canonical Shopify handles.
+ * Waco-local, owner-vibe aligned (no generic national dog-shop phrases).
  */
-export const featuredProductHandles = [
-  "waco-dog-mom-tee-cute-city-dog-mom-graphic-t-shirt",
-  "waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
-  "anti-social-dog-club-t-shirt-where-people-arent-pet-lover-tee",
-  "keep-waco-wagging-rescue-mutt-hoodie",
-  "keep-waco-wagging-ceramic-mug",
-  "keep-waco-wagging-golden-retriever-tote-bag",
-] as const;
+/** Batch 1 curated collection — same set as /shop/collection */
+export const featuredProductHandles = batch1CuratedHandles;
 
 /**
- * Near-duplicate SKUs hidden on keepwacowagging.com/shop until archived in Shopify.
- * Canonical versions stay visible.
+ * SKUs hidden on keepwacowagging.com/shop until drafted in Shopify.
+ * Source: output/BATCH1_PRODUCT_CURATION.csv (HIDE + DUPLICATE)
  */
-export const excludedProductHandles = new Set<string>([
-  "dog-lover-t-shirt-keep-waco-wagging-cute-paw-print-graphic",
-  "keep-waco-wagging-dog-t-shirt-cute-paw-print-rescue-tee",
-  "keep-waco-wagging-schnauzer-edition-1",
-  "waco-dog-mom-t-shirt",
-]);
+export const excludedProductHandles = batch1ExcludedHandles;
 
 /** Breeds available in the skyline product line — shop-by-breed picker. */
 export const merchBreeds = [
@@ -78,12 +73,6 @@ export const designCollections: DesignCollection[] = [
     matches: (p) => /dog dad|dog-dad/i.test(`${p.slug} ${p.name}`),
   },
   {
-    id: "anti-social",
-    label: "Anti-Social Dog Club",
-    description: "Rather be with my dog.",
-    matches: (p) => /anti-social|anti social/i.test(`${p.slug} ${p.name}`),
-  },
-  {
     id: "rescue",
     label: "Rescue & Mutt",
     description: "No papers, all heart.",
@@ -105,46 +94,37 @@ export const designCollections: DesignCollection[] = [
     label: "Waco Sayings",
     description: "Local pride and dog-person philosophy.",
     matches: (p) =>
-      /coffee|dog kisses|make waco|treat people|paw print|scoop happens|goes to camp/i.test(
+      /coffee|dog kisses|make waco|treat people|scoop happens|goes to camp/i.test(
         `${p.slug} ${p.name}`,
-      ),
+      ) && !/paw.?print/i.test(`${p.slug} ${p.name}`),
   },
 ];
 
-/** Suggested charm prices for display until Shopify admin prices are rounded (§1). */
+/** @deprecated Batch 1 uses Shopify variant price as display source of truth. */
 export function getCharmDisplayPrice(product: MerchProduct): string {
-  const hay = `${product.slug} ${product.name}`.toLowerCase();
-
-  if (hay.includes("hoodie")) return "$57.99";
-  if (hay.includes("crewneck") || hay.includes("sweatshirt")) return "$47.99";
-  if (hay.includes("tote")) return "$24.99";
-  if (hay.includes("tumbler")) return "$39.99";
-  if (hay.includes("mug")) return "$17.99";
-  if (hay.includes("sticker")) return "$4.99";
-  if (hay.includes("bandana")) return "$21.99";
-  if (
-    hay.includes("t-shirt") ||
-    hay.includes("tee") ||
-    hay.includes("tank")
-  ) {
-    return "$27.99";
-  }
-
   return product.price ?? "";
 }
 
-export function applyCharmPricing(product: MerchProduct): MerchProduct {
-  return { ...product, price: getCharmDisplayPrice(product) };
-}
-
 export function isExcludedProduct(product: MerchProduct): boolean {
-  return excludedProductHandles.has(product.slug);
+  return (
+    excludedProductHandles.has(product.slug) ||
+    batch1ArtworkHoldHandles.has(product.slug) ||
+    batch1HeldFromCuratedSet.has(product.slug)
+  );
 }
 
+/** Filters off-brand/duplicate SKUs; prices stay as fetched from Shopify. */
 export function curateCatalog(products: MerchProduct[]): MerchProduct[] {
-  return products
-    .filter((p) => !isExcludedProduct(p))
-    .map(applyCharmPricing);
+  return products.filter((p) => !isExcludedProduct(p));
+}
+
+export function pickCuratedCollectionProducts(
+  catalog: MerchProduct[],
+): MerchProduct[] {
+  const byHandle = new Map(catalog.map((p) => [p.slug, p]));
+  return batch1CuratedHandles
+    .map((handle) => byHandle.get(handle))
+    .filter((p): p is MerchProduct => Boolean(p));
 }
 
 export function pickFeaturedProducts(

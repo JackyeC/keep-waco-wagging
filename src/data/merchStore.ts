@@ -88,7 +88,7 @@ export const shopifyStoreConfig = {
   externalCheckoutNote:
     "Checkout happens on our Shopify store — you will leave keepwacowagging.com to complete your order.",
   priceDisplayNote:
-    "Prices shown are our standard rates. Checkout on Shopify reflects your size and color selection.",
+    "Prices shown match Shopify checkout for your selected size and color.",
 } as const;
 
 /** Fallback when products.json is unavailable — matches featuredProductHandles in merchCuration.ts */
@@ -111,31 +111,20 @@ export const liveMerchProducts: readonly MerchProduct[] = [
     slug: "waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
     description:
       "Hand-drawn Waco skyline for Texas dog dads. Relaxed fit, made to order.",
-    price: "$27.99",
+    price: "$26.99",
     shopifyProductUrl: `${SHOPIFY_STORE}/products/waco-skyline-t-shirt-waco-dog-dad-graphic-tee`,
     availability: "available",
     featured: true,
     category: "apparel",
   },
   {
-    id: "anti-social-tee",
-    name: "Anti-Social Dog Club — Waco, Texas",
-    slug: "anti-social-dog-club-t-shirt-where-people-arent-pet-lover-tee",
-    description: "Membership requirements: one dog, zero plans.",
-    price: "$27.99",
-    shopifyProductUrl: `${SHOPIFY_STORE}/products/anti-social-dog-club-t-shirt-where-people-arent-pet-lover-tee`,
-    availability: "available",
-    featured: true,
-    category: "apparel",
-  },
-  {
-    id: "rescue-mutt-hoodie",
-    name: "Keep Waco Wagging — Rescue Mutt Hoodie",
-    slug: "keep-waco-wagging-rescue-mutt-hoodie",
-    description: "No papers, all heart — Waco skyline rescue mutt edition.",
-    price: "$57.99",
-    sizesOrColorsNote: "Black, Navy, White · S–2XL",
-    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-rescue-mutt-hoodie`,
+    id: "golden-retriever-hoodie",
+    name: "Keep Waco Wagging — Golden Retriever Hoodie",
+    slug: "keep-waco-wagging-golden-retriever-hoodie",
+    description: "Waco skyline golden retriever edition — premium fleece.",
+    price: "$58.00",
+    sizesOrColorsNote: "Natural, Sage, Blossom · S–3XL",
+    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-golden-retriever-hoodie`,
     availability: "available",
     featured: true,
     category: "apparel",
