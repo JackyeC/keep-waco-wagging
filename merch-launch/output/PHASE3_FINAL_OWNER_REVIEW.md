@@ -1,19 +1,48 @@
-# Phase 3 Final — Owner Review
+# Phase 3 Final — Owner Review (Historical Artifacts + Owner Decisions)
 
-Generated: 2026-07-02T02:27:34.580592+00:00
+Generated: 2026-07-02T03:06:28Z
 
-**No Printify. No drafts. No publishing. Same three products only.**
+**This document combines Phase 3 final build artifacts (historical record) with the latest owner visual decisions (source of truth).**
 
-## Explicit confirmations
+Automated validation PASS (4500×5400 RGBA, margins, contrast) is a **technical check only**. It is **not** owner approval and does **not** authorize Printify drafts or publishing.
 
-1. **Actual Cormorant Garamond used** — **YES.** Lockup paths generated from `CormorantGaramond-SemiBold-600.ttf` (variable font instantiated at **wght=600** / SemiBold axis). File metadata: `Cormorant Garamond Light`.
-2. **Actual Parisienne used** — **YES.** Lockup paths from `Parisienne-Regular.ttf` (`Parisienne`).
-3. **Frenchie and Golden share one illustration style** — **YES.** Both reconstructed via identical skeleton centerline stroke pipeline (`breed_illustration.py`) with shared line weight, simplification, and organic jitter parameters.
-4. **ALICO remains recognizable** — **YES.** Central tower with sign band, window grid, flag; see ALICO close-up.
-5. **Skyline reads as one continuous Waco drawing** — **YES.** Single wobbly baseline ties silos, bridge deck ramps, ALICO base, and courthouse; consistent architectural stroke weights.
-6. **Logo, dog, and skyline feel integrated** — **YES.** Waco tee lockup overlaps skyline base; breed tees place dog in front of skyline with baseline passing behind paws.
-7. **No automated tracing shortcuts on skyline** — **YES.** Hand-authored paths only. Breed art uses intentional centerline reconstruction (not potrace / not embedded raster composite).
-8. **All production files remain 4500×5400 transparent PNGs** — see validation below.
+**No publishing. French Bulldog and Golden Retriever Printify drafts are prohibited.**
+
+---
+
+## Owner visual decisions — SOURCE OF TRUTH
+
+Recorded: 2026-07-01 (supersedes any implied approval in prior Phase 3 reports)
+
+| Design | Owner decision |
+|---|---|
+| **Waco Skyline Tee** | **APPROVED FOR ONE UNPUBLISHED PRINTIFY DRAFT ONLY.** |
+| **French Bulldog Tee** | **NOT APPROVED.** Requires a complete seated-dog redraw. Do not reuse the fragmented centerline version. |
+| **Golden Retriever Tee** | **NOT APPROVED.** Requires stronger full-opacity line work and revised skyline placement so ALICO does not collide with the dog's legs. |
+
+### Waco Skyline Tee — approved scope
+
+- **Permitted:** exactly **one unpublished** Printify draft (Comfort Colors 1717).
+- **Garment colors:** Ivory, Blossom, Bay or Blue Spruce, Pepper.
+- **Print:** ~11–12 inch width, normal upper-chest placement.
+- **Not permitted:** publish to Shopify or Etsy; connect draft to sales channels; additional drafts without owner approval.
+
+### French Bulldog Tee — blocked
+
+- Do **not** create a Printify draft.
+- Do **not** reuse the Phase 3 final fragmented centerline reconstruction.
+- Required: complete seated-dog redraw before any re-review.
+
+### Golden Retriever Tee — blocked
+
+- Do **not** create a Printify draft.
+- Required: stronger full-opacity line work; move/revise skyline so ALICO does not collide with the dog's legs.
+
+---
+
+## Phase 3 final build notes (historical — not approval)
+
+The sections below (typography comparison, mockups, contact sheet references) document the Phase 3 final **build pass** for review. They do **not** constitute owner sign-off on all three designs.
 
 ## Typography comparison
 

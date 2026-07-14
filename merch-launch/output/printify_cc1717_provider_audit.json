@@ -1,0 +1,530 @@
+{
+  "blueprint": {
+    "id": 706,
+    "title": "Unisex Garment-Dyed T-shirt",
+    "brand": "Comfort Colors\u00ae",
+    "model": "1717"
+  },
+  "approved_colors": [
+    "Bay",
+    "Blossom",
+    "Blue Spruce",
+    "Ivory",
+    "Pepper"
+  ],
+  "providers": [
+    {
+      "provider_id": 217,
+      "provider_name": "Fulfill Engine",
+      "location": "Monroe, NC, US",
+      "total_variants": 139,
+      "all_colors_count": 20,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [
+        "Blue Spruce"
+      ],
+      "approved_color_coverage": "4/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "4XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 23,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 519,
+      "us_shipping_additional_cents": 219,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3461,
+        "height": 3955
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    },
+    {
+      "provider_id": 27,
+      "provider_name": "Print Geek",
+      "location": "Vaughan, ON, CA",
+      "total_variants": 217,
+      "all_colors_count": 31,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [],
+      "approved_color_coverage": "5/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "4XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 30,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 2259,
+      "us_shipping_additional_cents": 330,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 2976,
+        "height": 3398
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    },
+    {
+      "provider_id": 29,
+      "provider_name": "Monster Digital",
+      "location": "Miami, FL, US",
+      "total_variants": 226,
+      "all_colors_count": 33,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [],
+      "approved_color_coverage": "5/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "4XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 29,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 475,
+      "us_shipping_additional_cents": 240,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3461,
+        "height": 3955
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    },
+    {
+      "provider_id": 99,
+      "provider_name": "Printify Choice",
+      "location": "Miami, FL, US",
+      "total_variants": 370,
+      "all_colors_count": 54,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [],
+      "approved_color_coverage": "5/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "4XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 30,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 475,
+      "us_shipping_additional_cents": 240,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3703,
+        "height": 4200
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    },
+    {
+      "provider_id": 39,
+      "provider_name": "SwiftPOD",
+      "location": "San Jose, Loading... please wait., US",
+      "total_variants": 351,
+      "all_colors_count": 51,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [],
+      "approved_color_coverage": "5/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "4XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 30,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 475,
+      "us_shipping_additional_cents": 240,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3461,
+        "height": 3955
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    },
+    {
+      "provider_id": 34,
+      "provider_name": "The Print Bar",
+      "location": "Teneriffe, QLD, AU",
+      "total_variants": 156,
+      "all_colors_count": 31,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [],
+      "approved_color_coverage": "5/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 27,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": null,
+      "us_shipping_additional_cents": null,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3709,
+        "height": 4203
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    },
+    {
+      "provider_id": 42,
+      "provider_name": "Drive Fulfillment",
+      "location": "American Fork, UT, US",
+      "total_variants": 55,
+      "all_colors_count": 11,
+      "approved_colors_present": [
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce"
+      ],
+      "approved_color_coverage": "2/5",
+      "sizes_available": [
+        "2XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 10,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 519,
+      "us_shipping_additional_cents": 219,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3709,
+        "height": 4203
+      },
+      "sample_variant_ids": {
+        "Ivory/S": 78991,
+        "Ivory/M": 78992,
+        "Ivory/L": 78993
+      }
+    },
+    {
+      "provider_id": 54,
+      "provider_name": "JAMS Designs",
+      "location": "Los Angeles, CA, US",
+      "total_variants": 25,
+      "all_colors_count": 5,
+      "approved_colors_present": [
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce"
+      ],
+      "approved_color_coverage": "2/5",
+      "sizes_available": [
+        "2XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 10,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 519,
+      "us_shipping_additional_cents": 219,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 2976,
+        "height": 3398
+      },
+      "sample_variant_ids": {
+        "Ivory/S": 78991,
+        "Ivory/M": 78992,
+        "Ivory/L": 78993
+      }
+    },
+    {
+      "provider_id": 61,
+      "provider_name": "Dimona Tee",
+      "location": "Dania Beach, FL, US",
+      "total_variants": 174,
+      "all_colors_count": 29,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [],
+      "approved_color_coverage": "5/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 30,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 475,
+      "us_shipping_additional_cents": 240,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3709,
+        "height": 4203
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    },
+    {
+      "provider_id": 3,
+      "provider_name": "Marco Fine Arts",
+      "location": "Santa Ana, CA, US",
+      "total_variants": 44,
+      "all_colors_count": 8,
+      "approved_colors_present": [
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce"
+      ],
+      "approved_color_coverage": "2/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 11,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 475,
+      "us_shipping_additional_cents": 240,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 2976,
+        "height": 3398
+      },
+      "sample_variant_ids": {
+        "Ivory/S": 78991,
+        "Ivory/M": 78992,
+        "Ivory/L": 78993
+      }
+    },
+    {
+      "provider_id": 410,
+      "provider_name": "Printful",
+      "location": "28273, NC, US",
+      "total_variants": 274,
+      "all_colors_count": 45,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [],
+      "approved_color_coverage": "5/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "4XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 30,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 475,
+      "us_shipping_additional_cents": 240,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3425,
+        "height": 3882
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    },
+    {
+      "provider_id": 331,
+      "provider_name": "Shirt Monkey",
+      "location": "Winsford, GB",
+      "total_variants": 132,
+      "all_colors_count": 22,
+      "approved_colors_present": [
+        "Bay",
+        "Blossom",
+        "Blue Spruce",
+        "Ivory",
+        "Pepper"
+      ],
+      "approved_colors_missing": [],
+      "approved_color_coverage": "5/5",
+      "sizes_available": [
+        "2XL",
+        "3XL",
+        "4XL",
+        "L",
+        "M",
+        "S",
+        "XL"
+      ],
+      "selected_variant_count": 28,
+      "handling_time": {
+        "value": 10,
+        "unit": "day"
+      },
+      "us_shipping_first_item_cents": 2299,
+      "us_shipping_additional_cents": 399,
+      "front_print_area_px": {
+        "position": "front",
+        "decoration_method": "dtg",
+        "width": 3709,
+        "height": 4203
+      },
+      "sample_variant_ids": {
+        "Bay/S": 78876,
+        "Bay/M": 78877,
+        "Bay/L": 78878
+      }
+    }
+  ]
+}

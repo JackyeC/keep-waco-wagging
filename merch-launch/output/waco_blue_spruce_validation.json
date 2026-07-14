@@ -1,0 +1,38 @@
+{
+  "production_png_used": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/bay.png",
+  "production_png_sha256": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7",
+  "phase3_validation_sha256": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7",
+  "sha256_matches_phase3_record": true,
+  "artwork_treatment": "Bay / Blue Spruce / Sage shared master (bay.png)",
+  "garment_color_name": "Blue Spruce",
+  "garment_color_hex": "#3E5D58",
+  "garment_color_source": "Comfort Colors 1717 manufacturer reference (Pantone 5477)",
+  "printify_provider_reference": "Printify Choice (99)",
+  "placement": {
+    "position": "front",
+    "x": 0.5,
+    "y": 0.48,
+    "scale": 0.92,
+    "angle": 0
+  },
+  "estimated_print_width_inches": 11.21,
+  "clipping_check": {
+    "top_px": 87.7,
+    "bottom_px": 4123.8,
+    "print_area_height_px": 4387,
+    "clips_top": false,
+    "clips_bottom": false
+  },
+  "ink_vs_garment_contrast": {
+    "cream_primary_vs_blue_spruce": 6.21,
+    "rose_accent_vs_blue_spruce": 2.57,
+    "sage_sign_fill_vs_blue_spruce": 1.66
+  },
+  "technical_checks": {
+    "primary_text_readable": true,
+    "skyline_primary_visible": true,
+    "secondary_ink_marginal": true,
+    "no_clipping_at_proposed_placement": true
+  },
+  "mockup_output": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/waco-blue-spruce-validation-mockup.png"
+}

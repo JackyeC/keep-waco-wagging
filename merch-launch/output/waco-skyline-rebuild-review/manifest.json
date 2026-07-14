@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-07-02T22:33:43.557357+00:00",
+  "status": "PENDING_OWNER_VISUAL_APPROVAL",
+  "landmarks": [
+    "Magnolia Silos",
+    "Waco Suspension Bridge",
+    "ALICO Building",
+    "Pat Neff Hall (Baylor)"
+  ],
+  "excluded": [
+    "McLennan County Courthouse (omitted to avoid crowding)"
+  ],
+  "artwork_architecture_unchanged": {
+    "four_upload_treatments": [
+      "ivory.png",
+      "blossom.png",
+      "bay.png",
+      "pepper.png"
+    ],
+    "blue_spruce_uses": "bay.png"
+  },
+  "holds": {
+    "DRY_RUN": true,
+    "printify_draft": false,
+    "garment_color_pngs": false,
+    "production_overwrite": false
+  },
+  "files": {
+    "1_standalone_skyline": "output/waco-skyline-rebuild-review/1_standalone_skyline.png",
+    "2_skyline_with_lockup": "output/waco-skyline-rebuild-review/2_skyline_with_lockup.png",
+    "3_ivory_chest_mockup": "output/waco-skyline-rebuild-review/3_ivory_chest_mockup.png",
+    "4_alico_crop": "output/waco-skyline-rebuild-review/4_alico_crop.png",
+    "5_pat_neff_crop": "output/waco-skyline-rebuild-review/5_pat_neff_crop.png"
+  },
+  "contact_sheet": "output/waco-skyline-rebuild-review/WACO_SKYLINE_REBUILD_OWNER_REVIEW.png",
+  "editable_skyline_svg": "artwork/waco-skyline-rebuild/skyline-only.svg"
+}

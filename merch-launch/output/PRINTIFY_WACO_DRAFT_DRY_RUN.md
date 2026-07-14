@@ -1,0 +1,907 @@
+# Printify Waco Skyline Tee — Dry Run Report
+
+Generated: 2026-07-02T20:03:27Z
+DRY_RUN: `True`
+
+## Result: **BLUE SPRUCE REQUIRES OWNER VISUAL CONFIRMATION**
+
+### Reasons
+- Source records map Blue Spruce garment variants to shared bay.png treatment (Bay / Blue Spruce / Sage)
+- Production PNG used: artwork/waco-skyline-tee/bay.png (sha256 matches Phase 3 record)
+- Blue Spruce mockup saved: /Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/waco-blue-spruce-validation-mockup.png
+- Primary cream ink vs Blue Spruce garment: 6.21:1 (readable)
+- Secondary sage/rose ink elements below 3:1 on Blue Spruce — owner should confirm fine details
+- Owner approved Waco Skyline Tee for one unpublished draft but no explicit Blue Spruce garment visual sign-off found
+- Payload uses 4 uploads (not 5); bay.png upload ID reused for Bay and Blue Spruce variant groups
+- Sage sign-fill / secondary green tones are marginal on Blue Spruce — confirm in mockup before live draft
+
+## Artwork Mapping Analysis
+
+```json
+{
+  "source_records": [
+    "products-master.csv lists Bay and Blue Spruce as separate garment colors",
+    "Owner SOURCE OF TRUTH: garment colors Ivory, Blossom, Bay or Blue Spruce, Pepper",
+    "Phase 3 final GARMENTS['bay'] label: Bay / Blue Spruce / Sage",
+    "Phase 3 notes: ivory/blossom/bay/pepper PNG masters (4 treatments, not 5)",
+    "PHASE3_FINAL_VALIDATION.json sha256 for bay.png matches current file",
+    "Owner review contrast row: Bay / Blue Spruce / Sage at 3.75:1 (cream on mockup swatch)"
+  ],
+  "intended_mapping": {
+    "Ivory": "ivory.png",
+    "Blossom": "blossom.png",
+    "Bay": "bay.png",
+    "Blue Spruce": "bay.png (shared Bay / Blue Spruce / Sage treatment)",
+    "Pepper": "pepper.png"
+  },
+  "explicit_owner_blue_spruce_visual_approval_found": false,
+  "owner_waco_product_approval_found": true
+}
+```
+
+## Blue Spruce Validation
+
+```json
+{
+  "production_png_used": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/bay.png",
+  "production_png_sha256": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7",
+  "phase3_validation_sha256": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7",
+  "sha256_matches_phase3_record": true,
+  "artwork_treatment": "Bay / Blue Spruce / Sage shared master (bay.png)",
+  "garment_color_name": "Blue Spruce",
+  "garment_color_hex": "#3E5D58",
+  "garment_color_source": "Comfort Colors 1717 manufacturer reference (Pantone 5477)",
+  "printify_provider_reference": "Printify Choice (99)",
+  "placement": {
+    "position": "front",
+    "x": 0.5,
+    "y": 0.48,
+    "scale": 0.92,
+    "angle": 0
+  },
+  "estimated_print_width_inches": 11.21,
+  "clipping_check": {
+    "top_px": 87.7,
+    "bottom_px": 4123.8,
+    "print_area_height_px": 4387,
+    "clips_top": false,
+    "clips_bottom": false
+  },
+  "ink_vs_garment_contrast": {
+    "cream_primary_vs_blue_spruce": 6.21,
+    "rose_accent_vs_blue_spruce": 2.57,
+    "sage_sign_fill_vs_blue_spruce": 1.66
+  },
+  "technical_checks": {
+    "primary_text_readable": true,
+    "skyline_primary_visible": true,
+    "secondary_ink_marginal": true,
+    "no_clipping_at_proposed_placement": true
+  },
+  "mockup_output": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/waco-blue-spruce-validation-mockup.png"
+}
+```
+
+## Manifest Validation
+
+```json
+{
+  "row_product_id": "city-waco-skyline",
+  "issues": []
+}
+```
+
+## Artwork Validation
+
+```json
+{
+  "artwork_directory": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee",
+  "artwork_treatments": {
+    "ivory": {
+      "treatment_id": "ivory",
+      "label": "Ivory / Natural",
+      "file": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/ivory.png",
+      "exists": true,
+      "dimensions": [
+        4500,
+        5400
+      ],
+      "mode": "RGBA",
+      "has_transparency": true,
+      "valid_production_dimensions": true,
+      "sha256": "59341296a890ac048b9a47089a7e20fc774e08634f78a0a2c6989839731ecfc6",
+      "garment_colors": [
+        "Ivory"
+      ],
+      "source_notes": "Per-garment master \u2014 Phase 3 final",
+      "issues": []
+    },
+    "blossom": {
+      "treatment_id": "blossom",
+      "label": "Blossom",
+      "file": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/blossom.png",
+      "exists": true,
+      "dimensions": [
+        4500,
+        5400
+      ],
+      "mode": "RGBA",
+      "has_transparency": true,
+      "valid_production_dimensions": true,
+      "sha256": "773bf09774b9fb9b3597696a8d9de332a6e24fbb1a1401650882807e95aef4ae",
+      "garment_colors": [
+        "Blossom"
+      ],
+      "source_notes": "Per-garment master \u2014 Phase 3 final",
+      "issues": []
+    },
+    "bay_sage": {
+      "treatment_id": "bay_sage",
+      "label": "Bay / Blue Spruce / Sage",
+      "file": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/bay.png",
+      "exists": true,
+      "dimensions": [
+        4500,
+        5400
+      ],
+      "mode": "RGBA",
+      "has_transparency": true,
+      "valid_production_dimensions": true,
+      "sha256": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7",
+      "garment_colors": [
+        "Bay",
+        "Blue Spruce"
+      ],
+      "source_notes": "Shared light-ink treatment documented in Phase 3 final/revision (execute_phase3_final.py GARMENTS['bay'], owner review contrast row, PHASE3_FINAL_VALIDATION.json sha256 86afad30\u2026)",
+      "issues": []
+    },
+    "pepper": {
+      "treatment_id": "pepper",
+      "label": "Pepper",
+      "file": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/pepper.png",
+      "exists": true,
+      "dimensions": [
+        4500,
+        5400
+      ],
+      "mode": "RGBA",
+      "has_transparency": true,
+      "valid_production_dimensions": true,
+      "sha256": "314f7d3b0570820a8587669bc716ce5d51a4bbd48427d0ee6819a27c07992a4f",
+      "garment_colors": [
+        "Pepper"
+      ],
+      "source_notes": "Per-garment master \u2014 Phase 3 final",
+      "issues": []
+    }
+  },
+  "garment_color_to_treatment": {
+    "Ivory": "ivory",
+    "Blossom": "blossom",
+    "Bay": "bay_sage",
+    "Blue Spruce": "bay_sage",
+    "Pepper": "pepper"
+  },
+  "issues": [],
+  "print_area_px": {
+    "width": 3839,
+    "height": 4387
+  },
+  "placement": {
+    "position": "front",
+    "x": 0.5,
+    "y": 0.48,
+    "scale": 0.92,
+    "angle": 0
+  },
+  "estimated_printed_width_inches": 11.21,
+  "estimated_printed_height_inches": 13.45,
+  "clipping_check": {
+    "top_px": 87.7,
+    "bottom_px": 4123.8,
+    "print_area_height_px": 4387,
+    "clips_top": false,
+    "clips_bottom": false
+  },
+  "primary_artwork_reference": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/ivory.png"
+}
+```
+
+## Provider Recommendation
+
+```json
+{
+  "blueprint_id": 706,
+  "blueprint_name": "Comfort Colors 1717 Unisex Garment-Dyed T-Shirt",
+  "provider_id": 99,
+  "provider_name": "Printify Choice",
+  "location": {
+    "address1": "16085 NW 52ND Avenue",
+    "city": "Miami",
+    "country": "US",
+    "region": "FL",
+    "zip": "33014"
+  },
+  "approved_color_coverage": "5/5",
+  "selected_variant_count": 30,
+  "handling_time": {
+    "value": 10,
+    "unit": "day"
+  },
+  "cost_estimate": {
+    "source": "existing shop CC1717 product on Printify Choice (read-only reference)",
+    "variants": [
+      {
+        "variant_id": 78876,
+        "title": "Bay / S",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78877,
+        "title": "Bay / M",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78878,
+        "title": "Bay / L",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78879,
+        "title": "Bay / XL",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78880,
+        "title": "Bay / 2XL",
+        "base_cost_cents": 1367,
+        "base_cost_usd": 13.67,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78886,
+        "title": "Blossom / S",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78887,
+        "title": "Blossom / M",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78888,
+        "title": "Blossom / L",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78889,
+        "title": "Blossom / XL",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78890,
+        "title": "Blossom / 2XL",
+        "base_cost_cents": 1367,
+        "base_cost_usd": 13.67,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78896,
+        "title": "Blue Spruce / S",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78897,
+        "title": "Blue Spruce / M",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78898,
+        "title": "Blue Spruce / L",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78899,
+        "title": "Blue Spruce / XL",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78900,
+        "title": "Blue Spruce / 2XL",
+        "base_cost_cents": 1367,
+        "base_cost_usd": 13.67,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78991,
+        "title": "Ivory / S",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78992,
+        "title": "Ivory / M",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78993,
+        "title": "Ivory / L",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78994,
+        "title": "Ivory / XL",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 78995,
+        "title": "Ivory / 2XL",
+        "base_cost_cents": 1367,
+        "base_cost_usd": 13.67,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79046,
+        "title": "Pepper / S",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79047,
+        "title": "Pepper / M",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79048,
+        "title": "Pepper / L",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79049,
+        "title": "Pepper / XL",
+        "base_cost_cents": 1241,
+        "base_cost_usd": 12.41,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79050,
+        "title": "Pepper / 2XL",
+        "base_cost_cents": 1367,
+        "base_cost_usd": 13.67,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79112,
+        "title": "Bay / 3XL",
+        "base_cost_cents": 1571,
+        "base_cost_usd": 15.71,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79115,
+        "title": "Blossom / 3XL",
+        "base_cost_cents": 1571,
+        "base_cost_usd": 15.71,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79117,
+        "title": "Blue Spruce / 3XL",
+        "base_cost_cents": 1571,
+        "base_cost_usd": 15.71,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79142,
+        "title": "Ivory / 3XL",
+        "base_cost_cents": 1571,
+        "base_cost_usd": 15.71,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      },
+      {
+        "variant_id": 79155,
+        "title": "Pepper / 3XL",
+        "base_cost_cents": 1571,
+        "base_cost_usd": 15.71,
+        "proposed_retail_cents": 3400,
+        "proposed_retail_usd": 34.0
+      }
+    ],
+    "us_shipping_first_item_cents": 475,
+    "us_shipping_first_item_usd": 4.75
+  },
+  "rationale": "Printify Choice offers full approved-color coverage, US production (FL), 10-day handling, $4.75 US first-item shipping, and is already used for an existing CC1717 product in this shop."
+}
+```
+
+## Duplicate Check
+
+```json
+{
+  "search_title": "Keep Waco Wagging \u2014 Waco Skyline Tee",
+  "exact_matches": [],
+  "duplicate_found": false
+}
+```
+
+## Planned Uploads
+
+```json
+[
+  {
+    "treatment_id": "ivory",
+    "endpoint": "POST /v1/uploads/images.json",
+    "file_name": "ivory.png",
+    "file_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/ivory.png",
+    "garment_colors_served": [
+      "Ivory"
+    ],
+    "would_send": {
+      "file_name": "ivory.png",
+      "contents": "<base64-encoded PNG bytes omitted in dry-run report>"
+    },
+    "local_file_size_bytes": 378095,
+    "sha256": "59341296a890ac048b9a47089a7e20fc774e08634f78a0a2c6989839731ecfc6"
+  },
+  {
+    "treatment_id": "blossom",
+    "endpoint": "POST /v1/uploads/images.json",
+    "file_name": "blossom.png",
+    "file_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/blossom.png",
+    "garment_colors_served": [
+      "Blossom"
+    ],
+    "would_send": {
+      "file_name": "blossom.png",
+      "contents": "<base64-encoded PNG bytes omitted in dry-run report>"
+    },
+    "local_file_size_bytes": 377688,
+    "sha256": "773bf09774b9fb9b3597696a8d9de332a6e24fbb1a1401650882807e95aef4ae"
+  },
+  {
+    "treatment_id": "bay_sage",
+    "endpoint": "POST /v1/uploads/images.json",
+    "file_name": "bay.png",
+    "file_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/bay.png",
+    "garment_colors_served": [
+      "Bay",
+      "Blue Spruce"
+    ],
+    "would_send": {
+      "file_name": "bay.png",
+      "contents": "<base64-encoded PNG bytes omitted in dry-run report>"
+    },
+    "local_file_size_bytes": 372911,
+    "sha256": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7"
+  },
+  {
+    "treatment_id": "pepper",
+    "endpoint": "POST /v1/uploads/images.json",
+    "file_name": "pepper.png",
+    "file_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/artwork/waco-skyline-tee/pepper.png",
+    "garment_colors_served": [
+      "Pepper"
+    ],
+    "would_send": {
+      "file_name": "pepper.png",
+      "contents": "<base64-encoded PNG bytes omitted in dry-run report>"
+    },
+    "local_file_size_bytes": 373049,
+    "sha256": "314f7d3b0570820a8587669bc716ce5d51a4bbd48427d0ee6819a27c07992a4f"
+  }
+]
+```
+
+## Planned Product Payload
+
+```json
+{
+  "title": "Keep Waco Wagging \u2014 Waco Skyline Tee",
+  "description": "Keep Waco Wagging \u2014 Waco skyline on a Comfort Colors 1717 garment-dyed tee. Hand-drawn single-line Waco landmarks with the Keep Waco Wagging wordmark. Relaxed unisex fit, ring-spun cotton, printed to order. Machine wash cold inside-out; tumble dry low.",
+  "blueprint_id": 706,
+  "print_provider_id": 99,
+  "tags": [
+    "Comfort Colors",
+    "Waco",
+    "Dog Mom",
+    "Dog Dad",
+    "Keep Waco Wagging"
+  ],
+  "variants": [
+    {
+      "id": 78876,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78877,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78878,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78879,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78880,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78886,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78887,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78888,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78889,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78890,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78896,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78897,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78898,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78899,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78900,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78991,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78992,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78993,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78994,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 78995,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79046,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79047,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79048,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79049,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79050,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79112,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79115,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79117,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79142,
+      "price": 3400,
+      "is_enabled": true
+    },
+    {
+      "id": 79155,
+      "price": 3400,
+      "is_enabled": true
+    }
+  ],
+  "print_areas": [
+    {
+      "artwork_treatment": "ivory",
+      "artwork_file": "ivory.png",
+      "garment_colors": [
+        "Ivory"
+      ],
+      "variant_ids": [
+        78991,
+        78992,
+        78993,
+        78994,
+        78995,
+        79142
+      ],
+      "placeholders": [
+        {
+          "position": "front",
+          "images": [
+            {
+              "id": "DRY_RUN_UPLOAD_IVORY",
+              "x": 0.5,
+              "y": 0.48,
+              "scale": 0.92,
+              "angle": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artwork_treatment": "blossom",
+      "artwork_file": "blossom.png",
+      "garment_colors": [
+        "Blossom"
+      ],
+      "variant_ids": [
+        78886,
+        78887,
+        78888,
+        78889,
+        78890,
+        79115
+      ],
+      "placeholders": [
+        {
+          "position": "front",
+          "images": [
+            {
+              "id": "DRY_RUN_UPLOAD_BLOSSOM",
+              "x": 0.5,
+              "y": 0.48,
+              "scale": 0.92,
+              "angle": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artwork_treatment": "bay_sage",
+      "artwork_file": "bay.png",
+      "garment_colors": [
+        "Bay",
+        "Blue Spruce"
+      ],
+      "variant_ids": [
+        78876,
+        78877,
+        78878,
+        78879,
+        78880,
+        78896,
+        78897,
+        78898,
+        78899,
+        78900,
+        79112,
+        79117
+      ],
+      "placeholders": [
+        {
+          "position": "front",
+          "images": [
+            {
+              "id": "DRY_RUN_UPLOAD_BAY_SAGE",
+              "x": 0.5,
+              "y": 0.48,
+              "scale": 0.92,
+              "angle": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artwork_treatment": "pepper",
+      "artwork_file": "pepper.png",
+      "garment_colors": [
+        "Pepper"
+      ],
+      "variant_ids": [
+        79046,
+        79047,
+        79048,
+        79049,
+        79050,
+        79155
+      ],
+      "placeholders": [
+        {
+          "position": "front",
+          "images": [
+            {
+              "id": "DRY_RUN_UPLOAD_PEPPER",
+              "x": 0.5,
+              "y": 0.48,
+              "scale": 0.92,
+              "angle": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Planned Api Calls
+
+```json
+[
+  {
+    "method": "GET",
+    "endpoint": "/v1/shops/21413196/products.json",
+    "purpose": "duplicate check (executed read-only during dry run)",
+    "executed_in_dry_run": true
+  },
+  {
+    "method": "GET",
+    "endpoint": "/v1/catalog/blueprints/706/print_providers/99/variants.json",
+    "purpose": "variant selection",
+    "executed_in_dry_run": true
+  },
+  {
+    "method": "GET",
+    "endpoint": "/v1/catalog/blueprints/706/print_providers/99/shipping.json",
+    "purpose": "shipping and handling lookup",
+    "executed_in_dry_run": true
+  },
+  {
+    "method": "POST",
+    "endpoint": "/v1/uploads/images.json",
+    "purpose": "upload 4 unique production PNG treatments (bay.png reused for Bay + Blue Spruce)",
+    "executed_in_dry_run": false,
+    "blocked_by": "DRY_RUN=true"
+  },
+  {
+    "method": "POST",
+    "endpoint": "/v1/shops/21413196/products.json",
+    "purpose": "create unpublished Printify product draft",
+    "executed_in_dry_run": false,
+    "blocked_by": "DRY_RUN=true"
+  }
+]
+```
+
+## Safety Confirmations
+
+```json
+{
+  "post_requests_sent": false,
+  "publish_endpoint_called": false,
+  "shopify_api_called": false,
+  "etsy_api_called": false,
+  "order_or_fulfillment_endpoint_called": false,
+  "french_bulldog_processed": false,
+  "golden_retriever_processed": false,
+  "shopify_access_token_used": false
+}
+```

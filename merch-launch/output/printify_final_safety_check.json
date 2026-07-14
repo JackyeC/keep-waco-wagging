@@ -1,0 +1,1227 @@
+{
+  "generated_at": "2026-07-02T20:47:21Z",
+  "dry_run": true,
+  "authorization_result": "POTENTIAL DUPLICATE \u2014 OWNER DECISION REQUIRED",
+  "authorization_reasons": [
+    "At least one existing Printify product appears materially the same Waco Skyline tee and/or reuses proposed production artwork.",
+    "Owner must decide whether to update/replace the legacy listing or proceed with a separate draft.",
+    "Legacy match: 6a3b03d41ead27bd470ad675 \u2014 Waco Skyline T-Shirt \u2014 'Waco Dog Dad' Graphic Tee (bp 145, visible=True, uploads=['text_layer.svg', 'waco dad dog.png'])"
+  ],
+  "proposed_review_draft": {
+    "title": "Keep Waco Wagging \u2014 Waco Skyline Tee",
+    "blueprint_id": 706,
+    "printify_choice": {
+      "fulfillment_option": "Printify Choice",
+      "provider_id": 99,
+      "actual_print_provider": "May vary by order (routing network)",
+      "guaranteed_facility": false,
+      "catalog_shipping_and_production": "Estimates only \u2014 not customer promises"
+    },
+    "placement": {
+      "position": "front",
+      "x": 0.5,
+      "y": 0.48,
+      "scale": 0.92,
+      "angle": 0
+    },
+    "artwork_treatments": {
+      "ivory": {
+        "file": "ivory.png",
+        "garment_colors": [
+          "Ivory"
+        ],
+        "sha256": "59341296a890ac048b9a47089a7e20fc774e08634f78a0a2c6989839731ecfc6"
+      },
+      "blossom": {
+        "file": "blossom.png",
+        "garment_colors": [
+          "Blossom"
+        ],
+        "sha256": "773bf09774b9fb9b3597696a8d9de332a6e24fbb1a1401650882807e95aef4ae"
+      },
+      "bay_sage": {
+        "file": "bay.png",
+        "garment_colors": [
+          "Bay",
+          "Blue Spruce"
+        ],
+        "sha256": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7"
+      },
+      "pepper": {
+        "file": "pepper.png",
+        "garment_colors": [
+          "Pepper"
+        ],
+        "sha256": "314f7d3b0570820a8587669bc716ce5d51a4bbd48427d0ee6819a27c07992a4f"
+      }
+    }
+  },
+  "blue_spruce_status": {
+    "garment_color": "Blue Spruce",
+    "draft_inclusion": "APPROVED_FOR_UNPUBLISHED_VISUAL_REVIEW_ONLY",
+    "production_artwork": "bay.png",
+    "approval_to_publish_or_sell": "NOT YET GRANTED",
+    "approval_to_order_samples_or_submit_production": "NOT GRANTED"
+  },
+  "legacy_scan": {
+    "products_scanned": 84,
+    "matches": 78,
+    "criteria": {
+      "keywords": [
+        "waco",
+        "skyline",
+        "keep waco wagging"
+      ],
+      "blueprint_id": 706
+    },
+    "all_matches": [
+      {
+        "printify_product_id": "6a4008fbcceb6104070e837a",
+        "title": "Dog Lover T-Shirt \u2014 \"Keep Waco Wagging\" ",
+        "blueprint_id": 706,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3f23d9d3a3089d7205a7db",
+        "title": "Waco Dog Mom 20oz Tumbler \u2014 Insulated Travel Cup for Dog Lovers",
+        "blueprint_id": 353,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3f2352e7b8a9601e0ed9df",
+        "title": "Waco Dog Mom Coffee Mug \u2014 'Dog Mom Social Club' Accent Ceramic Mug (11/15oz)",
+        "blueprint_id": 635,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3f1e8ed45ac7daf10f2849",
+        "title": "Waco Dog Mom Tee ",
+        "blueprint_id": 6,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3dcca9c4a67bb5260ddec9",
+        "title": "Keep Waco Wagging!",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b505da1ff21add702923c",
+        "title": "Keep Waco Wagging Clip-on Pet Bandana",
+        "blueprint_id": 1672,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b50595792036e200a005a",
+        "title": "Keep Waco Wagging Ceramic Mug",
+        "blueprint_id": 478,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b50546cd1b93cd60b1c29",
+        "title": "Waco, Texas Sticker",
+        "blueprint_id": 400,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b504a8e0f4e72600eb919",
+        "title": "Keep Waco Wagging Sticker \u2014 Golden + Skyline",
+        "blueprint_id": 400,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b473f1ead27bd470b0a7e",
+        "title": "Keep Waco Wagging \u2014 Yorkie Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b473a6fe1c064010f623b",
+        "title": "Keep Waco Wagging \u2014 Siberian Husky Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b47378e0f4e72600eaf8d",
+        "title": "Keep Waco Wagging \u2014 Schnauzer Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b47338e0f4e72600eaf8c",
+        "title": "Keep Waco Wagging \u2014 Rescue Mutt Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b472f8e0f4e72600eaf8b",
+        "title": "Keep Waco Wagging \u2014 Pittie Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b472ca1ff21add70288ee",
+        "title": "Keep Waco Wagging \u2014 Maltipoo Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b47281ead27bd470b0a76",
+        "title": "Keep Waco Wagging \u2014 Labrador Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b472427c09bf2d50a071b",
+        "title": "Keep Waco Wagging \u2014 Golden Retriever Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b47206cd1b93cd60b12e9",
+        "title": "Keep Waco Wagging \u2014 German Shepherd Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b471d6cd1b93cd60b12e6",
+        "title": "Keep Waco Wagging \u2014 Frenchie Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b4719beb1a8a70c034d35",
+        "title": "Keep Waco Wagging \u2014 Doodle Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b47161ead27bd470b0a6f",
+        "title": "Keep Waco Wagging \u2014 Dachshund Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b4713beb1a8a70c034d33",
+        "title": "Keep Waco Wagging \u2014 Corgi Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b470fc53b1f445008d037",
+        "title": "Keep Waco Wagging \u2014 Chihuahua Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b470a4da02305460ea7e8",
+        "title": "Keep Waco Wagging \u2014 Catahoula Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b47064da02305460ea7e5",
+        "title": "Keep Waco Wagging \u2014 Australian Shepherd Tote Bag",
+        "blueprint_id": 1313,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46ff6cd1b93cd60b12de",
+        "title": "Keep Waco Wagging \u2014 Yorkie Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46f9c53b1f445008d02f",
+        "title": "Keep Waco Wagging \u2014 Siberian Husky Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46f2beb1a8a70c034d20",
+        "title": "Keep Waco Wagging \u2014 Schnauzer Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46eb8e0f4e72600eaf6d",
+        "title": "Keep Waco Wagging \u2014 Rescue Mutt Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46e527c09bf2d50a0707",
+        "title": "Keep Waco Wagging \u2014 Pittie Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46de4da02305460ea7cf",
+        "title": "Keep Waco Wagging \u2014 Maltipoo Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46d7a1ff21add70288ca",
+        "title": "Keep Waco Wagging \u2014 Labrador Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46cfbeb1a8a70c034d15",
+        "title": "Keep Waco Wagging \u2014 Golden Retriever Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46c554654a1104014bf7",
+        "title": "Keep Waco Wagging \u2014 German Shepherd Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46bc6fe1c064010f620b",
+        "title": "Keep Waco Wagging \u2014 Frenchie Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46b14da02305460ea7b9",
+        "title": "Keep Waco Wagging \u2014 Doodle Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46aa54654a1104014bd6",
+        "title": "Keep Waco Wagging \u2014 Dachshund Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46a34da02305460ea79f",
+        "title": "Keep Waco Wagging \u2014 Corgi Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b469c8e0f4e72600eaf3c",
+        "title": "Keep Waco Wagging \u2014 Chihuahua Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b469427c09bf2d50a06d2",
+        "title": "Keep Waco Wagging \u2014 Catahoula Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b468aa1ff21add7028889",
+        "title": "Keep Waco Wagging \u2014 Australian Shepherd Hoodie",
+        "blueprint_id": 77,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46844da02305460ea78e",
+        "title": "Keep Waco Wagging \u2014 Yorkie Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b467e27c09bf2d50a06c9",
+        "title": "Keep Waco Wagging \u2014 Siberian Husky Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46778e0f4e72600eaf28",
+        "title": "Keep Waco Wagging \u2014 Schnauzer Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b4671beb1a8a70c034cca",
+        "title": "Keep Waco Wagging \u2014 Rescue Mutt Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b466bbeb1a8a70c034cc7",
+        "title": "Keep Waco Wagging \u2014 Pittie Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b466554654a1104014bb6",
+        "title": "Keep Waco Wagging \u2014 Maltipoo Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46606cd1b93cd60b1288",
+        "title": "Keep Waco Wagging \u2014 Labrador Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b465927c09bf2d50a06b2",
+        "title": "Keep Waco Wagging \u2014 Golden Retriever Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b464fc53b1f445008cfae",
+        "title": "Keep Waco Wagging \u2014 German Shepherd Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b4648c53b1f445008cfab",
+        "title": "Keep Waco Wagging \u2014 Frenchie Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b4642beb1a8a70c034cb1",
+        "title": "Keep Waco Wagging \u2014 Doodle Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b463b6cd1b93cd60b1265",
+        "title": "Keep Waco Wagging \u2014 Dachshund Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46346fe1c064010f6184",
+        "title": "Keep Waco Wagging \u2014 Corgi Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b462d1ead27bd470b09be",
+        "title": "Keep Waco Wagging \u2014 Chihuahua Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b46276cd1b93cd60b1247",
+        "title": "Keep Waco Wagging \u2014 Catahoula Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b461fa1ff21add7028832",
+        "title": "Keep Waco Wagging \u2014 Australian Shepherd Crewneck",
+        "blueprint_id": 49,
+        "published_visible": false,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b1570beb1a8a70c0326ac",
+        "title": "Keep Waco Wagging \u2014 Rescue Mutt Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b15596fe1c064010f3bd7",
+        "title": "Keep Waco Wagging \u2014 Siberian Husky Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b1542beb1a8a70c032699",
+        "title": "Keep Waco Wagging \u2014 Yorkie Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b152d6cd1b93cd60aec96",
+        "title": "Keep Waco Wagging \u2014 Corgi Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b15128e0f4e72600e881f",
+        "title": "Keep Waco Wagging \u2014 Australian Shepherd Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b14fabeb1a8a70c032637",
+        "title": "Keep Waco Wagging \u2014 Catahoula Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b10da6fe1c064010f3918",
+        "title": "Keep Waco Wagging Schnauzer Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b10cea1ff21add7025fc1",
+        "title": "Keep Waco Wagging Pittie Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b10c16fe1c064010f38fa",
+        "title": "Keep Waco Wagging Maltipoo Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b10b56cd1b93cd60ae9a5",
+        "title": "Keep Waco Wagging Labrador Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b10aa8e0f4e72600e857a",
+        "title": "Keep Waco Wagging Golden Retriever Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b109e1ead27bd470ae085",
+        "title": "Keep Waco Wagging German Shepherd Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b1091c53b1f445008a706",
+        "title": "Keep Waco Wagging Frenchie Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b10596fe1c064010f3893",
+        "title": "Keep Waco Wagging Doodle Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b104d8e0f4e72600e84eb",
+        "title": "Keep Waco Wagging Dachshund Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b10416cd1b93cd60ae8e0",
+        "title": "Keep Waco Wagging Chihuahua Edition",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b077227c09bf2d509d72f",
+        "title": "Waco Dog Mom T\u2011Shirt",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b067a0504a2c12d055e9a",
+        "title": "Keep Waco Wagging T-Shirt \u2014 Waco Landmark Dog Tee",
+        "blueprint_id": 6,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b04d127c09bf2d509d556",
+        "title": "Keep Waco Wagging Dog T-Shirt \u2014 Cute Paw Print Graphic Tee",
+        "blueprint_id": 6,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3b03d41ead27bd470ad675",
+        "title": "Waco Skyline T-Shirt \u2014 'Waco Dog Dad' Graphic Tee",
+        "blueprint_id": 145,
+        "published_visible": true,
+        "materially_same_waco_skyline": true,
+        "same_production_artwork": false
+      },
+      {
+        "printify_product_id": "6a3aea56a1ff21add7024303",
+        "title": "Keep Waco Wagging Dog T\u2011Shirt \u2014 Cute Paw Print Rescue Tee",
+        "blueprint_id": 12,
+        "published_visible": true,
+        "materially_same_waco_skyline": false,
+        "same_production_artwork": false
+      }
+    ],
+    "tee_and_cc1717_detail": [
+      {
+        "printify_product_id": "6a4008fbcceb6104070e837a",
+        "title": "Dog Lover T-Shirt \u2014 \"Keep Waco Wagging\" ",
+        "description_summary": "Keep Waco Wagging Dog People Tee Waco dogs have personality. So do their people. This relaxed, garment-dyed tee features a playful pack of illustrated pups and the message KEEP WACO WAGGING . It is made for dog park regulars, rescue supporters, neighborhood walkers, proud pet par",
+        "blueprint_id": 706,
+        "print_provider_id": 99,
+        "created_at": "2026-06-27 17:31:39+00:00",
+        "updated_at": "2026-06-27 18:10:06+00:00",
+        "published_visible": true,
+        "external_handle": "https://ajbqh0-6n.myshopify.com/products/dog-lover-t-shirt-keep-waco-wagging-cute-paw-print-graphic",
+        "external_shopify_product_id": "7678727356503",
+        "enabled_colors": [
+          "Bay",
+          "Berry",
+          "Black",
+          "Blossom",
+          "Blue Jean",
+          "Blue Spruce",
+          "Chambray",
+          "Grey",
+          "Ivory",
+          "Orchid",
+          "Pepper",
+          "Seafoam",
+          "True Navy",
+          "Violet",
+          "White"
+        ],
+        "enabled_sizes": [
+          "2XL",
+          "3XL",
+          "L",
+          "M",
+          "S",
+          "XL"
+        ],
+        "print_image_uploads": [
+          {
+            "image_id": "6a4008dd74aa34881f1a09c3",
+            "file_name": "ChatGPT Image Jun 27, 2026, 12_29_03 PM.png",
+            "width": 1254,
+            "height": 1254
+          }
+        ],
+        "print_placements": [
+          {
+            "position": "front",
+            "image_id": "6a4008dd74aa34881f1a09c3",
+            "file_name": "ChatGPT Image Jun 27, 2026, 12_29_03 PM.png",
+            "x": 0.5000000000000001,
+            "y": 0.4408615855212847,
+            "scale": 0.9999999999999992
+          }
+        ],
+        "artwork_match": {
+          "uses_same_production_artwork_as_proposed": false,
+          "appears_materially_same_waco_skyline_product": false,
+          "notes": [
+            "Same CC1717 blank as proposed draft but different design concept",
+            "Currently visible/published in Printify"
+          ]
+        }
+      },
+      {
+        "printify_product_id": "6a3f1e8ed45ac7daf10f2849",
+        "title": "Waco Dog Mom Tee ",
+        "description_summary": "Soft, breathable tee with a calm, minimalist design celebrating the quiet joy of city dog-ownership. The lightweight cotton feels familiar the moment you put it on, and the refined skyline-and-dog illustration sits low-contrast on the chest for an understated, everyday look. Wear",
+        "blueprint_id": 6,
+        "print_provider_id": 99,
+        "created_at": "2026-06-27 00:51:26+00:00",
+        "updated_at": "2026-06-27 18:28:03+00:00",
+        "published_visible": true,
+        "external_handle": "https://ajbqh0-6n.myshopify.com/products/waco-dog-mom-tee-cute-city-dog-mom-graphic-t-shirt",
+        "external_shopify_product_id": "7678169350231",
+        "enabled_colors": [
+          "Gold",
+          "Light Blue",
+          "Light Pink",
+          "Natural",
+          "Orange",
+          "Red",
+          "Sand",
+          "Sport Grey",
+          "White"
+        ],
+        "enabled_sizes": [
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL",
+          "L",
+          "M",
+          "S",
+          "XL"
+        ],
+        "print_image_uploads": [
+          {
+            "image_id": "6a3f1e48c9e0e78e3529299f",
+            "file_name": "ChatGPT Image Jun 26, 2026, 07_47_39 PM.png",
+            "width": 1254,
+            "height": 1254
+          },
+          {
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "width": 100,
+            "height": 100
+          }
+        ],
+        "print_placements": [
+          {
+            "position": "front",
+            "image_id": "6a3f1e48c9e0e78e3529299f",
+            "file_name": "ChatGPT Image Jun 26, 2026, 07_47_39 PM.png",
+            "x": 0.5000000000000001,
+            "y": 0.4015655389343768,
+            "scale": 0.9999999999999999
+          },
+          {
+            "position": "neck",
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "x": 0.5,
+            "y": 0.5,
+            "scale": 1
+          }
+        ],
+        "artwork_match": {
+          "uses_same_production_artwork_as_proposed": false,
+          "appears_materially_same_waco_skyline_product": false,
+          "notes": [
+            "Currently visible/published in Printify"
+          ]
+        }
+      },
+      {
+        "printify_product_id": "6a3b077227c09bf2d509d72f",
+        "title": "Waco Dog Mom T\u2011Shirt",
+        "description_summary": "Lightweight and breathable, this soft crewneck tee celebrates local pride and four-legged love. A delicate skyline sketch rests above flowing script that reads \u201cWaco Dog Mom,\u201d finished with a tiny heart and paw accent. The retail fit and ribbed collar give a tidy, wearable silhou",
+        "blueprint_id": 12,
+        "print_provider_id": 99,
+        "created_at": "2026-06-23 22:23:46+00:00",
+        "updated_at": "2026-06-23 22:31:10+00:00",
+        "published_visible": true,
+        "external_handle": "https://ajbqh0-6n.myshopify.com/products/waco-dog-mom-t-shirt",
+        "external_shopify_product_id": "7675403042903",
+        "enabled_colors": [
+          "Athletic Heather",
+          "Black",
+          "Black Heather",
+          "Brown",
+          "Dark Grey Heather",
+          "Heather Aqua",
+          "Heather Peach",
+          "Heather Prism Lilac",
+          "Heather True Royal",
+          "Maroon",
+          "Mauve",
+          "Mustard",
+          "Navy",
+          "Pink",
+          "Red"
+        ],
+        "enabled_sizes": [
+          "2XL",
+          "3XL",
+          "4XL",
+          "L",
+          "M",
+          "S",
+          "XL",
+          "XS"
+        ],
+        "print_image_uploads": [
+          {
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "width": 100,
+            "height": 100
+          },
+          {
+            "image_id": "6a3b021eaefaed69b09a17dd",
+            "file_name": "waco dog mom.png",
+            "width": 1122,
+            "height": 1402
+          }
+        ],
+        "print_placements": [
+          {
+            "position": "neck",
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "x": 0.5,
+            "y": 0.5,
+            "scale": 1
+          },
+          {
+            "position": "front",
+            "image_id": "6a3b021eaefaed69b09a17dd",
+            "file_name": "waco dog mom.png",
+            "x": 0.4999999999999999,
+            "y": 0.4999999999999995,
+            "scale": 0.9515805821435451
+          }
+        ],
+        "artwork_match": {
+          "uses_same_production_artwork_as_proposed": false,
+          "appears_materially_same_waco_skyline_product": false,
+          "notes": [
+            "Currently visible/published in Printify"
+          ]
+        }
+      },
+      {
+        "printify_product_id": "6a3b067a0504a2c12d055e9a",
+        "title": "Keep Waco Wagging T-Shirt \u2014 Waco Landmark Dog Tee",
+        "description_summary": "Soft, breathable cotton meets hometown pride in this laid-back tee. The design layers a cheerful dog illustration over a simple Waco skyline, with bold lettering that reads \u201cKEEP WACO WAGGING.\u201d It feels like a sunny afternoon walk along familiar streets\u2014easy to wear, easy to love",
+        "blueprint_id": 6,
+        "print_provider_id": 99,
+        "created_at": "2026-06-23 22:19:38+00:00",
+        "updated_at": "2026-06-23 22:23:13+00:00",
+        "published_visible": true,
+        "external_handle": "https://ajbqh0-6n.myshopify.com/products/keep-waco-wagging-t-shirt-waco-landmark-dog-tee",
+        "external_shopify_product_id": "7675397734487",
+        "enabled_colors": [
+          "Gold",
+          "Light Blue",
+          "Light Pink",
+          "Natural",
+          "Sand",
+          "Sport Grey",
+          "White"
+        ],
+        "enabled_sizes": [
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL",
+          "L",
+          "M",
+          "S",
+          "XL"
+        ],
+        "print_image_uploads": [
+          {
+            "image_id": "6a3b06606c789b0b24ecf651",
+            "file_name": "kwwgerman.png",
+            "width": 1254,
+            "height": 1254
+          },
+          {
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "width": 100,
+            "height": 100
+          }
+        ],
+        "print_placements": [
+          {
+            "position": "front",
+            "image_id": "6a3b06606c789b0b24ecf651",
+            "file_name": "kwwgerman.png",
+            "x": 0.5000000000000001,
+            "y": 0.40156553893437685,
+            "scale": 1.0000000000000002
+          },
+          {
+            "position": "neck",
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "x": 0.5,
+            "y": 0.5,
+            "scale": 1
+          }
+        ],
+        "artwork_match": {
+          "uses_same_production_artwork_as_proposed": false,
+          "appears_materially_same_waco_skyline_product": false,
+          "notes": [
+            "Currently visible/published in Printify"
+          ]
+        }
+      },
+      {
+        "printify_product_id": "6a3b04d127c09bf2d509d556",
+        "title": "Keep Waco Wagging Dog T-Shirt \u2014 Cute Paw Print Graphic Tee",
+        "description_summary": "This soft, midweight tee brings a calm, playful energy to everyday wear. A line of gentle, sketched pups sits across the chest with the warm phrase \u201cKeep Waco Wagging,\u201d creating a subtle, canine-loving statement that feels like a quiet neighborhood walk. The relaxed fit and crew ",
+        "blueprint_id": 6,
+        "print_provider_id": 34,
+        "created_at": "2026-06-23 22:12:33+00:00",
+        "updated_at": "2026-06-23 22:18:07+00:00",
+        "published_visible": true,
+        "external_handle": "https://ajbqh0-6n.myshopify.com/products/keep-waco-wagging-dog-t-shirt-cute-paw-print-graphic-tee",
+        "external_shopify_product_id": "7675394490455",
+        "enabled_colors": [
+          "Black",
+          "Charcoal",
+          "Dark Chocolate",
+          "Forest Green",
+          "Gold",
+          "Maroon",
+          "Military Green",
+          "Navy",
+          "Orange",
+          "Purple",
+          "Red",
+          "Royal",
+          "Sand",
+          "Sport Grey"
+        ],
+        "enabled_sizes": [
+          "2XL",
+          "3XL",
+          "4XL",
+          "5XL",
+          "L",
+          "M",
+          "S",
+          "XL"
+        ],
+        "print_image_uploads": [
+          {
+            "image_id": "6a3b004dd6c87058f6b0ff93",
+            "file_name": "did someone say treat.png",
+            "width": 1254,
+            "height": 1254
+          },
+          {
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "width": 100,
+            "height": 100
+          }
+        ],
+        "print_placements": [
+          {
+            "position": "front",
+            "image_id": "6a3b004dd6c87058f6b0ff93",
+            "file_name": "did someone say treat.png",
+            "x": 0.5000000000000001,
+            "y": 0.40156553893437663,
+            "scale": 1
+          },
+          {
+            "position": "neck",
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "x": 0.5,
+            "y": 0.5,
+            "scale": 1
+          }
+        ],
+        "artwork_match": {
+          "uses_same_production_artwork_as_proposed": false,
+          "appears_materially_same_waco_skyline_product": false,
+          "notes": [
+            "Currently visible/published in Printify"
+          ]
+        }
+      },
+      {
+        "printify_product_id": "6a3b03d41ead27bd470ad675",
+        "title": "Waco Skyline T-Shirt \u2014 'Waco Dog Dad' Graphic Tee",
+        "description_summary": "This soft, lightweight tee carries a crisp linear skyline of Waco across the chest \u2014 quiet, architectural, and a little nostalgic. The monochrome line art settles into the fabric so the city feels like a lived-in memory: courthouse dome, hotel tower, and bridge drawn with clean s",
+        "blueprint_id": 145,
+        "print_provider_id": 99,
+        "created_at": "2026-06-23 22:08:20+00:00",
+        "updated_at": "2026-06-23 22:17:04+00:00",
+        "published_visible": true,
+        "external_handle": "https://ajbqh0-6n.myshopify.com/products/waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
+        "external_shopify_product_id": "7675396849751",
+        "enabled_colors": [
+          "Black",
+          "Dark Chocolate",
+          "Dark Heather",
+          "Military Green",
+          "Navy",
+          "Red",
+          "Royal",
+          "Sport Grey"
+        ],
+        "enabled_sizes": [
+          "2XL",
+          "3XL",
+          "L",
+          "M",
+          "S",
+          "XL"
+        ],
+        "print_image_uploads": [
+          {
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "width": 100,
+            "height": 100
+          },
+          {
+            "image_id": "6a3b03b6a42bef83fc3f8379",
+            "file_name": "waco dad dog.png",
+            "width": 1122,
+            "height": 1402
+          }
+        ],
+        "print_placements": [
+          {
+            "position": "neck",
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "x": 0.5,
+            "y": 0.5,
+            "scale": 1
+          },
+          {
+            "position": "front",
+            "image_id": "6a3b03b6a42bef83fc3f8379",
+            "file_name": "waco dad dog.png",
+            "x": 0.5000000000000001,
+            "y": 0.5474205070362019,
+            "scale": 1.0000000000000007
+          }
+        ],
+        "artwork_match": {
+          "uses_same_production_artwork_as_proposed": false,
+          "appears_materially_same_waco_skyline_product": true,
+          "notes": [
+            "Legacy Waco Skyline tee concept with different artwork/blank",
+            "Currently visible/published in Printify"
+          ]
+        }
+      },
+      {
+        "printify_product_id": "6a3aea56a1ff21add7024303",
+        "title": "Keep Waco Wagging Dog T\u2011Shirt \u2014 Cute Paw Print Rescue Tee",
+        "description_summary": "Simple, soft, and quietly joyful \u2014 this lightweight jersey tee brings a little canine charm to daily life. A lineup of sweet dog sketches sits across the chest with hand-lettered text that reads \u201cKeep Waco Wagging,\u201d inviting smiles without shouting. The breathable Airlume combed ",
+        "blueprint_id": 12,
+        "print_provider_id": 99,
+        "created_at": "2026-06-23 20:19:34+00:00",
+        "updated_at": "2026-06-23 20:28:05+00:00",
+        "published_visible": true,
+        "external_handle": "https://ajbqh0-6n.myshopify.com/products/keep-waco-wagging-dog-t-shirt-cute-paw-print-rescue-tee",
+        "external_shopify_product_id": "7675369914455",
+        "enabled_colors": [
+          "Ash",
+          "Athletic Heather",
+          "Black",
+          "Black Heather",
+          "Brown",
+          "Dark Grey Heather",
+          "Heather Aqua",
+          "Heather Ice Blue",
+          "Heather Peach",
+          "Heather Prism Ice Blue",
+          "Heather Prism Lilac",
+          "Heather True Royal",
+          "Maroon",
+          "Mauve",
+          "Mustard",
+          "Natural",
+          "Navy",
+          "Pink",
+          "Red",
+          "White"
+        ],
+        "enabled_sizes": [
+          "2XL",
+          "3XL",
+          "4XL",
+          "L",
+          "M",
+          "S",
+          "XL",
+          "XS"
+        ],
+        "print_image_uploads": [
+          {
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "width": 100,
+            "height": 100
+          },
+          {
+            "image_id": "6a3aea3d64a77f6bccfd6d8d",
+            "file_name": "ChatGPT Image Jun 23, 2026, 03_16_47 PM.png",
+            "width": 1254,
+            "height": 1254
+          }
+        ],
+        "print_placements": [
+          {
+            "position": "neck",
+            "image_id": "5941187eb8e7e37b3f0e62e5",
+            "file_name": "text_layer.svg",
+            "x": 0.5,
+            "y": 0.5,
+            "scale": 1
+          },
+          {
+            "position": "front",
+            "image_id": "6a3aea3d64a77f6bccfd6d8d",
+            "file_name": "ChatGPT Image Jun 23, 2026, 03_16_47 PM.png",
+            "x": 0.49999999999999994,
+            "y": 0.4115157480314961,
+            "scale": 0.9999999999999999
+          }
+        ],
+        "artwork_match": {
+          "uses_same_production_artwork_as_proposed": false,
+          "appears_materially_same_waco_skyline_product": false,
+          "notes": [
+            "Currently visible/published in Printify"
+          ]
+        }
+      }
+    ]
+  },
+  "safety_confirmations": {
+    "post_requests_sent": false,
+    "products_created_or_updated": false,
+    "artwork_uploaded": false,
+    "published": false,
+    "shopify_api_called": false,
+    "orders_submitted": false
+  }
+}

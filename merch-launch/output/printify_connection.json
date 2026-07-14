@@ -1,13 +1,43 @@
 {
   "dry_run": true,
   "credentials": {
-    "PRINTIFY_API_TOKEN": false,
-    "PRINTIFY_SHOP_ID": false
+    "PRINTIFY_API_TOKEN": true,
+    "PRINTIFY_SHOP_ID": true
+  },
+  "configured_shop_id": "21413196",
+  "configured_shop": {
+    "id": 21413196,
+    "title": "Keep Waco Wagging",
+    "sales_channel": "shopify"
   },
   "blueprint_target": 706,
-  "shops": [],
-  "blueprint": null,
-  "errors": [
-    "PRINTIFY_API_TOKEN not set in merch-launch/.env"
-  ]
+  "shops": [
+    {
+      "id": 19657419,
+      "title": "My new store",
+      "sales_channel": "disconnected"
+    },
+    {
+      "id": 20555406,
+      "title": "PeoplePuzzles",
+      "sales_channel": "disconnected"
+    },
+    {
+      "id": 21413196,
+      "title": "Keep Waco Wagging",
+      "sales_channel": "shopify"
+    },
+    {
+      "id": 28105632,
+      "title": "My Etsy Store",
+      "sales_channel": "etsy"
+    }
+  ],
+  "blueprint": {
+    "id": 706,
+    "title": "Unisex Garment-Dyed T-shirt",
+    "brand": "Comfort Colors\u00ae",
+    "model": "1717"
+  },
+  "errors": []
 }

@@ -35,9 +35,12 @@ def main() -> int:
     load_env()
     creds = required_credentials_present()
 
+    shop_id_env = os.getenv("PRINTIFY_SHOP_ID", "").strip()
     result = {
         "dry_run": is_dry_run(),
         "credentials": {k: creds.get(k, False) for k in ("PRINTIFY_API_TOKEN", "PRINTIFY_SHOP_ID")},
+        "configured_shop_id": shop_id_env,
+        "configured_shop": None,
         "blueprint_target": CC1717_BLUEPRINT_ID,
         "shops": [],
         "blueprint": None,
@@ -59,8 +62,27 @@ def main() -> int:
 
         try:
             shops = with_backoff(fetch_shops, logger=logger)
-            result["shops"] = [{"id": s.get("id"), "title": s.get("title")} for s in shops]
+            result["shops"] = [
+                {
+                    "id": s.get("id"),
+                    "title": s.get("title"),
+                    "sales_channel": s.get("sales_channel"),
+                }
+                for s in shops
+            ]
             logger.info("Printify shops found: %s", len(result["shops"]))
+            if shop_id_env:
+                match = next((s for s in shops if str(s.get("id")) == shop_id_env), None)
+                if match:
+                    result["configured_shop"] = {
+                        "id": match.get("id"),
+                        "title": match.get("title"),
+                        "sales_channel": match.get("sales_channel"),
+                    }
+                else:
+                    result["errors"].append(
+                        f"PRINTIFY_SHOP_ID {shop_id_env} not found in authenticated account"
+                    )
         except Exception as exc:
             result["errors"].append(f"shops.json failed: {exc}")
 

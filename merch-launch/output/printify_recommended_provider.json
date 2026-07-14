@@ -1,0 +1,268 @@
+{
+  "recommended_provider_id": 99,
+  "recommended_provider_name": "Printify Choice",
+  "location": {
+    "address1": "16085 NW 52ND Avenue",
+    "city": "Miami",
+    "country": "US",
+    "region": "FL",
+    "zip": "33014"
+  },
+  "handling_time": {
+    "value": 10,
+    "unit": "day"
+  },
+  "us_shipping_first_item": {
+    "cost": 475,
+    "currency": "USD"
+  },
+  "variant_sample_costs": {
+    "Bay / M": 12.41,
+    "Blossom / M": null,
+    "Blue Spruce / M": 12.41,
+    "Ivory / M": null,
+    "Pepper / M": null
+  },
+  "all_selected_variants": [
+    {
+      "variant_id": 78876,
+      "color": "Bay",
+      "size": "S",
+      "title": "Bay / S",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78877,
+      "color": "Bay",
+      "size": "M",
+      "title": "Bay / M",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78878,
+      "color": "Bay",
+      "size": "L",
+      "title": "Bay / L",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78879,
+      "color": "Bay",
+      "size": "XL",
+      "title": "Bay / XL",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78880,
+      "color": "Bay",
+      "size": "2XL",
+      "title": "Bay / 2XL",
+      "base_cost_cents": 1367,
+      "base_cost_usd": 13.67
+    },
+    {
+      "variant_id": 78886,
+      "color": "Blossom",
+      "size": "S",
+      "title": "Blossom / S",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 78887,
+      "color": "Blossom",
+      "size": "M",
+      "title": "Blossom / M",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 78888,
+      "color": "Blossom",
+      "size": "L",
+      "title": "Blossom / L",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 78889,
+      "color": "Blossom",
+      "size": "XL",
+      "title": "Blossom / XL",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78890,
+      "color": "Blossom",
+      "size": "2XL",
+      "title": "Blossom / 2XL",
+      "base_cost_cents": 1367,
+      "base_cost_usd": 13.67
+    },
+    {
+      "variant_id": 78896,
+      "color": "Blue Spruce",
+      "size": "S",
+      "title": "Blue Spruce / S",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78897,
+      "color": "Blue Spruce",
+      "size": "M",
+      "title": "Blue Spruce / M",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78898,
+      "color": "Blue Spruce",
+      "size": "L",
+      "title": "Blue Spruce / L",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78899,
+      "color": "Blue Spruce",
+      "size": "XL",
+      "title": "Blue Spruce / XL",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78900,
+      "color": "Blue Spruce",
+      "size": "2XL",
+      "title": "Blue Spruce / 2XL",
+      "base_cost_cents": 1367,
+      "base_cost_usd": 13.67
+    },
+    {
+      "variant_id": 78991,
+      "color": "Ivory",
+      "size": "S",
+      "title": "Ivory / S",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 78992,
+      "color": "Ivory",
+      "size": "M",
+      "title": "Ivory / M",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 78993,
+      "color": "Ivory",
+      "size": "L",
+      "title": "Ivory / L",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 78994,
+      "color": "Ivory",
+      "size": "XL",
+      "title": "Ivory / XL",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 78995,
+      "color": "Ivory",
+      "size": "2XL",
+      "title": "Ivory / 2XL",
+      "base_cost_cents": 1367,
+      "base_cost_usd": 13.67
+    },
+    {
+      "variant_id": 79046,
+      "color": "Pepper",
+      "size": "S",
+      "title": "Pepper / S",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 79047,
+      "color": "Pepper",
+      "size": "M",
+      "title": "Pepper / M",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 79048,
+      "color": "Pepper",
+      "size": "L",
+      "title": "Pepper / L",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 79049,
+      "color": "Pepper",
+      "size": "XL",
+      "title": "Pepper / XL",
+      "base_cost_cents": 1241,
+      "base_cost_usd": 12.41
+    },
+    {
+      "variant_id": 79050,
+      "color": "Pepper",
+      "size": "2XL",
+      "title": "Pepper / 2XL",
+      "base_cost_cents": 1367,
+      "base_cost_usd": 13.67
+    },
+    {
+      "variant_id": 79112,
+      "color": "Bay",
+      "size": "3XL",
+      "title": "Bay / 3XL",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 79115,
+      "color": "Blossom",
+      "size": "3XL",
+      "title": "Blossom / 3XL",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 79117,
+      "color": "Blue Spruce",
+      "size": "3XL",
+      "title": "Blue Spruce / 3XL",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    },
+    {
+      "variant_id": 79142,
+      "color": "Ivory",
+      "size": "3XL",
+      "title": "Ivory / 3XL",
+      "base_cost_cents": 1571,
+      "base_cost_usd": 15.71
+    },
+    {
+      "variant_id": 79155,
+      "color": "Pepper",
+      "size": "3XL",
+      "title": "Pepper / 3XL",
+      "base_cost_cents": null,
+      "base_cost_usd": null
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "generated_at": "2026-07-02T23:09:23.371939+00:00",
+  "status": "PENDING_OWNER_SOURCE_AND_COMPOSITION_APPROVAL",
+  "master_untouched": "output/recovered-assets/_packet_alpha/waco_skyline_light_x26.png",
+  "master_copy_for_review": "output/waco-packet-source-review/1_master_untouched_waco_skyline_light_x26.png",
+  "master_analysis": {
+    "path": "output/recovered-assets/_packet_alpha/waco_skyline_light_x26.png",
+    "absolute": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/recovered-assets/_packet_alpha/waco_skyline_light_x26.png",
+    "size_px": [
+      1536,
+      1024
+    ],
+    "mode": "RGBA",
+    "format": "PNG",
+    "dpi_metadata": null,
+    "bytes": 374741,
+    "sha256": "ed600491d1ecea4b500f8c030cdbd1dd0d6244a0cc0572b71ae8e8b0a3f8d880",
+    "alpha_bbox": [
+      12,
+      0,
+      1512,
+      1024
+    ]
+  },
+  "assets_found": 62,
+  "production_assessment": {
+    "native_art_pixel_width": 1500,
+    "native_art_pixel_height": 1024,
+    "native_file_size": [
+      1536,
+      1024
+    ],
+    "embedded_dpi_metadata": null,
+    "recommended_chest_print_width_inches": 10.5,
+    "effective_dpi_at_recommended_width": 142.9,
+    "target_dpi": 300,
+    "sufficient_for_native_300dpi_print": false,
+    "upscale_required": true,
+    "recommended_upscale_factor_to_300dpi": 2.1,
+    "upscale_risk": "Blind AI/upscale may soften ALICO window grid and bridge cables; prefer human illustrator rebuild or controlled vector overlay at higher resolution.",
+    "cleanup_likely_needed": [
+      "Mask or replace embedded 'Waco, TX' script without damaging skyline baseline",
+      "Integrate Pat Neff Hall in marked zone via human illustration edit",
+      "Optional: strengthen faint silos/bridge lines if they print too light on dark garments"
+    ],
+    "cannot_be_done_reliably_in_code": [
+      "Pat Neff Hall illustration",
+      "Courthouse-to-Pat-Neff architectural replacement",
+      "Auto-tracing to SVG (destroys ALICO detail \u2014 confirmed in Phase 2)",
+      "Blind upscale to production resolution without art direction",
+      "Removing script via automated inpainting without visual QA"
+    ],
+    "best_master_verdict": "output/recovered-assets/_packet_alpha/waco_skyline_light_x26.png",
+    "dark_garment_companion": "output/recovered-assets/_packet_alpha/waco_skyline_dark_x29.png",
+    "visible_landmarks": [
+      {
+        "name": "Magnolia Silos",
+        "bbox_px": [
+          214,
+          350,
+          410,
+          735
+        ],
+        "notes": "Left paired silos with domed caps \u2014 present but lighter line weight than ALICO."
+      },
+      {
+        "name": "Waco Suspension Bridge",
+        "bbox_px": [
+          400,
+          300,
+          640,
+          735
+        ],
+        "notes": "Center-left suspension bridge with towers/cables \u2014 present, lighter weight."
+      },
+      {
+        "name": "ALICO Building",
+        "bbox_px": [
+          620,
+          210,
+          860,
+          735
+        ],
+        "notes": "Central tallest landmark with ALICO sign band, window grid, rooftop flag \u2014 strongest detail."
+      },
+      {
+        "name": "McLennan County Courthouse",
+        "bbox_px": [
+          1020,
+          380,
+          1290,
+          735
+        ],
+        "notes": "Right-side domed courthouse \u2014 candidate zone for Pat Neff integration."
+      },
+      {
+        "name": "Waco, TX script (embedded raster)",
+        "bbox_px": [
+          520,
+          700,
+          980,
+          780
+        ],
+        "notes": "Bottom embedded script is part of the same raster object; preserve in master, mask in derivatives only."
+      }
+    ],
+    "pat_neff_integration": {
+      "currently_present": false,
+      "existing_right_side_structure": "McLennan County Courthouse (domed)",
+      "proposed_zone_px": [
+        980,
+        320,
+        1310,
+        760
+      ],
+      "integration_guidance": "Evaluate replacing the courthouse dome structure with a hand-illustrated Pat Neff Hall while preserving ALICO as the central tallest landmark and avoiding a gap between ALICO and the right-side building. Do not remove the courthouse in source review; replacement happens only in a derivative working file.",
+      "trees_in_recovered_art": "No separate tree layer detected; packet art is a single raster object."
+    },
+    "source_search_summary": {
+      "production_packet_pdf": "KWW_Production_Packet.pdf page 3 embeds xref26 (light) and xref29 (dark) at 1536x1024 \u2014 no larger native skyline raster found.",
+      "xlsx_pptx_docx": "Keep_Waco_Wagging_Printify_Brand_Reset.xlsx contains no embedded media.",
+      "theme_folders": "No Waco skyline print art \u2014 UI icons only.",
+      "zip_archives": "Golden mockup zip and products export contain no higher-res Waco skyline masters.",
+      "higher_res_than_master": "None for Waco skyline line art. Page renders and 4500x5400 Phase 3 outputs are rejected programmatic derivatives, not cleaner sources."
+    },
+    "highest_quality_usable_master": {
+      "file": "output/recovered-assets/_packet_alpha/waco_skyline_light_x26.png",
+      "sha256": "ed600491d1ecea4b500f8c030cdbd1dd0d6244a0cc0572b71ae8e8b0a3f8d880",
+      "reason": "Only approved transparent packet line art with intact ALICO window/sign detail; duplicates share identical hash."
+    }
+  },
+  "deliverables": {
+    "master": "output/waco-packet-source-review/1_master_untouched_waco_skyline_light_x26.png",
+    "labeled": "output/waco-packet-source-review/2_labeled_landmarks.png",
+    "lockup_mockup": "output/waco-packet-source-review/4_mockup_recovered_skyline_plus_lockup.png",
+    "ivory_mockup": "output/waco-packet-source-review/4b_ivory_chest_mockup_recovered_plus_lockup.png",
+    "pat_neff_markup": "output/waco-packet-source-review/5_pat_neff_placement_markup.png",
+    "asset_sheet": "output/waco-packet-source-review/3_asset_inventory_contact_sheet.png"
+  },
+  "summary_sheet": "output/waco-packet-source-review/WACO_PACKET_SOURCE_OWNER_REVIEW.png",
+  "holds": {
+    "DRY_RUN": true,
+    "printify": false,
+    "production_png_overwrite": false,
+    "shopify": false,
+    "source_assets_modified": false
+  }
+}

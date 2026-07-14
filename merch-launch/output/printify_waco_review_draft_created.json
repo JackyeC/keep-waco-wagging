@@ -1,0 +1,477 @@
+{
+  "final_status": "ONE UNPUBLISHED REVIEW DRAFT CREATED \u2014 OWNER MOCKUP REVIEW REQUIRED",
+  "printify_product_id": "6a4831d622117364c40d96e8",
+  "title": "REVIEW ONLY \u2014 Waco Skyline CC1717 \u2014 DO NOT PUBLISH",
+  "unpublished": true,
+  "visible_in_printify": true,
+  "external_sales_channel": null,
+  "blueprint_id": 706,
+  "print_provider_id": 99,
+  "fulfillment_option": "Printify Choice (routing network \u2014 facility not guaranteed)",
+  "enabled_colors": [
+    "Bay",
+    "Blossom",
+    "Blue Spruce",
+    "Ivory",
+    "Pepper"
+  ],
+  "enabled_sizes": [
+    "2XL",
+    "3XL",
+    "L",
+    "M",
+    "S",
+    "XL"
+  ],
+  "artwork_mapping_by_color": {
+    "Ivory": {
+      "file": "ivory.png",
+      "treatment_id": "ivory",
+      "printify_upload_id": "6a4831d041648ad31551cf5a"
+    },
+    "Blossom": {
+      "file": "blossom.png",
+      "treatment_id": "blossom",
+      "printify_upload_id": "6a4831d1a68934b3b9a898ec"
+    },
+    "Bay": {
+      "file": "bay.png",
+      "treatment_id": "bay_sage",
+      "printify_upload_id": "6a4831d3cdab63b2d6f46870"
+    },
+    "Blue Spruce": {
+      "file": "bay.png",
+      "treatment_id": "bay_sage",
+      "printify_upload_id": "6a4831d3cdab63b2d6f46870"
+    },
+    "Pepper": {
+      "file": "pepper.png",
+      "treatment_id": "pepper",
+      "printify_upload_id": "6a4831d41e067073f3a3037d"
+    }
+  },
+  "uploads": [
+    {
+      "treatment_id": "ivory",
+      "file_name": "ivory.png",
+      "printify_upload_id": "6a4831d041648ad31551cf5a",
+      "garment_colors": [
+        "Ivory"
+      ],
+      "sha256": "59341296a890ac048b9a47089a7e20fc774e08634f78a0a2c6989839731ecfc6"
+    },
+    {
+      "treatment_id": "blossom",
+      "file_name": "blossom.png",
+      "printify_upload_id": "6a4831d1a68934b3b9a898ec",
+      "garment_colors": [
+        "Blossom"
+      ],
+      "sha256": "773bf09774b9fb9b3597696a8d9de332a6e24fbb1a1401650882807e95aef4ae"
+    },
+    {
+      "treatment_id": "bay_sage",
+      "file_name": "bay.png",
+      "printify_upload_id": "6a4831d3cdab63b2d6f46870",
+      "garment_colors": [
+        "Bay",
+        "Blue Spruce"
+      ],
+      "sha256": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7"
+    },
+    {
+      "treatment_id": "pepper",
+      "file_name": "pepper.png",
+      "printify_upload_id": "6a4831d41e067073f3a3037d",
+      "garment_colors": [
+        "Pepper"
+      ],
+      "sha256": "314f7d3b0570820a8587669bc716ce5d51a4bbd48427d0ee6819a27c07992a4f"
+    }
+  ],
+  "mockup_urls": [
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78993/98445/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=front",
+      "position": "front",
+      "variant_ids": [
+        79142,
+        78994,
+        78993,
+        78991,
+        78992,
+        78995
+      ],
+      "is_default": true
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78993/98446/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=back",
+      "position": "back",
+      "variant_ids": [
+        79142,
+        78994,
+        78993,
+        78991,
+        78992,
+        78995
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78993/100629/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=folded",
+      "position": "other",
+      "variant_ids": [
+        79142,
+        78994,
+        78993,
+        78991,
+        78992,
+        78995
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78993/126095/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=person-5-context",
+      "position": "other",
+      "variant_ids": [
+        79142,
+        78994,
+        78993,
+        78991,
+        78992,
+        78995
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/79048/98445/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=front",
+      "position": "front",
+      "variant_ids": [
+        79155,
+        79048,
+        79049,
+        79046,
+        79047,
+        79050
+      ],
+      "is_default": true
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/79048/98446/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=back",
+      "position": "back",
+      "variant_ids": [
+        79155,
+        79048,
+        79049,
+        79046,
+        79047,
+        79050
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/79048/100629/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=folded",
+      "position": "other",
+      "variant_ids": [
+        79155,
+        79048,
+        79049,
+        79046,
+        79047,
+        79050
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/79048/126095/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=person-5-context",
+      "position": "other",
+      "variant_ids": [
+        79155,
+        79048,
+        79049,
+        79046,
+        79047,
+        79050
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78878/98445/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=front",
+      "position": "front",
+      "variant_ids": [
+        79112,
+        78879,
+        78876,
+        78878,
+        78877,
+        78880
+      ],
+      "is_default": true
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78878/98446/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=back",
+      "position": "back",
+      "variant_ids": [
+        79112,
+        78879,
+        78876,
+        78878,
+        78877,
+        78880
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78878/100629/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=folded",
+      "position": "other",
+      "variant_ids": [
+        79112,
+        78879,
+        78876,
+        78878,
+        78877,
+        78880
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78878/126095/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=person-5-context",
+      "position": "other",
+      "variant_ids": [
+        79112,
+        78879,
+        78876,
+        78878,
+        78877,
+        78880
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78898/98445/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=front",
+      "position": "front",
+      "variant_ids": [
+        79117,
+        78898,
+        78899,
+        78896,
+        78897,
+        78900
+      ],
+      "is_default": true
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78898/98446/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=back",
+      "position": "back",
+      "variant_ids": [
+        79117,
+        78898,
+        78899,
+        78896,
+        78897,
+        78900
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78898/100629/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=folded",
+      "position": "other",
+      "variant_ids": [
+        79117,
+        78898,
+        78899,
+        78896,
+        78897,
+        78900
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78898/126095/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=person-5-context",
+      "position": "other",
+      "variant_ids": [
+        79117,
+        78898,
+        78899,
+        78896,
+        78897,
+        78900
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78888/98445/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=front",
+      "position": "front",
+      "variant_ids": [
+        79115,
+        78887,
+        78888,
+        78889,
+        78886,
+        78890
+      ],
+      "is_default": true
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78888/98446/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=back",
+      "position": "back",
+      "variant_ids": [
+        79115,
+        78887,
+        78888,
+        78889,
+        78886,
+        78890
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78888/100629/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=folded",
+      "position": "other",
+      "variant_ids": [
+        79115,
+        78887,
+        78888,
+        78889,
+        78886,
+        78890
+      ],
+      "is_default": false
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78888/126095/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=person-5-context",
+      "position": "other",
+      "variant_ids": [
+        79115,
+        78887,
+        78888,
+        78889,
+        78886,
+        78890
+      ],
+      "is_default": false
+    }
+  ],
+  "mockup_downloads": [
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78993/98445/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=front",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_1.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78993/98446/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=back",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_2.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78993/100629/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=folded",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_3.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78993/126095/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=person-5-context",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_4.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/79048/98445/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=front",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_5.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/79048/98446/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=back",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_6.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/79048/100629/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=folded",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_7.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/79048/126095/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=person-5-context",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_8.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78878/98445/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=front",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_9.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78878/98446/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=back",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_10.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78878/100629/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=folded",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_11.jpg"
+    },
+    {
+      "src": "https://images.printify.com/mockup/6a4831d622117364c40d96e8/78878/126095/review-only-waco-skyline-cc1717-do-not-publish.jpg?camera_label=person-5-context",
+      "local_path": "/Users/jackyeclayton/Projects/keep-waco-wagging/merch-launch/output/printify_review_mockups/review_mockup_12.jpg"
+    }
+  ],
+  "preflight": {
+    "passed": true,
+    "failures": [],
+    "details": {
+      "missing_printify_scopes": [],
+      "legacy_product_before": {
+        "printify_product_id": "6a3b03d41ead27bd470ad675",
+        "title": "Waco Skyline T-Shirt \u2014 'Waco Dog Dad' Graphic Tee",
+        "updated_at": "2026-06-23 22:17:04+00:00",
+        "visible": true,
+        "external": {
+          "id": "7675396849751",
+          "handle": "https://ajbqh0-6n.myshopify.com/products/waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
+          "shipping_template_id": "92149055575",
+          "type": 1
+        },
+        "print_upload_ids": [
+          "5941187eb8e7e37b3f0e62e5",
+          "6a3b03b6a42bef83fc3f8379"
+        ]
+      },
+      "phase3_artwork_filename_matches": [],
+      "production_sha256": {
+        "ivory.png": "59341296a890ac048b9a47089a7e20fc774e08634f78a0a2c6989839731ecfc6",
+        "blossom.png": "773bf09774b9fb9b3597696a8d9de332a6e24fbb1a1401650882807e95aef4ae",
+        "bay.png": "86afad30d7c9f64b82f9cca245bd467ca68facf6cc00327c34b93e4696d93da7",
+        "pepper.png": "314f7d3b0570820a8587669bc716ce5d51a4bbd48427d0ee6819a27c07992a4f"
+      }
+    }
+  },
+  "legacy_product": {
+    "id": "6a3b03d41ead27bd470ad675",
+    "snapshot_before": {
+      "printify_product_id": "6a3b03d41ead27bd470ad675",
+      "title": "Waco Skyline T-Shirt \u2014 'Waco Dog Dad' Graphic Tee",
+      "updated_at": "2026-06-23 22:17:04+00:00",
+      "visible": true,
+      "external": {
+        "id": "7675396849751",
+        "handle": "https://ajbqh0-6n.myshopify.com/products/waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
+        "shipping_template_id": "92149055575",
+        "type": 1
+      },
+      "print_upload_ids": [
+        "5941187eb8e7e37b3f0e62e5",
+        "6a3b03b6a42bef83fc3f8379"
+      ]
+    },
+    "snapshot_after": {
+      "printify_product_id": "6a3b03d41ead27bd470ad675",
+      "title": "Waco Skyline T-Shirt \u2014 'Waco Dog Dad' Graphic Tee",
+      "updated_at": "2026-06-23 22:17:04+00:00",
+      "visible": true,
+      "external": {
+        "id": "7675396849751",
+        "handle": "https://ajbqh0-6n.myshopify.com/products/waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
+        "shipping_template_id": "92149055575",
+        "type": 1
+      },
+      "print_upload_ids": [
+        "5941187eb8e7e37b3f0e62e5",
+        "6a3b03b6a42bef83fc3f8379"
+      ]
+    },
+    "unchanged": true
+  },
+  "operations_not_performed": {
+    "publish": true,
+    "shopify_api": true,
+    "order_or_sample": true,
+    "legacy_product_modified": false,
+    "french_bulldog_or_golden": true
+  }
+}
