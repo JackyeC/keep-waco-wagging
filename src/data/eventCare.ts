@@ -7,6 +7,48 @@
  * only. Update prices and packages here as the offer evolves.
  */
 
+export const weddingDogChaperone = {
+  terms: ["wedding dog chaperone", "wedding pet attendant", "dog handler"],
+  intro: [
+    "A wedding dog chaperone — also called a wedding pet attendant — is a dedicated professional whose entire job on your wedding day is to care for, manage, and supervise your dog from start to finish.",
+    "While you, your family, and your wedding party are getting ready, taking photos, and greeting guests, your chaperone stays completely focused on your dog's safety, comfort, and schedule — so you can stay in the moment.",
+  ],
+  responsibilities: [
+    {
+      title: "Transportation & logistics",
+      detail:
+        "Door-to-door transportation so your dog arrives safely at the venue — then home, to a hotel, or to overnight boarding as soon as their wedding role is finished.",
+    },
+    {
+      title: "Basic care & exercise",
+      detail:
+        "Feeding, fresh water, potty breaks, and decompression walks to burn off extra energy between appearances.",
+    },
+    {
+      title: "Ceremony & photo support",
+      detail:
+        "Walking your dog down the aisle, managing the leash, and working with your photographer — treats, squeaky toys, positioning, and stepping out of frame just in time.",
+    },
+    {
+      title: "Stress & behavior management",
+      detail:
+        "Weddings are loud, crowded, and unfamiliar. We watch for signs of stress, keep your dog in quiet holding areas between moments, and remove them if it becomes too much.",
+    },
+    {
+      title: "Styling & touch-ups",
+      detail:
+        "Helping with wedding attire — bowtie, tuxedo, or floral collar — plus light grooming like wiping muddy paws or a quick lint roll so everyone stays photo-ready.",
+    },
+    {
+      title: "Vendor coordination",
+      detail:
+        "Direct communication with your planner, venue staff, and photographer so your dog's schedule lines up with the rest of your wedding day.",
+    },
+  ],
+  closing:
+    "When you hire a chaperone, your dog stays part of the celebration — not a distraction — and your loved ones won't miss the ceremony or reception to pet-sit.",
+} as const;
+
 export const eventCareIncludes = [
   "Pre-event planning call",
   "Arrival and potty break",

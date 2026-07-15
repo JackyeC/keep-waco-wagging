@@ -32,7 +32,7 @@ const services = [
     eyebrow: "Weddings & events",
     title: "Dog of Honor wedding care",
     detail:
-      "A dedicated wedding pet attendant — ceremony support, photos, potty breaks, and a safe handoff.",
+      "A dedicated wedding dog chaperone — ceremony support, photos, potty breaks, and a safe handoff.",
     href: "/pet-care/weddings-events",
     photo: designPhotos.svcWedding,
   },
@@ -71,6 +71,11 @@ export function ServiceCardGrid() {
                 fill
                 sizes="(max-width: 768px) 100vw, 360px"
                 className="object-cover"
+                style={
+                  "objectPosition" in service.photo
+                    ? { objectPosition: String(service.photo.objectPosition) }
+                    : undefined
+                }
               />
             </div>
             <div className="flex flex-1 flex-col px-5 pt-4 pb-5">

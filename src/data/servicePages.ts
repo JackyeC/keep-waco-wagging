@@ -1,4 +1,5 @@
 import { designPhotos } from "@/data/designPhotos";
+import { weddingDogChaperone } from "@/data/eventCare";
 import { cityConfig, ctas } from "@/lib/site";
 import type { IncludedItem, ServiceStep } from "@/components/service/ServicePageSections";
 
@@ -21,7 +22,7 @@ export type ServicePageConfig = {
     scriptWord: string;
     metaLine?: string;
     description: string;
-    image: { src: string; alt: string };
+    image: { src: string; alt: string; objectPosition?: string };
     primary: { label: string; href: string; external?: boolean };
     secondary: { label: string; href: string; external?: boolean };
   };
@@ -278,52 +279,48 @@ export const servicePages: Record<string, ServicePageConfig> = {
   "weddings-events": {
     slug: "pet-care/weddings-events",
     seo: {
-      title: "Dog of Honor Wedding Pet Care Waco",
+      title: "Wedding Dog Chaperone Waco | Dog of Honor Pet Care",
       description:
-        "Dedicated wedding pet attendant for Waco weddings — ceremony support, photos, potty breaks, and a safe handoff.",
+        "Professional wedding dog chaperone in Waco — transportation, ceremony support, photos, stress management, and a safe handoff so your dog can be part of your day.",
     },
     hero: {
       eyebrow: "Dog of Honor · Weddings & events",
       title: "Your best friend, your Dog of Honor",
       scriptWord: "Dog of Honor",
       description:
-        "A dedicated wedding pet attendant so your dog can be part of your day — and you can stay fully in the moment. We handle everything off-camera.",
+        "A dedicated wedding dog chaperone for Waco weddings — one person focused entirely on your pup while you get ready, take photos, and greet guests.",
       image: designPhotos.svcWedding,
       primary: { label: "Reserve a date", href: book },
-      secondary: { label: "Ask a question", href: email },
+      secondary: { label: "Ask a question", href: "#inquiry" },
     },
     included: {
-      eyebrow: "What we handle",
+      eyebrow: "What your chaperone handles",
       title: "Every detail, off your plate",
-      items: [
-        {
-          title: "Ceremony support",
-          detail: "Down the aisle and into your photos, calm and on cue.",
-        },
-        {
-          title: "Photo wrangling",
-          detail: "We position, treat, and reset so your photographer gets the shot.",
-        },
-        {
-          title: "Potty & water breaks",
-          detail: "Fed, watered, walked, and comfortable all day long.",
-        },
-        {
-          title: "Safe handoff",
-          detail: "Home or to boarding after the send-off — you don't lift a leash.",
-        },
-      ],
+      items: weddingDogChaperone.responsibilities.map(({ title, detail }) => ({
+        title,
+        detail,
+      })),
     },
     faq: [
       {
+        question: "What is a wedding dog chaperone?",
+        answer:
+          "A wedding dog chaperone — also called a wedding pet attendant — is a dedicated professional whose only job on your wedding day is to care for, manage, and supervise your dog from start to finish, including transportation, basic care, ceremony and photo support, stress management, styling touch-ups, and vendor coordination.",
+      },
+      {
         question: "What is a Dog of Honor?",
         answer:
-          "Your dog participates in your wedding with a dedicated pet attendant who handles ceremony support, photos, potty breaks, and a calm handoff afterward.",
+          "Your Dog of Honor is the pup included in your wedding ceremony or photos. Our chaperone makes sure they look great, stay calm, and get home safely — so you and your wedding party never have to step away from the celebration.",
+      },
+      {
+        question: "Why hire a chaperone instead of asking a guest?",
+        answer:
+          weddingDogChaperone.closing,
       },
       {
         question: "How do I reserve wedding pet care?",
         answer:
-          "Start at keepwacowagging.com/book or contact us with your date and venue. Seasonal dates fill quickly.",
+          "Start at keepwacowagging.com/book, use the inquiry form on this page, or contact us with your date and venue. Seasonal dates fill quickly.",
       },
     ],
     cta: {

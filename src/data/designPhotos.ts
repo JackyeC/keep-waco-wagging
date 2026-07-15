@@ -17,8 +17,10 @@ export const designPhotos = {
     alt: "Happy border collie during lifestyle training in Waco",
   },
   svcWedding: {
-    src: "/pictures/frenchie-sink-bath.webp",
-    alt: "French bulldog bathed in a kitchen sink before a wedding",
+    src: "/pictures/wedding-dog-chaperone.webp",
+    alt: "Bride and groom with their two French Bulldogs in wedding attire — one in a white tulle dress, one in a navy vest and bow tie",
+    /** Keep dogs fully in frame — they sit near the bottom of this photo */
+    objectPosition: "center 72%",
   },
   svcCamp: {
     src: "/pictures/pool-pack.webp",

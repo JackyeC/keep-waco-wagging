@@ -73,9 +73,11 @@ function ServiceClayCta({ cta }: { cta: ServiceCtaConfig }) {
 
 export function ServicePageView({
   config,
+  beforeIncluded,
   children,
 }: {
   config: ServicePageConfig;
+  beforeIncluded?: React.ReactNode;
   children?: React.ReactNode;
 }) {
   const { hero, included, steps, quote, faq, cta } = config;
@@ -84,6 +86,7 @@ export function ServicePageView({
     <>
       <ServicePageJsonLd config={config} faqs={faq} />
       <ServicePageHero {...hero} />
+      {beforeIncluded}
       <ServiceIncludedGrid {...included} />
       {steps && steps.length > 0 && <ServiceStepsPanel steps={steps} />}
       {quote && (

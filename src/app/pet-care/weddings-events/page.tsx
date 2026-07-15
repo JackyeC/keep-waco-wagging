@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ServicePageView } from "@/components/service/ServicePageView";
+import { WeddingChaperoneIntro } from "@/components/service/WeddingChaperoneIntro";
+import { WeddingEventCareExtras } from "@/components/service/WeddingEventCareExtras";
 import { getServicePage } from "@/data/servicePages";
 import { servicePageMetadata } from "@/lib/metadata";
 
@@ -13,5 +15,12 @@ export const metadata: Metadata = servicePageMetadata(
 );
 
 export default function WeddingsEventsPage() {
-  return <ServicePageView config={config} />;
+  return (
+    <ServicePageView
+      config={config}
+      beforeIncluded={<WeddingChaperoneIntro />}
+    >
+      <WeddingEventCareExtras />
+    </ServicePageView>
+  );
 }

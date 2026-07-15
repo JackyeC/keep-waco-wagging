@@ -9,7 +9,7 @@ type ServicePageHeroProps = {
   description: string;
   primary: { label: string; href: string; external?: boolean };
   secondary: { label: string; href: string; external?: boolean };
-  image: { src: string; alt: string };
+  image: { src: string; alt: string; objectPosition?: string };
 };
 
 export function ServicePageHero({
@@ -72,6 +72,11 @@ export function ServicePageHero({
             priority
             sizes="(max-width: 1024px) 100vw, 560px"
             className="object-cover"
+            style={
+              image.objectPosition
+                ? { objectPosition: image.objectPosition }
+                : undefined
+            }
           />
         </div>
       </div>
@@ -99,7 +104,11 @@ export function ServiceIncludedGrid({
         <p className="eyebrow tracking-[0.22em]">{eyebrow}</p>
         <h2 className="heading mt-1.5 text-[38px]">{title}</h2>
       </div>
-      <div className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div
+        className={`mt-7 grid gap-4 sm:grid-cols-2 ${
+          items.length > 4 ? "lg:grid-cols-3" : "xl:grid-cols-4"
+        }`}
+      >
         {items.map((item) => (
           <article
             key={item.title}

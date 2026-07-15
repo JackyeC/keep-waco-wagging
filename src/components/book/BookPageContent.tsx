@@ -138,6 +138,11 @@ export function BookPageContent() {
                   fill
                   sizes="180px"
                   className="object-cover"
+                  style={
+                    "objectPosition" in path.photo
+                      ? { objectPosition: String(path.photo.objectPosition) }
+                      : undefined
+                  }
                 />
               </div>
               <div>
