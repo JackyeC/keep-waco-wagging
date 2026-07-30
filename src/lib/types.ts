@@ -103,7 +103,10 @@ export interface BlogPost {
   category: BlogCategory;
   excerpt: string;
   readTime: string;
-  date: string; // ISO date
+  /** First date this complete guide was publicly available (ISO date). */
+  date: string;
+  /** Most recent editorial or factual review date (ISO date). */
+  updated?: string;
   author: string;
   imageUrl?: string;
   featured?: boolean;

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
+import { HoneypotField } from "@/components/HoneypotField";
 
 const inputClass =
   "w-full rounded-xl border-0 bg-white px-3.5 py-2.5 text-sm text-bark ring-1 ring-inset ring-clay placeholder:text-bark-faint focus:outline-none focus:ring-2 focus:ring-sage-400 disabled:opacity-60";
@@ -36,6 +37,7 @@ export function ContactForm() {
           email: fd.get("email"),
           interest: fd.get("interest"),
           message: fd.get("message"),
+          _hp: fd.get("_hp"),
         }),
       });
       const data = (await res.json()) as { error?: string };
@@ -62,7 +64,8 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+    <form onSubmit={onSubmit} className="relative rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+      <HoneypotField />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Name"><input name="name" disabled={loading} className={inputClass} /></Field>
         <Field label="Email"><input name="email" type="email" required disabled={loading} className={inputClass} /></Field>
@@ -74,7 +77,12 @@ export function ContactForm() {
         </Field>
         <Field label="Message" full><textarea name="message" rows={5} required disabled={loading} className={inputClass} /></Field>
       </div>
-      {error && <p className="mt-4 flex items-center gap-2 text-sm text-red-600"><AlertCircle className="h-4 w-4" />{error}</p>}
+      {error && (
+        <p className="mt-4 flex items-center gap-2 text-sm text-red-600" role="alert">
+          <AlertCircle className="h-4 w-4" />
+          {error}
+        </p>
+      )}
       <button type="submit" disabled={loading} className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-base font-semibold text-white hover:bg-sage-700 disabled:opacity-60 sm:w-auto">
         {loading ? "Sending..." : "Send message"} <Send className="h-4 w-4" />
       </button>

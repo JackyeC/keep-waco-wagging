@@ -58,6 +58,7 @@ export function articlePageMetadata(
   description: string,
   ogImage: OgImage,
   publishedTime?: string,
+  modifiedTime?: string,
 ): Metadata {
   const canonical = `${cityConfig.url}${path}`;
   const imageUrl = absoluteImageUrl(ogImage.src);
@@ -74,6 +75,7 @@ export function articlePageMetadata(
       locale: "en_US",
       type: "article",
       publishedTime,
+      modifiedTime,
       images: [
         {
           url: imageUrl,

@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { BrandWordmark } from "@/components/layout/BrandWordmark";
 import { ctas, servicesNav } from "@/lib/site";
+import { useDialogFocus } from "@/lib/focusTrap";
 import { cn } from "@/lib/utils";
 
 const primaryNav = [
@@ -39,11 +40,23 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobilePanelRef = useRef<HTMLDivElement>(null);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
+  const mobileNavId = useId();
+
+  const closeMobile = () => setOpen(false);
+
+  useDialogFocus({
+    open,
+    containerRef: mobilePanelRef,
+    onClose: closeMobile,
+    initialFocusRef: firstMobileLinkRef,
+  });
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setOpen(false);
         setServicesOpen(false);
       }
     };
@@ -142,24 +155,35 @@ export function Header() {
         </Link>
 
         <button
+          ref={menuButtonRef}
           type="button"
-          className="ml-auto inline-flex rounded-full p-2 text-bark hover:bg-soft-cream lg:hidden"
+          className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full text-bark hover:bg-soft-cream lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          aria-label="Toggle menu"
+          aria-controls={mobileNavId}
+          aria-label={open ? "Close menu" : "Open menu"}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-border bg-cream lg:hidden">
-          <nav className="mx-auto flex max-w-[1200px] flex-col gap-1 px-6 py-4">
-            {primaryNav.map((item) => (
+        <div
+          ref={mobilePanelRef}
+          id={mobileNavId}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+          tabIndex={-1}
+          className="max-h-[min(70dvh,32rem)] overflow-y-auto border-t border-border bg-cream lg:hidden"
+        >
+          <nav className="mx-auto flex max-w-[1200px] flex-col gap-1 px-6 py-4" aria-label="Mobile">
+            {primaryNav.map((item, index) => (
               <Link
                 key={item.label}
+                ref={index === 0 ? firstMobileLinkRef : undefined}
                 href={navHref(item, pathname)}
-                onClick={() => setOpen(false)}
+                onClick={closeMobile}
                 className="nav-link rounded-xl px-3 py-2.5 text-base"
               >
                 {item.label}
@@ -172,7 +196,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setOpen(false)}
+                onClick={closeMobile}
                 className="rounded-xl px-3 py-2 text-sm font-light text-bark-soft hover:text-rose"
               >
                 {link.label}
@@ -180,7 +204,7 @@ export function Header() {
             ))}
             <Link
               href={ctas.bookService.href}
-              onClick={() => setOpen(false)}
+              onClick={closeMobile}
               className="btn-pill btn-sage mt-3 w-full py-3"
             >
               Book a service

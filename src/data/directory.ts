@@ -52,7 +52,6 @@ export const directoryListings: DogDirectoryListing[] = [
     name: "Milo",
     category: "Dog-friendly patios",
     address: "1020 Franklin Ave., Waco, TX 76701",
-    phone: "TODO verify",
     website: "https://www.milowaco.com",
     neighborhood: "Downtown Waco",
     dogPolicy:
@@ -100,7 +99,6 @@ export const directoryListings: DogDirectoryListing[] = [
     name: "Hecho en Waco",
     category: "Dog-friendly patios",
     address: "300 S. 6th St., Ste B, Waco, TX 76701",
-    phone: "TODO verify",
     website: "https://hechoenwaco.com",
     neighborhood: "Downtown Waco",
     dogPolicy:
@@ -123,14 +121,13 @@ export const directoryListings: DogDirectoryListing[] = [
     name: "Terry Black's BBQ",
     category: "Dog-friendly patios",
     address: "228 S. 8th St., Waco, TX 76701",
-    phone: "TODO verify",
     website: "https://terryblacksbbq.com/waco",
     neighborhood: "Downtown Waco",
     dogPolicy: "Outdoor patio only. Verify dog policy directly.",
     patioDetails: "Outdoor patio.",
     waterBowls: "unknown",
     shade: "unknown",
-    bestTimeToVisit: "TODO",
+    bestTimeToVisit: "Lunch or early evening — verify patio capacity before you go.",
     description:
       "Terry Black's BBQ is a high-traffic Waco restaurant near downtown attractions. Dog policy should be verified directly before publishing as confirmed.",
     notes: "Potential tourist-friendly listing.",

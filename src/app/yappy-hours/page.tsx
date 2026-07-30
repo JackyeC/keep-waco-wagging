@@ -5,7 +5,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { YappyHourRSVP } from "@/components/YappyHourRSVP";
-import { yappyHours, yappyHourEvents, type YappyHourEvent } from "@/data/yappyHours";
+import { yappyHours, getUpcomingYappyHourEvents, type YappyHourEvent } from "@/data/yappyHours";
 import { sitePhotos } from "@/data/sitePhotos";
 import { cityConfig, ctas } from "@/lib/site";
 
@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 };
 
 export default function YappyHoursPage() {
+  const upcoming = getUpcomingYappyHourEvents();
+
   return (
     <>
       <PageHeader
@@ -28,7 +30,7 @@ export default function YappyHoursPage() {
       >
         <div className="flex flex-wrap gap-3">
           <Button href="#rsvp" size="lg">
-            RSVP for a Yappy Hour
+            {upcoming.length > 0 ? "RSVP for a Yappy Hour" : "Join the interest list"}
           </Button>
           <Button href={ctas.bookPetCare.href} variant="secondary" size="lg">
             Become a client
@@ -75,13 +77,26 @@ export default function YappyHoursPage() {
         <SectionHeading
           eyebrow="Upcoming"
           title="Save the date"
-          description={yappyHours.hostNote}
+          description={
+            upcoming.length > 0 ? yappyHours.hostNote : yappyHours.emptyUpcoming
+          }
         />
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
-          {yappyHourEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
+        {upcoming.length > 0 ? (
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            {upcoming.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8 rounded-card bg-white p-8 text-center ring-1 ring-inset ring-clay/70">
+            <p className="text-sm leading-relaxed text-bark-soft">
+              {yappyHours.emptyUpcoming}
+            </p>
+            <Button href="#rsvp" variant="secondary" className="mt-5">
+              Get notified
+            </Button>
+          </div>
+        )}
       </Section>
 
       {/* RSVP */}
@@ -89,8 +104,16 @@ export default function YappyHoursPage() {
         <div className="mx-auto max-w-2xl">
           <SectionHeading
             eyebrow="RSVP"
-            title="Tell us you're coming"
-            description="Free to RSVP. We'll email details before each event."
+            title={
+              upcoming.length > 0
+                ? "Tell us you're coming"
+                : "Get the next date first"
+            }
+            description={
+              upcoming.length > 0
+                ? "Free to RSVP. We'll email details before each event."
+                : "Leave your email and we'll send the next confirmed Yappy Hour details."
+            }
             align="center"
           />
           <div className="mt-8">

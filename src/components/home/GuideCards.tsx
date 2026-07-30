@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
-import { getBlogCategoryImage } from "@/data/sitePhotos";
+import { BlogCover } from "@/components/BlogCover";
+import { getBlogCover } from "@/data/blogCovers";
 import type { BlogPost } from "@/lib/types";
 
 function formatDate(iso: string) {
@@ -31,7 +31,7 @@ export function GuideCards({ posts }: { posts: BlogPost[] }) {
 
       <div className="mt-6 grid gap-5 md:grid-cols-3">
         {posts.map((post) => {
-          const image = getBlogCategoryImage(post.category);
+          const cover = getBlogCover(post.slug);
           return (
             <Link
               key={post.id}
@@ -39,13 +39,7 @@ export function GuideCards({ posts }: { posts: BlogPost[] }) {
               className="group flex flex-col overflow-hidden rounded-[20px] border border-border bg-soft-cream transition-colors hover:border-rose"
             >
               <div className="relative h-40 w-full">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 360px"
-                  className="object-cover"
-                />
+                <BlogCover cover={cover} title={post.title} />
               </div>
               <div className="flex flex-1 flex-col px-5 pt-4 pb-5">
                 <span className="text-[10.5px] font-medium tracking-[0.14em] text-rose-deep uppercase">

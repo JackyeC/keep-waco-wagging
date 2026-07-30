@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   daycareMonthOrder,
-  daycareThemes,
+  getHomeDaycareThemes,
+  getUpcomingDaycareThemes,
   summerDaycare,
   type DaycareMonth,
   type DaycareTheme,
@@ -21,13 +22,15 @@ type SummerCampCalendarProps = {
   className?: string;
 };
 
-function themesByMonth(): Record<DaycareMonth, DaycareTheme[]> {
-  return daycareMonthOrder.reduce(
-    (acc, month) => {
-      acc[month] = daycareThemes.filter((theme) => theme.month === month);
+function themesByMonth(themes: DaycareTheme[]): Partial<
+  Record<DaycareMonth, DaycareTheme[]>
+> {
+  return themes.reduce(
+    (acc, theme) => {
+      (acc[theme.month] ??= []).push(theme);
       return acc;
     },
-    {} as Record<DaycareMonth, DaycareTheme[]>,
+    {} as Partial<Record<DaycareMonth, DaycareTheme[]>>,
   );
 }
 
@@ -104,7 +107,12 @@ export function SummerCampCalendar({
   className,
 }: SummerCampCalendarProps) {
   const compact = variant === "home";
-  const grouped = themesByMonth();
+  const themes = compact
+    ? getHomeDaycareThemes(4)
+    : getUpcomingDaycareThemes();
+  const grouped = themesByMonth(themes);
+  const months = daycareMonthOrder.filter((month) => (grouped[month]?.length ?? 0) > 0);
+  const seasonComplete = themes.length === 0;
 
   return (
     <section id={id} className={cn("scroll-mt-28", className)}>
@@ -118,61 +126,78 @@ export function SummerCampCalendar({
             compact ? "text-[36px]" : "text-[40px]",
           )}
         >
-          Thirteen themed weeks of{" "}
-          <span className="font-script font-normal text-rose">camp</span>
+          {seasonComplete ? (
+            <>
+              Summer camp season is{" "}
+              <span className="font-script font-normal text-rose">wrapped</span>
+            </>
+          ) : compact ? (
+            <>
+              Upcoming weeks of{" "}
+              <span className="font-script font-normal text-rose">camp</span>
+            </>
+          ) : (
+            <>
+              Themed weeks of{" "}
+              <span className="font-script font-normal text-rose">camp</span>
+            </>
+          )}
         </h2>
         <p className="dek mx-auto mt-3 max-w-2xl text-[15px]">
-          {summerDaycare.intro} Drop in for a day or join the full week — request
-          your dates on Rover.
+          {seasonComplete
+            ? "Thanks for a great season. Follow Keep Waco Wagging updates for fall daycare openings and next summer’s themes."
+            : `${summerDaycare.intro} Drop in for a day or join the full week — request your dates on Rover.`}
         </p>
       </div>
 
-      <div className={cn("mt-10 space-y-12", compact && "mt-8 space-y-10")}>
-        {daycareMonthOrder.map((month) => {
-          const monthPhoto = daycareMonthPhotos[month];
-          const weeks = grouped[month];
+      {!seasonComplete && (
+        <div className={cn("mt-10 space-y-12", compact && "mt-8 space-y-10")}>
+          {months.map((month) => {
+            const monthPhoto = daycareMonthPhotos[month];
+            const weeks = grouped[month] ?? [];
 
-          return (
-            <div key={month}>
-              <div className="relative mb-5 overflow-hidden rounded-[22px] border border-border">
-                <div className="relative h-32 sm:h-36">
-                  <Image
-                    src={monthPhoto.src}
-                    alt={monthPhoto.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 1200px"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-bark/55 to-bark/10" />
-                  <div className="absolute inset-0 flex items-end p-5 sm:p-6">
-                    <div>
-                      <p className="text-xs font-medium tracking-[0.18em] text-blush uppercase">
-                        {month} {summerDaycare.seasonLabel.split(" ")[1]}
-                      </p>
-                      <p className="font-display text-2xl font-semibold text-cream sm:text-3xl">
-                        {weeks.length} themed {weeks.length === 1 ? "week" : "weeks"}
-                      </p>
+            return (
+              <div key={month}>
+                <div className="relative mb-5 overflow-hidden rounded-[22px] border border-border">
+                  <div className="relative h-32 sm:h-36">
+                    <Image
+                      src={monthPhoto.src}
+                      alt={monthPhoto.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 1200px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-bark/55 to-bark/10" />
+                    <div className="absolute inset-0 flex items-end p-5 sm:p-6">
+                      <div>
+                        <p className="text-xs font-medium tracking-[0.18em] text-blush uppercase">
+                          {month} {summerDaycare.seasonLabel.split(" ")[1]}
+                        </p>
+                        <p className="font-display text-2xl font-semibold text-cream sm:text-3xl">
+                          {weeks.length} themed {weeks.length === 1 ? "week" : "weeks"}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div
-                className={cn(
-                  "grid gap-4",
-                  compact
-                    ? "sm:grid-cols-2 lg:grid-cols-3"
-                    : "md:grid-cols-2 xl:grid-cols-3",
-                )}
-              >
-                {weeks.map((theme) => (
-                  <WeekCard key={theme.week} theme={theme} compact={compact} />
-                ))}
+                <div
+                  className={cn(
+                    "grid gap-4",
+                    compact
+                      ? "sm:grid-cols-2 lg:grid-cols-3"
+                      : "md:grid-cols-2 xl:grid-cols-3",
+                  )}
+                >
+                  {weeks.map((theme) => (
+                    <WeekCard key={theme.week} theme={theme} compact={compact} />
+                  ))}
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
 
       <div
         className={cn(

@@ -1,34 +1,17 @@
 import type { WeekendBlock } from "@/lib/types";
 
 /**
- * "Where to Wag This Weekend" — an easily-updated weekly guide.
- * TODO: refresh these blocks each week (or wire to a CMS / scheduled entry).
+ * "Where to Wag This Weekend" — evergreen dog-friendly ideas for Waco.
+ * Keep patio/park picks grounded in verified directory listings.
+ * Avoid dated one-off events unless they are confirmed and current.
  */
 export const weekendEdition = {
-  // Update this label every week.
-  label: "Weekend of May 30",
+  label: "Evergreen weekend ideas",
   intro:
-    "Three easy ways to get out with your pup this weekend — plus a training skill, a yard reminder, and a local shoutout.",
+    "Easy ways to get out with your pup — a patio pick, a park, a training skill, a heat reminder, and a yard tip. Always verify dog policies before you go.",
 };
 
 export const weekendBlocks: WeekendBlock[] = [
-  {
-    id: "w-events",
-    kind: "events",
-    title: "Dog-friendly events",
-    icon: "calendar",
-    body: "What's happening around Waco where dogs are welcome this weekend.",
-    items: [
-      {
-        name: "Riverwalk Morning Stroll Meetup",
-        detail: "Sat 8:30am · Brazos Riverwalk · leashed, all friendly dogs",
-      },
-      {
-        name: "Pup-Up Market on the Lawn",
-        detail: "Sun 10am–2pm · local makers & pet vendors",
-      },
-    ],
-  },
   {
     id: "w-patio",
     kind: "patio",
@@ -73,11 +56,11 @@ export const weekendBlocks: WeekendBlock[] = [
     ctaHref: "/platinum-scoops",
   },
   {
-    id: "w-shoutout",
+    id: "w-directory",
     kind: "shoutout",
-    title: "Local business shoutout",
+    title: "More dog-friendly spots",
     icon: "store",
-    body: "Woodway Pup Provisions — a locally owned pet store stocking Texas-made treats and enrichment toys. Stop in and say hi this weekend.",
+    body: "Browse verified Waco patios, parks, and pet-friendly stops in the Dog-Friendly Waco directory — and suggest a place we should add.",
     ctaLabel: "Explore the directory",
     ctaHref: "/dog-friendly-waco",
   },

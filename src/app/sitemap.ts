@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/sponsors", priority: 0.4 },
     { route: "/submit-a-place", priority: 0.4 },
     { route: "/affiliate-disclosure", priority: 0.3 },
+    { route: "/privacy", priority: 0.3 },
   ];
 
   const now = new Date();

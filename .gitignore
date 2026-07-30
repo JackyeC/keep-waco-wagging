@@ -25,6 +25,8 @@
 !/source-photos/README.md
 !/source-photos/curated.json
 !/source-photos/**/.gitkeep
+!/source-photos/blog-candidates/
+!/source-photos/blog-candidates/.gitkeep
 
 # print-ready merch masters (manifest in src/data/merchDesignAssets.ts)
 /source-designs/merch/**

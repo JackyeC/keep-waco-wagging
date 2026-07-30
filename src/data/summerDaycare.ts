@@ -10,6 +10,8 @@ export type DaycareTheme = {
   week: number;
   month: DaycareMonth;
   dateRange: string;
+  /** Inclusive end date (YYYY-MM-DD) for filtering past weeks */
+  endsOn: string;
   name: string;
   blurb: string;
   activities: string[];
@@ -38,6 +40,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 1,
     month: "June",
     dateRange: "June 1–5",
+    endsOn: "2026-06-05",
     name: "Splash Into Summer",
     blurb:
       "We kick off the season heat-smart with water play and shaded cool-downs.",
@@ -52,6 +55,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 2,
     month: "June",
     dateRange: "June 8–12",
+    endsOn: "2026-06-12",
     name: "Backyard BBQ (Dog Edition)",
     blurb:
       "A sniff-and-snack week built around dog-safe smells and slow, settling enrichment.",
@@ -66,6 +70,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 3,
     month: "June",
     dateRange: "June 15–19",
+    endsOn: "2026-06-19",
     name: "Tail-Waggin' Talent Show",
     blurb:
       "Confidence-building tricks and games, ending with a Friday show-and-tail.",
@@ -80,6 +85,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 4,
     month: "June",
     dateRange: "June 22–26",
+    endsOn: "2026-06-26",
     name: "Beach Bums",
     blurb:
       "A tropical, water-forward week for dogs who love to paddle and dig.",
@@ -94,6 +100,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 5,
     month: "June",
     dateRange: "June 29 – July 3",
+    endsOn: "2026-07-03",
     name: "Red, White & Chew",
     blurb:
       "A calm, patriotic week with gentle prep for fireworks season and lots of quiet enrichment.",
@@ -109,6 +116,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 6,
     month: "July",
     dateRange: "July 6–10",
+    endsOn: "2026-07-10",
     name: "Christmas in July",
     blurb:
       "A festive cool-down week full of treats to unwrap and ice to chase.",
@@ -123,6 +131,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 7,
     month: "July",
     dateRange: "July 13–17",
+    endsOn: "2026-07-17",
     name: "Lone Star Roundup",
     blurb:
       "A Texas-proud week of recall games, bandanas, and backyard \u201crodeo\u201d fun.",
@@ -137,6 +146,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 8,
     month: "July",
     dateRange: "July 20–24",
+    endsOn: "2026-07-24",
     name: "Sniff & Seek Safari",
     blurb:
       "Nose-work week that lets dogs use their best sense and tire out their brains.",
@@ -151,6 +161,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 9,
     month: "July",
     dateRange: "July 27–31",
+    endsOn: "2026-07-31",
     name: "Pup-sicle Week",
     blurb:
       "Our hottest stretch gets the coolest treats and extra indoor AC play.",
@@ -166,6 +177,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 10,
     month: "August",
     dateRange: "August 3–7",
+    endsOn: "2026-08-07",
     name: "Hollywoof Movie Star",
     blurb:
       "A glam week of photo moments and gentle, calm handling practice.",
@@ -180,6 +192,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 11,
     month: "August",
     dateRange: "August 10–14",
+    endsOn: "2026-08-14",
     name: "Wag-a-thon Field Day",
     blurb:
       "Backyard games and beginner agility for our most playful pups.",
@@ -194,6 +207,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 12,
     month: "August",
     dateRange: "August 17–21",
+    endsOn: "2026-08-21",
     name: "Back-to-School Manners Camp",
     blurb:
       "A gentle reset on everyday manners before fall routines return.",
@@ -208,6 +222,7 @@ export const daycareThemes: DaycareTheme[] = [
     week: 13,
     month: "August",
     dateRange: "August 24–28",
+    endsOn: "2026-08-28",
     name: "End-of-Summer Luau",
     blurb:
       "A tropical send-off to wrap the season with a splash.",
@@ -221,5 +236,29 @@ export const daycareThemes: DaycareTheme[] = [
 ];
 
 export const daycareMonthOrder: DaycareMonth[] = ["June", "July", "August"];
+
+
+function startOfTodayISO(now = new Date()): string {
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, "0");
+  const d = String(now.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+/** Current + future camp weeks, soonest first. */
+export function getUpcomingDaycareThemes(
+  now = new Date(),
+): DaycareTheme[] {
+  const today = startOfTodayISO(now);
+  return daycareThemes.filter((theme) => theme.endsOn >= today);
+}
+
+/** Homepage preview: next few weeks only. */
+export function getHomeDaycareThemes(
+  limit = 4,
+  now = new Date(),
+): DaycareTheme[] {
+  return getUpcomingDaycareThemes(now).slice(0, limit);
+}
 
 export const cityName = cityConfig.city;

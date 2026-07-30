@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
+import { HoneypotField } from "@/components/HoneypotField";
 import { directoryCategories } from "@/data/directory";
 
 const inputClass =
@@ -39,6 +40,7 @@ export function DirectorySubmissionForm() {
           bestTimeToVisit: fd.get("bestTimeToVisit"),
           notes: fd.get("notes"),
           ownerOrManager: fd.get("ownerOrManager") === "yes",
+          _hp: fd.get("_hp"),
         }),
       });
       const data = (await res.json()) as { error?: string };
@@ -65,7 +67,8 @@ export function DirectorySubmissionForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+    <form onSubmit={onSubmit} className="relative rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+      <HoneypotField />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Submitter name"><input name="submitterName" className={inputClass} disabled={loading} /></Field>
         <Field label="Submitter email"><input name="submitterEmail" type="email" className={inputClass} disabled={loading} /></Field>

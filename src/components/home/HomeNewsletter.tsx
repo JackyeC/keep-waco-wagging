@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
+import { LeadSignupConsent } from "@/components/LeadSignupConsent";
 import { signupCopy } from "@/lib/signup";
 import { cityConfig } from "@/lib/site";
 
@@ -72,7 +73,10 @@ export function HomeNewsletter({ sourcePage = "/" }: HomeNewsletterProps) {
         </div>
 
         {submitted ? (
-          <div className="flex min-w-[290px] flex-1 items-center gap-3 text-sm text-wag-sage">
+          <div
+            className="flex min-w-[290px] flex-1 items-center gap-3 text-sm text-wag-sage"
+            role="status"
+          >
             <CheckCircle2 className="h-5 w-5 shrink-0" />
             {signupCopy.success}
           </div>
@@ -85,7 +89,11 @@ export function HomeNewsletter({ sourcePage = "/" }: HomeNewsletterProps) {
             <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
               <input type="text" name="_hp" tabIndex={-1} autoComplete="off" />
             </div>
+            <label className="sr-only" htmlFor="home-newsletter-email">
+              Email address
+            </label>
             <input
+              id="home-newsletter-email"
               name="email"
               type="email"
               required
@@ -104,8 +112,17 @@ export function HomeNewsletter({ sourcePage = "/" }: HomeNewsletterProps) {
           </form>
         )}
 
+        {!submitted && (
+          <div className="w-full">
+            <LeadSignupConsent />
+          </div>
+        )}
+
         {error && (
-          <p className="flex w-full items-center gap-2 text-sm text-red-600">
+          <p
+            className="flex w-full items-center gap-2 text-sm text-red-600"
+            role="alert"
+          >
             <AlertCircle className="h-4 w-4 shrink-0" />
             {error}{" "}
             <a

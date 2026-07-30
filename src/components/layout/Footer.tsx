@@ -134,6 +134,14 @@ export function Footer() {
       <p className="mt-7 text-xs font-light tracking-wide text-label-muted">
         © {year} {cityConfig.name} · {brandLanguage.brandByLine} ·{" "}
         {cityConfig.city}, {cityConfig.state}
+        {" · "}
+        <Link href="/privacy" className="hover:text-rose">
+          Privacy
+        </Link>
+        {" · "}
+        <Link href="/affiliate-disclosure" className="hover:text-rose">
+          Affiliate disclosure
+        </Link>
       </p>
     </footer>
   );

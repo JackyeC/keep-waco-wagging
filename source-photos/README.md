@@ -1,6 +1,30 @@
-# Upload photos here
+# Photo library and review inbox
 
-**Every image you add gets used on the site** — not just one per folder.
+## Give Cursor photos to review
+
+Put any number of unreviewed dog photos in:
+
+```text
+source-photos/blog-candidates/
+```
+
+That folder is a private local review inbox:
+
+- Originals are ignored by Git and are not deployed.
+- The optimizer skips the folder, so nothing goes live automatically.
+- Cursor can inspect the batch, reject weak or duplicate photos, match the best
+  images to guides, and then optimize only the approved picks.
+- Keep original filenames; folders and subfolders are fine.
+
+For Google Photos, create an album, select the photos, choose **Download**, and
+unzip or drag them into `blog-candidates/`. A local folder is more reliable than
+a shared Google Photos link because it preserves the original files and does not
+require account access.
+
+## Approved source photos
+
+Images outside `blog-candidates/` are part of the approved source library and
+may be processed for the site.
 
 ## Best picks (`curated.json`)
 
@@ -28,9 +52,10 @@ The `/shop` page uses **your Waco dog photos**, not Amazon packshots. Defaults a
 
 ## Everything else counts too
 
-- **Loose files** in this folder (e.g. `IMG_1234.jpeg`) → photo gallery + blog cards
+- **Loose files** in this folder (e.g. `IMG_1234.jpeg`) → photo gallery
 - **Named folders** (e.g. `Freddie/`) → pet card + all photos in the gallery
 - **Multiple photos in one folder** → every image appears in the gallery
+- **`blog-candidates/`** → review only; never processed automatically
 
 Videos (`.mov`, `.mp4`) are skipped — images only.
 

@@ -5,7 +5,7 @@ import { Section } from "@/components/ui/Section";
 import { BlogCard } from "@/components/BlogCard";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { AdSlot } from "@/components/AdSlot";
-import { blogPostsWithImages, blogCategories } from "@/data/blog";
+import { blogCategories, getPublishedPosts } from "@/data/blog";
 import { sitePhotos } from "@/data/sitePhotos";
 import { cn } from "@/lib/utils";
 
@@ -25,14 +25,11 @@ export default async function BlogPage({
     ? category
     : "All";
 
+  const published = getPublishedPosts();
   const filtered =
     active === "All"
-      ? blogPostsWithImages
-      : blogPostsWithImages.filter((p) => p.category === active);
-
-  const sorted = [...filtered].sort(
-    (a, b) => +new Date(b.date) - +new Date(a.date),
-  );
+      ? published
+      : published.filter((p) => p.category === active);
 
   return (
     <>
@@ -75,11 +72,21 @@ export default async function BlogPage({
         </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_300px]">
-          <div className="grid gap-6 sm:grid-cols-2">
-            {sorted.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))}
-          </div>
+          {filtered.length > 0 ? (
+            <div className="grid gap-6 sm:grid-cols-2">
+              {filtered.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <p className="rounded-card bg-cream p-6 text-sm text-bark-soft ring-1 ring-inset ring-clay/70">
+              No published guides in this category yet. Check back soon, or browse{" "}
+              <Link href="/dog-friendly-waco" className="text-wag-sage hover:text-rose">
+                dog-friendly Waco
+              </Link>
+              .
+            </p>
+          )}
           <div className="space-y-6 lg:sticky lg:top-20 lg:self-start">
             <AdSlot placement="blog-sidebar" />
           </div>

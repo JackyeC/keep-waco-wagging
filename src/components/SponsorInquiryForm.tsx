@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
+import { HoneypotField } from "@/components/HoneypotField";
 import { sponsorTypes } from "@/data/sponsors";
 
 const inputClass =
@@ -31,6 +32,7 @@ export function SponsorInquiryForm() {
           website: fd.get("website"),
           sponsorType: fd.get("sponsorType"),
           notes: fd.get("notes"),
+          _hp: fd.get("_hp"),
         }),
       });
       const data = (await res.json()) as { error?: string };
@@ -57,7 +59,8 @@ export function SponsorInquiryForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+    <form onSubmit={onSubmit} className="relative rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+      <HoneypotField />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Business name"><input name="businessName" required disabled={loading} className={inputClass} /></Field>
         <Field label="Contact name"><input name="contactName" disabled={loading} className={inputClass} /></Field>

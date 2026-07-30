@@ -8,13 +8,14 @@ import {
   directoryListings,
   getDirectoryNeighborhoods,
 } from "@/data/directory";
+import { servicePageMetadata } from "@/lib/metadata";
 import { ctas } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Dog-Friendly Waco Directory | Patios, Parks, Trails & Local Dog Spots",
-  description:
-    "Find dog-friendly places in Waco, including patios, parks, trails, coffee shops, breweries, and local dog resources.",
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/dog-friendly-waco",
+  "Dog-Friendly Waco Directory | Patios, Parks, Trails & Local Dog Spots",
+  "Find dog-friendly places in Waco, including patios, parks, trails, coffee shops, breweries, and local dog resources.",
+);
 
 export default function DogFriendlyWacoPage() {
   return (

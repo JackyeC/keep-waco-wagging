@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/Button";
 import { DirectoryBadge } from "@/components/DirectoryBadge";
 import { LastVerifiedBadge } from "@/components/LastVerifiedBadge";
 import { DogDirectoryCard } from "@/components/DogDirectoryCard";
+import { DirectoryListingJsonLd } from "@/components/seo/StructuredData";
 import {
   directoryListings,
   getDirectoryListingBySlug,
 } from "@/data/directory";
+import { servicePageMetadata } from "@/lib/metadata";
 import { ctas } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -25,10 +27,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const listing = getDirectoryListingBySlug(slug);
   if (!listing) return { title: "Dog-friendly Waco listing not found" };
-  return {
-    title: `${listing.name} | Dog-Friendly Waco`,
-    description: listing.description,
-  };
+
+  const title = `${listing.name} | Dog-Friendly Waco`;
+  const description =
+    listing.description.length > 155
+      ? `${listing.description.slice(0, 152).trimEnd()}…`
+      : listing.description;
+
+  return servicePageMetadata(
+    `/dog-friendly-waco/${listing.slug}`,
+    title,
+    description,
+  );
+}
+
+function mapsDirectionsUrl(address: string): string {
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 }
 
 export default async function DogDirectoryDetailPage({
@@ -43,9 +57,19 @@ export default async function DogDirectoryDetailPage({
   const nearby = directoryListings
     .filter((item) => item.slug !== listing.slug)
     .slice(0, 3);
+  const phone = isPublishableValue(listing.phone) ? listing.phone : undefined;
 
   return (
     <>
+      <DirectoryListingJsonLd
+        name={listing.name}
+        description={listing.description}
+        path={`/dog-friendly-waco/${listing.slug}`}
+        category={listing.category}
+        address={listing.address}
+        phone={phone}
+        website={listing.website}
+      />
       <PageHeader
         eyebrow={listing.category}
         title={listing.name}
@@ -88,17 +112,28 @@ export default async function DogDirectoryDetailPage({
                   {listing.address}
                 </p>
               )}
-              {listing.phone && (
+              {phone && (
                 <p className="mt-2 flex gap-2 text-sm text-bark-soft">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0" />
-                  {listing.phone}
+                  {phone}
                 </p>
               )}
-              {listing.website && (
-                <Button href={listing.website} variant="secondary" size="sm" className="mt-4">
-                  Visit website <ExternalLink className="h-4 w-4" />
-                </Button>
-              )}
+              <div className="mt-4 flex flex-col gap-2">
+                {listing.address && (
+                  <Button
+                    href={mapsDirectionsUrl(listing.address)}
+                    variant="secondary"
+                    size="sm"
+                  >
+                    Get directions <MapPin className="h-4 w-4" />
+                  </Button>
+                )}
+                {listing.website && (
+                  <Button href={listing.website} variant="secondary" size="sm">
+                    Visit website <ExternalLink className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
             </div>
             <div className="rounded-card bg-sage-50 p-5 ring-1 ring-inset ring-sage-200">
               <h2 className="font-semibold">Own or manage this place?</h2>
@@ -132,8 +167,21 @@ export default async function DogDirectoryDetailPage({
   );
 }
 
+function isPublishableValue(value?: string): value is string {
+  if (!value) return false;
+  const normalized = value.trim().toLowerCase();
+  if (!normalized) return false;
+  return !(
+    normalized === "todo" ||
+    normalized.startsWith("todo ") ||
+    normalized.includes("todo verify") ||
+    normalized === "tbd" ||
+    normalized === "n/a"
+  );
+}
+
 function Info({ label, value }: { label: string; value?: string }) {
-  if (!value) return null;
+  if (!isPublishableValue(value)) return null;
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-wide text-bark-faint">

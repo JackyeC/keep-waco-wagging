@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ExternalLink } from "lucide-react";
 import { ArticleJsonLd } from "@/components/seo/StructuredData";
-import { blogPostsWithImages } from "@/data/blog";
-import { getGuideContent } from "@/data/guideContent";
+import { blogPostsWithImages, isPublishedGuide } from "@/data/blog";
+import {
+  getGuideContent,
+  getGuideSources,
+  getRelatedGuideSlugs,
+} from "@/data/guideContent";
 import { articlePageMetadata } from "@/lib/metadata";
 import { getBlogCategoryImage } from "@/data/sitePhotos";
 
@@ -23,9 +28,9 @@ export async function generateMetadata({
   const image = post.imageUrl
     ? { src: post.imageUrl, alt: post.title }
     : getBlogCategoryImage(post.category);
-  const indexable = post.indexable === true;
+  const published = isPublishedGuide(post);
 
-  if (!indexable) {
+  if (!published) {
     return {
       title: post.title,
       description: post.excerpt,
@@ -39,7 +44,16 @@ export async function generateMetadata({
     post.excerpt,
     image,
     post.date,
+    post.updated,
   );
+}
+
+function formatDate(date: string): string {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 export default async function BlogPostPage({
@@ -51,13 +65,18 @@ export default async function BlogPostPage({
   const post = blogPostsWithImages.find((item) => item.slug === slug);
   if (!post) notFound();
 
-  const indexable = post.indexable === true;
+  const published = isPublishedGuide(post);
   const sections = getGuideContent(slug);
+  const sources = getGuideSources(slug);
+  const relatedSlugs = getRelatedGuideSlugs(slug);
+  const relatedPosts = blogPostsWithImages.filter((item) =>
+    relatedSlugs.includes(item.slug),
+  );
   const image = post.imageUrl
     ? { src: post.imageUrl, alt: post.title }
     : getBlogCategoryImage(post.category);
 
-  if (indexable && sections) {
+  if (published && sections) {
     return (
       <>
         <ArticleJsonLd
@@ -65,6 +84,7 @@ export default async function BlogPostPage({
           description={post.excerpt}
           path={`/blog/${post.slug}`}
           datePublished={post.date}
+          dateModified={post.updated}
           image={image.src}
         />
         <section className="mx-auto max-w-[1200px] px-6 pt-11 pb-4">
@@ -75,12 +95,14 @@ export default async function BlogPostPage({
             <h1 className="display mt-3.5 text-balance">{post.title}</h1>
             <p className="dek mt-4">{post.excerpt}</p>
             <p className="mt-4 text-xs font-medium tracking-[0.16em] text-label-muted uppercase">
-              {post.author} · {post.readTime} ·{" "}
-              {new Date(post.date).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
+              {post.author} · {post.readTime} · Published{" "}
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              {post.updated && post.updated !== post.date && (
+                <>
+                  {" "}
+                  · Reviewed <time dateTime={post.updated}>{formatDate(post.updated)}</time>
+                </>
+              )}
             </p>
           </div>
         </section>
@@ -111,10 +133,54 @@ export default async function BlogPostPage({
               Dog policies, hours, prices, and availability can change. Please
               verify directly before visiting or booking.
             </p>
+            {sources.length > 0 && (
+              <section className="mt-8 border-t border-border pt-6">
+                <h2 className="font-display text-[24px] font-semibold text-serif-ink">
+                  Sources &amp; further reading
+                </h2>
+                <ul className="mt-4 space-y-2">
+                  {sources.map((source) => (
+                    <li key={source.href}>
+                      <a
+                        href={source.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-start gap-2 text-sm font-medium text-wag-sage hover:text-rose"
+                      >
+                        <span>{source.label}</span>
+                        <ExternalLink
+                          className="mt-0.5 h-3.5 w-3.5 shrink-0"
+                          aria-hidden
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
         </article>
 
         <section className="mx-auto max-w-[1200px] px-6 pb-10">
+          {relatedPosts.length > 0 && (
+            <div className="mb-8">
+              <h2 className="font-display text-[26px] font-semibold text-serif-ink">
+                Keep reading
+              </h2>
+              <ul className="mt-3 space-y-2">
+                {relatedPosts.map((related) => (
+                  <li key={related.slug}>
+                    <Link
+                      href={`/blog/${related.slug}`}
+                      className="text-sm font-medium text-wag-sage hover:text-rose"
+                    >
+                      {related.title} →
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <Link
             href="/blog"
             className="text-sm font-medium text-wag-sage hover:text-rose"

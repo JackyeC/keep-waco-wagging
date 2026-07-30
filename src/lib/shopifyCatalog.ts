@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import type { MerchCategory, MerchProduct } from "@/data/merchStore";
 import { curateCatalog } from "@/data/merchCuration";
 import { merchCategoryMeta, shopifyStoreConfig } from "@/data/merchStore";
@@ -7,12 +8,8 @@ import {
   type ShopifyRawVariant,
 } from "@/lib/shopifyProductDetails";
 
-/**
- * Full catalog JSON exceeds Next.js Data Cache 2MB limit (~2.3MB).
- * Use cache: 'no-store' so the page still revalidates on its own schedule
- * without persisting the oversized payload in the Data Cache.
- */
 const SHOPIFY_PRODUCTS_URL = `${shopifyStoreConfig.storefrontUrl}/products.json?limit=250`;
+const SHOPIFY_CATALOG_REVALIDATE_SECONDS = 600;
 
 const CATEGORY_ORDER: MerchCategory[] = [
   "pet_accessories",
@@ -169,11 +166,13 @@ function sortProducts(products: MerchProduct[]): MerchProduct[] {
   });
 }
 
-/** Live catalog from Shopify — used on /shop so the grid stays in sync with the store. */
-export async function fetchShopifyCatalog(): Promise<ShopifyCatalogResult> {
+async function fetchFreshShopifyCatalog(): Promise<ShopifyCatalogResult> {
   const cartOptionsByHandle: Record<string, ProductCartOptions> = {};
 
   try {
+    // Shopify's raw response is ~2.3 MB, above Next.js' per-entry Data Cache
+    // limit. Fetch it uncached, discard unused fields, then cache only the
+    // substantially smaller mapped catalog returned by this function.
     const res = await fetch(SHOPIFY_PRODUCTS_URL, {
       cache: "no-store",
     });
@@ -203,6 +202,23 @@ export async function fetchShopifyCatalog(): Promise<ShopifyCatalogResult> {
     };
   }
 }
+
+/**
+ * Live catalog used by shop routes.
+ *
+ * This project does not enable Cache Components, so `unstable_cache` is the
+ * supported Next.js 16 cache API for the transformed non-fetch result. Both
+ * shop routes share the same reduced catalog for ten minutes instead of
+ * downloading Shopify's full feed on every render.
+ */
+export const fetchShopifyCatalog = unstable_cache(
+  fetchFreshShopifyCatalog,
+  ["shopify-catalog-v1", SHOPIFY_PRODUCTS_URL],
+  {
+    revalidate: SHOPIFY_CATALOG_REVALIDATE_SECONDS,
+    tags: ["shopify-catalog"],
+  },
+);
 
 export function groupMerchByCategory(products: MerchProduct[]): MerchCategoryGroup[] {
   const buckets = new Map<MerchCategory, MerchProduct[]>();

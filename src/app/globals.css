@@ -40,12 +40,12 @@
   /* Ink */
   --color-bark: #4c463e;
   --color-serif-ink: #54513f;
-  --color-bark-soft: #7a7165;
-  --color-bark-faint: #a99e8d;
-  --color-body-muted: #7a7165;
-  --color-body-muted-light: #8a8073;
-  --color-label-muted: #a99e8d;
-  --color-label-muted-alt: #a99483;
+  --color-bark-soft: #6f675c;
+  --color-bark-faint: #7a7165;
+  --color-body-muted: #6f675c;
+  --color-body-muted-light: #746c60;
+  --color-label-muted: #7a7165;
+  --color-label-muted-alt: #74685c;
 
   /* Lines & inputs */
   --color-border: #e6dbcb;
@@ -220,12 +220,12 @@
   }
 
   .btn-sage {
-    background-color: var(--color-wag-sage);
-    color: var(--color-cream);
+    background-color: var(--color-sage-hover);
+    color: var(--color-soft-cream);
   }
 
   .btn-sage:hover {
-    background-color: var(--color-sage-hover);
+    background-color: var(--color-sage-700);
   }
 
   .btn-rose-outline {

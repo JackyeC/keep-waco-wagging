@@ -89,12 +89,14 @@ export function ArticleJsonLd({
   description,
   path,
   datePublished,
+  dateModified,
   image,
 }: {
   title: string;
   description: string;
   path: string;
   datePublished: string;
+  dateModified?: string;
   image: string;
 }) {
   const url = `${cityConfig.url}${path}`;
@@ -107,6 +109,7 @@ export function ArticleJsonLd({
         headline: title,
         description,
         datePublished,
+        dateModified: dateModified ?? datePublished,
         author: {
           "@type": "Organization",
           name: cityConfig.name,
@@ -124,4 +127,90 @@ export function ArticleJsonLd({
       }}
     />
   );
+}
+
+function placeSchemaType(category: string): string {
+  const normalized = category.toLowerCase();
+  if (normalized.includes("park") || normalized.includes("trail")) return "Park";
+  if (
+    normalized.includes("patio") ||
+    normalized.includes("coffee") ||
+    normalized.includes("brewery") ||
+    normalized.includes("bar") ||
+    normalized.includes("restaurant")
+  ) {
+    return "FoodEstablishment";
+  }
+  if (normalized.includes("boutique") || normalized.includes("shop")) {
+    return "Store";
+  }
+  return "LocalBusiness";
+}
+
+/** LocalBusiness / Place JSON-LD for dog-friendly directory listings. */
+export function DirectoryListingJsonLd({
+  name,
+  description,
+  path,
+  category,
+  address,
+  phone,
+  website,
+}: {
+  name: string;
+  description: string;
+  path: string;
+  category: string;
+  address?: string;
+  phone?: string;
+  website?: string;
+}) {
+  const url = `${cityConfig.url}${path}`;
+  const place: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": placeSchemaType(category),
+    name,
+    description,
+    url,
+    additionalType: "https://schema.org/Place",
+  };
+
+  if (address) {
+    place.address = {
+      "@type": "PostalAddress",
+      streetAddress: address,
+      addressLocality: "Waco",
+      addressRegion: "TX",
+      addressCountry: "US",
+    };
+  }
+  if (phone) place.telephone = phone;
+  if (website) place.sameAs = website;
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: cityConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Dog-Friendly Waco",
+        item: `${cityConfig.url}/dog-friendly-waco`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name,
+        item: url,
+      },
+    ],
+  };
+
+  return <JsonLd data={[breadcrumb, place]} />;
 }

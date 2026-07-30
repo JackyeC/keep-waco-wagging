@@ -13,6 +13,7 @@ import sharp from "sharp";
 const ROOT = path.resolve(import.meta.dirname, "..");
 const SOURCE = path.join(ROOT, "source-photos");
 const CURATED_PATH = path.join(SOURCE, "curated.json");
+const REVIEW_INBOX = "blog-candidates";
 const PICTURES = path.join(ROOT, "public", "pictures");
 const LIBRARY = path.join(PICTURES, "library");
 const PETS = path.join(ROOT, "public", "pets");
@@ -219,6 +220,7 @@ function walkAllImages(dir, results = []) {
     if (entry.name.startsWith(".")) continue;
     if (entry.name === "curated.json") continue;
     if (entry.name === "shop") continue;
+    if (dir === SOURCE && entry.name === REVIEW_INBOX) continue;
 
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
@@ -323,6 +325,7 @@ for (const entry of fs.readdirSync(SOURCE, { withFileTypes: true })) {
   if (SLOT_FOLDERS.has(entry.name)) continue;
   if (entry.name.startsWith("pets-")) continue;
   if (entry.name === "shop") continue;
+  if (entry.name === REVIEW_INBOX) continue;
 
   const folderPath = path.join(SOURCE, entry.name);
   const images = listImagesInFolder(folderPath);

@@ -1,6 +1,5 @@
 import type { BlogPost } from "@/lib/types";
-import { getBlogCategoryImage } from "@/data/sitePhotos";
-import { photoLibrary } from "@/data/photoLibrary";
+import { getGuideContent } from "@/data/guideContent";
 
 /** All blog categories, in display order. */
 export const blogCategories = [
@@ -14,10 +13,9 @@ export const blogCategories = [
 ] as const;
 
 /**
- * Placeholder blog/guide cards for the MVP.
- *
- * ⚠️ PLACEHOLDER CONTENT — excerpts are starter copy. Replace with full,
- * SEO-optimized articles. Maps onto a future `posts` table or CMS collection.
+ * Blog/guide cards. Only posts with `indexable: true` and full guide body
+ * copy in `guideContent` are published for SEO (sitemap + index).
+ * Stub posts stay reachable but are noindex and hidden from the blog index.
  */
 export const blogPosts: BlogPost[] = [
   {
@@ -29,6 +27,7 @@ export const blogPosts: BlogPost[] = [
       "Our running list of Waco patios that genuinely welcome dogs — with shade, water, and the manners cues you'll want before you go.",
     readTime: "6 min read",
     date: "2026-05-28",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
     featured: true,
     indexable: true,
@@ -42,6 +41,7 @@ export const blogPosts: BlogPost[] = [
       "A quick self-check: can your dog settle, recover from distractions, and relax on a leash? Here's how to tell — and what to do if not yet.",
     readTime: "5 min read",
     date: "2026-05-24",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
     featured: true,
     indexable: true,
@@ -55,6 +55,7 @@ export const blogPosts: BlogPost[] = [
       "From Cameron Park's shaded trails to fenced bark parks in Bellmead, here are our favorite green spaces for every kind of dog.",
     readTime: "7 min read",
     date: "2026-05-20",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
     indexable: true,
   },
@@ -66,8 +67,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "A week-by-week checklist of safe, positive experiences to give your puppy during the critical socialization window.",
     readTime: "8 min read",
-    date: "2026-05-16",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
+    indexable: true,
   },
   {
     id: "b-005",
@@ -77,8 +80,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Water, waste bags, a settle mat, and a few other essentials that make every outing smoother in the Texas heat.",
     readTime: "4 min read",
-    date: "2026-05-12",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
+    indexable: true,
   },
   {
     id: "b-006",
@@ -88,8 +93,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Markets and festivals are a lot for any dog. Here's how to build distance, use distractions, and keep things under threshold.",
     readTime: "6 min read",
-    date: "2026-05-08",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
+    indexable: true,
   },
   {
     id: "b-007",
@@ -99,8 +106,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "A sample two-day itinerary: morning trail, patio lunch, an afternoon at a pet store, and a calm evening stroll.",
     readTime: "5 min read",
-    date: "2026-05-04",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
+    indexable: true,
   },
   {
     id: "b-008",
@@ -110,8 +119,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "The three skills that make patio outings easy — settle, leave-it, and a calm down-stay — and how to practice each one.",
     readTime: "6 min read",
-    date: "2026-04-30",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
+    indexable: true,
   },
   {
     id: "b-009",
@@ -121,8 +132,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Leash courtesy, cleaning up, and being a good neighbor — the unwritten rules that keep Waco welcoming for all dogs.",
     readTime: "5 min read",
-    date: "2026-04-26",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
+    indexable: true,
   },
   {
     id: "b-010",
@@ -132,8 +145,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Thinking about welcoming dogs? Here's how Waco businesses can do it well — water, signage, and simple ground rules.",
     readTime: "6 min read",
-    date: "2026-04-22",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Keep Waco Wagging",
+    indexable: true,
   },
   {
     id: "b-011",
@@ -143,8 +158,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Beyond the smell: how regular cleanup protects your lawn, your family's health, and your weekends. A Platinum Scoops tip.",
     readTime: "4 min read",
-    date: "2026-04-18",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Platinum Scoops",
+    indexable: true,
   },
   {
     id: "b-012",
@@ -154,24 +171,34 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Simple routines (and a little help from Platinum Scoops) to keep your yard fresh and ready for company year-round.",
     readTime: "5 min read",
-    date: "2026-04-14",
+    date: "2026-07-30",
+    updated: "2026-07-30",
     author: "Platinum Scoops",
+    indexable: true,
   },
 ];
 
-/** Blog posts with a unique photo from the uploaded library when available. */
-export const blogPostsWithImages: BlogPost[] = blogPosts.map((post, index) => {
-  const libraryPhoto = photoLibrary[index];
-  const fallback = getBlogCategoryImage(post.category);
-  return { ...post, imageUrl: libraryPhoto?.src ?? fallback.src };
-});
+/**
+ * Public post records. Card covers come from `blogCovers` — unique
+ * editorial tiles per guide, not random library photos.
+ */
+export const blogPostsWithImages: BlogPost[] = blogPosts.map((post) => ({ ...post }));
+
+/** True when a post is intentionally published with full guide body copy. */
+export function isPublishedGuide(post: BlogPost): boolean {
+  return post.indexable === true && Boolean(getGuideContent(post.slug));
+}
+
+export function getPublishedPosts(): BlogPost[] {
+  return blogPostsWithImages
+    .filter(isPublishedGuide)
+    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+}
 
 export function getRecentPosts(limit = 3): BlogPost[] {
-  return [...blogPostsWithImages]
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date))
-    .slice(0, limit);
+  return getPublishedPosts().slice(0, limit);
 }
 
 export function getIndexablePosts(): BlogPost[] {
-  return blogPostsWithImages.filter((post) => post.indexable === true);
+  return getPublishedPosts();
 }

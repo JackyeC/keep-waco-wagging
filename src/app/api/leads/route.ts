@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { clampText, guardPublicFormPost } from "@/lib/formGuard";
 import { isValidLeadEmail, saveSubmission } from "@/lib/leads";
 import { signupCopy, sanitizeLeadInterests } from "@/lib/signup";
 
@@ -15,10 +16,8 @@ export async function POST(request: Request) {
       _hp?: string;
     };
 
-    // Honeypot filled — pretend success without persisting.
-    if (body._hp?.trim()) {
-      return NextResponse.json({ ok: true });
-    }
+    const blocked = guardPublicFormPost(request, body, "leads");
+    if (blocked) return blocked;
 
     const rawEmail = body.email?.trim();
     if (!rawEmail) {
@@ -35,15 +34,16 @@ export async function POST(request: Request) {
 
     const interests = sanitizeLeadInterests(body.interests);
 
-    const zipCode = body.zipCode?.trim() || body.neighborhood?.trim() || null;
+    const zipCode =
+      clampText(body.zipCode, 20) || clampText(body.neighborhood, 120) || null;
 
     const payload = {
-      first_name: body.firstName?.trim() || null,
+      first_name: clampText(body.firstName, 80) || null,
       email,
-      dog_name: body.dogName?.trim() || null,
+      dog_name: clampText(body.dogName, 80) || null,
       zip_code: zipCode,
       interests,
-      source_page: body.sourcePage?.trim() || null,
+      source_page: clampText(body.sourcePage, 200) || null,
       source: "keep_waco_wagging",
       consent: true,
     };

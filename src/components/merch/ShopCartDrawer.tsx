@@ -1,8 +1,10 @@
 "use client";
 
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { formatShopPrice } from "@/lib/shopifyProductDetails";
 import { useShopCart } from "@/components/merch/ShopCartContext";
+import { useDialogFocus } from "@/lib/focusTrap";
 
 export function ShopCartDrawer() {
   const {
@@ -17,6 +19,25 @@ export function ShopCartDrawer() {
     checkout,
   } = useShopCart();
 
+  const panelRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useDialogFocus({
+    open: cartOpen,
+    containerRef: panelRef,
+    onClose: closeCart,
+    initialFocusRef: closeButtonRef,
+  });
+
+  useEffect(() => {
+    if (!cartOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [cartOpen]);
+
   return (
     <>
       <div
@@ -26,19 +47,27 @@ export function ShopCartDrawer() {
           pointerEvents: cartOpen ? "auto" : "none",
         }}
         onClick={closeCart}
-        aria-hidden={!cartOpen}
+        aria-hidden="true"
       />
 
       <aside
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="shop-cart-title"
+        tabIndex={-1}
         className="fixed top-0 right-0 z-[60] flex h-full w-[404px] max-w-[92vw] flex-col bg-cream shadow-[-18px_0_50px_rgba(0,0,0,0.2)] transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.1,1)] motion-reduce:transition-none"
         style={{ transform: cartOpen ? "translateX(0)" : "translateX(106%)" }}
         aria-hidden={!cartOpen}
-        aria-label="Shopping bag"
+        {...(!cartOpen ? { inert: true } : {})}
       >
         <div className="flex items-center justify-between border-b border-border px-6 py-5">
           <div className="flex items-center gap-2">
             <ShoppingBag className="h-5 w-5 text-wag-sage" aria-hidden />
-            <h2 className="font-display text-xl font-semibold text-serif-ink">
+            <h2
+              id="shop-cart-title"
+              className="font-display text-xl font-semibold text-serif-ink"
+            >
               Your bag
             </h2>
             {count > 0 && (
@@ -48,9 +77,10 @@ export function ShopCartDrawer() {
             )}
           </div>
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={closeCart}
-            className="rounded-full p-2 text-bark hover:bg-soft-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-bark hover:bg-soft-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage"
             aria-label="Close bag"
           >
             <X className="h-5 w-5" />
@@ -87,7 +117,7 @@ export function ShopCartDrawer() {
                     <button
                       type="button"
                       onClick={() => removeLine(line.key)}
-                      className="text-xs font-medium tracking-[0.1em] text-rose-deep uppercase hover:text-wag-sage"
+                      className="min-h-11 px-2 text-xs font-medium tracking-[0.1em] text-rose-deep uppercase hover:text-wag-sage"
                     >
                       Remove
                     </button>
@@ -96,7 +126,7 @@ export function ShopCartDrawer() {
                     <button
                       type="button"
                       onClick={() => decrement(line.key)}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-cream hover:border-wag-sage"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-cream hover:border-wag-sage"
                       aria-label={`Decrease quantity of ${line.name}`}
                     >
                       <Minus className="h-3.5 w-3.5" />
@@ -107,7 +137,7 @@ export function ShopCartDrawer() {
                     <button
                       type="button"
                       onClick={() => increment(line.key)}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-cream hover:border-wag-sage"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-cream hover:border-wag-sage"
                       aria-label={`Increase quantity of ${line.name}`}
                     >
                       <Plus className="h-3.5 w-3.5" />
@@ -165,8 +195,9 @@ export function ShopBagButton({ className }: { className?: string }) {
     <button
       type="button"
       onClick={openCart}
-      className={`relative inline-flex items-center gap-2 rounded-full bg-wag-sage px-4 py-2.5 text-[12px] font-medium tracking-[0.12em] text-cream uppercase hover:bg-sage-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage ${className ?? ""}`}
+      className={`relative inline-flex min-h-11 items-center gap-2 rounded-full bg-wag-sage px-4 py-2.5 text-[12px] font-medium tracking-[0.12em] text-cream uppercase hover:bg-sage-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage ${className ?? ""}`}
       aria-label={`Open shopping bag${count > 0 ? `, ${count} items` : ""}`}
+      aria-haspopup="dialog"
     >
       <ShoppingBag className="h-4 w-4" aria-hidden />
       Bag

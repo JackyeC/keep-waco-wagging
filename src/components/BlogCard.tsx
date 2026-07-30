@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Clock } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { BlogCover } from "@/components/BlogCover";
+import { getBlogCover } from "@/data/blogCovers";
 import type { BlogPost } from "@/lib/types";
 
 function formatDate(iso: string) {
@@ -14,15 +15,13 @@ function formatDate(iso: string) {
 
 export function BlogCard({ post }: { post: BlogPost }) {
   const href = `/blog/${post.slug}`;
+  const cover = getBlogCover(post.slug);
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-card bg-white ring-1 ring-inset ring-clay/70 transition-all hover:-translate-y-0.5 hover:shadow-md hover:ring-sage-200">
       <Link href={href} className="block">
         <div className="aspect-[16/9] overflow-hidden">
-          <ImagePlaceholder
-            src={post.imageUrl}
-            alt={post.title}
-            showCaption={!post.imageUrl}
-          />
+          <BlogCover cover={cover} title={post.title} />
         </div>
       </Link>
       <div className="flex flex-1 flex-col p-5">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle2, PawPrint, AlertCircle } from "lucide-react";
+import { HoneypotField } from "@/components/HoneypotField";
 import { NeighborhoodField } from "@/components/NeighborhoodField";
 
 const inputClass =
@@ -20,6 +21,13 @@ export function PetSubmitForm() {
 
     const form = e.currentTarget;
     const fd = new FormData(form);
+
+    if (String(fd.get("_hp") ?? "").trim()) {
+      setSubmitted(true);
+      setLoading(false);
+      return;
+    }
+
     const photo = fd.get("photo");
     const photoFilename =
       photo instanceof File && photo.name ? photo.name : null;
@@ -37,6 +45,7 @@ export function PetSubmitForm() {
           ownerName: fd.get("ownerName"),
           email: fd.get("email"),
           photoFilename,
+          _hp: fd.get("_hp"),
         }),
       });
 
@@ -56,7 +65,10 @@ export function PetSubmitForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-card bg-sage-50 p-8 text-center ring-1 ring-inset ring-sage-200">
+      <div
+        className="rounded-card bg-sage-50 p-8 text-center ring-1 ring-inset ring-sage-200"
+        role="status"
+      >
         <CheckCircle2 className="mx-auto h-12 w-12 text-sage-600" />
         <h3 className="mt-4 text-xl font-semibold">Thanks for sharing your pup!</h3>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-bark-soft">
@@ -70,20 +82,44 @@ export function PetSubmitForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8"
+      className="relative rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8"
     >
+      <HoneypotField />
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-bark">Your dog&apos;s name</label>
-          <input name="petName" required disabled={loading} className={`${inputClass} mt-1.5`} />
+          <label className="block text-sm font-medium text-bark" htmlFor="pet-name">
+            Your dog&apos;s name
+          </label>
+          <input
+            id="pet-name"
+            name="petName"
+            required
+            disabled={loading}
+            className={`${inputClass} mt-1.5`}
+          />
         </div>
         <div>
-          <label className="block text-sm font-medium text-bark">Breed (or best guess)</label>
-          <input name="breed" disabled={loading} className={`${inputClass} mt-1.5`} />
+          <label className="block text-sm font-medium text-bark" htmlFor="pet-breed">
+            Breed (or best guess)
+          </label>
+          <input
+            id="pet-breed"
+            name="breed"
+            disabled={loading}
+            className={`${inputClass} mt-1.5`}
+          />
         </div>
         <div>
-          <label className="block text-sm font-medium text-bark">Age or stage</label>
-          <input name="ageOrStage" placeholder="Puppy, 3 yrs, Senior…" disabled={loading} className={`${inputClass} mt-1.5`} />
+          <label className="block text-sm font-medium text-bark" htmlFor="pet-age">
+            Age or stage
+          </label>
+          <input
+            id="pet-age"
+            name="ageOrStage"
+            placeholder="Puppy, 3 yrs, Senior…"
+            disabled={loading}
+            className={`${inputClass} mt-1.5`}
+          />
         </div>
         <div>
           <label className="block text-sm font-medium text-bark" htmlFor="pet-neighborhood">
@@ -96,8 +132,11 @@ export function PetSubmitForm() {
           />
         </div>
         <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-bark">A little about them</label>
+          <label className="block text-sm font-medium text-bark" htmlFor="pet-bio">
+            A little about them
+          </label>
           <textarea
+            id="pet-bio"
             name="bio"
             rows={3}
             placeholder="Personality, favorite spots, claim to fame…"
@@ -106,16 +145,36 @@ export function PetSubmitForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-bark">Your name</label>
-          <input name="ownerName" required disabled={loading} className={`${inputClass} mt-1.5`} />
+          <label className="block text-sm font-medium text-bark" htmlFor="pet-owner">
+            Your name
+          </label>
+          <input
+            id="pet-owner"
+            name="ownerName"
+            required
+            disabled={loading}
+            className={`${inputClass} mt-1.5`}
+          />
         </div>
         <div>
-          <label className="block text-sm font-medium text-bark">Your email</label>
-          <input name="email" type="email" required disabled={loading} className={`${inputClass} mt-1.5`} />
+          <label className="block text-sm font-medium text-bark" htmlFor="pet-email">
+            Your email
+          </label>
+          <input
+            id="pet-email"
+            name="email"
+            type="email"
+            required
+            disabled={loading}
+            className={`${inputClass} mt-1.5`}
+          />
         </div>
         <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-bark">Photo</label>
+          <label className="block text-sm font-medium text-bark" htmlFor="pet-photo">
+            Photo
+          </label>
           <input
+            id="pet-photo"
             name="photo"
             type="file"
             accept="image/*"
@@ -131,7 +190,10 @@ export function PetSubmitForm() {
       </div>
 
       {error && (
-        <p className="mt-4 flex items-center gap-2 text-sm text-red-600">
+        <p
+          className="mt-4 flex items-center gap-2 text-sm text-red-600"
+          role="alert"
+        >
           <AlertCircle className="h-4 w-4 shrink-0" />
           {error}
         </p>

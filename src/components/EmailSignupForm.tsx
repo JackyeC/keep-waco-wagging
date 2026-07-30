@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
+import { LeadSignupConsent } from "@/components/LeadSignupConsent";
 import { SocialLinksBlock } from "@/components/SocialLinksBlock";
 import { signupCopy, signupInterests } from "@/lib/signup";
 import { cityConfig } from "@/lib/site";
@@ -77,7 +78,10 @@ export function EmailSignupForm({
 
   if (submitted) {
     return (
-      <div className="rounded-card bg-sage-50 p-6 ring-1 ring-inset ring-sage-200">
+      <div
+        className="rounded-card bg-sage-50 p-6 ring-1 ring-inset ring-sage-200"
+        role="status"
+      >
         <div className="text-center">
           <CheckCircle2 className="mx-auto h-10 w-10 text-sage-600" />
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-bark">
@@ -176,7 +180,10 @@ export function EmailSignupForm({
       )}
 
       {error && (
-        <p className="mt-4 flex items-center gap-2 text-sm text-red-600">
+        <p
+          className="mt-4 flex items-center gap-2 text-sm text-red-600"
+          role="alert"
+        >
           <AlertCircle className="h-4 w-4 shrink-0" />
           {error}
           {" "}
@@ -189,10 +196,8 @@ export function EmailSignupForm({
         </p>
       )}
 
-      <div className="mt-5 space-y-3">
-        <p className="text-xs leading-relaxed text-bark-faint">
-          {signupCopy.privacyNote}
-        </p>
+        <div className="mt-5 space-y-3">
+        <LeadSignupConsent />
         <button
           type="submit"
           disabled={loading}

@@ -42,8 +42,12 @@ export function DirectoryFilters({
     <div className="rounded-card bg-white p-5 ring-1 ring-inset ring-clay/70">
       {/* Search */}
       <div className="relative">
+        <label htmlFor="directory-search" className="sr-only">
+          Search directory
+        </label>
         <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-bark-faint" />
         <input
+          id="directory-search"
           type="search"
           value={state.query}
           onChange={(e) => onChange({ query: e.target.value })}

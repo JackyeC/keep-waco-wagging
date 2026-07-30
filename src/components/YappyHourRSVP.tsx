@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 import { LeadSignupConsent } from "@/components/LeadSignupConsent";
-import { yappyHourEvents } from "@/data/yappyHours";
+import { HoneypotField } from "@/components/HoneypotField";
+import { getOpenYappyHourEvents } from "@/data/yappyHours";
 
 const inputClass =
   "w-full rounded-xl border-0 bg-white px-3.5 py-2.5 text-sm text-bark ring-1 ring-inset ring-clay placeholder:text-bark-faint focus:outline-none focus:ring-2 focus:ring-sage-400 disabled:opacity-60";
 
-const openEvents = yappyHourEvents.filter((e) => e.rsvpOpen);
-
 export function YappyHourRSVP() {
+  const openEvents = getOpenYappyHourEvents();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,6 +34,7 @@ export function YappyHourRSVP() {
           dogName: fd.get("dogName"),
           interests: ["Local dog events", `Yappy Hour RSVP: ${eventTitle}`],
           sourcePage: `/yappy-hours — Yappy Hour RSVP: ${eventTitle}`,
+          _hp: fd.get("_hp"),
         }),
       });
 
@@ -53,7 +54,10 @@ export function YappyHourRSVP() {
 
   if (submitted) {
     return (
-      <div className="rounded-card bg-sage-50 p-6 text-center ring-1 ring-inset ring-sage-200">
+      <div
+        className="rounded-card bg-sage-50 p-6 text-center ring-1 ring-inset ring-sage-200"
+        role="status"
+      >
         <CheckCircle2 className="mx-auto h-10 w-10 text-sage-600" />
         <p className="mt-3 font-semibold text-bark">You&apos;re on the list!</p>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-bark-soft">
@@ -67,8 +71,9 @@ export function YappyHourRSVP() {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-card bg-white p-5 ring-1 ring-inset ring-clay/70 sm:p-6"
+      className="relative rounded-card bg-white p-5 ring-1 ring-inset ring-clay/70 sm:p-6"
     >
+      <HoneypotField />
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-medium text-bark">
           First name
@@ -91,7 +96,9 @@ export function YappyHourRSVP() {
         <label className="text-sm font-medium text-bark">
           Which Yappy Hour?
           <select name="event" disabled={loading} className={`${inputClass} mt-1.5`}>
-            <option value="Any Yappy Hour">Any / not sure yet</option>
+            <option value="Any Yappy Hour">
+              {openEvents.length > 0 ? "Any / not sure yet" : "Next confirmed date"}
+            </option>
             {openEvents.map((event) => (
               <option key={event.id} value={event.title}>
                 {event.title} — {event.date}
@@ -103,7 +110,10 @@ export function YappyHourRSVP() {
       </div>
 
       {error && (
-        <p className="mt-4 flex items-center gap-2 text-sm text-red-600">
+        <p
+          className="mt-4 flex items-center gap-2 text-sm text-red-600"
+          role="alert"
+        >
           <AlertCircle className="h-4 w-4 shrink-0" />
           {error}
         </p>
@@ -116,7 +126,11 @@ export function YappyHourRSVP() {
           disabled={loading}
           className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-sage-700 disabled:opacity-60 sm:w-auto"
         >
-          {loading ? "Sending..." : "RSVP for a Yappy Hour"}
+          {loading
+            ? "Sending..."
+            : openEvents.length > 0
+              ? "RSVP for a Yappy Hour"
+              : "Notify me about the next Yappy Hour"}
           <Send className="h-4 w-4" />
         </button>
       </div>

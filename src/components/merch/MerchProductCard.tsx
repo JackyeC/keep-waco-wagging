@@ -1,6 +1,7 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { useShopCart } from "@/components/merch/ShopCartContext";
@@ -167,11 +168,12 @@ export function MerchProductCard({
       >
         <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray p-4 sm:p-5">
           {product.image?.src ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={product.image.src}
               alt={product.image.alt}
-              className="h-full w-full object-contain"
+              fill
+              sizes="(max-width: 640px) calc(100vw - 3rem), (max-width: 1024px) calc(50vw - 3rem), 360px"
+              className="object-contain p-4 sm:p-5"
             />
           ) : (
             <ImagePlaceholder alt={product.name} />

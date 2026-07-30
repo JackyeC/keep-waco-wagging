@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AlertCircle, CalendarHeart, CheckCircle2 } from "lucide-react";
+import { HoneypotField } from "@/components/HoneypotField";
 import { eventCareRoles } from "@/data/eventCare";
 
 const inputClass =
@@ -43,6 +44,7 @@ export function EventCareInquiryForm() {
           specialHandling: fd.get("specialHandling"),
           vendorContact: fd.get("vendorContact"),
           notes: fd.get("notes"),
+          _hp: fd.get("_hp"),
         }),
       });
       const data = (await res.json()) as { error?: string };
@@ -70,7 +72,8 @@ export function EventCareInquiryForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+    <form onSubmit={onSubmit} className="relative rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+      <HoneypotField />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Your name"><input name="name" required disabled={loading} className={inputClass} /></Field>
         <Field label="Email"><input name="email" type="email" required disabled={loading} className={inputClass} /></Field>
