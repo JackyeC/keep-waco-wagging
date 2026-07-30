@@ -166,7 +166,6 @@ export async function saveSubmission(
         error:
           "Lead saved but email notifications are not fully configured (RESEND_API_KEY and LEAD_NOTIFICATION_EMAIL).",
       });
-      return { ok: false, error: PRODUCTION_MISCONFIG_ERROR };
     } else if (emailSucceeded && !stored && supabaseReady) {
       logLeadPipelineOutcome({
         event: "partial_success_supabase_insert_failed",
