@@ -11,10 +11,8 @@ import { cn } from "@/lib/utils";
 
 const primaryNav = [
   { label: "Shop", href: "/shop" },
-  { label: "The Drop", href: "/shop#featured" },
-  { label: "Wag Club", href: "/#wag-club" },
-  { label: "Waco", href: "/dog-friendly-waco" },
-  { label: "Pet Care", href: "/pet-care", isServices: true },
+  { label: "Services", href: "/#services", isServices: true },
+  { label: "Guides", href: "/dog-friendly-waco" },
   { label: "About", href: "/about" },
 ] as const;
 
@@ -66,11 +64,11 @@ export function Header() {
 
   return (
     <header className="site-header">
-      <div className="mx-auto flex max-w-[1200px] items-center gap-4 px-6 py-3.5 lg:gap-6">
+      <div className="mx-auto flex max-w-[1200px] items-center gap-4 px-6 py-3 lg:gap-8">
         <BrandWordmark />
 
         <nav
-          className="ml-2 hidden items-center gap-0.5 lg:flex"
+          className="ml-auto hidden items-center gap-1 lg:flex"
           aria-label="Primary"
         >
           {primaryNav.map((item) =>
@@ -85,7 +83,7 @@ export function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "nav-link inline-flex items-center gap-0.5 rounded-full px-2.5 py-2",
+                    "nav-link inline-flex items-center gap-0.5 px-2.5 py-2",
                     isActive(pathname, item.href) && "text-serif-ink",
                   )}
                   aria-expanded={servicesOpen}
@@ -102,7 +100,7 @@ export function Header() {
                 </Link>
                 {servicesOpen && (
                   <div className="absolute top-full left-0 z-50 min-w-[220px] pt-1">
-                    <div className="rounded-[18px] border border-border bg-soft-cream py-2 shadow-lg">
+                    <div className="border border-border bg-soft-cream py-2 shadow-sm">
                       {servicesNav.map((link) => (
                         <Link
                           key={link.href}
@@ -127,7 +125,7 @@ export function Header() {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "nav-link rounded-full px-2.5 py-2",
+                  "nav-link px-2.5 py-2",
                   isActive(pathname, item.href) && "text-serif-ink",
                 )}
               >
@@ -135,19 +133,18 @@ export function Header() {
               </Link>
             ),
           )}
+          <Link
+            href={ctas.bookService.href}
+            className="nav-link ml-2 px-2.5 py-2 text-label-muted"
+          >
+            Book
+          </Link>
         </nav>
-
-        <Link
-          href={ctas.joinClub.href}
-          className="btn-pill btn-sage ml-auto hidden px-5 py-2.5 lg:inline-flex"
-        >
-          Join the Wag Club
-        </Link>
 
         <button
           ref={menuButtonRef}
           type="button"
-          className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full text-bark hover:bg-soft-cream lg:hidden"
+          className="ml-auto inline-flex h-11 w-11 items-center justify-center text-bark hover:bg-soft-cream lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls={mobileNavId}
@@ -174,30 +171,30 @@ export function Header() {
                 ref={index === 0 ? firstMobileLinkRef : undefined}
                 href={item.href}
                 onClick={closeMobile}
-                className="nav-link rounded-xl px-3 py-2.5 text-base"
+                className="nav-link px-3 py-2.5 text-base"
               >
                 {item.label}
               </Link>
             ))}
             <p className="mt-3 px-3 text-xs font-medium tracking-[0.16em] text-label-muted uppercase">
-              Pet Care
+              Services
             </p>
             {servicesNav.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={closeMobile}
-                className="rounded-xl px-3 py-2 text-sm font-light text-bark-soft hover:text-rose"
+                className="px-3 py-2 text-sm font-light text-bark-soft hover:text-rose"
               >
                 {link.label}
               </Link>
             ))}
             <Link
-              href={ctas.joinClub.href}
+              href={ctas.bookService.href}
               onClick={closeMobile}
-              className="btn-pill btn-sage mt-3 w-full py-3"
+              className="mt-3 px-3 py-2.5 text-sm font-medium tracking-[0.12em] text-wag-sage uppercase"
             >
-              Join the Wag Club
+              Book a service
             </Link>
           </nav>
         </div>

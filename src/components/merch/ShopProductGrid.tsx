@@ -22,7 +22,7 @@ export function ShopProductGrid({
         : "sm:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <div className={`grid gap-5 ${gridClass}`}>
+    <div className={`grid gap-x-5 gap-y-10 ${gridClass}`}>
       {products.map((product) => (
         <MerchProductCard
           key={product.id}

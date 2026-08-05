@@ -1,65 +1,63 @@
 import Image from "next/image";
 import Link from "next/link";
-import { WagClubSignup } from "@/components/home/WagClubSignup";
 import { designPhotos } from "@/data/designPhotos";
-import { ctas } from "@/lib/site";
-import { roverCredentialsLine } from "@/lib/roverCredentials";
+import { merchAnchorLine } from "@/data/merchCuration";
+import { brandLanguage } from "@/lib/site";
 
 export function HomeHero() {
+  const hero = designPhotos.homeHero;
+
   return (
-    <section className="mx-auto max-w-[1200px] px-6 pt-12 pb-4 md:pt-16">
-      <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        <div className="max-w-xl">
-          <span className="eyebrow tracking-[0.28em]">
-            Waco dog people · members club
-          </span>
-          <h1 className="display mt-5 text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95]">
-            The club for Waco{" "}
-            <span className="font-script font-normal text-rose">
-              dog people.
+    <section className="relative min-h-[min(92vh,820px)] w-full overflow-hidden bg-bark">
+      <Image
+        src={hero.src}
+        alt={hero.alt}
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover motion-hero-image"
+        style={{
+          objectPosition:
+            "objectPosition" in hero ? hero.objectPosition : "center center",
+        }}
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-bark/90 via-bark/45 to-bark/20"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-bark/55 via-bark/15 to-transparent"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto flex min-h-[min(92vh,820px)] max-w-[1200px] flex-col justify-end px-6 pb-14 pt-28 sm:pb-16 lg:pb-20">
+        <div className="motion-hero-copy max-w-xl text-cream">
+          <p className="font-display text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95] font-medium tracking-[-0.02em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
+            Keep Waco{" "}
+            <span className="font-script text-[clamp(2.85rem,7.5vw,5rem)] text-blush">
+              wagging
             </span>
-          </h1>
-          <p className="dek mt-6 max-w-md text-[1.125rem]">
-            Exclusive drops, local favorites, and first access to what&apos;s
-            next — for the dog people who make Waco better.
           </p>
-          <WagClubSignup variant="hero" id="hero-club" sourcePage="/" />
-          <div className="mt-6">
+          <p className="mt-4 max-w-sm text-[15px] font-light leading-relaxed text-cream/90">
+            {merchAnchorLine}
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
             <Link
-              href={ctas.shopDrop.href}
-              className="btn-pill btn-rose-outline px-8 py-[0.9rem]"
+              href="/shop"
+              className="btn-pill bg-cream px-8 py-3.5 text-bark hover:bg-soft-cream"
             >
-              Shop the Drop
+              Shop the collection
+            </Link>
+            <Link
+              href="/#services"
+              className="text-xs font-medium tracking-[0.16em] text-cream/85 uppercase underline decoration-cream/40 underline-offset-4 transition-colors hover:text-cream hover:decoration-cream"
+            >
+              Pet care services
             </Link>
           </div>
-          <p className="mt-7 text-[11px] font-medium tracking-[0.18em] text-label-muted uppercase">
-            ★ {roverCredentialsLine}
+          <p className="mt-6 text-[11px] font-medium tracking-[0.18em] text-cream/65 uppercase">
+            {brandLanguage.brandByLine}
           </p>
-        </div>
-
-        <div className="relative">
-          <div className="relative aspect-[4/5] max-h-[560px] w-full overflow-hidden rounded-[32px] border border-border">
-            <Image
-              src={designPhotos.homeHero.src}
-              alt={designPhotos.homeHero.alt}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 540px"
-              className="object-cover"
-            />
-          </div>
-          <div
-            className="absolute -bottom-6 -left-6 flex h-[132px] w-[132px] -rotate-[8deg] flex-col items-center justify-center rounded-full bg-wag-sage text-center leading-none text-cream shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
-            aria-hidden
-          >
-            <span className="font-script text-[30px] text-blush">the</span>
-            <span className="-mt-1 font-script text-[34px] text-blush">
-              wag club
-            </span>
-            <span className="mt-1.5 text-[10px] font-medium tracking-[0.24em]">
-              EST. 2025
-            </span>
-          </div>
         </div>
       </div>
     </section>

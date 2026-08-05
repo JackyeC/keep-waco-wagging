@@ -1,37 +1,33 @@
 import type { Metadata } from "next";
-import { BrandStory } from "@/components/home/BrandStory";
-import { HomeDrop } from "@/components/home/HomeDrop";
+import { HomeBrandStory } from "@/components/home/HomeBrandStory";
 import { HomeHero } from "@/components/home/HomeHero";
-import { HomeReviews } from "@/components/home/HomeReviews";
-import { LifestyleCommunity } from "@/components/home/LifestyleCommunity";
-import { MarqueeStrip } from "@/components/home/MarqueeStrip";
-import { TrustSection } from "@/components/home/TrustSection";
-import { WagClubSignup } from "@/components/home/WagClubSignup";
+import { HomeMerchStrip } from "@/components/home/HomeMerchStrip";
+import { HomeNewsletter } from "@/components/home/HomeNewsletter";
+import { HomeServicesBand } from "@/components/home/HomeServicesBand";
+import { HomeSoftProof } from "@/components/home/HomeSoftProof";
 import { designPhotos } from "@/data/designPhotos";
-import { getRecentPosts } from "@/data/blog";
+import { merchAnchorLine } from "@/data/merchCuration";
 import { servicePageMetadata } from "@/lib/metadata";
+import { brandLanguage, cityConfig } from "@/lib/site";
 
 export const metadata: Metadata = servicePageMetadata(
   "/",
-  "Keep Waco Wagging | The Club for Waco Dog People",
-  "The lifestyle brand and club for Waco dog people — exclusive drops, local favorites, and dog-parent perks. Powered by Platinum Scoops: boarding, daycare, training, camp, and poop scooping in Waco, Texas.",
+  "Waco Dog Apparel & Pet Care",
+  `${merchAnchorLine} ${brandLanguage.brandByLine}. Serving ${cityConfig.serviceAreas.slice(0, 4).join(", ")}, and greater ${cityConfig.county}.`,
   designPhotos.homeHero,
 );
 
 export default function HomePage() {
-  const guidePosts = getRecentPosts(3);
-
   return (
     <>
       <HomeHero />
-      <MarqueeStrip />
-      <WagClubSignup id="wag-club" sourcePage="/" variant="panel" />
-      <HomeDrop />
-      <BrandStory />
-      <LifestyleCommunity posts={guidePosts} />
-      <TrustSection />
-      <HomeReviews />
-      <WagClubSignup id="updates-signup" sourcePage="/" variant="closer" />
+      <HomeMerchStrip />
+      <HomeBrandStory />
+      <HomeServicesBand />
+      <HomeSoftProof />
+      <div id="guides" className="scroll-mt-24">
+        <HomeNewsletter sourcePage="/" />
+      </div>
     </>
   );
 }
