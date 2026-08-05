@@ -19,19 +19,23 @@ export function HomeHero() {
         style={{ objectPosition: hero.objectPosition }}
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-bark/75 via-bark/25 to-bark/10"
+        className="absolute inset-0 bg-gradient-to-t from-bark/90 via-bark/45 to-bark/20"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-bark/55 via-bark/15 to-transparent"
         aria-hidden
       />
 
       <div className="relative mx-auto flex min-h-[min(92vh,820px)] max-w-[1200px] flex-col justify-end px-6 pb-14 pt-28 sm:pb-16 lg:pb-20">
         <div className="motion-hero-copy max-w-xl text-cream">
-          <p className="font-display text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95] font-medium tracking-[-0.02em]">
+          <p className="font-display text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95] font-medium tracking-[-0.02em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
             Keep Waco{" "}
             <span className="font-script text-[clamp(2.85rem,7.5vw,5rem)] text-blush">
               wagging
             </span>
           </p>
-          <p className="mt-4 max-w-sm text-[15px] font-light leading-relaxed text-cream/85">
+          <p className="mt-4 max-w-sm text-[15px] font-light leading-relaxed text-cream/90">
             {merchAnchorLine}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
@@ -43,12 +47,12 @@ export function HomeHero() {
             </Link>
             <Link
               href="/#services"
-              className="text-xs font-medium tracking-[0.16em] text-cream/80 uppercase underline decoration-cream/35 underline-offset-4 transition-colors hover:text-cream hover:decoration-cream"
+              className="text-xs font-medium tracking-[0.16em] text-cream/85 uppercase underline decoration-cream/40 underline-offset-4 transition-colors hover:text-cream hover:decoration-cream"
             >
               Pet care services
             </Link>
           </div>
-          <p className="mt-6 text-[11px] font-medium tracking-[0.18em] text-cream/55 uppercase">
+          <p className="mt-6 text-[11px] font-medium tracking-[0.18em] text-cream/65 uppercase">
             {brandLanguage.brandByLine}
           </p>
         </div>

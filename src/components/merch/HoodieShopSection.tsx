@@ -18,19 +18,23 @@ export function HoodieShopHero() {
         style={{ objectPosition: hero.objectPosition }}
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-bark/80 via-bark/30 to-bark/15"
+        className="absolute inset-0 bg-gradient-to-t from-bark/90 via-bark/45 to-bark/25"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-bark/50 via-bark/15 to-transparent"
         aria-hidden
       />
 
       <div className="relative mx-auto flex min-h-[min(72vh,640px)] max-w-[1200px] flex-col justify-end px-6 pb-12 pt-24 sm:pb-14">
         <div className="motion-hero-copy max-w-lg text-cream">
-          <h1 className="font-display text-[clamp(2.5rem,6vw,4.25rem)] leading-[0.95] font-medium tracking-[-0.02em]">
+          <h1 className="font-display text-[clamp(2.5rem,6vw,4.25rem)] leading-[0.95] font-medium tracking-[-0.02em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
             Wear the{" "}
             <span className="font-script text-[clamp(2.6rem,6.5vw,4.5rem)] text-blush">
               Wag
             </span>
           </h1>
-          <p className="mt-4 max-w-sm text-[15px] font-light leading-relaxed text-cream/85">
+          <p className="mt-4 max-w-sm text-[15px] font-light leading-relaxed text-cream/90">
             {merchAnchorLine}
           </p>
           <a
