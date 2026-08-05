@@ -1,23 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
 import {
-  HoodieImpactPanel,
   HoodieShopHero,
   featuredHoodieHandles,
 } from "@/components/merch/HoodieShopSection";
-import { MerchPurposePanel } from "@/components/merch/MerchPurposePanel";
 import { ShopBagButton } from "@/components/merch/ShopCartDrawer";
-import { ShopByBreedPicker } from "@/components/merch/ShopByBreedPicker";
-import { ShopCollectionLink } from "@/components/merch/ShopCollectionLink";
 import { ShopExperience } from "@/components/merch/ShopExperience";
 import { ShopProductGrid } from "@/components/merch/ShopProductGrid";
-import { Button } from "@/components/ui/Button";
 import {
   getAccessoryProducts,
-  groupByDesign,
   merchAnchorLine,
-  pickCuratedCollectionProducts,
   pickFeaturedProducts,
 } from "@/data/merchCuration";
 import {
@@ -27,9 +18,10 @@ import {
   getShopifyStorefrontUrl,
   shopifyStoreConfig,
 } from "@/data/merchStore";
+import { designPhotos } from "@/data/designPhotos";
 import { servicePageMetadata } from "@/lib/metadata";
 import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
-import { cityConfig, ctas } from "@/lib/site";
+import { cityConfig } from "@/lib/site";
 
 export const revalidate = 600;
 
@@ -38,7 +30,12 @@ const pageDescription =
   "Celebrating dog parents + Waco. Shop skyline tees, dog mom & dad shirts, breed hoodies, totes, and mugs — cute shirts, local impact.";
 
 export const metadata: Metadata = {
-  ...servicePageMetadata("/shop", pageTitle, pageDescription),
+  ...servicePageMetadata(
+    "/shop",
+    pageTitle,
+    pageDescription,
+    designPhotos.shopHero,
+  ),
   openGraph: {
     title: pageTitle,
     description: pageDescription,
@@ -47,8 +44,8 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: cityConfig.brand.logo.full.src,
-        alt: cityConfig.brand.logo.full.alt,
+        url: designPhotos.shopHero.src,
+        alt: designPhotos.shopHero.alt,
       },
     ],
   },
@@ -56,17 +53,51 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: pageTitle,
     description: pageDescription,
-    images: [cityConfig.brand.logo.full.src],
+    images: [designPhotos.shopHero.src],
   },
 };
 
 function ShopBagBar() {
   return (
-    <div className="border-b border-border bg-cream/95 backdrop-blur-sm">
+    <div className="border-b border-border/70 bg-cream/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1200px] items-center justify-end px-6 py-2">
         <ShopBagButton />
       </div>
     </div>
+  );
+}
+
+type ShopCategory = "featured" | "hoodies" | "tees" | "accessories";
+
+function CategoryNav({
+  counts,
+}: {
+  counts: Record<ShopCategory, number>;
+}) {
+  const tabs: { id: ShopCategory; label: string }[] = [
+    { id: "featured", label: "Featured" },
+    { id: "hoodies", label: "Hoodies" },
+    { id: "tees", label: "Tees" },
+    { id: "accessories", label: "Accessories" },
+  ];
+
+  return (
+    <nav
+      aria-label="Shop categories"
+      className="flex flex-wrap gap-x-6 gap-y-2 border-b border-border pb-4"
+    >
+      {tabs.map((tab) =>
+        counts[tab.id] > 0 ? (
+          <a
+            key={tab.id}
+            href={`#${tab.id}`}
+            className="text-xs font-medium tracking-[0.16em] text-label-muted uppercase transition-colors hover:text-serif-ink"
+          >
+            {tab.label}
+          </a>
+        ) : null,
+      )}
+    </nav>
   );
 }
 
@@ -75,183 +106,117 @@ export default async function ShopPage() {
     await fetchShopifyCatalog();
   const storeLive = catalog.length > 0;
   const featured = pickFeaturedProducts(catalog, batch1CuratedCollectionMeta.maxProducts);
-  const curatedCollection = pickCuratedCollectionProducts(catalog);
   const hoodies = catalog.filter((p) => featuredHoodieHandles.includes(p.slug));
-  const designGroups = groupByDesign(catalog);
   const accessories = getAccessoryProducts(catalog);
+  const tees = catalog.filter(
+    (p) =>
+      /tee|t-shirt|shirt/i.test(`${p.slug} ${p.name}`) &&
+      !/hoodie|sweatshirt|mug|tote|hat|bandana/i.test(p.slug) &&
+      !hoodies.some((h) => h.id === p.id) &&
+      !accessories.some((a) => a.id === p.id),
+  );
   const storefrontUrl = getShopifyStorefrontUrl();
+
+  const counts = {
+    featured: featured.length,
+    hoodies: hoodies.length,
+    tees: tees.length,
+    accessories: accessories.length,
+  };
 
   return (
     <ShopExperience cartOptionsByHandle={cartOptionsByHandle}>
       <ShopBagBar />
       <HoodieShopHero />
-      <HoodieImpactPanel />
-
-      <section className="mx-auto max-w-[1200px] px-6 pb-6 pt-2">
-        <MerchPurposePanel />
-      </section>
 
       {error && (
-        <section className="mx-auto max-w-[1200px] px-6 pb-6">
-          <div className="rounded-[18px] border border-rose/40 bg-soft-cream px-6 py-4 text-sm text-body-muted-light">
-            {error} You can still browse on{" "}
+        <section className="mx-auto max-w-[1200px] px-6 pt-8">
+          <p className="text-sm font-light text-body-muted-light">
+            {error}{" "}
             {storefrontUrl && (
-              <a href={storefrontUrl} className="text-rose-deep hover:text-wag-sage">
-                Shopify
+              <a href={storefrontUrl} className="text-rose-deep underline underline-offset-2 hover:text-wag-sage">
+                Browse on Shopify
               </a>
             )}
-            .
-          </div>
+          </p>
         </section>
       )}
 
       {storeLive ? (
-        <div className="mx-auto max-w-[1200px] px-6 pb-16">
-          <section id="featured" className="scroll-mt-24">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="eyebrow tracking-[0.22em]">Featured</p>
-                <h2 className="heading mt-1.5 text-[36px]">Launch favorites</h2>
-                <p className="dek mt-2 max-w-xl text-[15px]">{merchAnchorLine}</p>
-              </div>
-              <p className="text-xs font-light text-label-muted">
-                {catalog.length} curated products · {shopifyStoreConfig.priceDisplayNote}
-              </p>
+        <div className="mx-auto max-w-[1200px] px-6 pt-12 pb-20">
+          <CategoryNav counts={counts} />
+
+          <section id="featured" className="mt-12 scroll-mt-28">
+            <div className="max-w-xl">
+              <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
+                Featured
+              </h2>
+              <p className="dek mt-2 text-[15px]">{merchAnchorLine}</p>
             </div>
-            <div className="mt-6">
-              <ShopProductGrid products={featured} columns={3} />
+            <div className="mt-8">
+              <ShopProductGrid products={featured} columns={4} />
             </div>
           </section>
 
-          <section id="hoodies" className="mt-16 scroll-mt-24">
-            <div className="text-center">
-              <p className="eyebrow tracking-[0.22em]">Hoodies</p>
-              <h2 className="heading mt-1.5 text-[38px]">Waco skyline fleece</h2>
-              <p className="dek mx-auto mt-3 max-w-xl">
-                Breed editions with the Waco skyline — pick color and size, add to
-                bag, checkout on Shopify. Mixed bags welcome.
-              </p>
-            </div>
-            {hoodies.length > 0 ? (
+          {hoodies.length > 0 && (
+            <section id="hoodies" className="mt-20 scroll-mt-28">
+              <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
+                Hoodies
+              </h2>
               <div className="mt-8">
                 <ShopProductGrid products={hoodies} columns={3} />
               </div>
-            ) : (
-              <p className="body-light mt-8 text-center text-sm">
-                Hoodie listings are loading — refresh shortly or visit Shopify directly.
-              </p>
-            )}
-          </section>
+            </section>
+          )}
 
-          <ShopByBreedPicker catalog={catalog} />
-
-          {designGroups.map((group) => (
-            <section key={group.id} className="mt-16">
-              <div className="max-w-2xl">
-                <p className="eyebrow tracking-[0.22em]">Shop by design</p>
-                <h2 className="heading mt-1.5 text-[32px]">{group.label}</h2>
-                <p className="dek mt-2 text-[15px]">{group.description}</p>
-              </div>
-              <div className="mt-6">
-                <ShopProductGrid products={group.products} columns={3} />
+          {tees.length > 0 && (
+            <section id="tees" className="mt-20 scroll-mt-28">
+              <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
+                Tees
+              </h2>
+              <div className="mt-8">
+                <ShopProductGrid products={tees.slice(0, 12)} columns={4} />
               </div>
             </section>
-          ))}
+          )}
 
           {accessories.length > 0 && (
-            <section className="mt-16">
-              <div className="max-w-2xl">
-                <p className="eyebrow tracking-[0.22em]">Accessories</p>
-                <h2 className="heading mt-1.5 text-[32px]">
-                  Totes, mugs & more
-                </h2>
-                <p className="dek mt-2 text-[15px]">
-                  Market runs, coffee breaks, bandanas, and sticker packs.
-                </p>
-              </div>
-              <div className="mt-6">
-                <ShopProductGrid products={accessories.slice(0, 12)} columns={3} />
+            <section id="accessories" className="mt-20 scroll-mt-28">
+              <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
+                Accessories
+              </h2>
+              <div className="mt-8">
+                <ShopProductGrid products={accessories.slice(0, 12)} columns={4} />
               </div>
             </section>
           )}
 
-          {curatedCollection.length > 0 && (
-            <div className="mt-14 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <ShopCollectionLink
-                href={batch1CuratedCollectionMeta.localRoute}
-                className="btn-pill btn-sage inline-flex items-center gap-2 px-7 py-3"
-              />
-              {storefrontUrl && (
-                <a
-                  href={storefrontUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11px] font-light text-label-muted hover:text-wag-sage"
-                >
-                  Full Shopify catalog (operational)
-                </a>
-              )}
-            </div>
-          )}
-
-          <aside className="mt-10 max-w-2xl rounded-[18px] border border-border bg-soft-cream p-5">
-            <p className="text-sm font-light leading-relaxed text-body-muted-light">
-              {shopifyStoreConfig.fulfillmentNote}
-            </p>
-            <p className="mt-2 text-xs font-light text-label-muted">
-              {shopifyStoreConfig.externalCheckoutNote}
-            </p>
-          </aside>
+          <p className="mt-16 max-w-lg text-[13px] font-light leading-relaxed text-label-muted">
+            {shopifyStoreConfig.fulfillmentNote}{" "}
+            {shopifyStoreConfig.externalCheckoutNote}
+          </p>
         </div>
       ) : (
-        <section className="mx-auto max-w-[1200px] px-6 pb-16">
-          <div className="card-panel px-8 py-12 text-center">
-            <p className="font-display text-2xl text-serif-ink">
-              {error ? "Merch temporarily unavailable" : "Merch loading…"}
-            </p>
-            <p className="body-light mx-auto mt-3 max-w-md text-sm">
-              {error ??
-                "We could not reach Shopify. Try again in a moment or visit the store directly."}
-            </p>
-            {storefrontUrl && (
-              <a
-                href={storefrontUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-pill btn-sage mt-6 inline-flex items-center gap-2 px-6 py-3"
-              >
-                Visit Shopify store
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            )}
-          </div>
+        <section className="mx-auto max-w-[1200px] px-6 py-20 text-center">
+          <p className="font-display text-2xl text-serif-ink">
+            {error ? "Merch temporarily unavailable" : "Merch loading…"}
+          </p>
+          <p className="body-light mx-auto mt-3 max-w-md text-sm">
+            {error ??
+              "We could not reach Shopify. Try again in a moment or visit the store directly."}
+          </p>
+          {storefrontUrl && (
+            <a
+              href={storefrontUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline underline-offset-4"
+            >
+              Visit Shopify store
+            </a>
+          )}
         </section>
       )}
-
-      <section className="border-t border-border bg-soft-cream py-12">
-        <div className="mx-auto max-w-[1200px] px-6 text-center">
-          <p className="eyebrow">Pet care first</p>
-          <h2 className="heading mt-2 text-[28px]">
-            Need boarding, scooping, or training?
-          </h2>
-          <p className="dek mx-auto mt-3 max-w-lg">
-            Merch supports the mission — services are how we care for Waco dogs
-            every day.
-          </p>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button href={ctas.bookService.href} variant="sage" size="lg">
-              {ctas.bookService.label}
-            </Button>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-body-muted hover:text-rose"
-            >
-              Contact us
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
     </ShopExperience>
   );
 }

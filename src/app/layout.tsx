@@ -9,9 +9,7 @@ import "./globals.css";
 import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { WagBand } from "@/components/layout/WagBand";
 import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
-import { PodcastBar } from "@/components/PodcastBar";
 import { brandLanguage, siteConfig } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({
@@ -97,13 +95,11 @@ export default function RootLayout({
         </a>
         <OrganizationJsonLd />
         <AnnouncementBar />
-        <PodcastBar />
         <Header />
         <main id="main-content" className="flex-1">
           {children}
         </main>
         <Footer />
-        <WagBand />
         <Analytics />
       </body>
     </html>

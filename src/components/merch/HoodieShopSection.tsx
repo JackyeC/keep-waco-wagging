@@ -1,92 +1,44 @@
-import Link from "next/link";
 import Image from "next/image";
 import { designPhotos } from "@/data/designPhotos";
+import { merchAnchorLine } from "@/data/merchCuration";
 import { featuredHoodies } from "@/data/hoodieShop";
-import { ctas } from "@/lib/site";
-import { roverCredentialsLine } from "@/lib/roverCredentials";
 
 export function HoodieShopHero() {
+  const hero = designPhotos.shopHero;
+
   return (
-    <section className="mx-auto max-w-[1200px] px-6 pt-10 pb-6">
-      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
-        <div>
-          <span className="eyebrow tracking-[0.2em]">
-            Keep Waco Wagging · by Platinum Scoops
-          </span>
-          <h1 className="display mt-3 text-balance">
+    <section className="relative min-h-[min(72vh,640px)] w-full overflow-hidden bg-bark">
+      <Image
+        src={hero.src}
+        alt={hero.alt}
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover motion-hero-image"
+        style={{ objectPosition: hero.objectPosition }}
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-bark/80 via-bark/30 to-bark/15"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto flex min-h-[min(72vh,640px)] max-w-[1200px] flex-col justify-end px-6 pb-12 pt-24 sm:pb-14">
+        <div className="motion-hero-copy max-w-lg text-cream">
+          <h1 className="font-display text-[clamp(2.5rem,6vw,4.25rem)] leading-[0.95] font-medium tracking-[-0.02em]">
             Wear the{" "}
-            <span className="font-script text-[clamp(2.75rem,5vw,4.5rem)] text-rose">
+            <span className="font-script text-[clamp(2.6rem,6.5vw,4.5rem)] text-blush">
               Wag
             </span>
           </h1>
-          <p className="dek mt-5 max-w-md">
-            Keep Waco Wagging hoodies, made for Waco dog people. Local
-            Waco-skyline designs with the recognizable ALICO Building — printed
-            on demand on premium Gildan Heavy Blend fleece.
+          <p className="mt-4 max-w-sm text-[15px] font-light leading-relaxed text-cream/85">
+            {merchAnchorLine}
           </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a href="#hoodies" className="btn-pill btn-sage px-7 py-4">
-              Shop the hoodies
-            </a>
-            <Link href={ctas.bookService.href} className="btn-pill btn-rose-outline px-7 py-3.5">
-              Book a service
-            </Link>
-          </div>
-          <p className="mt-6 text-xs font-medium tracking-[0.18em] text-label-muted uppercase">
-            {roverCredentialsLine}
-          </p>
-        </div>
-        <div className="relative aspect-[4/5] max-h-[460px] w-full overflow-hidden rounded-[28px] border border-border">
-          <Image
-            src={designPhotos.homeHero.src}
-            alt="Dogs on a walk in Waco wearing Keep Waco Wagging spirit"
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 560px"
-            className="object-cover object-[center_35%]"
-          />
-          <div
-            className="absolute -bottom-4 -left-4 flex h-[118px] w-[118px] rotate-[-7deg] flex-col items-center justify-center rounded-full bg-wag-sage text-center text-cream shadow-[0_10px_26px_rgba(0,0,0,0.16)] sm:-bottom-5 sm:-left-5"
-            aria-hidden
+          <a
+            href="#featured"
+            className="btn-pill mt-8 inline-flex bg-cream px-8 py-3.5 text-bark hover:bg-soft-cream"
           >
-            <span className="font-script text-[34px] text-blush">waco</span>
-            <span className="mt-1 text-[11px] font-medium tracking-[0.24em]">
-              STRONG
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function HoodieImpactPanel() {
-  return (
-    <section className="mx-auto max-w-[1200px] px-6 pb-8">
-      <div className="grid gap-4 rounded-[22px] border border-border bg-soft-cream p-6 md:grid-cols-3 md:gap-0 md:p-8">
-        <div className="text-center md:px-6">
-          <p className="font-display text-[30px] font-bold text-wag-sage">
-            5.0 ★
-          </p>
-          <p className="mt-1.5 text-[13px] font-light text-body-muted-light">
-            on Rover · 73 reviews · Star Sitter
-          </p>
-        </div>
-        <div className="border-border text-center md:border-x md:px-6">
-          <p className="font-display text-[30px] font-bold text-wag-sage">
-            Family-run
-          </p>
-          <p className="mt-1.5 text-[13px] font-light text-body-muted-light">
-            by Jackye & Todd Clayton in Waco
-          </p>
-        </div>
-        <div className="text-center md:px-6">
-          <p className="font-display text-[30px] font-bold text-wag-sage">
-            Printed here
-          </p>
-          <p className="mt-1.5 text-[13px] font-light text-body-muted-light">
-            on demand · premium Gildan fleece
-          </p>
+            Shop the collection
+          </a>
         </div>
       </div>
     </section>

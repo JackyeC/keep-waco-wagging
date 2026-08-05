@@ -1,6 +1,5 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
@@ -30,11 +29,9 @@ function OptionPills({
   const isColor = isGarmentColorOption(values);
 
   return (
-    <div className="mt-4">
-      <p className="text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
-        {label}
-      </p>
-      <div className="mt-2 flex flex-wrap gap-2">
+    <div className="mt-3">
+      <p className="sr-only">{label}</p>
+      <div className="flex flex-wrap gap-1.5">
         {values.map((value) => {
           const active = selected === value;
           const unavailable = soldOut?.(value);
@@ -48,12 +45,12 @@ function OptionPills({
                 disabled={unavailable}
                 aria-label={`${label} ${value}${unavailable ? ", sold out" : ""}`}
                 aria-pressed={active}
-                className="h-8 w-8 rounded-full border-2 transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage disabled:cursor-not-allowed disabled:opacity-40"
+                className="h-6 w-6 rounded-full border transition-shadow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage disabled:cursor-not-allowed disabled:opacity-40"
                 style={{
                   backgroundColor: garmentColorHex[value] ?? "#ccc",
                   borderColor: active ? "#6E7E63" : "#DACEBC",
                   boxShadow: active
-                    ? "0 0 0 2px #FBF6EF, 0 0 0 4px #6E7E63"
+                    ? "0 0 0 1px #FBF6EF, 0 0 0 2px #6E7E63"
                     : "none",
                 }}
               />
@@ -67,10 +64,10 @@ function OptionPills({
               onClick={() => onSelect(value)}
               disabled={unavailable}
               aria-pressed={active}
-              className={`min-w-[2.5rem] rounded-full border px-3 py-1.5 text-xs font-medium tracking-[0.08em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage disabled:cursor-not-allowed disabled:opacity-40 ${
+              className={`min-w-[2rem] border px-2 py-1 text-[10px] font-medium tracking-[0.08em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wag-sage disabled:cursor-not-allowed disabled:opacity-40 ${
                 active
                   ? "border-wag-sage bg-wag-sage text-cream"
-                  : "border-border bg-cream text-body-muted-light hover:border-wag-sage"
+                  : "border-border bg-transparent text-body-muted-light hover:border-wag-sage"
               }`}
             >
               {value}
@@ -155,10 +152,7 @@ export function MerchProductCard({
   }
 
   return (
-    <article
-      ref={viewRef}
-      className="flex h-full flex-col overflow-hidden rounded-[20px] border border-border bg-soft-cream transition-colors hover:border-rose"
-    >
+    <article ref={viewRef} className="group flex h-full flex-col">
       <a
         href={storefrontUrl}
         target="_blank"
@@ -166,14 +160,14 @@ export function MerchProductCard({
         className="block"
         onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
       >
-        <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray p-4 sm:p-5">
+        <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray">
           {product.image?.src ? (
             <Image
               src={product.image.src}
               alt={product.image.alt}
               fill
               sizes="(max-width: 640px) calc(100vw - 3rem), (max-width: 1024px) calc(50vw - 3rem), 360px"
-              className="object-contain p-4 sm:p-5"
+              className="object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.03] sm:p-6"
             />
           ) : (
             <ImagePlaceholder alt={product.name} />
@@ -181,11 +175,19 @@ export function MerchProductCard({
         </div>
       </a>
 
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-[21px] font-semibold leading-snug text-serif-ink">
+      <div className="flex flex-1 flex-col pt-4">
+        <h3 className="font-display text-[19px] font-medium leading-snug text-serif-ink">
           {product.name}
         </h3>
-        <p className="body-light mt-2 flex-1 text-[13px]">{product.description}</p>
+
+        {displayPrice && (
+          <p className="mt-1 text-[13px] font-light text-body-muted">
+            {displayPrice}
+            {selectedVariant && !selectedVariant.available && (
+              <span className="ml-2 text-xs text-rose-deep">Sold out</span>
+            )}
+          </p>
+        )}
 
         {supportsCart && cart && (
           <>
@@ -214,48 +216,33 @@ export function MerchProductCard({
           </>
         )}
 
-        {displayPrice && (
-          <p className="mt-3 font-display text-lg font-semibold text-wag-sage">
-            {displayPrice}
-            {selectedVariant && !selectedVariant.available && (
-              <span className="ml-2 text-xs font-sans font-normal text-rose-deep">
-                Sold out
-              </span>
-            )}
-          </p>
-        )}
-
         {error && (
           <p className="mt-2 text-xs text-rose-deep" role="alert">
             {error}
           </p>
         )}
 
-        <div className="mt-4 flex flex-col gap-2">
+        <div className="mt-4">
           {supportsCart ? (
             <button
               type="button"
               onClick={handleAdd}
               disabled={selectedVariant !== undefined && !selectedVariant.available}
-              className="btn-pill btn-sage w-full py-2.5 text-[11px] disabled:cursor-not-allowed disabled:opacity-50"
+              className="text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline decoration-border underline-offset-4 transition-colors hover:text-rose hover:decoration-rose disabled:cursor-not-allowed disabled:opacity-50"
             >
               Add to bag
             </button>
           ) : (
-            <p className="text-[11px] font-light text-label-muted">
-              Choose options on Shopify
-            </p>
+            <a
+              href={storefrontUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline decoration-border underline-offset-4 hover:text-rose hover:decoration-rose"
+              onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
+            >
+              Shop
+            </a>
           )}
-          <a
-            href={storefrontUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-pill btn-rose-outline inline-flex w-full items-center justify-center gap-1.5 py-2.5 text-[11px]"
-            onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
-          >
-            View on Shopify
-            <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          </a>
         </div>
       </div>
     </article>
