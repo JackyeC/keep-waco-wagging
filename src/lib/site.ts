@@ -392,9 +392,8 @@ export function buildAmazonProductImageUrl(
 /** Sage announcement bar — edit copy here without touching the component. */
 export const announcementBar = {
   enabled: true,
-  message:
-    "Free local Waco pickup · Ships nationwide · Printed on demand with love",
-  showHeart: true,
+  message: "Free local Waco pickup · Ships nationwide",
+  showHeart: false,
 } as const;
 
 export const podcast = {

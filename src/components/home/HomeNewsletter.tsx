@@ -60,21 +60,20 @@ export function HomeNewsletter({ sourcePage = "/" }: HomeNewsletterProps) {
   }
 
   return (
-    <section className="mx-auto mt-14 max-w-[1200px] px-6">
-      <div className="card-panel flex flex-wrap items-center justify-between gap-6 p-8 md:p-10">
+    <section className="mx-auto max-w-[1200px] px-6 py-16 sm:py-20">
+      <div className="mx-auto flex max-w-xl flex-col items-center gap-6 text-center">
         <div>
-          <h3 className="font-display text-[30px] font-semibold text-serif-ink">
-            Get Keep Waco Wagging updates
+          <h3 className="font-display text-[28px] font-medium text-serif-ink">
+            Stay in the loop
           </h3>
           <p className="mt-2 text-[14.5px] font-light text-body-muted-light">
-            Dog-camp openings, Waco pet events, and helpful notes for local dog
-            families. No spam.
+            New drops, camp openings, and quiet notes for Waco dog families.
           </p>
         </div>
 
         {submitted ? (
           <div
-            className="flex min-w-[290px] flex-1 items-center gap-3 text-sm text-wag-sage"
+            className="flex items-center justify-center gap-3 text-sm text-wag-sage"
             role="status"
           >
             <CheckCircle2 className="h-5 w-5 shrink-0" />
@@ -83,7 +82,7 @@ export function HomeNewsletter({ sourcePage = "/" }: HomeNewsletterProps) {
         ) : (
           <form
             onSubmit={onSubmit}
-            className="flex min-w-[290px] flex-1 max-w-[450px] gap-2.5"
+            className="flex w-full max-w-[420px] gap-2.5"
           >
             <input type="hidden" name="sourcePage" value={sourcePage} />
             <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
@@ -113,14 +112,14 @@ export function HomeNewsletter({ sourcePage = "/" }: HomeNewsletterProps) {
         )}
 
         {!submitted && (
-          <div className="w-full">
+          <div className="w-full max-w-[420px]">
             <LeadSignupConsent />
           </div>
         )}
 
         {error && (
           <p
-            className="flex w-full items-center gap-2 text-sm text-red-600"
+            className="flex items-center justify-center gap-2 text-sm text-red-600"
             role="alert"
           >
             <AlertCircle className="h-4 w-4 shrink-0" />

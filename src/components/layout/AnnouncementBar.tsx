@@ -6,13 +6,13 @@ export function AnnouncementBar() {
   }
 
   return (
-    <div className="bg-wag-sage px-4 py-2.5 text-center text-cream">
-      <p className="text-[12.5px] font-normal tracking-[0.16em] uppercase">
+    <div className="border-b border-border/80 bg-soft-cream px-4 py-2 text-center">
+      <p className="text-[11px] font-medium tracking-[0.18em] text-label-muted uppercase">
         {announcementBar.message}
         {announcementBar.showHeart && (
           <>
             {" "}
-            <span className="text-blush-warm" aria-hidden="true">
+            <span className="text-rose" aria-hidden="true">
               ♥
             </span>
           </>
