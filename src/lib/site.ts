@@ -161,12 +161,13 @@ export const servicesNav: NavLink[] = [
   { label: "Summer Dog Camp", href: "/summer-daycare" },
 ];
 
-// Primary nav — rendered in Header.tsx (5 items + services dropdown).
+// Primary nav — rendered in Header.tsx (club/shop-first + Pet Care dropdown).
 export const mainNav: NavLink[] = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/#services" },
   { label: "Shop", href: "/shop" },
-  { label: "Guides", href: "/dog-friendly-waco" },
+  { label: "The Drop", href: "/shop#featured" },
+  { label: "Wag Club", href: "/#wag-club" },
+  { label: "Waco", href: "/dog-friendly-waco" },
+  { label: "Pet Care", href: "/pet-care" },
   { label: "About", href: "/about" },
 ];
 
@@ -242,6 +243,14 @@ export const ctas = {
   visitShop: {
     label: "Visit the Shop",
     href: "/shop",
+  },
+  joinClub: {
+    label: "Join the Wag Club",
+    href: "/#wag-club",
+  },
+  shopDrop: {
+    label: "Shop the Drop",
+    href: "/shop#featured",
   },
   gearGuide: {
     label: "Gear Guide",
@@ -389,11 +398,18 @@ export function buildAmazonProductImageUrl(
   return `https://m.media-amazon.com/images/P/${asin}.01._SL${size}_.jpg`;
 }
 
-/** Sage announcement bar — edit copy here without touching the component. */
+/**
+ * Sage announcement bar — club-first rotating messages.
+ * Edit copy here without touching the component. Keep messages short and
+ * grounded (no invented promotions or donation percentages).
+ */
 export const announcementBar = {
   enabled: true,
-  message:
-    "Free local Waco pickup · Ships nationwide · Printed on demand with love",
+  messages: [
+    "Join the Wag Club for first access to drops, local perks & dog-parent favorites.",
+    "Free local Waco pickup · Ships nationwide.",
+    "Every order helps local Waco dogs.",
+  ],
   showHeart: true,
 } as const;
 
