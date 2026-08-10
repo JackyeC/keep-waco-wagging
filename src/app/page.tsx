@@ -1,23 +1,20 @@
 import type { Metadata } from "next";
-import { HomeSummerCalendar } from "@/components/home/HomeSummerCalendar";
-import { BookCta } from "@/components/home/BookCta";
-import { GuideCards } from "@/components/home/GuideCards";
+import { BrandStory } from "@/components/home/BrandStory";
+import { HomeDrop } from "@/components/home/HomeDrop";
 import { HomeHero } from "@/components/home/HomeHero";
-import { HomeNewsletter } from "@/components/home/HomeNewsletter";
 import { HomeReviews } from "@/components/home/HomeReviews";
+import { LifestyleCommunity } from "@/components/home/LifestyleCommunity";
 import { MarqueeStrip } from "@/components/home/MarqueeStrip";
-import { MerchBand } from "@/components/home/MerchBand";
-import { ServiceCardGrid } from "@/components/home/ServiceCardGrid";
-import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { TrustSection } from "@/components/home/TrustSection";
+import { WagClubSignup } from "@/components/home/WagClubSignup";
 import { designPhotos } from "@/data/designPhotos";
 import { getRecentPosts } from "@/data/blog";
 import { servicePageMetadata } from "@/lib/metadata";
-import { brandLanguage, cityConfig } from "@/lib/site";
 
 export const metadata: Metadata = servicePageMetadata(
   "/",
-  "Waco Dog Boarding, Daycare & Poop Scooping",
-  `${brandLanguage.heroLine}. ${brandLanguage.brandByLine}. Serving ${cityConfig.serviceAreas.slice(0, 4).join(", ")}, and greater ${cityConfig.county}.`,
+  "Keep Waco Wagging | The Club for Waco Dog People",
+  "The lifestyle brand and club for Waco dog people — exclusive drops, local favorites, and dog-parent perks. Powered by Platinum Scoops: boarding, daycare, training, camp, and poop scooping in Waco, Texas.",
   designPhotos.homeHero,
 );
 
@@ -28,14 +25,13 @@ export default function HomePage() {
     <>
       <HomeHero />
       <MarqueeStrip />
-      <WhyChooseUs />
-      <ServiceCardGrid />
+      <WagClubSignup id="wag-club" sourcePage="/" variant="panel" />
+      <HomeDrop />
+      <BrandStory />
+      <LifestyleCommunity posts={guidePosts} />
+      <TrustSection />
       <HomeReviews />
-      <MerchBand />
-      <HomeSummerCalendar />
-      <GuideCards posts={guidePosts} />
-      <BookCta />
-      <HomeNewsletter sourcePage="/" />
+      <WagClubSignup id="updates-signup" sourcePage="/" variant="closer" />
     </>
   );
 }

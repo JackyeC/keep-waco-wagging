@@ -86,10 +86,13 @@ export function MerchProductCard({
   product,
   trackDetailView = false,
   detailViewSource = "shop",
+  badge,
 }: {
   product: MerchProduct;
   trackDetailView?: boolean;
   detailViewSource?: string;
+  /** Optional merchandising label (e.g. "Club Favorite", "New Drop"). */
+  badge?: string;
 }) {
   const { addProduct, cartOptionsByHandle } = useShopCart();
   const [option1, setOption1] = useState<string | null>(
@@ -167,6 +170,11 @@ export function MerchProductCard({
         onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
       >
         <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray p-4 sm:p-5">
+          {badge && (
+            <span className="absolute top-3 left-3 z-10 rounded-full bg-cream/95 px-3 py-1 text-[10px] font-medium tracking-[0.14em] text-rose-deep uppercase shadow-sm">
+              {badge}
+            </span>
+          )}
           {product.image?.src ? (
             <Image
               src={product.image.src}

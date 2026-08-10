@@ -286,6 +286,26 @@
     }
   }
 
+  @keyframes kwwFade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes kwwRise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .sr-only {
     position: absolute;
     width: 1px;

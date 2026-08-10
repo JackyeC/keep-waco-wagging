@@ -10,29 +10,20 @@ import { useDialogFocus } from "@/lib/focusTrap";
 import { cn } from "@/lib/utils";
 
 const primaryNav = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/#services", isServices: true },
   { label: "Shop", href: "/shop" },
-  { label: "Guides", href: "/dog-friendly-waco", isGuides: true },
+  { label: "The Drop", href: "/shop#featured" },
+  { label: "Wag Club", href: "/#wag-club" },
+  { label: "Waco", href: "/dog-friendly-waco" },
+  { label: "Pet Care", href: "/pet-care", isServices: true },
   { label: "About", href: "/about" },
 ] as const;
 
-function guidesHref(pathname: string) {
-  return pathname === "/" ? "/#guides" : "/dog-friendly-waco";
-}
-
-function navHref(
-  item: (typeof primaryNav)[number],
-  pathname: string,
-): string {
-  if ("isGuides" in item && item.isGuides) return guidesHref(pathname);
-  return item.href;
-}
-
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
-  if (href.startsWith("/#")) return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
+  if (href.startsWith("/#")) return false;
+  const base = href.split("#")[0];
+  if (!base) return false;
+  return pathname === base || pathname.startsWith(`${base}/`);
 }
 
 export function Header() {
@@ -92,10 +83,10 @@ export function Header() {
                 onMouseLeave={() => setServicesOpen(false)}
               >
                 <Link
-                  href="/#services"
+                  href={item.href}
                   className={cn(
                     "nav-link inline-flex items-center gap-0.5 rounded-full px-2.5 py-2",
-                    pathname === "/" && "text-serif-ink",
+                    isActive(pathname, item.href) && "text-serif-ink",
                   )}
                   aria-expanded={servicesOpen}
                   aria-haspopup="true"
@@ -106,7 +97,7 @@ export function Header() {
                     }
                   }}
                 >
-                  Services
+                  {item.label}
                   <ChevronDown className="h-3.5 w-3.5 opacity-60" aria-hidden />
                 </Link>
                 {servicesOpen && (
@@ -134,11 +125,10 @@ export function Header() {
             ) : (
               <Link
                 key={item.label}
-                href={navHref(item, pathname)}
+                href={item.href}
                 className={cn(
                   "nav-link rounded-full px-2.5 py-2",
-                  isActive(pathname, navHref(item, pathname)) &&
-                    "text-serif-ink",
+                  isActive(pathname, item.href) && "text-serif-ink",
                 )}
               >
                 {item.label}
@@ -148,10 +138,10 @@ export function Header() {
         </nav>
 
         <Link
-          href={ctas.bookService.href}
+          href={ctas.joinClub.href}
           className="btn-pill btn-sage ml-auto hidden px-5 py-2.5 lg:inline-flex"
         >
-          Book a service
+          Join the Wag Club
         </Link>
 
         <button
@@ -182,7 +172,7 @@ export function Header() {
               <Link
                 key={item.label}
                 ref={index === 0 ? firstMobileLinkRef : undefined}
-                href={navHref(item, pathname)}
+                href={item.href}
                 onClick={closeMobile}
                 className="nav-link rounded-xl px-3 py-2.5 text-base"
               >
@@ -190,7 +180,7 @@ export function Header() {
               </Link>
             ))}
             <p className="mt-3 px-3 text-xs font-medium tracking-[0.16em] text-label-muted uppercase">
-              Services
+              Pet Care
             </p>
             {servicesNav.map((link) => (
               <Link
@@ -203,11 +193,11 @@ export function Header() {
               </Link>
             ))}
             <Link
-              href={ctas.bookService.href}
+              href={ctas.joinClub.href}
               onClick={closeMobile}
               className="btn-pill btn-sage mt-3 w-full py-3"
             >
-              Book a service
+              Join the Wag Club
             </Link>
           </nav>
         </div>

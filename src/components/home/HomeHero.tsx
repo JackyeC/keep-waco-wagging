@@ -1,65 +1,67 @@
 import Image from "next/image";
 import Link from "next/link";
 import { designPhotos } from "@/data/designPhotos";
-import {
-  brandLanguage,
-  cityConfig,
-  ctas,
-} from "@/lib/site";
+import { ctas } from "@/lib/site";
 import { roverCredentialsLine } from "@/lib/roverCredentials";
 
 export function HomeHero() {
   return (
-    <section className="mx-auto max-w-[1200px] px-6 pt-10 pb-2">
-      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
-        <div>
-          <span className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.2em] text-label-muted-alt uppercase">
-            {brandLanguage.brandByLine}
+    <section className="mx-auto max-w-[1200px] px-6 pt-12 pb-4 md:pt-16">
+      <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div className="max-w-xl">
+          <span className="eyebrow tracking-[0.28em]">
+            Waco dog people · members club
           </span>
-          <h1 className="display mt-3.5 text-balance">
-            Full-time care for Waco&apos;s{" "}
-            <span className="font-script text-[clamp(2.75rem,5vw,4.375rem)] text-rose">
-              dog families
+          <h1 className="display mt-5 text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95]">
+            The club for Waco{" "}
+            <span className="font-script font-normal text-rose">
+              dog people.
             </span>
           </h1>
-          <p className="mt-4 text-xs font-medium tracking-[0.2em] text-label-muted uppercase">
-            {cityConfig.city}, {cityConfig.stateAbbr} · {cityConfig.county}
+          <p className="dek mt-6 max-w-md text-[1.125rem]">
+            Exclusive drops, local favorites, and first access to what&apos;s
+            next — for the dog people who make Waco better.
           </p>
-          <p className="dek mt-3.5 max-w-md">
-            {brandLanguage.brandRelationship} — the family-run team behind
-            boarding, daycare, scooping, training, and event care.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link href={ctas.bookService.href} className="btn-pill btn-sage px-7 py-4">
-              Book a service
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href={ctas.joinClub.href}
+              className="btn-pill btn-sage px-8 py-4"
+            >
+              Join the Wag Club
             </Link>
-            <a href="#services" className="btn-pill btn-rose-outline px-7 py-3.5">
-              See our services
-            </a>
+            <Link
+              href={ctas.shopDrop.href}
+              className="btn-pill btn-rose-outline px-8 py-[0.9rem]"
+            >
+              Shop the Drop
+            </Link>
           </div>
-          <p className="mt-6 text-xs font-medium tracking-[0.16em] text-label-muted uppercase">
+          <p className="mt-7 text-[11px] font-medium tracking-[0.18em] text-label-muted uppercase">
             ★ {roverCredentialsLine}
           </p>
         </div>
 
         <div className="relative">
-          <div className="relative aspect-[4/5] max-h-[480px] w-full overflow-hidden rounded-[28px] border border-border">
+          <div className="relative aspect-[4/5] max-h-[560px] w-full overflow-hidden rounded-[32px] border border-border">
             <Image
               src={designPhotos.homeHero.src}
               alt={designPhotos.homeHero.alt}
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 560px"
+              sizes="(max-width: 1024px) 100vw, 540px"
               className="object-cover"
             />
           </div>
           <div
-            className="absolute -bottom-5 -left-5 flex h-[118px] w-[118px] -rotate-[7deg] flex-col items-center justify-center rounded-full bg-wag-sage text-center leading-none text-cream shadow-[0_10px_26px_rgba(0,0,0,0.16)]"
+            className="absolute -bottom-6 -left-6 flex h-[132px] w-[132px] -rotate-[8deg] flex-col items-center justify-center rounded-full bg-wag-sage text-center leading-none text-cream shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
             aria-hidden
           >
-            <span className="font-script text-[34px] text-blush">waco</span>
-            <span className="mt-1 text-[11px] font-medium tracking-[0.24em]">
-              STRONG
+            <span className="font-script text-[30px] text-blush">the</span>
+            <span className="-mt-1 font-script text-[34px] text-blush">
+              wag club
+            </span>
+            <span className="mt-1.5 text-[10px] font-medium tracking-[0.24em]">
+              EST. WACO
             </span>
           </div>
         </div>
