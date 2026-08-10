@@ -61,7 +61,7 @@ export function HomeHero() {
               wag club
             </span>
             <span className="mt-1.5 text-[10px] font-medium tracking-[0.24em]">
-              EST. WACO
+              EST. 2025
             </span>
           </div>
         </div>
