@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { WagClubSignup } from "@/components/home/WagClubSignup";
 import { designPhotos } from "@/data/designPhotos";
 import { ctas } from "@/lib/site";
 import { roverCredentialsLine } from "@/lib/roverCredentials";
@@ -22,13 +23,8 @@ export function HomeHero() {
             Exclusive drops, local favorites, and first access to what&apos;s
             next — for the dog people who make Waco better.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href={ctas.joinClub.href}
-              className="btn-pill btn-sage px-8 py-4"
-            >
-              Join the Wag Club
-            </Link>
+          <WagClubSignup variant="hero" id="hero-club" sourcePage="/" />
+          <div className="mt-6">
             <Link
               href={ctas.shopDrop.href}
               className="btn-pill btn-rose-outline px-8 py-[0.9rem]"

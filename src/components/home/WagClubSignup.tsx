@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { LeadSignupConsent } from "@/components/LeadSignupConsent";
 import { cityConfig } from "@/lib/site";
@@ -23,7 +24,7 @@ const closerCopy = {
 type WagClubSignupProps = {
   id?: string;
   sourcePage?: string;
-  variant?: "panel" | "closer";
+  variant?: "panel" | "closer" | "hero";
 };
 
 export function WagClubSignup({
@@ -66,6 +67,8 @@ export function WagClubSignup({
         throw new Error(data.error ?? clubCopy.error);
       }
 
+      // Conversion measurement: one event per completed Wag Club signup.
+      track("wag_list_signup", { source: variant, page: sourcePage ?? "/" });
       setSubmitted(true);
       form.reset();
     } catch (err) {
@@ -157,6 +160,17 @@ export function WagClubSignup({
       )}
     </>
   );
+
+  if (variant === "hero") {
+    return (
+      <div id={id} className="mt-8 max-w-md">
+        <p className="text-[11px] font-medium tracking-[0.18em] text-label-muted uppercase">
+          Join the Wag Club — free
+        </p>
+        <div className="mt-3">{form}</div>
+      </div>
+    );
+  }
 
   if (isCloser) {
     return (
