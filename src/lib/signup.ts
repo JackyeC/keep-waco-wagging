@@ -10,7 +10,7 @@ export const signupCopy = {
     "You're on the list! We'll send dog camp updates, local pet news, and special openings when they're available.",
   successSocial:
     "Want to see the dogs in action? Follow Platinum Scoops on Instagram: @platinum_scoops.",
-  error: "Something went wrong. Please try again or message us directly.",
+  error: "Something went wrong. Please try again.",
   brandLine: "Keep Waco Wagging, presented by Platinum Scoops.",
 } as const;
 

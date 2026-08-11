@@ -24,6 +24,10 @@ Print-ready artwork for Printify lives here once exported. The website repo does
 ```
 source-designs/merch/
   shared/
+    kww-shirt-collection-kit.png      # Kittl graphics, fonts, colors reference
+    kww-shirt-collection-kit.json       # Machine-readable kit spec
+    waco-skyline-owner-approved-2026-07-03.png   # CANONICAL skyline art
+    WACO-SKYLINE-SOURCE-OF-TRUTH.md
     waco-skyline-band.png      # skyline strip reused on bandanas, mats, mugs
     keep-waco-wagging-wordmark.png
   breeds/

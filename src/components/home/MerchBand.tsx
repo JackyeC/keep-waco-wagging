@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { brandEssence } from "@/data/brandVibe";
 import { liveMerchProducts } from "@/data/merchStore";
 
-const featuredHoodies = liveMerchProducts.filter((p) => p.featured).slice(0, 2);
+const featuredMerch = liveMerchProducts.filter((p) => p.featured).slice(0, 2);
 
 export function MerchBand() {
   return (
@@ -10,14 +11,14 @@ export function MerchBand() {
       <div className="grid items-center gap-8 rounded-[26px] bg-clay-rose p-8 md:grid-cols-[1fr_auto] md:gap-10 md:p-11">
         <div>
           <p className="text-xs font-medium tracking-[0.2em] text-[#7a4f49] uppercase">
-            Merch · Wear the Wag
+            Merch · {brandEssence.tagline}
           </p>
           <h2 className="mt-2.5 font-display text-[40px] leading-tight font-semibold text-soft-cream">
-            Keep Waco Wagging hoodies, made for Waco dog people
+            Waco skyline tees & dog-life shirts
           </h2>
           <p className="mt-3 max-w-md text-[15px] font-light leading-relaxed text-[#fbf1ec]">
-            Three Waco-skyline designs — Golden Retriever, Frenchie & Rescue
-            Mutt. Premium fleece, printed on demand, $58.
+            Local designs for Waco dog parents — bridge, skyline, breed editions,
+            and dog mom & dad favorites. Printed to order.
           </p>
           <Link
             href="/shop"
@@ -28,7 +29,7 @@ export function MerchBand() {
         </div>
 
         <div className="flex gap-3.5">
-          {featuredHoodies.map((product, index) =>
+          {featuredMerch.map((product, index) =>
             product.image ? (
               <Link
                 key={product.id}

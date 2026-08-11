@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { designPhotos } from "@/data/designPhotos";
+import { brandEssence, garmentNote, shopHeroCopy } from "@/data/brandVibe";
 import { featuredHoodies } from "@/data/hoodieShop";
 import { ctas } from "@/lib/site";
 import { roverCredentialsLine } from "@/lib/roverCredentials";
@@ -10,26 +11,23 @@ export function HoodieShopHero() {
     <section className="mx-auto max-w-[1200px] px-6 pt-10 pb-6">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
         <div>
-          <span className="eyebrow tracking-[0.2em]">
-            Keep Waco Wagging · by Platinum Scoops
-          </span>
+          <span className="eyebrow tracking-[0.2em]">{shopHeroCopy.eyebrow}</span>
           <h1 className="display mt-3 text-balance">
-            Wear the{" "}
+            {shopHeroCopy.headline}{" "}
             <span className="font-script text-[clamp(2.75rem,5vw,4.5rem)] text-rose">
-              Wag
+              {shopHeroCopy.headlineAccent}
             </span>
           </h1>
-          <p className="dek mt-5 max-w-md">
-            Keep Waco Wagging hoodies, made for Waco dog people. Local
-            Waco-skyline designs with the recognizable ALICO Building — printed
-            on demand on premium Gildan Heavy Blend fleece.
+          <p className="dek mt-5 max-w-md">{shopHeroCopy.description}</p>
+          <p className="mt-3 text-sm font-light text-body-muted-light">
+            {brandEssence.pillars}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="#hoodies" className="btn-pill btn-sage px-7 py-4">
-              Shop the hoodies
+            <a href="#featured" className="btn-pill btn-sage px-7 py-4">
+              {shopHeroCopy.primaryCta}
             </a>
             <Link href={ctas.bookService.href} className="btn-pill btn-rose-outline px-7 py-3.5">
-              Book a service
+              {shopHeroCopy.secondaryCta}
             </Link>
           </div>
           <p className="mt-6 text-xs font-medium tracking-[0.18em] text-label-muted uppercase">
@@ -82,10 +80,10 @@ export function HoodieImpactPanel() {
         </div>
         <div className="text-center md:px-6">
           <p className="font-display text-[30px] font-bold text-wag-sage">
-            Printed here
+            Made to order
           </p>
           <p className="mt-1.5 text-[13px] font-light text-body-muted-light">
-            on demand · premium Gildan fleece
+            {garmentNote}
           </p>
         </div>
       </div>

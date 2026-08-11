@@ -181,18 +181,20 @@ export function EmailSignupForm({
 
       {error && (
         <p
-          className="mt-4 flex items-center gap-2 text-sm text-red-600"
+          className="mt-4 flex items-start gap-2 text-sm text-red-600"
           role="alert"
         >
-          <AlertCircle className="h-4 w-4 shrink-0" />
-          {error}
-          {" "}
-          <a
-            href={`mailto:${cityConfig.sponsor.email}`}
-            className="underline underline-offset-2"
-          >
-            Message us directly
-          </a>
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+          <span>
+            {error} Or{" "}
+            <a
+              href={`mailto:${cityConfig.sponsor.email}`}
+              className="underline underline-offset-2"
+            >
+              message us directly
+            </a>
+            .
+          </span>
         </p>
       )}
 
