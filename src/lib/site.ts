@@ -97,7 +97,7 @@ export const cityConfig = {
     profileUrl:
       "https://www.rover.com/members/jacqueline-todd-c-full-time-pet-care-professionals/",
     rating: "5.0",
-    reviewCount: 73,
+    reviewCount: 119,
     headline: "Full-Time Pet Care Professionals",
     subhead: "Our Empty Nest, Your Dog's Retreat",
   },
