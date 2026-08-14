@@ -67,7 +67,7 @@ export function HoodieImpactPanel() {
             5.0 ★
           </p>
           <p className="mt-1.5 text-[13px] font-light text-body-muted-light">
-            on Rover · 73 reviews · Star Sitter
+            on Rover · 119 reviews · Star Sitter
           </p>
         </div>
         <div className="border-border text-center md:border-x md:px-6">
