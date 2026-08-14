@@ -6,6 +6,8 @@ const trustChips = [
   `${cityConfig.rover.rating} on Rover`,
   `${cityConfig.rover.reviewCount} Rover reviews`,
   "Rover Star Sitter",
+  "49 repeat clients",
+  "GoodPup Certified",
   "Family-run in Waco",
 ];
 
