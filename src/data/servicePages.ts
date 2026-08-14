@@ -149,7 +149,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       eyebrow: "Home-based daycare & boarding",
       title: "A calm Waco home, not a kennel",
       scriptWord: "kennel",
-      metaLine: "★ 5.0 on Rover · 73 reviews · Star Sitter",
+      metaLine: "★ 5.0 on Rover · 119 reviews · Star Sitter",
       description:
         "Your dog stays in our home with full-time attention — walks, enrichment, real rest, and daily photo updates. Bathed in the kitchen sink, dried with the good towels.",
       image: designPhotos.svcBoard,
