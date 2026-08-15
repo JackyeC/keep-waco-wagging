@@ -147,6 +147,32 @@ function placeSchemaType(category: string): string {
   return "LocalBusiness";
 }
 
+/**
+ * FAQPage JSON-LD. Answer-first Q&A is the format both Google rich results
+ * and generative answer engines (AI Overviews, ChatGPT, Perplexity) extract
+ * and cite, so keep each answer factual and self-contained.
+ */
+export function FaqJsonLd({
+  items,
+}: {
+  items: { question: string; answer: string }[];
+}) {
+  if (items.length === 0) return null;
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      }}
+    />
+  );
+}
+
 type DirectoryIndexItem = { name: string; slug: string };
 
 /**
