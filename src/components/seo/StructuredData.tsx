@@ -147,6 +147,99 @@ function placeSchemaType(category: string): string {
   return "LocalBusiness";
 }
 
+/**
+ * FAQPage JSON-LD. Answer-first Q&A is the format both Google rich results
+ * and generative answer engines (AI Overviews, ChatGPT, Perplexity) extract
+ * and cite, so keep each answer factual and self-contained.
+ */
+export function FaqJsonLd({
+  items,
+}: {
+  items: { question: string; answer: string }[];
+}) {
+  if (items.length === 0) return null;
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      }}
+    />
+  );
+}
+
+type DirectoryIndexItem = { name: string; slug: string };
+
+/**
+ * CollectionPage + ItemList JSON-LD for the dog-friendly Waco directory index.
+ * Signals to search engines and AI answer engines that this page is the
+ * curated, authoritative list of dog-friendly / pet-friendly places in Waco,
+ * with each entry linking to its detail page.
+ */
+export function DirectoryIndexJsonLd({
+  listings,
+  description,
+}: {
+  listings: DirectoryIndexItem[];
+  description: string;
+}) {
+  const url = `${cityConfig.url}/dog-friendly-waco`;
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: cityConfig.url },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Dog-Friendly Waco",
+        item: url,
+      },
+    ],
+  };
+
+  const collection = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Dog-Friendly Waco Directory",
+    description,
+    url,
+    isPartOf: {
+      "@type": "WebSite",
+      name: cityConfig.name,
+      url: cityConfig.url,
+    },
+    about: {
+      "@type": "Thing",
+      name: "Dog-friendly and pet-friendly places in Waco, Texas",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: cityConfig.name,
+      url: cityConfig.url,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Dog-friendly places in Waco",
+      numberOfItems: listings.length,
+      itemListElement: listings.map((listing, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: listing.name,
+        url: `${cityConfig.url}/dog-friendly-waco/${listing.slug}`,
+      })),
+    },
+  };
+
+  return <JsonLd data={[breadcrumb, collection]} />;
+}
+
 /** LocalBusiness / Place JSON-LD for dog-friendly directory listings. */
 export function DirectoryListingJsonLd({
   name,
