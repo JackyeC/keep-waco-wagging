@@ -96,10 +96,21 @@ export const cityConfig = {
   rover: {
     profileUrl:
       "https://www.rover.com/members/jacqueline-todd-c-full-time-pet-care-professionals/",
+    /** Personal referral link — gives new Rover clients $40 off their first booking. */
+    referralUrl: "https://www.rover.com/sit/jackyc91388",
     rating: "5.0",
     reviewCount: 119,
     headline: "Full-Time Pet Care Professionals",
     subhead: "Our Empty Nest, Your Dog's Retreat",
+    /** New-client Rover referral offer. Update the deadline/terms as Rover changes them. */
+    referralOffer: {
+      headline: "New to Rover? Get $40 off your first booking.",
+      body:
+        "Book Jackye for boarding, daycare, or drop-ins through Rover, and new Rover clients get $40 off their first booking.",
+      deadline: "2026-09-06",
+      terms:
+        "Referral credit is only for new Rover customers who sign up through this link. New customers must complete a $20+ booking by September 6, 2026 to redeem the credit. Rules and restrictions apply — see Rover's Referral Terms & Conditions.",
+    },
   },
   founders: {
     names: "Jackye and Todd Clayton",

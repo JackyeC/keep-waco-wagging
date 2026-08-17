@@ -4,6 +4,7 @@ import { Bath, CalendarHeart, GraduationCap, Home, Sparkles } from "lucide-react
 import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { RoverReferralCta } from "@/components/RoverReferralCta";
 import { servicePageMetadata } from "@/lib/metadata";
 import { cityConfig } from "@/lib/site";
 
@@ -69,6 +70,10 @@ export default function DogCarePage() {
           </Button>
         </div>
       </PageHeader>
+
+      <div className="bg-cream pt-12">
+        <RoverReferralCta />
+      </div>
 
       <Section tone="paper">
         <SectionHeading
