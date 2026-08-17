@@ -173,6 +173,7 @@ export const mainNav: NavLink[] = [
 
 // Community, booking, and secondary pages — footer and mobile overflow.
 export const secondaryNav: NavLink[] = [
+  { label: "Keep Waco Wagging Approved", href: "/approved" },
   { label: "Book a Service", href: "/book" },
   { label: "Summer Dog Camp", href: "/summer-daycare" },
   { label: "Blog", href: "/blog" },
