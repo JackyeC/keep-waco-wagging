@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { BadgeCheck, TriangleAlert, Ban, ShieldCheck } from "lucide-react";
+import { BadgeCheck, TriangleAlert, Ban, Search, ShieldCheck } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ApprovedListingCard } from "@/components/approved/ApprovedListingCard";
-import { ApprovedStatusBadge } from "@/components/approved/ApprovedStatusBadge";
 import {
-  approvedListings,
-  approvedIsPreview,
-} from "@/data/approvedListings";
+  ApprovedStatusBadge,
+  PendingBadge,
+} from "@/components/approved/ApprovedStatusBadge";
+import { getApprovedListingsByGroup } from "@/data/approvedListings";
 import { servicePageMetadata } from "@/lib/metadata";
 
 const description =
-  "Keep Waco Wagging Approved is our editorial guide to dog-friendly Waco — not just where dogs are allowed, but where we'd genuinely recommend a Waco dog parent visit with their dog, based on the whole experience.";
+  "Keep Waco Wagging Approved is our editorial guide to dog-friendly Waco — not just where dogs are allowed, but where we'd genuinely recommend a Waco dog parent visit with their dog. Places stay Not Yet Evaluated until we have enough evidence to make a responsible recommendation.";
 
 export const metadata: Metadata = servicePageMetadata(
   "/approved",
@@ -21,19 +21,24 @@ export const metadata: Metadata = servicePageMetadata(
 
 const statusLegend = [
   {
-    status: "approved" as const,
+    kind: "approved" as const,
     icon: BadgeCheck,
     text: "A place we would genuinely recommend visiting with your dog when conditions are right.",
   },
   {
-    status: "cautions" as const,
+    kind: "cautions" as const,
     icon: TriangleAlert,
     text: "Dogs are permitted, but there are real limitations worth knowing before you go.",
   },
   {
-    status: "not_recommended" as const,
+    kind: "not_recommended" as const,
     icon: Ban,
     text: "Dogs may be allowed, but the experience or safety makes it one we wouldn't recommend.",
+  },
+  {
+    kind: "pending" as const,
+    icon: Search,
+    text: "A discovery lead we're still researching. It does NOT carry a Keep Waco Wagging Approved seal yet.",
   },
 ];
 
@@ -47,6 +52,9 @@ const ratingDimensions = [
 ];
 
 export default function ApprovedDirectoryPage() {
+  const explore = getApprovedListingsByGroup("explore");
+  const resources = getApprovedListingsByGroup("resources");
+
   return (
     <>
       <PageHeader
@@ -58,37 +66,39 @@ export default function ApprovedDirectoryPage() {
             <p className="text-[15px]">
               &ldquo;Dog friendly&rdquo; just means dogs are allowed. Keep Waco
               Wagging Approved means we&rsquo;d actually recommend the outing —
-              shade, water, room to breathe, and a good time for you and your
-              dog.
+              and a place stays <strong>Not Yet Evaluated</strong> until we have
+              enough evidence to say so responsibly.
             </p>
           </>
         }
         tone="sage"
       />
 
-      {approvedIsPreview && (
-        <div className="bg-gold-100">
-          <div className="mx-auto max-w-[1200px] px-6 py-3 text-center text-[13px] text-gold-600">
-            <strong className="font-semibold">Preview:</strong> these are
-            clearly-labeled sample listings while we build the guide. Real Keep
-            Waco Wagging Approved ratings are on the way.
-          </div>
+      <div className="bg-gold-100">
+        <div className="mx-auto max-w-[1200px] px-6 py-3 text-center text-[13px] text-gold-600">
+          <strong className="font-semibold">Preview:</strong> sample listings
+          show how an evaluated report looks; real places appear as
+          research leads until Keep Waco Wagging has evaluated them.
         </div>
-      )}
+      </div>
 
       {/* Status legend */}
       <Section tone="paper">
         <SectionHeading
           eyebrow="What the ratings mean"
-          title="Three honest ratings"
-          description="Every place gets one status, based on the whole experience — never on whether a business paid us."
+          title="Three honest ratings — earned, not bought"
+          description="Every evaluated place gets one verdict, based on the whole experience. Until then, it stays a research lead."
         />
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {statusLegend.map(({ status, icon: Icon, text }) => (
-            <div key={status} className="card-panel p-6">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {statusLegend.map(({ kind, icon: Icon, text }) => (
+            <div key={kind} className="card-panel p-6">
               <Icon className="h-6 w-6 text-wag-sage" aria-hidden="true" />
               <div className="mt-3">
-                <ApprovedStatusBadge status={status} />
+                {kind === "pending" ? (
+                  <PendingBadge />
+                ) : (
+                  <ApprovedStatusBadge status={kind} />
+                )}
               </div>
               <p className="mt-3 text-[14px] leading-relaxed text-body-muted">
                 {text}
@@ -98,26 +108,46 @@ export default function ApprovedDirectoryPage() {
         </div>
       </Section>
 
-      {/* Listings */}
+      {/* Explore Waco With Your Dog */}
       <Section tone="sand">
         <SectionHeading
-          eyebrow="The guide"
-          title="Approved places to explore"
-          description="Quick-scan cards show shade, water, potty access, noise, crowds, and which dogs will enjoy each spot."
+          eyebrow="Explore Waco with your dog"
+          title="Places to go with your dog"
+          description="Restaurants, breweries, coffee, parks, trails, shops, hotels, markets, and events — where Keep Waco Wagging Approved matters most."
         />
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {approvedListings.map((listing) => (
+          {explore.map((listing) => (
             <ApprovedListingCard key={listing.id} listing={listing} />
           ))}
         </div>
       </Section>
 
-      {/* How we rate + trust */}
+      {/* Waco Dog Resources */}
       <Section tone="paper">
+        <SectionHeading
+          eyebrow="Waco dog resources"
+          title="Groomers, vets & dog services"
+          description="Service providers you use for your dog — kept separate from places you visit with your dog for fun."
+        />
+        {resources.length > 0 ? (
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {resources.map((listing) => (
+              <ApprovedListingCard key={listing.id} listing={listing} />
+            ))}
+          </div>
+        ) : (
+          <p className="mt-6 text-[15px] text-body-muted">
+            Resource listings are being organized here.
+          </p>
+        )}
+      </Section>
+
+      {/* How we rate + trust */}
+      <Section tone="sand">
         <SectionHeading
           eyebrow="How we rate"
           title="Six things we look at"
-          description="Every listing is evaluated across the same six dimensions, with Central Texas heat treated as a real safety factor."
+          description="Every evaluation weighs the same six dimensions, with Central Texas heat treated as a real safety factor. Unknown stays unknown — we don't invent answers."
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {ratingDimensions.map((d) => (
@@ -139,8 +169,8 @@ export default function ApprovedDirectoryPage() {
               Businesses can&rsquo;t buy a Keep Waco Wagging Approved rating.
             </span>{" "}
             Approval is an editorial recommendation from Keep Waco Wagging.
-            Sponsors may advertise, but sponsorship never determines approval —
-            trust matters more than the number of approved places.
+            Community tips are welcome discovery leads — but they&rsquo;re never
+            treated as verified facts, and sponsorship never determines approval.
           </p>
         </div>
       </Section>

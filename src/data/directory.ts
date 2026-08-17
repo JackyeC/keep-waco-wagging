@@ -5,7 +5,6 @@ export const directoryCategories = [
   "Coffee shops",
   "Breweries and bars",
   "Parks and trails",
-  "Dog parks",
   "Groomers",
   "Vets",
   "Emergency vets",
@@ -784,5 +783,51 @@ export function getFeaturedDirectoryListings(limit = 4) {
 export function getDirectoryNeighborhoods() {
   return Array.from(
     new Set(directoryListings.map((listing) => listing.neighborhood).filter(Boolean)),
+  ) as string[];
+}
+
+/**
+ * Categories that are dog SERVICES ("Waco Dog Resources"), kept separate from
+ * places people visit WITH their dog for recreation ("Explore Waco With Your
+ * Dog"). Everything not in this set is treated as an Explore listing.
+ */
+export const resourceCategories = new Set<string>([
+  "Groomers",
+  "Vets",
+  "Emergency vets",
+  "Boarding and daycare",
+  "Trainers",
+  "Local rescues",
+  "Pet photographers",
+]);
+
+export function isResourceListing(listing: DogDirectoryListing): boolean {
+  return resourceCategories.has(listing.category);
+}
+
+/** "Explore Waco With Your Dog" — recreation places. */
+export function getExploreListings(): DogDirectoryListing[] {
+  return directoryListings.filter((l) => !isResourceListing(l));
+}
+
+/** "Waco Dog Resources" — groomers, vets, boarding, training, rescues, etc. */
+export function getResourceListings(): DogDirectoryListing[] {
+  return directoryListings.filter(isResourceListing);
+}
+
+/** Distinct categories present within a given set of listings. */
+export function categoriesInListings(
+  listings: DogDirectoryListing[],
+): string[] {
+  return directoryCategories.filter((category) =>
+    listings.some((l) => l.category === category),
+  );
+}
+
+export function neighborhoodsInListings(
+  listings: DogDirectoryListing[],
+): string[] {
+  return Array.from(
+    new Set(listings.map((l) => l.neighborhood).filter(Boolean)),
   ) as string[];
 }

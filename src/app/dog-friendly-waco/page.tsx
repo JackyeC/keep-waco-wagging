@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { PawPrint } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
-import { Section } from "@/components/ui/Section";
+import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { DogDirectoryBrowser } from "@/components/DogDirectoryBrowser";
 import { ServiceFaqSection } from "@/components/service/ServiceFaqSection";
@@ -9,9 +11,11 @@ import {
   FaqJsonLd,
 } from "@/components/seo/StructuredData";
 import {
-  directoryCategories,
+  categoriesInListings,
   directoryListings,
-  getDirectoryNeighborhoods,
+  getExploreListings,
+  getResourceListings,
+  neighborhoodsInListings,
 } from "@/data/directory";
 import { servicePageMetadata } from "@/lib/metadata";
 import { ctas } from "@/lib/site";
@@ -28,7 +32,7 @@ const directoryFaqs = [
   {
     question: "Where are the dog-friendly places in Waco?",
     answer:
-      "Keep Waco Wagging keeps a free local directory of dog-friendly places in Waco — dog-friendly patios, coffee shops, breweries, parks and trails, dog parks, groomers, vets, pet boutiques, and dog-friendly hotels. Local favorites include Street Dog Cafe on Elm Avenue, Milo and Hecho en Waco downtown, and Southern Roots Brewing Co. Browse and filter the full, regularly updated list at keepwacowagging.com/dog-friendly-waco.",
+      "Keep Waco Wagging keeps a free local directory of dog-friendly places in Waco — dog-friendly patios, coffee shops, breweries, parks and trails, shops, and dog-friendly hotels — plus a separate list of Waco dog resources like groomers and vets. Local favorites include Street Dog Cafe on Elm Avenue, Milo and Hecho en Waco downtown, and Southern Roots Brewing Co. Browse and filter the full, regularly updated list at keepwacowagging.com/dog-friendly-waco.",
   },
   {
     question: "Can I bring my dog to patios and restaurants in Waco?",
@@ -38,7 +42,7 @@ const directoryFaqs = [
   {
     question: "What are good dog-friendly parks and outdoor spots in Waco?",
     answer:
-      "Waco has several leash-friendly, open-air spots for dogs, including North Waco Park and the grounds around the Waco Mammoth National Monument. The Keep Waco Wagging directory lists parks, trails, and dog parks with notes on shade, water, and the best time to visit.",
+      "Waco has several leash-friendly, open-air spots for dogs, including North Waco Park and the grounds around the Waco Mammoth National Monument. The Keep Waco Wagging directory lists parks and trails with notes on shade, water, and the best time to visit.",
   },
   {
     question: "Is the Keep Waco Wagging dog-friendly Waco directory free?",
@@ -59,6 +63,9 @@ export const metadata: Metadata = servicePageMetadata(
 );
 
 export default function DogFriendlyWacoPage() {
+  const exploreListings = getExploreListings();
+  const resourceListings = getResourceListings();
+
   return (
     <>
       <DirectoryIndexJsonLd
@@ -79,13 +86,57 @@ export default function DogFriendlyWacoPage() {
           </Button>
         </div>
       </PageHeader>
+
+      {/* These are discovery leads, not Keep Waco Wagging Approved ratings. */}
+      <div className="border-b border-clay bg-sage-50">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-2 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="flex items-center gap-2 text-[13.5px] text-bark-soft">
+            <PawPrint className="h-4 w-4 shrink-0 text-wag-sage" aria-hidden="true" />
+            <span>
+              These are places where <strong className="font-semibold text-bark">dogs are reported welcome</strong> — discovery leads we haven&rsquo;t formally evaluated yet.
+            </span>
+          </p>
+          <Link
+            href="/approved"
+            className="shrink-0 text-[12px] font-medium tracking-[0.12em] text-rose-deep uppercase underline-offset-2 hover:text-wag-sage"
+          >
+            What does Keep Waco Wagging Approved mean? →
+          </Link>
+        </div>
+      </div>
+
+      {/* Explore Waco With Your Dog */}
       <Section tone="paper">
-        <DogDirectoryBrowser
-          listings={directoryListings}
-          categories={directoryCategories}
-          neighborhoods={getDirectoryNeighborhoods()}
+        <SectionHeading
+          eyebrow="Explore Waco with your dog"
+          title="Places to go with your dog"
+          description="Restaurants, patios, coffee, breweries, parks, trails, shops, hotels, markets, and events where dogs are reported welcome."
         />
+        <div className="mt-8">
+          <DogDirectoryBrowser
+            listings={exploreListings}
+            categories={categoriesInListings(exploreListings)}
+            neighborhoods={neighborhoodsInListings(exploreListings)}
+          />
+        </div>
       </Section>
+
+      {/* Waco Dog Resources */}
+      <Section tone="sand">
+        <SectionHeading
+          eyebrow="Waco dog resources"
+          title="Groomers, vets & dog services"
+          description="Service providers for your dog — kept separate from the places you visit together for fun."
+        />
+        <div className="mt-8">
+          <DogDirectoryBrowser
+            listings={resourceListings}
+            categories={categoriesInListings(resourceListings)}
+            neighborhoods={neighborhoodsInListings(resourceListings)}
+          />
+        </div>
+      </Section>
+
       <Section tone="paper">
         <ServiceFaqSection
           eyebrow="Dog-friendly Waco FAQ"
