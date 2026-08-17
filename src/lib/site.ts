@@ -173,13 +173,18 @@ export const mainNav: NavLink[] = [
 
 // Community, booking, and secondary pages — footer and mobile overflow.
 export const secondaryNav: NavLink[] = [
+  { label: "Dog Care", href: "/dog-care" },
+  { label: "Keep Waco Wagging Approved", href: "/approved" },
+  { label: "Wag Watch", href: "/wag-watch" },
   { label: "Book a Service", href: "/book" },
   { label: "Summer Dog Camp", href: "/summer-daycare" },
   { label: "Blog", href: "/blog" },
   { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "Weekend Guide", href: "/weekend" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Gear Guide", href: "/gear-guide" },
+  { label: "Work With Us", href: "/work-with-us" },
   {
     label: "Rover Profile",
     href: cityConfig.rover.profileUrl,

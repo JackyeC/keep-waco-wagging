@@ -5,7 +5,6 @@ export const directoryCategories = [
   "Coffee shops",
   "Breweries and bars",
   "Parks and trails",
-  "Dog parks",
   "Groomers",
   "Vets",
   "Emergency vets",
@@ -209,6 +208,568 @@ export const directoryListings: DogDirectoryListing[] = [
     sponsorTier: "none",
     badges: ["Leash required", "Outdoor only", "Tourist-friendly"],
   },
+  {
+    id: "cameron-park",
+    slug: "cameron-park",
+    name: "Cameron Park",
+    category: "Parks and trails",
+    address: "2601 N. University Parks Dr., Waco, TX 76708",
+    phone: "(254) 750-5980",
+    website:
+      "https://www.waco-texas.com/Departments/Parks-Recreation/Cameron-Park",
+    neighborhood: "North Waco",
+    dogPolicy:
+      "Leashed dogs are welcome throughout the park and trail system. Pets must stay on a leash at all times — please pick up after your pet.",
+    patioDetails:
+      "About 26 miles of multi-use trails, shaded live oaks, and riverside paths along the Brazos and Bosque Rivers. Open 6 a.m.–midnight.",
+    waterBowls: "unknown",
+    shade: "yes",
+    bestTimeToVisit: "Early morning or evening in summer; cooler months for longer hikes.",
+    description:
+      "Cameron Park is a 416-acre riverside park near downtown Waco with roughly 26 miles of multi-use trails — one of the largest city parks in Texas and a favorite for leashed dogs and their people.",
+    notes: "Flagship non-commercial outdoor listing.",
+    sourceUrls: [
+      "https://www.waco-texas.com/Departments/Parks-Recreation/Cameron-Park/Cameron-Park-Trail-System-Rules",
+      "https://wacotpid.com/listing/cameron-park/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Leash required", "Shade available", "Locally loved"],
+  },
+  {
+    id: "pinewood-coffee-bar",
+    slug: "pinewood-coffee-bar",
+    name: "Pinewood Coffee Bar",
+    category: "Coffee shops",
+    address: "2223 Austin Ave., Ste. B, Waco, TX 76701",
+    phone: "(254) 262-6130",
+    website: "https://www.pinewoodwaco.com",
+    neighborhood: "Downtown Waco",
+    dogPolicy:
+      "Well-mannered dogs are welcome anywhere in the outdoor courtyard and outdoor seating; service dogs are welcome throughout. Dogs that are disruptive may be asked to leave.",
+    patioDetails: "Shaded outdoor courtyard under a large tree, strung with lights.",
+    waterBowls: "unknown",
+    shade: "yes",
+    bestTimeToVisit: "Morning lattes or an afternoon cold brew on the patio.",
+    description:
+      "Pinewood Coffee Bar is a Waco favorite with a shaded outdoor courtyard where well-mannered dogs are welcome — a great work-from-patio spot.",
+    notes: "Dog policy stated on the cafe's own FAQ.",
+    sourceUrls: [
+      "https://www.pinewoodwaco.com/faq",
+      "https://www.bringfido.com/restaurant/89440",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Patio-friendly", "Shade available", "Dogs welcome"],
+  },
+  {
+    id: "common-grounds-waco",
+    slug: "common-grounds-waco",
+    name: "Common Grounds",
+    category: "Coffee shops",
+    address: "1123 S. 8th St., Waco, TX 76706",
+    phone: "(254) 757-2957",
+    website: "https://www.commongroundstx.com",
+    neighborhood: "Near Baylor",
+    dogPolicy:
+      "Dogs are welcome in the outdoor backyard and shared patio area. Verify current policy before visiting.",
+    patioDetails: "Gravel backyard and outdoor patio with shade trees and live music.",
+    waterBowls: "unknown",
+    shade: "yes",
+    bestTimeToVisit: "Weekday mornings, or when Baylor is out of session to avoid crowds.",
+    description:
+      "Common Grounds is a beloved coffeehouse near Baylor with a spacious, dog-friendly backyard and patio — part coffee shop, part live-music hangout.",
+    notes: "Popular student and local gathering spot.",
+    sourceUrls: [
+      "https://www.commongroundstx.com/hours-locations",
+      "https://thewacomoms.com/dog-friendly-waco-spots/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Patio-friendly", "Verify before visiting", "Locally loved"],
+  },
+  {
+    id: "dichotomy-coffee-spirits",
+    slug: "dichotomy-coffee-spirits",
+    name: "Dichotomy Coffee & Spirits",
+    category: "Coffee shops",
+    address: "508 Austin Ave., Waco, TX 76701",
+    phone: "(254) 214-1710",
+    neighborhood: "Downtown Waco",
+    dogPolicy: "Dogs are welcome on the patio. Verify current policy before visiting.",
+    patioDetails: "Downtown patio seating plus a rooftop deck.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Afternoon coffee or evening cocktails on the patio.",
+    description:
+      "Dichotomy is a downtown Waco third-wave coffee shop and cocktail bar with patio seating and a rooftop deck that welcomes dogs on the patio.",
+    notes: "Downtown coffee-and-cocktails destination.",
+    sourceUrls: [
+      "https://destinationwaco.org/places/dichotomy-coffee-spirits/",
+      "https://thewacomoms.com/dog-friendly-waco-spots/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Patio-friendly", "Verify before visiting"],
+  },
+  {
+    id: "ac-hotel-waco-downtown",
+    slug: "ac-hotel-waco-downtown",
+    name: "AC Hotel by Marriott Waco Downtown",
+    category: "Dog-friendly hotels",
+    address: "600 Mary Ave., Waco, TX 76701",
+    neighborhood: "Downtown Waco",
+    dogPolicy:
+      "Dog-friendly: allows dogs up to about 75 lbs for a pet fee (reported around $50/night, up to $150/stay); cats are not allowed. Fees and policies change — call ahead to confirm and to request a pet-friendly room.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Walkable to the Silos and downtown attractions.",
+    description:
+      "The AC Hotel by Marriott Waco Downtown is a pet-friendly hotel near Magnolia at the Silos and Baylor that welcomes dogs for a fee.",
+    notes: "Verify pet fee and weight limit before booking.",
+    sourceUrls: ["https://www.bringfido.com/lodging/1142234"],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Dogs welcome", "Call ahead", "Tourist-friendly"],
+  },
+  {
+    id: "residence-inn-waco",
+    slug: "residence-inn-waco",
+    name: "Residence Inn by Marriott Waco",
+    category: "Dog-friendly hotels",
+    address: "501 S. University Parks Dr., Waco, TX 76706",
+    neighborhood: "Near Baylor",
+    dogPolicy:
+      "Pet-friendly: welcomes up to two pets (reported up to about 65 lbs) for a pet fee (reported around $100/stay); dogs and cats allowed, with grassy relief areas and pet stations on site. Call ahead to confirm.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Extended-stay option near Baylor and the riverwalk.",
+    description:
+      "The Residence Inn by Marriott Waco is a pet-friendly, extended-stay hotel near Baylor with on-site grassy pet relief areas.",
+    notes: "Verify pet fee and weight limit before booking.",
+    sourceUrls: ["https://www.bringfido.com/lodging/96108"],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Dogs welcome", "Pet relief area", "Call ahead"],
+  },
+  {
+    id: "hotel-indigo-waco-baylor",
+    slug: "hotel-indigo-waco-baylor",
+    name: "Hotel Indigo Waco - Baylor",
+    category: "Dog-friendly hotels",
+    address: "211 Clay Ave., Waco, TX 76706",
+    neighborhood: "Downtown Waco",
+    dogPolicy:
+      "Pet-friendly: welcomes up to two pets (reported up to about 70–75 lbs) for a pet fee/deposit; dogs and cats allowed. Treats at the front desk, water bowls in the lobby, and an on-site pet relief area. Fees vary by source — call ahead to confirm.",
+    waterBowls: "yes",
+    shade: "unknown",
+    bestTimeToVisit: "Downtown, across from the Baylor University main entrance.",
+    description:
+      "Hotel Indigo Waco - Baylor is a pet-friendly boutique hotel downtown across from Baylor, with lobby water bowls and an on-site pet relief area.",
+    notes: "Verify pet fee/deposit and weight limit before booking.",
+    sourceUrls: [
+      "https://www.bringfido.com/lodging/152297",
+      "https://www.ihg.com/hotelindigo/hotels/us/en/waco/actin/hoteldetail",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Dogs welcome", "Water bowls", "Call ahead"],
+  },
+  {
+    id: "waco-animal-emergency-clinic",
+    slug: "waco-animal-emergency-clinic",
+    name: "Waco Animal Emergency Clinic",
+    category: "Emergency vets",
+    address: "3901 Jack Kultgen Fwy., Waco, TX 76706",
+    phone: "(254) 752-6100",
+    website: "https://www.wacoanimalemergency.com",
+    neighborhood: "South Waco",
+    dogPolicy:
+      "After-hours emergency and critical care for dogs and other small animals. Open 24 hours Friday–Monday and on major holidays; weekday nights (Tue–Thu) 6 p.m.–8 a.m. Call ahead when possible.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Overnight and weekend emergencies; call before you arrive.",
+    description:
+      "Waco Animal Emergency Clinic is an after-hours, overnight emergency and critical-care hospital for pets, serving Waco and nearby communities.",
+    notes: "Critical resource listing for Waco dog parents.",
+    sourceUrls: [
+      "https://www.wacoanimalemergency.com/",
+      "https://www.wacoanimalemergency.com/contact",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Emergency care", "Open 24h weekends", "Call ahead"],
+  },
+  {
+    id: "billy-bobs-burgers-hewitt",
+    slug: "billy-bobs-burgers-hewitt",
+    name: "Billy Bob's Burgers (Hewitt)",
+    category: "Dog-friendly patios",
+    address: "899 S. Hewitt Dr., Hewitt, TX 76643",
+    website: "https://www.billybobsburgerstx.com",
+    neighborhood: "Hewitt",
+    dogPolicy:
+      "Dogs are welcome on the outdoor patio. Locals note the Hewitt location has a great enclosed patio. Verify current policy before visiting.",
+    patioDetails: "Enclosed outdoor patio.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Lunch or early evening on the patio.",
+    description:
+      "Billy Bob's Burgers is a locally owned Waco-area burger spot with a dog-friendly patio — the Hewitt location is a local favorite for its enclosed patio. The Downtown Waco location (300 S. 2nd St.) is also pet-friendly.",
+    notes: "Locally recommended; downtown Waco location also pet-friendly.",
+    sourceUrls: [
+      "https://www.bringfido.com/restaurant/83643",
+      "https://www.billybobsburgerstx.com/contact-pages/contact-v1",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Patio-friendly", "Enclosed patio", "Verify before visiting"],
+  },
+  {
+    id: "bitty-and-beaus-coffee-waco",
+    slug: "bitty-and-beaus-coffee-waco",
+    name: "Bitty & Beau's Coffee",
+    category: "Coffee shops",
+    address: "110 Franklin Ave., Waco, TX 76701",
+    phone: "(254) 315-9284",
+    website: "https://www.bittyandbeauscoffee.com/location/waco/",
+    neighborhood: "Downtown Waco",
+    dogPolicy:
+      "Dogs are welcome at outdoor patio tables, with pup cups available. Non-service pets stay on the patio; service animals are welcome inside. Verify before visiting.",
+    patioDetails: "Outdoor patio seating.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Morning or afternoon coffee.",
+    description:
+      "Bitty & Beau's Coffee is a mission-driven downtown Waco cafe — staffed largely by people with intellectual and developmental disabilities — with a dog-friendly patio and pup cups.",
+    notes: "Locally recommended; inclusive, mission-driven cafe.",
+    sourceUrls: [
+      "https://www.bittyandbeauscoffee.com/location/waco/",
+      "https://www.bringfido.com/restaurant/127275",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Patio-friendly", "Pup cups", "Locally loved"],
+  },
+  {
+    id: "backyard-bar-stage-grill",
+    slug: "backyard-bar-stage-grill",
+    name: "The Backyard Bar Stage & Grill",
+    category: "Breweries and bars",
+    address: "511 S. 8th St., Waco, TX 76706",
+    phone: "(254) 235-1151",
+    website: "https://backyardwaco.com",
+    neighborhood: "Downtown Waco",
+    dogPolicy:
+      "Leashed pets are welcome in the outdoor courtyard during daytime hours. Pets are generally not permitted during concerts or special events. Clean up after your pet.",
+    patioDetails: "Large outdoor courtyard with a concert stage, fire pits, and lawn games.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Daytime hours; check the events calendar before you go.",
+    description:
+      "The Backyard Bar Stage & Grill is a downtown Waco bar and live-music venue near the Silos with a large outdoor courtyard that welcomes leashed dogs during daytime hours.",
+    notes: "Locally recommended for live music; daytime dog hours only.",
+    sourceUrls: [
+      "https://backyardwaco.com/",
+      "https://destinationwaco.org/places/backyard-bar-stage-grill/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Patio-friendly", "Daytime dogs", "Live music"],
+  },
+  {
+    id: "bridge-street-plaza",
+    slug: "bridge-street-plaza",
+    name: "Bridge Street Plaza",
+    category: "Parks and trails",
+    address: "200 E. Bridge St., Waco, TX 76704",
+    website:
+      "https://www.waco-texas.com/Departments/Parks-Recreation/Parks-Playgrounds-Splash-Pads-Trails/Bridge-Street",
+    neighborhood: "East Waco",
+    dogPolicy:
+      "Leashed dogs are welcome in this public plaza and green space. Please clean up after your pet.",
+    patioDetails:
+      "About two acres near the Waco Suspension Bridge with an amphitheater, open lawn, walking paths, and seating; hosts the Saturday farmers market and the seasonal Levitt AMP Waco Music Series.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Saturday mornings for the market; Thursday evenings during the Levitt AMP season.",
+    description:
+      "Bridge Street Plaza — often called \u201cWaco\u2019s Front Porch\u201d — is a dog-friendly public plaza in East Waco that hosts the downtown farmers market, free Levitt AMP concerts, and community events.",
+    notes: "Locally recommended gathering space and events venue.",
+    sourceUrls: [
+      "https://www.waco-texas.com/Departments/Parks-Recreation/Parks-Playgrounds-Splash-Pads-Trails/Bridge-Street",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Leash required", "Events venue", "Locally loved"],
+  },
+  {
+    id: "waco-downtown-farmers-market",
+    slug: "waco-downtown-farmers-market",
+    name: "Waco Downtown Farmers Market",
+    category: "Events",
+    address: "200 E. Bridge St., Waco, TX 76704",
+    website: "https://wacodowntownfarmersmarket.org",
+    neighborhood: "East Waco",
+    dogPolicy:
+      "Leashed dogs are welcome. The Bridge Street Plaza has a large grassy lawn and a doggie clean-up station. Please keep pets leashed and clean up after them.",
+    patioDetails: "Outdoor market on the Bridge Street Plaza lawn.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Saturdays 9 a.m.\u20131 p.m. year-round (until noon in July\u2013August).",
+    description:
+      "The Waco Downtown Farmers Market is a year-round Saturday market at Bridge Street Plaza with local produce, food, and live music — a dog-friendly favorite among Waco dog parents.",
+    notes: "Locally recommended weekly event; leashed dogs welcome.",
+    sourceUrls: [
+      "https://wacodowntownfarmersmarket.org/",
+      "https://wacodowntownfarmersmarket.org/about",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Leash required", "Weekly event", "Clean-up station"],
+  },
+  {
+    id: "woof-gang-bakery-grooming-waco",
+    slug: "woof-gang-bakery-grooming-waco",
+    name: "Woof Gang Bakery & Grooming",
+    category: "Groomers",
+    address: "1201 Hewitt Dr., Ste. 205, Waco, TX 76712",
+    phone: "(254) 666-9663",
+    website: "https://woofgangbakery.com/pages/locations/waco",
+    neighborhood: "Waco",
+    dogPolicy:
+      "Full-service dog grooming plus a pet store with treats, food, and supplies. Call or book online for a grooming appointment.",
+    bestTimeToVisit: "By grooming appointment.",
+    description:
+      "Woof Gang Bakery & Grooming Waco offers full-service dog grooming — baths, haircuts, nail trims, and more — alongside a neighborhood pet store with treats and supplies.",
+    notes: "Full-service grooming and pet supplies.",
+    sourceUrls: ["https://woofgangbakery.com/pages/locations/waco"],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Full-service grooming", "Pet store", "By appointment"],
+  },
+  {
+    id: "animal-hospital-of-waco",
+    slug: "animal-hospital-of-waco",
+    name: "Animal Hospital of Waco",
+    category: "Vets",
+    address: "2501 La Salle Ave., Waco, TX 76706",
+    phone: "(254) 753-0101",
+    website: "https://www.animalhospitalofwaco.com",
+    neighborhood: "South Waco",
+    dogPolicy:
+      "Full-service veterinary care for dogs and cats — wellness, vaccinations, in-house x-rays and lab work, surgery, and dental care. Call for an appointment.",
+    bestTimeToVisit: "By appointment during clinic hours.",
+    description:
+      "Animal Hospital of Waco is a long-established full-service veterinary clinic on La Salle Avenue near Baylor and I-35, caring primarily for dogs and cats for over 60 years.",
+    notes: "Long-standing full-service vet; call for appointment.",
+    sourceUrls: ["https://www.animalhospitalofwaco.com/"],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Full-service vet", "Dogs & cats", "By appointment"],
+  },
+  {
+    id: "wags-pet-spa-mobile-grooming",
+    slug: "wags-pet-spa-mobile-grooming",
+    name: "Wags Pet Spa & Mobile Grooming",
+    category: "Groomers",
+    address: "203 Colonnade Pkwy., Ste. A, Woodway, TX 76712",
+    phone: "(254) 488-4927",
+    website: "https://www.wagstx.com",
+    neighborhood: "Woodway",
+    dogPolicy:
+      "Full-service dog grooming at the Woodway salon, plus mobile grooming by appointment. Salon hours Tue–Sat; mobile grooming serves McLennan County and surrounding areas. Call or book online.",
+    bestTimeToVisit: "By grooming appointment (salon or mobile).",
+    description:
+      "Wags Pet Spa & Mobile Grooming offers luxury dog grooming at its Woodway salon and convenient mobile grooming across the Waco area — a good option for dogs that do better being groomed at home.",
+    notes: "Salon + mobile grooming serving the Waco/Woodway area.",
+    sourceUrls: [
+      "https://www.wagstx.com/",
+      "https://www.wagstx.com/contact-dog-groomers",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Full-service grooming", "Mobile grooming", "By appointment"],
+  },
+  {
+    id: "freight-waco",
+    slug: "freight-waco",
+    name: "Freight",
+    category: "Breweries and bars",
+    address: "1613 James Ave., Waco, TX 76706",
+    phone: "(254) 252-5525",
+    website: "https://www.freightwaco.com",
+    neighborhood: "Near Baylor",
+    dogPolicy:
+      "Leashed dogs are welcome throughout this outdoor bar, which also has a fenced in-venue area where dogs can play off-leash. Keep dogs leashed outside that area.",
+    patioDetails: "Outdoor icehouse and yard bar with shade, lawn games, live music, and a fenced on-site dog area.",
+    waterBowls: "unknown",
+    shade: "yes",
+    bestTimeToVisit: "Afternoon or evening — check hours before you go.",
+    description:
+      "Freight is an outdoor icehouse and yard bar near Baylor that is proudly dog-friendly, with a fenced on-site area where dogs can play off-leash while you enjoy a drink.",
+    notes: "Locally recommended dog-friendly bar.",
+    sourceUrls: [
+      "https://www.freightwaco.com/dogs",
+      "https://destinationwaco.org/places/freight-bar/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Dogs welcome", "Off-leash area", "Live music"],
+  },
+  {
+    id: "route-77-food-park",
+    slug: "route-77-food-park",
+    name: "Route 77 Food Park & Bar",
+    category: "Breweries and bars",
+    address: "1425 La Salle Ave., Waco, TX 76706",
+    phone: "(254) 218-8817",
+    neighborhood: "Near Baylor",
+    dogPolicy:
+      "Leashed dogs are generally welcome at this open-air food-truck park and bar. Some visitors report inconsistent pet policies, so verify directly before visiting.",
+    patioDetails: "Half-acre food-truck park with an open-air pavilion, craft-beer bar, yard games, and climate-controlled seating for year-round visits.",
+    waterBowls: "unknown",
+    shade: "yes",
+    bestTimeToVisit: "Evenings and weekends.",
+    description:
+      "Route 77 Food Park & Bar is a half-acre food-truck park and craft-beer bar with climate-controlled seating where leashed dogs are generally welcome.",
+    notes: "Verify current pet policy before visiting.",
+    sourceUrls: [
+      "https://destinationwaco.org/places/route-77-food-park/",
+      "https://www.restaurantji.com/tx/waco/route-77-food-park-/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Food trucks", "Leashed dogs", "Verify before visiting"],
+  },
+  {
+    id: "chuys-waco",
+    slug: "chuys-waco",
+    name: "Chuy's",
+    category: "Dog-friendly patios",
+    address: "5501 Legend Lake Pkwy., Waco, TX 76712",
+    phone: "(254) 420-4242",
+    website: "https://www.chuys.com/locations/tx/waco/waco-tx/6016",
+    neighborhood: "Waco",
+    dogPolicy: "Dogs are welcome on the outdoor patio when leashed. Verify before visiting.",
+    patioDetails: "Outdoor patio.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Lunch, happy hour, or dinner on the patio.",
+    description:
+      "Chuy's is a lively Tex-Mex restaurant off TX-340 (across from Central Texas Marketplace) with a dog-friendly outdoor patio for leashed pups.",
+    notes: "Chain location; leashed patio dogs welcome.",
+    sourceUrls: [
+      "https://www.chuys.com/locations/tx/waco/waco-tx/6016",
+      "https://destinationwaco.org/places/chuys/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Patio-friendly", "Leash required", "Verify before visiting"],
+  },
+  {
+    id: "andys-frozen-custard-waco",
+    slug: "andys-frozen-custard-waco",
+    name: "Andy's Frozen Custard",
+    category: "Dog-friendly patios",
+    address: "900 S. 8th St., Waco, TX 76706",
+    phone: "(254) 424-9334",
+    website: "https://locations.eatandys.com/ll/US/TX/Waco/900-South-8th-St",
+    neighborhood: "Near Baylor",
+    dogPolicy:
+      "Walk-up frozen custard with grassy outdoor space; dogs are welcome outside. Ask for a complimentary mini pup cone. Verify before visiting.",
+    patioDetails: "Walk-up window with a grassy outdoor seating area.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Anytime for custard; evenings are popular.",
+    description:
+      "Andy's Frozen Custard is a walk-up custard spot with grassy outdoor space where dogs are welcome — locals note you can ask for a complimentary mini pup cone.",
+    notes: "Outdoor, dog-welcoming dessert stop.",
+    sourceUrls: [
+      "https://locations.eatandys.com/ll/US/TX/Waco/900-South-8th-St",
+      "https://moderntexasliving.com/waco-dog-friendly-places-2/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Outdoor only", "Pup cone", "Dogs welcome"],
+  },
+  {
+    id: "revival-eastside-eatery",
+    slug: "revival-eastside-eatery",
+    name: "Revival Eastside Eatery",
+    category: "Dog-friendly patios",
+    address: "704 Elm Ave., Waco, TX 76704",
+    phone: "(254) 339-1401",
+    website: "https://www.revivaleastsideeatery.com",
+    neighborhood: "East Waco / Elm Avenue",
+    dogPolicy: "Dogs are welcome on the outdoor patio. Verify before visiting.",
+    patioDetails: "Outdoor patio.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Lunch or early dinner; closed Sundays.",
+    description:
+      "Revival Eastside Eatery is a women-owned Elm Avenue restaurant — Texas-sourced burgers, sandwiches, and salads — with a dog-friendly patio in a restored historic building.",
+    notes: "Locally recommended; part of the Elm Avenue revitalization.",
+    sourceUrls: [
+      "https://www.revivaleastsideeatery.com/",
+      "https://destinationwaco.org/places/revival-eastside-eatery/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Patio-friendly", "Locally loved", "Verify before visiting"],
+  },
+  {
+    id: "smallcakes-waco",
+    slug: "smallcakes-waco",
+    name: "Smallcakes Cupcakery & Creamery",
+    category: "Dog-friendly patios",
+    address: "2324 Marketplace Dr., Bldg. 1, Ste. 120, Waco, TX 76711",
+    phone: "(254) 732-0935",
+    website: "https://smallcakescentraltx.com",
+    neighborhood: "Waco",
+    dogPolicy:
+      "Outdoor seating where dogs are welcome. Order \u201cpupcakes\u201d made with pet-safe ingredients for your dog. Verify before visiting.",
+    patioDetails: "Outdoor seating outside the bakery.",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Dessert hours.",
+    description:
+      "Smallcakes Cupcakery & Creamery is a from-scratch cupcake and ice cream shop with outdoor seating and dog \u201cpupcakes\u201d made with pet-safe ingredients.",
+    notes: "Bring your pup for a pupcake.",
+    sourceUrls: [
+      "https://destinationwaco.org/places/smallcakes-cupcakery-creamery/",
+      "https://smallcakescentraltx.com/",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Pupcakes", "Outdoor seating", "Dogs welcome"],
+  },
+  {
+    id: "spice-village",
+    slug: "spice-village",
+    name: "Spice Village",
+    category: "Pet boutiques",
+    address: "213 Mary Ave., Waco, TX 76701",
+    phone: "(254) 757-0921",
+    website: "https://spicewaco.com",
+    neighborhood: "Downtown Waco",
+    dogPolicy:
+      "Well-behaved, leashed dogs are welcome inside. Keep pets on a 6-foot lead and clean up after them (per Spice Village).",
+    patioDetails: "Indoor marketplace of 40+ boutiques (entrance and parking on Franklin Ave.).",
+    waterBowls: "unknown",
+    shade: "unknown",
+    bestTimeToVisit: "Mon–Sat 10 a.m.–6 p.m.; Sun 12–5 p.m.",
+    description:
+      "Spice Village is a downtown Waco marketplace of 40+ boutiques under one roof that welcomes leashed dogs inside — a rare dog-friendly indoor shopping stop.",
+    notes: "Dog-friendly indoor shopping; leash required.",
+    sourceUrls: [
+      "https://spicewaco.com/contact-us/",
+      "https://www.bringfido.com/attraction/35271",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Dogs welcome inside", "Leash required", "Locally loved"],
+  },
 ];
 
 export function getDirectoryListingBySlug(slug: string) {
@@ -222,5 +783,51 @@ export function getFeaturedDirectoryListings(limit = 4) {
 export function getDirectoryNeighborhoods() {
   return Array.from(
     new Set(directoryListings.map((listing) => listing.neighborhood).filter(Boolean)),
+  ) as string[];
+}
+
+/**
+ * Categories that are dog SERVICES ("Waco Dog Resources"), kept separate from
+ * places people visit WITH their dog for recreation ("Explore Waco With Your
+ * Dog"). Everything not in this set is treated as an Explore listing.
+ */
+export const resourceCategories = new Set<string>([
+  "Groomers",
+  "Vets",
+  "Emergency vets",
+  "Boarding and daycare",
+  "Trainers",
+  "Local rescues",
+  "Pet photographers",
+]);
+
+export function isResourceListing(listing: DogDirectoryListing): boolean {
+  return resourceCategories.has(listing.category);
+}
+
+/** "Explore Waco With Your Dog" — recreation places. */
+export function getExploreListings(): DogDirectoryListing[] {
+  return directoryListings.filter((l) => !isResourceListing(l));
+}
+
+/** "Waco Dog Resources" — groomers, vets, boarding, training, rescues, etc. */
+export function getResourceListings(): DogDirectoryListing[] {
+  return directoryListings.filter(isResourceListing);
+}
+
+/** Distinct categories present within a given set of listings. */
+export function categoriesInListings(
+  listings: DogDirectoryListing[],
+): string[] {
+  return directoryCategories.filter((category) =>
+    listings.some((l) => l.category === category),
+  );
+}
+
+export function neighborhoodsInListings(
+  listings: DogDirectoryListing[],
+): string[] {
+  return Array.from(
+    new Set(listings.map((l) => l.neighborhood).filter(Boolean)),
   ) as string[];
 }

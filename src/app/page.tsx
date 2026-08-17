@@ -1,36 +1,35 @@
 import type { Metadata } from "next";
-import { BrandStory } from "@/components/home/BrandStory";
+import { ChoosePath } from "@/components/home/ChoosePath";
 import { HomeDrop } from "@/components/home/HomeDrop";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeReviews } from "@/components/home/HomeReviews";
-import { LifestyleCommunity } from "@/components/home/LifestyleCommunity";
 import { MarqueeStrip } from "@/components/home/MarqueeStrip";
 import { TrustSection } from "@/components/home/TrustSection";
 import { WagClubSignup } from "@/components/home/WagClubSignup";
+import { WagWatchPreview } from "@/components/home/WagWatchPreview";
 import { designPhotos } from "@/data/designPhotos";
-import { getRecentPosts } from "@/data/blog";
 import { servicePageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = servicePageMetadata(
   "/",
-  "Keep Waco Wagging | The Club for Waco Dog People",
-  "The lifestyle brand and club for Waco dog people — exclusive drops, local favorites, and dog-parent perks. Powered by Platinum Scoops: boarding, daycare, training, camp, and poop scooping in Waco, Texas.",
+  "Keep Waco Wagging | Waco's Home for Dog People",
+  "Waco's home for dog people. Find dog-friendly places, local dog events, trusted recommendations, and dog care — boarding, daycare, training, and poop scooping — in Waco and McLennan County, Texas.",
   designPhotos.homeHero,
 );
 
 export default function HomePage() {
-  const guidePosts = getRecentPosts(3);
-
   return (
     <>
       <HomeHero />
       <MarqueeStrip />
+      {/* 1. Hero → 2. Choose your path → 3. Wag Watch → 4. Dog care trust →
+          5. Social proof → 6. Wag Club → 7. Shop */}
+      <ChoosePath />
+      <WagWatchPreview />
       <WagClubSignup id="wag-club" sourcePage="/" variant="panel" />
-      <HomeDrop />
-      <BrandStory />
-      <LifestyleCommunity posts={guidePosts} />
       <TrustSection />
       <HomeReviews />
+      <HomeDrop />
       <WagClubSignup id="updates-signup" sourcePage="/" variant="closer" />
     </>
   );
