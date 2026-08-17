@@ -569,6 +569,29 @@ export const directoryListings: DogDirectoryListing[] = [
     sponsorTier: "none",
     badges: ["Full-service vet", "Dogs & cats", "By appointment"],
   },
+  {
+    id: "wags-pet-spa-mobile-grooming",
+    slug: "wags-pet-spa-mobile-grooming",
+    name: "Wags Pet Spa & Mobile Grooming",
+    category: "Groomers",
+    address: "203 Colonnade Pkwy., Ste. A, Woodway, TX 76712",
+    phone: "(254) 488-4927",
+    website: "https://www.wagstx.com",
+    neighborhood: "Woodway",
+    dogPolicy:
+      "Full-service dog grooming at the Woodway salon, plus mobile grooming by appointment. Salon hours Tue–Sat; mobile grooming serves McLennan County and surrounding areas. Call or book online.",
+    bestTimeToVisit: "By grooming appointment (salon or mobile).",
+    description:
+      "Wags Pet Spa & Mobile Grooming offers luxury dog grooming at its Woodway salon and convenient mobile grooming across the Waco area — a good option for dogs that do better being groomed at home.",
+    notes: "Salon + mobile grooming serving the Waco/Woodway area.",
+    sourceUrls: [
+      "https://www.wagstx.com/",
+      "https://www.wagstx.com/contact-dog-groomers",
+    ],
+    lastVerified: "2026-08-17",
+    sponsorTier: "none",
+    badges: ["Full-service grooming", "Mobile grooming", "By appointment"],
+  },
 ];
 
 export function getDirectoryListingBySlug(slug: string) {
