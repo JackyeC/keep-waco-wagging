@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { brandLanguage, ctas, servicesNav } from "@/lib/site";
+import { brandLanguage, servicesNav } from "@/lib/site";
 
 export function HomeServicesBand() {
   return (
