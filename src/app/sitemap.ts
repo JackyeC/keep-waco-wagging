@@ -8,7 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: { route: string; priority: number }[] = [
     { route: "", priority: 1 },
     { route: "/wagclub", priority: 0.95 },
+    { route: "/dog-care", priority: 0.95 },
     { route: "/book", priority: 0.95 },
+    { route: "/approved", priority: 0.9 },
+    { route: "/wag-watch", priority: 0.75 },
+    { route: "/work-with-us", priority: 0.4 },
     { route: "/platinum-scoops", priority: 0.9 },
     { route: "/pet-care", priority: 0.9 },
     { route: "/training", priority: 0.85 },

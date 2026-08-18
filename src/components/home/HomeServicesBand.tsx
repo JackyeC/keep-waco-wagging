@@ -41,10 +41,10 @@ export function HomeServicesBand() {
 
         <p className="mt-8">
           <Link
-            href={ctas.bookService.href}
+            href="/dog-care"
             className="text-xs font-medium tracking-[0.16em] text-wag-sage uppercase underline decoration-border underline-offset-4 hover:text-rose hover:decoration-rose"
           >
-            Book a service
+            Explore dog care
           </Link>
         </p>
       </div>

@@ -9,11 +9,14 @@ import { ctas, servicesNav } from "@/lib/site";
 import { useDialogFocus } from "@/lib/focusTrap";
 import { cn } from "@/lib/utils";
 
+/** Quiet chrome: Shop-first apparel lead, with ecosystem destinations from main. */
 const primaryNav = [
   { label: "Shop", href: "/shop" },
-  { label: "Services", href: "/#services", isServices: true },
-  { label: "Guides", href: "/dog-friendly-waco" },
-  { label: "About", href: "/about" },
+  { label: "Dog Care", href: "/dog-care", isServices: true },
+  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
+  { label: "Wag Watch", href: "/wag-watch" },
+  { label: "Events", href: "/weekend" },
+  { label: "Wag Club", href: "/#wag-club" },
 ] as const;
 
 function isActive(pathname: string, href: string) {
@@ -111,10 +114,10 @@ export function Header() {
                         </Link>
                       ))}
                       <Link
-                        href="/book"
+                        href="/dog-care"
                         className="mt-1 block border-t border-border px-4 py-2.5 text-xs font-medium tracking-[0.12em] text-wag-sage uppercase hover:text-rose"
                       >
-                        All booking options →
+                        All dog care →
                       </Link>
                     </div>
                   </div>
@@ -177,7 +180,7 @@ export function Header() {
               </Link>
             ))}
             <p className="mt-3 px-3 text-xs font-medium tracking-[0.16em] text-label-muted uppercase">
-              Services
+              Dog Care
             </p>
             {servicesNav.map((link) => (
               <Link

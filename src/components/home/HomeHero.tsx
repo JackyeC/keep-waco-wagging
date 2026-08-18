@@ -49,10 +49,10 @@ export function HomeHero() {
               Shop the collection
             </Link>
             <Link
-              href="/#services"
+              href="/dog-care"
               className="text-xs font-medium tracking-[0.16em] text-cream/85 uppercase underline decoration-cream/40 underline-offset-4 transition-colors hover:text-cream hover:decoration-cream"
             >
-              Pet care services
+              Dog care
             </Link>
           </div>
           <p className="mt-6 text-[11px] font-medium tracking-[0.18em] text-cream/65 uppercase">
