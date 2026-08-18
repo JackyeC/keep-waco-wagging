@@ -85,48 +85,89 @@ export const urgencyConfig: Record<
 };
 
 /**
- * Sample items — DRAFT (unpublished) placeholders only, so the system exists
- * without publishing any invented news. Replace with real, sourced items and
- * set draft: false to publish.
+ * Published Wag Watch items. Every published item is backed by real, cited
+ * sources — no invented news. Set draft: true to unpublish.
  */
 export const wagWatchItems: WagWatchItem[] = [
   {
-    id: "sample-summer-heat",
-    slug: "sample-summer-heat-advisory",
-    headline: "Sample: Summer heat advisory for Waco dogs",
+    id: "waco-dog-heat-safety",
+    slug: "waco-dog-heat-safety",
+    headline: "Central Texas heat: keeping your Waco dog safe on hot days",
     shortSummary:
-      "Placeholder draft demonstrating a Health & Safety heat alert. Not published — replace with a real, sourced advisory.",
+      "Waco summers stay dangerously hot well into fall. Hot pavement and parked cars are the biggest risks — here's the quick, vet-backed playbook.",
     whatHappened:
-      "This is an unpublished sample item used to build the Wag Watch system. It carries no real claims.",
+      "Central Texas routinely sees high heat from late spring into October. Veterinary and animal-welfare groups warn that warm-weather outings can turn dangerous fast for dogs, even on days that don't feel extreme to people. Two risks stand out: hot pavement, and dogs left in parked cars.",
     whyCare:
-      "When published, this section explains, in plain language, why a Waco dog parent should care.",
+      "Dogs cool themselves mainly by panting and overheat far faster than people. Pavement can run 40–60°F hotter than the air — on an 85°F day, asphalt can hit ~135°F and burn paw pads in under a minute. A parked car can reach deadly temperatures within minutes, even with the windows cracked. Heatstroke is a true emergency and is often fatal without fast care.",
     whatToDo:
-      "When published, this section tells dog parents exactly what to do, if anything.",
+      "Do the 7-second test: press the back of your hand on the pavement for 7 seconds — if you can't hold it, it's too hot for paws. Walk in the early morning or after dark, stick to grass and shade, and bring water. Never leave your dog in a parked car, even briefly. Learn the signs of heat stress — heavy panting, drooling, weakness, unsteadiness, bright or dark gums, vomiting, or collapse. If you see them, move your dog to shade or AC, wet them with cool (not ice-cold) water, and get to a vet immediately — don't wait.",
     wacoAngle:
-      "When published, this section adds the specific local Waco/McLennan County context.",
+      "For after-hours emergencies, Waco Animal Emergency Clinic (3901 Jack Kultgen Fwy.) offers overnight and weekend care — save the number before you need it: (254) 752-6100. When you do head out, choose shaded, grassy spots over hot concrete.",
     category: "Health & Safety",
     geographicScope: "Waco & McLennan County",
-    publishedDate: "2026-08-17",
+    publishedDate: "2026-08-18",
+    updatedDate: "2026-08-18",
     urgency: "Important Alert",
-    sourceUrls: [],
-    sourceNames: [],
-    actionLabel: "See dog-friendly places with shade",
+    expiresAt: "2026-10-20",
+    sourceUrls: [
+      "https://www.avma.org/resources-tools/pet-owners/petcare/warm-weather-pet-safety",
+      "https://www.aspca.org/pet-care/general-pet-care/hot-weather-safety-tips",
+      "https://www.aaha.org/resources/how-to-protect-dog-paws-from-hot-pavement/",
+      "https://vetmed.tamu.edu/news/pet-talk/protecting-pets-from-heat-stress/",
+    ],
+    sourceNames: [
+      "American Veterinary Medical Association — Warm weather pet safety",
+      "ASPCA — Hot weather safety tips",
+      "AAHA — How to protect dog paws from hot pavement",
+      "Texas A&M School of Veterinary Medicine — Protecting pets from heat stress",
+    ],
+    actionLabel: "Find dog-friendly places with shade",
     actionUrl: "/dog-friendly-waco",
-    draft: true,
+    relatedDirectorySlug: "cameron-park",
+    image: {
+      src: "/pictures/pool-pack.webp",
+      alt: "Dogs cooling off in water during a hot Central Texas day",
+    },
+    draft: false,
   },
   {
-    id: "sample-new-business",
-    slug: "sample-new-dog-friendly-business",
-    headline: "Sample: A new dog-friendly spot opened in Waco",
+    id: "bridge-street-fall-concerts-2026",
+    slug: "waco-fall-concerts-bridge-street-plaza",
+    headline:
+      "Free fall concerts return to Waco's dog-friendly Bridge Street Plaza",
     shortSummary:
-      "Placeholder draft demonstrating a New & Noteworthy item. Not published — replace with a real, sourced write-up.",
+      "The free Levitt AMP Waco Music Series is back at Bridge Street Plaza this fall (Sept 10–Oct 8, 2026) — an easy, walkable outing at a leashed-dog-welcome public space.",
+    whatHappened:
+      "Creative Waco's free Levitt AMP Waco Music Series returns to Bridge Street Plaza for its fall run, Sept. 10 through Oct. 8, 2026. Bridge Street Plaza is Waco's public 'Front Porch' in East Waco — an open, walkable gathering space where leashed dogs are welcome (the Waco Downtown Farmers Market that meets there even keeps a doggie clean-up station on site).",
+    whyCare:
+      "It's a free, local, outdoor thing to do — and the plaza is one of the more dog-welcoming public spaces downtown. Cooler fall evenings also make it more comfortable for dogs than a summer afternoon.",
+    whatToDo:
+      "Bring a lawn chair and water. Keep your dog leashed, and pick up after them. Note: the concert series doesn't publish a specific pet policy, so use your judgment — a crowded evening concert isn't the right fit for every dog. Reactive, shy, or noise-sensitive dogs may be happier at home, especially near the stage.",
+    wacoAngle:
+      "Bridge Street Plaza sits at 200 E. Bridge St., linking downtown to the historic Elm Avenue corridor — an easy add-on to a dog-friendly East Waco afternoon.",
     category: "New & Noteworthy",
-    geographicScope: "Waco",
-    publishedDate: "2026-08-17",
+    geographicScope: "Waco (East Waco / Bridge Street Plaza)",
+    publishedDate: "2026-08-18",
     urgency: "Good to Know",
-    actionLabel: "See dog-friendly places",
+    expiresAt: "2026-10-09",
+    sourceUrls: [
+      "https://levitt.org/amp-waco-tx/",
+      "https://creativewaco.org/events/levitt",
+      "https://www.waco-texas.com/Departments/Parks-Recreation/Parks-Playgrounds-Splash-Pads-Trails/Bridge-Street",
+    ],
+    sourceNames: [
+      "Levitt Foundation — Levitt AMP Waco (series dates)",
+      "Creative Waco — Levitt AMP Waco Music Series 2026",
+      "City of Waco — Bridge Street Plaza",
+    ],
+    actionLabel: "See dog-friendly places in Waco",
     actionUrl: "/dog-friendly-waco",
-    draft: true,
+    relatedDirectorySlug: "bridge-street-plaza",
+    image: {
+      src: "/pictures/community-walk.webp",
+      alt: "People walking dogs on leash at an outdoor Waco gathering space",
+    },
+    draft: false,
   },
 ];
 
