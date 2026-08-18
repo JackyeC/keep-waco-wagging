@@ -325,4 +325,39 @@
   .bg-paper-alt {
     background-color: var(--color-soft-cream);
   }
+
+  .motion-hero-image {
+    animation: kww-hero-ken 18s ease-out both;
+  }
+
+  .motion-hero-copy {
+    animation: kww-hero-rise 0.9s ease-out both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .motion-hero-image,
+    .motion-hero-copy {
+      animation: none;
+    }
+  }
+
+  @keyframes kww-hero-ken {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes kww-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

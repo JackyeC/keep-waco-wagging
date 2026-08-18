@@ -422,11 +422,10 @@ export function buildAmazonProductImageUrl(
 export const announcementBar = {
   enabled: true,
   messages: [
-    "Join the Wag Club for first access to drops, local perks & dog-parent favorites.",
-    "Free local Waco pickup · Ships nationwide.",
-    "Every order helps local Waco dogs.",
+    "Free local Waco pickup · Ships nationwide",
+    "Cute shirts. Local impact. More tails wagging.",
   ],
-  showHeart: true,
+  showHeart: false,
 } as const;
 
 export const podcast = {
