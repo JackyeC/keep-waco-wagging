@@ -10,12 +10,12 @@ import { useDialogFocus } from "@/lib/focusTrap";
 import { cn } from "@/lib/utils";
 
 const primaryNav = [
+  { label: "Dog Care", href: "/dog-care", isServices: true },
+  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
+  { label: "Wag Watch", href: "/wag-watch" },
+  { label: "Events", href: "/weekend" },
   { label: "Shop", href: "/shop" },
-  { label: "The Drop", href: "/shop#featured" },
   { label: "Wag Club", href: "/#wag-club" },
-  { label: "Waco", href: "/dog-friendly-waco" },
-  { label: "Pet Care", href: "/pet-care", isServices: true },
-  { label: "About", href: "/about" },
 ] as const;
 
 function isActive(pathname: string, href: string) {
@@ -180,7 +180,7 @@ export function Header() {
               </Link>
             ))}
             <p className="mt-3 px-3 text-xs font-medium tracking-[0.16em] text-label-muted uppercase">
-              Pet Care
+              Dog Care
             </p>
             {servicesNav.map((link) => (
               <Link
