@@ -733,6 +733,57 @@ export const approvedListings: ApprovedListing[] = [
     researchedDate: "2026-08-17",
     personallyVisited: false,
   },
+  {
+    id: "carleen-bright-arboretum",
+    slug: "carleen-bright-arboretum",
+    name: "Carleen Bright Arboretum",
+    group: "explore",
+    category: "Park",
+    address: "9001 Bosque Blvd. B, Woodway, TX 76712",
+    city: "Woodway",
+    website: "https://discoverwoodway.com/arboretum/",
+    evaluationStatus: "pending",
+    shortSummary:
+      "Woodway's 16-acre garden and nature trail — the Arboretum says leashed dogs are welcome and waste stations are on the grounds. We still need an in-person visit before a Keep Waco Wagging Approved verdict.",
+    dogPolicy:
+      "Dogs welcome; leash at all times; pick up after your dog. Waste stations and trash cans throughout the grounds.",
+    dogPolicyEvidence: "reported",
+    leashRequired: "yes",
+    outdoorDogs: "yes",
+    indoorDogs: "no",
+    wasteStation: "yes",
+    shade: "Partial",
+    shadeEvidence: "reported",
+    sources: [
+      {
+        type: "officialSocialMedia",
+        url: "https://www.facebook.com/CarleenBrightArboretum/",
+        supports:
+          "Arboretum visitor note: dog-friendly if leashed, pickup required, waste stations on site",
+        dateChecked: "2026-08-19",
+        notes:
+          "Community-found official post — policy not yet confirmed in person by Keep Waco Wagging.",
+      },
+      {
+        type: "officialWebsite",
+        url: "https://discoverwoodway.com/arboretum/",
+        supports: "Address, 16-acre grounds, Todd Willis Nature Trail, daily 6 a.m.–10 p.m.",
+        dateChecked: "2026-08-19",
+      },
+      {
+        type: "reputableLocalMedia",
+        url: "https://destinationwaco.org/places/carleen-bright-arboretum/",
+        supports: "Address and phone for the Woodway arboretum",
+        dateChecked: "2026-08-19",
+      },
+    ],
+    researchedDate: "2026-08-19",
+    personallyVisited: false,
+    featuredImage: {
+      src: "/pictures/jackye-collie-tree.webp",
+      alt: "Placeholder outdoor walk image for a Woodway garden pending evaluation",
+    },
+  },
 ];
 
 export function getApprovedListingBySlug(slug: string): ApprovedListing | undefined {
