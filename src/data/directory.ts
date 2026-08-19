@@ -237,6 +237,36 @@ export const directoryListings: DogDirectoryListing[] = [
     badges: ["Leash required", "Shade available", "Locally loved"],
   },
   {
+    id: "carleen-bright-arboretum",
+    slug: "carleen-bright-arboretum",
+    name: "Carleen Bright Arboretum",
+    category: "Parks and trails",
+    address: "9001 Bosque Blvd. B, Woodway, TX 76712",
+    phone: "(254) 399-9204",
+    website: "https://discoverwoodway.com/arboretum/",
+    neighborhood: "Woodway",
+    dogPolicy:
+      "Dogs are welcome on the grounds. Keep your dog leashed at all times and pick up after them. Dog waste stations and trash cans are available throughout the gardens.",
+    patioDetails:
+      "Sixteen acres of botanical gardens, the Todd Willis Nature Trail through native woodlands, a meditation grove, and a children's area. Grounds are open daily 6 a.m.–10 p.m. Splash pad is seasonal (Memorial Day weekend through Labor Day weekend, 9 a.m.–7 p.m.).",
+    waterBowls: "unknown",
+    shade: "yes",
+    bestTimeToVisit:
+      "Early morning or evening in summer; cooler months for a longer garden walk.",
+    description:
+      "The Carleen Bright Arboretum — Woodway's 16-acre garden and nature trail — is a quiet doggie day out: leashed dogs are welcome, waste stations are on the grounds, and there's shade for a slower walk than Cameron Park's riverside miles.",
+    notes:
+      "Dog policy from the Arboretum's own visitor note (leash + pickup + waste stations). Confirm any special-event restrictions before you go.",
+    sourceUrls: [
+      "https://discoverwoodway.com/arboretum/",
+      "https://destinationwaco.org/places/carleen-bright-arboretum/",
+      "https://www.facebook.com/CarleenBrightArboretum/",
+    ],
+    lastVerified: "2026-08-19",
+    sponsorTier: "none",
+    badges: ["Leash required", "Shade available", "Waste stations"],
+  },
+  {
     id: "pinewood-coffee-bar",
     slug: "pinewood-coffee-bar",
     name: "Pinewood Coffee Bar",
