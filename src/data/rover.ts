@@ -6,7 +6,8 @@ import { cityConfig } from "@/lib/site";
  */
 export const roverPrices = {
   boarding: {
-    standard: "$40 per night",
+    /** Verified public Rover starting rate */
+    standard: "$47 per night",
     holiday: "$40 per night",
     additionalDog: "+$20 per dog, per night",
     puppy: "$50 per night",
@@ -22,7 +23,8 @@ export const roverPrices = {
     puppy: "$15 per visit",
   },
   daycare: {
-    standard: "$30 per day",
+    /** Verified public Rover starting rate */
+    standard: "$37 per day",
     holiday: "$36 per day",
     additionalDog: "+$24 per dog, per day",
     puppy: "$33 per day",
@@ -36,6 +38,12 @@ export const roverPrices = {
     additionalDog: "+$9 per dog, per walk",
     puppy: "$17 per walk",
   },
+} as const;
+
+/** Public-facing starting-rate lines for landing pages (Rover-labeled). */
+export const roverPublicStartingRates = {
+  boarding: "From $47/night on Rover",
+  daycare: "From $37/day on Rover",
 } as const;
 
 export type RoverRateLine = {

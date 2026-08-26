@@ -1,19 +1,30 @@
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { ServicePageConfig } from "@/data/servicePages";
+import {
+  platinumScoopsOrganization,
+  platinumScoopsProviderRef,
+} from "@/lib/platinumScoopsSchema";
 import { cityConfig } from "@/lib/site";
 
 export type ServiceFaqItem = { question: string; answer: string };
 
 function servicePath(slug: string): string {
-  if (slug === "weddings-events") return "/pet-care/weddings-events";
+  if (slug === "weddings-events" || slug === "pet-care/weddings-events") {
+    return "/pet-care/weddings-events";
+  }
+  if (slug.startsWith("/")) return slug;
   return `/${slug}`;
 }
 
 function serviceName(config: ServicePageConfig): string {
   if (config.slug === "platinum-scoops") return "Platinum Scoops pet waste removal";
   if (config.slug === "pet-care") return "Home-based dog daycare and boarding";
+  if (config.slug === "dog-boarding-waco-tx") return "Home-based dog boarding in Waco, TX";
+  if (config.slug === "dog-daycare-waco-tx") return "Home-based dog daycare in Waco, TX";
   if (config.slug === "training") return "Lifestyle dog training";
-  if (config.slug === "weddings-events") return "Dog of Honor wedding pet care";
+  if (config.slug === "weddings-events" || config.slug === "pet-care/weddings-events") {
+    return "Dog of Honor wedding pet care";
+  }
   if (config.slug === "summer-daycare") return cityConfig.name + " summer dog camp";
   return config.hero.eyebrow;
 }
@@ -21,9 +32,16 @@ function serviceName(config: ServicePageConfig): string {
 export function ServicePageJsonLd({
   config,
   faqs,
+  offer,
 }: {
   config: ServicePageConfig;
   faqs?: ServiceFaqItem[];
+  offer?: {
+    name: string;
+    price: string;
+    priceCurrency?: string;
+    description?: string;
+  };
 }) {
   const path = servicePath(config.slug);
   const url = `${cityConfig.url}${path}`;
@@ -41,30 +59,73 @@ export function ServicePageJsonLd({
       {
         "@type": "ListItem",
         position: 2,
+        name: "Pet Care",
+        item: `${cityConfig.url}/pet-care`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
         name: config.seo.title.split("|")[0]?.trim() ?? config.hero.eyebrow,
         item: url,
       },
     ],
   };
 
-  const service = {
+  const isHub =
+    config.slug === "pet-care" ||
+    config.slug === "platinum-scoops" ||
+    config.slug === "training" ||
+    config.slug === "summer-daycare" ||
+    config.slug === "weddings-events" ||
+    config.slug === "pet-care/weddings-events";
+
+  const breadcrumbFinal = isHub
+    ? {
+        ...breadcrumb,
+        itemListElement: [
+          breadcrumb.itemListElement[0],
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: config.seo.title.split("|")[0]?.trim() ?? config.hero.eyebrow,
+            item: url,
+          },
+        ],
+      }
+    : breadcrumb;
+
+  const provider = platinumScoopsOrganization();
+
+  const service: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: serviceName(config),
     description: config.seo.description,
     url,
-    provider: {
-      "@type": "ProfessionalService",
-      name: cityConfig.sponsor.name,
-      url: cityConfig.url,
-    },
+    provider: platinumScoopsProviderRef(),
     areaServed: cityConfig.serviceAreas.map((name) => ({
       "@type": "City",
       name,
     })),
   };
 
-  const blocks: Record<string, unknown>[] = [breadcrumb, service];
+  if (offer?.price) {
+    service.offers = {
+      "@type": "Offer",
+      name: offer.name,
+      price: offer.price,
+      priceCurrency: offer.priceCurrency ?? "USD",
+      description: offer.description ?? config.seo.description,
+      url,
+      availability: "https://schema.org/InStock",
+    };
+  }
+
+  const blocks: Record<string, unknown>[] = [
+    breadcrumbFinal,
+    { "@context": "https://schema.org", ...provider },
+    service,
+  ];
 
   if (faqs && faqs.length > 0) {
     blocks.push({

@@ -15,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/work-with-us", priority: 0.4 },
     { route: "/platinum-scoops", priority: 0.9 },
     { route: "/pet-care", priority: 0.9 },
+    { route: "/dog-boarding-waco-tx", priority: 0.92 },
+    { route: "/dog-daycare-waco-tx", priority: 0.92 },
     { route: "/training", priority: 0.85 },
     { route: "/pet-care/weddings-events", priority: 0.85 },
     { route: "/summer-daycare", priority: 0.85 },

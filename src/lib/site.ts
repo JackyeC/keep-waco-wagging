@@ -13,6 +13,8 @@ export const brandLanguage = {
   /** Longer relationship line for hero and footer context. */
   brandRelationship:
     "Keep Waco Wagging is the community and pet-care home of Platinum Scoops.",
+  /** Provider line for boarding/daycare and other pet-care service pages. */
+  petCareProvided: "Pet care provided by Platinum Scoops.",
   /** @deprecated Use brandByLine */
   presentedBy: "Keep Waco Wagging by Platinum Scoops",
   poweredBy:
@@ -99,7 +101,9 @@ export const cityConfig = {
     /** Personal referral link — gives new Rover clients $40 off their first booking. */
     referralUrl: "https://www.rover.com/sit/jackyc91388",
     rating: "5.0",
-    reviewCount: 119,
+    /** Verified public Rover stats — update here only. */
+    reviewCount: 125,
+    starSitter: true,
     headline: "Full-Time Pet Care Professionals",
     subhead: "Our Empty Nest, Your Dog's Retreat",
     /** New-client Rover referral offer. Update the deadline/terms as Rover changes them. */
@@ -111,6 +115,15 @@ export const cityConfig = {
       terms:
         "Referral credit is only for new Rover customers who sign up through this link. New customers must complete a $20+ booking by September 6, 2026 to redeem the credit. Rules and restrictions apply — see Rover's Referral Terms & Conditions.",
     },
+  },
+  /**
+   * Trust / social-proof numbers used across pet-care landings.
+   * Update here only — do not hardcode elsewhere.
+   */
+  trustSignals: {
+    repeatClients: 51,
+    /** Leave unchanged until explicitly re-verified. */
+    goodPupCertified: true,
   },
   founders: {
     names: "Jackye and Todd Clayton",
@@ -166,7 +179,8 @@ export type NavLink = {
 /** Dedicated service landing pages — homepage teasers, footer, and /book hub. */
 export const servicesNav: NavLink[] = [
   { label: "Poop Scooping", href: "/platinum-scoops" },
-  { label: "Daycare & Boarding", href: "/pet-care" },
+  { label: "Dog Boarding", href: "/dog-boarding-waco-tx" },
+  { label: "Dog Daycare", href: "/dog-daycare-waco-tx" },
   { label: "Lifestyle Training", href: "/training" },
   { label: "Dog of Honor Wedding Pet Care", href: "/pet-care/weddings-events" },
   { label: "Summer Dog Camp", href: "/summer-daycare" },
@@ -307,10 +321,11 @@ export const sponsorLinks = {
   services: [
     { label: "Weekly Dog Waste Removal", href: "/platinum-scoops#yard-services" },
     { label: "One-Time Yard Cleanups", href: "/platinum-scoops#yard-services" },
-    { label: "Boarding & Daycare", href: "/pet-care" },
+    { label: "Dog Boarding", href: "/dog-boarding-waco-tx" },
+    { label: "Dog Daycare", href: "/dog-daycare-waco-tx" },
     { label: "Summer Daycare Camp", href: "/summer-daycare" },
     { label: "Dog of Honor Wedding Pet Care", href: "/pet-care/weddings-events" },
-    { label: "Dog Walking", href: "/pet-care" },
+    { label: "Dog Walking", href: "/dog-daycare-waco-tx" },
   ],
 } as const;
 
