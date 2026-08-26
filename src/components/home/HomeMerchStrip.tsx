@@ -1,11 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { liveMerchProducts } from "@/data/merchStore";
+import { pickFeaturedProducts } from "@/data/merchCuration";
 import { merchAnchorLine } from "@/data/merchCuration";
+import { getFeaturedMerchProducts } from "@/data/merchStore";
+import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
 
-const featured = liveMerchProducts.filter((p) => p.featured).slice(0, 4);
+const FEATURED_COUNT = 4;
 
-export function HomeMerchStrip() {
+export async function HomeMerchStrip() {
+  const { products: catalog } = await fetchShopifyCatalog();
+  const featured =
+    catalog.length > 0
+      ? pickFeaturedProducts(catalog, FEATURED_COUNT)
+      : getFeaturedMerchProducts(FEATURED_COUNT);
+
   if (featured.length === 0) return null;
 
   return (

@@ -10,6 +10,8 @@ import { merchAnchorLine } from "@/data/merchCuration";
 import { servicePageMetadata } from "@/lib/metadata";
 import { brandLanguage } from "@/lib/site";
 
+export const revalidate = 600;
+
 export const metadata: Metadata = servicePageMetadata(
   "/",
   "Keep Waco Wagging | Waco Dog Apparel & Pet Care",
