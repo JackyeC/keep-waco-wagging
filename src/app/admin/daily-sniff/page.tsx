@@ -3,13 +3,14 @@ import type { Metadata } from "next";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 import { checkAdmin } from "@/lib/daily-sniff/admin-auth";
 import { Button } from "@/components/ui/Button";
+import { noindexRobots } from "@/lib/metadata";
 import type { DailySniffBrief } from "@/lib/daily-sniff/types";
 import { loginAdmin, logoutAdmin } from "./actions";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Daily Sniff review queue",
-  robots: { index: false, follow: false },
+  robots: noindexRobots,
 };
 
 const STATUS_LABELS: Record<string, string> = {

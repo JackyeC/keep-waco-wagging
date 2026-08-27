@@ -6,12 +6,13 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { AdSlot } from "@/components/AdSlot";
 import { Badge } from "@/components/ui/Badge";
 import { weekendBlocks, weekendEdition } from "@/data/weekend";
+import { servicePageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Where to Wag This Weekend",
-  description:
-    "Your weekly guide to dog-friendly Waco — events, patio picks, parks and trails, a training skill of the week, weather reminders, and local shoutouts.",
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/weekend",
+  "Where to Wag This Weekend",
+  "Your weekly guide to dog-friendly Waco — events, patio picks, parks and trails, a training skill of the week, weather reminders, and local shoutouts.",
+);
 
 export default function WeekendPage() {
   return (

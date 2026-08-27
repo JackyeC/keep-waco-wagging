@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { servicePageMetadata } from "@/lib/metadata";
 import { cityConfig, monetization } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Affiliate Disclosure",
-  description: `Affiliate and sponsorship disclosure for ${cityConfig.name}.`,
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/affiliate-disclosure",
+  "Affiliate Disclosure",
+  `Affiliate and sponsorship disclosure for ${cityConfig.name}.`,
+);
 
 export default function AffiliateDisclosurePage() {
   return (

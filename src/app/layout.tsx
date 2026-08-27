@@ -10,6 +10,7 @@ import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
+import { indexFollowRobots } from "@/lib/metadata";
 import { brandLanguage, siteConfig } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({
@@ -42,6 +43,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
+  robots: indexFollowRobots,
   ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
   process.env.GOOGLE_SITE_VERIFICATION
     ? {

@@ -7,13 +7,14 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { SponsorInquiryForm } from "@/components/SponsorInquiryForm";
 import { sponsorTiers } from "@/data/communityPartners";
 import { sponsorTypes } from "@/data/sponsors";
+import { servicePageMetadata } from "@/lib/metadata";
 import { brandLanguage } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Sponsor Keep Waco Wagging | Reach Waco Dog Parents",
-  description:
-    `${brandLanguage.communityLine}. Sponsor placements include camp weeks, photo booths, treats, and community partner spots.`,
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/sponsors",
+  "Sponsor Keep Waco Wagging | Reach Waco Dog Parents",
+  `${brandLanguage.communityLine}. Sponsor placements include camp weeks, photo booths, treats, and community partner spots.`,
+);
 
 export default function SponsorsPage() {
   return (

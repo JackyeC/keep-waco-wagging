@@ -7,13 +7,28 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { AdSlot } from "@/components/AdSlot";
 import { blogCategories, getPublishedPosts } from "@/data/blog";
 import { sitePhotos } from "@/data/sitePhotos";
+import { servicePageMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: "The Keep Waco Wagging Blog",
-  description:
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}): Promise<Metadata> {
+  const { category } = await searchParams;
+  const filtered =
+    Boolean(category) && blogCategories.includes(category as never);
+  const metadata = servicePageMetadata(
+    "/blog",
+    "The Keep Waco Wagging Blog",
     "Guides and tips for Waco dog parents — dog-friendly Waco, training for real life, yard + home care, local pet parents, events, business spotlights, and Platinum Scoops tips.",
-};
+  );
+  if (!filtered) return metadata;
+  return {
+    ...metadata,
+    robots: { index: false, follow: true },
+  };
+}
 
 export default async function BlogPage({
   searchParams,

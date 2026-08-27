@@ -9,7 +9,7 @@ import {
   getGuideSources,
   getRelatedGuideSlugs,
 } from "@/data/guideContent";
-import { articlePageMetadata } from "@/lib/metadata";
+import { articlePageMetadata, noindexRobots } from "@/lib/metadata";
 import { getBlogCategoryImage } from "@/data/sitePhotos";
 
 export function generateStaticParams() {
@@ -34,7 +34,7 @@ export async function generateMetadata({
     return {
       title: post.title,
       description: post.excerpt,
-      robots: { index: false, follow: false },
+      robots: noindexRobots,
     };
   }
 

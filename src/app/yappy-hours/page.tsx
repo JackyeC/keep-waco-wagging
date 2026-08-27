@@ -7,13 +7,14 @@ import { Badge } from "@/components/ui/Badge";
 import { YappyHourRSVP } from "@/components/YappyHourRSVP";
 import { yappyHours, getUpcomingYappyHourEvents, type YappyHourEvent } from "@/data/yappyHours";
 import { sitePhotos } from "@/data/sitePhotos";
+import { servicePageMetadata } from "@/lib/metadata";
 import { cityConfig, ctas } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: `Yappy Hours in ${cityConfig.city} | Dog Meetups & Socials`,
-  description:
-    `Yappy Hours are casual dog meetups in ${cityConfig.city} — public socials at dog-friendly patios and parks, plus members-only backyard get-togethers for Platinum Scoops and Rover clients. RSVP free.`,
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/yappy-hours",
+  `Yappy Hours in ${cityConfig.city} | Dog Meetups & Socials`,
+  `Yappy Hours are casual dog meetups in ${cityConfig.city} — public socials at dog-friendly patios and parks, plus members-only backyard get-togethers for Platinum Scoops and Rover clients. RSVP free.`,
+);
 
 export default function YappyHoursPage() {
   const upcoming = getUpcomingYappyHourEvents();
