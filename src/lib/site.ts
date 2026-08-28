@@ -5,26 +5,25 @@
  * `src/data/`. Do not hide city-specific facts inside components.
  */
 
-/** Reusable brand copy — local service brand with Platinum Scoops as the service engine. */
+/** Reusable brand copy — local dog-parent resource, with Platinum Scoops named honestly. */
 export const brandLanguage = {
   primaryName: "Keep Waco Wagging",
   /** Short brand lockup for headers and attribution lines. */
   brandByLine: "Keep Waco Wagging by Platinum Scoops",
   /** Longer relationship line for hero and footer context. */
   brandRelationship:
-    "Keep Waco Wagging is the community and pet-care home of Platinum Scoops.",
+    "Created by Jackye and Todd, the dog people behind Platinum Scoops — and built to help Waco dog parents, not just our own clients.",
   /** Provider line for boarding/daycare and other pet-care service pages. */
   petCareProvided: "Pet care provided by Platinum Scoops.",
   /** @deprecated Use brandByLine */
   presentedBy: "Keep Waco Wagging by Platinum Scoops",
   poweredBy:
-    "Keep Waco Wagging is the community and pet-care home of Platinum Scoops.",
-  heroLine:
-    "Full-time pet care, poop scooping, and yard service for Waco dog families",
+    "Keep Waco Wagging was created by the family behind Platinum Scoops. The site exists to help dog parents — not to sell one business.",
+  heroLine: "Give your dog their best Waco life.",
   servicesLine:
     "Poop scooping, boarding, daycare, training, wedding pet attendant services, and summer camp in Waco",
   communityLine:
-    "Local dog-friendly guides, events, and editorial resources for Waco dog parents",
+    "Your dog is family. Find the places, people, services, events, and experiences that make life with them in Waco even better.",
   sponsorServices:
     "Platinum Scoops provides pet waste removal, doggy daycare, boarding, and pet care services in Waco.",
   dogCampName: "Keep Waco Wagging Dog Camp",
@@ -53,18 +52,28 @@ export const cityConfig = {
   tagline: brandLanguage.communityLine,
   url: "https://keepwacowagging.com",
   description:
-    "Keep Waco Wagging is the community and pet-care home of Platinum Scoops — family-run poop scooping, boarding, daycare, training, and event dog care in Waco, Texas.",
+    "Keep Waco Wagging helps people who love their dogs like family give them the best life possible in Waco — local places, trusted care, events, and honest guidance for dog parents.",
   publicEmail: "info@keepwacowagging.com",
   keywords: [
+    "dog-friendly Waco",
+    "dog friendly restaurants Waco",
+    "dog parks Waco",
+    "dog events Waco",
+    "things to do with your dog in Waco",
+    "dog boarding Waco TX",
+    "dog daycare Waco TX",
     "Waco dog boarding",
     "Waco dog daycare",
+    "dog trainer Waco",
+    "dog groomer Waco",
+    "vet Waco",
+    "pet sitter Waco",
     "dog waste removal Waco",
     "poop scooping Waco",
     "Waco pet care",
     "Platinum Scoops",
     "Waco dog training",
     "wedding dog attendant Waco",
-    "dog-friendly Waco",
     "Waco dog parents",
   ],
   serviceAreas: [
@@ -186,14 +195,14 @@ export const servicesNav: NavLink[] = [
   { label: "Summer Dog Camp", href: "/summer-daycare" },
 ];
 
-// Primary nav — rendered in Header.tsx (club/shop-first + Pet Care dropdown).
+// Primary nav — dog-parent jobs first (GO / CARE / KNOW / BELONG / SHOP).
 export const mainNav: NavLink[] = [
+  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
+  { label: "Dog Care", href: "/dog-care" },
+  { label: "Wag Watch", href: "/wag-watch" },
+  { label: "Weekend", href: "/weekend" },
   { label: "Shop", href: "/shop" },
-  { label: "The Drop", href: "/shop#featured" },
   { label: "Wag Club", href: "/#wag-club" },
-  { label: "Waco", href: "/dog-friendly-waco" },
-  { label: "Pet Care", href: "/pet-care" },
-  { label: "About", href: "/about" },
 ];
 
 // Community, booking, and secondary pages — footer and mobile overflow.
@@ -201,11 +210,12 @@ export const secondaryNav: NavLink[] = [
   { label: "Dog Care", href: "/dog-care" },
   { label: "Keep Waco Wagging Approved", href: "/approved" },
   { label: "Wag Watch", href: "/wag-watch" },
+  { label: "New Dog in Waco", href: "/new-dog-in-waco" },
   { label: "Book a Service", href: "/book" },
   { label: "Summer Dog Camp", href: "/summer-daycare" },
   { label: "Blog", href: "/blog" },
   { label: "Yappy Hours", href: "/yappy-hours" },
-  { label: "Weekend Guide", href: "/weekend" },
+  { label: "Waco Dog Weekend", href: "/weekend" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Gear Guide", href: "/gear-guide" },
@@ -277,6 +287,22 @@ export const ctas = {
   joinClub: {
     label: "Join the Wag Club",
     href: "/#wag-club",
+  },
+  wagWatch: {
+    label: "Read Wag Watch",
+    href: "/wag-watch",
+  },
+  weekendGuide: {
+    label: "This weekend",
+    href: "/weekend",
+  },
+  approved: {
+    label: "What Approved means",
+    href: "/approved",
+  },
+  newDog: {
+    label: "New dog in Waco",
+    href: "/new-dog-in-waco",
   },
   shopDrop: {
     label: "Shop the Drop",
@@ -437,8 +463,9 @@ export function buildAmazonProductImageUrl(
 export const announcementBar = {
   enabled: true,
   messages: [
+    "Give your dog their best Waco life.",
+    "Dogs allowed isn't the same as a good outing.",
     "Free local Waco pickup · Ships nationwide",
-    "Cute shirts. Local impact. More tails wagging.",
   ],
   showHeart: false,
 } as const;

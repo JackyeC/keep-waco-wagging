@@ -23,17 +23,17 @@ const statusLegend = [
   {
     kind: "approved" as const,
     icon: BadgeCheck,
-    text: "A place we would genuinely recommend visiting with your dog when conditions are right.",
+        text: "A place we would genuinely recommend visiting with your dog when conditions are right. Would we take our dog? Yes.",
   },
   {
     kind: "cautions" as const,
     icon: TriangleAlert,
-    text: "Dogs are permitted, but there are real limitations worth knowing before you go.",
+        text: "Dogs are permitted, but there are real limitations worth knowing before you go. Would we take our dog? Yes, but…",
   },
   {
     kind: "not_recommended" as const,
     icon: Ban,
-    text: "Dogs may be allowed, but the experience or safety makes it one we wouldn't recommend.",
+        text: "Dogs may be allowed, but the experience or safety makes it one we wouldn't recommend. Would we take our dog? Probably not for our dogs.",
   },
   {
     kind: "pending" as const,

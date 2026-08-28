@@ -6,7 +6,6 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { RoverReferralCta } from "@/components/RoverReferralCta";
 import { servicePageMetadata } from "@/lib/metadata";
-import { cityConfig } from "@/lib/site";
 
 export const metadata: Metadata = servicePageMetadata(
   "/dog-care",
@@ -58,15 +57,15 @@ export default function DogCarePage() {
       <PageHeader
         eyebrow="Dog Care"
         title="Trusted dog care for Waco families"
-        description="Keep Waco Wagging is the community and pet-care home of Platinum Scoops. When you need someone you trust with your dog, start here — boarding, daycare, training, camp, and poop scooping, all in Waco."
+        description="When your dog should stay somewhere safe — boarding, daycare, training, camp, and poop scooping from the family behind Keep Waco Wagging. For other local groomers, vets, and sitters, use the directory. We recommend more than our own work."
         tone="sage"
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href="/book" variant="sage" size="lg">
             Book Dog Care
           </Button>
-          <Button href={cityConfig.rover.profileUrl} variant="secondary" size="lg">
-            See our Rover reviews
+          <Button href="/dog-friendly-waco" variant="secondary" size="lg">
+            Other local resources
           </Button>
         </div>
       </PageHeader>

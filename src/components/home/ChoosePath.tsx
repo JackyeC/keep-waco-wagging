@@ -3,31 +3,31 @@ import { Bell, CalendarDays, MapPin, PawPrint } from "lucide-react";
 
 const paths = [
   {
-    icon: PawPrint,
-    title: "Dog care",
-    copy: "Need someone you trust with your dog?",
-    cta: "See Dog Care",
-    href: "/dog-care",
-  },
-  {
     icon: MapPin,
     title: "Dog-friendly Waco",
-    copy: "Find places your dog will actually enjoy — not just places where dogs are technically allowed.",
+    copy: "Where can we go together — and what is it actually like with a dog?",
     cta: "Explore Dog-Friendly Waco",
     href: "/dog-friendly-waco",
   },
   {
+    icon: PawPrint,
+    title: "Dog care",
+    copy: "Who can I trust with my dog when they should stay somewhere safe?",
+    cta: "See Dog Care",
+    href: "/dog-care",
+  },
+  {
     icon: Bell,
     title: "Wag Watch",
-    copy: "What Waco dog parents need to know right now.",
+    copy: "What changed that could matter to you and your dog this week?",
     cta: "Read Wag Watch",
     href: "/wag-watch",
   },
   {
     icon: CalendarDays,
-    title: "Events",
-    copy: "Dog-friendly things happening around Waco and Central Texas.",
-    cta: "See What's Happening",
+    title: "This weekend",
+    copy: "What can we do in Waco with a dog — and when should we leave them home?",
+    cta: "See Waco Dog Weekend",
     href: "/weekend",
   },
 ] as const;
@@ -38,7 +38,7 @@ export function ChoosePath() {
       <div className="text-center">
         <p className="eyebrow tracking-[0.24em]">What do you need today?</p>
         <h2 className="heading mt-2 text-[clamp(1.9rem,3.6vw,2.6rem)]">
-          Choose your path
+          If it involves your dog in Waco, start here
         </h2>
       </div>
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

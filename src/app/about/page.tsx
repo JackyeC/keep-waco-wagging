@@ -7,7 +7,7 @@ import { brandLanguage } from "@/lib/site";
 export const metadata: Metadata = servicePageMetadata(
   "/about",
   "About Keep Waco Wagging",
-  `Meet Jackye and Todd Clayton — full-time Waco pet care professionals. ${brandLanguage.brandByLine}.`,
+  `Meet Jackye and Todd Clayton, the Waco dog people behind Keep Waco Wagging. ${brandLanguage.heroLine}`,
   designPhotos.aboutHero,
 );
 

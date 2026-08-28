@@ -9,12 +9,13 @@ export function HomeServicesBand() {
     >
       <div className="mx-auto max-w-[1200px] px-6 py-14 sm:py-16">
         <div className="max-w-xl">
-          <p className="eyebrow tracking-[0.22em]">Pet care</p>
+          <p className="eyebrow tracking-[0.22em]">When they should stay home</p>
           <h2 className="heading mt-2 text-[clamp(1.75rem,3vw,2.35rem)]">
-            Full-time care, when you need it
+            Care you can actually trust
           </h2>
           <p className="dek mt-3 text-[15px]">
-            {brandLanguage.servicesLine}.
+            {brandLanguage.servicesLine}. Taking your dog everywhere is not the
+            job. Leaving them with people who know them is part of a good life.
           </p>
         </div>
 

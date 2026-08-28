@@ -7,7 +7,6 @@ import {
   servicesNav,
   socialLinksConfig,
 } from "@/lib/site";
-import { merchAnchorLine } from "@/data/merchCuration";
 
 const brandLinks = [
   { label: "Shop", href: "/shop" },
@@ -17,10 +16,11 @@ const brandLinks = [
 
 const exploreLinks = [
   { label: "Dog-friendly Waco", href: "/dog-friendly-waco" },
-  { label: "Approved", href: "/approved" },
-  { label: "Guides", href: "/blog" },
+  { label: "Keep Waco Wagging Approved", href: "/approved" },
+  { label: "Waco Dog Weekend", href: "/weekend" },
   { label: "Wag Watch", href: "/wag-watch" },
-  { label: "Weekend", href: "/weekend" },
+  { label: "New dog in Waco", href: "/new-dog-in-waco" },
+  { label: "Guides", href: "/blog" },
 ];
 
 export function Footer() {
@@ -33,10 +33,10 @@ export function Footer() {
         <div className="max-w-[300px]">
           <BrandWordmark size="sm" />
           <p className="mt-4 text-[13px] leading-relaxed font-light text-body-muted-light">
-            {merchAnchorLine}
+            {brandLanguage.heroLine}
           </p>
           <p className="mt-2 text-[12px] leading-relaxed font-light text-label-muted">
-            {brandLanguage.brandRelationship}
+            {brandLanguage.communityLine}
           </p>
         </div>
 
@@ -157,6 +157,10 @@ export function Footer() {
         <Link href="/affiliate-disclosure" className="hover:text-rose">
           Affiliate disclosure
         </Link>
+      </p>
+      <p className="mt-2 max-w-3xl text-[11px] leading-relaxed font-light text-label-muted">
+        {brandLanguage.brandRelationship} Approval, reviews, and recommendations
+        are editorial — they cannot be bought.
       </p>
     </footer>
   );

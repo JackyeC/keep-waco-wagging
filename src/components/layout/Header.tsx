@@ -9,13 +9,16 @@ import { ctas, servicesNav } from "@/lib/site";
 import { useDialogFocus } from "@/lib/focusTrap";
 import { cn } from "@/lib/utils";
 
-/** Quiet chrome: Shop-first apparel lead, with ecosystem destinations from main. */
+/**
+ * Primary chrome — dog-parent jobs first.
+ * Dog Care keeps the existing service dropdown; other items come from mainNav.
+ */
 const primaryNav = [
-  { label: "Shop", href: "/shop" },
-  { label: "Dog Care", href: "/dog-care", isServices: true },
   { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
+  { label: "Dog Care", href: "/dog-care", isServices: true },
   { label: "Wag Watch", href: "/wag-watch" },
-  { label: "Events", href: "/weekend" },
+  { label: "Weekend", href: "/weekend" },
+  { label: "Shop", href: "/shop" },
   { label: "Wag Club", href: "/#wag-club" },
 ] as const;
 

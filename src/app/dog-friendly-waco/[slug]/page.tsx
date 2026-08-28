@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ExternalLink, MapPin, Phone } from "lucide-react";
+import { BeforeYouGo } from "@/components/directory/BeforeYouGo";
 import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
@@ -88,19 +89,7 @@ export default async function DogDirectoryDetailPage({
       <Section tone="paper">
         <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
           <article className="rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70">
-            <SectionHeading eyebrow="Dog policy" title="What to know before you go" />
-            <div className="mt-6 space-y-5 text-sm leading-relaxed text-bark-soft">
-              <Info label="Policy" value={listing.dogPolicy} />
-              <Info label="Patio / outdoor details" value={listing.patioDetails} />
-              <Info label="Water bowls" value={listing.waterBowls} />
-              <Info label="Shade" value={listing.shade} />
-              <Info label="Best time to visit" value={listing.bestTimeToVisit} />
-            </div>
-            <p className="mt-6 rounded-xl bg-gold-100 p-4 text-sm leading-relaxed text-bark-soft">
-              Dog policies, hours, and availability can change. Please verify
-              directly before visiting, especially for restaurants and busy
-              tourist spots.
-            </p>
+            <BeforeYouGo listing={listing} />
           </article>
 
           <aside className="space-y-4">
@@ -164,17 +153,5 @@ export default async function DogDirectoryDetailPage({
         </Button>
       </Section>
     </>
-  );
-}
-
-function Info({ label, value }: { label: string; value?: string }) {
-  if (!isPublishableDirectoryValue(value)) return null;
-  return (
-    <div>
-      <p className="text-xs font-semibold uppercase tracking-wide text-bark-faint">
-        {label}
-      </p>
-      <p className="mt-1">{value}</p>
-    </div>
   );
 }
