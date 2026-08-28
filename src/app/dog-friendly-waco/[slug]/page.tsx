@@ -12,6 +12,7 @@ import {
   directoryListings,
   getDirectoryListingBySlug,
 } from "@/data/directory";
+import { getRelatedDirectoryListings, isPublishableDirectoryValue } from "@/lib/directoryPublish";
 import { servicePageMetadata } from "@/lib/metadata";
 import { ctas } from "@/lib/site";
 
@@ -54,10 +55,10 @@ export default async function DogDirectoryDetailPage({
   const listing = getDirectoryListingBySlug(slug);
   if (!listing) notFound();
 
-  const nearby = directoryListings
-    .filter((item) => item.slug !== listing.slug)
-    .slice(0, 3);
-  const phone = isPublishableValue(listing.phone) ? listing.phone : undefined;
+  const nearby = getRelatedDirectoryListings(listing.slug);
+  const phone = isPublishableDirectoryValue(listing.phone)
+    ? listing.phone
+    : undefined;
 
   return (
     <>
@@ -94,7 +95,6 @@ export default async function DogDirectoryDetailPage({
               <Info label="Water bowls" value={listing.waterBowls} />
               <Info label="Shade" value={listing.shade} />
               <Info label="Best time to visit" value={listing.bestTimeToVisit} />
-              <Info label="Notes" value={listing.notes} />
             </div>
             <p className="mt-6 rounded-xl bg-gold-100 p-4 text-sm leading-relaxed text-bark-soft">
               Dog policies, hours, and availability can change. Please verify
@@ -167,21 +167,8 @@ export default async function DogDirectoryDetailPage({
   );
 }
 
-function isPublishableValue(value?: string): value is string {
-  if (!value) return false;
-  const normalized = value.trim().toLowerCase();
-  if (!normalized) return false;
-  return !(
-    normalized === "todo" ||
-    normalized.startsWith("todo ") ||
-    normalized.includes("todo verify") ||
-    normalized === "tbd" ||
-    normalized === "n/a"
-  );
-}
-
 function Info({ label, value }: { label: string; value?: string }) {
-  if (!isPublishableValue(value)) return null;
+  if (!isPublishableDirectoryValue(value)) return null;
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-wide text-bark-faint">

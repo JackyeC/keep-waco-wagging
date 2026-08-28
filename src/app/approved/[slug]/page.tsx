@@ -29,7 +29,7 @@ import {
   type ApprovedListing,
   type Source,
 } from "@/data/approvedListings";
-import { servicePageMetadata } from "@/lib/metadata";
+import { servicePageMetadata, noindexRobots } from "@/lib/metadata";
 import { cityConfig } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -44,7 +44,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const listing = getApprovedListingBySlug(slug);
   if (!listing) return { title: "Listing not found | Keep Waco Wagging Approved" };
-  return servicePageMetadata(
+  const metadata = servicePageMetadata(
     `/approved/${listing.slug}`,
     `${listing.name} | Keep Waco Wagging Approved`,
     listing.shortSummary,
@@ -52,6 +52,8 @@ export async function generateMetadata({
       ? { src: listing.featuredImage.src, alt: listing.featuredImage.alt }
       : undefined,
   );
+  if (!listing.isSample) return metadata;
+  return { ...metadata, robots: noindexRobots };
 }
 
 function mapsUrl(listing: ApprovedListing): string | undefined {

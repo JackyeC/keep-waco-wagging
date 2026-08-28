@@ -5,9 +5,13 @@ import {
   siteConfig,
 } from "@/lib/site";
 
+const ORGANIZATION_ID = `${cityConfig.url}/#organization`;
+const WEBSITE_ID = `${cityConfig.url}/#website`;
+
 /**
- * Verified organization fields only — no licensing, insurance, founding date,
- * expanded service areas, or aggregate ratings.
+ * Site-wide Keep Waco Wagging Organization + WebSite. Platinum Scoops remains
+ * the service provider on pet-care landings via Service JSON-LD — do not stamp
+ * ProfessionalService onto every blog, shop, and legal page.
  */
 export function OrganizationJsonLd() {
   const sameAs = getLiveSocialLinks()
@@ -17,13 +21,13 @@ export function OrganizationJsonLd() {
     )
     .map((link) => link.href);
 
-  const data = {
+  const organization = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: cityConfig.sponsor.name,
-    alternateName: cityConfig.name,
-    description: siteConfig.description,
+    "@type": "Organization",
+    "@id": ORGANIZATION_ID,
+    name: cityConfig.name,
     url: cityConfig.url,
+    description: siteConfig.description,
     logo: `${cityConfig.url}${cityConfig.brand.logo.full.src}`,
     image: `${cityConfig.url}${cityConfig.brand.logo.full.src}`,
     telephone: cityConfig.sponsor.phoneNumeric,
@@ -33,13 +37,23 @@ export function OrganizationJsonLd() {
       "@type": "City",
       name,
     })),
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: cityConfig.city,
-      addressRegion: cityConfig.stateAbbr,
-      addressCountry: "US",
+    parentOrganization: {
+      "@type": "Organization",
+      name: cityConfig.sponsor.name,
+      url: cityConfig.sponsor.website,
     },
   };
 
-  return <JsonLd data={data} />;
+  const website = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    name: cityConfig.name,
+    url: cityConfig.url,
+    description: siteConfig.description,
+    inLanguage: "en-US",
+    publisher: { "@id": ORGANIZATION_ID },
+  };
+
+  return <JsonLd data={[organization, website]} />;
 }

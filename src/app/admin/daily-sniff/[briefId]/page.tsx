@@ -12,11 +12,12 @@ import {
   rejectBriefAction,
   updateContentBlockAction,
 } from "../actions";
+import { noindexRobots } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Review brief",
-  robots: { index: false, follow: false },
+  robots: noindexRobots,
 };
 
 export default async function BriefDetailPage({

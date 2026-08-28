@@ -7,6 +7,37 @@ function absoluteImageUrl(src: string): string {
   return src.startsWith("http") ? src : `${cityConfig.url}${src}`;
 }
 
+/**
+ * Absolute canonical URL. Homepage is the origin with no trailing slash so
+ * sitemap `<loc>` and `<link rel="canonical">` stay identical.
+ */
+export function canonicalUrl(path: string): string {
+  const base = cityConfig.url.replace(/\/$/, "");
+  if (!path || path === "/") return base;
+  return `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+export const indexFollowRobots: Metadata["robots"] = {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
+
+export const noindexRobots: Metadata["robots"] = {
+  index: false,
+  follow: false,
+  googleBot: {
+    index: false,
+    follow: false,
+  },
+};
+
 /** Canonical, Open Graph, and Twitter metadata for primary pages. */
 export function servicePageMetadata(
   path: string,
@@ -14,7 +45,7 @@ export function servicePageMetadata(
   description: string,
   ogImage?: OgImage,
 ): Metadata {
-  const canonical = `${cityConfig.url}${path}`;
+  const canonical = canonicalUrl(path);
   const image = ogImage ?? {
     src: cityConfig.brand.logo.full.src,
     alt: cityConfig.brand.logo.full.alt,
@@ -27,6 +58,7 @@ export function servicePageMetadata(
     title: { absolute: title },
     description,
     alternates: { canonical },
+    robots: indexFollowRobots,
     openGraph: {
       title,
       description,
@@ -60,13 +92,14 @@ export function articlePageMetadata(
   publishedTime?: string,
   modifiedTime?: string,
 ): Metadata {
-  const canonical = `${cityConfig.url}${path}`;
+  const canonical = canonicalUrl(path);
   const imageUrl = absoluteImageUrl(ogImage.src);
 
   return {
     title: { absolute: `${title} | ${cityConfig.name}` },
     description,
     alternates: { canonical },
+    robots: indexFollowRobots,
     openGraph: {
       title,
       description,

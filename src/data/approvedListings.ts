@@ -794,6 +794,11 @@ export function getApprovedListingsByGroup(group: ListingGroup): ApprovedListing
   return approvedListings.filter((listing) => listing.group === group);
 }
 
+/** Real listings only — fictional sample pages stay out of the sitemap. */
+export function getIndexableApprovedListings(): ApprovedListing[] {
+  return approvedListings.filter((listing) => listing.isSample !== true);
+}
+
 /** True while every entry is still a sample or a pending lead (no real approvals). */
 export const approvedHasRealVerdicts = approvedListings.some(
   (l) => !l.isSample && l.evaluationStatus === "evaluated",

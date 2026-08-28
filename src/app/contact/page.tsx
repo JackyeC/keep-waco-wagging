@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/ContactForm";
+import { servicePageMetadata } from "@/lib/metadata";
 import { cityConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact Keep Waco Wagging",
-  description:
-    "Contact Keep Waco Wagging about Platinum Scoops, pet care, dog-friendly directory listings, sponsorships, press, or community questions.",
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/contact",
+  "Contact Keep Waco Wagging",
+  "Contact Keep Waco Wagging about Platinum Scoops, pet care, dog-friendly directory listings, sponsorships, press, or community questions.",
+);
 
 export default function ContactPage() {
   return (

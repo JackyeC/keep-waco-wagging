@@ -11,12 +11,13 @@ import { SitePhoto } from "@/components/SitePhoto";
 import { getPetOfTheWeek, getUploadedPets, getWallPets } from "@/data/pets";
 import { photoLibrary, photoLibraryStats } from "@/data/photoLibrary";
 import { sitePhotos } from "@/data/sitePhotos";
+import { servicePageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Waco Pets — The Wagging Wall",
-  description:
-    "Meet the dogs of Waco. The Wagging Wall showcases local pups from Woodway, Hewitt, Robinson, China Spring, and beyond — plus a weekly Pet of the Week.",
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/pets",
+  "Waco Pets — The Wagging Wall",
+  "Meet the dogs of Waco. The Wagging Wall showcases local pups from Woodway, Hewitt, Robinson, China Spring, and beyond — plus a weekly Pet of the Week.",
+);
 
 export default function PetsPage() {
   const star = getPetOfTheWeek();

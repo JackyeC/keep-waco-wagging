@@ -11,9 +11,16 @@ import { merchAnchorLine } from "@/data/merchCuration";
 
 const brandLinks = [
   { label: "Shop", href: "/shop" },
+  { label: "Wag Club", href: "/wagclub" },
   { label: "About", href: "/about" },
+];
+
+const exploreLinks = [
   { label: "Dog-friendly Waco", href: "/dog-friendly-waco" },
+  { label: "Approved", href: "/approved" },
   { label: "Guides", href: "/blog" },
+  { label: "Wag Watch", href: "/wag-watch" },
+  { label: "Weekend", href: "/weekend" },
 ];
 
 export function Footer() {
@@ -39,6 +46,24 @@ export function Footer() {
           </p>
           <ul className="mt-2.5 flex flex-col gap-2.5">
             {brandLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <nav aria-label="Explore">
+          <p className="text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
+            Explore
+          </p>
+          <ul className="mt-2.5 flex flex-col gap-2.5">
+            {exploreLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}

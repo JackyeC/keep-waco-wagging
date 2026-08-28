@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
+import { servicePageMetadata } from "@/lib/metadata";
 import { cityConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: `How ${cityConfig.name} collects, uses, and protects information from visitors and customers.`,
-};
+export const metadata: Metadata = servicePageMetadata(
+  "/privacy",
+  "Privacy Policy",
+  `How ${cityConfig.name} collects, uses, and protects information from visitors and customers.`,
+);
 
 export default function PrivacyPage() {
   return (
