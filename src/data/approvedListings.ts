@@ -230,6 +230,24 @@ export const pendingConfig = {
   note: "Keep Waco Wagging evaluation in progress",
 } as const;
 
+/**
+ * "Would We Take Our Dog?" — editorial vernacular for an evaluated verdict.
+ * Never returned for pending leads.
+ */
+export function wouldWeTakeOurDog(
+  listing: Pick<ApprovedListing, "evaluationStatus" | "status">,
+): string | null {
+  if (listing.evaluationStatus !== "evaluated" || !listing.status) return null;
+  switch (listing.status) {
+    case "approved":
+      return "Yes";
+    case "cautions":
+      return "Yes, but…";
+    case "not_recommended":
+      return "Probably not for our dogs";
+  }
+}
+
 export const exploreCategories: ApprovedCategory[] = [
   "Restaurant",
   "Brewery",

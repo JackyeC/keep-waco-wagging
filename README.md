@@ -1,13 +1,12 @@
 # Keep Waco Wagging
 
-**Your dog-friendly guide to Waco.** _Presented by Platinum Scoops._
+**Give your dog their best Waco life.**
 
-A local content, directory, and lifestyle site for dog parents in Waco, Texas —
-dog-friendly patios, parks and trails, events, local pet businesses, real-life
-training tips, yard care education, and curated gear. Built to grow into a local
-media brand, business directory, newsletter, and customer feeder for
-[Platinum Scoops](https://platinumscoops.com) pet waste removal and lifestyle
-dog training — with a replicable model for other cities.
+A local guide, directory, and community for people in Waco, Texas who see
+their dog as family — dog-friendly places with real context, trusted care,
+events, Wag Watch updates, and curated gear. Created by Jackye and Todd, the
+dog people behind [Platinum Scoops](https://platinumscoops.com), and built to
+help every Waco dog parent, not just their own clients.
 
 ## Tech stack
 

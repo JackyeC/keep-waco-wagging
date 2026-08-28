@@ -8,7 +8,7 @@ import type { WeekendBlock } from "@/lib/types";
 export const weekendEdition = {
   label: "Evergreen weekend ideas",
   intro:
-    "Easy ways to get out with your pup — a patio pick, a park, a training skill, a heat reminder, and a yard tip. Always verify dog policies before you go.",
+    "A patio, a park, a training skill, and a heat reminder — curated for Waco dog parents. Always verify dog policies before you go. If the pavement fails the 7-second test, leave the dog home.",
 };
 
 export const weekendBlocks: WeekendBlock[] = [

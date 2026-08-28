@@ -20,9 +20,9 @@ export async function HomeMerchStrip() {
     <section className="mx-auto max-w-[1200px] px-6 pt-16 pb-6 sm:pt-20">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="eyebrow tracking-[0.22em]">Wear the Wag</p>
+          <p className="eyebrow tracking-[0.22em]">Worth wearing</p>
           <h2 className="heading mt-2 text-[clamp(1.75rem,3vw,2.5rem)]">
-            New from the shop
+            From the shop
           </h2>
         </div>
         <Link

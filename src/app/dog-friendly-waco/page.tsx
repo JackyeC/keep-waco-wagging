@@ -52,7 +52,7 @@ const directoryFaqs = [
   {
     question: "Who is Keep Waco Wagging?",
     answer:
-      "Keep Waco Wagging is a Waco, Texas dog-parent community and lifestyle brand, and the community home of Platinum Scoops. Alongside the free dog-friendly directory, Keep Waco Wagging offers home-based dog daycare and boarding, dog training, a summer dog camp, and poop scooping across the Waco area.",
+      "Keep Waco Wagging helps people who love their dogs like family give them the best life possible in Waco. The free directory, Wag Watch, weekend ideas, and Keep Waco Wagging Approved evaluations are for every local dog parent. Jackye and Todd Clayton, the dog people behind Platinum Scoops, created it — and still offer boarding, daycare, training, and scooping for families who want that care.",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function DogFriendlyWacoPage() {
       <PageHeader
         eyebrow="Dog-Friendly Waco"
         title="Dog-friendly patios, parks, trails, and local spots"
-        description="Search local places, filter by category or neighborhood, and check policy notes before you head out. We mark unverified details so this stays useful and trustworthy."
+        description="Search local places, filter by category or neighborhood, and read Before You Go notes. Dogs allowed is only the start — we mark what we have not verified yet."
         tone="sage"
       >
         <div className="flex flex-col gap-3 sm:flex-row">

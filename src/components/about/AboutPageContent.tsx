@@ -20,14 +20,15 @@ export function AboutPageContent() {
               </span>
             </h1>
             <p className="dek mt-5 max-w-md">
-              {brandLanguage.brandRelationship} The family-run team behind
-              boarding, daycare, scooping, training, and event care. The
-              Claytons built this around dogs, full-time, because it is the
-              work they love.
+              {brandLanguage.heroLine} Keep Waco Wagging exists for people who
+              see their dog as family and want to give them a good life in Waco
+              — whether that means taking them along, or leaving them somewhere
+              trusted.
             </p>
             <p className="dek mt-4 max-w-md">
-              No warehouse kennels. No after-hours side gigs. Just real care, in
-              a real Waco home, for real dog families.
+              {brandLanguage.brandRelationship} Jackye and Todd Clayton built
+              the care side around dogs, full-time, in a real Waco home. No
+              warehouse kennels. No after-hours side gigs.
             </p>
           </div>
           <div className="relative aspect-[4/5] max-h-[460px] w-full overflow-hidden rounded-[28px] border border-border">
@@ -162,10 +163,10 @@ export function AboutPageContent() {
               Book a service
             </Link>
             <Link
-              href="/shop"
+              href="/dog-friendly-waco"
               className="btn-pill border-[1.4px] border-cream/60 bg-transparent px-7 py-3.5 text-cream hover:bg-cream/15"
             >
-              Shop merch
+              Explore dog-friendly Waco
             </Link>
           </div>
         </div>

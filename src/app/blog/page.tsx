@@ -6,6 +6,7 @@ import { BlogCard } from "@/components/BlogCard";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { AdSlot } from "@/components/AdSlot";
 import { blogCategories, getPublishedPosts } from "@/data/blog";
+import { editorialFranchises } from "@/data/editorialFranchises";
 import { sitePhotos } from "@/data/sitePhotos";
 import { servicePageMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
@@ -51,12 +52,29 @@ export default async function BlogPage({
       <PageHeader
         eyebrow="The blog"
         title="Guides & tips for Waco dog parents"
-        description="Practical, local advice for calmer outings, cleaner yards, better manners, and more fun with your dog."
+        description="Practical, local advice for calmer outings, cleaner yards, better manners, and a better life with your dog in Waco — not generic pet-internet filler."
         tone="sky"
         image={sitePhotos.training}
       />
 
       <Section tone="paper">
+        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {editorialFranchises.map((franchise) => (
+            <Link
+              key={franchise.id}
+              href={franchise.href}
+              className="rounded-[16px] border border-border bg-soft-cream p-4 transition-colors hover:border-wag-sage"
+            >
+              <p className="text-[11px] font-medium tracking-[0.14em] text-wag-sage uppercase">
+                {franchise.name}
+              </p>
+              <p className="mt-1.5 text-[14px] leading-snug text-bark">
+                {franchise.question}
+              </p>
+            </Link>
+          ))}
+        </div>
+
         {/* Category filter */}
         <div className="flex flex-wrap gap-2">
           <Link

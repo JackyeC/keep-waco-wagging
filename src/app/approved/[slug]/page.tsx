@@ -26,6 +26,7 @@ import {
   getApprovedListingBySlug,
   pendingConfig,
   sourceTypeLabels,
+  wouldWeTakeOurDog,
   type ApprovedListing,
   type Source,
 } from "@/data/approvedListings";
@@ -155,6 +156,7 @@ export default async function ApprovedListingPage({
   const directions = mapsUrl(listing);
   const isPending = listing.evaluationStatus === "pending" || !listing.status;
   const kicker = listing.resourceType ?? listing.category ?? "Other";
+  const takeOurDog = wouldWeTakeOurDog(listing);
 
   return (
     <>
@@ -172,7 +174,17 @@ export default async function ApprovedListingPage({
               {isPending ? (
                 <PendingBadge size="lg" />
               ) : (
-                <ApprovedStatusBadge status={listing.status!} size="lg" />
+                <>
+                  <ApprovedStatusBadge status={listing.status!} size="lg" />
+                  {takeOurDog && (
+                    <p className="mt-3 text-[15px] text-bark-soft">
+                      <span className="font-medium text-bark">
+                        Would we take our dog?{" "}
+                      </span>
+                      {takeOurDog}
+                    </p>
+                  )}
+                </>
               )}
               <p className="mt-4 text-[12px] font-medium tracking-[0.16em] text-label-muted uppercase">
                 {kicker} · {listing.city}

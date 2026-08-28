@@ -8,17 +8,17 @@ import { cityConfig } from "@/lib/site";
 
 const clubCopy = {
   headline: "Join the Wag Club",
-  body: "Get first access to new drops, local dog-parent favorites, special events, and subscriber-only perks.",
+  body: "Weekend ideas, Wag Watch notes, local recommendations, and the occasional drop — useful updates for Waco dog parents, not a flood of mail.",
   button: "Join Now",
   success:
-    "You're in. Welcome to the Wag Club — watch your inbox for first access to drops and local perks.",
+    "You're in. Welcome to the Wag Club — watch your inbox for weekend ideas and the updates that actually matter.",
   error: "Something went wrong. Please try again or message us directly.",
-  perks: ["First access to drops", "Local perks", "Members-first favorites"],
+  perks: ["Weekend ideas", "Wag Watch notes", "Local recommendations"],
 } as const;
 
 const closerCopy = {
-  headline: "Waco dog people belong here.",
-  body: "Join the Wag Club for first access to drops, local favorites, and subscriber-only perks.",
+  headline: "If it involves your dog in Waco, stay in the loop.",
+  body: "Join the Wag Club for weekend ideas, Wag Watch notes, and local recommendations.",
 } as const;
 
 type WagClubSignupProps = {
