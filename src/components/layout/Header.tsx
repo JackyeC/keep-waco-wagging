@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 const primaryNav = [
   { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
   { label: "Dog Care", href: "/dog-care", isServices: true },
+  { label: "Dog Match", href: "/dog-match" },
   { label: "Wag Watch", href: "/wag-watch" },
   { label: "Weekend", href: "/weekend" },
   { label: "Shop", href: "/shop" },

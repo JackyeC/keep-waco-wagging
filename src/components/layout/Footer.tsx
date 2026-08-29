@@ -19,6 +19,7 @@ const exploreLinks = [
   { label: "Keep Waco Wagging Approved", href: "/approved" },
   { label: "Waco Dog Weekend", href: "/weekend" },
   { label: "Wag Watch", href: "/wag-watch" },
+  { label: "Dog Match", href: "/dog-match" },
   { label: "New dog in Waco", href: "/new-dog-in-waco" },
   { label: "Guides", href: "/blog" },
 ];

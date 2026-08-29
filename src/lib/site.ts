@@ -75,6 +75,8 @@ export const cityConfig = {
     "Waco dog training",
     "wedding dog attendant Waco",
     "Waco dog parents",
+    "dog breed matcher",
+    "what dog fits my lifestyle",
   ],
   serviceAreas: [
     "Waco",
@@ -199,6 +201,7 @@ export const servicesNav: NavLink[] = [
 export const mainNav: NavLink[] = [
   { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
   { label: "Dog Care", href: "/dog-care" },
+  { label: "Dog Match", href: "/dog-match" },
   { label: "Wag Watch", href: "/wag-watch" },
   { label: "Weekend", href: "/weekend" },
   { label: "Shop", href: "/shop" },
@@ -210,6 +213,7 @@ export const secondaryNav: NavLink[] = [
   { label: "Dog Care", href: "/dog-care" },
   { label: "Keep Waco Wagging Approved", href: "/approved" },
   { label: "Wag Watch", href: "/wag-watch" },
+  { label: "Dog Match", href: "/dog-match" },
   { label: "New Dog in Waco", href: "/new-dog-in-waco" },
   { label: "Book a Service", href: "/book" },
   { label: "Summer Dog Camp", href: "/summer-daycare" },
@@ -303,6 +307,10 @@ export const ctas = {
   newDog: {
     label: "New dog in Waco",
     href: "/new-dog-in-waco",
+  },
+  dogMatch: {
+    label: "Find My Dog Match",
+    href: "/dog-match",
   },
   shopDrop: {
     label: "Shop the Drop",

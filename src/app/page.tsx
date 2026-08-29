@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DogMatchTeaser } from "@/components/dog-match/DogMatchTeaser";
 import { ChoosePath } from "@/components/home/ChoosePath";
 import { HomeApprovedNote } from "@/components/home/HomeApprovedNote";
 import { HomeBrandStory } from "@/components/home/HomeBrandStory";
@@ -27,6 +28,7 @@ export default function HomePage() {
     <>
       <HomeHero />
       <ChoosePath />
+      <DogMatchTeaser />
       <WagWatchPreview />
       <HomeWeekendPreview />
       <HomeApprovedNote />
