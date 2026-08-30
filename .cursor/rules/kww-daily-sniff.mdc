@@ -1,0 +1,20 @@
+---
+description: Daily Sniff and Wag Watch — draft-first, no auto-publish, real catalog links only
+globs:
+  - src/lib/daily-sniff/**
+  - src/app/admin/daily-sniff/**
+  - src/app/api/cron/daily-sniff-*/**
+  - src/app/wag-watch/**
+  - src/data/wagWatch.ts
+  - src/components/wagwatch/**
+alwaysApply: false
+---
+
+# Daily Sniff / Wag Watch
+
+- Draft-first. Cron may fetch, score, and draft. A human approves in `/admin/daily-sniff` before anything is public.
+- Never auto-publish briefs. Do not wire draft → Wag Watch without an explicit publish step the owner asked for.
+- Do not change cron jobs or `DAILY_SNIFF_CRON_SECRET` / admin token handling without asking.
+- Drafts restate the source with attribution and a verification checklist. Do not invent times, prices, policies, or outcomes.
+- Product mentions must be real catalog links (Shopify merch or Amazon gear already on the site). No phantom products.
+- Wag Watch items stay sourced, dated, and draft-safe. Unknown stays unknown.

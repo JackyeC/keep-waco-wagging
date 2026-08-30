@@ -1,0 +1,32 @@
+---
+description: Lead capture, Supabase service-role inserts, Resend notifications
+globs:
+  - src/lib/leads.ts
+  - src/lib/leads.test.ts
+  - src/lib/email.ts
+  - src/lib/email.test.ts
+  - src/lib/signup.ts
+  - src/lib/formGuard.ts
+  - src/lib/leadNotificationConfig.ts
+  - src/lib/leadPipelineLog.ts
+  - src/lib/leadPipelineHealth.ts
+  - src/lib/supabase/**
+  - src/app/api/leads/**
+  - src/app/api/newsletter/**
+  - src/app/api/contact/**
+  - src/app/api/get-listed/**
+  - src/app/api/directory-submissions/**
+  - src/app/api/sponsor-inquiries/**
+  - src/app/api/pets/**
+  - src/app/api/event-care/**
+  - supabase/**
+alwaysApply: false
+---
+
+# Leads
+
+- Signup success = Supabase insert succeeded. Log Resend/notification failures; do not show them to the visitor.
+- Service-role key and Resend key are server-only. Browser env uses the publishable/anon key, never the service role.
+- RLS stays ON on lead tables. No public read policies. Inserts go through App Router route handlers.
+- Missing Supabase in local/dev: return the existing user-safe error. Do not throw stack traces or invent a second storage path.
+- Keep honeypot, rate limit, and payload-size guards in `formGuard.ts` on public POST routes.

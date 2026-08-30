@@ -1,0 +1,31 @@
+---
+description: Keep Waco Wagging operating contract — always apply
+alwaysApply: true
+---
+
+# Keep Waco Wagging
+
+Follow `AGENTS.md` at the repo root. This is a public Waco dog-parent site presented by Platinum Scoops, plus Daily Sniff and Shopify/Printify merch.
+
+## Golden rules
+
+1. **Commerce split:** `/shop` = Shopify (KWW merch). `/gear-guide` = Amazon affiliate. Never mix.
+2. **Daily Sniff is draft-first.** No auto-publish, ever.
+3. **Shopify/Printify publishing is approval-gated.** Phase 2 is closed — do not run write scripts without a separately approved scope.
+4. **`DRY_RUN=true`** is the default for merch scripts. Do not flip without approval.
+5. **Lead capture:** Supabase insert success = signup success. Log notification failures; do not surface them to the visitor.
+6. **Original-IP only** on merch (no school/restaurant branding). Waco landmarks must be visibly accurate.
+7. Real-catalog links only in Daily Sniff — no phantom products.
+
+## Do not touch without asking
+
+- `scripts/shopify/**` or `scripts/printify/**` write paths
+- Cron jobs owning Daily Sniff generation
+- Redirect maps between Platinum Scoops and KWW
+- Preview theme "KWW Redesign — Dog Mom Polish (Preview)"
+
+## Workflow
+
+Read → plan → dry-run → confirm outputs → get approval on prod writes → implement → verify live URL → summarize.
+
+Next.js 16 APIs may differ from training data. Read `node_modules/next/dist/docs/` before using framework APIs.

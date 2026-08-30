@@ -1,0 +1,30 @@
+---
+description: Directory, Approved, and editorial honesty — unknown stays unknown
+globs:
+  - src/data/directory.ts
+  - src/data/approvedListings.ts
+  - src/data/listings.ts
+  - src/data/weekend.ts
+  - src/data/blog*
+  - src/data/guideContent.ts
+  - src/data/editorialFranchises.ts
+  - src/app/dog-friendly-waco/**
+  - src/app/directory/**
+  - src/app/approved/**
+  - src/app/blog/**
+  - src/app/weekend/**
+  - src/app/new-dog-in-waco/**
+  - docs/product-map.md
+alwaysApply: false
+---
+
+# Content honesty
+
+- Real places live in `src/data/directory.ts` (`DogDirectoryListing`). Do not promote `src/data/listings.ts` — those names are placeholders.
+- Do not invent businesses, hours, policies, ratings, or "verified" facts. `unknown` is valid; a guessed yes is not.
+- Community reports are leads, never facts. Keep sources and last-verified dates attached.
+- Keep Waco Wagging Approved: pending means Not Yet Evaluated — no seal, no verdict. Do not assign real verdicts without evidence. Sample listings stay labeled `isSample`.
+- Public name is always "Keep Waco Wagging Approved" — never shortened. Approval cannot be bought.
+- Do not put GO / CARE / KNOW / BELONG / SHOP in the visible nav. Those are jobs underneath `docs/product-map.md`.
+- Prefer extending `DogDirectoryListing` and `ApprovedListing`. Do not create a third listing system.
+- Existing URLs stay. Redirects in `next.config.ts` stay unless the owner asks to change them. Do not add Platinum Scoops ↔ KWW redirect maps without asking.
