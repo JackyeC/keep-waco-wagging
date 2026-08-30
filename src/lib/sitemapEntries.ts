@@ -33,6 +33,8 @@ const INDEXABLE_STATIC_ROUTES: {
   { route: "/summer-daycare", priority: 0.85, changeFrequency: "weekly" },
   { route: "/dog-friendly-waco", priority: 0.75, changeFrequency: "weekly" },
   { route: "/new-dog-in-waco", priority: 0.8, changeFrequency: "monthly" },
+  { route: "/dog-match", priority: 0.82, changeFrequency: "monthly" },
+  { route: "/dog-match/how-we-match", priority: 0.5, changeFrequency: "monthly" },
   { route: "/contact", priority: 0.75, changeFrequency: "monthly" },
   { route: "/about", priority: 0.7, changeFrequency: "monthly" },
   { route: "/weekend", priority: 0.7, changeFrequency: "weekly" },

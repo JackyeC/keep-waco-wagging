@@ -33,6 +33,7 @@ describe("sitemap entries", () => {
       "/wag-watch",
       "/approved",
       "/new-dog-in-waco",
+      "/dog-match",
     ]) {
       assert.equal(urls.includes(canonicalUrl(path)), true, path);
     }

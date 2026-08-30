@@ -56,6 +56,11 @@ const careLinks = [
 
 const starterGuides = [
   {
+    href: "/dog-match",
+    title: "Dog Match: what kind of dog fits the life you actually live?",
+    copy: "Home, schedule, noise, grooming, and the pets already in it — scored as lifestyle fit and friction, not a personality quiz.",
+  },
+  {
     href: "/blog/the-waco-puppy-socialization-checklist",
     title: "The Waco puppy socialization checklist",
     copy: "If you just got a puppy here, start with safe, local experiences — not a crowded patio on Saturday.",
@@ -111,8 +116,8 @@ export default function NewDogInWacoPage() {
           <Button href={ctas.exploreDirectory.href}>
             Browse dog-friendly Waco
           </Button>
-          <Button href={ctas.joinClub.href} variant="secondary">
-            Get Wag Club updates
+          <Button href="/dog-match" variant="sage">
+            Find a dog that fits your life
           </Button>
         </div>
       </PageHeader>
