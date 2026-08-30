@@ -126,6 +126,9 @@ export type MixedDogProfile = {
   lastReviewed: string;
   likelyInfluences: string[];
   uncertaintyNote: string;
+  akcListedName?: string;
+  varietyOf?: string;
+  matchNote?: string;
 };
 
 export type DogProfile = BreedProfile | MixedDogProfile;
