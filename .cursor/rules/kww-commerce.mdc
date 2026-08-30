@@ -1,0 +1,30 @@
+---
+description: KWW merch shop vs Amazon gear guide, Shopify/Printify, merch-launch dry-run
+globs:
+  - src/app/shop/**
+  - src/app/gear-guide/**
+  - src/app/affiliate-disclosure/**
+  - src/components/merch/**
+  - src/data/merch*
+  - src/data/shop*
+  - src/data/gearGuide.ts
+  - src/data/products.ts
+  - src/lib/shopify*
+  - src/lib/merch*
+  - merch-launch/**
+  - scripts/shopify/**
+  - scripts/printify/**
+  - docs/KWW_MERCH*
+  - docs/merch-launch-kit.md
+alwaysApply: false
+---
+
+# Commerce
+
+- `/shop` is Shopify KWW merch (client-side cart, localStorage). `/gear-guide` is Amazon Associates. Do not mix catalogs, CTAs, or tracking.
+- Affiliate disclosure stays on `/affiliate-disclosure` and on Amazon surfaces — not on KWW merch PDPs as if they were affiliate.
+- Original-IP only. No school, restaurant, or third-party branding on merch. Waco landmarks (ALICO, bridges, skyline) must be visibly accurate; use owner-approved skyline art only (`docs/KWW_MERCH_VIBE_SPEC.md`).
+- merch-launch defaults to `DRY_RUN=true`. Do not set `DRY_RUN=false`, `--create-drafts`, or `--publish` without explicit approval.
+- Shopify/Printify Phase 2 is closed. Do not run `scripts/shopify/**` or `scripts/printify/**` write paths without a separately approved scope.
+- Never delete or overwrite existing Shopify/Etsy products. Detect duplicate handles before create.
+- Cart and shop UI work without backend secrets. Do not require Supabase for `/shop`.
