@@ -26,7 +26,7 @@ Next.js App Router · TypeScript · Tailwind · Supabase · Vercel (+ Analytics)
 
 ## Do not touch without asking
 
-- `scripts/shopify/**` or `scripts/printify/**` write paths
+- `merch-launch/scripts/create_printify_drafts.py` or `merch-launch/scripts/publish_approved_products.py` (live Printify/Shopify writes; Phase 2 is closed)
 - Cron jobs owning Daily Sniff generation
 - Redirect maps between Platinum Scoops and KWW
 - Preview theme "KWW Redesign — Dog Mom Polish (Preview)"
