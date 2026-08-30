@@ -341,14 +341,14 @@ export const boardingLanding: PetCareLandingConfig = {
       detail: "Small-group daytime care in the same home-based setting.",
     },
     {
+      label: "Explore dog care",
+      href: "/dog-care",
+      detail: "Boarding, daycare, training, camp, and scooping in one hub.",
+    },
+    {
       label: "Lifestyle training",
       href: "/training",
       detail: "Patio manners, loose-leash walks, and calm-home skills.",
-    },
-    {
-      label: "Poop scooping",
-      href: "/platinum-scoops",
-      detail: "Yard care from Platinum Scoops when you are home too.",
     },
   ],
   closing: {
@@ -594,14 +594,14 @@ export const daycareLanding: PetCareLandingConfig = {
       detail: "Overnight home-based boarding with the same caregivers.",
     },
     {
-      label: "Summer Dog Camp",
-      href: "/summer-daycare",
-      detail: "Seasonal themed daycare weeks — optional, not year-round daycare.",
-    },
-    {
       label: "Lifestyle training",
       href: "/training",
       detail: "Skills that make daycare and outings easier.",
+    },
+    {
+      label: "Explore dog care",
+      href: "/dog-care",
+      detail: "Boarding, daycare, training, camp, and scooping in one hub.",
     },
   ],
   closing: {

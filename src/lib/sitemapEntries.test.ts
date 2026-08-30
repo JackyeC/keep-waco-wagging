@@ -28,6 +28,8 @@ describe("sitemap entries", () => {
     for (const path of [
       "/",
       "/dog-care",
+      "/dog-boarding-waco-tx",
+      "/dog-daycare-waco-tx",
       "/dog-friendly-waco",
       "/blog",
       "/wag-watch",

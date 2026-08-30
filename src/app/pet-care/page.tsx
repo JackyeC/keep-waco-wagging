@@ -12,8 +12,8 @@ import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
 export const metadata: Metadata = servicePageMetadata(
   "/pet-care",
-  "Pet Care in Waco TX | Boarding, Daycare & More | Platinum Scoops",
-  "Home-based dog boarding, dog daycare, training, and more in Waco, TX. Pet care provided by Platinum Scoops. Choose boarding or daycare to see routines, rates, and how to request care on Rover.",
+  "Home-Based Pet Care in Waco | Choose Boarding or Daycare",
+  "Choose home-based dog boarding or small-group dog daycare in Waco, then request dates on Rover. Pet care provided by Platinum Scoops — not a kennel warehouse.",
   designPhotos.svcBoard,
 );
 
@@ -65,14 +65,14 @@ export default function PetCareHubPage() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/dog-boarding-waco-tx" className="btn-pill btn-sage px-7 py-4">
-                Dog boarding
-              </Link>
-              <Link
-                href="/dog-daycare-waco-tx"
-                className="btn-pill btn-rose-outline px-7 py-3.5"
-              >
-                Dog daycare
-              </Link>
+              Dog boarding in Waco
+            </Link>
+            <Link
+              href="/dog-daycare-waco-tx"
+              className="btn-pill btn-rose-outline px-7 py-3.5"
+            >
+              Small-group dog daycare
+            </Link>
             </div>
           </div>
           <div className="relative aspect-[4/5] max-h-[440px] w-full overflow-hidden rounded-[28px] border border-border">

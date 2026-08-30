@@ -10,15 +10,14 @@ import {
 } from "@/data/yappyHours";
 
 describe("upcoming content filters", () => {
-  it("hides past Yappy Hours and keeps August open", () => {
+  it("hides past Yappy Hours before the last listed date", () => {
     const now = new Date("2026-07-29T12:00:00");
     const upcoming = getUpcomingYappyHourEvents(now);
     const open = getOpenYappyHourEvents(now);
 
     assert.equal(upcoming.length, 1);
     assert.equal(upcoming[0].id, "pupsicle-members-august");
-    assert.equal(open.length, 1);
-    assert.equal(open[0].rsvpOpen, true);
+    assert.equal(open.length, 0);
   });
 
   it("limits homepage camp weeks to upcoming only", () => {
@@ -30,5 +29,13 @@ describe("upcoming content filters", () => {
     assert.equal(home.length, 4);
     assert.equal(home[0].week, 9);
     assert.equal(home[3].week, 12);
+  });
+
+  it("treats the 2026 camp season and last listed Yappy Hour as complete after August", () => {
+    const now = new Date("2026-08-30T12:00:00");
+    assert.equal(getUpcomingDaycareThemes(now).length, 0);
+    assert.equal(getHomeDaycareThemes(4, now).length, 0);
+    assert.equal(getUpcomingYappyHourEvents(now).length, 0);
+    assert.equal(getOpenYappyHourEvents(now).length, 0);
   });
 });

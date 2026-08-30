@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Bath, CalendarHeart, GraduationCap, Home, Sparkles } from "lucide-react";
+import { Bath, CalendarHeart, GraduationCap, Home, Sparkles, Sun } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
@@ -9,17 +9,24 @@ import { servicePageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = servicePageMetadata(
   "/dog-care",
-  "Dog Care in Waco | Boarding, Daycare, Training & Poop Scooping",
-  "Trusted Waco dog care from Keep Waco Wagging and Platinum Scoops — home-based boarding and daycare, lifestyle training, summer dog camp, and weekly poop scooping across Waco and McLennan County.",
+  "Dog Care in Waco | Boarding, Daycare, Training & More",
+  "Trusted dog care for Waco families from Keep Waco Wagging and Platinum Scoops — home-based boarding, small-group daycare, lifestyle training, summer camp, wedding pet care, and weekly poop scooping.",
 );
 
 const services = [
   {
     icon: Home,
-    title: "Boarding & Daycare",
-    copy: "A calm Waco home, not a kennel — full-time attention, enrichment, and daily photo updates.",
-    href: "/pet-care",
-    cta: "See Boarding & Daycare",
+    title: "Dog boarding in Waco",
+    copy: "Overnight care in a calm Waco home — walks, enrichment, rest, and daily photo updates. Not a kennel.",
+    href: "/dog-boarding-waco-tx",
+    cta: "See home-based boarding",
+  },
+  {
+    icon: Sun,
+    title: "Small-group dog daycare",
+    copy: "Daytime play, enrichment, and real rest with the same caregivers — without a warehouse floor.",
+    href: "/dog-daycare-waco-tx",
+    cta: "See daytime care",
   },
   {
     icon: GraduationCap,
@@ -38,9 +45,9 @@ const services = [
   {
     icon: Sparkles,
     title: "Summer Dog Camp",
-    copy: "Themed weeks of supervised play, enrichment, and rest — drop in for a day or join the week.",
+    copy: "Seasonal themed weeks at our Waco home. The 2026 season has wrapped — year-round daycare is open now.",
     href: "/summer-daycare",
-    cta: "See Summer Camp",
+    cta: "See camp details",
   },
   {
     icon: CalendarHeart,

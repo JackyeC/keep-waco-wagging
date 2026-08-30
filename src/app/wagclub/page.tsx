@@ -20,12 +20,14 @@ import { cityConfig, getLiveSocialLinks } from "@/lib/site";
  */
 const links = {
   // Primary conversion targets
-  bookDaycare: "/book", // Real booking hub (daycare / boarding / camp / training)
-  seeDaycare: "/pet-care", // Home-based daycare & boarding info page
-  dayCamp: "/summer-daycare", // Keep Waco Wagging Dog Camp (closest real "day camp" route)
-  shop: "/shop", // Wag Club merch / Shopify-backed shop
-  join: "#join", // On-page email capture (real /api/leads signup)
-  weekend: "/weekend", // "Where to Wag This Weekend" guide
+  bookDaycare: "/book",
+  seeDaycare: "/dog-daycare-waco-tx",
+  seeBoarding: "/dog-boarding-waco-tx",
+  dogCare: "/dog-care",
+  dayCamp: "/summer-daycare",
+  shop: "/shop",
+  join: "#join",
+  weekend: "/weekend",
   // Secondary ecosystem
   training: "/training",
   dogFriendlyWaco: "/dog-friendly-waco",
@@ -34,7 +36,7 @@ const links = {
 
 const seoTitle = "The Wag Club | Keep Waco Wagging";
 const seoDescription =
-  "Join Waco's dog-parent community. Find dog-friendly things to do, book doggie daycare and Day Camp, shop Wag Club gear, and Keep Waco Wagging.";
+  "Wag Club is Keep Waco Wagging's Waco dog-parent list — local updates, dog-friendly places, weekend ideas, and a door into trusted care when you need it.";
 
 export const metadata: Metadata = servicePageMetadata(
   "/wagclub",
@@ -119,7 +121,9 @@ const shirtSteps = [
 ] as const;
 
 const secondaryServices = [
-  { label: "Doggie Daycare & Boarding", href: links.seeDaycare },
+  { label: "Explore dog care", href: links.dogCare },
+  { label: "Dog boarding in Waco", href: links.seeBoarding },
+  { label: "Small-group dog daycare", href: links.seeDaycare },
   { label: "Day Camp", href: links.dayCamp },
   { label: "Dog Training", href: links.training },
   { label: "The Wag Club Shop", href: links.shop },

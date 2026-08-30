@@ -332,7 +332,7 @@ export const ctas = {
   },
   trainingHelp: {
     label: "Get Lifestyle Support",
-    href: "/pet-care",
+    href: "/dog-care",
   },
   getListed: {
     label: "Submit a Dog-Friendly Place",

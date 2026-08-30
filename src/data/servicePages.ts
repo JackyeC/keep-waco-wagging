@@ -1,5 +1,6 @@
 import { designPhotos } from "@/data/designPhotos";
 import { weddingDogChaperone } from "@/data/eventCare";
+import { roverCredentialsLine } from "@/lib/roverCredentials";
 import { cityConfig, ctas } from "@/lib/site";
 import type { IncludedItem, ServiceStep } from "@/components/service/ServicePageSections";
 
@@ -134,7 +135,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       scriptWord: "$25",
       subtitle: `First cleanup included · Call ${cityConfig.sponsor.phoneDisplay} · ${cityConfig.publicEmail}`,
       primary: { label: "Book a scoop", href: jobber, external: true },
-      secondary: { label: "All services", href: "/#services" },
+      secondary: { label: "All services", href: "/dog-care" },
     },
   },
 
@@ -149,7 +150,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       eyebrow: "Home-based daycare & boarding",
       title: "A calm Waco home, not a kennel",
       scriptWord: "kennel",
-      metaLine: "★ 5.0 on Rover · 119 reviews · Star Sitter",
+      metaLine: `★ ${roverCredentialsLine}`,
       description:
         "Your dog stays in our home with full-time attention — walks, enrichment, real rest, and daily photo updates. Bathed in the kitchen sink, dried with the good towels.",
       image: designPhotos.svcBoard,
@@ -205,7 +206,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       scriptWord: "home",
       subtitle: `Call ${cityConfig.sponsor.phoneDisplay} · ${cityConfig.publicEmail} · Book through our booking hub.`,
       primary: { label: "Book a stay", href: book },
-      secondary: { label: "All services", href: "/#services" },
+      secondary: { label: "All services", href: "/dog-care" },
     },
   },
 
@@ -272,7 +273,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       scriptWord: "pup",
       subtitle: `Call ${cityConfig.sponsor.phoneDisplay} · ${cityConfig.publicEmail} · or start online.`,
       primary: { label: "Start training", href: book },
-      secondary: { label: "All services", href: "/#services" },
+      secondary: { label: "All services", href: "/dog-care" },
     },
   },
 
@@ -330,7 +331,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       scriptWord: "guest list",
       subtitle: "Tell us your date and venue — we'll take it from there.",
       primary: { label: "Reserve a date", href: book },
-      secondary: { label: "All services", href: "/#services" },
+      secondary: { label: "All services", href: "/dog-care" },
     },
   },
 
@@ -339,17 +340,17 @@ export const servicePages: Record<string, ServicePageConfig> = {
     seo: {
       title: "Keep Waco Wagging Dog Camp | Summer Daycare Waco",
       description:
-        "Thirteen themed summer weeks of supervised play, enrichment, and rest. Drop in for a day or join the full week in Waco.",
+        "Keep Waco Wagging Dog Camp is seasonal themed summer daycare in Waco. The 2026 season has wrapped. Year-round small-group daycare is available with the same caregivers.",
     },
     hero: {
       eyebrow: "Keep Waco Wagging Dog Camp",
       title: "The best summer of their life",
       scriptWord: "life",
-      metaLine: "13 themed weeks · drop in or full week",
+      metaLine: "Summer 2026 season wrapped · year-round daycare open",
       description:
-        "Supervised play, enrichment, and real rest — a full summer of themed weeks built around your dog's favorite things. Come for a day or join the whole week.",
+        "Themed camp weeks run in summer. This season has wrapped — year-round home daycare is still here when your dog needs a daytime plan.",
       image: designPhotos.svcCamp,
-      primary: { label: "Enroll now", href: book },
+      primary: { label: "See year-round daycare", href: "/dog-daycare-waco-tx" },
       secondary: { label: "See the calendar", href: "#calendar" },
     },
     included: {
@@ -378,21 +379,21 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "What is Keep Waco Wagging Dog Camp?",
         answer:
-          "Thirteen themed summer weeks of supervised play, enrichment, splash time, and real rest at our Waco home — drop in for a day or join a full week.",
+          "Keep Waco Wagging Dog Camp is a seasonal, themed summer daycare program at our Waco home — supervised play, enrichment, splash time, and rest. It is not the same as year-round daycare.",
       },
       {
         question: "How do I enroll?",
         answer:
-          "Visit keepwacowagging.com/book to choose camp, view the summer calendar on this page, or call (254) 726-6737 to plan your weeks.",
+          "The 2026 camp season has wrapped. For a daytime plan now, request year-round daycare. Next summer's themes will be posted on this page when dates are confirmed.",
       },
     ],
     cta: {
-      eyebrow: "Weeks fill fast",
-      title: "Save your dog's spot at camp",
-      scriptWord: "camp",
-      subtitle: `Drop-in days or full weeks · Call ${cityConfig.sponsor.phoneDisplay} to plan your summer.`,
-      primary: { label: "Enroll now", href: book },
-      secondary: { label: "All services", href: "/#services" },
+      eyebrow: "Season wrapped",
+      title: "Need care before next summer?",
+      scriptWord: "care",
+      subtitle: `Year-round small-group daycare is open · Call ${cityConfig.sponsor.phoneDisplay}.`,
+      primary: { label: "See year-round daycare", href: "/dog-daycare-waco-tx" },
+      secondary: { label: "All services", href: "/dog-care" },
     },
   },
 };

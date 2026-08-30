@@ -40,13 +40,29 @@ export function HomeServicesBand() {
           ))}
         </ul>
 
-        <p className="mt-8">
+        <p className="mt-8 max-w-2xl text-[14px] leading-relaxed text-body-muted">
+          Need overnight care? See{" "}
+          <Link
+            href="/dog-boarding-waco-tx"
+            className="text-serif-ink underline decoration-border underline-offset-2 hover:text-rose hover:decoration-rose"
+          >
+            dog boarding in Waco
+          </Link>
+          . For a daytime plan, start with{" "}
+          <Link
+            href="/dog-daycare-waco-tx"
+            className="text-serif-ink underline decoration-border underline-offset-2 hover:text-rose hover:decoration-rose"
+          >
+            small-group dog daycare
+          </Link>
+          . Training, camp, and scooping live on the{" "}
           <Link
             href="/dog-care"
-            className="text-xs font-medium tracking-[0.16em] text-wag-sage uppercase underline decoration-border underline-offset-4 hover:text-rose hover:decoration-rose"
+            className="text-serif-ink underline decoration-border underline-offset-2 hover:text-rose hover:decoration-rose"
           >
-            Explore dog care
-          </Link>
+            dog care
+          </Link>{" "}
+          hub.
         </p>
       </div>
     </section>

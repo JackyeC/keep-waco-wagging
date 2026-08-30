@@ -82,6 +82,14 @@ export function Footer() {
             Services
           </p>
           <ul className="mt-2.5 flex flex-col gap-2.5">
+            <li>
+              <Link
+                href="/dog-care"
+                className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+              >
+                Explore dog care
+              </Link>
+            </li>
             {servicesNav.map((link) => (
               <li key={link.href}>
                 <Link

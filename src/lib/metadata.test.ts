@@ -7,7 +7,9 @@ import {
   noindexRobots,
   servicePageMetadata,
 } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site";
+import { boardingLanding, daycareLanding } from "@/data/petCareLandings";
+import { servicePages } from "@/data/servicePages";
+import { cityConfig, siteConfig } from "@/lib/site";
 
 describe("canonical URLs and robots", () => {
   it("keeps homepage canonical identical to the sitemap origin", () => {
@@ -45,5 +47,42 @@ describe("canonical URLs and robots", () => {
       "/approved/sample-",
     ]);
     assert.equal(manifest.sitemap, `${siteConfig.url}/sitemap.xml`);
+  });
+});
+
+describe("page titles and Rover proof", () => {
+  it("keeps distinct search jobs for homepage vs boarding vs daycare vs care hub", () => {
+    const home = servicePageMetadata(
+      "/",
+      "Keep Waco Wagging | Give Your Dog Their Best Waco Life",
+      "Keep Waco Wagging helps Waco dog parents give their dogs a better local life — dog-friendly places, trusted care, Wag Watch updates, weekend ideas, and community resources.",
+    );
+    assert.equal(
+      home.title && typeof home.title === "object" && "absolute" in home.title
+        ? home.title.absolute
+        : home.title,
+      "Keep Waco Wagging | Give Your Dog Their Best Waco Life",
+    );
+    assert.equal(home.description?.includes("Shop"), false);
+    assert.equal(home.description?.toLowerCase().includes("boarding waco"), false);
+
+    assert.equal(
+      boardingLanding.seo.title.toLowerCase().includes("dog boarding waco"),
+      true,
+    );
+    assert.equal(
+      daycareLanding.seo.title.toLowerCase().includes("dog daycare waco"),
+      true,
+    );
+    assert.notEqual(boardingLanding.seo.title, daycareLanding.seo.title);
+    assert.notEqual(boardingLanding.seo.description, daycareLanding.seo.description);
+  });
+
+  it("uses the shared Rover review count instead of a stale hardcoded figure", () => {
+    assert.equal(
+      servicePages["pet-care"].hero.metaLine?.includes(String(cityConfig.rover.reviewCount)),
+      true,
+    );
+    assert.equal(servicePages["pet-care"].hero.metaLine?.includes("119"), false);
   });
 });
