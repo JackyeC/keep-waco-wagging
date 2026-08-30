@@ -12,14 +12,13 @@ import { WagClubSignup } from "@/components/home/WagClubSignup";
 import { WagWatchPreview } from "@/components/home/WagWatchPreview";
 import { designPhotos } from "@/data/designPhotos";
 import { servicePageMetadata } from "@/lib/metadata";
-import { brandLanguage } from "@/lib/site";
 
 export const revalidate = 600;
 
 export const metadata: Metadata = servicePageMetadata(
   "/",
   "Keep Waco Wagging | Give Your Dog Their Best Waco Life",
-  `${brandLanguage.heroLine} ${brandLanguage.communityLine} Dog-friendly Waco guides, Wag Watch, weekend ideas, and trusted local dog care.`,
+  "Keep Waco Wagging helps Waco dog parents give their dogs a better local life — dog-friendly places, trusted care, Wag Watch updates, weekend ideas, and community resources.",
   designPhotos.homeHero,
 );
 

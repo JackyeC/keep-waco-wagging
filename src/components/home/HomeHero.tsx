@@ -34,13 +34,13 @@ export function HomeHero() {
           <p className="text-[11px] font-medium tracking-[0.2em] text-cream/70 uppercase">
             For Waco dog parents
           </p>
-          <p className="mt-3 font-display text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95] font-medium tracking-[-0.02em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
+          <h1 className="mt-3 font-display text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95] font-medium tracking-[-0.02em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
             {brandLanguage.heroLine.replace(/\.$/, "")}
-          </p>
+          </h1>
           <p className="mt-4 max-w-md text-[15px] font-light leading-relaxed text-cream/90">
-            Your dog is family. We help you find the places, people, services,
-            and events that make life with them in Waco even better — and we
-            say when bringing them along is not the right call.
+            Your dog is family. We help Waco dog parents find dog-friendly
+            places, trusted care, events, and local resources — and we say when
+            bringing them along is not the right call.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <Link
@@ -54,6 +54,12 @@ export function HomeHero() {
               className="text-xs font-medium tracking-[0.16em] text-cream/85 uppercase underline decoration-cream/40 underline-offset-4 transition-colors hover:text-cream hover:decoration-cream"
             >
               This weekend
+            </Link>
+            <Link
+              href="/dog-care"
+              className="text-xs font-medium tracking-[0.16em] text-cream/85 uppercase underline decoration-cream/40 underline-offset-4 transition-colors hover:text-cream hover:decoration-cream"
+            >
+              Explore dog care
             </Link>
           </div>
           <p className="mt-6 text-[11px] font-medium tracking-[0.18em] text-cream/65 uppercase">

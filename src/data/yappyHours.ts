@@ -95,7 +95,7 @@ export const yappyHourEvents: YappyHourEvent[] = [
     description:
       "Beat the August heat with frozen treats and shade in the backyard — a members-only thank-you before the season winds down.",
     cost: "Free for members",
-    rsvpOpen: true,
+    rsvpOpen: false,
   },
 ];
 

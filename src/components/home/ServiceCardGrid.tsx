@@ -13,11 +13,19 @@ const services = [
     photo: designPhotos.svcScoop,
   },
   {
-    eyebrow: "5.0 on Rover",
-    title: "Daycare & boarding",
+    eyebrow: "Overnight · home-based",
+    title: "Dog boarding in Waco",
     detail:
-      "Home-based daycare and boarding with full-time attention, enrichment, rest, and daily updates.",
-    href: "/pet-care",
+      "Overnight care in a calm Waco home — walks, enrichment, rest, and daily updates. Not a kennel.",
+    href: "/dog-boarding-waco-tx",
+    photo: designPhotos.svcBoard,
+  },
+  {
+    eyebrow: "Daytime · home-based",
+    title: "Small-group dog daycare",
+    detail:
+      "Play, enrichment, and real rest during the day — without a warehouse floor.",
+    href: "/dog-daycare-waco-tx",
     photo: designPhotos.svcBoard,
   },
   {
@@ -37,10 +45,10 @@ const services = [
     photo: designPhotos.svcWedding,
   },
   {
-    eyebrow: "Summer camp",
+    eyebrow: "Seasonal summer program",
     title: brandLanguage.dogCampName,
     detail:
-      "Thirteen themed summer weeks of supervised play, enrichment, and rest. Drop in or join the full week.",
+      "Themed summer daycare weeks. The 2026 season has wrapped — year-round daycare is open.",
     href: "/summer-daycare",
     photo: designPhotos.svcCamp,
   },
