@@ -19,7 +19,7 @@ export function isMix(dog: DogProfile): dog is import("./types").MixedDogProfile
   return dog.type === "common-mix";
 }
 
-export type { AkcGroup, BreedProfile, DogProfile, MixedDogProfile, QuizAnswers, MatchResult, RankedMatches, SearchHit, SourceMetadata, FrictionFlag, ScoringFactor } from "./types";
+export type { AkcGroup, BreedProfile, DogProfile, MixedDogProfile, QuizAnswers, MatchResult, RankedMatches, SearchHit, SourceMetadata, FrictionFlag, ScoringFactor, TraitOrigin, TraitField } from "./types";
 export { akcTop100, commonMixes, newFor2026Breeds };
 export {
   PIT_BULL_NOTICE,
@@ -29,3 +29,13 @@ export {
   normalizeSearch,
 } from "./aliases";
 export { dogMatchSources, LAST_REVIEWED, akcBreedPageUrl } from "./sources";
+export {
+  POODLE_VARIETY_SLUGS,
+  POODLE_MATCH_NOTE_TEXT,
+  poodleVarieties,
+} from "./poodle-varieties";
+export {
+  TRAIT_FIELD_ORIGIN,
+  traitOrigin,
+  usableTraitLevel,
+} from "./trait-origins";

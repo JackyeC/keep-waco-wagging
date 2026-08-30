@@ -5,6 +5,29 @@
 
 export type TraitLevel = 1 | 2 | 3 | 4 | 5 | "unknown";
 
+export type TraitOrigin = "direct" | "derived" | "unknown";
+
+/** Fields whose 1–5 values may feed scoring. Origin is per-field, not lab precision. */
+export type TraitField =
+  | "energyLevel"
+  | "mentalStimulationNeed"
+  | "barkingLevel"
+  | "sheddingLevel"
+  | "groomingLevel"
+  | "professionalGroomingLikely"
+  | "trainability"
+  | "trainingPatienceNeeded"
+  | "independenceLevel"
+  | "preyDrive"
+  | "dogSociability"
+  | "catCompatibilityTendency"
+  | "smallAnimalCaution"
+  | "apartmentCompatibility"
+  | "sharedWallRisk"
+  | "noviceOwnerSuitability"
+  | "aloneTimeTolerance"
+  | "childCompatibilityGeneral";
+
 export type AkcGroup =
   | "Sporting"
   | "Hound"
@@ -60,6 +83,10 @@ export type BreedProfile = {
   aliases: string[];
   sourceIds: string[];
   lastReviewed: string;
+  /** Display name of the AKC-listed breed when this profile is a variety (e.g. Poodle). */
+  akcListedName?: string;
+  varietyOf?: string;
+  matchNote?: string;
 };
 
 export type MixedDogProfile = {
@@ -175,6 +202,7 @@ export type ScoringFactor = {
   scored: boolean;
   contribution: number;
   detail: string;
+  origin?: TraitOrigin;
 };
 
 export type FrictionFlag = {

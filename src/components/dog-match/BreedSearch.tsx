@@ -61,6 +61,11 @@ export function BreedSearch({
                 <p className="mt-1 text-[12px] tracking-[0.08em] text-label-muted uppercase">
                   {popularityLabel(dog)}
                 </p>
+                {dog.matchNote && (
+                  <p className="mt-2 text-[13px] leading-relaxed text-bark-soft">
+                    {dog.matchNote}
+                  </p>
+                )}
                 <p className="mt-2 text-[13px] leading-relaxed text-body-muted">
                   {dog.notes}
                 </p>

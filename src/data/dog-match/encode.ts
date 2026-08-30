@@ -41,6 +41,9 @@ export type CompactDog = {
   notes: string;
   likelyInfluences?: string[];
   uncertaintyNote?: string;
+  listedAs?: string;
+  varietyOf?: string;
+  matchNote?: string;
 };
 
 export function asTrait(value: TraitCode): TraitLevel {
@@ -99,6 +102,9 @@ export function expandAkc(row: CompactDog): BreedProfile {
       ? ["akc-new-2026", "akc-breed-pages"]
       : ["akc-popular-2025", "akc-breed-pages"],
     lastReviewed: LAST_REVIEWED,
+    ...(row.listedAs ? { akcListedName: row.listedAs } : {}),
+    ...(row.varietyOf ? { varietyOf: row.varietyOf } : {}),
+    ...(row.matchNote ? { matchNote: row.matchNote } : {}),
   };
 }
 

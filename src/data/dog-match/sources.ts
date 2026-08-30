@@ -20,7 +20,7 @@ export const dogMatchSources: SourceMetadata[] = [
     label: "AKC breed pages and characteristic ratings",
     url: "https://www.akc.org/dog-breeds/",
     notes:
-      "Energy, barking, shedding, grooming, trainability, and similar 1–5 ratings are compiled from AKC breed characteristic scales and breed-page descriptions. Individual dogs still vary.",
+      "Energy, barking, shedding, grooming, trainability, and similar published 1–5 characteristic scales are treated as DIRECT when the source actually publishes them. Other lifestyle fields (prey drive, cat compatibility, small-animal caution, alone time, apartment fit, shared-wall risk, novice-owner suitability, training patience needed) are DERIVED from breed descriptions and history — not official AKC ratings. Unknown stays unknown.",
   },
   {
     id: "akc-new-2026",

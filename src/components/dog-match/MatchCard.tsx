@@ -64,6 +64,9 @@ export function MatchCard({
       <h3 className="mt-2 font-display text-[1.7rem] font-medium text-serif-ink">
         {dog.name}
       </h3>
+      {dog.matchNote && (
+        <p className="mt-2 text-[13px] leading-relaxed text-bark-soft">{dog.matchNote}</p>
+      )}
       <div className="mt-4">
         <ScoreMeters fit={result.lifestyleFit} friction={result.friction} compact />
       </div>

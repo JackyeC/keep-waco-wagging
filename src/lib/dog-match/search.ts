@@ -7,6 +7,7 @@ import {
   normalizeSearch,
 } from "@/data/dog-match";
 import { allDogProfiles } from "@/data/dog-match";
+import { POODLE_MATCH_NOTE_TEXT } from "@/data/dog-match/poodle-varieties";
 import type { DogProfile, SearchHit } from "@/data/dog-match/types";
 
 function levenshtein(a: string, b: string): number {
@@ -87,10 +88,13 @@ export function searchDogs(rawQuery: string): SearchHit | null {
   }
   if (alias?.kind === "slugs") {
     const dogs = dogsFromSlugs(alias.slugs);
+    const poodleGroup = dogs.length > 0 && dogs.every((dog) => dog.varietyOf === "poodle");
+    const singlePoodle = dogs.length === 1 && dogs[0]?.varietyOf === "poodle";
     return {
       kind: dogs[0]?.type === "common-mix" ? "mix" : dogs.length > 1 ? "alias-group" : "breed",
       query: rawQuery,
       dogs,
+      notice: poodleGroup || singlePoodle ? POODLE_MATCH_NOTE_TEXT : undefined,
     };
   }
 

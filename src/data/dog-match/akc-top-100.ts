@@ -1,11 +1,15 @@
 import { expandAkc, type CompactDog } from "./encode";
+import { poodleVarieties } from "./poodle-varieties";
 import type { BreedProfile } from "./types";
 
 /**
  * AKC 2025 Top 100 (registration statistics for the ranking year).
- * Trait 1–5 values are compiled from AKC breed characteristic ratings and
- * breed-page descriptions. 0 = unknown and must not score as a positive.
+ * Trait 1–5 values are compiled from AKC characteristic ratings (DIRECT)
+ * and conservative readings of breed-page descriptions (DERIVED).
+ * 0 = unknown and must not score as a positive.
  * Popularity rank is stored for display only.
+ * Poodle is split into Toy / Miniature / Standard varieties for matching;
+ * AKC still ranks them as one breed (#6).
  */
 const rows: CompactDog[] = [
   {
@@ -47,14 +51,6 @@ const rows: CompactDog[] = [
     novice: 3, alone: 3, kids: 3,
     aliases: ["doxie", "wiener dog"],
     notes: "A hunting hound in a long, low body. Often vocal, often stubborn, and often interested in anything that scurries. Backs are not built for jumping off furniture all day.",
-  },
-  {
-    rank: 6, slug: "poodle", name: "Poodle", group: "Non-Sporting",
-    size: [4, 70], energy: 4, ex: [45, 90], mental: 5, bark: 3, shed: 1, groom: 5, pro: 2,
-    train: 5, patience: 3, independence: 2, prey: 3, dogs: 4, cats: 3, small: 3, apt: 4, wall: 3,
-    novice: 3, alone: 3, kids: 4,
-    aliases: ["standard poodle", "miniature poodle", "toy poodle"],
-    notes: "AKC ranks Poodle as one breed covering Toy, Miniature, and Standard — size and exercise needs vary a lot. Coat care is not optional if you want the low-shed reputation. Smart, and they notice if you are bored too.",
   },
   {
     rank: 7, slug: "beagle", name: "Beagle", group: "Hound",
@@ -774,5 +770,9 @@ const rows: CompactDog[] = [
   },
 ];
 
-export const akcTop100: BreedProfile[] = rows.map(expandAkc);
+export const akcTop100: BreedProfile[] = [
+  ...rows.slice(0, 5).map(expandAkc),
+  ...poodleVarieties,
+  ...rows.slice(5).map(expandAkc),
+];
 

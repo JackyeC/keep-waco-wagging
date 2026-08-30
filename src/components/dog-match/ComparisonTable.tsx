@@ -1,7 +1,7 @@
 "use client";
 
-import type { MatchResult } from "@/data/dog-match/types";
-import { traitNumber } from "@/lib/dog-match/traits";
+import type { DogProfile, MatchResult, TraitField } from "@/data/dog-match/types";
+import { traitOrigin, usableTraitLevel } from "@/data/dog-match/trait-origins";
 import { cn } from "@/lib/utils";
 
 const ROWS: { key: string; label: string; value: (result: MatchResult) => string }[] = [
@@ -18,57 +18,65 @@ const ROWS: { key: string; label: string; value: (result: MatchResult) => string
   {
     key: "noise",
     label: "Noise",
-    value: (r) => level(traitNumber(r.dog.barkingLevel)),
+    value: (r) => traitCell(r.dog, "barkingLevel"),
   },
   {
     key: "grooming",
     label: "Grooming",
-    value: (r) => level(traitNumber(r.dog.groomingLevel)),
+    value: (r) => traitCell(r.dog, "groomingLevel"),
   },
   {
     key: "shedding",
     label: "Shedding",
-    value: (r) => level(traitNumber(r.dog.sheddingLevel)),
+    value: (r) => traitCell(r.dog, "sheddingLevel"),
   },
   {
     key: "training",
     label: "Training patience needed",
-    value: (r) => level(traitNumber(r.dog.trainingPatienceNeeded)),
+    value: (r) => traitCell(r.dog, "trainingPatienceNeeded"),
   },
   {
     key: "mental",
     label: "Mental stimulation",
-    value: (r) => level(traitNumber(r.dog.mentalStimulationNeed)),
+    value: (r) => traitCell(r.dog, "mentalStimulationNeed"),
   },
   {
     key: "walls",
     label: "Apartment / shared-wall reality",
     value: (r) => {
-      const apt = traitNumber(r.dog.apartmentCompatibility);
-      const wall = traitNumber(r.dog.sharedWallRisk);
-      if (apt == null && wall == null) return "Unknown / varies";
-      return `Apt ${level(apt)} · wall risk ${level(wall)}`;
+      const apt = traitCell(r.dog, "apartmentCompatibility");
+      const wall = traitCell(r.dog, "sharedWallRisk");
+      if (apt === "Unknown" && wall === "Unknown") return "Unknown / varies";
+      return `Apt ${apt} · wall risk ${wall}`;
     },
   },
   {
     key: "pets",
     label: "Other pet considerations",
     value: (r) =>
-      `Cats ${level(traitNumber(r.dog.catCompatibilityTendency))} · small-animal caution ${level(traitNumber(r.dog.smallAnimalCaution))}`,
+      `Cats ${traitCell(r.dog, "catCompatibilityTendency")} · small-animal caution ${traitCell(r.dog, "smallAnimalCaution")}`,
   },
   {
     key: "novice",
     label: "First-time-owner difficulty",
     value: (r) => {
-      const novice = traitNumber(r.dog.noviceOwnerSuitability);
-      if (novice == null) return "Unknown / varies";
-      return novice <= 2 ? "Steeper" : novice >= 4 ? "More approachable" : "Moderate";
+      const origin = traitOrigin(r.dog, "noviceOwnerSuitability");
+      const novice = usableTraitLevel(r.dog, "noviceOwnerSuitability");
+      if (origin === "unknown" || novice == null) return "Unknown / varies";
+      const label = novice <= 2 ? "Steeper" : novice >= 4 ? "More approachable" : "Moderate";
+      return origin === "derived" ? `${label} · derived` : label;
     },
   },
 ];
 
-function level(value: number | null): string {
-  if (value == null) return "Unknown";
+function traitCell(
+  dog: DogProfile,
+  field: Exclude<TraitField, "professionalGroomingLikely">,
+): string {
+  const origin = traitOrigin(dog, field);
+  const value = usableTraitLevel(dog, field);
+  if (origin === "unknown" || value == null) return "Unknown";
+  if (origin === "derived") return `${value}/5 · derived`;
   return `${value}/5`;
 }
 
@@ -108,6 +116,10 @@ export function ComparisonTable({ results }: { results: MatchResult[] }) {
           ))}
         </tbody>
       </table>
+      <p className="mt-3 max-w-2xl text-[12px] leading-relaxed text-label-muted">
+        Direct ratings come from a structured source. Derived values are conservative
+        editorial readings, not official AKC scores. Unknown is not scored as a plus.
+      </p>
     </div>
   );
 }

@@ -55,8 +55,9 @@ export function ResultsView({
         <section className="mt-14">
           <h2 className="heading">You May Love Them, But…</h2>
           <p className="dek mt-3 max-w-2xl">
-            Appealing on paper, with enough friction — based on your answers —
-            that you should go in with your eyes open.
+            Appealing enough to live with — and still carrying meaningful
+            complications. These are not the highest-friction dogs on the list;
+            they are reasonably compatible first.
           </p>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {matches.loveBut.map((result) => (
@@ -115,6 +116,9 @@ function DogDetail({ result }: { result: MatchResult }) {
     <section className="mt-16 border-t border-border pt-12">
       <p className="eyebrow">{popularityLabel(dog)}</p>
       <h2 className="heading mt-2">{dog.name}</h2>
+      {dog.matchNote && (
+        <p className="dek mt-3 max-w-2xl">{dog.matchNote}</p>
+      )}
       <div className="mt-6 max-w-xl">
         <ScoreMeters fit={result.lifestyleFit} friction={result.friction} />
       </div>

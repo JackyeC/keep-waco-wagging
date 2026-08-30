@@ -27,37 +27,50 @@ export type QuizChoice<T extends string | number | boolean | null> = {
 };
 
 export type QuizStepId =
-  | "homeType"
-  | "homeSetup"
-  | "noise"
-  | "work"
-  | "alone"
-  | "help"
-  | "activity"
+  | "home"
+  | "schedule"
+  | "tuesday"
   | "grooming"
   | "training"
-  | "pets"
-  | "children"
-  | "size"
-  | "age"
+  | "household"
+  | "lookingFor"
   | "desiredLife";
 
+/** User-facing screens. Underlying scoring still requires every field in REQUIRED_QUIZ_FIELDS. */
 export const QUIZ_STEPS: QuizStepId[] = [
-  "homeType",
-  "homeSetup",
-  "noise",
-  "work",
-  "alone",
-  "help",
-  "activity",
+  "home",
+  "schedule",
+  "tuesday",
   "grooming",
   "training",
-  "pets",
-  "children",
-  "size",
-  "age",
+  "household",
+  "lookingFor",
   "desiredLife",
 ];
+
+/** Every answer the scoring engine still needs. Grouping screens does not drop inputs. */
+export const REQUIRED_QUIZ_FIELDS = [
+  "homeType",
+  "homeSpace",
+  "sharedWalls",
+  "yard",
+  "noiseTolerance",
+  "workSchedule",
+  "aloneHours",
+  "help",
+  "activity",
+  "brushingTolerance",
+  "sheddingTolerance",
+  "groomingBudget",
+  "experience",
+  "trainingPatience",
+  "existingPets",
+  "children",
+  "sizePreference",
+  "hardMaxLbs",
+  "agePreference",
+  "desiredLife",
+] as const satisfies readonly (keyof QuizAnswers)[];
 
 export const homeTypeChoices: QuizChoice<HomeType>[] = [
   { value: "apartment", label: "Apartment" },
@@ -242,65 +255,41 @@ export const stepCopy: Record<
   QuizStepId,
   { eyebrow: string; title: string; dek?: string }
 > = {
-  homeType: {
-    eyebrow: "Home",
+  home: {
+    eyebrow: "Your home",
     title: "What kind of place does a dog walk into with you?",
-    dek: "Small home does not automatically mean small dog. We will ask about walls, yard, and noise next.",
+    dek: "Small home does not automatically mean small dog. We’ll ask about walls, yard, and noise here.",
   },
-  homeSetup: {
-    eyebrow: "Home",
-    title: "What’s the space actually like?",
-  },
-  noise: {
-    eyebrow: "Noise",
-    title: "How much dog commentary can you live with?",
-  },
-  work: {
-    eyebrow: "Schedule",
-    title: "What’s a normal work week look like?",
-  },
-  alone: {
-    eyebrow: "Schedule",
-    title: "How many hours might the dog routinely be alone?",
+  schedule: {
+    eyebrow: "Your schedule",
+    title: "What’s a normal week actually look like?",
     dek: "Be honest about the ordinary week, not the week you work from home in December.",
   },
-  help: {
-    eyebrow: "Schedule",
-    title: "Do you realistically have backup during the workday?",
-  },
-  activity: {
-    eyebrow: "Activity",
+  tuesday: {
+    eyebrow: "Your real Tuesday",
     title: "On an ordinary Tuesday, what are you really willing to do?",
     dek: "Aspirational hiking energy does not count. Tuesday counts.",
   },
   grooming: {
-    eyebrow: "Grooming",
+    eyebrow: "Grooming reality",
     title: "Coat care: what can you actually keep up with?",
   },
   training: {
     eyebrow: "Training",
     title: "What’s your dog experience — and your patience for opinions?",
   },
-  pets: {
-    eyebrow: "Household",
+  household: {
+    eyebrow: "Who lives there",
     title: "Who else already lives there?",
     dek: "Breed tendencies are not a guarantee of getting along. Introductions and the individual dog still matter.",
   },
-  children: {
-    eyebrow: "Household",
-    title: "Are there children in the home?",
-  },
-  size: {
-    eyebrow: "Preferences",
+  lookingFor: {
+    eyebrow: "What you’re looking for",
     title: "Any size preference — or a hard maximum?",
-  },
-  age: {
-    eyebrow: "Age",
-    title: "Puppy, adult, or either?",
     dek: "Age changes the first 90 days more than it changes the breed list.",
   },
   desiredLife: {
-    eyebrow: "Desired life",
+    eyebrow: "The life you want",
     title: "Which sounds most like what you want?",
   },
 };
@@ -310,26 +299,5 @@ export function emptyAnswers(): Partial<QuizAnswers> {
 }
 
 export function isQuizComplete(answers: Partial<QuizAnswers>): answers is QuizAnswers {
-  return (
-    answers.homeType !== undefined &&
-    answers.homeSpace !== undefined &&
-    answers.sharedWalls !== undefined &&
-    answers.yard !== undefined &&
-    answers.noiseTolerance !== undefined &&
-    answers.workSchedule !== undefined &&
-    answers.aloneHours !== undefined &&
-    answers.help !== undefined &&
-    answers.activity !== undefined &&
-    answers.brushingTolerance !== undefined &&
-    answers.sheddingTolerance !== undefined &&
-    answers.groomingBudget !== undefined &&
-    answers.experience !== undefined &&
-    answers.trainingPatience !== undefined &&
-    answers.existingPets !== undefined &&
-    answers.children !== undefined &&
-    answers.sizePreference !== undefined &&
-    answers.hardMaxLbs !== undefined &&
-    answers.agePreference !== undefined &&
-    answers.desiredLife !== undefined
-  );
+  return REQUIRED_QUIZ_FIELDS.every((field) => answers[field] !== undefined);
 }

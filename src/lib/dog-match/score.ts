@@ -5,10 +5,12 @@ import type {
   QuizAnswers,
   RankedMatches,
   ScoringFactor,
+  TraitField,
+  TraitOrigin,
 } from "@/data/dog-match/types";
 import { isMix } from "@/data/dog-match";
+import { traitOrigin, usableTraitLevel } from "@/data/dog-match/trait-origins";
 import { buildFirst90 } from "./first90";
-import { traitNumber } from "./traits";
 import { buildTuesday } from "./tuesday";
 import {
   ACTIVITY_SCORE,
@@ -16,6 +18,8 @@ import {
   FIT_WEIGHTS,
   FRICTION_WEIGHTS,
   HARD_FRICTION,
+  LOVE_BUT_MIN_FIT,
+  LOVE_BUT_MIN_FRICTION,
   NOISE_SCORE,
   PATIENCE_SCORE,
   SHED_TOLERANCE_SCORE,
@@ -87,8 +91,16 @@ function factor(
   scored: boolean,
   contribution: number,
   detail: string,
+  origin?: TraitOrigin,
 ): ScoringFactor {
-  return { id, label, weight, scored, contribution, detail };
+  return { id, label, weight, scored, contribution, detail, origin };
+}
+
+function knownLevel(
+  dog: DogProfile,
+  field: Exclude<TraitField, "professionalGroomingLikely">,
+): number | null {
+  return usableTraitLevel(dog, field);
 }
 
 export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
@@ -100,22 +112,33 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
   const skipIf: string[] = [];
   const behavior: string[] = [];
 
-  const energy = traitNumber(dog.energyLevel);
-  const bark = traitNumber(dog.barkingLevel);
-  const shed = traitNumber(dog.sheddingLevel);
-  const groom = traitNumber(dog.groomingLevel);
-  const train = traitNumber(dog.trainability);
-  const patienceNeed = traitNumber(dog.trainingPatienceNeeded);
-  const prey = traitNumber(dog.preyDrive);
-  const apt = traitNumber(dog.apartmentCompatibility);
-  const wall = traitNumber(dog.sharedWallRisk);
-  const novice = traitNumber(dog.noviceOwnerSuitability);
-  const alone = traitNumber(dog.aloneTimeTolerance);
-  const kids = traitNumber(dog.childCompatibilityGeneral);
-  const cats = traitNumber(dog.catCompatibilityTendency);
-  const smallCaution = traitNumber(dog.smallAnimalCaution);
-  const dogs = traitNumber(dog.dogSociability);
-  const mental = traitNumber(dog.mentalStimulationNeed);
+  const energy = knownLevel(dog, "energyLevel");
+  const bark = knownLevel(dog, "barkingLevel");
+  const shed = knownLevel(dog, "sheddingLevel");
+  const groom = knownLevel(dog, "groomingLevel");
+  const train = knownLevel(dog, "trainability");
+  const patienceNeed = knownLevel(dog, "trainingPatienceNeeded");
+  const prey = knownLevel(dog, "preyDrive");
+  const apt = knownLevel(dog, "apartmentCompatibility");
+  const wall = knownLevel(dog, "sharedWallRisk");
+  const novice = knownLevel(dog, "noviceOwnerSuitability");
+  const alone = knownLevel(dog, "aloneTimeTolerance");
+  const kids = knownLevel(dog, "childCompatibilityGeneral");
+  const cats = knownLevel(dog, "catCompatibilityTendency");
+  const smallCaution = knownLevel(dog, "smallAnimalCaution");
+  const dogs = knownLevel(dog, "dogSociability");
+  const mental = knownLevel(dog, "mentalStimulationNeed");
+  const energyOrigin = traitOrigin(dog, "energyLevel");
+  const aptOrigin = traitOrigin(dog, "apartmentCompatibility");
+  const barkOrigin = traitOrigin(dog, "barkingLevel");
+  const aloneOrigin = traitOrigin(dog, "aloneTimeTolerance");
+  const groomOrigin = traitOrigin(dog, "groomingLevel");
+  const shedOrigin = traitOrigin(dog, "sheddingLevel");
+  const trainOrigin = traitOrigin(dog, "trainingPatienceNeeded");
+  const kidsOrigin = traitOrigin(dog, "childCompatibilityGeneral");
+  const preyOrigin = traitOrigin(dog, "preyDrive");
+  const wallOrigin = traitOrigin(dog, "sharedWallRisk");
+  const noviceOrigin = traitOrigin(dog, "noviceOwnerSuitability");
   const activity = ACTIVITY_SCORE[answers.activity];
   const noiseTol = NOISE_SCORE[answers.noiseTolerance];
   const mix = isMix(dog);
@@ -130,6 +153,7 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
         false,
         0,
         "Energy need is unknown, so it is not counted as a positive match.",
+        energyOrigin,
       ),
     );
   } else {
@@ -142,6 +166,7 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
         true,
         score,
         `Your ordinary Tuesday is a ${activity}/5 activity home; this dog’s typical energy is ${energy}/5.`,
+        energyOrigin,
       ),
     );
     if (score >= 0.7) {
@@ -151,7 +176,7 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
 
   if (apt == null) {
     fitFactors.push(
-      factor("homeLiving", "Home & living space", FIT_WEIGHTS.homeLiving, false, 0, "Apartment/home compatibility is unknown, so it is not counted as a plus."),
+      factor("homeLiving", "Home & living space", FIT_WEIGHTS.homeLiving, false, 0, "Apartment/home compatibility is unknown, so it is not counted as a plus.", aptOrigin),
     );
   } else {
     const compactHome =
@@ -165,23 +190,23 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
     fitFactors.push(
       factor("homeLiving", "Home & living space", FIT_WEIGHTS.homeLiving, true, score, compactHome
         ? `Smaller or shared-wall homes tend to work better when apartment compatibility is higher (this dog: ${apt}/5). Size is scored separately — compact home ≠ small dog.`
-        : `A house does not automatically make a high-drive dog easy. Compatibility here is ${apt}/5.`),
+        : `A house does not automatically make a high-drive dog easy. Compatibility here is ${apt}/5.`, aptOrigin),
     );
     if (compactHome && apt >= 4) why.push("Typical apartment/condo compatibility is on the friendlier side for this type.");
   }
 
   if (bark == null) {
-    fitFactors.push(factor("noise", "Noise", FIT_WEIGHTS.noise, false, 0, "Vocality is unknown, so it is not counted as a quiet-household win."));
+    fitFactors.push(factor("noise", "Noise", FIT_WEIGHTS.noise, false, 0, "Vocality is unknown, so it is not counted as a quiet-household win.", barkOrigin));
   } else {
     const score = bark <= noiseTol ? 1 : closeness(noiseTol, bark, 4);
     fitFactors.push(
-      factor("noise", "Noise", FIT_WEIGHTS.noise, true, score, `Your noise tolerance is ${noiseTol}/5; typical barking tendency is ${bark}/5.`),
+      factor("noise", "Noise", FIT_WEIGHTS.noise, true, score, `Your noise tolerance is ${noiseTol}/5; typical barking tendency is ${bark}/5.`, barkOrigin),
     );
     if (bark <= noiseTol) why.push("Typical vocality is within what you said you can live with.");
   }
 
   if (alone == null) {
-    fitFactors.push(factor("aloneTime", "Time home alone", FIT_WEIGHTS.aloneTime, false, 0, "Alone-time tendency is unknown, so it is not counted as a positive."));
+    fitFactors.push(factor("aloneTime", "Time home alone", FIT_WEIGHTS.aloneTime, false, 0, "Alone-time tendency is unknown, so it is not counted as a positive.", aloneOrigin));
   } else {
     const hours = answers.aloneHours;
     const supported = aloneSupport(answers);
@@ -193,12 +218,12 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
           : alone / 5
         : closeness(6 - Math.min(5, effectiveHours / 2), alone);
     fitFactors.push(
-      factor("aloneTime", "Time home alone", FIT_WEIGHTS.aloneTime, true, match, `Routine alone time is about ${hours} hours. Backup: ${answers.help}. Typical alone-time tolerance is ${alone}/5 — not a diagnosis, just a tendency.`),
+      factor("aloneTime", "Time home alone", FIT_WEIGHTS.aloneTime, true, match, `Routine alone time is about ${hours} hours. Backup: ${answers.help}. Typical alone-time tolerance is ${alone}/5 — not a diagnosis, just a tendency.`, aloneOrigin),
     );
   }
 
   if (groom == null && dog.professionalGroomingLikely === "unknown") {
-    fitFactors.push(factor("grooming", "Grooming", FIT_WEIGHTS.grooming, false, 0, "Grooming need is unknown, so it is not counted as low-maintenance."));
+    fitFactors.push(factor("grooming", "Grooming", FIT_WEIGHTS.grooming, false, 0, "Grooming need is unknown, so it is not counted as low-maintenance.", groomOrigin));
   } else {
     const userGroom = BRUSHING_SCORE[answers.brushingTolerance];
     const dogGroom = groom ?? (dog.professionalGroomingLikely === true ? 4 : 2);
@@ -212,7 +237,7 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
       budgetOk ? 1 : 0.25,
     );
     fitFactors.push(
-      factor("grooming", "Grooming", FIT_WEIGHTS.grooming, true, score, "Scored only from known coat-care tendency and the budget you named."),
+      factor("grooming", "Grooming", FIT_WEIGHTS.grooming, true, score, "Scored only from known coat-care tendency and the budget you named.", groomOrigin),
     );
     if (groom != null && groom <= 2 && dog.professionalGroomingLikely !== true) {
       why.push("Typical coat care is on the lighter side compared with high-maintenance breeds.");
@@ -220,16 +245,16 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
   }
 
   if (shed == null) {
-    fitFactors.push(factor("shedding", "Shedding", FIT_WEIGHTS.shedding, false, 0, "Shedding is unknown, so it is not counted as a low-shed win."));
+    fitFactors.push(factor("shedding", "Shedding", FIT_WEIGHTS.shedding, false, 0, "Shedding is unknown, so it is not counted as a low-shed win.", shedOrigin));
   } else {
     const tol = SHED_TOLERANCE_SCORE[answers.sheddingTolerance];
     const score = shed <= tol ? 1 : closeness(tol, shed, 4);
-    fitFactors.push(factor("shedding", "Shedding", FIT_WEIGHTS.shedding, true, score, `Shedding tendency ${shed}/5 vs your tolerance ${tol}/5.`));
+    fitFactors.push(factor("shedding", "Shedding", FIT_WEIGHTS.shedding, true, score, `Shedding tendency ${shed}/5 vs your tolerance ${tol}/5.`, shedOrigin));
     if (shed <= 2 && answers.sheddingTolerance === "low") why.push("Typical shedding is on the lighter side of this set.");
   }
 
   if (patienceNeed == null && novice == null) {
-    fitFactors.push(factor("training", "Training", FIT_WEIGHTS.training, false, 0, "Training difficulty is unknown, so it is not counted as beginner-friendly."));
+    fitFactors.push(factor("training", "Training", FIT_WEIGHTS.training, false, 0, "Training difficulty is unknown, so it is not counted as beginner-friendly.", trainOrigin));
   } else {
     const userP = PATIENCE_SCORE[answers.trainingPatience];
     const need = patienceNeed ?? (novice != null ? 6 - novice : 3);
@@ -239,7 +264,7 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
       answers.experience === "some" ? 0 : -1;
     const score = closeness(userP + expBoost, need, 4);
     fitFactors.push(
-      factor("training", "Training", FIT_WEIGHTS.training, true, score, "Scored from known trainability / patience-needed ratings, not from popularity."),
+      factor("training", "Training", FIT_WEIGHTS.training, true, score, "Scored from known trainability / patience-needed ratings, not from popularity. Training patience needed is a derived reading, not an official AKC score.", trainOrigin),
     );
     if (train != null && train >= 4 && answers.experience !== "first-time") {
       why.push("This type is often more responsive to reward-based training than a highly independent breed.");
@@ -261,39 +286,55 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
   const life = answers.desiredLife;
   if (life === "unsure") {
     fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, false, 0, "You were not sure, so this does not boost any dog."));
-  } else if (energy == null && typicalSize(dog) == null) {
-    fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, false, 0, "Not enough known traits to score desired lifestyle as a plus."));
+  } else if (life === "small-companion") {
+    const size = typicalSize(dog);
+    if (size == null) {
+      fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, false, 0, "Size is unknown, so a small-companion preference is not counted as a plus."));
+    } else {
+      const score = size <= 25 ? 0.95 : size <= 40 ? 0.5 : 0.15;
+      fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, true, score, "Matched to typical adult size only — unknown traits are not filled in."));
+      if (score >= 0.75) why.push("The life you said you want lines up with this dog’s typical job.");
+    }
+  } else if (life === "sports") {
+    const parts: number[] = [];
+    if (energy != null) parts.push(closeness(5, energy, 3));
+    if (mental != null) parts.push(closeness(5, mental, 4));
+    if (train != null) parts.push(closeness(5, train, 4));
+    if (parts.length === 0) {
+      fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, false, 0, "Not enough known traits to score a sports-partner preference as a plus.", energyOrigin));
+    } else {
+      const score = parts.reduce((a, b) => a + b, 0) / parts.length;
+      fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, true, score, "Matched to known energy, mental-work, and trainability only. Unknown values are omitted, not guessed.", energyOrigin));
+      if (score >= 0.75) why.push("The life you said you want lines up with this dog’s typical job.");
+    }
+  } else if (energy == null) {
+    fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, false, 0, "Energy need is unknown, so this lifestyle preference is not counted as a plus.", energyOrigin));
   } else {
     let score = 0.5;
-    if (life === "couch") score = energy == null ? 0.4 : closeness(1.5, energy, 4);
-    if (life === "walking") score = energy == null ? 0.5 : closeness(3, energy, 3);
-    if (life === "active-family") score = energy == null ? 0.5 : closeness(4, energy, 3);
-    if (life === "adventure") score = energy == null ? 0.4 : closeness(5, energy, 3);
-    if (life === "sports") {
-      const e = energy ?? 3;
-      const m = mental ?? 3;
-      const t = train ?? 3;
-      score = (closeness(5, e, 3) + closeness(5, m, 4) + closeness(5, t, 4)) / 3;
-    }
-    if (life === "small-companion") {
-      const size = typicalSize(dog);
-      score = size == null ? 0.4 : size <= 25 ? 0.95 : size <= 40 ? 0.5 : 0.15;
-    }
-    fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, true, score, "Matched to the life you picked, using known energy/size/training traits only."));
+    if (life === "couch") score = closeness(1.5, energy, 4);
+    if (life === "walking") score = closeness(3, energy, 3);
+    if (life === "active-family") score = closeness(4, energy, 3);
+    if (life === "adventure") score = closeness(5, energy, 3);
+    fitFactors.push(factor("desiredLife", "Desired life", FIT_WEIGHTS.desiredLife, true, score, "Matched to the life you picked, using known energy only — unknown is not treated as a typical dog.", energyOrigin));
     if (score >= 0.75) why.push("The life you said you want lines up with this dog’s typical job.");
   }
 
   if (answers.children === "none" || kids == null) {
     fitFactors.push(factor("children", "Children", FIT_WEIGHTS.children, false, 0, answers.children === "none"
       ? "No children in the home, so this is not used as a bonus."
-      : "Child-related tendency is unknown, so it is not counted as a plus."));
+      : "Child-related tendency is unknown, so it is not counted as a plus.", kidsOrigin));
   } else {
     const need = answers.children === "under-5" ? 4 : answers.children === "5-12" ? 3 : 2;
     const score = kids >= need ? 1 : kids / 5;
-    fitFactors.push(factor("children", "Children", FIT_WEIGHTS.children, true, score, "A general tendency, not a guarantee that an individual dog will be good with children."));
+    fitFactors.push(factor("children", "Children", FIT_WEIGHTS.children, true, score, "A general tendency, not a guarantee that an individual dog will be good with children.", kidsOrigin));
     if (kids >= 4) why.push("This type is often described as more family-oriented — still meet the individual dog.");
   }
 
+  const petsOrigin = hasSmallAnimals(answers)
+    ? traitOrigin(dog, "smallAnimalCaution")
+    : hasCats(answers)
+      ? traitOrigin(dog, "catCompatibilityTendency")
+      : traitOrigin(dog, "dogSociability");
   if (answers.existingPets === "none") {
     fitFactors.push(factor("pets", "Other pets", FIT_WEIGHTS.pets, false, 0, "No other pets, so this is not a bonus."));
   } else {
@@ -302,10 +343,10 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
     if (hasCats(answers) && cats != null) pieces.push(cats / 5);
     if (hasSmallAnimals(answers) && smallCaution != null) pieces.push((6 - smallCaution) / 5);
     if (pieces.length === 0) {
-      fitFactors.push(factor("pets", "Other pets", FIT_WEIGHTS.pets, false, 0, "Other-pet tendencies are unknown, so they are not counted as a plus."));
+      fitFactors.push(factor("pets", "Other pets", FIT_WEIGHTS.pets, false, 0, "Other-pet tendencies are unknown, so they are not counted as a plus.", petsOrigin));
     } else {
       const score = pieces.reduce((a, b) => a + b, 0) / pieces.length;
-      fitFactors.push(factor("pets", "Other pets", FIT_WEIGHTS.pets, true, score, "Tendency only. Introductions, history, and management still decide the household."));
+      fitFactors.push(factor("pets", "Other pets", FIT_WEIGHTS.pets, true, score, "Tendency only — usually a derived reading, not an official AKC rating. Introductions, history, and management still decide the household.", petsOrigin));
     }
   }
 
@@ -338,14 +379,14 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
   if (answers.sharedWalls && wall != null) {
     const amount = (wall / 5) * FRICTION_WEIGHTS.sharedWalls;
     frictionRaw += amount;
-    frictionFactors.push(factor("sharedWalls", "Shared walls", FRICTION_WEIGHTS.sharedWalls, true, amount, "Shared walls raise the cost of alert barking even when the dog is otherwise a good fit."));
+    frictionFactors.push(factor("sharedWalls", "Shared walls", FRICTION_WEIGHTS.sharedWalls, true, amount, "Shared walls raise the cost of alert barking even when the dog is otherwise a good fit. Shared-wall risk is a derived reading, not an official AKC rating.", wallOrigin));
     if (wall >= 4) frictionPoints.push("Shared walls plus a stronger alert-barking tendency is a neighbor-level problem, not a personality quirk.");
   }
 
   if (patienceNeed != null && PATIENCE_SCORE[answers.trainingPatience] + 1 < patienceNeed) {
     const amount = ((patienceNeed - PATIENCE_SCORE[answers.trainingPatience]) / 4) * FRICTION_WEIGHTS.trainingLoad;
     frictionRaw += amount;
-    frictionFactors.push(factor("trainingLoad", "Training load", FRICTION_WEIGHTS.trainingLoad, true, amount, "This type often needs more training patience than you said you have."));
+    frictionFactors.push(factor("trainingLoad", "Training load", FRICTION_WEIGHTS.trainingLoad, true, amount, "This type often needs more training patience than you said you have. That patience rating is derived, not an official AKC score.", trainOrigin));
     frictionPoints.push("You may like the dog and still feel outworked by the daily training.");
   }
 
@@ -368,21 +409,21 @@ export function scoreDog(dog: DogProfile, answers: QuizAnswers): MatchResult {
 
   if ((hasCats(answers) || hasSmallAnimals(answers)) && prey != null && prey >= 4) {
     frictionRaw += FRICTION_WEIGHTS.preyPets;
-    frictionFactors.push(factor("preyPets", "Chase tendency & other pets", FRICTION_WEIGHTS.preyPets, true, FRICTION_WEIGHTS.preyPets, "Stronger chase tendency with cats or small animals in the home."));
+    frictionFactors.push(factor("preyPets", "Chase tendency & other pets", FRICTION_WEIGHTS.preyPets, true, FRICTION_WEIGHTS.preyPets, "Stronger chase tendency with cats or small animals in the home. Prey drive is a derived reading, not an official AKC rating.", preyOrigin));
   }
 
   if (alone != null && answers.aloneHours >= 8 && alone <= 2 && answers.help === "none") {
     frictionRaw += FRICTION_WEIGHTS.aloneTime;
-    frictionFactors.push(factor("aloneTime", "Long hours alone", FRICTION_WEIGHTS.aloneTime, true, FRICTION_WEIGHTS.aloneTime, "Long routine alone time with a type that typically prefers more company. This is not a separation-anxiety diagnosis."));
+    frictionFactors.push(factor("aloneTime", "Long hours alone", FRICTION_WEIGHTS.aloneTime, true, FRICTION_WEIGHTS.aloneTime, "Long routine alone time with a type that typically prefers more company. This is not a separation-anxiety diagnosis. Alone-time tolerance is derived, not an official AKC rating.", aloneOrigin));
     frictionPoints.push("Long empty weekdays may be a lot of dog for this type unless you add a real midday plan.");
   } else if (alone != null && answers.aloneHours >= 6 && alone <= 2) {
     frictionRaw += FRICTION_WEIGHTS.aloneTime * 0.55;
-    frictionFactors.push(factor("aloneTime", "Time alone", FRICTION_WEIGHTS.aloneTime, true, FRICTION_WEIGHTS.aloneTime * 0.55, "Hours alone are on the high side for a type that typically wants more company."));
+    frictionFactors.push(factor("aloneTime", "Time alone", FRICTION_WEIGHTS.aloneTime, true, FRICTION_WEIGHTS.aloneTime * 0.55, "Hours alone are on the high side for a type that typically wants more company.", aloneOrigin));
   }
 
   if (answers.experience === "first-time" && novice != null && novice <= 2) {
     frictionRaw += FRICTION_WEIGHTS.firstTimeOwner;
-    frictionFactors.push(factor("firstTimeOwner", "First-time owner difficulty", FRICTION_WEIGHTS.firstTimeOwner, true, FRICTION_WEIGHTS.firstTimeOwner, "Often a steeper first dog."));
+    frictionFactors.push(factor("firstTimeOwner", "First-time owner difficulty", FRICTION_WEIGHTS.firstTimeOwner, true, FRICTION_WEIGHTS.firstTimeOwner, "Often a steeper first dog. Novice-owner suitability is a derived reading, not an official AKC rating.", noviceOrigin));
     frictionPoints.push("This is often a steep first dog.");
   }
 
@@ -652,6 +693,37 @@ function trainingCopy(dog: DogProfile, answers: QuizAnswers): string {
  * Rank matches by lifestyle fit, then lower friction, then slug.
  * Popularity rank is never a tiebreaker.
  */
+export type LoveButCandidate = {
+  dog: { slug: string };
+  lifestyleFit: number;
+  friction: number;
+};
+
+/**
+ * “You May Love Them, But…” means reasonably compatible first, with
+ * meaningful complications — not “highest friction wins.”
+ */
+export function pickLoveBut<T extends LoveButCandidate>(
+  all: T[],
+  top: T[],
+  limit = 2,
+): T[] {
+  const topSlugs = new Set(top.map((item) => item.dog.slug));
+  return all
+    .filter(
+      (item) =>
+        !topSlugs.has(item.dog.slug) &&
+        item.lifestyleFit >= LOVE_BUT_MIN_FIT &&
+        item.friction >= LOVE_BUT_MIN_FRICTION,
+    )
+    .sort((a, b) => {
+      if (b.lifestyleFit !== a.lifestyleFit) return b.lifestyleFit - a.lifestyleFit;
+      if (b.friction !== a.friction) return b.friction - a.friction;
+      return a.dog.slug.localeCompare(b.dog.slug);
+    })
+    .slice(0, limit);
+}
+
 export function rankMatches(
   dogs: DogProfile[],
   answers: QuizAnswers,
@@ -665,16 +737,7 @@ export function rankMatches(
     });
 
   const top = all.slice(0, 3);
-  const topSlugs = new Set(top.map((item) => item.dog.slug));
-  const loveBut = all
-    .filter((item) => !topSlugs.has(item.dog.slug) && item.friction >= 40)
-    .sort((a, b) => {
-      const aAppeal = a.lifestyleFit * 0.35 + a.friction;
-      const bAppeal = b.lifestyleFit * 0.35 + b.friction;
-      if (bAppeal !== aAppeal) return bAppeal - aAppeal;
-      return a.dog.slug.localeCompare(b.dog.slug);
-    })
-    .slice(0, 2);
+  const loveBut = pickLoveBut(all, top);
 
   return { top, loveBut, all };
 }
@@ -682,6 +745,9 @@ export function rankMatches(
 export function popularityLabel(dog: DogProfile): string | null {
   if (dog.type === "common-mix") return "Common mix · not an AKC-recognized breed";
   if (dog.newFor2026 || dog.popularityRank == null) return "New for 2026 · not yet ranked";
+  if (dog.akcListedName) {
+    return `AKC 2025 popularity: #${dog.popularityRank} — ${dog.akcListedName}`;
+  }
   return `AKC 2025 popularity: #${dog.popularityRank}`;
 }
 

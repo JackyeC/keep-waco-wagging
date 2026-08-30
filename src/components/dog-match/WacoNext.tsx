@@ -70,10 +70,10 @@ export function WacoNext() {
           In Waco? Jackye &amp; Todd can help with what comes next.
         </h3>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-body-muted">
-          We can help you find the right next step — training resources, local
-          care, or a conversation about whether boarding or daycare is even the
-          right tool. Not every dog is automatically accepted for daycare or
-          boarding. The promise is help, not a guaranteed stall.
+          We can help you figure out the right next step — training resources, local
+          care, or whether daycare or boarding makes sense for your dog. Not every
+          dog is a fit for every care setup, and that’s okay. We’ll help you think
+          through what works best for the dog in front of you.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href={ctas.bookService.href} className="btn-pill btn-sage px-6 py-3">

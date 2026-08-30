@@ -84,3 +84,7 @@ export const SIZE_BANDS = {
   large: { min: 50, max: 90 },
   giant: { min: 80, max: 250 },
 } as const;
+
+/** “You May Love Them, But…”: compatible enough first, then surface friction. */
+export const LOVE_BUT_MIN_FIT = 55;
+export const LOVE_BUT_MIN_FRICTION = 32;

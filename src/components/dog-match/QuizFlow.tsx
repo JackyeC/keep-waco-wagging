@@ -90,7 +90,7 @@ export function QuizFlow({
   onBack: () => void;
   onNext: () => void;
 }) {
-  const step = QUIZ_STEPS[stepIndex] ?? "homeType";
+  const step = QUIZ_STEPS[stepIndex] ?? "home";
   const copy = stepCopy[step];
   const canContinue = canAdvance(step, answers);
   const isLast = step === "desiredLife";
@@ -102,16 +102,14 @@ export function QuizFlow({
       {copy.dek && <p className="dek mt-3 max-w-2xl">{copy.dek}</p>}
 
       <div className="mt-8 space-y-8">
-        {step === "homeType" && (
-          <ChoiceGrid
-            legend="Home type"
-            value={answers.homeType}
-            choices={homeTypeChoices}
-            onChange={(homeType) => onAnswers({ homeType })}
-          />
-        )}
-        {step === "homeSetup" && (
+        {step === "home" && (
           <>
+            <ChoiceGrid
+              legend="Home type"
+              value={answers.homeType}
+              choices={homeTypeChoices}
+              onChange={(homeType) => onAnswers({ homeType })}
+            />
             <ChoiceGrid
               legend="Approximate space"
               value={answers.homeSpace}
@@ -130,41 +128,37 @@ export function QuizFlow({
               choices={yardChoices}
               onChange={(yard) => onAnswers({ yard })}
             />
+            <ChoiceGrid
+              legend="How much dog commentary can you live with?"
+              value={answers.noiseTolerance}
+              choices={noiseChoices}
+              onChange={(noiseTolerance) => onAnswers({ noiseTolerance })}
+            />
           </>
         )}
-        {step === "noise" && (
-          <ChoiceGrid
-            legend="Noise"
-            value={answers.noiseTolerance}
-            choices={noiseChoices}
-            onChange={(noiseTolerance) => onAnswers({ noiseTolerance })}
-          />
+        {step === "schedule" && (
+          <>
+            <ChoiceGrid
+              legend="Work schedule"
+              value={answers.workSchedule}
+              choices={workChoices}
+              onChange={(workSchedule) => onAnswers({ workSchedule })}
+            />
+            <ChoiceGrid
+              legend="How many hours might the dog routinely be alone?"
+              value={answers.aloneHours}
+              choices={aloneHourChoices}
+              onChange={(aloneHours) => onAnswers({ aloneHours })}
+            />
+            <ChoiceGrid
+              legend="Do you realistically have backup during the workday?"
+              value={answers.help}
+              choices={helpChoices}
+              onChange={(help) => onAnswers({ help })}
+            />
+          </>
         )}
-        {step === "work" && (
-          <ChoiceGrid
-            legend="Work schedule"
-            value={answers.workSchedule}
-            choices={workChoices}
-            onChange={(workSchedule) => onAnswers({ workSchedule })}
-          />
-        )}
-        {step === "alone" && (
-          <ChoiceGrid
-            legend="Routine alone time"
-            value={answers.aloneHours}
-            choices={aloneHourChoices}
-            onChange={(aloneHours) => onAnswers({ aloneHours })}
-          />
-        )}
-        {step === "help" && (
-          <ChoiceGrid
-            legend="Backup during the day"
-            value={answers.help}
-            choices={helpChoices}
-            onChange={(help) => onAnswers({ help })}
-          />
-        )}
-        {step === "activity" && (
+        {step === "tuesday" && (
           <ChoiceGrid
             legend="Ordinary Tuesday"
             value={answers.activity}
@@ -210,7 +204,7 @@ export function QuizFlow({
             />
           </>
         )}
-        {step === "pets" && (
+        {step === "household" && (
           <>
             <ChoiceGrid
               legend="Existing pets"
@@ -226,17 +220,15 @@ export function QuizFlow({
                 onChange={(otherDogSize) => onAnswers({ otherDogSize })}
               />
             )}
+            <ChoiceGrid
+              legend="Children"
+              value={answers.children}
+              choices={childrenChoices}
+              onChange={(children) => onAnswers({ children })}
+            />
           </>
         )}
-        {step === "children" && (
-          <ChoiceGrid
-            legend="Children"
-            value={answers.children}
-            choices={childrenChoices}
-            onChange={(children) => onAnswers({ children })}
-          />
-        )}
-        {step === "size" && (
+        {step === "lookingFor" && (
           <>
             <ChoiceGrid
               legend="Size preference"
@@ -250,15 +242,13 @@ export function QuizFlow({
               choices={hardMaxChoices}
               onChange={(hardMaxLbs) => onAnswers({ hardMaxLbs })}
             />
+            <ChoiceGrid
+              legend="Puppy, adult, or either?"
+              value={answers.agePreference}
+              choices={ageChoices}
+              onChange={(agePreference) => onAnswers({ agePreference })}
+            />
           </>
-        )}
-        {step === "age" && (
-          <ChoiceGrid
-            legend="Age"
-            value={answers.agePreference}
-            choices={ageChoices}
-            onChange={(agePreference) => onAnswers({ agePreference })}
-          />
         )}
         {step === "desiredLife" && (
           <ChoiceGrid
@@ -290,23 +280,21 @@ export function QuizFlow({
 
 function canAdvance(step: QuizStepId, answers: Partial<QuizAnswers>): boolean {
   switch (step) {
-    case "homeType":
-      return answers.homeType !== undefined;
-    case "homeSetup":
+    case "home":
       return (
+        answers.homeType !== undefined &&
         answers.homeSpace !== undefined &&
         answers.sharedWalls !== undefined &&
-        answers.yard !== undefined
+        answers.yard !== undefined &&
+        answers.noiseTolerance !== undefined
       );
-    case "noise":
-      return answers.noiseTolerance !== undefined;
-    case "work":
-      return answers.workSchedule !== undefined;
-    case "alone":
-      return answers.aloneHours !== undefined;
-    case "help":
-      return answers.help !== undefined;
-    case "activity":
+    case "schedule":
+      return (
+        answers.workSchedule !== undefined &&
+        answers.aloneHours !== undefined &&
+        answers.help !== undefined
+      );
+    case "tuesday":
       return answers.activity !== undefined;
     case "grooming":
       return (
@@ -316,18 +304,20 @@ function canAdvance(step: QuizStepId, answers: Partial<QuizAnswers>): boolean {
       );
     case "training":
       return answers.experience !== undefined && answers.trainingPatience !== undefined;
-    case "pets":
-      if (answers.existingPets === undefined) return false;
+    case "household":
+      if (answers.existingPets === undefined || answers.children === undefined) {
+        return false;
+      }
       if (answers.existingPets === "dogs" || answers.existingPets === "multiple") {
         return answers.otherDogSize !== undefined;
       }
       return true;
-    case "children":
-      return answers.children !== undefined;
-    case "size":
-      return answers.sizePreference !== undefined && answers.hardMaxLbs !== undefined;
-    case "age":
-      return answers.agePreference !== undefined;
+    case "lookingFor":
+      return (
+        answers.sizePreference !== undefined &&
+        answers.hardMaxLbs !== undefined &&
+        answers.agePreference !== undefined
+      );
     case "desiredLife":
       return answers.desiredLife !== undefined;
     default:

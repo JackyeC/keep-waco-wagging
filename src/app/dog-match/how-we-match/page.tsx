@@ -35,6 +35,15 @@ export default function HowWeMatchPage() {
             </li>
           ))}
         </ul>
+        <h2 className="heading mt-12">{methodologyCopy.traitOrigins.title}</h2>
+        <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-body-muted">
+          {methodologyCopy.traitOrigins.intro}
+        </p>
+        <ul className="mt-6 max-w-3xl space-y-4 text-[16px] leading-relaxed text-body-muted">
+          <li className="border-l-2 border-wag-sage pl-4">{methodologyCopy.traitOrigins.direct}</li>
+          <li className="border-l-2 border-wag-sage pl-4">{methodologyCopy.traitOrigins.derived}</li>
+          <li className="border-l-2 border-wag-sage pl-4">{methodologyCopy.traitOrigins.unknown}</li>
+        </ul>
         <p className="mt-8 max-w-3xl text-[16px] leading-relaxed text-body-muted">
           {methodologyCopy.scoring}
         </p>
@@ -46,8 +55,9 @@ export default function HowWeMatchPage() {
       <Section tone="sand">
         <h2 className="heading">Sources</h2>
         <p className="dek mt-3 max-w-2xl">
-          Inspectable on purpose. Trait scores are compiled, not invented to fill
-          every cell. Unknown fields stay unknown.
+          Inspectable on purpose. DIRECT ratings come from a structured source.
+          DERIVED values are conservative editorial readings. Unknown fields stay
+          unknown and are never counted as a plus.
         </p>
         <ul className="mt-8 grid gap-4">
           {dogMatchSources.map((source) => (

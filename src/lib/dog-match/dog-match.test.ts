@@ -2,9 +2,15 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { allDogProfiles, akcTop100, commonMixes, newFor2026Breeds, getDogBySlug } from "@/data/dog-match";
 import { PIT_BULL_NOTICE } from "@/data/dog-match/aliases";
+import {
+  POODLE_MATCH_NOTE_TEXT,
+  POODLE_VARIETY_SLUGS,
+} from "@/data/dog-match/poodle-varieties";
+import { QUIZ_STEPS, REQUIRED_QUIZ_FIELDS, isQuizComplete } from "@/data/dog-match/quiz";
+import { traitOrigin, usableTraitLevel } from "@/data/dog-match/trait-origins";
 import type { BreedProfile, QuizAnswers } from "@/data/dog-match/types";
 import { LAST_REVIEWED } from "@/data/dog-match/sources";
-import { popularityLabel, rankMatches, scoreDog } from "./score";
+import { pickLoveBut, popularityLabel, rankMatches, scoreDog } from "./score";
 import { searchDogs } from "./search";
 
 function answers(overrides: Partial<QuizAnswers> = {}): QuizAnswers {
@@ -40,18 +46,29 @@ function cloneAkc(slug: string, patch: Partial<BreedProfile>): BreedProfile {
 }
 
 describe("Dog Match dataset", () => {
-  it("includes the full AKC 2025 Top 100 plus three 2026 breeds and common mixes", () => {
-    assert.equal(akcTop100.length, 100);
+  it("includes the AKC 2025 Top 100 roster with Poodle split into size varieties", () => {
+    assert.equal(akcTop100.length, 102);
     assert.equal(new Set(akcTop100.map((dog) => dog.popularityRank)).size, 100);
     assert.equal(newFor2026Breeds.length, 3);
     assert.equal(commonMixes.length, 15);
+    assert.equal(getDogBySlug("poodle"), undefined);
+    const poodles = akcTop100.filter((dog) => dog.popularityRank === 6);
+    assert.equal(poodles.length, 3);
+    assert.deepEqual(
+      poodles.map((dog) => dog.slug).sort(),
+      ["miniature-poodle", "standard-poodle", "toy-poodle"],
+    );
+    assert.ok(poodles.every((dog) => dog.akcListedName === "Poodle"));
+    assert.ok(akcTop100.every((dog) => dog.name !== "Poodle"));
     for (const name of [
       "French Bulldog",
       "Labrador Retriever",
       "Golden Retriever",
       "German Shepherd Dog",
       "Dachshund",
-      "Poodle",
+      "Toy Poodle",
+      "Miniature Poodle",
+      "Standard Poodle",
       "Beagle",
       "Rottweiler",
       "German Shorthaired Pointer",
@@ -161,7 +178,7 @@ describe("Dog Match scoring", () => {
   });
 
   it("adds grooming friction for a grooming-intensive dog on a low budget", () => {
-    const poodle = getDogBySlug("poodle");
+    const poodle = getDogBySlug("standard-poodle");
     const beagle = getDogBySlug("beagle");
     assert.ok(poodle && beagle);
     const quiz = answers({
@@ -265,3 +282,194 @@ describe("Dog Match labels and search", () => {
     assert.equal(typo?.dogs[0]?.slug, "rottweiler");
   });
 });
+
+describe("You May Love Them, But… ranking", () => {
+  it("requires reasonable lifestyle fit before surfacing friction", () => {
+    const top = [
+      { dog: { slug: "top-a" }, lifestyleFit: 88, friction: 20 },
+      { dog: { slug: "top-b" }, lifestyleFit: 84, friction: 22 },
+      { dog: { slug: "top-c" }, lifestyleFit: 80, friction: 18 },
+    ];
+    const chaos = { dog: { slug: "chaos" }, lifestyleFit: 25, friction: 95 };
+    const complicated = { dog: { slug: "complicated" }, lifestyleFit: 72, friction: 48 };
+    const alsoCompatible = { dog: { slug: "also-compatible" }, lifestyleFit: 68, friction: 40 };
+    const tooEasy = { dog: { slug: "too-easy" }, lifestyleFit: 70, friction: 12 };
+
+    const picked = pickLoveBut(
+      [...top, chaos, complicated, alsoCompatible, tooEasy],
+      top,
+    );
+
+    assert.equal(picked[0]?.dog.slug, "complicated");
+    assert.equal(picked[1]?.dog.slug, "also-compatible");
+    assert.equal(picked.some((item) => item.dog.slug === "chaos"), false);
+    assert.equal(picked.some((item) => item.dog.slug === "too-easy"), false);
+    assert.equal(picked.some((item) => item.dog.slug.startsWith("top-")), false);
+  });
+});
+
+describe("Poodle varieties", () => {
+  it("keeps AKC #6 Poodle popularity metadata on every variety", () => {
+    for (const slug of POODLE_VARIETY_SLUGS) {
+      const dog = getDogBySlug(slug);
+      assert.ok(dog);
+      assert.equal(dog.popularityRank, 6);
+      assert.equal(dog.akcListedName, "Poodle");
+      assert.equal(dog.varietyOf, "poodle");
+      assert.equal(dog.matchNote, POODLE_MATCH_NOTE_TEXT);
+      assert.equal(popularityLabel(dog), "AKC 2025 popularity: #6 — Poodle");
+    }
+  });
+
+  it("does not invent temperament splits between varieties", () => {
+    const toy = getDogBySlug("toy-poodle");
+    const mini = getDogBySlug("miniature-poodle");
+    const standard = getDogBySlug("standard-poodle");
+    assert.ok(toy && mini && standard && toy.type !== "common-mix" && mini.type !== "common-mix" && standard.type !== "common-mix");
+    const shared = [
+      "energyLevel",
+      "mentalStimulationNeed",
+      "barkingLevel",
+      "sheddingLevel",
+      "groomingLevel",
+      "trainability",
+      "trainingPatienceNeeded",
+      "preyDrive",
+      "dogSociability",
+      "catCompatibilityTendency",
+      "smallAnimalCaution",
+      "noviceOwnerSuitability",
+      "aloneTimeTolerance",
+      "childCompatibilityGeneral",
+    ] as const;
+    for (const field of shared) {
+      assert.equal(toy[field], mini[field], field);
+      assert.equal(mini[field], standard[field], field);
+    }
+    assert.equal(toy.professionalGroomingLikely, standard.professionalGroomingLikely);
+    assert.ok(toy.sizeMax !== "unknown" && standard.sizeMin !== "unknown");
+    assert.ok(toy.sizeMax < standard.sizeMin);
+  });
+
+  it("matches small homes to Toy ahead of Standard, and large homes the other way", () => {
+    const toy = getDogBySlug("toy-poodle");
+    const standard = getDogBySlug("standard-poodle");
+    assert.ok(toy && standard);
+    const smallQuiz = answers({
+      sizePreference: "small",
+      hardMaxLbs: 20,
+      homeType: "apartment",
+      homeSpace: "compact",
+      desiredLife: "small-companion",
+    });
+    const largeQuiz = answers({
+      sizePreference: "large",
+      hardMaxLbs: null,
+      homeType: "house",
+      homeSpace: "spacious",
+      yard: "fenced",
+      desiredLife: "active-family",
+    });
+    const smallRanked = rankMatches([toy, standard], smallQuiz);
+    const largeRanked = rankMatches([toy, standard], largeQuiz);
+    assert.equal(smallRanked.all[0]?.dog.slug, "toy-poodle");
+    assert.ok(smallRanked.all[0]!.lifestyleFit > smallRanked.all[1]!.lifestyleFit);
+    assert.equal(largeRanked.all[0]?.dog.slug, "standard-poodle");
+    assert.ok(largeRanked.all[0]!.lifestyleFit > largeRanked.all[1]!.lifestyleFit);
+  });
+
+  it("resolves poodle search to all three varieties, and specific names to one", () => {
+    const all = searchDogs("poodle");
+    assert.deepEqual(
+      all?.dogs.map((dog) => dog.slug),
+      ["toy-poodle", "miniature-poodle", "standard-poodle"],
+    );
+    assert.equal(all?.notice, POODLE_MATCH_NOTE_TEXT);
+
+    const toy = searchDogs("toy poodle");
+    assert.equal(toy?.dogs.length, 1);
+    assert.equal(toy?.dogs[0]?.slug, "toy-poodle");
+
+    const mini = searchDogs("mini poodle");
+    assert.equal(mini?.dogs[0]?.slug, "miniature-poodle");
+    const miniature = searchDogs("miniature poodle");
+    assert.equal(miniature?.dogs[0]?.slug, "miniature-poodle");
+
+    const standard = searchDogs("standard poodle");
+    assert.equal(standard?.dogs[0]?.slug, "standard-poodle");
+  });
+});
+
+describe("Grouped quiz", () => {
+  it("is eight user-facing steps and still requires every scoring answer", () => {
+    assert.equal(QUIZ_STEPS.length, 8);
+    assert.deepEqual(QUIZ_STEPS, [
+      "home",
+      "schedule",
+      "tuesday",
+      "grooming",
+      "training",
+      "household",
+      "lookingFor",
+      "desiredLife",
+    ]);
+    assert.ok(isQuizComplete(answers()));
+    for (const field of REQUIRED_QUIZ_FIELDS) {
+      const incomplete: Partial<QuizAnswers> = { ...answers() };
+      delete incomplete[field];
+      assert.equal(isQuizComplete(incomplete), false, field);
+    }
+  });
+});
+
+describe("DIRECT / DERIVED / UNKNOWN trait handling", () => {
+  it("labels Lab energy as direct, prey-related fields as derived, and mix traits as unknown", () => {
+    const lab = getDogBySlug("labrador-retriever");
+    const mix = getDogBySlug("goldendoodle");
+    assert.ok(lab && mix);
+    assert.equal(traitOrigin(lab, "energyLevel"), "direct");
+    assert.equal(traitOrigin(lab, "barkingLevel"), "direct");
+    assert.equal(traitOrigin(lab, "preyDrive"), "derived");
+    assert.equal(traitOrigin(lab, "catCompatibilityTendency"), "derived");
+    assert.equal(traitOrigin(lab, "smallAnimalCaution"), "derived");
+    assert.equal(traitOrigin(lab, "aloneTimeTolerance"), "derived");
+    assert.equal(traitOrigin(lab, "apartmentCompatibility"), "derived");
+    assert.equal(traitOrigin(lab, "sharedWallRisk"), "derived");
+    assert.equal(traitOrigin(lab, "noviceOwnerSuitability"), "derived");
+    assert.equal(traitOrigin(lab, "trainingPatienceNeeded"), "derived");
+    assert.equal(usableTraitLevel(lab, "energyLevel"), 5);
+    assert.equal(traitOrigin(mix, "preyDrive"), "unknown");
+    assert.equal(usableTraitLevel(mix, "preyDrive"), null);
+    assert.equal(usableTraitLevel(mix, "energyLevel"), null);
+  });
+
+  it("does not let unknown values become a positive match factor, even if a number is present", () => {
+    const mix = getDogBySlug("goldendoodle");
+    assert.ok(mix && mix.type === "common-mix");
+    const padded = { ...mix, energyLevel: 5 as const, preyDrive: 5 as const };
+    const quiz = answers({
+      activity: "sports",
+      desiredLife: "sports",
+      existingPets: "cats",
+    });
+    const result = scoreDog(padded, quiz);
+    const energy = result.fitFactors.find((factor) => factor.id === "activityEnergy");
+    assert.equal(energy?.scored, false);
+    assert.equal(energy?.contribution, 0);
+    assert.equal(energy?.origin, "unknown");
+    const pets = result.fitFactors.find((factor) => factor.id === "pets");
+    assert.equal(pets?.scored, false);
+    assert.equal(pets?.contribution, 0);
+    assert.equal(pets?.origin, "unknown");
+    assert.equal(result.frictionFactors.some((factor) => factor.id === "preyPets"), false);
+  });
+
+  it("attaches origin onto scored factors for recognized breeds", () => {
+    const lab = getDogBySlug("labrador-retriever");
+    assert.ok(lab);
+    const result = scoreDog(lab, answers({ existingPets: "cats" }));
+    assert.equal(result.fitFactors.find((factor) => factor.id === "activityEnergy")?.origin, "direct");
+    assert.equal(result.fitFactors.find((factor) => factor.id === "pets")?.origin, "derived");
+  });
+});
+
