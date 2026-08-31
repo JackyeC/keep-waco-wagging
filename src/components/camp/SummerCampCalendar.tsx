@@ -9,6 +9,7 @@ import {
   getHomeDaycareThemes,
   getNextDaycareTheme,
   getUpcomingDaycareThemes,
+  getWacoTodayISO,
   summerDaycare,
   type DaycareMonth,
   type DaycareTheme,
@@ -101,7 +102,7 @@ function WeekCard({
         >
           {theme.name}
         </h3>
-        <p className={cn("body-light mt-2", compact && "text-[13px]")}>
+        <p className={cn("body-light mt-2", compact && "text-[13px]" )}>
           {theme.blurb}
         </p>
         {!compact && theme.activities.length > 0 && (
@@ -136,6 +137,7 @@ export function SummerCampCalendar({
   const themes = compact ? getHomeDaycareThemes(4) : daycareThemes;
   const currentTheme = getCurrentDaycareTheme();
   const nextTheme = getNextDaycareTheme();
+  const today = getWacoTodayISO();
   const grouped = themesByMonth(themes);
   const months = daycareMonthOrder.filter(
     (month) => (grouped[month]?.length ?? 0) > 0,
@@ -236,10 +238,7 @@ export function SummerCampCalendar({
                         ? "current"
                         : nextTheme?.week === theme.week
                           ? "next"
-                          : theme.endsOn <
-                              new Intl.DateTimeFormat("en-CA", {
-                                timeZone: "America/Chicago",
-                              }).format(new Date())
+                          : theme.endsOn < today
                             ? "past"
                             : undefined;
 
