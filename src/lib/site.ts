@@ -21,12 +21,12 @@ export const brandLanguage = {
     "Keep Waco Wagging was created by the family behind Platinum Scoops. The site exists to help dog parents — not to sell one business.",
   heroLine: "Give your dog their best Waco life.",
   servicesLine:
-    "Poop scooping, boarding, daycare, training, wedding pet attendant services, and summer camp in Waco",
+    "Poop scooping, boarding, daycare, training, wedding pet attendant services, and Camp Waco themed daycare in Waco",
   communityLine:
     "Your dog is family. Find the places, people, services, events, and experiences that make life with them in Waco even better.",
   sponsorServices:
     "Platinum Scoops provides pet waste removal, doggy daycare, boarding, and pet care services in Waco.",
-  dogCampName: "Keep Waco Wagging Dog Camp",
+  dogCampName: "Camp Waco",
   sponsorCampInquiry: "Interested in sponsoring a future camp week? Contact us.",
   communityPartnersWelcome: "Community partners welcome",
   instagram: {
@@ -194,7 +194,7 @@ export const servicesNav: NavLink[] = [
   { label: "Dog Daycare", href: "/dog-daycare-waco-tx" },
   { label: "Lifestyle Training", href: "/training" },
   { label: "Dog of Honor Wedding Pet Care", href: "/pet-care/weddings-events" },
-  { label: "Summer Dog Camp", href: "/summer-daycare" },
+  { label: "Camp Waco", href: "/camp-waco" },
 ];
 
 // Primary nav — dog-parent jobs first (GO / CARE / KNOW / BELONG / SHOP).
@@ -216,7 +216,7 @@ export const secondaryNav: NavLink[] = [
   { label: "Dog Match", href: "/dog-match" },
   { label: "New Dog in Waco", href: "/new-dog-in-waco" },
   { label: "Book a Service", href: "/book" },
-  { label: "Summer Dog Camp", href: "/summer-daycare" },
+  { label: "Camp Waco", href: "/camp-waco" },
   { label: "Blog", href: "/blog" },
   { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "Waco Dog Weekend", href: "/weekend" },
@@ -249,15 +249,15 @@ export const ctas = {
     href: cityConfig.rover.profileUrl,
   },
   summerDaycare: {
-    label: "See the Summer Calendar",
-    href: "/summer-daycare",
+    label: "See the Camp Waco Calendar",
+    href: "/camp-waco",
   },
   eventCare: {
     label: "Ask About Wedding Pet Care",
     href: "/pet-care/weddings-events",
   },
   planDogBigDay: {
-    label: "Plan My Dog\u2019s Big Day",
+    label: "Plan My Dog’s Big Day",
     href: "/pet-care/weddings-events#inquiry",
   },
   trainingWaitlist: {
@@ -357,7 +357,7 @@ export const sponsorLinks = {
     { label: "One-Time Yard Cleanups", href: "/platinum-scoops#yard-services" },
     { label: "Dog Boarding", href: "/dog-boarding-waco-tx" },
     { label: "Dog Daycare", href: "/dog-daycare-waco-tx" },
-    { label: "Summer Daycare Camp", href: "/summer-daycare" },
+    { label: "Camp Waco", href: "/camp-waco" },
     { label: "Dog of Honor Wedding Pet Care", href: "/pet-care/weddings-events" },
     { label: "Dog Walking", href: "/dog-daycare-waco-tx" },
   ],

@@ -30,7 +30,7 @@ const INDEXABLE_STATIC_ROUTES: {
   { route: "/dog-daycare-waco-tx", priority: 0.92, changeFrequency: "weekly" },
   { route: "/training", priority: 0.85, changeFrequency: "weekly" },
   { route: "/pet-care/weddings-events", priority: 0.85, changeFrequency: "weekly" },
-  { route: "/summer-daycare", priority: 0.85, changeFrequency: "weekly" },
+  { route: "/camp-waco", priority: 0.85, changeFrequency: "weekly" },
   { route: "/dog-friendly-waco", priority: 0.75, changeFrequency: "weekly" },
   { route: "/new-dog-in-waco", priority: 0.8, changeFrequency: "monthly" },
   { route: "/dog-match", priority: 0.82, changeFrequency: "monthly" },
