@@ -560,7 +560,7 @@ export const daycareMonthOrder: DaycareMonth[] = [
   "December",
 ];
 
-function dateInWacoISO(now = new Date()): string {
+export function getWacoTodayISO(now = new Date()): string {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Chicago",
     year: "numeric",
@@ -575,20 +575,20 @@ function dateInWacoISO(now = new Date()): string {
 }
 
 export function getCurrentDaycareTheme(now = new Date()): DaycareTheme | undefined {
-  const today = dateInWacoISO(now);
+  const today = getWacoTodayISO(now);
   return daycareThemes.find(
     (theme) => theme.startsOn <= today && theme.endsOn >= today,
   );
 }
 
 export function getNextDaycareTheme(now = new Date()): DaycareTheme | undefined {
-  const today = dateInWacoISO(now);
+  const today = getWacoTodayISO(now);
   return daycareThemes.find((theme) => theme.startsOn > today);
 }
 
 /** Current + future camp weeks, soonest first. */
 export function getUpcomingDaycareThemes(now = new Date()): DaycareTheme[] {
-  const today = dateInWacoISO(now);
+  const today = getWacoTodayISO(now);
   return daycareThemes.filter((theme) => theme.endsOn >= today);
 }
 
