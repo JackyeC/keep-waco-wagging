@@ -335,38 +335,38 @@ export const servicePages: Record<string, ServicePageConfig> = {
   },
 
   "summer-daycare": {
-    slug: "summer-daycare",
+    slug: "camp-waco",
     seo: {
-      title: "Keep Waco Wagging Dog Camp | Summer Daycare Waco",
+      title: "Camp Waco Doggy Daycare Calendar | Keep Waco Wagging",
       description:
-        "Thirteen themed summer weeks of supervised play, enrichment, and rest. Drop in for a day or join the full week in Waco.",
+        "See the Camp Waco 2026 weekly doggy daycare calendar in Waco, with a new enrichment theme every week. Book the days you need — no full-week requirement.",
     },
     hero: {
-      eyebrow: "Keep Waco Wagging Dog Camp",
-      title: "The best summer of their life",
-      scriptWord: "life",
-      metaLine: "13 themed weeks · drop in or full week",
+      eyebrow: "Camp Waco · Themed doggy daycare",
+      title: "Something to look forward to every week",
+      scriptWord: "every week",
+      metaLine: "31 themed weeks · June through New Year's · book the days you need",
       description:
-        "Supervised play, enrichment, and real rest — a full summer of themed weeks built around your dog's favorite things. Come for a day or join the whole week.",
+        "Daycare still feels like home, but every week gets its own little world — tailgates, orchards, campfires, holiday photos, sniffing games, and more. Come one day or build Camp Waco into your dog's weekly routine.",
       image: designPhotos.svcCamp,
-      primary: { label: "Enroll now", href: book },
-      secondary: { label: "See the calendar", href: "#calendar" },
+      primary: { label: "Reserve daycare", href: book },
+      secondary: { label: "See the full calendar", href: "#calendar" },
     },
     included: {
-      eyebrow: "A camp day",
-      title: "Play, learn, splash, nap",
+      eyebrow: "A Camp Waco day",
+      title: "Play, enrich, rest, repeat",
       items: [
         {
           title: "Supervised play",
-          detail: "Matched playgroups with eyes on them the whole time.",
+          detail: "Small, matched playgroups with eyes on them the whole time.",
         },
         {
-          title: "Themed enrichment",
-          detail: "A new theme each week — games, puzzles, and fresh fun.",
+          title: "Weekly themed enrichment",
+          detail: "A fresh theme every week with games, puzzles, props, and photo moments.",
         },
         {
-          title: "Splash time",
-          detail: "Backyard pools to beat the Texas heat the right way.",
+          title: "Seasonal fun",
+          detail: "Water play when it's hot, cozy enrichment when it's cool, and activities adjusted to the dogs in front of us.",
         },
         {
           title: "Real rest",
@@ -376,22 +376,27 @@ export const servicePages: Record<string, ServicePageConfig> = {
     },
     faq: [
       {
-        question: "What is Keep Waco Wagging Dog Camp?",
+        question: "What is Camp Waco?",
         answer:
-          "Thirteen themed summer weeks of supervised play, enrichment, splash time, and real rest at our Waco home — drop in for a day or join a full week.",
+          "Camp Waco is Keep Waco Wagging's themed doggy daycare calendar. Each week has a new theme and enrichment plan, while the care stays small-group, supervised, home-based, and built around play plus real rest.",
       },
       {
-        question: "How do I enroll?",
+        question: "Do I have to book the whole week?",
         answer:
-          "Visit keepwacowagging.com/book to choose camp, view the summer calendar on this page, or call (254) 726-6737 to plan your weeks.",
+          "No. Pick the daycare days that fit your schedule. You can come for one day, several days, or make Camp Waco part of your regular weekly routine.",
+      },
+      {
+        question: "How do I reserve a Camp Waco day?",
+        answer:
+          "Use the booking button on this page or visit keepwacowagging.com/book. Choose your daycare dates, then we will confirm availability and the details for your dog.",
       },
     ],
     cta: {
-      eyebrow: "Weeks fill fast",
-      title: "Save your dog's spot at camp",
-      scriptWord: "camp",
-      subtitle: `Drop-in days or full weeks · Call ${cityConfig.sponsor.phoneDisplay} to plan your summer.`,
-      primary: { label: "Enroll now", href: book },
+      eyebrow: "Pick your weeks — and your days",
+      title: "Save your dog's spot at Camp Waco",
+      scriptWord: "Camp Waco",
+      subtitle: `Come one day or several · Call ${cityConfig.sponsor.phoneDisplay} if you want help choosing dates.`,
+      primary: { label: "Reserve daycare", href: book },
       secondary: { label: "All services", href: "/#services" },
     },
   },
