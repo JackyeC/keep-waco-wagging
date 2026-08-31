@@ -7,8 +7,8 @@ export type DaycarePhoto = {
   alt: string;
 };
 
-/** Month banner images for the summer camp calendar. */
-export const daycareMonthPhotos: Record<DaycareMonth, DaycarePhoto> = {
+/** Month banner images where we have strong real-photo coverage. */
+export const daycareMonthPhotos: Partial<Record<DaycareMonth, DaycarePhoto>> = {
   June: sitePhotos.summerMonths.june,
   July: sitePhotos.summerMonths.july,
   August: sitePhotos.summerMonths.august,
@@ -16,7 +16,7 @@ export const daycareMonthPhotos: Record<DaycareMonth, DaycarePhoto> = {
 
 /**
  * Per-week photos pulled from the site library — matches themes where possible.
- * Paths are stable library outputs from scripts/optimize-photos.mjs.
+ * Weeks without a strong real-photo match intentionally render as text-first cards.
  */
 export const daycareThemePhotos: Record<number, DaycarePhoto> = {
   1: sitePhotos.summerCamp,
@@ -70,7 +70,7 @@ export const summerPhotoExploreLinks = [
     description: "Backyard socials and dog-friendly patio hangs around Waco.",
   },
   {
-    label: "Reserve summer weeks on Rover",
+    label: "Reserve Camp Waco days on Rover",
     href: ctas.bookPetCare.href,
     description: "Check open dates and request your dog's spot.",
     external: ctas.bookPetCare.href.startsWith("http"),
