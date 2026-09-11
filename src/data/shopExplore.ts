@@ -3,9 +3,9 @@ import { ctas } from "@/lib/site";
 /** Cross-links from the shop page to care, camp, and community content. */
 export const shopExploreLinks = [
   {
-    label: "Summer daycare camp",
-    href: "/summer-daycare",
-    description: "Themed weeks use lick mats, puzzles, and enrichment we recommend here.",
+    label: "Camp Clayton",
+    href: "/camp-waco",
+    description: "Themed doggie daycare weeks use lick mats, puzzles, and enrichment we recommend here.",
   },
   {
     label: "Boarding & daycare",
@@ -33,8 +33,9 @@ export const shopExploreLinks = [
     description: "Amazon affiliate picks — leashes, cleaners, treats, and gear we use in Waco.",
   },
   {
+    label: "Book Daycare on Rover",
     href: ctas.bookPetCare.href,
-    description: "Book boarding, daycare, or drop-ins with Jackye and Todd.",
+    description: "Book boarding, daycare, or Camp Clayton days with Jackye and Todd.",
     external: ctas.bookPetCare.href.startsWith("http"),
   },
 ] as const;

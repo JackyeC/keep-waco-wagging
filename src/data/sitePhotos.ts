@@ -204,19 +204,19 @@ export const sitePhotos = {
   },
   campTimeline1: {
     src: "/pictures/camp-timeline-1.webp",
-    alt: "Morning play at summer dog camp in Waco",
+    alt: "Morning play at Camp Clayton in Waco",
   },
   campTimeline2: {
     src: "/pictures/camp-timeline-2.webp",
-    alt: "Cool-down time at summer dog camp in Waco",
+    alt: "Cool-down time at Camp Clayton in Waco",
   },
   campTimeline3: {
     src: "/pictures/camp-timeline-3.webp",
-    alt: "Quiet hour at summer dog camp in Waco",
+    alt: "Quiet hour at Camp Clayton in Waco",
   },
   campTimeline4: {
     src: "/pictures/camp-timeline-4.webp",
-    alt: "Last walk of the day at summer dog camp in Waco",
+    alt: "Last walk of the day at Camp Clayton in Waco",
   },
 
   og: {

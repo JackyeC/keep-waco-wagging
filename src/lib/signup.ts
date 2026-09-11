@@ -3,11 +3,11 @@
 export const signupCopy = {
   headline: "Get Keep Waco Wagging updates",
   subheadline:
-    "Dog camp openings, Waco pet events, daycare updates, and helpful notes for local dog families.",
+    "Camp Clayton openings, Waco pet events, daycare updates, and helpful notes for local dog families.",
   button: "Sign me up",
   privacyNote: "No spam. Just helpful updates for Waco dog families.",
   success:
-    "You're on the list! We'll send dog camp updates, local pet news, and special openings when they're available.",
+    "You're on the list! We'll send Camp Clayton updates, local pet news, and special openings when they're available.",
   successSocial:
     "Want to see the dogs in action? Follow Platinum Scoops on Instagram: @platinum_scoops.",
   error: "Something went wrong. Please try again.",
@@ -15,7 +15,7 @@ export const signupCopy = {
 } as const;
 
 export const signupInterests = [
-  "Doggy daycare camp",
+  "Camp Clayton",
   "Boarding availability",
   "Poop scoop services",
   "Waco dog-friendly events",
@@ -30,6 +30,7 @@ const VALID_INTERESTS = new Set<string>(signupInterests);
 /** Legacy/client labels mapped to controlled newsletter interests. */
 const INTEREST_ALIASES: Record<string, SignupInterest> = {
   "Local dog events": "Waco dog-friendly events",
+  "Doggy daycare camp": "Camp Clayton",
 };
 
 export const YAPPY_HOUR_RSVP_PREFIX = "Yappy Hour RSVP:";

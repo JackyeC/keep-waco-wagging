@@ -337,23 +337,27 @@ export const servicePages: Record<string, ServicePageConfig> = {
   "summer-daycare": {
     slug: "camp-waco",
     seo: {
-      title: "Camp Waco Doggy Daycare Calendar | Keep Waco Wagging",
+      title: "Camp Clayton | Themed Doggie Daycare in Waco, TX",
       description:
-        "See the Camp Waco 2026 weekly doggy daycare calendar in Waco, with a new enrichment theme every week. Book the days you need — no full-week requirement.",
+        "Camp Clayton by Keep Waco Wagging brings a new theme to doggie daycare each week with small-group play, enrichment, rest, sniffing games, and seasonal fun in Waco.",
     },
     hero: {
-      eyebrow: "Camp Waco · Themed doggy daycare",
-      title: "Something to look forward to every week",
-      scriptWord: "every week",
-      metaLine: "31 themed weeks · June through New Year's · book the days you need",
+      eyebrow: "Camp Clayton",
+      title: "Camp Clayton",
+      scriptWord: "Camp Clayton",
+      metaLine: "Themed doggie daycare by Keep Waco Wagging",
       description:
-        "Daycare still feels like home, but every week gets its own little world — tailgates, orchards, campfires, holiday photos, sniffing games, and more. Come one day or build Camp Waco into your dog's weekly routine.",
+        "Something to look forward to every week. Themed doggie daycare with supervised play, enrichment, rest, and a new little world to explore each week. Come one day or make Camp Clayton part of your dog's regular routine.",
       image: designPhotos.svcCamp,
-      primary: { label: "Reserve daycare", href: book },
-      secondary: { label: "See the full calendar", href: "#calendar" },
+      primary: {
+        label: "Book a Day on Rover",
+        href: cityConfig.rover.profileUrl,
+        external: true,
+      },
+      secondary: { label: "See What's Coming Up", href: "#calendar" },
     },
     included: {
-      eyebrow: "A Camp Waco day",
+      eyebrow: "A Camp Clayton day",
       title: "Play, enrich, rest, repeat",
       items: [
         {
@@ -376,28 +380,33 @@ export const servicePages: Record<string, ServicePageConfig> = {
     },
     faq: [
       {
-        question: "What is Camp Waco?",
+        question: "What is Camp Clayton?",
         answer:
-          "Camp Waco is Keep Waco Wagging's themed doggy daycare calendar. Each week has a new theme and enrichment plan, while the care stays small-group, supervised, home-based, and built around play plus real rest.",
+          "Camp Clayton is our themed take on doggie daycare. Dogs get the same thoughtful, home-based care Keep Waco Wagging is known for — supervised play, enrichment, rest, decompression, and individual attention — with a different theme layered in each week. It is not overnight camp, a children's camp, or a separate facility.",
       },
       {
         question: "Do I have to book the whole week?",
         answer:
-          "No. Pick the daycare days that fit your schedule. You can come for one day, several days, or make Camp Waco part of your regular weekly routine.",
+          "No. Come one day or make Camp Clayton part of your dog's weekly routine. You can book one day, several days, or a regular weekday pattern.",
       },
       {
-        question: "How do I reserve a Camp Waco day?",
+        question: "How do I book Camp Clayton?",
         answer:
-          "Use the booking button on this page or visit keepwacowagging.com/book. Choose your daycare dates, then we will confirm availability and the details for your dog.",
+          "Camp Clayton is doggie daycare. Reserve a day on Rover through Jackye and Todd's profile linked from this page. That is where availability is confirmed.",
       },
     ],
     cta: {
-      eyebrow: "Pick your weeks — and your days",
-      title: "Save your dog's spot at Camp Waco",
-      scriptWord: "Camp Waco",
-      subtitle: `Come one day or several · Call ${cityConfig.sponsor.phoneDisplay} if you want help choosing dates.`,
-      primary: { label: "Reserve daycare", href: book },
-      secondary: { label: "All services", href: "/#services" },
+      eyebrow: "Themed doggie daycare",
+      title: "Book a day at Camp Clayton",
+      scriptWord: "Camp Clayton",
+      subtitle:
+        "Come one day or several. Availability is confirmed on Rover — not on a waitlist form.",
+      primary: {
+        label: "Book a Day on Rover",
+        href: cityConfig.rover.profileUrl,
+        external: true,
+      },
+      secondary: { label: "Dog daycare details", href: "/dog-daycare-waco-tx" },
     },
   },
 };

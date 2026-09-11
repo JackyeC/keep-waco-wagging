@@ -19,7 +19,7 @@ const routes = [
   "/pet-care",
   "/training",
   "/pet-care/weddings-events",
-  "/summer-daycare",
+  "/camp-waco",
   "/about",
   "/shop",
   "/brand",

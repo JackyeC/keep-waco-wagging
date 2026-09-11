@@ -37,12 +37,13 @@ const services = [
     photo: designPhotos.svcWedding,
   },
   {
-    eyebrow: "Summer camp",
+    eyebrow: "Themed daycare",
     title: brandLanguage.dogCampName,
     detail:
-      "Thirteen themed summer weeks of supervised play, enrichment, and rest. Drop in or join the full week.",
-    href: "/summer-daycare",
+      "Camp Clayton is our themed take on doggie daycare — a new weekly theme with play, enrichment, and rest. Come one day or make it a routine.",
+    href: "/camp-waco",
     photo: designPhotos.svcCamp,
+    cta: "Explore Camp Clayton",
   },
 ];
 
@@ -53,7 +54,7 @@ export function ServiceCardGrid() {
         <p className="eyebrow tracking-[0.22em]">Our services</p>
         <h2 className="heading mt-1.5 text-[44px]">
           Scooping, care, training &{" "}
-          <span className="font-script font-normal text-rose">camp</span>
+          <span className="font-script font-normal text-rose">Camp Clayton</span>
         </h2>
       </div>
 
@@ -87,7 +88,7 @@ export function ServiceCardGrid() {
               </h3>
               <p className="body-light mt-2 flex-1">{service.detail}</p>
               <span className="mt-3 text-[11.5px] font-medium tracking-[0.1em] text-wag-sage uppercase group-hover:text-rose">
-                Learn more →
+                {"cta" in service ? service.cta : "Learn more"} →
               </span>
             </div>
           </Link>

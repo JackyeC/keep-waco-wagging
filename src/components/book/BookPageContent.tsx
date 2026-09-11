@@ -52,14 +52,14 @@ const bookingPaths: BookingPath[] = [
   },
   {
     title: brandLanguage.dogCampName,
-    eyebrow: "Summer camp",
+    eyebrow: "Themed doggie daycare",
     description:
-      "Thirteen themed summer weeks — drop in for a day or join the full week. Reserve on Rover.",
-    href: ctas.bookPetCare.href,
+      "Camp Clayton is our themed take on doggie daycare. Come one day or make it part of your dog's weekly routine — booked on Rover.",
+    href: ctas.bookCampClayton.href,
     external: true,
-    label: "Reserve on Rover",
-    learnHref: "/summer-daycare",
-    learnLabel: "View camp details",
+    label: "Book a Day on Rover",
+    learnHref: "/camp-waco",
+    learnLabel: "See the Camp Clayton Calendar",
     photo: designPhotos.svcCamp,
   },
   {
