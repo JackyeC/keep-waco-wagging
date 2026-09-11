@@ -4,12 +4,12 @@ import { cityConfig } from "@/lib/site";
 /**
  * Rover booking CTA. Expired referral discounts must not appear here.
  */
-export function RoverReferralCta({
+export function RoverBookingCta({
   variant = "panel",
 }: {
   variant?: "panel" | "compact";
 }) {
-  const { profileUrl, rating, reviewCount } = cityConfig.rover;
+  const { profileUrl, rating, starSitter } = cityConfig.rover;
 
   if (variant === "compact") {
     return (
@@ -42,7 +42,9 @@ export function RoverReferralCta({
             </p>
             <p className="mt-3 flex items-center gap-1.5 text-[13px] text-cream/85">
               <Star className="h-4 w-4 fill-blush text-blush" aria-hidden="true" />
-              {rating} on Rover · {reviewCount} reviews
+              {starSitter
+                ? `${rating} Star Sitter on Rover`
+                : `${rating} on Rover`}
             </p>
           </div>
           <div className="flex flex-col items-start gap-3 lg:items-end">
