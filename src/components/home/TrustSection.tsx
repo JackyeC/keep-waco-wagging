@@ -3,9 +3,7 @@ import Link from "next/link";
 import { cityConfig } from "@/lib/site";
 
 const trustChips = [
-  `${cityConfig.rover.rating} on Rover`,
-  `${cityConfig.rover.reviewCount} Rover reviews`,
-  "Rover Star Sitter",
+  `${cityConfig.rover.rating} Star Sitter on Rover`,
   "49 repeat clients",
   "GoodPup Certified",
   "Family-run in Waco",

@@ -71,10 +71,15 @@ export const weekendSaturdayStops = [
 
 export const weekendSundayFeature = {
   title: "Doggie Day at The Will — Dash for the Daisies",
-  when: "Sunday · 12:00 PM–8:00 PM",
+  when: "Sunday · Noon–8 PM",
   place: "The Will",
   address: "5984 N State Hwy 6, Waco, TX",
-  copy: "This one is for the Waco dog people. Doggie Day includes dog-focused activities and the Dash for the Daisies Dachshund Derby. The Will also hosts HomeGrown Sunday, which gives visitors an opportunity to shop local vendors, eat, listen to music, and move one weekend purchase to a Waco-area maker.",
+  copy: "This one is for the Waco dog people. Doggie Day includes dog-focused activities and the Dash for the Daisies Dachshund Derby.",
+  homeGrown: {
+    href: "https://www.thewillofwaco.com/homegrown-sunday",
+    label: "HomeGrown Sunday",
+    rest: "’s local artisan market also runs from 1–5 PM, weather permitting, so this is an easy place to move one purchase to a local maker while you’re there.",
+  },
   dogNote:
     "Dog-friendly does not mean every dog will enjoy it. Before bringing your dog, think about how they handle crowds, unfamiliar dogs, noise, heat, and longer outings.",
   href: "https://www.thewillofwaco.com/event-details-registration/doggie-day-at-the-will-dash-for-daisies-2026-09-13-12-00",
@@ -94,7 +99,7 @@ export const weekendCommunityNote = {
 
 export const weekendSafetyNote = {
   heading: "Your dog doesn't have to attend every dog-friendly event.",
-  copy: "Crowds, noise, heat, unfamiliar dogs, and busy environments can be a lot. Sometimes the best dog-parent choice is letting your dog stay somewhere comfortable while you go — including a Camp Clayton daycare day if that fits.",
+  copy: "Crowds, noise, heat, unfamiliar dogs, and busy environments can be a lot. Sometimes the best dog-parent choice is letting your dog stay somewhere comfortable while you go. That counts too.",
 };
 
 export const weekendCampClayton = {

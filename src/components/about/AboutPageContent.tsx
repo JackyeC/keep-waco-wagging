@@ -114,13 +114,7 @@ export function AboutPageContent() {
               <p className="font-display text-[34px] font-bold text-wag-sage">
                 5.0★
               </p>
-              <p className="text-xs text-body-muted-light">on Rover</p>
-            </div>
-            <div>
-              <p className="font-display text-[34px] font-bold text-wag-sage">
-                {cityConfig.rover.reviewCount}
-              </p>
-              <p className="text-xs text-body-muted-light">Rover reviews</p>
+              <p className="text-xs text-body-muted-light">Star Sitter on Rover</p>
             </div>
             <div>
               <p className="font-display text-[34px] font-bold text-wag-sage">

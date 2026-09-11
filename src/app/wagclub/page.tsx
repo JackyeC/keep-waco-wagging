@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { WagClubLink } from "@/components/wagclub/WagClubLink";
 import { WagClubSignup } from "@/components/home/WagClubSignup";
-import { RoverReferralCta } from "@/components/RoverReferralCta";
+import { RoverBookingCta } from "@/components/RoverBookingCta";
 import { servicePageMetadata } from "@/lib/metadata";
 import { cityConfig, getLiveSocialLinks } from "@/lib/site";
 
@@ -191,7 +191,7 @@ export default function WagClubPage() {
 
       {/* New-client Rover referral — the QR/flyer audience is often new to us */}
       <div className="bg-cream pb-4">
-        <RoverReferralCta />
+        <RoverBookingCta />
       </div>
 
       {/* Section 2 — Three ways into the club */}

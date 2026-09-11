@@ -4,7 +4,7 @@ import { Bath, CalendarHeart, GraduationCap, Home, Sparkles } from "lucide-react
 import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { RoverReferralCta } from "@/components/RoverReferralCta";
+import { RoverBookingCta } from "@/components/RoverBookingCta";
 import { servicePageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = servicePageMetadata(
@@ -71,7 +71,7 @@ export default function DogCarePage() {
       </PageHeader>
 
       <div className="bg-cream pt-12">
-        <RoverReferralCta />
+        <RoverBookingCta />
       </div>
 
       <Section tone="paper">

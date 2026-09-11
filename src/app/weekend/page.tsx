@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { ExternalLink, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
-import { ctas, cityConfig } from "@/lib/site";
+import { ctas } from "@/lib/site";
 import { servicePageMetadata } from "@/lib/metadata";
 import {
   weekendCampClayton,
@@ -33,7 +34,7 @@ function PlaceCard({
   title: string;
   when: string;
   address: string;
-  copy: string;
+  copy: ReactNode;
   dogNote: string;
   href: string;
   directoryHref?: string;
@@ -125,7 +126,19 @@ export default function WeekendPage() {
             title={weekendSundayFeature.title}
             when={weekendSundayFeature.when}
             address={weekendSundayFeature.address}
-            copy={weekendSundayFeature.copy}
+            copy={
+              <>
+                {weekendSundayFeature.copy}{" "}
+                <a
+                  href={weekendSundayFeature.homeGrown.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-wag-sage underline decoration-wag-sage/40 underline-offset-2 hover:text-rose hover:decoration-rose"
+                >
+                  {weekendSundayFeature.homeGrown.label}
+                </a>{weekendSundayFeature.homeGrown.rest}
+              </>
+            }
             dogNote={weekendSundayFeature.dogNote}
             href={weekendSundayFeature.href}
           />
@@ -136,14 +149,6 @@ export default function WeekendPage() {
             <p className="mt-3 text-[14.5px] leading-relaxed text-body-muted">
               {weekendSafetyNote.copy}
             </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Button href={cityConfig.rover.profileUrl} variant="sage" size="sm">
-                Reserve Daycare on Rover
-              </Button>
-              <Button href="/dog-daycare-waco-tx" variant="secondary" size="sm">
-                Doggie daycare
-              </Button>
-            </div>
           </aside>
         </div>
       </Section>

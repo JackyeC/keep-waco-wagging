@@ -112,7 +112,10 @@ export const cityConfig = {
     /** Personal Rover referral link — do not promote unless a current offer is confirmed. */
     referralUrl: "https://www.rover.com/sit/jackyc91388",
     rating: "5.0",
-    /** Verified public Rover stats — update here only. */
+    /**
+     * Internal snapshot only. Do not show this number in customer-facing
+     * copy unless it comes from an automated, reliable source.
+     */
     reviewCount: 125,
     starSitter: true,
     headline: "Full-Time Pet Care Professionals",

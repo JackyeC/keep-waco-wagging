@@ -596,7 +596,7 @@ export type DaycareWeekStatus = "current" | "next" | "past" | undefined;
 
 /**
  * Automatic calendar labels. Only the in-progress week is "This week".
- * Only the immediately following unpublished week is "Up next".
+ * Only the immediately following future theme is "Up next".
  * Past weeks and later future weeks get no status badge.
  */
 export function getDaycareWeekStatus(
