@@ -5,11 +5,9 @@ import Link from "next/link";
 import {
   daycareMonthOrder,
   daycareThemes,
-  getCurrentDaycareTheme,
+  getDaycareWeekStatus,
   getHomeDaycareThemes,
-  getNextDaycareTheme,
   getUpcomingDaycareThemes,
-  getWacoTodayISO,
   summerDaycare,
   type DaycareMonth,
   type DaycareTheme,
@@ -135,9 +133,6 @@ export function SummerCampCalendar({
   const compact = variant === "home";
   const upcomingThemes = getUpcomingDaycareThemes();
   const themes = compact ? getHomeDaycareThemes(4) : daycareThemes;
-  const currentTheme = getCurrentDaycareTheme();
-  const nextTheme = getNextDaycareTheme();
-  const today = getWacoTodayISO();
   const grouped = themesByMonth(themes);
   const months = daycareMonthOrder.filter(
     (month) => (grouped[month]?.length ?? 0) > 0,
@@ -158,24 +153,24 @@ export function SummerCampCalendar({
         >
           {seasonComplete ? (
             <>
-              Camp Waco 2026 is{" "}
+              Camp Clayton 2026 is{" "}
               <span className="font-script font-normal text-rose">wrapped</span>
             </>
           ) : compact ? (
             <>
               What&apos;s coming up at{" "}
-              <span className="font-script font-normal text-rose">Camp Waco</span>
+              <span className="font-script font-normal text-rose">Camp Clayton</span>
             </>
           ) : (
             <>
               The full year of{" "}
-              <span className="font-script font-normal text-rose">Camp Waco</span>
+              <span className="font-script font-normal text-rose">Camp Clayton</span>
             </>
           )}
         </h2>
         <p className="dek mx-auto mt-3 max-w-2xl text-[15px]">
           {seasonComplete
-            ? "Thanks for a great year. Watch Keep Waco Wagging for the next Camp Waco calendar."
+            ? "Thanks for a great year. Watch Keep Waco Wagging for the next Camp Clayton calendar."
             : compact
               ? "A new daycare theme every week. Pick one day, three days, five days, or whatever fits your pup's routine — no full-week requirement."
               : `${summerDaycare.intro} Pick the days that fit your schedule — there is no full-week requirement.`}
@@ -232,25 +227,14 @@ export function SummerCampCalendar({
                       : "md:grid-cols-2 xl:grid-cols-3",
                   )}
                 >
-                  {weeks.map((theme) => {
-                    const status =
-                      currentTheme?.week === theme.week
-                        ? "current"
-                        : nextTheme?.week === theme.week
-                          ? "next"
-                          : theme.endsOn < today
-                            ? "past"
-                            : undefined;
-
-                    return (
-                      <WeekCard
-                        key={theme.week}
-                        theme={theme}
-                        compact={compact}
-                        status={status}
-                      />
-                    );
-                  })}
+                  {weeks.map((theme) => (
+                    <WeekCard
+                      key={theme.week}
+                      theme={theme}
+                      compact={compact}
+                      status={getDaycareWeekStatus(theme)}
+                    />
+                  ))}
                 </div>
               </div>
             );
@@ -280,7 +264,7 @@ export function SummerCampCalendar({
             rel="noopener noreferrer"
             className="btn-pill btn-sage px-6 py-3"
           >
-            Reserve on Rover
+            Book a Day on Rover
           </a>
           {!compact && (
             <Link href="/book" className="btn-pill btn-rose-outline px-6 py-3">
@@ -292,7 +276,7 @@ export function SummerCampCalendar({
               href="/camp-waco#calendar"
               className="btn-pill btn-rose-outline px-6 py-3"
             >
-              Full Camp Waco calendar →
+              Full Camp Clayton calendar →
             </Link>
           )}
         </div>

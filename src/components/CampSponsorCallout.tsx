@@ -21,7 +21,7 @@ export function CampSponsorCallout({
         className,
       )}
     >
-      <p className="eyebrow eyebrow-brass">Summer camp</p>
+      <p className="eyebrow eyebrow-brass">Themed doggie daycare</p>
       <h2 className="headline-secondary mt-3">{brandLanguage.dogCampName}</h2>
       <div className="mt-4">
         <PresentingSponsor size="sm" />

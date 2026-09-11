@@ -21,12 +21,12 @@ export const brandLanguage = {
     "Keep Waco Wagging was created by the family behind Platinum Scoops. The site exists to help dog parents — not to sell one business.",
   heroLine: "Give your dog their best Waco life.",
   servicesLine:
-    "Poop scooping, boarding, daycare, training, wedding pet attendant services, and Camp Waco themed daycare in Waco",
+    "Poop scooping, boarding, daycare, training, wedding pet attendant services, and Camp Clayton themed daycare in Waco",
   communityLine:
     "Your dog is family. Find the places, people, services, events, and experiences that make life with them in Waco even better.",
   sponsorServices:
     "Platinum Scoops provides pet waste removal, doggy daycare, boarding, and pet care services in Waco.",
-  dogCampName: "Camp Waco",
+  dogCampName: "Camp Clayton",
   sponsorCampInquiry: "Interested in sponsoring a future camp week? Contact us.",
   communityPartnersWelcome: "Community partners welcome",
   instagram: {
@@ -108,8 +108,8 @@ export const cityConfig = {
   },
   rover: {
     profileUrl:
-      "https://www.rover.com/members/jacqueline-todd-c-full-time-pet-care-professionals/",
-    /** Personal referral link — gives new Rover clients $40 off their first booking. */
+      "https://www.rover.com/members/jacqueline-todd-c-full-time-thoughtful-pet-care/",
+    /** Personal Rover referral link — do not promote unless a current offer is confirmed. */
     referralUrl: "https://www.rover.com/sit/jackyc91388",
     rating: "5.0",
     /** Verified public Rover stats — update here only. */
@@ -117,15 +117,6 @@ export const cityConfig = {
     starSitter: true,
     headline: "Full-Time Pet Care Professionals",
     subhead: "Our Empty Nest, Your Dog's Retreat",
-    /** New-client Rover referral offer. Update the deadline/terms as Rover changes them. */
-    referralOffer: {
-      headline: "New to Rover? Get $40 off your first booking.",
-      body:
-        "Book Jackye for boarding, daycare, or drop-ins through Rover, and new Rover clients get $40 off their first booking.",
-      deadline: "2026-09-06",
-      terms:
-        "Referral credit is only for new Rover customers who sign up through this link. New customers must complete a $20+ booking by September 6, 2026 to redeem the credit. Rules and restrictions apply — see Rover's Referral Terms & Conditions.",
-    },
   },
   /**
    * Trust / social-proof numbers used across pet-care landings.
@@ -194,7 +185,7 @@ export const servicesNav: NavLink[] = [
   { label: "Dog Daycare", href: "/dog-daycare-waco-tx" },
   { label: "Lifestyle Training", href: "/training" },
   { label: "Dog of Honor Wedding Pet Care", href: "/pet-care/weddings-events" },
-  { label: "Camp Waco", href: "/camp-waco" },
+  { label: "Camp Clayton", href: "/camp-waco" },
 ];
 
 // Primary nav — dog-parent jobs first (GO / CARE / KNOW / BELONG / SHOP).
@@ -216,7 +207,7 @@ export const secondaryNav: NavLink[] = [
   { label: "Dog Match", href: "/dog-match" },
   { label: "New Dog in Waco", href: "/new-dog-in-waco" },
   { label: "Book a Service", href: "/book" },
-  { label: "Camp Waco", href: "/camp-waco" },
+  { label: "Camp Clayton", href: "/camp-waco" },
   { label: "Blog", href: "/blog" },
   { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "Waco Dog Weekend", href: "/weekend" },
@@ -249,8 +240,16 @@ export const ctas = {
     href: cityConfig.rover.profileUrl,
   },
   summerDaycare: {
-    label: "See the Camp Waco Calendar",
+    label: "See the Camp Clayton Calendar",
     href: "/camp-waco",
+  },
+  bookCampClayton: {
+    label: "Book a Day at Camp Clayton on Rover",
+    href: cityConfig.rover.profileUrl,
+  },
+  bookDaycareRover: {
+    label: "Book Daycare on Rover",
+    href: cityConfig.rover.profileUrl,
   },
   eventCare: {
     label: "Ask About Wedding Pet Care",
@@ -357,7 +356,7 @@ export const sponsorLinks = {
     { label: "One-Time Yard Cleanups", href: "/platinum-scoops#yard-services" },
     { label: "Dog Boarding", href: "/dog-boarding-waco-tx" },
     { label: "Dog Daycare", href: "/dog-daycare-waco-tx" },
-    { label: "Camp Waco", href: "/camp-waco" },
+    { label: "Camp Clayton", href: "/camp-waco" },
     { label: "Dog of Honor Wedding Pet Care", href: "/pet-care/weddings-events" },
     { label: "Dog Walking", href: "/dog-daycare-waco-tx" },
   ],

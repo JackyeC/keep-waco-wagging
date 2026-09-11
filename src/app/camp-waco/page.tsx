@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
 import { SummerCampCalendar } from "@/components/camp/SummerCampCalendar";
+import type { Metadata } from "next";
+import { CampClaytonExplainer } from "@/components/camp/CampClaytonExplainer";
 import { ServicePageView } from "@/components/service/ServicePageView";
 import { getServicePage } from "@/data/servicePages";
 import { servicePageMetadata } from "@/lib/metadata";
@@ -15,7 +16,7 @@ export const metadata: Metadata = servicePageMetadata(
 
 export default function CampWacoPage() {
   return (
-    <ServicePageView config={config}>
+    <ServicePageView config={config} beforeIncluded={<CampClaytonExplainer />}>
       <div className="mx-auto max-w-[1200px] px-6">
         <SummerCampCalendar id="calendar" variant="full" className="mt-14" />
       </div>

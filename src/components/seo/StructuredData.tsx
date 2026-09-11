@@ -25,7 +25,9 @@ function serviceName(config: ServicePageConfig): string {
   if (config.slug === "weddings-events" || config.slug === "pet-care/weddings-events") {
     return "Dog of Honor wedding pet care";
   }
-  if (config.slug === "summer-daycare") return cityConfig.name + " summer dog camp";
+  if (config.slug === "summer-daycare" || config.slug === "camp-waco") {
+    return "Camp Clayton themed doggie daycare in Waco";
+  }
   return config.hero.eyebrow;
 }
 
@@ -76,6 +78,7 @@ export function ServicePageJsonLd({
     config.slug === "platinum-scoops" ||
     config.slug === "training" ||
     config.slug === "summer-daycare" ||
+    config.slug === "camp-waco" ||
     config.slug === "weddings-events" ||
     config.slug === "pet-care/weddings-events";
 

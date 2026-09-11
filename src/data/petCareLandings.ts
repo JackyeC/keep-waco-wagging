@@ -377,7 +377,7 @@ export const daycareLanding: PetCareLandingConfig = {
     startingRateLabel: "Public Rover rate",
     startingRate: roverPublicStartingRates.daycare,
     primaryCta: {
-      label: "Request Daycare on Rover",
+      label: "Reserve Daycare on Rover",
       href: roverBook.href,
       external: true,
     },
@@ -495,9 +495,9 @@ export const daycareLanding: PetCareLandingConfig = {
           "Photos and videos help you see how the day is going — the same update habit families mention in Rover reviews.",
       },
       {
-        title: "Year-round daycare vs summer camp",
+        title: "Year-round daycare and Camp Clayton",
         detail:
-          "This page is year-round home daycare. Keep Waco Wagging Dog Camp (`/summer-daycare`) is seasonal themed programming — related, but not the same product.",
+          "This page is the underlying daycare service. Camp Clayton is our themed take on that same home-based daycare — a new weekly theme layered onto play, enrichment, rest, and individual attention. It is not a separate facility or overnight camp. See /camp-waco.",
       },
     ],
   },
@@ -557,7 +557,7 @@ export const daycareLanding: PetCareLandingConfig = {
     {
       question: "How do I book?",
       answer:
-        "Request daycare on Rover through the profile linked from this page. That is where availability is confirmed.",
+        "Reserve a day on Rover through the profile linked from this page. That is where availability is confirmed.",
     },
     {
       question: "What are drop-off and pickup times?",
@@ -572,12 +572,12 @@ export const daycareLanding: PetCareLandingConfig = {
     {
       question: "How is daycare different from boarding?",
       answer:
-        "Daycare is daytime care. Boarding is overnight. Both are home-based with the same caregivers. For new boarding guests, we may recommend a daycare / trial day first. Summer Dog Camp is a separate seasonal, themed program.",
+        "Daycare is daytime care. Boarding is overnight. Both are home-based with the same caregivers. For new boarding guests, we may recommend a daycare / trial day first. Camp Clayton is the themed experience layered onto daycare — still the same daytime care, not overnight camp.",
     },
     {
-      question: "Is this the same as Summer Dog Camp?",
+      question: "Is this the same as Camp Clayton?",
       answer:
-        "No. Year-round daycare is ongoing daytime care. Summer Dog Camp is seasonal themed weeks — see /summer-daycare if you want that experience.",
+        "Camp Clayton is our themed take on this same doggie daycare. You are still booking daytime care with Jackye and Todd — with a different weekly theme layered in. See /camp-waco for the calendar, or book a day on Rover.",
     },
   ],
   photos: [
@@ -594,9 +594,9 @@ export const daycareLanding: PetCareLandingConfig = {
       detail: "Overnight home-based boarding with the same caregivers.",
     },
     {
-      label: "Summer Dog Camp",
-      href: "/summer-daycare",
-      detail: "Seasonal themed daycare weeks — optional, not year-round daycare.",
+      label: "Camp Clayton",
+      href: "/camp-waco",
+      detail: "Themed doggie daycare — a new weekly theme on the same home-based care.",
     },
     {
       label: "Lifestyle training",
@@ -606,7 +606,7 @@ export const daycareLanding: PetCareLandingConfig = {
   ],
   closing: {
     eyebrow: "Need a daytime care plan?",
-    title: "Request daycare on Rover",
+    title: "Reserve daycare on Rover",
     scriptWord: "Rover",
     subtitle: `${brandLanguage.petCareProvided} ${trustMeta}`,
   },

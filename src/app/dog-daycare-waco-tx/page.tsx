@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CampClaytonMeet } from "@/components/camp/CampClaytonMeet";
 import { SummerCampCalendar } from "@/components/camp/SummerCampCalendar";
 import { PetCareServiceLanding } from "@/components/pet-care/PetCareServiceLanding";
 import { getPetCareLanding } from "@/data/petCareLandings";
@@ -17,8 +18,9 @@ export default function DogDaycareWacoTxPage() {
   return (
     <>
       <PetCareServiceLanding config={config} />
-      <div className="mx-auto max-w-[1200px] px-6 pb-8">
-        <SummerCampCalendar id="camp-waco" variant="home" className="mt-16" />
+      <div className="mx-auto max-w-[1200px] space-y-10 px-6 pb-8">
+        <CampClaytonMeet />
+        <SummerCampCalendar id="camp-waco" variant="home" className="mt-6" />
       </div>
     </>
   );

@@ -10,7 +10,7 @@ import { servicePageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = servicePageMetadata(
   "/dog-care",
   "Dog Care in Waco | Boarding, Daycare, Training & Poop Scooping",
-  "Trusted Waco dog care from Keep Waco Wagging and Platinum Scoops — home-based boarding and daycare, lifestyle training, summer dog camp, and weekly poop scooping across Waco and McLennan County.",
+  "Trusted Waco dog care from Keep Waco Wagging and Platinum Scoops — home-based boarding and daycare, lifestyle training, Camp Clayton themed doggie daycare, and weekly poop scooping across Waco and McLennan County.",
 );
 
 const services = [
@@ -37,10 +37,10 @@ const services = [
   },
   {
     icon: Sparkles,
-    title: "Summer Dog Camp",
-    copy: "Themed weeks of supervised play, enrichment, and rest — drop in for a day or join the week.",
-    href: "/summer-daycare",
-    cta: "See Summer Camp",
+    title: "Camp Clayton",
+    copy: "Themed doggie daycare by Keep Waco Wagging — a new weekly theme with play, enrichment, and rest. Come one day or make it a routine.",
+    href: "/camp-waco",
+    cta: "Explore Camp Clayton",
   },
   {
     icon: CalendarHeart,
@@ -57,7 +57,7 @@ export default function DogCarePage() {
       <PageHeader
         eyebrow="Dog Care"
         title="Trusted dog care for Waco families"
-        description="When your dog should stay somewhere safe — boarding, daycare, training, camp, and poop scooping from the family behind Keep Waco Wagging. For other local groomers, vets, and sitters, use the directory. We recommend more than our own work."
+        description="When your dog should stay somewhere safe — boarding, daycare, training, Camp Clayton, and poop scooping from the family behind Keep Waco Wagging. For other local groomers, vets, and sitters, use the directory. We recommend more than our own work."
         tone="sage"
       >
         <div className="flex flex-col gap-3 sm:flex-row">
@@ -110,7 +110,7 @@ export default function DogCarePage() {
         <div className="mt-10 flex flex-col items-start gap-4 rounded-[20px] bg-sage-50 p-8 ring-1 ring-sage-200 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-xl text-[15px] leading-relaxed text-bark-soft">
             Not sure which service fits? Our booking hub walks you through
-            boarding, daycare, training, camp, and wedding care.
+            boarding, daycare, training, Camp Clayton, and wedding care.
           </p>
           <Button href="/book" variant="sage" size="lg" className="shrink-0">
             Book Dog Care

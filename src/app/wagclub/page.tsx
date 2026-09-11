@@ -20,12 +20,12 @@ import { cityConfig, getLiveSocialLinks } from "@/lib/site";
  */
 const links = {
   // Primary conversion targets
-  bookDaycare: "/book", // Real booking hub (daycare / boarding / camp / training)
-  seeDaycare: "/pet-care", // Home-based daycare & boarding info page
-  dayCamp: "/summer-daycare", // Keep Waco Wagging Dog Camp (closest real "day camp" route)
-  shop: "/shop", // Wag Club merch / Shopify-backed shop
-  join: "#join", // On-page email capture (real /api/leads signup)
-  weekend: "/weekend", // "Where to Wag This Weekend" guide
+  bookDaycare: cityConfig.rover.profileUrl,
+  seeDaycare: "/dog-daycare-waco-tx",
+  dayCamp: "/camp-waco",
+  shop: "/shop",
+  join: "#join",
+  weekend: "/weekend",
   // Secondary ecosystem
   training: "/training",
   dogFriendlyWaco: "/dog-friendly-waco",
@@ -34,7 +34,7 @@ const links = {
 
 const seoTitle = "The Wag Club | Keep Waco Wagging";
 const seoDescription =
-  "Join Waco's dog-parent community. Find dog-friendly things to do, book doggie daycare and Day Camp, shop Wag Club gear, and Keep Waco Wagging.";
+  "Join Waco's dog-parent community. Find dog-friendly things to do, book doggie daycare and Camp Clayton, shop Wag Club gear, and Keep Waco Wagging.";
 
 export const metadata: Metadata = servicePageMetadata(
   "/wagclub",
@@ -51,17 +51,17 @@ export const metadata: Metadata = servicePageMetadata(
 const primaryCards = [
   {
     icon: PawPrint,
-    kicker: "Doggie Daycare + Day Camp",
+    kicker: "Doggie Daycare + Camp Clayton",
     heading: "Your dog should have plans too.",
-    copy: "Small-group play, supervised fun, enrichment, rest breaks and themed Day Camp experiences with people who actually know your dog.",
+    copy: "Small-group play, supervised fun, enrichment, rest breaks and Camp Clayton themed daycare with people who actually know your dog.",
     bullets: [
       "Small-group play",
       "Supervised care",
       "Enrichment",
-      "Themed Day Camp",
+      "Camp Clayton themes",
       "Local Waco care",
     ],
-    cta: { label: "Book Daycare", href: links.bookDaycare, event: "wagclub_book_daycare_click" as const },
+    cta: { label: "Book Daycare on Rover", href: links.bookDaycare, event: "wagclub_book_daycare_click" as const },
   },
   {
     icon: ShoppingBag,
@@ -76,7 +76,7 @@ const primaryCards = [
     icon: Users,
     kicker: "Join the Wag Club",
     heading: "Get on the Waco dog-parent list.",
-    copy: "Get Wagging Weekend picks, dog-friendly events, Day Camp updates, local finds and Wag Club drops.",
+    copy: "Get Wagging Weekend picks, dog-friendly events, Camp Clayton updates, local finds and Wag Club drops.",
     bullets: [],
     cta: { label: "Join the Club", href: links.join, event: "wagclub_join_click" as const },
   },
@@ -95,8 +95,8 @@ const daycareFeatures = [
   },
   {
     icon: Sparkles,
-    title: "Themed camp days",
-    copy: "Enrichment, games and photo-worthy camp experiences your dog will love.",
+    title: "Camp Clayton days",
+    copy: "Enrichment, games and photo-worthy themed daycare your dog will love.",
   },
 ] as const;
 
@@ -119,8 +119,8 @@ const shirtSteps = [
 ] as const;
 
 const secondaryServices = [
-  { label: "Doggie Daycare & Boarding", href: links.seeDaycare },
-  { label: "Day Camp", href: links.dayCamp },
+  { label: "Doggie Daycare", href: links.seeDaycare },
+  { label: "Camp Clayton", href: links.dayCamp },
   { label: "Dog Training", href: links.training },
   { label: "The Wag Club Shop", href: links.shop },
   { label: "Wagging Weekend", href: links.weekend },
@@ -260,7 +260,7 @@ export default function WagClubPage() {
         </div>
       </section>
 
-      {/* Section 3 — Doggie Daycare + Day Camp */}
+      {/* Section 3 — Doggie Daycare + Camp Clayton */}
       <section className="bg-wag-sage text-cream">
         <div className="mx-auto max-w-[1200px] px-6 py-16 sm:py-20">
           <div className="max-w-2xl">
@@ -268,11 +268,11 @@ export default function WagClubPage() {
               Keep Waco Wagging
             </p>
             <h2 className="mt-3 font-display text-[clamp(2rem,4.4vw,3rem)] leading-[1.05] font-medium text-cream">
-              Doggie Daycare + Day Camp at Keep Waco Wagging
+              Doggie daycare + Camp Clayton
             </h2>
             <p className="mt-4 max-w-xl text-[15.5px] font-light text-cream/85">
               The Wag Club is powered by real, hands-on dog care — small-group
-              play and themed camp days run by people who know your dog by name.
+              play and Camp Clayton themed daycare run by people who know your dog by name.
             </p>
           </div>
 
@@ -300,19 +300,19 @@ export default function WagClubPage() {
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <WagClubLink
-              href={links.seeDaycare}
+              href={links.bookDaycare}
               event="wagclub_book_daycare_click"
               className="btn-pill bg-cream px-8 py-4 text-wag-sage hover:bg-blush hover:text-bark"
             >
-              See Daycare + Book
+              Book Daycare on Rover
             </WagClubLink>
             <WagClubLink
               href={links.dayCamp}
               event="wagclub_secondary_service_click"
-              eventLabel="day-camp"
+              eventLabel="camp-clayton"
               className="btn-pill border-[1.4px] border-cream/60 px-8 py-[0.9rem] text-cream hover:bg-cream/10"
             >
-              See Day Camp
+              Explore Camp Clayton
             </WagClubLink>
           </div>
         </div>
@@ -444,7 +444,7 @@ export default function WagClubPage() {
             Waco dog people — you&rsquo;re invited.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[15.5px] font-light text-cream/90">
-            Join the list for dog-friendly Waco finds, Day Camp updates, local
+            Join the list for dog-friendly Waco finds, Camp Clayton updates, local
             events and Wag Club drops.
           </p>
           <div className="mt-8 flex justify-center">

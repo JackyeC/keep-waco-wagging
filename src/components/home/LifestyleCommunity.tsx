@@ -24,12 +24,12 @@ const lifestyleTiles = [
     },
   },
   {
-    label: "Dog Camp",
+    label: "Camp Clayton",
     title: "Themed weeks of play & rest",
-    href: "/summer-daycare",
+    href: "/camp-waco",
     image: {
       src: "/pictures/summer-camp-hero.webp",
-      alt: "Dogs playing together at Keep Waco Wagging Dog Camp",
+      alt: "Dogs playing together at Camp Clayton, themed doggie daycare by Keep Waco Wagging",
     },
   },
 ];

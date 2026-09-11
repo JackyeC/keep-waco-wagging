@@ -1,7 +1,7 @@
 import { cityConfig } from "@/lib/site";
 import { getRoverDaycareStandardRate } from "@/data/rover";
 
-// Camp Waco themed daycare calendar for Keep Waco Wagging / Platinum Scoops pet care.
+// Camp Clayton themed daycare calendar for Keep Waco Wagging.
 // Booking always happens through Rover. Keep this file as the single source of truth
 // for the public calendar, homepage preview, and daycare-page preview.
 
@@ -30,10 +30,11 @@ export type DaycareTheme = {
 
 const daycareRate = getRoverDaycareStandardRate();
 
-export const campWaco = {
-  seasonLabel: "Camp Waco 2026",
+export const campClayton = {
+  seasonLabel: "Camp Clayton 2026",
   yearLabel: "2026",
-  title: "Camp Waco Doggy Daycare",
+  title: "Camp Clayton",
+  descriptor: "Themed doggie daycare by Keep Waco Wagging",
   intro:
     "Weekly themed daycare with supervised play, enrichment, and real rest in our Waco home. Each week brings a new reason to come play — from splash days and tailgates to holiday photo weeks — while the care routine stays calm, small-group, and familiar.",
   dailyRate: daycareRate,
@@ -45,8 +46,9 @@ export const campWaco = {
     "Choose the days that fit your schedule — there is no full-week requirement. Spots can fill up, so request your dates on Rover to confirm availability.",
 } as const;
 
-/** Backwards-compatible export while older components/routes are migrated. */
-export const summerDaycare = campWaco;
+/** Legacy aliases — public name is Camp Clayton. Route remains /camp-waco. */
+export const campWaco = campClayton;
+export const summerDaycare = campClayton;
 
 export const daycareThemes: DaycareTheme[] = [
   {
@@ -299,13 +301,16 @@ export const daycareThemes: DaycareTheme[] = [
     endsOn: "2026-09-18",
     name: "Apple Orchard Week",
     blurb:
-      "An early-fall week of sniffing games, cozy textures, and orchard-inspired enrichment.",
+      "An early-fall week of orchard-inspired sniffing games, enrichment, photo moments, and plenty of rest. Activities are adjusted to the dogs in care that day.",
     activities: [
-      "Apple-themed snuffle hunt",
+      "Apple-themed sniffing games",
       "Harvest basket photo setup",
-      "Crunch-and-search puzzle games",
-      "Cozy blanket rests",
+      "Crunch-and-search puzzles",
+      "Fall sensory activities",
+      "Supervised play",
+      "Cozy rest between activities",
     ],
+    note: "Not every dog does every activity. We adjust the day to the dogs in front of us.",
   },
   {
     week: 17,
@@ -347,7 +352,7 @@ export const daycareThemes: DaycareTheme[] = [
     endsOn: "2026-10-09",
     name: "Wild West Week",
     blurb:
-      "Bandanas, ranch games, and confidence-building obstacles take over Camp Waco.",
+      "Bandanas, ranch games, and confidence-building obstacles take over Camp Clayton.",
     activities: [
       "Cowboy bandana photos",
       "Ranch obstacle course",
@@ -443,7 +448,7 @@ export const daycareThemes: DaycareTheme[] = [
     endsOn: "2026-11-20",
     name: "Thankful for My Pack Week",
     blurb:
-      "We celebrate the pups, people, and routines that make Camp Waco feel like home.",
+      "We celebrate the pups, people, and routines that make Camp Clayton feel like home.",
     activities: [
       "Pack portrait day",
       "Paw-print gratitude cards",
@@ -581,9 +586,30 @@ export function getCurrentDaycareTheme(now = new Date()): DaycareTheme | undefin
   );
 }
 
+/** The next theme that has not started yet — never the current week. */
 export function getNextDaycareTheme(now = new Date()): DaycareTheme | undefined {
   const today = getWacoTodayISO(now);
   return daycareThemes.find((theme) => theme.startsOn > today);
+}
+
+export type DaycareWeekStatus = "current" | "next" | "past" | undefined;
+
+/**
+ * Automatic calendar labels. Only the in-progress week is "This week".
+ * Only the immediately following unpublished week is "Up next".
+ * Past weeks and later future weeks get no status badge.
+ */
+export function getDaycareWeekStatus(
+  theme: DaycareTheme,
+  now = new Date(),
+): DaycareWeekStatus {
+  const today = getWacoTodayISO(now);
+  if (theme.endsOn < today) return "past";
+  const current = getCurrentDaycareTheme(now);
+  if (current?.week === theme.week) return "current";
+  const next = getNextDaycareTheme(now);
+  if (next?.week === theme.week) return "next";
+  return undefined;
 }
 
 /** Current + future camp weeks, soonest first. */

@@ -154,7 +154,7 @@ export default function PetCareHubPage() {
             { label: "Poop scooping", href: "/platinum-scoops" },
             { label: "Lifestyle training", href: "/training" },
             { label: "Wedding pet care", href: "/pet-care/weddings-events" },
-            { label: "Summer Dog Camp", href: "/summer-daycare" },
+            { label: "Camp Clayton", href: "/camp-waco" },
           ].map((item) => (
             <Link
               key={item.href}
@@ -168,8 +168,9 @@ export default function PetCareHubPage() {
           ))}
         </div>
         <p className="mx-auto mt-6 max-w-xl text-center text-[13px] font-light text-body-muted-light">
-          {brandLanguage.sponsorServices} Summer Dog Camp is seasonal themed
-          programming — not the same as year-round daycare.
+          {brandLanguage.sponsorServices} Camp Clayton is our themed take on
+          the same home-based doggie daycare — not a separate facility or
+          overnight camp.
         </p>
       </section>
 
@@ -202,7 +203,7 @@ export default function PetCareHubPage() {
               rel="noopener noreferrer"
               className="btn-pill border-[1.4px] border-cream/60 bg-transparent px-7 py-3.5 text-cream"
             >
-              Rover profile
+              Book on Rover
             </a>
           </div>
         </div>

@@ -70,7 +70,7 @@ export const summerPhotoExploreLinks = [
     description: "Backyard socials and dog-friendly patio hangs around Waco.",
   },
   {
-    label: "Reserve Camp Waco days on Rover",
+    label: "Book a Day at Camp Clayton on Rover",
     href: ctas.bookPetCare.href,
     description: "Check open dates and request your dog's spot.",
     external: ctas.bookPetCare.href.startsWith("http"),
