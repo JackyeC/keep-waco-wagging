@@ -136,8 +136,7 @@ export default function WeekendPage() {
                   className="font-medium text-wag-sage underline decoration-wag-sage/40 underline-offset-2 hover:text-rose hover:decoration-rose"
                 >
                   {weekendSundayFeature.homeGrown.label}
-                </a>
-                {weekendSundayFeature.homeGrown.rest}
+                </a>{weekendSundayFeature.homeGrown.rest}
               </>
             }
             dogNote={weekendSundayFeature.dogNote}
