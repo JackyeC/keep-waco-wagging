@@ -149,7 +149,8 @@ export function Footer() {
       </div>
 
       <p className="mt-10 text-xs font-light tracking-wide text-label-muted">
-        © {year} {cityConfig.name} · {cityConfig.city}, {cityConfig.state}
+        © {year} {cityConfig.legalEntity} · {cityConfig.homeCity},{" "}
+        {cityConfig.stateAbbr} {cityConfig.homeZip}
         {" · "}
         <Link href="/privacy" className="hover:text-rose">
           Privacy
