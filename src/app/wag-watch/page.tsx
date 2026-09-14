@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { WagWatchCard } from "@/components/wagwatch/WagWatchCard";
 import { WagClubSignup } from "@/components/home/WagClubSignup";
+import { CampClaytonCta } from "@/components/wagwatch/CampClaytonCta";
 import { getPublishedWagWatch } from "@/data/wagWatch";
 import { servicePageMetadata } from "@/lib/metadata";
 
@@ -30,11 +31,16 @@ export default function WagWatchPage() {
 
       <Section tone="paper">
         {items.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {items.map((item) => (
-              <WagWatchCard key={item.id} item={item} />
-            ))}
-          </div>
+          <>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((item) => (
+                <WagWatchCard key={item.id} item={item} />
+              ))}
+            </div>
+            <div className="mx-auto mt-12 max-w-[820px]">
+              <CampClaytonCta className="mt-0" />
+            </div>
+          </>
         ) : (
           <div className="mx-auto max-w-xl rounded-[24px] border border-border bg-soft-cream p-10 text-center">
             <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-sage-100 text-wag-sage">

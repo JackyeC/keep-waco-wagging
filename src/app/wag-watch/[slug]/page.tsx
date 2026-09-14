@@ -5,6 +5,7 @@ import { CalendarDays, ExternalLink } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { UrgencyBadge } from "@/components/wagwatch/WagWatchCard";
+import { CampClaytonCta } from "@/components/wagwatch/CampClaytonCta";
 import { ArticleJsonLd } from "@/components/seo/StructuredData";
 import { getDirectoryListingBySlug } from "@/data/directory";
 import {
@@ -124,6 +125,8 @@ export default async function WagWatchArticlePage({
               </Button>
             </div>
           )}
+
+          <CampClaytonCta note={item.campCtaNote} />
 
           {item.sourceUrls && item.sourceUrls.length > 0 && (
             <div className="mt-10 border-t border-border pt-6">

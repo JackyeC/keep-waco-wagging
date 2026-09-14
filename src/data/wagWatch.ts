@@ -54,6 +54,8 @@ export type WagWatchItem = {
   featured?: boolean;
   /** ISO date after which the item is considered stale and hidden from public. */
   expiresAt?: string;
+  /** One line tying this update to Camp Clayton; falls back to the default. */
+  campCtaNote?: string;
   relatedDirectorySlug?: string;
   relatedEventSlug?: string;
   image?: { src: string; alt: string };
