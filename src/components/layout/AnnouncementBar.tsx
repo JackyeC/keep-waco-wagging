@@ -27,7 +27,7 @@ export function AnnouncementBar() {
   }
 
   return (
-    <div className="border-b border-border/80 bg-soft-cream px-4 py-2 text-center">
+    <div className="site-announcement border-b border-border/80 bg-soft-cream px-4 py-2 text-center">
       <p
         key={index}
         className="animate-[kwwFade_0.5s_ease] text-[11px] font-medium tracking-[0.18em] text-label-muted uppercase"

@@ -32,7 +32,7 @@ describe("canonical URLs and robots", () => {
     }
   });
 
-  it("blocks admin, APIs, the brand book, and sample Approved URLs", () => {
+  it("blocks admin, APIs, the brand book, sample Approved URLs, and the quote tool", () => {
     const manifest = robots();
     const disallow = Array.isArray(manifest.rules)
       ? manifest.rules[0]?.disallow
@@ -43,6 +43,7 @@ describe("canonical URLs and robots", () => {
       "/api/",
       "/brand$",
       "/approved/sample-",
+      "/quote",
     ]);
     assert.equal(manifest.sitemap, `${siteConfig.url}/sitemap.xml`);
   });
