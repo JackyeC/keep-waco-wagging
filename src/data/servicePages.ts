@@ -347,7 +347,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       title: "Camp Clayton",
       scriptWord: "Camp Clayton",
       description:
-        "Camp Clayton is our small-group, home-based doggie daycare where every dog gets one-on-one time, plenty of love, puzzles and Kongs, supervised play, real rest, and a spot on the couch with us. Every week brings a new theme, but every day is built around the dog in front of us.",
+        "Camp Clayton is our small-group, home-based doggie daycare in our China Spring home, serving dog families across the Waco area. Every dog gets one-on-one time, plenty of love, puzzles and Kongs, supervised play, real rest, and a spot on the couch with us. Every week brings a new theme, but every day is built around the dog in front of us.",
       facts: [
         "Monday–Friday · 8 AM–6 PM",
         "From $37 per day",
