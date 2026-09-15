@@ -5,25 +5,39 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { BrandWordmark } from "@/components/layout/BrandWordmark";
 import {
   addCalendarDays,
+  BOARDING_CATEGORY_LABELS,
   buildQuoteScript,
   calculateQuote,
-  DEFAULT_ADDITIONAL_DOG_PERCENT,
-  DEFAULT_FIRST_DOG_NIGHTLY_CENTS,
+  calendarNights,
+  CLIENT_RELATIONSHIP_OPTIONS,
+  DEFAULT_QUOTE_RATES,
+  DEFAULT_TRANSPORTATION_CENTS,
+  EXTENDED_STAY_MIN_NIGHTS,
+  FIT_CHECK_OPTIONS,
   localIsoDate,
+  MAX_BATHS,
   MAX_DOGS,
-  MIN_DOGS,
-  nightlyRateCents,
+  type BoardingCategory,
+  type ClientRelationship,
+  type FitCheckStatus,
   type QuoteInput,
+  type QuoteRates,
 } from "@/lib/quote/calculateQuote";
 import {
   formatCents,
   parseDollarsToCents,
-  parsePercent,
+  parseSignedDollarsToCents,
 } from "@/lib/quote/money";
 import { cn } from "@/lib/utils";
 
+const BOARDING_CATEGORY_CHOICES: BoardingCategory[] = [
+  "standard",
+  "puppy",
+  "holiday",
+  "extended-stay",
+];
+
 const DEFAULT_TIME = "15:00";
-const QUICK_DOG_COUNTS = [1, 2, 3, 4] as const;
 
 const EMPTY_STAY = {
   dropoffDate: "",
@@ -58,7 +72,66 @@ function subscribeToStay() {
 }
 
 function fieldClassName() {
-  return "min-h-14 w-full rounded-xl border border-input-border bg-soft-cream px-4 text-base font-medium text-bark tabular-nums focus:border-wag-sage focus:outline-none";
+  return "min-h-14 w-full rounded-xl border border-input-border bg-soft-cream px-4 text-base font-medium text-bark focus:border-wag-sage focus:outline-none";
+}
+
+function centsToInput(cents: number): string {
+  const negative = cents < 0;
+  const absolute = Math.abs(cents);
+  const dollars = Math.floor(absolute / 100);
+  const remainder = absolute % 100;
+  const body =
+    remainder === 0
+      ? String(dollars)
+      : `${dollars}.${String(remainder).padStart(2, "0")}`;
+  return `${negative ? "-" : ""}${body}`;
+}
+
+function parseRate(raw: string, fallback: number): number {
+  return parseDollarsToCents(raw) ?? fallback;
+}
+
+function QuantityStepper({
+  label,
+  value,
+  min,
+  max,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <p className="text-sm font-medium text-serif-ink">{label}</p>
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => onChange(Math.max(min, value - 1))}
+          disabled={value <= min}
+          className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cream ring-1 ring-inset ring-border disabled:opacity-40"
+          aria-label={`Fewer ${label}`}
+        >
+          <Minus className="h-5 w-5" />
+        </button>
+        <p className="w-8 text-center font-display text-2xl font-semibold tabular-nums text-serif-ink">
+          {value}
+        </p>
+        <button
+          type="button"
+          onClick={() => onChange(Math.min(max, value + 1))}
+          disabled={value >= max}
+          className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cream ring-1 ring-inset ring-border disabled:opacity-40"
+          aria-label={`More ${label}`}
+        >
+          <Plus className="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export function QuoteCalculator() {
@@ -67,14 +140,51 @@ export function QuoteCalculator() {
     getClientStay,
     getServerStay,
   );
-  const [dogCount, setDogCount] = useState(1);
+  const [firstDogCount, setFirstDogCount] = useState(1);
+  const [sharedAdditionalCount, setSharedAdditionalCount] = useState(0);
+  const [separateCareCount, setSeparateCareCount] = useState(0);
   const [dropoffDate, setDropoffDate] = useState<string | null>(null);
   const [dropoffTime, setDropoffTime] = useState<string | null>(null);
   const [pickupDate, setPickupDate] = useState<string | null>(null);
   const [pickupTime, setPickupTime] = useState<string | null>(null);
-  const [transportation, setTransportation] = useState("0");
-  const [firstDogRate, setFirstDogRate] = useState("47");
-  const [additionalPercent, setAdditionalPercent] = useState("50");
+  const [boardingCategory, setBoardingCategory] =
+    useState<BoardingCategory>("standard");
+  const [bathCount, setBathCount] = useState(0);
+  const [transportation, setTransportation] = useState(
+    centsToInput(DEFAULT_TRANSPORTATION_CENTS),
+  );
+  const [clientRelationship, setClientRelationship] =
+    useState<ClientRelationship>("new");
+  const [fitCheckStatus, setFitCheckStatus] = useState<FitCheckStatus>(
+    "required-before-booking",
+  );
+  const [adjustment, setAdjustment] = useState("0");
+  const [adjustmentReason, setAdjustmentReason] = useState("");
+  const [internalNotes, setInternalNotes] = useState("");
+  const [standardFirstDog, setStandardFirstDog] = useState(
+    centsToInput(DEFAULT_QUOTE_RATES.standardFirstDogCents),
+  );
+  const [puppyFirstDog, setPuppyFirstDog] = useState(
+    centsToInput(DEFAULT_QUOTE_RATES.puppyFirstDogCents),
+  );
+  const [holidayFirstDog, setHolidayFirstDog] = useState(
+    centsToInput(DEFAULT_QUOTE_RATES.holidayFirstDogCents),
+  );
+  const [extendedStayFirstDog, setExtendedStayFirstDog] = useState(
+    centsToInput(DEFAULT_QUOTE_RATES.extendedStayFirstDogCents),
+  );
+  const [sharedAdditionalRate, setSharedAdditionalRate] = useState(
+    centsToInput(DEFAULT_QUOTE_RATES.sharedAdditionalCents),
+  );
+  const [separateCareRate, setSeparateCareRate] = useState(
+    centsToInput(DEFAULT_QUOTE_RATES.separateCareAdditionalCents),
+  );
+  const [extendedStaySharedRate, setExtendedStaySharedRate] = useState(
+    centsToInput(DEFAULT_QUOTE_RATES.extendedStaySharedAdditionalCents),
+  );
+  const [bathRate, setBathRate] = useState(
+    centsToInput(DEFAULT_QUOTE_RATES.bathCents),
+  );
   const [copied, setCopied] = useState(false);
 
   const resolvedDropoffDate = dropoffDate ?? fallbackStay.dropoffDate;
@@ -89,40 +199,86 @@ export function QuoteCalculator() {
     };
   }, []);
 
-  const firstDogNightlyCents =
-    parseDollarsToCents(firstDogRate) ?? DEFAULT_FIRST_DOG_NIGHTLY_CENTS;
-  const additionalDogPercent =
-    parsePercent(additionalPercent) ?? DEFAULT_ADDITIONAL_DOG_PERCENT;
-  const transportationCents = parseDollarsToCents(transportation) ?? 0;
+  const rates: QuoteRates = {
+    standardFirstDogCents: parseRate(
+      standardFirstDog,
+      DEFAULT_QUOTE_RATES.standardFirstDogCents,
+    ),
+    puppyFirstDogCents: parseRate(
+      puppyFirstDog,
+      DEFAULT_QUOTE_RATES.puppyFirstDogCents,
+    ),
+    holidayFirstDogCents: parseRate(
+      holidayFirstDog,
+      DEFAULT_QUOTE_RATES.holidayFirstDogCents,
+    ),
+    extendedStayFirstDogCents: parseRate(
+      extendedStayFirstDog,
+      DEFAULT_QUOTE_RATES.extendedStayFirstDogCents,
+    ),
+    sharedAdditionalCents: parseRate(
+      sharedAdditionalRate,
+      DEFAULT_QUOTE_RATES.sharedAdditionalCents,
+    ),
+    separateCareAdditionalCents: parseRate(
+      separateCareRate,
+      DEFAULT_QUOTE_RATES.separateCareAdditionalCents,
+    ),
+    extendedStaySharedAdditionalCents: parseRate(
+      extendedStaySharedRate,
+      DEFAULT_QUOTE_RATES.extendedStaySharedAdditionalCents,
+    ),
+    bathCents: parseRate(bathRate, DEFAULT_QUOTE_RATES.bathCents),
+  };
+
+  const nightsPreview = calendarNights(
+    resolvedDropoffDate,
+    resolvedPickupDate,
+  );
+  const extendedStayEligible =
+    nightsPreview !== null && nightsPreview >= EXTENDED_STAY_MIN_NIGHTS;
 
   const input: QuoteInput = {
-    dogCount,
+    ...rates,
+    boardingCategory,
+    firstDogCount,
+    sharedAdditionalCount,
+    separateCareCount,
     dropoffDate: resolvedDropoffDate,
     dropoffTime: resolvedDropoffTime,
     pickupDate: resolvedPickupDate,
     pickupTime: resolvedPickupTime,
-    transportationCents,
-    firstDogNightlyCents,
-    additionalDogPercent,
+    transportationCents: parseDollarsToCents(transportation) ?? 0,
+    bathCount,
+    adjustmentCents: parseSignedDollarsToCents(adjustment) ?? 0,
+    adjustmentReason,
+    internalNotes,
+    clientRelationship,
+    fitCheckStatus,
   };
 
   const result = calculateQuote(input);
+  const dogCount =
+    firstDogCount + sharedAdditionalCount + separateCareCount;
 
   function resetQuote() {
     const stay = defaultStay();
-    setDogCount(1);
+    setFirstDogCount(1);
+    setSharedAdditionalCount(0);
+    setSeparateCareCount(0);
     setDropoffDate(stay.dropoffDate);
     setDropoffTime(stay.dropoffTime);
     setPickupDate(stay.pickupDate);
     setPickupTime(stay.pickupTime);
-    setTransportation("0");
+    setBoardingCategory("standard");
+    setBathCount(0);
+    setTransportation(centsToInput(DEFAULT_TRANSPORTATION_CENTS));
+    setClientRelationship("new");
+    setFitCheckStatus("required-before-booking");
+    setAdjustment("0");
+    setAdjustmentReason("");
+    setInternalNotes("");
     setCopied(false);
-  }
-
-  function bumpDogs(delta: number) {
-    setDogCount((current) =>
-      Math.min(MAX_DOGS, Math.max(MIN_DOGS, current + delta)),
-    );
   }
 
   async function copyScript(text: string) {
@@ -135,11 +291,8 @@ export function QuoteCalculator() {
     }
   }
 
-  const additionalNightly = nightlyRateCents(2, {
-    firstDogNightlyCents,
-    additionalDogPercent,
-  });
   const script = result.ok ? buildQuoteScript(result) : "";
+  const remainingAdditional = Math.max(0, MAX_DOGS - firstDogCount);
 
   return (
     <div className="mx-auto w-full max-w-md px-4 pt-5 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
@@ -149,7 +302,7 @@ export function QuoteCalculator() {
           🐾 KWW Quick Quote
         </h1>
         <p className="mt-1.5 text-[15px] leading-snug text-body-muted">
-          Fast boarding quotes while you&apos;re talking to a dog parent.
+          Fast boarding estimates while you&apos;re talking to a dog parent.
         </p>
       </header>
 
@@ -161,7 +314,7 @@ export function QuoteCalculator() {
           <div className="flex items-end justify-between gap-3">
             <div>
               <p className="text-[11px] font-medium tracking-[0.18em] text-label-muted uppercase">
-                Customer total
+                Estimated total
               </p>
               <p className="font-display text-[2.35rem] leading-none font-semibold text-serif-ink tabular-nums">
                 {formatCents(result.totalCents)}
@@ -180,50 +333,114 @@ export function QuoteCalculator() {
         )}
       </section>
 
+      <section className="mb-5 grid gap-3">
+        <label className="block text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
+          Client relationship
+          <select
+            value={clientRelationship}
+            onChange={(event) =>
+              setClientRelationship(event.target.value as ClientRelationship)
+            }
+            className={cn(fieldClassName(), "mt-2")}
+          >
+            {CLIENT_RELATIONSHIP_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="block text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
+          Meet &amp; Greet / Fit Check Status
+          <select
+            value={fitCheckStatus}
+            onChange={(event) =>
+              setFitCheckStatus(event.target.value as FitCheckStatus)
+            }
+            className={cn(fieldClassName(), "mt-2")}
+          >
+            {FIT_CHECK_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </section>
+
       <section className="mb-5">
         <p className="mb-2 text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
+          First-dog boarding rate
+        </p>
+        <div className="grid grid-cols-2 gap-2">
+          {BOARDING_CATEGORY_CHOICES.map((category) => {
+            const disabled =
+              category === "extended-stay" && !extendedStayEligible;
+            return (
+              <button
+                key={category}
+                type="button"
+                disabled={disabled}
+                onClick={() => setBoardingCategory(category)}
+                className={cn(
+                  "min-h-12 touch-manipulation rounded-xl px-3 text-sm font-medium",
+                  boardingCategory === category
+                    ? "bg-wag-sage text-cream"
+                    : "bg-soft-cream text-bark ring-1 ring-inset ring-border",
+                  disabled && "opacity-40",
+                )}
+              >
+                {BOARDING_CATEGORY_LABELS[category]}
+              </button>
+            );
+          })}
+        </div>
+        {extendedStayEligible ? (
+          <p className="mt-2 rounded-xl bg-sage-100 px-3 py-2 text-sm font-medium text-sage-800">
+            Extended Stay Eligible — {nightsPreview} nights. Select Extended
+            stay to use that rate. It does not stack with Puppy or Holiday.
+          </p>
+        ) : (
+          <p className="mt-2 text-xs text-body-muted">
+            Extended stay is available at 14 nights or more.
+          </p>
+        )}
+      </section>
+
+      <section className="mb-5 space-y-4 rounded-2xl bg-soft-cream p-4 ring-1 ring-inset ring-border">
+        <p className="text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
           Dogs
         </p>
-        <div className="grid grid-cols-4 gap-2">
-          {QUICK_DOG_COUNTS.map((count) => (
-            <button
-              key={count}
-              type="button"
-              onClick={() => setDogCount(count)}
-              className={cn(
-                "min-h-14 touch-manipulation rounded-xl text-xl font-semibold tabular-nums",
-                dogCount === count
-                  ? "bg-wag-sage text-cream"
-                  : "bg-soft-cream text-bark ring-1 ring-inset ring-border",
-              )}
-            >
-              {count}
-            </button>
-          ))}
-        </div>
-        <div className="mt-3 flex items-center justify-between gap-3">
-          <button
-            type="button"
-            onClick={() => bumpDogs(-1)}
-            disabled={dogCount <= MIN_DOGS}
-            className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-soft-cream ring-1 ring-inset ring-border disabled:opacity-40"
-            aria-label="Fewer dogs"
-          >
-            <Minus className="h-6 w-6" />
-          </button>
-          <p className="font-display text-3xl font-semibold tabular-nums text-serif-ink">
-            {dogCount}
-          </p>
-          <button
-            type="button"
-            onClick={() => bumpDogs(1)}
-            disabled={dogCount >= MAX_DOGS}
-            className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-soft-cream ring-1 ring-inset ring-border disabled:opacity-40"
-            aria-label="More dogs"
-          >
-            <Plus className="h-6 w-6" />
-          </button>
-        </div>
+        <QuantityStepper
+          label="Primary dog"
+          value={firstDogCount}
+          min={0}
+          max={1}
+          onChange={setFirstDogCount}
+        />
+        <QuantityStepper
+          label="Additional — shared household"
+          value={sharedAdditionalCount}
+          min={0}
+          max={Math.max(0, remainingAdditional - separateCareCount)}
+          onChange={setSharedAdditionalCount}
+        />
+        <QuantityStepper
+          label="Additional — separate care"
+          value={separateCareCount}
+          min={0}
+          max={Math.max(0, remainingAdditional - sharedAdditionalCount)}
+          onChange={setSeparateCareCount}
+        />
+        <p className="text-sm leading-relaxed text-body-muted">
+          Use shared-household pricing only when the dogs can safely share the
+          normal care routine. Use separate-care pricing when a dog needs
+          individual feeding, sleep arrangements, activity rotation, behavioral
+          support, or extra management.
+        </p>
+        <p className="text-sm text-serif-ink">
+          {dogCount} {dogCount === 1 ? "dog" : "dogs"} total
+        </p>
       </section>
 
       <section className="mb-5 space-y-3">
@@ -238,7 +455,7 @@ export function QuoteCalculator() {
                 type="date"
                 value={resolvedDropoffDate}
                 onChange={(event) => setDropoffDate(event.target.value)}
-                className={cn(fieldClassName(), "mt-1")}
+                className={cn(fieldClassName(), "mt-1 tabular-nums")}
               />
             </label>
             <label className="block text-xs text-body-muted">
@@ -247,7 +464,7 @@ export function QuoteCalculator() {
                 type="time"
                 value={resolvedDropoffTime}
                 onChange={(event) => setDropoffTime(event.target.value)}
-                className={cn(fieldClassName(), "mt-1")}
+                className={cn(fieldClassName(), "mt-1 tabular-nums")}
               />
             </label>
           </div>
@@ -263,7 +480,7 @@ export function QuoteCalculator() {
                 type="date"
                 value={resolvedPickupDate}
                 onChange={(event) => setPickupDate(event.target.value)}
-                className={cn(fieldClassName(), "mt-1")}
+                className={cn(fieldClassName(), "mt-1 tabular-nums")}
               />
             </label>
             <label className="block text-xs text-body-muted">
@@ -272,7 +489,7 @@ export function QuoteCalculator() {
                 type="time"
                 value={resolvedPickupTime}
                 onChange={(event) => setPickupTime(event.target.value)}
-                className={cn(fieldClassName(), "mt-1")}
+                className={cn(fieldClassName(), "mt-1 tabular-nums")}
               />
             </label>
           </div>
@@ -299,7 +516,35 @@ export function QuoteCalculator() {
         </section>
       ) : null}
 
-      <section className="mb-5 rounded-2xl bg-soft-cream p-4 ring-1 ring-inset ring-border">
+      {result.ok ? (
+        <section
+          className={cn(
+            "mb-5 rounded-2xl px-4 py-3 ring-1 ring-inset",
+            result.bookingStatus.tone === "estimate" &&
+              "bg-[#f4ebe4] text-serif-ink ring-[#e0d0c3]",
+            result.bookingStatus.tone === "ready" &&
+              "bg-sage-100 text-sage-800 ring-sage-200",
+            result.bookingStatus.tone === "rover" &&
+              "bg-brazos-blue/25 text-serif-ink ring-brazos-blue/50",
+          )}
+        >
+          <p className="font-display text-lg font-semibold">
+            {result.bookingStatus.title}
+          </p>
+          <p className="mt-1 text-sm leading-relaxed">
+            {result.bookingStatus.detail}
+          </p>
+        </section>
+      ) : null}
+
+      <section className="mb-5 space-y-4 rounded-2xl bg-soft-cream p-4 ring-1 ring-inset ring-border">
+        <QuantityStepper
+          label="Baths"
+          value={bathCount}
+          min={0}
+          max={MAX_BATHS}
+          onChange={setBathCount}
+        />
         <label className="block text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
           Pickup / Drop-off Transportation
           <input
@@ -307,12 +552,13 @@ export function QuoteCalculator() {
             inputMode="decimal"
             value={transportation}
             onChange={(event) => setTransportation(event.target.value)}
-            className={cn(fieldClassName(), "mt-2")}
+            className={cn(fieldClassName(), "mt-2 tabular-nums")}
             aria-describedby="transport-help"
           />
         </label>
-        <p id="transport-help" className="mt-2 text-xs text-body-muted">
-          Optional flat charge. Leave at $0 if they are bringing the dogs.
+        <p id="transport-help" className="text-xs text-body-muted">
+          Default is $40 per round trip. Set to $0 if they are bringing the
+          dogs.
         </p>
       </section>
 
@@ -324,35 +570,87 @@ export function QuoteCalculator() {
           </span>
         </summary>
         <div className="space-y-3 px-4 pb-4">
-          <label className="block text-xs text-body-muted">
-            First dog rate (per night)
-            <input
-              type="text"
-              inputMode="decimal"
-              value={firstDogRate}
-              onChange={(event) => setFirstDogRate(event.target.value)}
-              className={cn(fieldClassName(), "mt-1")}
-            />
-          </label>
-          <label className="block text-xs text-body-muted">
-            Additional dog rate
-            <div className="mt-1 flex items-center gap-2">
-              <input
-                type="text"
-                inputMode="decimal"
-                value={additionalPercent}
-                onChange={(event) => setAdditionalPercent(event.target.value)}
-                className={cn(fieldClassName(), "flex-1")}
-                aria-label="Additional dog rate percent of first dog"
-              />
-              <span className="text-sm font-medium text-bark">%</span>
-            </div>
-          </label>
-          <p className="text-sm text-body-muted">
-            Additional dogs: {formatCents(additionalNightly)} / night
-          </p>
+          <RateField
+            label="Standard boarding, first dog"
+            value={standardFirstDog}
+            onChange={setStandardFirstDog}
+          />
+          <RateField
+            label="Puppy boarding, first dog"
+            value={puppyFirstDog}
+            onChange={setPuppyFirstDog}
+          />
+          <RateField
+            label="Holiday boarding, first dog"
+            value={holidayFirstDog}
+            onChange={setHolidayFirstDog}
+          />
+          <RateField
+            label="Extended stay, first dog (14+ nights)"
+            value={extendedStayFirstDog}
+            onChange={setExtendedStayFirstDog}
+          />
+          <RateField
+            label="Additional dog, shared household"
+            value={sharedAdditionalRate}
+            onChange={setSharedAdditionalRate}
+          />
+          <RateField
+            label="Additional dog, separate care"
+            value={separateCareRate}
+            onChange={setSeparateCareRate}
+          />
+          <RateField
+            label="Extended stay additional, shared household"
+            value={extendedStaySharedRate}
+            onChange={setExtendedStaySharedRate}
+          />
+          <RateField
+            label="Bath"
+            value={bathRate}
+            onChange={setBathRate}
+          />
         </div>
       </details>
+
+      <section className="mb-5 space-y-3 rounded-2xl bg-soft-cream p-4 ring-1 ring-inset ring-border">
+        <p className="text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
+          Client Adjustment (optional)
+        </p>
+        <p className="text-sm text-body-muted">
+          Internal only. Use for legacy, Friends &amp; Family, referral, or
+          client-specific quotes. This is not a public discount list.
+        </p>
+        <label className="block text-xs text-body-muted">
+          Adjustment amount
+          <input
+            type="text"
+            inputMode="decimal"
+            value={adjustment}
+            onChange={(event) => setAdjustment(event.target.value)}
+            className={cn(fieldClassName(), "mt-1 tabular-nums")}
+          />
+        </label>
+        <label className="block text-xs text-body-muted">
+          Adjustment reason
+          <input
+            type="text"
+            value={adjustmentReason}
+            onChange={(event) => setAdjustmentReason(event.target.value)}
+            className={cn(fieldClassName(), "mt-1")}
+            placeholder="Required when the amount is not $0"
+          />
+        </label>
+        <label className="block text-xs text-body-muted">
+          Internal notes
+          <textarea
+            value={internalNotes}
+            onChange={(event) => setInternalNotes(event.target.value)}
+            className={cn(fieldClassName(), "mt-1 min-h-24 py-3")}
+            rows={3}
+          />
+        </label>
+      </section>
 
       {result.ok ? (
         <section className="mb-5 rounded-2xl bg-soft-cream p-4 ring-1 ring-inset ring-border">
@@ -361,16 +659,52 @@ export function QuoteCalculator() {
           </p>
           <dl className="mt-3 space-y-2 text-[15px]">
             <div className="flex justify-between gap-3">
-              <dt>Boarding</dt>
+              <dt>Nights</dt>
+              <dd className="font-medium tabular-nums">{result.nights}</dd>
+            </div>
+            <div className="flex justify-between gap-3">
+              <dt>Boarding category</dt>
+              <dd className="font-medium">{result.boardingCategoryLabel}</dd>
+            </div>
+            {result.groups.map((group) => (
+              <div key={group.key} className="border-t border-border/70 pt-2">
+                <div className="flex justify-between gap-3">
+                  <dt>{group.label}</dt>
+                  <dd className="font-medium tabular-nums">
+                    {formatCents(group.boardingCents)}
+                  </dd>
+                </div>
+                <p className="text-sm tabular-nums text-body-muted">
+                  {group.count > 1 ? `${group.count} × ` : ""}
+                  {formatCents(group.nightlyCents)} × {group.nights}{" "}
+                  {group.nights === 1 ? "night" : "nights"}
+                </p>
+              </div>
+            ))}
+            <div className="flex justify-between gap-3 border-t border-border pt-2">
+              <dt>Boarding subtotal</dt>
               <dd className="font-medium tabular-nums">
                 {formatCents(result.boardingCents)}
               </dd>
             </div>
             {result.extendedCareCents > 0 ? (
               <div className="flex justify-between gap-3">
-                <dt>Extended Care</dt>
+                <dt>
+                  Extended Care (
+                  {result.pickupStatus === "late" ? "50%" : "100%"})
+                </dt>
                 <dd className="font-medium tabular-nums">
                   {formatCents(result.extendedCareCents)}
+                </dd>
+              </div>
+            ) : null}
+            {result.bathCents > 0 ? (
+              <div className="flex justify-between gap-3">
+                <dt>
+                  Baths ({result.bathCount} × {formatCents(rates.bathCents)})
+                </dt>
+                <dd className="font-medium tabular-nums">
+                  {formatCents(result.bathCents)}
                 </dd>
               </div>
             ) : null}
@@ -382,29 +716,31 @@ export function QuoteCalculator() {
                 </dd>
               </div>
             ) : null}
+            {result.adjustmentCents !== 0 ? (
+              <div>
+                <div className="flex justify-between gap-3">
+                  <dt>Client adjustment</dt>
+                  <dd className="font-medium tabular-nums">
+                    {formatCents(result.adjustmentCents)}
+                  </dd>
+                </div>
+                {result.adjustmentReason ? (
+                  <p className="text-sm text-body-muted">
+                    {result.adjustmentReason}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
             <div className="flex justify-between gap-3 border-t border-border pt-2 font-semibold">
-              <dt>Total</dt>
+              <dt>Estimated total</dt>
               <dd className="tabular-nums">{formatCents(result.totalCents)}</dd>
             </div>
           </dl>
-
-          <ul className="mt-4 space-y-3 border-t border-border pt-4">
-            {result.dogs.map((dog) => (
-              <li key={dog.dogNumber} className="text-[15px]">
-                <p className="font-medium text-serif-ink">Dog {dog.dogNumber}</p>
-                <p className="tabular-nums text-body-muted">
-                  {formatCents(dog.nightlyCents)} × {dog.nights}{" "}
-                  {dog.nights === 1 ? "night" : "nights"} ={" "}
-                  {formatCents(dog.boardingCents)}
-                </p>
-                {dog.extendedCareCents > 0 ? (
-                  <p className="tabular-nums text-body-muted">
-                    Extended Care: {formatCents(dog.extendedCareCents)}
-                  </p>
-                ) : null}
-              </li>
-            ))}
-          </ul>
+          {result.internalNotes ? (
+            <p className="mt-4 border-t border-border pt-3 text-sm text-body-muted">
+              Internal notes: {result.internalNotes}
+            </p>
+          ) : null}
         </section>
       ) : null}
 
@@ -434,5 +770,28 @@ export function QuoteCalculator() {
         New Quote
       </button>
     </div>
+  );
+}
+
+function RateField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <label className="block text-xs text-body-muted">
+      {label}
+      <input
+        type="text"
+        inputMode="decimal"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className={cn(fieldClassName(), "mt-1 tabular-nums")}
+      />
+    </label>
   );
 }
