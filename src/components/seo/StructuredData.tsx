@@ -26,7 +26,7 @@ function serviceName(config: ServicePageConfig): string {
     return "Dog of Honor wedding pet care";
   }
   if (config.slug === "summer-daycare" || config.slug === "camp-waco") {
-    return "Camp Clayton themed doggie daycare in Waco";
+    return "Camp Clayton themed doggie daycare in China Spring serving the Waco area";
   }
   return config.hero.eyebrow;
 }

@@ -53,6 +53,7 @@ const SITEMAP_EXCLUDED_PATHS = [
   "/pets",
   "/brand",
   "/admin",
+  "/quote",
 ] as const;
 
 function parseDate(value?: string): Date | undefined {

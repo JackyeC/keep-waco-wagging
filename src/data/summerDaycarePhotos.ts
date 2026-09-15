@@ -1,78 +1,130 @@
-import type { DaycareMonth } from "@/data/summerDaycare";
-import { sitePhotos } from "@/data/sitePhotos";
-import { ctas } from "@/lib/site";
-
-export type DaycarePhoto = {
-  src: string;
-  alt: string;
-};
-
-/** Month banner images where we have strong real-photo coverage. */
-export const daycareMonthPhotos: Partial<Record<DaycareMonth, DaycarePhoto>> = {
-  June: sitePhotos.summerMonths.june,
-  July: sitePhotos.summerMonths.july,
-  August: sitePhotos.summerMonths.august,
-};
+import type { CampClaytonPhoto, DaycareTheme } from "@/data/summerDaycare";
 
 /**
- * Per-week photos pulled from the site library — matches themes where possible.
- * Weeks without a strong real-photo match intentionally render as text-first cards.
+ * Camp Clayton photo library.
+ *
+ * Theme galleries live on each calendar entry (`theme.photos`).
+ * Do not attach a photo to a week unless it is a verified photo from that theme.
+ * Do not use Yappy Hour, event, or unrelated stock photos as Camp Clayton proof.
  */
-export const daycareThemePhotos: Record<number, DaycarePhoto> = {
-  1: sitePhotos.summerCamp,
-  2: {
-    src: "/pictures/library/boarding-backyard-img-5285.webp",
-    alt: "Dogs lounging in a shaded backyard during a sniff-and-snack camp week",
-  },
-  3: sitePhotos.training,
-  4: {
-    src: "/pictures/library/freddie-img-4786.webp",
-    alt: "Dog paddling in a shallow splash pool during Beach Bums week",
-  },
-  5: sitePhotos.boardingDogs,
-  6: {
-    src: "/pictures/library/img-4814.webp",
-    alt: "Dog enjoying a festive treat during Christmas in July camp week",
-  },
-  7: sitePhotos.yappyHoursCard,
-  8: {
-    src: "/pictures/library/training-stella-puzzlw.webp",
-    alt: "Dog working a sniff-and-seek enrichment puzzle indoors",
-  },
-  9: sitePhotos.boardingHome,
-  10: {
-    src: "/pictures/library/freddie-img-4910.webp",
-    alt: "Happy dog ready for a mini photo session during Hollywoof week",
-  },
-  11: sitePhotos.hero,
-  12: {
-    src: "/pictures/library/hero-stella-diesel-walkies.webp",
-    alt: "Dogs practicing leash manners on a summer walk in Waco",
-  },
-  13: sitePhotos.yappyHours,
+
+const camp = "/pictures/camp-clayton";
+
+export const campClaytonHeroPhoto: CampClaytonPhoto = {
+  src: "/pictures/summer-camp-hero.webp",
+  alt: "A dog cooling off in the backyard splash pool at Camp Clayton in China Spring, serving dog families across the Waco area",
+  objectPosition: "center 28%",
 };
 
-/** Quick links for families who want more photos, care details, or booking. */
-export const summerPhotoExploreLinks = [
+/** Four-photo Life at Camp Clayton collage — home daycare, not events. */
+export const campClaytonLifePhotos: [
+  CampClaytonPhoto & { label: string },
+  CampClaytonPhoto & { label: string },
+  CampClaytonPhoto & { label: string },
+  CampClaytonPhoto & { label: string },
+] = [
   {
-    label: "Meet the dogs on the Wagging Wall",
-    href: "/pets",
-    description: "More real Waco pups from our scooping and daycare families.",
+    label: "Supervised play",
+    src: "/pictures/pool-pack.webp",
+    alt: "Dogs playing together around the backyard splash pool at Camp Clayton",
+    objectPosition: "18% 58%",
   },
   {
-    label: "Boarding & daycare details",
-    href: "/pet-care",
-    description: "Home routines, services, and what a typical day looks like.",
+    label: "One-on-one affection",
+    src: `${camp}/life-couch-jackye.webp`,
+    alt: "Jackye on the couch with three dogs during rest and cuddle time at Camp Clayton",
+    objectPosition: "center 42%",
   },
   {
-    label: "Yappy Hours & meetups",
-    href: "/yappy-hours",
-    description: "Backyard socials and dog-friendly patio hangs around Waco.",
+    label: "Puzzles and Kongs",
+    src: "/pictures/training-enrichment.webp",
+    alt: "A dog working a puzzle feeder during enrichment time at Camp Clayton",
+    objectPosition: "right center",
   },
   {
-    label: "Book a Day at Camp Clayton on Rover",
-    href: ctas.bookPetCare.href,
-    description: "Check open dates and request your dog's spot.",
-    external: ctas.bookPetCare.href.startsWith("http"),
+    label: "Calm rest",
+    src: `${camp}/life-group-rest.webp`,
+    alt: "Dogs resting together on the tile and turf during a quiet break at Camp Clayton",
+    objectPosition: "center 60%",
   },
-] as const;
+];
+
+export const campClaytonThemePhotos = {
+  "Back-to-School Manners Camp": [
+    {
+      src: `${camp}/school-crayon-bandanas-couch.webp`,
+      alt: "Two dogs on the couch wearing crayon-striped bandanas at Camp Clayton",
+      objectPosition: "center 32%",
+    },
+    {
+      src: `${camp}/school-crayon-bandana-close.webp`,
+      alt: "A dog wearing a yellow crayon-striped bandana at Camp Clayton",
+      objectPosition: "center 28%",
+    },
+    {
+      src: `${camp}/school-crayon-bandana-yard.webp`,
+      alt: "A dog in a yellow crayon-striped bandana resting in the yard with a tennis ball",
+      objectPosition: "center 40%",
+    },
+    {
+      src: `${camp}/school-first-day-chalkboard.webp`,
+      // Board is dated 8/14/26 (Wag-a-thon week) but the crayon bandana and
+      // first-day school board match Back-to-School; keep it here until confirmed.
+      alt: "A dog in a red crayon-striped bandana beside a First Day of Wagging Class chalkboard",
+      objectPosition: "center 40%",
+    },
+  ],
+  "Luau Week": [
+    {
+      src: `${camp}/luau-two-dogs-beach.webp`,
+      alt: "Two dogs in tropical leis and luau headbands at Camp Clayton",
+      objectPosition: "center 42%",
+    },
+    {
+      src: `${camp}/luau-black-lab-lei.webp`,
+      alt: "A black dog wearing a lei, flowers, and a flamingo headband for Luau Week",
+      objectPosition: "center 28%",
+    },
+    {
+      src: `${camp}/luau-tan-dog-palms.webp`,
+      alt: "A tan and white dog wearing a lei and palm-tree headband for Luau Week",
+      objectPosition: "center 30%",
+    },
+    {
+      src: `${camp}/luau-doodle-flamingo.webp`,
+      alt: "A black doodle in a lei and flamingo headband against a beach backdrop",
+      objectPosition: "center 55%",
+    },
+    {
+      src: `${camp}/luau-pineapple-glasses.webp`,
+      alt: "A small dog in a tropical bandana and pineapple headband for Luau Week",
+      objectPosition: "center 32%",
+    },
+    {
+      src: `${camp}/luau-polka-lei.webp`,
+      alt: "A tan and white dog wearing a lei and red polka-dot luau outfit",
+      objectPosition: "center 28%",
+    },
+    {
+      src: `${camp}/luau-hawaiian-shirt.webp`,
+      alt: "A dog being dressed in a Hawaiian shirt during Luau Week at Camp Clayton",
+      objectPosition: "center 62%",
+    },
+  ],
+  "Tailgate Week": [
+    {
+      src: `${camp}/tailgate-football-booth.webp`,
+      alt: "Two dogs in front of a football stadium photo backdrop during Tailgate Week at Camp Clayton",
+      objectPosition: "center 38%",
+    },
+  ],
+} as const satisfies Record<string, CampClaytonPhoto[]>;
+
+export function getThemeGallery(theme: DaycareTheme): CampClaytonPhoto[] {
+  if (theme.photos && theme.photos.length > 0) return theme.photos;
+  const named =
+    campClaytonThemePhotos[
+      theme.name as keyof typeof campClaytonThemePhotos
+    ];
+  return named ? [...named] : [];
+}

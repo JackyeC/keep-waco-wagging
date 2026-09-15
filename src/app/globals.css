@@ -254,6 +254,13 @@
     border-bottom: 1px solid var(--color-border);
   }
 
+  /* Internal /quote calculator: hide marketing chrome so it feels like a phone app. */
+  body[data-kww-tool="quote"] .site-header,
+  body[data-kww-tool="quote"] .site-announcement,
+  body[data-kww-tool="quote"] .site-footer {
+    display: none;
+  }
+
   .marquee-track {
     display: inline-flex;
     white-space: nowrap;

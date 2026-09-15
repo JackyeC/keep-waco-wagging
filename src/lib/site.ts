@@ -44,6 +44,9 @@ export const brandLanguage = {
 
 export const cityConfig = {
   city: "Waco",
+  homeCity: "China Spring",
+  homeZip: "76633",
+  legalEntity: "Keep Waco Wagging by Platinum Scoops LLC",
   state: "Texas",
   stateAbbr: "TX",
   county: "McLennan County",

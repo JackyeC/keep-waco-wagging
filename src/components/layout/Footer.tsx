@@ -29,7 +29,7 @@ export function Footer() {
   const instagram = socialLinksConfig.links.find((l) => l.id === "instagram");
 
   return (
-    <footer className="mx-auto max-w-[1200px] px-6 pt-16 pb-10">
+    <footer className="site-footer mx-auto max-w-[1200px] px-6 pt-16 pb-10">
       <div className="flex flex-wrap items-start justify-between gap-10 border-t border-border pt-10">
         <div className="max-w-[300px]">
           <BrandWordmark size="sm" />
@@ -149,7 +149,8 @@ export function Footer() {
       </div>
 
       <p className="mt-10 text-xs font-light tracking-wide text-label-muted">
-        © {year} {cityConfig.name} · {cityConfig.city}, {cityConfig.state}
+        © {year} {cityConfig.legalEntity} · {cityConfig.homeCity},{" "}
+        {cityConfig.stateAbbr} {cityConfig.homeZip}
         {" · "}
         <Link href="/privacy" className="hover:text-rose">
           Privacy

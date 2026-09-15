@@ -1,11 +1,20 @@
 import { cityConfig } from "@/lib/site";
 import { getRoverDaycareStandardRate } from "@/data/rover";
+import { campClaytonThemePhotos } from "@/data/summerDaycarePhotos";
 
 // Camp Clayton themed daycare calendar for Keep Waco Wagging.
 // Booking always happens through Rover. Keep this file as the single source of truth
 // for the public calendar, homepage preview, and daycare-page preview.
+//
+// Do not invent themes. Do not copy photos onto a week unless they are
+// verified Camp Clayton photos from that theme.
 
 export type DaycareMonth =
+  | "January"
+  | "February"
+  | "March"
+  | "April"
+  | "May"
   | "June"
   | "July"
   | "August"
@@ -13,6 +22,13 @@ export type DaycareMonth =
   | "October"
   | "November"
   | "December";
+
+export type CampClaytonPhoto = {
+  src: string;
+  alt: string;
+  /** Keep dog faces in frame when the image is cropped. */
+  objectPosition?: string;
+};
 
 export type DaycareTheme = {
   week: number;
@@ -26,6 +42,20 @@ export type DaycareTheme = {
   blurb: string;
   activities: string[];
   note?: string;
+  /** Verified photos from this specific theme. Empty until real photos are attached. */
+  photos?: CampClaytonPhoto[];
+  /**
+   * Hide this week in Past Camp Adventures until real photos are ready.
+   * Defaults to hidden when `photos` is empty.
+   */
+  hideInArchive?: boolean;
+};
+
+export type CampClaytonYearCalendar = {
+  year: number;
+  /** False until that year's themes have been supplied and approved. */
+  approved: boolean;
+  themes: DaycareTheme[];
 };
 
 const daycareRate = getRoverDaycareStandardRate();
@@ -36,21 +66,26 @@ export const campClayton = {
   title: "Camp Clayton",
   descriptor: "Themed doggie daycare by Keep Waco Wagging",
   intro:
-    "Weekly themed daycare with supervised play, enrichment, and real rest in our Waco home. Each week brings a new reason to come play — from splash days and tailgates to holiday photo weeks — while the care routine stays calm, small-group, and familiar.",
+    "Camp Clayton is our small-group, home-based doggie daycare in our China Spring home, serving dog families across the Waco area. Every dog gets one-on-one time, plenty of love, puzzles and Kongs, supervised play, real rest, and a spot on the couch with us.",
+  locationLine:
+    "our China Spring home, serving dog families across the Waco area",
   dailyRate: daycareRate,
   bookingUrl: cityConfig.rover.profileUrl,
-  hours: "Weekdays, drop-off and pick-up times confirmed on Rover.",
+  hours: "Monday–Friday, 8 AM–6 PM",
+  hoursShort: "Monday–Friday · 8 AM–6 PM",
   heatNote:
-    "Waco gets hot. We schedule active play for cooler parts of the day, keep fresh water available, use shaded and air-conditioned rest areas, and watch every dog for signs of overheating.",
+    "Waco-area summers get hot. We schedule active play for cooler parts of the day, keep fresh water available, use shaded and air-conditioned rest areas, and watch every dog for signs of overheating.",
   bookingNote:
-    "Choose the days that fit your schedule — there is no full-week requirement. Spots can fill up, so request your dates on Rover to confirm availability.",
+    "Choose one day, several days or a regular weekday schedule. No full-week commitment is required.",
+  bookingRateLine: `${daycareRate} · Monday–Friday, 8 AM–6 PM`,
 } as const;
 
 /** Legacy aliases — public name is Camp Clayton. Route remains /camp-waco. */
 export const campWaco = campClayton;
 export const summerDaycare = campClayton;
 
-export const daycareThemes: DaycareTheme[] = [
+/** Approved Camp Clayton 2026 weeks. Do not invent replacements. */
+const campClaytonThemes2026: DaycareTheme[] = [
   {
     week: 1,
     month: "June",
@@ -243,6 +278,7 @@ export const daycareThemes: DaycareTheme[] = [
       "Polite greetings",
       "Name-and-check-in games",
     ],
+    photos: [...campClaytonThemePhotos["Back-to-School Manners Camp"]],
   },
   {
     week: 13,
@@ -259,6 +295,7 @@ export const daycareThemes: DaycareTheme[] = [
       "Backyard limbo play",
       "Group splash finale",
     ],
+    photos: [...campClaytonThemePhotos["Luau Week"]],
   },
   {
     week: 14,
@@ -275,6 +312,7 @@ export const daycareThemes: DaycareTheme[] = [
       "Football photo booth",
       "Treat-toss halftime",
     ],
+    photos: [...campClaytonThemePhotos["Tailgate Week"]],
   },
   {
     week: 15,
@@ -555,7 +593,23 @@ export const daycareThemes: DaycareTheme[] = [
   },
 ];
 
+export const campClaytonCalendars: CampClaytonYearCalendar[] = [
+  { year: 2026, approved: true, themes: campClaytonThemes2026 },
+];
+
+/** Flattened approved themes, chronological. Prefer year-aware helpers for UI. */
+export const daycareThemes: DaycareTheme[] = campClaytonCalendars
+  .filter((calendar) => calendar.approved)
+  .flatMap((calendar) => calendar.themes)
+  .slice()
+  .sort((a, b) => a.startsOn.localeCompare(b.startsOn) || a.endsOn.localeCompare(b.endsOn));
+
 export const daycareMonthOrder: DaycareMonth[] = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
   "June",
   "July",
   "August",
@@ -565,9 +619,16 @@ export const daycareMonthOrder: DaycareMonth[] = [
   "December",
 ];
 
-export function getWacoTodayISO(now = new Date()): string {
+const CHICAGO_TZ = "America/Chicago";
+
+export function getChicagoDateParts(now = new Date()): {
+  year: number;
+  month: number;
+  day: number;
+  iso: string;
+} {
   const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Chicago",
+    timeZone: CHICAGO_TZ,
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -576,12 +637,42 @@ export function getWacoTodayISO(now = new Date()): string {
   const year = parts.find((part) => part.type === "year")?.value ?? "0000";
   const month = parts.find((part) => part.type === "month")?.value ?? "00";
   const day = parts.find((part) => part.type === "day")?.value ?? "00";
-  return `${year}-${month}-${day}`;
+  return {
+    year: Number(year),
+    month: Number(month),
+    day: Number(day),
+    iso: `${year}-${month}-${day}`,
+  };
+}
+
+export function getWacoTodayISO(now = new Date()): string {
+  return getChicagoDateParts(now).iso;
+}
+
+export function getThemeCalendarYear(theme: DaycareTheme): number {
+  return Number(theme.startsOn.slice(0, 4));
+}
+
+export function isSameCampWeek(a: DaycareTheme, b: DaycareTheme): boolean {
+  return a.startsOn === b.startsOn && a.endsOn === b.endsOn && a.name === b.name;
+}
+
+export function getApprovedCalendar(
+  year: number,
+): CampClaytonYearCalendar | undefined {
+  return campClaytonCalendars.find(
+    (calendar) => calendar.year === year && calendar.approved,
+  );
+}
+
+/** All approved themes, soonest first. */
+export function getApprovedDaycareThemes(): DaycareTheme[] {
+  return daycareThemes;
 }
 
 export function getCurrentDaycareTheme(now = new Date()): DaycareTheme | undefined {
   const today = getWacoTodayISO(now);
-  return daycareThemes.find(
+  return getApprovedDaycareThemes().find(
     (theme) => theme.startsOn <= today && theme.endsOn >= today,
   );
 }
@@ -589,15 +680,14 @@ export function getCurrentDaycareTheme(now = new Date()): DaycareTheme | undefin
 /** The next theme that has not started yet — never the current week. */
 export function getNextDaycareTheme(now = new Date()): DaycareTheme | undefined {
   const today = getWacoTodayISO(now);
-  return daycareThemes.find((theme) => theme.startsOn > today);
+  return getApprovedDaycareThemes().find((theme) => theme.startsOn > today);
 }
 
-export type DaycareWeekStatus = "current" | "next" | "past" | undefined;
+export type DaycareWeekStatus = "current" | "upcoming" | "past";
 
 /**
- * Automatic calendar labels. Only the in-progress week is "This week".
- * Only the immediately following unpublished week is "Up next".
- * Past weeks and later future weeks get no status badge.
+ * Automatic calendar status from America/Chicago dates.
+ * "Up next" is the first upcoming week, computed separately — never hard-coded.
  */
 export function getDaycareWeekStatus(
   theme: DaycareTheme,
@@ -605,17 +695,109 @@ export function getDaycareWeekStatus(
 ): DaycareWeekStatus {
   const today = getWacoTodayISO(now);
   if (theme.endsOn < today) return "past";
-  const current = getCurrentDaycareTheme(now);
-  if (current?.week === theme.week) return "current";
+  if (theme.startsOn <= today && theme.endsOn >= today) return "current";
+  return "upcoming";
+}
+
+export function isNextDaycareTheme(theme: DaycareTheme, now = new Date()): boolean {
   const next = getNextDaycareTheme(now);
-  if (next?.week === theme.week) return "next";
-  return undefined;
+  return Boolean(next && isSameCampWeek(next, theme));
 }
 
 /** Current + future camp weeks, soonest first. */
 export function getUpcomingDaycareThemes(now = new Date()): DaycareTheme[] {
   const today = getWacoTodayISO(now);
-  return daycareThemes.filter((theme) => theme.endsOn >= today);
+  return getApprovedDaycareThemes().filter((theme) => theme.endsOn >= today);
+}
+
+export function getPastDaycareThemes(now = new Date()): DaycareTheme[] {
+  const today = getWacoTodayISO(now);
+  return getApprovedDaycareThemes().filter((theme) => theme.endsOn < today);
+}
+
+export function themeHasVerifiedPhotos(theme: DaycareTheme): boolean {
+  return (theme.photos?.length ?? 0) > 0;
+}
+
+/** Past weeks stay hidden until real theme photos are attached, unless explicitly shown. */
+export function isThemeVisibleInArchive(theme: DaycareTheme): boolean {
+  if (theme.hideInArchive === false) return true;
+  if (theme.hideInArchive === true) return false;
+  return themeHasVerifiedPhotos(theme);
+}
+
+export type CampClaytonMonthGroup = {
+  year: number;
+  month: DaycareMonth;
+  themes: DaycareTheme[];
+};
+
+export function groupThemesByMonth(
+  themes: DaycareTheme[],
+): CampClaytonMonthGroup[] {
+  const groups: CampClaytonMonthGroup[] = [];
+  for (const theme of themes) {
+    const year = getThemeCalendarYear(theme);
+    const last = groups[groups.length - 1];
+    if (last && last.year === year && last.month === theme.month) {
+      last.themes.push(theme);
+    } else {
+      groups.push({ year, month: theme.month, themes: [theme] });
+    }
+  }
+  return groups;
+}
+
+export type CampClaytonSchedule = {
+  today: string;
+  primaryYear: number;
+  current: DaycareTheme | undefined;
+  next: DaycareTheme | undefined;
+  comingUp: DaycareTheme[];
+  comingNextYear: DaycareTheme[];
+  past: DaycareTheme[];
+  pastVisible: DaycareTheme[];
+  showComingNextYear: boolean;
+};
+
+/**
+ * Page schedule using America/Chicago.
+ * Remaining current-year themes stay in Coming Up. Next year's approved
+ * calendar appears under Coming Next Year beginning October 1.
+ */
+export function getCampClaytonSchedule(now = new Date()): CampClaytonSchedule {
+  const { year: primaryYear, month, iso: today } = getChicagoDateParts(now);
+  const current = getCurrentDaycareTheme(now);
+  const upcoming = getApprovedDaycareThemes().filter(
+    (theme) => theme.startsOn > today,
+  );
+  const next = upcoming[0];
+  const showComingNextYear =
+    month >= 10 && Boolean(getApprovedCalendar(primaryYear + 1)?.themes.length);
+
+  const comingUp = upcoming.filter((theme) => {
+    if (next && isSameCampWeek(theme, next)) return false;
+    return getThemeCalendarYear(theme) === primaryYear;
+  });
+
+  const comingNextYear = showComingNextYear
+    ? upcoming.filter((theme) => getThemeCalendarYear(theme) === primaryYear + 1)
+    : [];
+
+  const past = getPastDaycareThemes(now);
+  const pastVisible = past.filter(isThemeVisibleInArchive);
+
+  return {
+    today,
+    primaryYear,
+    current,
+    next,
+    comingUp,
+    comingNextYear,
+    past,
+    pastVisible,
+    showComingNextYear,
+  };
 }
 
 /** Homepage/daycare preview: current week plus the next few weeks. */

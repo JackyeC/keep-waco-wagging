@@ -22,6 +22,7 @@ export type ServicePageConfig = {
     scriptWord: string;
     metaLine?: string;
     description: string;
+    facts?: string[];
     image: { src: string; alt: string; objectPosition?: string };
     primary: { label: string; href: string; external?: boolean };
     secondary: { label: string; href: string; external?: boolean };
@@ -186,7 +187,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "Is this a kennel or warehouse boarding?",
         answer:
-          "No. Your dog stays in our Waco home with full-time attention, daily walks, enrichment, and rest — not an industrial kennel setup.",
+          "No. Your dog stays in our China Spring home, serving dog families across the Waco area, with full-time attention, daily walks, enrichment, and rest — not an industrial kennel setup.",
       },
       {
         question: "How do I book daycare or boarding?",
@@ -337,18 +338,27 @@ export const servicePages: Record<string, ServicePageConfig> = {
   "summer-daycare": {
     slug: "camp-waco",
     seo: {
-      title: "Camp Clayton | Themed Doggie Daycare in Waco, TX",
+      title: "Camp Clayton | Small-Group Doggie Daycare Near Waco, TX",
       description:
-        "Camp Clayton by Keep Waco Wagging brings a new theme to doggie daycare each week with small-group play, enrichment, rest, sniffing games, and seasonal fun in Waco.",
+        "Camp Clayton is themed, small-group doggie daycare in China Spring serving the Waco area. Every dog gets personal attention, enrichment, supervised play, couch time and real rest.",
     },
     hero: {
-      eyebrow: "Camp Clayton",
+      eyebrow: "Themed doggie daycare by Keep Waco Wagging",
       title: "Camp Clayton",
       scriptWord: "Camp Clayton",
-      metaLine: "Themed doggie daycare by Keep Waco Wagging",
       description:
-        "Something to look forward to every week. Themed doggie daycare with supervised play, enrichment, rest, and a new little world to explore each week. Come one day or make Camp Clayton part of your dog's regular routine.",
-      image: designPhotos.svcCamp,
+        "Camp Clayton is our small-group, home-based doggie daycare in our China Spring home, serving dog families across the Waco area. Every dog gets one-on-one time, plenty of love, puzzles and Kongs, supervised play, real rest, and a spot on the couch with us. Every week brings a new theme, but every day is built around the dog in front of us.",
+      facts: [
+        "Monday–Friday · 8 AM–6 PM",
+        "From $37 per day",
+        "Small, carefully matched groups",
+        "Meet-and-greet required",
+      ],
+      image: {
+        src: "/pictures/summer-camp-hero.webp",
+        alt: "A dog cooling off in the backyard splash pool at Camp Clayton in China Spring, serving the Waco area",
+        objectPosition: "center 28%",
+      },
       primary: {
         label: "Book a Day on Rover",
         href: cityConfig.rover.profileUrl,
@@ -357,24 +367,38 @@ export const servicePages: Record<string, ServicePageConfig> = {
       secondary: { label: "See What's Coming Up", href: "#calendar" },
     },
     included: {
-      eyebrow: "A Camp Clayton day",
-      title: "Play, enrich, rest, repeat",
+      eyebrow: "Care at home",
+      title: "What makes Camp Clayton different",
       items: [
         {
-          title: "Supervised play",
-          detail: "Small, matched playgroups with eyes on them the whole time.",
+          title: "One-on-one time",
+          detail:
+            "Every dog gets individual attention with Jackye or Todd—not just group supervision.",
         },
         {
-          title: "Weekly themed enrichment",
-          detail: "A fresh theme every week with games, puzzles, props, and photo moments.",
+          title: "Love and couch time",
+          detail:
+            "There is time for affection, cuddles and relaxing with us because this is our home, not a kennel.",
         },
         {
-          title: "Seasonal fun",
-          detail: "Water play when it's hot, cozy enrichment when it's cool, and activities adjusted to the dogs in front of us.",
+          title: "Puzzles and Kongs",
+          detail:
+            "Dogs get brain work through puzzles, stuffed Kongs, lick mats, sniffing games and other enrichment selected for them.",
+        },
+        {
+          title: "Carefully matched play",
+          detail:
+            "Playgroups stay small, supervised and matched around size, energy and temperament.",
         },
         {
           title: "Real rest",
-          detail: "Quiet nap blocks so they go home happy-tired, not wired.",
+          detail:
+            "Quiet breaks and naps help dogs regulate so they go home fulfilled—not overstimulated and wired.",
+        },
+        {
+          title: "A new theme every week",
+          detail:
+            "Themes add fresh games, sensory experiences and photo moments without replacing the thoughtful care underneath.",
         },
       ],
     },
@@ -382,12 +406,17 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "What is Camp Clayton?",
         answer:
-          "Camp Clayton is our themed take on doggie daycare. Dogs get the same thoughtful, home-based care Keep Waco Wagging is known for — supervised play, enrichment, rest, decompression, and individual attention — with a different theme layered in each week. It is not overnight camp, a children's camp, or a separate facility.",
+          "Camp Clayton is our themed take on doggie daycare in our China Spring home, serving dog families across the Waco area. Dogs get supervised play, enrichment, rest, and individual attention — with a different theme layered in each week. It is not overnight camp, a children's camp, or a separate facility.",
       },
       {
         question: "Do I have to book the whole week?",
         answer:
-          "No. Come one day or make Camp Clayton part of your dog's weekly routine. You can book one day, several days, or a regular weekday pattern.",
+          "No. Choose one day, several days or a regular weekday schedule. No full-week commitment is required.",
+      },
+      {
+        question: "Is a meet-and-greet required?",
+        answer:
+          "Yes. Dogs must be spayed or neutered and complete a successful meet-and-greet before their first day.",
       },
       {
         question: "How do I book Camp Clayton?",
@@ -396,11 +425,11 @@ export const servicePages: Record<string, ServicePageConfig> = {
       },
     ],
     cta: {
-      eyebrow: "Themed doggie daycare",
+      eyebrow: "Doggie daycare near Waco",
       title: "Book a day at Camp Clayton",
       scriptWord: "Camp Clayton",
       subtitle:
-        "Come one day or several. Availability is confirmed on Rover — not on a waitlist form.",
+        "$37 per day · Monday–Friday, 8 AM–6 PM. Choose one day, several days or a regular weekday schedule. No full-week commitment is required. Availability is confirmed on Rover.",
       primary: {
         label: "Book a Day on Rover",
         href: cityConfig.rover.profileUrl,

@@ -7,6 +7,7 @@ type ServicePageHeroProps = {
   scriptWord: string;
   metaLine?: string;
   description: string;
+  facts?: string[];
   primary: { label: string; href: string; external?: boolean };
   secondary: { label: string; href: string; external?: boolean };
   image: { src: string; alt: string; objectPosition?: string };
@@ -18,6 +19,7 @@ export function ServicePageHero({
   scriptWord,
   metaLine,
   description,
+  facts,
   primary,
   secondary,
   image,
@@ -43,7 +45,19 @@ export function ServicePageHero({
               {metaLine}
             </p>
           )}
-          <p className="dek mt-3.5 max-w-md">{description}</p>
+          <p className="dek mt-3.5 max-w-xl">{description}</p>
+          {facts && facts.length > 0 && (
+            <ul className="mt-5 grid max-w-xl gap-2 sm:grid-cols-2">
+              {facts.map((fact) => (
+                <li
+                  key={fact}
+                  className="rounded-full border border-border bg-soft-cream px-3.5 py-2 text-[12px] font-medium tracking-[0.02em] text-serif-ink"
+                >
+                  {fact}
+                </li>
+              ))}
+            </ul>
+          )}
           <div className="mt-7 flex flex-wrap gap-3">
             <a
               href={primary.href}

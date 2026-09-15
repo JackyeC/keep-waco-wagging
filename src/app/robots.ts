@@ -8,7 +8,8 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       // `/brand$` is the internal brand-book page only — do not use `/brand`,
       // which would also block public logo files under `/brand/*.webp`.
-      disallow: ["/admin", "/api/", "/brand$", "/approved/sample-"],
+      // `/quote` is the internal boarding calculator (direct URL only).
+      disallow: ["/admin", "/api/", "/brand$", "/approved/sample-", "/quote"],
     },
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };
