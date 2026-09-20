@@ -3,6 +3,8 @@ description: Lead capture, Supabase service-role inserts, Resend notifications
 globs:
   - src/lib/leads.ts
   - src/lib/leads.test.ts
+  - src/lib/subscriberAudit.ts
+  - src/lib/subscriberAudit.test.ts
   - src/lib/email.ts
   - src/lib/email.test.ts
   - src/lib/signup.ts
@@ -30,3 +32,4 @@ alwaysApply: false
 - RLS stays ON on lead tables. No public read policies. Inserts go through App Router route handlers.
 - Missing Supabase in local/dev: return the existing user-safe error. Do not throw stack traces or invent a second storage path.
 - Keep honeypot, rate limit, and payload-size guards in `formGuard.ts` on public POST routes.
+- Newsletter send-list prep lives in `subscriberAudit.ts`. Classify `jackyeclayton@gmail.com` and `jackyeclayton+*@gmail.com` as internal. Do not delete or rewrite `leads` rows for owner/test addresses.
