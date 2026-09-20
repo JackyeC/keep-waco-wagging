@@ -107,6 +107,7 @@ describe("Wag Club Sept. 20–26 newsletter", () => {
   it("keeps the checklist and preview off public discovery paths", () => {
     assert.match(checklist, /Production send allowed: NO/);
     assert.match(checklist, /Do not send from the website app/);
+    assert.match(checklist, /DAILY_SNIFF_ADMIN_TOKEN/);
     assert.equal(
       sitemapExcludedPaths().some((path) => path === "/admin"),
       true,

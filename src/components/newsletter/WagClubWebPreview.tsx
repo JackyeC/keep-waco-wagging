@@ -23,8 +23,9 @@ export function WagClubPreviewBanner() {
         </p>
         <p className="mt-2 text-sm leading-relaxed text-bark">
           Production send is blocked until the mailing address, unsubscribe
-          link, and featured article URL are replaced. Reply-To is the working
-          owner inbox, not hello@ or info@keepwacowagging.com.
+          link, and featured article URL are replaced. This preview also
+          requires the admin token — noindex is not access control. Reply-To
+          is the working owner inbox, not hello@ or info@keepwacowagging.com.
         </p>
         <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-bark-soft">
           {blockers.map((blocker) => (

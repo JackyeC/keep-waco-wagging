@@ -13,7 +13,8 @@ export default function NewsletterDraftIndexPage() {
       <p className="eyebrow">Internal</p>
       <h1 className="heading mt-3 text-[2rem]">Wag Club newsletter drafts</h1>
       <p className="mt-3 text-sm text-body-muted">
-        These pages are noindex, off the sitemap, and not a send path.
+        These pages are unpublished drafts. They require the admin token;
+        noindex is not access control.
       </p>
       <Link
         href="/admin/newsletter/sept-20-26-2026"

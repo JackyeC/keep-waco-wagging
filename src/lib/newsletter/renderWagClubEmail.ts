@@ -345,6 +345,7 @@ ${blockerLines}
 - [ ] Featured Wag Watch article is live; placeholder copy removed from HTML and text
 - [ ] Reply-To is a mailbox that actually receives mail (currently ${issue.replyTo}; do not use hello@ or info@keepwacowagging.com until inbound MX is confirmed)
 - [ ] From address is the verified Resend sender (${issue.fromEmail})
+- [ ] Preview at /admin/newsletter requires DAILY_SNIFF_ADMIN_TOKEN (noindex is not access control)
 
 ## Content accuracy
 - [ ] Fi recall lots, UPCs, and product names still match the FDA notice
@@ -369,5 +370,6 @@ ${blockerLines}
 - [ ] Dedupe by lowercase email
 - [ ] Do not mix Shopify storefront subscribers into this send
 - [ ] Do not send from the website app — there is no production newsletter send path on purpose
+- [ ] GitHub Actions test job is green on the PR (not only Vercel)
 `;
 }
