@@ -8,6 +8,7 @@ import {
 } from "@/data/petCareLandings";
 import { brandLanguage, cityConfig } from "@/lib/site";
 import { roverCredentialsLine } from "@/lib/roverCredentials";
+import { testimonialExcerpt } from "@/data/testimonials";
 
 function TrustStrip() {
   return (
@@ -345,10 +346,7 @@ export function PetCareServiceLanding({
                 ★★★★★
               </div>
               <p className="mt-3 font-display text-[18px] leading-snug text-serif-ink italic">
-                &ldquo;{review.quote.length > 180
-                  ? `${review.quote.slice(0, 177).trim()}…`
-                  : review.quote}
-                &rdquo;
+                &ldquo;{testimonialExcerpt(review)}&rdquo;
               </p>
               <p className="mt-4 text-xs font-medium tracking-[0.12em] text-label-muted uppercase">
                 {review.author}

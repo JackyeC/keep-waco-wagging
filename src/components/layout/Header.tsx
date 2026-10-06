@@ -14,8 +14,8 @@ import { cn } from "@/lib/utils";
  * Dog Care keeps the existing service dropdown; other items come from mainNav.
  */
 const primaryNav = [
-  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
   { label: "Dog Care", href: "/dog-care", isServices: true },
+  { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
   { label: "Dog Match", href: "/dog-match" },
   { label: "Wag Watch", href: "/wag-watch" },
   { label: "Weekend", href: "/weekend" },
@@ -148,7 +148,7 @@ export function Header() {
           )}
           <Link
             href={ctas.bookService.href}
-            className="btn-pill btn-sage ml-2 px-4 py-2"
+            className="btn-pill btn-sage ml-2 px-4 py-2 text-[11px]"
           >
             Book
           </Link>

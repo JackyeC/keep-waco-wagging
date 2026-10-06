@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { MerchImage } from "@/components/merch/MerchImage";
-import { pickFeaturedProducts } from "@/data/merchCuration";
-import { merchAnchorLine } from "@/data/merchCuration";
+import { merchAnchorLine, pickFeaturedProducts } from "@/data/merchCuration";
 import { getFeaturedMerchProducts } from "@/data/merchStore";
 import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
+import { ShopifyProductImage } from "@/components/merch/ShopifyProductImage";
 
 const FEATURED_COUNT = 4;
 
@@ -39,13 +38,12 @@ export async function HomeMerchStrip() {
           <li key={product.id}>
             <Link href="/shop" className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray">
-                {product.image ? (
-                  <MerchImage
-                    src={product.image.src}
-                    alt={product.image.alt}
-                    sizes="(max-width: 768px) 45vw, 260px"
-                  />
-                ) : null}
+                <ShopifyProductImage
+                  src={product.image?.src}
+                  alt={product.image?.alt ?? product.name}
+                  sizes="(max-width: 768px) 45vw, 260px"
+                  className="object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
               </div>
               <h3 className="mt-3.5 font-display text-[18px] leading-snug text-serif-ink">
                 {product.name}

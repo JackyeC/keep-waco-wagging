@@ -44,16 +44,16 @@ export function HomeHero() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <Link
-              href={ctas.exploreDirectory.href}
+              href={ctas.bookService.href}
               className="btn-pill bg-cream px-8 py-3.5 text-bark hover:bg-soft-cream"
             >
-              Find a place for your dog
+              Book dog care
             </Link>
             <Link
-              href="/book"
-              className="btn-pill border-[1.4px] border-cream bg-bark/40 px-7 py-3.5 text-cream backdrop-blur-sm hover:bg-cream hover:text-bark"
+              href={ctas.exploreDirectory.href}
+              className="text-xs font-medium tracking-[0.16em] text-cream uppercase underline decoration-cream/50 underline-offset-4 transition-colors hover:text-cream hover:decoration-cream"
             >
-              Book dog care
+              Find a place for your dog
             </Link>
           </div>
           <p className="mt-6 text-[11px] font-medium tracking-[0.18em] text-cream/65 uppercase">

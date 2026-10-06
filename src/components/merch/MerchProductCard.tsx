@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { MerchImage } from "@/components/merch/MerchImage";
+import { ShopifyProductImage } from "@/components/merch/ShopifyProductImage";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { useShopCart } from "@/components/merch/ShopCartContext";
 import { useProductDetailViewTracking } from "@/components/merch/useProductDetailViewTracking";
@@ -170,10 +170,11 @@ export function MerchProductCard({
             </span>
           )}
           {product.image?.src ? (
-            <MerchImage
+            <ShopifyProductImage
               src={product.image.src}
               alt={product.image.alt}
               sizes="(max-width: 640px) calc(100vw - 3rem), (max-width: 1024px) calc(50vw - 3rem), 360px"
+              className="object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.03] sm:p-6"
             />
           ) : (
             <ImagePlaceholder alt={product.name} />

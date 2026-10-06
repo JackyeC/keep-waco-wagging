@@ -1,7 +1,7 @@
 import { Quote } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Badge } from "@/components/ui/Badge";
-import { getFeaturedTestimonials } from "@/data/testimonials";
+import { getFeaturedTestimonials, testimonialExcerpt } from "@/data/testimonials";
 import type { Testimonial } from "@/lib/types";
 
 function TestimonialCard({ item }: { item: Testimonial }) {
@@ -9,7 +9,7 @@ function TestimonialCard({ item }: { item: Testimonial }) {
     <blockquote className="flex h-full flex-col rounded-card bg-white p-6 ring-1 ring-inset ring-clay/70">
       <Quote className="h-6 w-6 text-sage-400" aria-hidden="true" />
       <p className="mt-3 flex-1 text-sm leading-relaxed text-bark-soft">
-        &ldquo;{item.quote}&rdquo;
+        &ldquo;{testimonialExcerpt(item)}&rdquo;
       </p>
       <footer className="mt-4 border-t border-clay pt-4">
         <p className="text-sm font-semibold text-bark">{item.author}</p>

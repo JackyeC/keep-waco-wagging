@@ -1,7 +1,23 @@
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
-import { weekendEdition, weekendSaturdayStops } from "@/data/weekend";
+import {
+  weekendEdition,
+  weekendParkPick,
+  weekendSaturdayStops,
+} from "@/data/weekend";
+
+const homePicks = [
+  weekendSaturdayStops[0],
+  weekendSaturdayStops[1],
+  {
+    id: "park",
+    title: weekendParkPick.title,
+    when: weekendParkPick.when,
+    address: weekendParkPick.address,
+    copy: weekendParkPick.copy,
+  },
+] as const;
 
 export function HomeWeekendPreview() {
   return (
@@ -19,13 +35,13 @@ export function HomeWeekendPreview() {
         </div>
         <Link
           href="/weekend"
-          className="border-b border-[#d9b7b2] pb-0.5 text-xs font-medium tracking-[0.12em] text-rose-deep uppercase hover:border-wag-sage hover:text-wag-sage"
+          className="border-b border-sage-700 pb-0.5 text-xs font-medium tracking-[0.12em] text-sage-700 uppercase hover:border-wag-sage hover:text-wag-sage"
         >
           Full weekend guide →
         </Link>
       </div>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
-        {weekendSaturdayStops.map((pick) => (
+        {homePicks.map((pick) => (
           <article
             key={pick.id}
             className="flex h-full flex-col rounded-[20px] border border-border bg-soft-cream p-6"

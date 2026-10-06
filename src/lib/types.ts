@@ -291,6 +291,8 @@ export interface Testimonial {
   author: string;
   context: "Training" | "Rover" | "Platinum Scoops" | "General";
   neighborhood?: string;
+  /** Complete short quote for cards. Never a mid-sentence truncation of `quote`. */
+  excerpt?: string;
   featured?: boolean;
   service?: string;
   date?: string;
