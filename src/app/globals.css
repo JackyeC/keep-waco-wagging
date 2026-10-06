@@ -28,7 +28,7 @@
 
   /* Rose */
   --color-rose: #c68c86;
-  --color-rose-deep: #b97d77;
+  --color-rose-deep: #8f5a55;
   --color-clay-rose: #cda6a0;
   --color-blush: #e5c9c4;
   --color-blush-warm: #e5b6b0;
@@ -37,15 +37,15 @@
   --color-brazos-blue: #a9c2cf;
   --color-trail-taupe: #b3a48e;
 
-  /* Ink */
-  --color-bark: #4c463e;
-  --color-serif-ink: #54513f;
-  --color-bark-soft: #6f675c;
-  --color-bark-faint: #7a7165;
-  --color-body-muted: #6f675c;
-  --color-body-muted-light: #746c60;
-  --color-label-muted: #7a7165;
-  --color-label-muted-alt: #74685c;
+  /* Ink — keep cream/sage surfaces; darken type for contrast */
+  --color-bark: #2e2a24;
+  --color-serif-ink: #3a362c;
+  --color-bark-soft: #4a433c;
+  --color-bark-faint: #5c554c;
+  --color-body-muted: #3f3a34;
+  --color-body-muted-light: #4a433c;
+  --color-label-muted: #5c554c;
+  --color-label-muted-alt: #544c44;
 
   /* Lines & inputs */
   --color-border: #e6dbcb;
@@ -84,7 +84,7 @@
     color: var(--color-bark);
     font-family: var(--font-sans);
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -117,8 +117,8 @@
   }
 
   a {
-    color: inherit;
-    text-decoration-color: var(--color-border);
+    color: var(--color-bark);
+    text-decoration-color: var(--color-sage-700);
     text-underline-offset: 3px;
   }
 
@@ -171,7 +171,7 @@
   .dek {
     font-family: var(--font-sans);
     font-size: 1.0625rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.65;
     color: var(--color-body-muted);
   }
@@ -198,12 +198,12 @@
     font-weight: 500;
     letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--color-body-muted);
+    color: var(--color-bark);
     transition: color 0.15s;
   }
 
   .nav-link:hover {
-    color: var(--color-rose);
+    color: var(--color-sage-700);
   }
 
   .btn-pill {
