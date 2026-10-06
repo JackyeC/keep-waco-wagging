@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "m.media-amazon.com" },
-      { protocol: "https", hostname: "cdn.shopify.com" },
+      { protocol: "https", hostname: "m.media-amazon.com", pathname: "/**" },
+      { protocol: "https", hostname: "cdn.shopify.com", pathname: "/**" },
     ],
   },
   async redirects() {

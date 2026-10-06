@@ -1,4 +1,4 @@
-import { getFeaturedTestimonials } from "@/data/testimonials";
+import { getFeaturedTestimonials, testimonialExcerpt } from "@/data/testimonials";
 
 export function HomeReviews() {
   const reviews = getFeaturedTestimonials(3);
@@ -13,29 +13,22 @@ export function HomeReviews() {
       </div>
 
       <div className="mt-8 grid gap-5 md:grid-cols-3">
-        {reviews.map((review) => {
-          const shortQuote =
-            review.quote.length > 160
-              ? `${review.quote.slice(0, 157).trim()}…`
-              : review.quote;
-
-          return (
-            <article
-              key={review.id}
-              className="rounded-[20px] border border-border bg-soft-cream p-7"
-            >
-              <div className="text-[15px] tracking-wide text-rose" aria-hidden>
-                ★★★★★
-              </div>
-              <p className="mt-3.5 font-display text-[19px] leading-snug text-serif-ink italic">
-                &ldquo;{shortQuote}&rdquo;
-              </p>
-              <p className="mt-4 text-xs font-medium tracking-[0.12em] text-label-muted uppercase">
-                {review.author} · {review.context}
-              </p>
-            </article>
-          );
-        })}
+        {reviews.map((review) => (
+          <article
+            key={review.id}
+            className="rounded-[20px] border border-border bg-soft-cream p-7"
+          >
+            <div className="text-[15px] tracking-wide text-rose" aria-hidden>
+              ★★★★★
+            </div>
+            <p className="mt-3.5 font-display text-[19px] leading-snug text-serif-ink italic">
+              &ldquo;{testimonialExcerpt(review)}&rdquo;
+            </p>
+            <p className="mt-4 text-xs font-medium tracking-[0.12em] text-label-muted uppercase">
+              {review.author} · {review.context}
+            </p>
+          </article>
+        ))}
       </div>
     </section>
   );

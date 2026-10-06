@@ -13,6 +13,8 @@ export const testimonials: Testimonial[] = [
     date: "2026-03-12",
     quote:
       "Jacqueline & Todd are exceptional! They handled my 100lb Rottie with grace, and gave her so much love and attention. I'm so happy to have found them. Wouldn't book with anyone else.",
+    excerpt:
+      "Jacqueline & Todd are exceptional! They handled my 100lb Rottie with grace, and gave her so much love and attention.",
     permissionStatus: "public_rover_review",
     featured: true,
   },
@@ -24,6 +26,8 @@ export const testimonials: Testimonial[] = [
     date: "2026-06-04",
     quote:
       "This couple Rock! We adopted our dog late March 2026. Early May, she was sick and diagnosed with Pancreatitis... They did amazing with all my detailed instructions, and sent photos and videos daily... I can only give them my highest recommendation! They clearly love all dogs and want them to live their best life even when the dogs 'Mom & Dad' are away.",
+    excerpt:
+      "They did amazing with all my detailed instructions, and sent photos and videos daily. I can only give them my highest recommendation!",
     permissionStatus: "public_rover_review",
     featured: true,
   },
@@ -35,6 +39,8 @@ export const testimonials: Testimonial[] = [
     date: "2026-05-26",
     quote:
       "Todd & Jackye are the BEST! I say this every time Finn stays with them! He has the best time & they are always sending pics & videos.",
+    excerpt:
+      "Todd & Jackye are the BEST! I say this every time Finn stays with them.",
     permissionStatus: "public_rover_review",
     featured: true,
   },
@@ -46,6 +52,8 @@ export const testimonials: Testimonial[] = [
     date: "2026-04-12",
     quote:
       "I cannot thank enough Jackie and Todd for all they do for my doggy... Finding this amazing couple is one of the best things that happened to us in Waco.",
+    excerpt:
+      "Finding this amazing couple is one of the best things that happened to us in Waco.",
     permissionStatus: "public_rover_review",
     featured: true,
   },
@@ -80,4 +88,9 @@ export function getTestimonialsByContext(
   context: Testimonial["context"],
 ): Testimonial[] {
   return testimonials.filter((t) => t.context === context);
+}
+
+/** Complete short quote for cards — never a mid-sentence ellipsis. */
+export function testimonialExcerpt(item: Testimonial): string {
+  return item.excerpt?.trim() || item.quote.trim();
 }

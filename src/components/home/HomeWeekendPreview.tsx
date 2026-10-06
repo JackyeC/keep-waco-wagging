@@ -3,19 +3,19 @@ import { MapPin } from "lucide-react";
 import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
 import {
   weekendEdition,
+  weekendParkPick,
   weekendSaturdayStops,
-  weekendSundayFeature,
 } from "@/data/weekend";
 
 const homePicks = [
   weekendSaturdayStops[0],
   weekendSaturdayStops[1],
   {
-    id: "the-will",
-    title: weekendSundayFeature.title,
-    when: weekendSundayFeature.when,
-    address: weekendSundayFeature.address,
-    copy: "Dog-focused activities, the Dash for the Daisies Dachshund Derby, and a chance to shop local vendors at HomeGrown Sunday.",
+    id: "park",
+    title: weekendParkPick.title,
+    when: weekendParkPick.when,
+    address: weekendParkPick.address,
+    copy: weekendParkPick.copy,
   },
 ] as const;
 
@@ -35,7 +35,7 @@ export function HomeWeekendPreview() {
         </div>
         <Link
           href="/weekend"
-          className="border-b border-[#d9b7b2] pb-0.5 text-xs font-medium tracking-[0.12em] text-rose-deep uppercase hover:border-wag-sage hover:text-wag-sage"
+          className="border-b border-sage-700 pb-0.5 text-xs font-medium tracking-[0.12em] text-sage-700 uppercase hover:border-wag-sage hover:text-wag-sage"
         >
           Full weekend guide →
         </Link>

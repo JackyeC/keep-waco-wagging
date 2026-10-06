@@ -8,17 +8,16 @@ import { ctas, cityConfig } from "@/lib/site";
 import { servicePageMetadata } from "@/lib/metadata";
 import {
   weekendCampClayton,
-  weekendCommunityNote,
   weekendEdition,
+  weekendParkPick,
   weekendSafetyNote,
   weekendSaturdayStops,
-  weekendSundayFeature,
 } from "@/data/weekend";
 
 export const metadata: Metadata = servicePageMetadata(
   "/weekend",
-  "Waco Dog Weekend | September 12–13, 2026",
-  "What can I do with my dog in Waco this weekend? Farmers market, Street Dog Cafe, Doggie Day at The Will, and one small challenge: move one purchase to a local business.",
+  "Waco Dog Weekend | Keep Waco Wagging",
+  "What can I do with my dog in Waco this weekend? Recurring local stops, a park pick, and one small challenge: move one purchase to a local business.",
 );
 
 function PlaceCard({
@@ -59,9 +58,15 @@ function PlaceCard({
       </p>
       <div className="mt-5 flex flex-wrap gap-3">
         <Button href={href} variant="sage" size="sm">
-          Official details <ExternalLink className="h-3.5 w-3.5" />
+          {href.startsWith("http") ? (
+            <>
+              Official details <ExternalLink className="h-3.5 w-3.5" />
+            </>
+          ) : (
+            "See the listing"
+          )}
         </Button>
-        {directoryHref && (
+        {directoryHref && href.startsWith("http") && (
           <Button href={directoryHref} variant="secondary" size="sm">
             Directory listing
           </Button>
@@ -85,12 +90,11 @@ export default function WeekendPage() {
           <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-bark-soft">
             {weekendEdition.intro}{" "}
             <strong className="font-medium text-bark">
-              Move one purchase you were already going to make to a local
-              business.
+              {weekendEdition.challenge}
             </strong>
           </p>
           <p className="mt-3 max-w-2xl text-[15px] text-body-muted">
-            {weekendEdition.challenge} {weekendEdition.supporting}
+            {weekendEdition.supporting}
           </p>
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <MoveOnePurchase variant="callout" />
@@ -98,8 +102,8 @@ export default function WeekendPage() {
               <Button href="/dog-friendly-waco" variant="sage">
                 Dog-friendly Waco directory
               </Button>
-              <Button href="/camp-waco" variant="secondary">
-                See the Camp Clayton calendar
+              <Button href="/book" variant="secondary">
+                Book dog care
               </Button>
             </div>
           </div>
@@ -107,9 +111,9 @@ export default function WeekendPage() {
       </section>
 
       <Section tone="paper">
-        <p className="eyebrow tracking-[0.22em]">Saturday</p>
+        <p className="eyebrow tracking-[0.22em]">Easy local stops</p>
         <h2 className="heading mt-2 text-[clamp(1.8rem,3.4vw,2.4rem)]">
-          Easy local stops
+          Recurring places worth repeating
         </h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {weekendSaturdayStops.map((stop) => (
@@ -119,15 +123,15 @@ export default function WeekendPage() {
       </Section>
 
       <Section tone="sand">
-        <p className="eyebrow tracking-[0.22em]">Sunday feature</p>
+        <p className="eyebrow tracking-[0.22em]">Park pick</p>
         <div className="mt-3 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <PlaceCard
-            title={weekendSundayFeature.title}
-            when={weekendSundayFeature.when}
-            address={weekendSundayFeature.address}
-            copy={weekendSundayFeature.copy}
-            dogNote={weekendSundayFeature.dogNote}
-            href={weekendSundayFeature.href}
+            title={weekendParkPick.title}
+            when={weekendParkPick.when}
+            address={weekendParkPick.address}
+            copy={weekendParkPick.copy}
+            dogNote={weekendParkPick.dogNote}
+            href={weekendParkPick.href}
           />
           <aside className="rounded-[20px] border border-border bg-cream p-6">
             <h2 className="font-display text-[1.4rem] font-medium text-serif-ink">
@@ -149,36 +153,16 @@ export default function WeekendPage() {
       </Section>
 
       <Section tone="paper">
-        <article className="rounded-[20px] border border-border bg-soft-cream p-6 sm:p-8">
-          <p className="text-xs font-medium tracking-[0.16em] text-label-muted uppercase">
-            Dog-parent need-to-know
-          </p>
-          <h2 className="mt-2 font-display text-[1.7rem] font-medium text-serif-ink">
-            {weekendCommunityNote.heading}
-          </h2>
-          <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-body-muted">
-            {weekendCommunityNote.copy}
-          </p>
-          <p className="mt-3 max-w-3xl text-[14.5px] font-medium text-bark">
-            {weekendCommunityNote.verify}
-          </p>
-          <Button href={weekendCommunityNote.href} variant="secondary" className="mt-5">
-            City of Waco event listing <ExternalLink className="h-4 w-4" />
-          </Button>
-        </article>
-      </Section>
-
-      <Section tone="sand">
         <MoveOnePurchase />
       </Section>
 
-      <Section tone="paper">
+      <Section tone="sand">
         <p className="eyebrow tracking-[0.22em]">{weekendCampClayton.eyebrow}</p>
         <h2 className="heading mt-2 text-[clamp(1.9rem,3.6vw,2.7rem)]">
           {weekendCampClayton.heading}
         </h2>
         <p className="mt-2 text-[13px] font-medium tracking-[0.12em] text-wag-sage uppercase">
-          {weekendCampClayton.dates} · {weekendCampClayton.descriptor}
+          {weekendCampClayton.descriptor}
         </p>
         <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-body-muted">
           {weekendCampClayton.copy}
@@ -209,7 +193,7 @@ export default function WeekendPage() {
         </div>
       </Section>
 
-      <Section tone="sand" id="newsletter">
+      <Section tone="paper" id="newsletter">
         <div className="mx-auto max-w-2xl">
           <NewsletterSignup variant="card" sourcePage="/weekend" />
         </div>

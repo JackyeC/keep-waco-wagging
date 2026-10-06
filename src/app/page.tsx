@@ -28,13 +28,13 @@ export default function HomePage() {
     <>
       <HomeHero />
       <ChoosePath />
+      <HomeServicesBand />
+      <HomeSoftProof />
       <DogMatchTeaser />
       <WagWatchPreview />
       <HomeWeekendPreview />
       <HomeApprovedNote />
       <HomeBrandStory />
-      <HomeServicesBand />
-      <HomeSoftProof />
       <HomeMerchStrip />
       <div id="guides" className="scroll-mt-24">
         <WagClubSignup id="wag-club" sourcePage="/" variant="closer" />
