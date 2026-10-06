@@ -5,21 +5,20 @@
  */
 
 export const weekendEdition = {
-  dates: "September 12–13, 2026",
-  eyebrow: "Waco Dog Weekend · September 12–13",
+  eyebrow: "Waco Dog Weekend",
   title: "What are we doing with the dog this weekend?",
-  label: "September 12–13, 2026",
+  label: "A standing Saturday guide",
   intro:
-    "A few good reasons to get out of the house — plus one small challenge for Waco:",
-  challenge: "This weekend, move one purchase to a local business.",
+    "A few repeating reasons to get out of the house — plus one small challenge for Waco:",
+  challenge: "Move one purchase to a local business.",
   supporting:
-    "You don't have to change your whole budget. Just move one purchase.",
+    "You don't have to change your whole budget. Just move one purchase you were already going to make.",
 };
 
 export const moveOnePurchase = {
   heading: "Move one purchase.",
   intro:
-    "Local does not have to mean spending more money. Take one thing you were already going to buy this weekend and buy it from someone here.",
+    "Local does not have to mean spending more money. Take one thing you were already going to buy and buy it from someone here.",
   examples: [
     { from: "Coffee", to: "a Waco coffee shop" },
     { from: "Produce or groceries", to: "a Waco farmer or maker" },
@@ -40,7 +39,7 @@ export const weekendSaturdayStops = [
     when: "Saturday · 9 AM–1 PM",
     place: "Bridge Street Plaza",
     address: "200 E Bridge St, Waco, TX",
-    copy: "This may be one of the easiest ways to move a purchase local this weekend. Grab produce, bread, breakfast, meat, baked goods, honey, or something else you would have purchased anyway — and buy it directly from a local producer.",
+    copy: "This may be one of the easiest Saturday ways to move a purchase local. Grab produce, bread, breakfast, meat, baked goods, honey, or something else you would have purchased anyway — and buy it directly from a local producer.",
     dogNote:
       "Dogs are welcome. Keep dogs leashed, give other dogs space, and clean up after them.",
     href: "https://wacodowntownfarmersmarket.org/",
@@ -69,48 +68,8 @@ export const weekendSaturdayStops = [
   },
 ] as const;
 
-export const weekendSundayFeature = {
-  title: "Doggie Day at The Will — Dash for the Daisies",
-  when: "Sunday · 12:00 PM–8:00 PM",
-  place: "The Will",
-  address: "5984 N State Hwy 6, Waco, TX",
-  copy: "This one is for the Waco dog people. Doggie Day includes dog-focused activities and the Dash for the Daisies Dachshund Derby. The Will also hosts HomeGrown Sunday, which gives visitors an opportunity to shop local vendors, eat, listen to music, and move one weekend purchase to a Waco-area maker.",
-  dogNote:
-    "Dog-friendly does not mean every dog will enjoy it. Before bringing your dog, think about how they handle crowds, unfamiliar dogs, noise, heat, and longer outings.",
-  href: "https://www.thewillofwaco.com/event-details-registration/doggie-day-at-the-will-dash-for-daisies-2026-09-13-12-00",
-} as const;
-
-/**
- * City of Waco listing as of this edition: Microchip & Vaccination Event,
- * 13 Sep 2026, Knox Hall. No start time was published on the city listing.
- */
-export const weekendCommunityNote = {
-  heading: "Microchips + vaccinations Sunday",
-  copy: "The City of Waco has a Microchip & Vaccination Event Sunday at Knox Hall, 101 Texas Ranger Trail, Waco, TX 76706. City of Waco residents' pets can receive a free microchip. The listing also notes free rabies vaccine if the animal is already spayed/neutered, free DAPP vaccination, and $10 rabies vaccinations if the pet is not spayed/neutered or is from outside city limits.",
-  verify:
-    "Check the City of Waco event listing before heading out for the latest details.",
-  href: "https://www.waco-texas.com/Events-Activities",
-} as const;
-
 export const weekendSafetyNote = {
   heading: "Your dog doesn't have to attend every dog-friendly event.",
   copy: "Crowds, noise, heat, unfamiliar dogs, and busy environments can be a lot. Sometimes the best dog-parent choice is letting your dog stay somewhere comfortable while you go — including a Camp Clayton daycare day if that fits.",
 };
 
-export const weekendCampClayton = {
-  eyebrow: "Next week at Camp Clayton",
-  heading: "Apple Orchard Week 🍎🐾",
-  dates: "September 14–18",
-  descriptor: "Themed doggie daycare by Keep Waco Wagging",
-  copy: "We're bringing a little early fall to Camp Clayton next week. Apple Orchard Week mixes our regular supervised daycare routine with orchard-inspired sniffing games, enrichment, search activities, photo moments, and plenty of rest.",
-  activities: [
-    "Apple-themed sniffing games",
-    "Harvest basket photo setup",
-    "Crunch-and-search puzzles",
-    "Fall sensory activities",
-    "Supervised play",
-    "Cozy rest between activities",
-  ],
-  note: "Do not expect every dog to complete every activity. We adjust the day to the dogs participating.",
-  dropIn: "Come one day or make Camp Clayton part of your dog's weekly routine. Dogs do not need to attend the full week.",
-} as const;

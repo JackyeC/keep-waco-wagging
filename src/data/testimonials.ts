@@ -23,7 +23,7 @@ export const testimonials: Testimonial[] = [
     context: "Rover",
     date: "2026-06-04",
     quote:
-      "This couple Rock! We adopted our dog late March 2026. Early May, she was sick and diagnosed with Pancreatitis... They did amazing with all my detailed instructions, and sent photos and videos daily... I can only give them my highest recommendation! They clearly love all dogs and want them to live their best life even when the dogs 'Mom & Dad' are away.",
+      "They followed every instruction while our dog recovered from pancreatitis, and sent photos and videos daily. I can only give them my highest recommendation.",
     permissionStatus: "public_rover_review",
     featured: true,
   },
@@ -45,7 +45,7 @@ export const testimonials: Testimonial[] = [
     context: "Rover",
     date: "2026-04-12",
     quote:
-      "I cannot thank enough Jackie and Todd for all they do for my doggy... Finding this amazing couple is one of the best things that happened to us in Waco.",
+      "Finding Jackie and Todd is one of the best things that happened to us in Waco.",
     permissionStatus: "public_rover_review",
     featured: true,
   },
@@ -56,7 +56,7 @@ export const testimonials: Testimonial[] = [
     context: "Rover",
     date: "2026-03-29",
     quote:
-      "Above-and-beyond care for my pets... daily photos, videos, and updates. When I returned home... my dogs were happy to see me, but not anxious or stressed.",
+      "They gave above-and-beyond care, with daily photos, videos, and updates. When I returned home, my dogs were happy to see me and not anxious or stressed.",
     permissionStatus: "public_rover_review",
   },
   {
@@ -66,7 +66,7 @@ export const testimonials: Testimonial[] = [
     context: "Rover",
     date: "2026-05-02",
     quote:
-      "Amazing! Our dog Ace loved being with them for the week!... daily photos! Will definitely be bringing him back!",
+      "Our dog Ace loved being with them for the week. They sent daily photos, and we will definitely bring him back.",
     permissionStatus: "public_rover_review",
   },
 ];

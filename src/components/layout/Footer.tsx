@@ -50,7 +50,7 @@ export function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+                  className="text-[13.5px] text-sage-ink hover:text-rose-deep"
                 >
                   {link.label}
                 </Link>
@@ -68,7 +68,7 @@ export function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+                  className="text-[13.5px] text-sage-ink hover:text-rose-deep"
                 >
                   {link.label}
                 </Link>
@@ -82,24 +82,24 @@ export function Footer() {
             Services
           </p>
           <ul className="mt-2.5 flex flex-col gap-2.5">
+            <li>
+              <Link
+                href={ctas.bookService.href}
+                className="text-[13.5px] font-medium text-sage-ink hover:text-rose-deep"
+              >
+                Book dog care
+              </Link>
+            </li>
             {servicesNav.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+                  className="text-[13.5px] text-sage-ink hover:text-rose-deep"
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                href={ctas.bookService.href}
-                className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
-              >
-                Book a service
-              </Link>
-            </li>
           </ul>
         </nav>
 
@@ -111,7 +111,7 @@ export function Footer() {
             <li>
               <a
                 href={cityConfig.sponsor.phoneHref}
-                className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+                className="text-[13.5px] text-sage-ink hover:text-rose-deep"
               >
                 {cityConfig.sponsor.phoneDisplay}
               </a>
@@ -119,7 +119,7 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${cityConfig.publicEmail}`}
-                className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+                className="text-[13.5px] text-sage-ink hover:text-rose-deep"
               >
                 {cityConfig.publicEmail}
               </a>
@@ -130,7 +130,7 @@ export function Footer() {
                   href={instagram.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+                  className="text-[13.5px] text-sage-ink hover:text-rose-deep"
                 >
                   {brandLanguage.instagram.handle}
                 </a>
@@ -139,7 +139,7 @@ export function Footer() {
             <li>
               <Link
                 href="/contact"
-                className="text-[13.5px] font-light text-[#6e6457] hover:text-rose"
+                className="text-[13.5px] text-sage-ink hover:text-rose-deep"
               >
                 Contact
               </Link>
@@ -152,11 +152,11 @@ export function Footer() {
         © {year} {cityConfig.legalEntity} · {cityConfig.homeCity},{" "}
         {cityConfig.stateAbbr} {cityConfig.homeZip}
         {" · "}
-        <Link href="/privacy" className="hover:text-rose">
+        <Link href="/privacy" className="hover:text-rose-deep">
           Privacy
         </Link>
         {" · "}
-        <Link href="/affiliate-disclosure" className="hover:text-rose">
+        <Link href="/affiliate-disclosure" className="hover:text-rose-deep">
           Affiliate disclosure
         </Link>
       </p>

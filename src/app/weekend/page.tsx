@@ -7,18 +7,20 @@ import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
 import { ctas, cityConfig } from "@/lib/site";
 import { servicePageMetadata } from "@/lib/metadata";
 import {
-  weekendCampClayton,
-  weekendCommunityNote,
   weekendEdition,
   weekendSafetyNote,
   weekendSaturdayStops,
-  weekendSundayFeature,
 } from "@/data/weekend";
+import {
+  campClayton,
+  getCurrentDaycareTheme,
+  getNextDaycareTheme,
+} from "@/data/summerDaycare";
 
 export const metadata: Metadata = servicePageMetadata(
   "/weekend",
-  "Waco Dog Weekend | September 12–13, 2026",
-  "What can I do with my dog in Waco this weekend? Farmers market, Street Dog Cafe, Doggie Day at The Will, and one small challenge: move one purchase to a local business.",
+  "Waco Dog Weekend | What to do with your dog in Waco",
+  "Standing Saturday ideas for Waco dog people: the downtown farmers market, Street Dog Cafe, and Brotherwell — plus when to leave your dog home.",
 );
 
 function PlaceCard({
@@ -72,6 +74,12 @@ function PlaceCard({
 }
 
 export default function WeekendPage() {
+  const currentCamp = getCurrentDaycareTheme();
+  const campWeek = currentCamp ?? getNextDaycareTheme();
+  const campEyebrow = currentCamp
+    ? "This week at Camp Clayton"
+    : "Up next at Camp Clayton";
+
   return (
     <>
       <section className="border-b border-border bg-sage-50">
@@ -119,72 +127,38 @@ export default function WeekendPage() {
       </Section>
 
       <Section tone="sand">
-        <p className="eyebrow tracking-[0.22em]">Sunday feature</p>
-        <div className="mt-3 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <PlaceCard
-            title={weekendSundayFeature.title}
-            when={weekendSundayFeature.when}
-            address={weekendSundayFeature.address}
-            copy={weekendSundayFeature.copy}
-            dogNote={weekendSundayFeature.dogNote}
-            href={weekendSundayFeature.href}
-          />
-          <aside className="rounded-[20px] border border-border bg-cream p-6">
-            <h2 className="font-display text-[1.4rem] font-medium text-serif-ink">
-              {weekendSafetyNote.heading}
-            </h2>
-            <p className="mt-3 text-[14.5px] leading-relaxed text-body-muted">
-              {weekendSafetyNote.copy}
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Button href={cityConfig.rover.profileUrl} variant="sage" size="sm">
-                Reserve Daycare on Rover
-              </Button>
-              <Button href="/dog-daycare-waco-tx" variant="secondary" size="sm">
-                Doggie daycare
-              </Button>
-            </div>
-          </aside>
-        </div>
-      </Section>
-
-      <Section tone="paper">
-        <article className="rounded-[20px] border border-border bg-soft-cream p-6 sm:p-8">
-          <p className="text-xs font-medium tracking-[0.16em] text-label-muted uppercase">
-            Dog-parent need-to-know
-          </p>
-          <h2 className="mt-2 font-display text-[1.7rem] font-medium text-serif-ink">
-            {weekendCommunityNote.heading}
+        <aside className="max-w-3xl rounded-[20px] border border-border bg-cream p-6">
+          <h2 className="font-display text-[1.4rem] font-medium text-serif-ink">
+            {weekendSafetyNote.heading}
           </h2>
-          <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-body-muted">
-            {weekendCommunityNote.copy}
+          <p className="mt-3 text-[14.5px] leading-relaxed text-body-muted">
+            {weekendSafetyNote.copy}
           </p>
-          <p className="mt-3 max-w-3xl text-[14.5px] font-medium text-bark">
-            {weekendCommunityNote.verify}
-          </p>
-          <Button href={weekendCommunityNote.href} variant="secondary" className="mt-5">
-            City of Waco event listing <ExternalLink className="h-4 w-4" />
-          </Button>
-        </article>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Button href="/book" variant="sage" size="sm">
+              Book dog care
+            </Button>
+            <Button href={cityConfig.rover.profileUrl} variant="secondary" size="sm">
+              Reserve Daycare on Rover
+            </Button>
+          </div>
+        </aside>
       </Section>
 
-      <Section tone="sand">
-        <MoveOnePurchase />
-      </Section>
-
+      {campWeek ? (
       <Section tone="paper">
-        <p className="eyebrow tracking-[0.22em]">{weekendCampClayton.eyebrow}</p>
+        <p className="eyebrow tracking-[0.22em]">{campEyebrow}</p>
         <h2 className="heading mt-2 text-[clamp(1.9rem,3.6vw,2.7rem)]">
-          {weekendCampClayton.heading}
+          {campWeek.name}
         </h2>
         <p className="mt-2 text-[13px] font-medium tracking-[0.12em] text-wag-sage uppercase">
-          {weekendCampClayton.dates} · {weekendCampClayton.descriptor}
+          {campWeek.dateRange} · {campClayton.descriptor}
         </p>
         <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-body-muted">
-          {weekendCampClayton.copy}
+          {campWeek.blurb}
         </p>
         <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-          {weekendCampClayton.activities.map((activity) => (
+          {campWeek.activities.map((activity) => (
             <li
               key={activity}
               className="text-[14.5px] text-bark-soft before:mr-2 before:text-rose before:content-['♥']"
@@ -193,11 +167,13 @@ export default function WeekendPage() {
             </li>
           ))}
         </ul>
-        <p className="mt-5 max-w-3xl text-[14.5px] leading-relaxed text-body-muted">
-          {weekendCampClayton.note}
-        </p>
+        {campWeek.note ? (
+          <p className="mt-5 max-w-3xl text-[14.5px] leading-relaxed text-body-muted">
+            {campWeek.note}
+          </p>
+        ) : null}
         <p className="mt-3 max-w-3xl text-[15px] text-bark">
-          {weekendCampClayton.dropIn}
+          {campClayton.bookingNote}
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Button href={ctas.bookCampClayton.href} variant="sage" size="lg">
@@ -208,6 +184,7 @@ export default function WeekendPage() {
           </Button>
         </div>
       </Section>
+      ) : null}
 
       <Section tone="sand" id="newsletter">
         <div className="mx-auto max-w-2xl">

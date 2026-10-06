@@ -27,13 +27,13 @@ export default function HomePage() {
   return (
     <>
       <HomeHero />
+      <HomeServicesBand />
       <ChoosePath />
       <DogMatchTeaser />
       <WagWatchPreview />
-      <HomeWeekendPreview />
       <HomeApprovedNote />
       <HomeBrandStory />
-      <HomeServicesBand />
+      <HomeWeekendPreview />
       <HomeSoftProof />
       <HomeMerchStrip />
       <div id="guides" className="scroll-mt-24">

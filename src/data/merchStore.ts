@@ -126,22 +126,6 @@ export const liveMerchProducts: readonly MerchProduct[] = [
     category: "apparel",
   },
   {
-    id: "golden-retriever-hoodie",
-    name: "Keep Waco Wagging — Golden Retriever Hoodie",
-    slug: "keep-waco-wagging-golden-retriever-hoodie",
-    description: "Waco skyline golden retriever edition — premium fleece.",
-    image: {
-      src: "https://cdn.shopify.com/s/files/1/0625/4041/5063/files/34606626669541465_2048.jpg?v=1782334790",
-      alt: "Keep Waco Wagging golden retriever hoodie",
-    },
-    price: "$58.00",
-    sizesOrColorsNote: "Natural, Sage, Blossom · S–3XL",
-    shopifyProductUrl: `${SHOPIFY_STORE}/products/keep-waco-wagging-golden-retriever-hoodie`,
-    availability: "available",
-    featured: true,
-    category: "apparel",
-  },
-  {
     id: "ceramic-mug",
     name: "Keep Waco Wagging Ceramic Mug",
     slug: "keep-waco-wagging-ceramic-mug",

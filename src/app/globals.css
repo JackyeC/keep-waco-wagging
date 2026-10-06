@@ -11,9 +11,10 @@
   --color-sand: #fbf6ef;
   --color-clay: #e6dbcb;
 
-  /* Sage */
+  /* Sage — fills stay #6e7e63; sage-ink is for links and small text */
   --color-wag-sage: #6e7e63;
   --color-sage-hover: #5c6a51;
+  --color-sage-ink: #31402b;
   --color-soft-sage: #8c9b7e;
   --color-sage-50: #f4f3ef;
   --color-sage-100: #e8ebe3;
@@ -28,7 +29,7 @@
 
   /* Rose */
   --color-rose: #c68c86;
-  --color-rose-deep: #b97d77;
+  --color-rose-deep: #7c453f;
   --color-clay-rose: #cda6a0;
   --color-blush: #e5c9c4;
   --color-blush-warm: #e5b6b0;
@@ -40,12 +41,12 @@
   /* Ink */
   --color-bark: #4c463e;
   --color-serif-ink: #54513f;
-  --color-bark-soft: #6f675c;
-  --color-bark-faint: #7a7165;
-  --color-body-muted: #6f675c;
-  --color-body-muted-light: #746c60;
-  --color-label-muted: #7a7165;
-  --color-label-muted-alt: #74685c;
+  --color-bark-soft: #3c3731;
+  --color-bark-faint: #4a443c;
+  --color-body-muted: #3c3731;
+  --color-body-muted-light: #453f38;
+  --color-label-muted: #4a443c;
+  --color-label-muted-alt: #4a443c;
 
   /* Lines & inputs */
   --color-border: #e6dbcb;
@@ -61,8 +62,8 @@
   --color-gold-100: #fbf1ec;
   --color-gold-200: #e5c9c4;
   --color-gold-400: #c68c86;
-  --color-gold-500: #b97d77;
-  --color-gold-600: #b97d77;
+  --color-gold-500: #7c453f;
+  --color-gold-600: #7c453f;
 
   --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
@@ -84,7 +85,7 @@
     color: var(--color-bark);
     font-family: var(--font-sans);
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -171,7 +172,7 @@
   .dek {
     font-family: var(--font-sans);
     font-size: 1.0625rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.65;
     color: var(--color-body-muted);
   }
@@ -179,7 +180,7 @@
   .body-light {
     font-family: var(--font-sans);
     font-size: 0.84375rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.55;
     color: var(--color-body-muted-light);
   }
@@ -203,7 +204,7 @@
   }
 
   .nav-link:hover {
-    color: var(--color-rose);
+    color: var(--color-rose-deep);
   }
 
   .btn-pill {
@@ -367,4 +368,18 @@
       transform: translateY(0);
     }
   }
+}
+
+/*
+  Link ink sits outside Tailwind layers so it wins over text-wag-sage /
+  hover:text-wag-sage utilities. Brand sage fills and the wordmark stay #6e7e63.
+*/
+a.text-wag-sage,
+a.hover\:text-wag-sage:hover,
+.group:hover .group-hover\:text-wag-sage {
+  color: var(--color-sage-ink);
+}
+
+a.text-wag-sage:hover {
+  color: var(--color-rose-deep);
 }

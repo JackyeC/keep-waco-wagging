@@ -14,11 +14,6 @@ export function HomeReviews() {
 
       <div className="mt-8 grid gap-5 md:grid-cols-3">
         {reviews.map((review) => {
-          const shortQuote =
-            review.quote.length > 160
-              ? `${review.quote.slice(0, 157).trim()}…`
-              : review.quote;
-
           return (
             <article
               key={review.id}
@@ -28,7 +23,7 @@ export function HomeReviews() {
                 ★★★★★
               </div>
               <p className="mt-3.5 font-display text-[19px] leading-snug text-serif-ink italic">
-                &ldquo;{shortQuote}&rdquo;
+                &ldquo;{review.quote}&rdquo;
               </p>
               <p className="mt-4 text-xs font-medium tracking-[0.12em] text-label-muted uppercase">
                 {review.author} · {review.context}

@@ -1,23 +1,7 @@
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
-import {
-  weekendEdition,
-  weekendSaturdayStops,
-  weekendSundayFeature,
-} from "@/data/weekend";
-
-const homePicks = [
-  weekendSaturdayStops[0],
-  weekendSaturdayStops[1],
-  {
-    id: "the-will",
-    title: weekendSundayFeature.title,
-    when: weekendSundayFeature.when,
-    address: weekendSundayFeature.address,
-    copy: "Dog-focused activities, the Dash for the Daisies Dachshund Derby, and a chance to shop local vendors at HomeGrown Sunday.",
-  },
-] as const;
+import { weekendEdition, weekendSaturdayStops } from "@/data/weekend";
 
 export function HomeWeekendPreview() {
   return (
@@ -41,7 +25,7 @@ export function HomeWeekendPreview() {
         </Link>
       </div>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
-        {homePicks.map((pick) => (
+        {weekendSaturdayStops.map((pick) => (
           <article
             key={pick.id}
             className="flex h-full flex-col rounded-[20px] border border-border bg-soft-cream p-6"

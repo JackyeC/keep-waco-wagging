@@ -50,10 +50,10 @@ export function HomeHero() {
               Find a place for your dog
             </Link>
             <Link
-              href="/weekend"
-              className="text-xs font-medium tracking-[0.16em] text-cream/85 uppercase underline decoration-cream/40 underline-offset-4 transition-colors hover:text-cream hover:decoration-cream"
+              href="/book"
+              className="btn-pill border-[1.4px] border-cream bg-bark/40 px-7 py-3.5 text-cream backdrop-blur-sm hover:bg-cream hover:text-bark"
             >
-              This weekend
+              Book dog care
             </Link>
           </div>
           <p className="mt-6 text-[11px] font-medium tracking-[0.18em] text-cream/65 uppercase">

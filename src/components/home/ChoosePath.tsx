@@ -3,18 +3,18 @@ import { Bell, CalendarDays, MapPin, PawPrint } from "lucide-react";
 
 const paths = [
   {
-    icon: MapPin,
-    title: "Dog-friendly Waco",
-    copy: "Where can we go together — and what is it actually like with a dog?",
-    cta: "Explore Dog-Friendly Waco",
-    href: "/dog-friendly-waco",
-  },
-  {
     icon: PawPrint,
     title: "Dog care",
     copy: "Who can I trust with my dog when they should stay somewhere safe?",
     cta: "See Dog Care",
     href: "/dog-care",
+  },
+  {
+    icon: MapPin,
+    title: "Dog-friendly Waco",
+    copy: "Where can we go together — and what is it actually like with a dog?",
+    cta: "Explore Dog-Friendly Waco",
+    href: "/dog-friendly-waco",
   },
   {
     icon: Bell,

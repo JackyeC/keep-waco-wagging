@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { MerchImage } from "@/components/merch/MerchImage";
 import { pickFeaturedProducts } from "@/data/merchCuration";
 import { merchAnchorLine } from "@/data/merchCuration";
 import { getFeaturedMerchProducts } from "@/data/merchStore";
@@ -40,12 +40,10 @@ export async function HomeMerchStrip() {
             <Link href="/shop" className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray">
                 {product.image ? (
-                  <Image
+                  <MerchImage
                     src={product.image.src}
                     alt={product.image.alt}
-                    fill
                     sizes="(max-width: 768px) 45vw, 260px"
-                    className="object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   />
                 ) : null}
               </div>
