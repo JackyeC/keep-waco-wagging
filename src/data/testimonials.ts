@@ -64,7 +64,9 @@ export const testimonials: Testimonial[] = [
     context: "Rover",
     date: "2026-03-29",
     quote:
-      "Above-and-beyond care for my pets... daily photos, videos, and updates. When I returned home... my dogs were happy to see me, but not anxious or stressed.",
+      "They gave above-and-beyond care, with daily photos, videos, and updates. When I returned home, my dogs were happy to see me and not anxious or stressed.",
+    excerpt:
+      "They gave above-and-beyond care, with daily photos, videos, and updates. When I returned home, my dogs were happy to see me and not anxious or stressed.",
     permissionStatus: "public_rover_review",
   },
   {
@@ -74,7 +76,9 @@ export const testimonials: Testimonial[] = [
     context: "Rover",
     date: "2026-05-02",
     quote:
-      "Amazing! Our dog Ace loved being with them for the week!... daily photos! Will definitely be bringing him back!",
+      "Our dog Ace loved being with them for the week. They sent daily photos, and we will definitely bring him back.",
+    excerpt:
+      "Our dog Ace loved being with them for the week. They sent daily photos, and we will definitely bring him back.",
     permissionStatus: "public_rover_review",
   },
 ];

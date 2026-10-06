@@ -108,11 +108,17 @@ export function Header() {
                 {servicesOpen && (
                   <div className="absolute top-full left-0 z-50 min-w-[220px] pt-1">
                     <div className="border border-border bg-soft-cream py-2 shadow-sm">
+                      <Link
+                        href={ctas.bookService.href}
+                        className="block px-4 py-2.5 text-xs font-medium tracking-[0.12em] text-sage-ink uppercase hover:text-rose-deep"
+                      >
+                        Book dog care
+                      </Link>
                       {servicesNav.map((link) => (
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="block px-4 py-2 text-sm font-light text-bark hover:text-rose"
+                          className="block px-4 py-2 text-sm text-bark hover:text-rose-deep"
                         >
                           {link.label}
                         </Link>
@@ -172,10 +178,17 @@ export function Header() {
           className="max-h-[min(70dvh,32rem)] overflow-y-auto border-t border-border bg-cream lg:hidden"
         >
           <nav className="mx-auto flex max-w-[1200px] flex-col gap-1 px-6 py-4" aria-label="Mobile">
-            {primaryNav.map((item, index) => (
+            <Link
+              ref={firstMobileLinkRef}
+              href={ctas.bookService.href}
+              onClick={closeMobile}
+              className="btn-pill btn-sage mb-2 px-4 py-2.5"
+            >
+              Book dog care
+            </Link>
+            {primaryNav.map((item) => (
               <Link
                 key={item.label}
-                ref={index === 0 ? firstMobileLinkRef : undefined}
                 href={item.href}
                 onClick={closeMobile}
                 className="nav-link px-3 py-2.5 text-base"
@@ -191,18 +204,11 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={closeMobile}
-                className="px-3 py-2 text-sm font-light text-bark-soft hover:text-rose"
+                className="px-3 py-2 text-sm text-bark-soft hover:text-rose-deep"
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href={ctas.bookService.href}
-              onClick={closeMobile}
-              className="btn-pill btn-sage mt-3 px-4 py-2.5 text-center"
-            >
-              Book a service
-            </Link>
           </nav>
         </div>
       )}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { brandLanguage, servicesNav } from "@/lib/site";
+import { brandLanguage, ctas, servicesNav } from "@/lib/site";
 
 export function HomeServicesBand() {
   return (
@@ -40,14 +40,17 @@ export function HomeServicesBand() {
           ))}
         </ul>
 
-        <p className="mt-8">
+        <div className="mt-8 flex flex-wrap items-center gap-5">
+          <Link href={ctas.bookService.href} className="btn-pill btn-sage px-7 py-3">
+            Book dog care
+          </Link>
           <Link
             href="/dog-care"
-            className="text-xs font-medium tracking-[0.16em] text-wag-sage uppercase underline decoration-border underline-offset-4 hover:text-rose hover:decoration-rose"
+            className="text-xs font-medium tracking-[0.16em] text-wag-sage uppercase underline decoration-border underline-offset-4 hover:text-rose-deep hover:decoration-rose-deep"
           >
             Explore dog care
           </Link>
-        </p>
+        </div>
       </div>
     </section>
   );

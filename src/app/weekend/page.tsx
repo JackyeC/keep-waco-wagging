@@ -7,17 +7,21 @@ import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
 import { ctas, cityConfig } from "@/lib/site";
 import { servicePageMetadata } from "@/lib/metadata";
 import {
-  weekendCampClayton,
   weekendEdition,
   weekendParkPick,
   weekendSafetyNote,
   weekendSaturdayStops,
 } from "@/data/weekend";
+import {
+  campClayton,
+  getCurrentDaycareTheme,
+  getNextDaycareTheme,
+} from "@/data/summerDaycare";
 
 export const metadata: Metadata = servicePageMetadata(
   "/weekend",
-  "Waco Dog Weekend | Keep Waco Wagging",
-  "What can I do with my dog in Waco this weekend? Recurring local stops, a park pick, and one small challenge: move one purchase to a local business.",
+  "Waco Dog Weekend | What to do with your dog in Waco",
+  "Recurring Saturday stops, a North Waco park pick, and the current Camp Clayton week — plus when to leave your dog home.",
 );
 
 function PlaceCard({
@@ -77,6 +81,12 @@ function PlaceCard({
 }
 
 export default function WeekendPage() {
+  const currentCamp = getCurrentDaycareTheme();
+  const campWeek = currentCamp ?? getNextDaycareTheme();
+  const campEyebrow = currentCamp
+    ? "This week at Camp Clayton"
+    : "Up next at Camp Clayton";
+
   return (
     <>
       <section className="border-b border-border bg-sage-50">
@@ -141,7 +151,10 @@ export default function WeekendPage() {
               {weekendSafetyNote.copy}
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Button href={cityConfig.rover.profileUrl} variant="sage" size="sm">
+              <Button href="/book" variant="sage" size="sm">
+                Book dog care
+              </Button>
+              <Button href={cityConfig.rover.profileUrl} variant="secondary" size="sm">
                 Reserve Daycare on Rover
               </Button>
               <Button href="/dog-daycare-waco-tx" variant="secondary" size="sm">
@@ -156,19 +169,20 @@ export default function WeekendPage() {
         <MoveOnePurchase />
       </Section>
 
+      {campWeek ? (
       <Section tone="sand">
-        <p className="eyebrow tracking-[0.22em]">{weekendCampClayton.eyebrow}</p>
+        <p className="eyebrow tracking-[0.22em]">{campEyebrow}</p>
         <h2 className="heading mt-2 text-[clamp(1.9rem,3.6vw,2.7rem)]">
-          {weekendCampClayton.heading}
+          {campWeek.name}
         </h2>
         <p className="mt-2 text-[13px] font-medium tracking-[0.12em] text-wag-sage uppercase">
-          {weekendCampClayton.descriptor}
+          {campWeek.dateRange} · {campClayton.descriptor}
         </p>
         <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-body-muted">
-          {weekendCampClayton.copy}
+          {campWeek.blurb}
         </p>
         <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-          {weekendCampClayton.activities.map((activity) => (
+          {campWeek.activities.map((activity) => (
             <li
               key={activity}
               className="text-[14.5px] text-bark-soft before:mr-2 before:text-rose before:content-['♥']"
@@ -177,11 +191,13 @@ export default function WeekendPage() {
             </li>
           ))}
         </ul>
-        <p className="mt-5 max-w-3xl text-[14.5px] leading-relaxed text-body-muted">
-          {weekendCampClayton.note}
-        </p>
+        {campWeek.note ? (
+          <p className="mt-5 max-w-3xl text-[14.5px] leading-relaxed text-body-muted">
+            {campWeek.note}
+          </p>
+        ) : null}
         <p className="mt-3 max-w-3xl text-[15px] text-bark">
-          {weekendCampClayton.dropIn}
+          {campClayton.bookingNote}
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Button href={ctas.bookCampClayton.href} variant="sage" size="lg">
@@ -192,6 +208,7 @@ export default function WeekendPage() {
           </Button>
         </div>
       </Section>
+      ) : null}
 
       <Section tone="paper" id="newsletter">
         <div className="mx-auto max-w-2xl">

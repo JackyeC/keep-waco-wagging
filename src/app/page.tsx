@@ -27,8 +27,8 @@ export default function HomePage() {
   return (
     <>
       <HomeHero />
-      <ChoosePath />
       <HomeServicesBand />
+      <ChoosePath />
       <HomeSoftProof />
       <DogMatchTeaser />
       <WagWatchPreview />

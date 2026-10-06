@@ -11,9 +11,10 @@
   --color-sand: #fbf6ef;
   --color-clay: #e6dbcb;
 
-  /* Sage */
+  /* Sage — fills stay #6e7e63; sage-ink is for links and small text */
   --color-wag-sage: #6e7e63;
   --color-sage-hover: #5c6a51;
+  --color-sage-ink: #31402b;
   --color-soft-sage: #8c9b7e;
   --color-sage-50: #f4f3ef;
   --color-sage-100: #e8ebe3;
@@ -28,7 +29,7 @@
 
   /* Rose */
   --color-rose: #c68c86;
-  --color-rose-deep: #8f5a55;
+  --color-rose-deep: #7c453f;
   --color-clay-rose: #cda6a0;
   --color-blush: #e5c9c4;
   --color-blush-warm: #e5b6b0;
@@ -37,7 +38,7 @@
   --color-brazos-blue: #a9c2cf;
   --color-trail-taupe: #b3a48e;
 
-  /* Ink — keep cream/sage surfaces; darken type for contrast */
+  /* Ink — cream/sage surfaces stay; type is one darker scale */
   --color-bark: #2e2a24;
   --color-serif-ink: #3a362c;
   --color-bark-soft: #4a433c;
@@ -61,8 +62,8 @@
   --color-gold-100: #fbf1ec;
   --color-gold-200: #e5c9c4;
   --color-gold-400: #c68c86;
-  --color-gold-500: #b97d77;
-  --color-gold-600: #b97d77;
+  --color-gold-500: #7c453f;
+  --color-gold-600: #7c453f;
 
   --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
@@ -179,7 +180,7 @@
   .body-light {
     font-family: var(--font-sans);
     font-size: 0.84375rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.55;
     color: var(--color-body-muted-light);
   }
@@ -203,7 +204,7 @@
   }
 
   .nav-link:hover {
-    color: var(--color-sage-700);
+    color: var(--color-rose-deep);
   }
 
   .btn-pill {
@@ -367,4 +368,18 @@
       transform: translateY(0);
     }
   }
+}
+
+/*
+  Link ink sits outside Tailwind layers so it wins over text-wag-sage /
+  hover:text-wag-sage utilities. Brand sage fills and the wordmark stay #6e7e63.
+*/
+a.text-wag-sage,
+a.hover\:text-wag-sage:hover,
+.group:hover .group-hover\:text-wag-sage {
+  color: var(--color-sage-ink);
+}
+
+a.text-wag-sage:hover {
+  color: var(--color-rose-deep);
 }

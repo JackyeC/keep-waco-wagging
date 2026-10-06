@@ -105,9 +105,12 @@ function mapProduct(
   if (!storefront) return null;
 
   const image = product.images?.[0];
+  const imageSrc = image?.src?.startsWith("//")
+    ? `https:${image.src}`
+    : image?.src;
   const variant =
     product.variants?.find((v) => v.available !== false) ?? product.variants?.[0];
-  if (!image?.src || !variant?.price) return null;
+  if (!imageSrc || !variant?.price) return null;
 
   const optionNames = {
     option1: product.options?.[0]?.name,
@@ -130,8 +133,8 @@ function mapProduct(
     slug: product.handle,
     description: shortDescription || product.title,
     image: {
-      src: image.src,
-      alt: image.alt?.trim() || product.title,
+      src: imageSrc,
+      alt: image?.alt?.trim() || product.title,
     },
     price: formatPrice(variant.price),
     sizesOrColorsNote: variantNote(product),

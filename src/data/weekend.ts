@@ -18,7 +18,7 @@ export const weekendEdition = {
 export const moveOnePurchase = {
   heading: "Move one purchase.",
   intro:
-    "Local does not have to mean spending more money. Take one thing you were already going to buy this weekend and buy it from someone here.",
+    "Local does not have to mean spending more money. Take one thing you were already going to buy and buy it from someone here.",
   examples: [
     { from: "Coffee", to: "a Waco coffee shop" },
     { from: "Produce or groceries", to: "a Waco farmer or maker" },
