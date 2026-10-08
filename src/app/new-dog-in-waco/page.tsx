@@ -234,11 +234,15 @@ export default function NewDogInWacoPage() {
               Stay in the loop
             </h2>
             <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-bark-soft">
-              Wag Club is the free list for weekend ideas, Wag Watch notes, and
-              local recommendations. No paid membership. {brandLanguage.brandRelationship}
+              Free Waco dog updates cover weekend ideas, Wag Watch notes, and
+              local recommendations. The Wag Club membership is separate, and
+              joining the free list does not enroll you. {brandLanguage.brandRelationship}
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <Button href={ctas.joinClub.href}>Join the Wag Club</Button>
+              <Button href={ctas.freeUpdates.href}>Get free updates</Button>
+              <Button href={ctas.joinClub.href} variant="secondary">
+                Discover The Wag Club
+              </Button>
               <Button href="/weekend" variant="secondary">
                 Waco Dog Weekend
               </Button>

@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import { AlertCircle, CheckCircle2, Send } from "lucide-react";
 import { HoneypotField } from "@/components/HoneypotField";
-import { sponsorTypes } from "@/data/sponsors";
+import { partnershipInterestTypes } from "@/data/partnerships";
 
 const inputClass =
-  "w-full rounded-xl border-0 bg-white px-3.5 py-2.5 text-sm text-bark ring-1 ring-inset ring-clay placeholder:text-bark-faint focus:outline-none focus:ring-2 focus:ring-sage-400 disabled:opacity-60";
+  "w-full rounded-xl border border-input-border bg-cream px-3.5 py-2.5 text-sm text-bark outline-none placeholder:text-label-muted focus:border-wag-sage disabled:opacity-60";
 
 export function SponsorInquiryForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -31,12 +32,16 @@ export function SponsorInquiryForm() {
           phone: fd.get("phone"),
           website: fd.get("website"),
           sponsorType: fd.get("sponsorType"),
+          proposedPerk: fd.get("proposedPerk"),
           notes: fd.get("notes"),
           _hp: fd.get("_hp"),
         }),
       });
-      const data = (await res.json()) as { error?: string };
-      if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
+      const data = (await res.json()) as { error?: string; ok?: boolean };
+      if (!res.ok || data.ok !== true) {
+        throw new Error(data.error ?? "Something went wrong.");
+      }
+      track("partnership_inquiry", { page: "/sponsors" });
       setSubmitted(true);
       form.reset();
     } catch (err) {
@@ -48,41 +53,153 @@ export function SponsorInquiryForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-card bg-sage-50 p-8 text-center ring-1 ring-inset ring-sage-200">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-sage-600" />
-        <h3 className="mt-4 text-xl font-semibold">Thanks!</h3>
-        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-bark-soft">
-          We&apos;ll follow up with sponsor options for local Waco dog-friendly businesses.
+      <div
+        className="rounded-[20px] bg-sage-50 p-8 text-center ring-1 ring-sage-200"
+        role="status"
+      >
+        <CheckCircle2 className="mx-auto h-10 w-10 text-wag-sage" />
+        <h3 className="mt-4 font-display text-2xl text-serif-ink">
+          Inquiry received
+        </h3>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-body-muted">
+          Thanks. We have your partnership inquiry and will follow up if it is
+          a fit. This does not reserve a sponsorship, confirm a member perk, or
+          purchase a Keep Waco Wagging Approved recommendation.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="relative rounded-card bg-cream p-6 ring-1 ring-inset ring-clay/70 sm:p-8">
+    <form
+      onSubmit={onSubmit}
+      className="relative rounded-[20px] border border-border bg-soft-cream p-6 sm:p-8"
+    >
       <HoneypotField />
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Business name"><input name="businessName" required disabled={loading} className={inputClass} /></Field>
-        <Field label="Contact name"><input name="contactName" disabled={loading} className={inputClass} /></Field>
-        <Field label="Email"><input name="email" type="email" required disabled={loading} className={inputClass} /></Field>
-        <Field label="Phone"><input name="phone" type="tel" disabled={loading} className={inputClass} /></Field>
-        <Field label="Website"><input name="website" type="url" placeholder="https://" disabled={loading} className={inputClass} /></Field>
-        <Field label="Sponsor type">
-          <select name="sponsorType" className={inputClass} defaultValue="" disabled={loading}>
-            <option value="" disabled>Choose an option</option>
-            {sponsorTypes.map((type) => <option key={type}>{type}</option>)}
+        <Field label="Contact name" required>
+          <input
+            name="contactName"
+            required
+            autoComplete="name"
+            disabled={loading}
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Business name" required>
+          <input
+            name="businessName"
+            required
+            autoComplete="organization"
+            disabled={loading}
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Email" required>
+          <input
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            disabled={loading}
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Phone" hint="Optional">
+          <input
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            disabled={loading}
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Website" hint="Optional">
+          <input
+            name="website"
+            type="url"
+            placeholder="https://"
+            autoComplete="url"
+            disabled={loading}
+            className={inputClass}
+          />
+        </Field>
+        <Field label="Type of interest" required>
+          <select
+            name="sponsorType"
+            required
+            className={inputClass}
+            defaultValue=""
+            disabled={loading}
+          >
+            <option value="" disabled>
+              Choose an option
+            </option>
+            {partnershipInterestTypes.map((type) => (
+              <option key={type}>{type}</option>
+            ))}
           </select>
         </Field>
-        <Field label="Notes" full><textarea name="notes" rows={4} disabled={loading} className={inputClass} /></Field>
+        <Field label="Proposed member perk or sponsorship interest" required full>
+          <textarea
+            name="proposedPerk"
+            required
+            rows={3}
+            disabled={loading}
+            className={inputClass}
+            placeholder="The offer you would give members, or the events you want to support."
+          />
+        </Field>
+        <Field label="Additional details" hint="Optional" full>
+          <textarea name="notes" rows={4} disabled={loading} className={inputClass} />
+        </Field>
       </div>
-      {error && <p className="mt-4 flex items-center gap-2 text-sm text-red-600"><AlertCircle className="h-4 w-4" />{error}</p>}
-      <button type="submit" disabled={loading} className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-base font-semibold text-white hover:bg-sage-700 disabled:opacity-60 sm:w-auto">
-        {loading ? "Submitting..." : "Become a Local Sponsor"} <Send className="h-4 w-4" />
+      <p className="mt-4 text-xs leading-relaxed text-label-muted">
+        Submitting asks for a conversation. It does not start a paid sponsorship
+        or a member perk. Sponsored mentions are labeled, and editorial approval
+        is not for sale.
+      </p>
+      {error && (
+        <p className="mt-4 flex items-center gap-2 text-sm text-red-700" role="alert">
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          {error}
+        </p>
+      )}
+      <button
+        type="submit"
+        disabled={loading}
+        className="btn-pill btn-sage mt-6 inline-flex w-full items-center justify-center gap-2 px-6 py-3 sm:w-auto"
+      >
+        {loading ? "Submitting…" : "Send partnership inquiry"}
+        <Send className="h-4 w-4" aria-hidden />
       </button>
     </form>
   );
 }
 
-function Field({ label, children, full }: { label: string; children: React.ReactNode; full?: boolean }) {
-  return <label className={`block text-sm font-medium text-bark ${full ? "sm:col-span-2" : ""}`}>{label}<div className="mt-1.5">{children}</div></label>;
+function Field({
+  label,
+  hint,
+  children,
+  full,
+  required,
+}: {
+  label: string;
+  hint?: string;
+  children: React.ReactNode;
+  full?: boolean;
+  required?: boolean;
+}) {
+  return (
+    <label className={`block text-sm font-medium text-bark ${full ? "sm:col-span-2" : ""}`}>
+      <span>
+        {label}
+        {required ? <span className="text-rose-deep"> *</span> : null}
+        {hint ? (
+          <span className="ml-2 font-normal text-label-muted">{hint}</span>
+        ) : null}
+      </span>
+      <div className="mt-1.5">{children}</div>
+    </label>
+  );
 }

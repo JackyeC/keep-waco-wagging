@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -50,7 +51,7 @@ export default function WorkWithUsPage() {
         <SectionHeading
           eyebrow="Ways to partner"
           title="Opportunities for local businesses"
-          description="These are the kinds of partnerships we're building. Tell us what you have in mind and we'll follow up with details."
+          description="The current proposal — member benefit partners and event sponsors — is on the partnerships page. Prices there are not checkout products. The ideas below are other conversations we can have."
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {opportunities.map((o) => (
@@ -64,6 +65,11 @@ export default function WorkWithUsPage() {
             </div>
           ))}
         </div>
+        <p className="mt-6 text-sm text-body-muted">
+          <Link href="/sponsors" className="underline underline-offset-2 hover:text-rose-deep">
+            See member benefit partners and proposed event prices
+          </Link>
+        </p>
       </Section>
 
       <Section tone="sand">

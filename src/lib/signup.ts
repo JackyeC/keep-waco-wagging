@@ -37,6 +37,36 @@ export const YAPPY_HOUR_RSVP_PREFIX = "Yappy Hour RSVP:";
 
 const MAX_YAPPY_HOUR_EVENT_LABEL_LENGTH = 100;
 
+/** Free newsletter / Wag Watch list. Existing rows keep this source. */
+export const LEAD_SOURCE_FREE = "keep_waco_wagging";
+
+/**
+ * Founding membership interest only. Never written onto older free-list rows.
+ * This is not a completed purchase.
+ */
+export const LEAD_SOURCE_FOUNDING = "wag_club_founding_interest";
+
+export const FOUNDING_MEMBERSHIP_INTEREST = "Founding membership interest";
+
+export const SHIRT_SIZE_PREFIX = "Shirt size:";
+
+/** Requested founding-shirt size. "Not sure yet" is stored so we do not invent a size. */
+export const shirtSizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "Not sure yet"] as const;
+
+export type ShirtSize = (typeof shirtSizes)[number];
+
+const SHIRT_SIZES = new Set<string>(shirtSizes);
+
+export function shirtSizeInterest(size: string): string | null {
+  if (!SHIRT_SIZES.has(size)) return null;
+  return `${SHIRT_SIZE_PREFIX} ${size}`;
+}
+
+/** Unknown values stay on the free list so a bad client cannot relabel a signup. */
+export function resolveLeadSource(raw: unknown): string {
+  return raw === LEAD_SOURCE_FOUNDING ? LEAD_SOURCE_FOUNDING : LEAD_SOURCE_FREE;
+}
+
 /**
  * Normalize lead interests: whitelist newsletter options, map known aliases,
  * and allow Yappy Hour RSVP lines with a fixed prefix only.
@@ -56,6 +86,11 @@ export function sanitizeLeadInterests(raw: string[] | undefined): string[] {
       normalized = trimmed;
     } else if (trimmed in INTEREST_ALIASES) {
       normalized = INTEREST_ALIASES[trimmed];
+    } else if (trimmed === FOUNDING_MEMBERSHIP_INTEREST) {
+      normalized = FOUNDING_MEMBERSHIP_INTEREST;
+    } else if (trimmed.startsWith(SHIRT_SIZE_PREFIX)) {
+      const size = trimmed.slice(SHIRT_SIZE_PREFIX.length).trim();
+      normalized = shirtSizeInterest(size);
     } else if (trimmed.startsWith(YAPPY_HOUR_RSVP_PREFIX)) {
       const eventLabel = trimmed.slice(YAPPY_HOUR_RSVP_PREFIX.length).trim();
       if (
@@ -91,18 +126,25 @@ export function formatLeadSignupEmail(payload: {
   dog_name?: string | null;
   zip_code?: string | null;
   interests?: string[];
+  source?: string | null;
   source_page?: string | null;
   created_at?: string;
 }): string {
   const timestamp = payload.created_at ?? new Date().toISOString();
+  const source = payload.source || LEAD_SOURCE_FREE;
+  const heading =
+    source === LEAD_SOURCE_FOUNDING
+      ? "New Wag Club founding membership interest (not a paid membership)"
+      : "New Keep Waco Wagging signup";
   const lines = [
-    "New Keep Waco Wagging signup",
+    heading,
     "",
     `First name: ${payload.first_name || "—"}`,
     `Email: ${payload.email}`,
     `Dog name: ${payload.dog_name || "—"}`,
     `Zip code: ${payload.zip_code || "—"}`,
     `Interests: ${payload.interests?.length ? payload.interests.join(", ") : "—"}`,
+    `List: ${source}`,
     `Timestamp: ${timestamp}`,
     `Source page: ${payload.source_page || "—"}`,
   ];

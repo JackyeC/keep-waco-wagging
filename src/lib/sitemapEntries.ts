@@ -38,6 +38,7 @@ const INDEXABLE_STATIC_ROUTES: {
   { route: "/contact", priority: 0.75, changeFrequency: "monthly" },
   { route: "/about", priority: 0.7, changeFrequency: "monthly" },
   { route: "/weekend", priority: 0.7, changeFrequency: "weekly" },
+  { route: "/events", priority: 0.72, changeFrequency: "weekly" },
   { route: "/yappy-hours", priority: 0.6, changeFrequency: "weekly" },
   { route: "/blog", priority: 0.55, changeFrequency: "weekly" },
   { route: "/gear-guide", priority: 0.55, changeFrequency: "monthly" },

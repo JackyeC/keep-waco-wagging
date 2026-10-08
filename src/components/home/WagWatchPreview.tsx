@@ -42,12 +42,12 @@ export function WagWatchPreview() {
               </span>
               <p className="max-w-xl text-[15px] leading-relaxed text-body-muted">
                 The first Wag Watch briefs are on the way — local alerts,
-                program news, recalls, and new dog-friendly spots. Join the Wag
-                Club and we&rsquo;ll send the important ones to your inbox.
+                program news, recalls, and new dog-friendly spots. Free Waco
+                dog updates will send the important ones to your inbox.
               </p>
             </div>
             <Link href="/#wag-club" className="btn-pill btn-sage shrink-0 px-7 py-3">
-              Join the Wag Club
+              Get free updates
             </Link>
           </div>
         )}
