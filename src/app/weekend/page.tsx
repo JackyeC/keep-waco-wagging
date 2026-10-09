@@ -3,6 +3,7 @@ import { ExternalLink, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { HowloweenCallout } from "@/components/weekend/HowloweenCallout";
 import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
 import { ctas, cityConfig } from "@/lib/site";
 import { servicePageMetadata } from "@/lib/metadata";
@@ -106,15 +107,18 @@ export default function WeekendPage() {
           <p className="mt-3 max-w-2xl text-[15px] text-body-muted">
             {weekendEdition.supporting}
           </p>
-          <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <MoveOnePurchase variant="callout" />
-            <div className="flex flex-col justify-center gap-3">
-              <Button href="/dog-friendly-waco" variant="sage">
-                Dog-friendly Waco directory
-              </Button>
-              <Button href="/book" variant="secondary">
-                Book dog care
-              </Button>
+          <div className="mt-8 space-y-6">
+            <HowloweenCallout />
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+              <MoveOnePurchase variant="callout" />
+              <div className="flex flex-col justify-center gap-3">
+                <Button href="/dog-friendly-waco" variant="sage">
+                  Dog-friendly Waco directory
+                </Button>
+                <Button href="/book" variant="secondary">
+                  Book dog care
+                </Button>
+              </div>
             </div>
           </div>
         </div>
