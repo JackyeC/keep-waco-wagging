@@ -19,6 +19,8 @@ import {
   getNextDaycareTheme,
 } from "@/data/summerDaycare";
 
+export const revalidate = 600;
+
 export const metadata: Metadata = servicePageMetadata(
   "/weekend",
   "Waco Dog Weekend | What to do with your dog in Waco",
