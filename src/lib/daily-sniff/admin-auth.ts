@@ -1,20 +1,28 @@
 import { cookies } from "next/headers";
+import { ADMIN_COOKIE_NAME } from "@/lib/admin/adminCookie";
 
-// Temporary server-side gate for the Daily Sniff admin queue until the app has
-// a real auth system. Access requires a cookie matching DAILY_SNIFF_ADMIN_TOKEN.
-const COOKIE_NAME = "ds_admin";
+export { ADMIN_COOKIE_NAME };
+
+// Temporary server-side gate for Daily Sniff and newsletter previews until the
+// app has a real auth system. Access requires a cookie matching
+// DAILY_SNIFF_ADMIN_TOKEN.
 
 export type AdminGate =
   | { state: "ok" }
   | { state: "unconfigured" }
   | { state: "locked" };
 
+/** Fail closed: missing token and bad cookie both hide admin content. */
+export function canViewAdminPreview(gate: AdminGate): boolean {
+  return gate.state === "ok";
+}
+
 export async function checkAdmin(): Promise<AdminGate> {
   const token = process.env.DAILY_SNIFF_ADMIN_TOKEN;
   if (!token) return { state: "unconfigured" };
 
   const store = await cookies();
-  const value = store.get(COOKIE_NAME)?.value;
+  const value = store.get(ADMIN_COOKIE_NAME)?.value;
   if (value && value === token) return { state: "ok" };
   return { state: "locked" };
 }
@@ -24,7 +32,7 @@ export async function setAdminCookie(token: string): Promise<boolean> {
   if (!expected || token !== expected) return false;
 
   const store = await cookies();
-  store.set(COOKIE_NAME, token, {
+  store.set(ADMIN_COOKIE_NAME, token, {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
@@ -36,5 +44,5 @@ export async function setAdminCookie(token: string): Promise<boolean> {
 
 export async function clearAdminCookie(): Promise<void> {
   const store = await cookies();
-  store.delete(COOKIE_NAME);
+  store.delete(ADMIN_COOKIE_NAME);
 }
