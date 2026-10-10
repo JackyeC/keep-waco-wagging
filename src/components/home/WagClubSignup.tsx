@@ -7,18 +7,18 @@ import { LeadSignupConsent } from "@/components/LeadSignupConsent";
 import { cityConfig } from "@/lib/site";
 
 const clubCopy = {
-  headline: "Join the Wag Club",
-  body: "Weekend ideas, Wag Watch notes, local recommendations, and the occasional drop — useful updates for Waco dog parents, not a flood of mail.",
-  button: "Join Now",
+  headline: "Get free Waco dog updates",
+  body: "Wag Watch notes, local guides, and public event updates. This list is free. It does not sign you up for The Wag Club membership.",
+  button: "Send me updates",
   success:
-    "You're in. Welcome to the Wag Club — watch your inbox for weekend ideas and the updates that actually matter.",
+    "You're on the free update list for Wag Watch, local guides, and public events. This is not a Wag Club membership.",
   error: "Something went wrong. Please try again or message us directly.",
-  perks: ["Weekend ideas", "Wag Watch notes", "Local recommendations"],
+  perks: ["Wag Watch", "Local guides", "Public events"],
 } as const;
 
 const closerCopy = {
-  headline: "If it involves your dog in Waco, stay in the loop.",
-  body: "Join the Wag Club for weekend ideas, Wag Watch notes, and local recommendations.",
+  headline: "Get free Waco dog updates",
+  body: "Wag Watch, local guides, and public events. Free, and separate from The Wag Club membership.",
 } as const;
 
 type WagClubSignupProps = {
@@ -165,7 +165,7 @@ export function WagClubSignup({
     return (
       <div id={id} className="mt-8 max-w-md">
         <p className="text-[11px] font-medium tracking-[0.18em] text-label-muted uppercase">
-          Join the Wag Club — free
+          Free community updates
         </p>
         <div className="mt-3">{form}</div>
       </div>
@@ -177,7 +177,7 @@ export function WagClubSignup({
       <section id={id} className="mx-auto mt-20 max-w-[1200px] scroll-mt-24 px-6">
         <div className="overflow-hidden rounded-[30px] bg-wag-sage px-6 py-14 text-center text-cream md:px-12 md:py-16">
           <p className="text-xs font-medium tracking-[0.24em] text-blush uppercase">
-            The Wag Club
+            Free updates
           </p>
           <h2 className="mx-auto mt-3 max-w-2xl font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.05] font-medium text-cream">
             {closerCopy.headline}
@@ -195,7 +195,7 @@ export function WagClubSignup({
     <section id={id} className="mx-auto mt-16 max-w-[1200px] scroll-mt-24 px-6">
       <div className="card-panel grid items-center gap-8 p-8 md:grid-cols-[1fr_1fr] md:p-12">
         <div>
-          <p className="eyebrow tracking-[0.24em]">Members first</p>
+          <p className="eyebrow tracking-[0.24em]">Free list</p>
           <h2 className="heading mt-3 text-[clamp(2rem,3.6vw,2.75rem)]">
             {clubCopy.headline}
           </h2>

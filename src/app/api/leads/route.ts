@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { clampText, guardPublicFormPost } from "@/lib/formGuard";
 import { isValidLeadEmail, saveSubmission } from "@/lib/leads";
-import { signupCopy, sanitizeLeadInterests } from "@/lib/signup";
+import { resolveLeadSource, sanitizeLeadInterests, signupCopy } from "@/lib/signup";
 
 export async function POST(request: Request) {
   try {
@@ -12,6 +12,7 @@ export async function POST(request: Request) {
       zipCode?: string;
       neighborhood?: string;
       interests?: string[];
+      source?: string;
       sourcePage?: string;
       _hp?: string;
     };
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
       zip_code: zipCode,
       interests,
       source_page: clampText(body.sourcePage, 200) || null,
-      source: "keep_waco_wagging",
+      source: resolveLeadSource(body.source),
       consent: true,
     };
 

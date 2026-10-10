@@ -10,7 +10,9 @@ import {
 
 const brandLinks = [
   { label: "Shop", href: "/shop" },
-  { label: "Wag Club", href: "/wagclub" },
+  { label: "The Wag Club", href: "/wagclub" },
+  { label: "Events", href: "/events" },
+  { label: "Partnerships", href: "/sponsors" },
   { label: "About", href: "/about" },
 ];
 
@@ -18,6 +20,7 @@ const exploreLinks = [
   { label: "Dog-friendly Waco", href: "/dog-friendly-waco" },
   { label: "Keep Waco Wagging Approved", href: "/approved" },
   { label: "Waco Dog Weekend", href: "/weekend" },
+  { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "Wag Watch", href: "/wag-watch" },
   { label: "Dog Match", href: "/dog-match" },
   { label: "New dog in Waco", href: "/new-dog-in-waco" },

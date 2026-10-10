@@ -51,8 +51,8 @@ export default function WagWatchPage() {
             </h2>
             <p className="dek mt-3">
               We&rsquo;re lining up the first Wag Watch updates — real, sourced,
-              and useful. Join the Wag Club and we&rsquo;ll send the important
-              ones straight to your inbox.
+              and useful. Free Waco dog updates will send the important ones
+              straight to your inbox. This list is not a Wag Club membership.
             </p>
             <div className="mt-6 flex justify-center">
               <div className="[&_p]:text-body-muted">

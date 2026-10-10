@@ -179,6 +179,8 @@ export type NavLink = {
   label: string;
   href: string;
   external?: boolean;
+  /** Subnavigation. Pages stay reachable here when they leave the top row. */
+  children?: readonly NavLink[];
 };
 
 /** Dedicated service landing pages — homepage teasers, footer, and /book hub. */
@@ -191,15 +193,35 @@ export const servicesNav: NavLink[] = [
   { label: "Camp Clayton", href: "/camp-waco" },
 ];
 
-// Primary nav — dog-parent jobs first (GO / CARE / KNOW / BELONG / SHOP).
-export const mainNav: NavLink[] = [
+/** Places and guides under Explore Waco. Dog Care services stay on servicesNav. */
+export const exploreNav: NavLink[] = [
   { label: "Dog-Friendly Waco", href: "/dog-friendly-waco" },
-  { label: "Dog Care", href: "/dog-care" },
   { label: "Dog Match", href: "/dog-match" },
+  { label: "Keep Waco Wagging Approved", href: "/approved" },
+  { label: "New Dog in Waco", href: "/new-dog-in-waco" },
+  { label: "Guides", href: "/blog" },
+  { label: "Gear Guide", href: "/gear-guide" },
+];
+
+/**
+ * Event destinations. Dinner Club is omitted until a confirmed DNNR URL exists.
+ * Camp Clayton stays a care booking, linked here because it is dated programming.
+ */
+export const eventsNav: NavLink[] = [
+  { label: "Events", href: "/events" },
+  { label: "Waco Dog Weekend", href: "/weekend" },
+  { label: "Yappy Hours", href: "/yappy-hours" },
+  { label: "Camp Clayton", href: "/camp-waco" },
+];
+
+// Primary nav — community and events are visible; other pages stay in children.
+export const mainNav: NavLink[] = [
+  { label: "Dog Care", href: "/dog-care", children: servicesNav },
+  { label: "Explore Waco", href: "/dog-friendly-waco", children: exploreNav },
+  { label: "Events", href: "/events", children: eventsNav },
+  { label: "The Wag Club", href: "/wagclub" },
   { label: "Wag Watch", href: "/wag-watch" },
-  { label: "Weekend", href: "/weekend" },
   { label: "Shop", href: "/shop" },
-  { label: "Wag Club", href: "/#wag-club" },
 ];
 
 // Community, booking, and secondary pages — footer and mobile overflow.
@@ -211,13 +233,17 @@ export const secondaryNav: NavLink[] = [
   { label: "New Dog in Waco", href: "/new-dog-in-waco" },
   { label: "Book a Service", href: "/book" },
   { label: "Camp Clayton", href: "/camp-waco" },
+  { label: "Events", href: "/events" },
+  { label: "The Wag Club", href: "/wagclub" },
   { label: "Blog", href: "/blog" },
   { label: "Yappy Hours", href: "/yappy-hours" },
   { label: "Waco Dog Weekend", href: "/weekend" },
+  { label: "Partnerships", href: "/sponsors" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Gear Guide", href: "/gear-guide" },
   { label: "Work With Us", href: "/work-with-us" },
+  { label: "Waco Wag Club welcome", href: "/waco-wag-club" },
   {
     label: "Rover Profile",
     href: cityConfig.rover.profileUrl,
@@ -291,8 +317,16 @@ export const ctas = {
     href: "/shop",
   },
   joinClub: {
-    label: "Join the Wag Club",
+    label: "Discover The Wag Club",
+    href: "/wagclub",
+  },
+  freeUpdates: {
+    label: "Get Free Waco Dog Updates",
     href: "/#wag-club",
+  },
+  exploreEvents: {
+    label: "Explore Upcoming Events",
+    href: "/events",
   },
   wagWatch: {
     label: "Read Wag Watch",
