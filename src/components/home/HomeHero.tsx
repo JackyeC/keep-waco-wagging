@@ -38,9 +38,9 @@ export function HomeHero() {
             {brandLanguage.heroLine.replace(/\.$/, "")}
           </p>
           <p className="mt-4 max-w-md text-[15px] font-light leading-relaxed text-cream/90">
-            Your dog is family. We help you find the places, people, services,
-            and events that make life with them in Waco even better — and we
-            say when bringing them along is not the right call.
+            Boarding, daycare, training and poop scooping from Jackye and Todd,
+            plus an honest local guide to where your dog is welcome in Waco
+            and when they&apos;d be happier at home.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <Link

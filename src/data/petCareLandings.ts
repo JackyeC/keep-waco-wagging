@@ -92,7 +92,7 @@ const trustMeta = `★ ${roverCredentialsLine} · ${cityConfig.trustSignals.repe
 
 const caregiverBody = [
   rover.bio,
-  "This is home-based care in a real Waco home — not a warehouse kennel or high-volume daycare floor.",
+  "This is home-based care in a real Waco home with a small group of dogs.",
 ];
 
 /** Public Rover testimonials already in the repo (boarding-leaning + daycare). */
@@ -113,14 +113,14 @@ export const boardingLanding: PetCareLandingConfig = {
   seo: {
     title: "Dog Boarding Waco TX | Home-Based Boarding | Platinum Scoops",
     description:
-      "Home-based dog boarding in Waco, TX with Jackye and Todd — walks, enrichment, rest, and daily photo updates. Pet care provided by Platinum Scoops. 5.0 on Rover. Request boarding on Rover.",
+      "Home-based dog boarding in Waco, TX with Jackye and Todd: walks, enrichment, rest, and daily photo updates. Pet care provided by Platinum Scoops. 5.0 on Rover. Request boarding on Rover.",
   },
   hero: {
     eyebrow: "Overnight · home-based boarding",
     h1: "Home-based dog boarding in",
     h1Accent: "Waco, TX",
     description:
-      "Overnight care in a calm Waco home — not a kennel run. Your dog stays with full-time caregivers for walks, enrichment, real rest, and daily photo updates.",
+      "Overnight care in a calm Waco home. Your dog stays with full-time caregivers for walks, enrichment, real rest, and daily photo updates.",
     startingRateLabel: "Public Rover rate",
     startingRate: roverPublicStartingRates.boarding,
     primaryCta: {
@@ -147,7 +147,7 @@ export const boardingLanding: PetCareLandingConfig = {
     eyebrow: "A boarding visit",
     title: "What a boarding day and night look like",
     intro:
-      "Exact timing flexes with your dog’s needs and the household rhythm. The pattern below reflects how care is described for this home-based boarding — without pretending every hour is identical.",
+      "Exact timing flexes with your dog’s needs and the household rhythm. The pattern below reflects how care is described for this home-based boarding. Every day flexes a little.",
     blocks: [
       {
         title: "Morning",
@@ -162,12 +162,12 @@ export const boardingLanding: PetCareLandingConfig = {
       {
         title: "Walks, play & enrichment",
         detail:
-          "Neighborhood walks, supervised play, sniffing, and enrichment — not nonstop group chaos.",
+          "Neighborhood walks, supervised play, sniffing, and enrichment at the dog's pace.",
       },
       {
         title: "Rest periods",
         detail:
-          "Structured rest is part of the day. Crates are used as appropriate for meals, rest, and decompression — dogs are not expected to play nonstop, and they are not crated for the entire stay.",
+          "Structured rest is part of the day. Crates are used as appropriate for meals, rest, and decompression. Dogs are not expected to play nonstop, and they are not crated for the entire stay.",
       },
       {
         title: "Evening",
@@ -184,7 +184,7 @@ export const boardingLanding: PetCareLandingConfig = {
   introductions: {
     title: "How we introduce new dogs",
     body: [
-      "We take introductions slowly because how a stay starts matters. New dogs are given time to settle in and meet the group intentionally — not dropped into a free-for-all on arrival.",
+      "We take introductions slowly because how a stay starts matters. New dogs are given time to settle in and meet the group one at a time.",
       "Compatibility and individual temperament matter in a home-based setting. We pay attention to how a dog settles into the environment and interacts with the group, rather than treating every dog the same way.",
       "Owners are welcome to meet Jacqueline and Todd. We do not use dog-to-dog meet-and-greets as the primary evaluation method. For a new guest, we may recommend a daycare / trial day before a longer boarding stay so we can see how they do in the home first.",
     ],
@@ -211,7 +211,7 @@ export const boardingLanding: PetCareLandingConfig = {
       {
         title: "Medication & special routines",
         detail:
-          "Medication support and detailed care instructions are part of how this home works with guest dogs — including special diets and routines you spell out in writing.",
+          "Medication support and detailed care instructions are part of how this home works with guest dogs, including special diets and routines you spell out in writing.",
       },
     ],
   },
@@ -228,7 +228,7 @@ export const boardingLanding: PetCareLandingConfig = {
       "Routine / care notes",
       "Emergency contact information",
     ],
-    note: "Crates are part of packing because we use them as appropriate for meals, rest, and decompression — not because dogs spend the entire stay crated.",
+    note: "Crates are part of packing because we use them as appropriate for meals, rest, and decompression, not because dogs spend the entire stay crated.",
   },
   logistics: {
     title: "Drop-off, pickup, and extras",
@@ -276,7 +276,7 @@ export const boardingLanding: PetCareLandingConfig = {
     {
       question: "Where does my dog stay overnight?",
       answer:
-        "In Jacqueline and Todd’s Waco home — home-based boarding, not a kennel or warehouse facility. Overnight arrangements are based on the individual dog, their normal routine, and what helps them settle safely and comfortably.",
+        "In Jacqueline and Todd’s Waco home. Overnight arrangements are based on the individual dog, their normal routine, and what helps them settle safely and comfortably.",
     },
     {
       question: "Will my dog be crated the whole time?",
@@ -296,7 +296,7 @@ export const boardingLanding: PetCareLandingConfig = {
     {
       question: "Can you give medication?",
       answer:
-        "Yes — medication support and detailed instructions are part of the care model described for this home.",
+        "Yes. Medication support and detailed instructions are part of the care model described for this home.",
     },
     {
       question: "What should I bring?",
@@ -366,14 +366,14 @@ export const daycareLanding: PetCareLandingConfig = {
   seo: {
     title: "Dog Daycare Waco TX | Small-Group Home Daycare | Platinum Scoops",
     description:
-      "Small-group, home-based dog daycare in Waco, TX with play, enrichment, and real rest — not a warehouse floor. Pet care provided by Platinum Scoops. Request daycare on Rover.",
+      "Small-group, home-based dog daycare in Waco, TX with play, enrichment, and real rest. Pet care provided by Platinum Scoops. Request daycare on Rover.",
   },
   hero: {
     eyebrow: "Daytime · small-group home daycare",
     h1: "Small-group dog daycare in",
     h1Accent: "Waco, TX",
     description:
-      "Home-based daytime care with supervised play, enrichment, and decompression — without the warehouse feel. Built for Waco dogs who do better in a real home than a high-volume floor.",
+      "Home-based daytime care with supervised play, enrichment, and decompression. Built for Waco dogs who do better in a real home than a high-volume floor.",
     startingRateLabel: "Public Rover rate",
     startingRate: roverPublicStartingRates.daycare,
     primaryCta: {
@@ -402,17 +402,17 @@ export const daycareLanding: PetCareLandingConfig = {
       {
         title: "Arrival & decompression",
         detail:
-          "Dogs arrive into a home environment. The goal is a calm start — not an immediate free-for-all.",
+          "Dogs arrive into a home environment. The goal is a calm start.",
       },
       {
         title: "Introductions",
         detail:
-          "New dogs are introduced slowly and intentionally — not simply placed into a group on arrival. Compatibility and temperament matter.",
+          "New dogs are introduced slowly and intentionally, one dog at a time. Compatibility and temperament matter.",
       },
       {
         title: "Play, walks & yard time",
         detail:
-          "Supervised play and walks paced to the dog — with eyes on group dynamics the whole time.",
+          "Supervised play and walks paced to the dog, with eyes on group dynamics the whole time.",
       },
       {
         title: "Rest & enrichment",
@@ -434,9 +434,9 @@ export const daycareLanding: PetCareLandingConfig = {
   introductions: {
     title: "How we introduce new dogs",
     body: [
-      "We take introductions slowly because how a day starts matters. New dogs are given time to settle in and meet the group intentionally — not dropped into a free-for-all on arrival.",
+      "We take introductions slowly because how a day starts matters. New dogs are given time to settle in and meet the group one at a time.",
       "Compatibility and individual temperament matter in a home-based, intentionally managed setting with room for rest and decompression.",
-      "Owners are welcome to meet Jacqueline and Todd. We do not use dog-to-dog meet-and-greets as the primary evaluation method. A daycare / trial day is often the best first step — and for boarding guests who are new to us, we may recommend a daycare day before a longer stay.",
+      "Owners are welcome to meet Jacqueline and Todd. We do not use dog-to-dog meet-and-greets as the primary evaluation method. A daycare / trial day is often the best first step, and for boarding guests who are new to us, we may recommend a daycare day before a longer stay.",
     ],
   },
   fit: {
@@ -475,7 +475,7 @@ export const daycareLanding: PetCareLandingConfig = {
       "Medication with dosing notes (if needed)",
       "Any written routine or trigger notes",
     ],
-    note: "Drop-off and pickup times are confirmed on Rover — this site does not publish a rigid public schedule.",
+    note: "Drop-off and pickup times are confirmed on Rover. This site does not publish a rigid public schedule.",
   },
   logistics: {
     title: "Hours, drop-off, and pickup",
@@ -492,12 +492,12 @@ export const daycareLanding: PetCareLandingConfig = {
       {
         title: "Updates",
         detail:
-          "Photos and videos help you see how the day is going — the same update habit families mention in Rover reviews.",
+          "Photos and videos help you see how the day is going. It's the same update habit families mention in Rover reviews.",
       },
       {
         title: "Year-round daycare and Camp Clayton",
         detail:
-          "This page is the underlying daycare service. Camp Clayton is our themed take on that same home-based daycare — a new weekly theme layered onto play, enrichment, rest, and individual attention. It is not a separate facility or overnight camp. See /camp-waco.",
+          "This page is the underlying daycare service. Camp Clayton is our themed take on that same home-based daycare, with a new weekly theme layered onto play, enrichment, rest, and individual attention. It is not a separate facility or overnight camp. See /camp-waco.",
       },
     ],
   },
@@ -538,7 +538,7 @@ export const daycareLanding: PetCareLandingConfig = {
     {
       question: "Do dogs get rest breaks?",
       answer:
-        "Yes. Structured rest is part of good daycare. Crates may be used as appropriate for meals, rest, and decompression — not as an all-day warehouse setup.",
+        "Yes. Structured rest is part of good daycare. Crates may be used as appropriate for meals, rest, and decompression, never all day.",
     },
     {
       question: "Do you accept puppies?",
@@ -567,17 +567,17 @@ export const daycareLanding: PetCareLandingConfig = {
     {
       question: "Do you send updates?",
       answer:
-        "Yes — photos and videos are part of how families stay in the loop during care.",
+        "Yes. Photos and videos are part of how families stay in the loop during care.",
     },
     {
       question: "How is daycare different from boarding?",
       answer:
-        "Daycare is daytime care. Boarding is overnight. Both are home-based with the same caregivers. For new boarding guests, we may recommend a daycare / trial day first. Camp Clayton is the themed experience layered onto daycare — still the same daytime care, not overnight camp.",
+        "Daycare is daytime care. Boarding is overnight. Both are home-based with the same caregivers. For new boarding guests, we may recommend a daycare / trial day first. Camp Clayton is the themed experience layered onto daycare. It's still daytime care, with no overnight stay.",
     },
     {
       question: "Is this the same as Camp Clayton?",
       answer:
-        "Camp Clayton is our themed take on this same doggie daycare. You are still booking daytime care with Jackye and Todd — with a different weekly theme layered in. See /camp-waco for the calendar, or book a day on Rover.",
+        "Camp Clayton is our themed take on this same doggie daycare. You are still booking daytime care with Jackye and Todd, with a different weekly theme layered in. See /camp-waco for the calendar, or book a day on Rover.",
     },
   ],
   photos: [
@@ -596,7 +596,7 @@ export const daycareLanding: PetCareLandingConfig = {
     {
       label: "Camp Clayton",
       href: "/camp-waco",
-      detail: "Themed doggie daycare — a new weekly theme on the same home-based care.",
+      detail: "Themed doggie daycare with a new weekly theme on the same home-based care.",
     },
     {
       label: "Lifestyle training",

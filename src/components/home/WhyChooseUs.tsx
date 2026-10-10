@@ -5,17 +5,17 @@ const values = [
   {
     title: "Full-time care, not a side gig",
     detail:
-      "Jackye & Todd built this around dogs — boarding, daycare, scooping, and training are the work, not an after-hours add-on.",
+      "Jackye & Todd built this around dogs. Boarding, daycare, scooping and training are the full-time work.",
   },
   {
     title: "Home-based boarding & daycare",
     detail:
-      "Dogs stay in a calm Waco home with walks, enrichment, rest, and updates — not a warehouse kennel.",
+      "Dogs stay in a calm Waco home with walks, enrichment, rest and daily photo updates.",
   },
   {
     title: "Family-run Waco business",
     detail:
-      "The local pet-care home of Platinum Scoops — the same family behind every service we offer.",
+      "The local pet-care home of Platinum Scoops, run by the same family behind every service we offer.",
   },
   {
     title: roverCredentialsLine,
@@ -34,7 +34,7 @@ export function WhyChooseUs() {
           </h2>
           <blockquote className="mt-6 border-l-2 border-rose pl-5">
             <p className="font-display text-[22px] leading-snug text-wag-sage italic">
-              &ldquo;They are not boarding. They are visiting — bathed in the
+              &ldquo;They are not boarding. They are visiting. Bathed in the
               kitchen sink, dried with the good towels.&rdquo;
             </p>
             <cite className="mt-3 block text-xs font-medium tracking-[0.16em] text-label-muted not-italic uppercase">

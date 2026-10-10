@@ -84,7 +84,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
         },
         {
           title: "Tidy haul-away",
-          detail: "We bag it and take it — gates closed, yard clean, every time.",
+          detail: "We bag it and take it. Gates closed, yard clean, every time.",
         },
       ],
     },
@@ -112,7 +112,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "What is Platinum Scoops?",
         answer:
-          "Platinum Scoops is family-run pet waste removal and yard care in Waco — not a side gig. Keep Waco Wagging is the community home of Platinum Scoops.",
+          "Platinum Scoops is family-run pet waste removal and yard care in Waco, and it's our full-time work. Keep Waco Wagging is the community home of Platinum Scoops.",
       },
       {
         question: "How much does poop scooping cost in Waco?",
@@ -152,7 +152,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       scriptWord: "kennel",
       metaLine: "★ 5.0 on Rover · 119 reviews · Star Sitter",
       description:
-        "Your dog stays in our home with full-time attention — walks, enrichment, real rest, and daily photo updates. Bathed in the kitchen sink, dried with the good towels.",
+        "Your dog stays in our home with full-time attention: walks, enrichment, real rest, and daily photo updates. Bathed in the kitchen sink, dried with the good towels.",
       image: designPhotos.svcBoard,
       primary: { label: "Book a stay", href: book },
       secondary: { label: "See Rover reviews", href: rover, external: true },
@@ -167,7 +167,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
         },
         {
           title: "Enrichment & rest",
-          detail: "Sniffing, splashing, and real downtime — not a crate all day.",
+          detail: "Sniffing, splashing and real downtime.",
         },
         {
           title: "Daily updates",
@@ -175,19 +175,19 @@ export const servicePages: Record<string, ServicePageConfig> = {
         },
         {
           title: "Meds & specials",
-          detail: "Detailed instructions welcome — diet, meds, routines, all of it.",
+          detail: "Detailed instructions welcome: diet, meds, routines, all of it.",
         },
       ],
     },
     quote: {
-      text: "She was sick with pancreatitis — they followed all my detailed instructions and sent photos and videos daily. I can only give them my highest recommendation.",
+      text: "She was sick with pancreatitis, and they followed all my detailed instructions and sent photos and videos daily. I can only give them my highest recommendation.",
       attribution: "Linda · Rover",
     },
     faq: [
       {
         question: "Is this a kennel or warehouse boarding?",
         answer:
-          "No. Your dog stays in our China Spring home, serving dog families across the Waco area, with full-time attention, daily walks, enrichment, and rest — not an industrial kennel setup.",
+          "No. Your dog stays in our China Spring home, serving dog families across the Waco area, with full-time attention, daily walks, enrichment and rest.",
       },
       {
         question: "How do I book daycare or boarding?",
@@ -197,7 +197,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "Do you send updates while I am away?",
         answer:
-          "Yes. Expect photos and videos so you can see how your dog is doing — part of how we care for Waco families every week.",
+          "Yes. Expect photos and videos so you can see how your dog is doing. It's part of how we care for Waco families every week.",
       },
     ],
     cta: {
@@ -215,7 +215,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
     seo: {
       title: "Lifestyle Dog Training Waco | Real-Life Skills",
       description:
-        "Practical dog training in Waco — patio manners, loose-leash walks, puppy socialization, and calm-home skills coached in real settings.",
+        "Practical dog training in Waco: patio manners, loose-leash walks, puppy socialization, and calm-home skills coached in real settings.",
     },
     hero: {
       eyebrow: "Lifestyle training",
@@ -238,7 +238,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
         },
         {
           title: "Loose-leash walks",
-          detail: "No more dragging — calm, connected walks around the block.",
+          detail: "No more dragging. Calm, connected walks around the block.",
         },
         {
           title: "Puppy field trips",
@@ -254,7 +254,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "What kind of training do you offer?",
         answer:
-          "Practical lifestyle coaching: patio manners, loose-leash walks, puppy field trips, and calm-home skills — built for real Waco outings, not a sterile classroom.",
+          "Practical lifestyle coaching: patio manners, loose-leash walks, puppy field trips, and calm-home skills, practiced on real Waco outings.",
       },
       {
         question: "How do I get started?",
@@ -282,14 +282,14 @@ export const servicePages: Record<string, ServicePageConfig> = {
     seo: {
       title: "Wedding Dog Chaperone Waco | Dog of Honor Pet Care",
       description:
-        "Professional wedding dog chaperone in Waco — transportation, ceremony support, photos, stress management, and a safe handoff so your dog can be part of your day.",
+        "Professional wedding dog chaperone in Waco: transportation, ceremony support, photos, stress management, and a safe handoff so your dog can be part of your day.",
     },
     hero: {
       eyebrow: "Dog of Honor · Weddings & events",
       title: "Your best friend, your Dog of Honor",
       scriptWord: "Dog of Honor",
       description:
-        "A dedicated wedding dog chaperone for Waco weddings — one person focused entirely on your pup while you get ready, take photos, and greet guests.",
+        "A dedicated wedding dog chaperone for Waco weddings. One person focused entirely on your pup while you get ready, take photos, and greet guests.",
       image: designPhotos.svcWedding,
       primary: { label: "Reserve a date", href: book },
       secondary: { label: "Ask a question", href: "#inquiry" },
@@ -306,12 +306,12 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "What is a wedding dog chaperone?",
         answer:
-          "A wedding dog chaperone — also called a wedding pet attendant — is a dedicated professional whose only job on your wedding day is to care for, manage, and supervise your dog from start to finish, including transportation, basic care, ceremony and photo support, stress management, styling touch-ups, and vendor coordination.",
+          "A wedding dog chaperone (also called a wedding pet attendant) is a dedicated professional whose only job on your wedding day is to care for, manage, and supervise your dog from start to finish, including transportation, basic care, ceremony and photo support, stress management, styling touch-ups, and vendor coordination.",
       },
       {
         question: "What is a Dog of Honor?",
         answer:
-          "Your Dog of Honor is the pup included in your wedding ceremony or photos. Our chaperone makes sure they look great, stay calm, and get home safely — so you and your wedding party never have to step away from the celebration.",
+          "Your Dog of Honor is the pup included in your wedding ceremony or photos. Our chaperone makes sure they look great, stay calm, and get home safely, so you and your wedding party never have to step away from the celebration.",
       },
       {
         question: "Why hire a chaperone instead of asking a guest?",
@@ -329,7 +329,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       eyebrow: "Limited dates each season",
       title: "Let's get your pup on the guest list",
       scriptWord: "guest list",
-      subtitle: "Tell us your date and venue — we'll take it from there.",
+      subtitle: "Tell us your date and venue. We'll take it from there.",
       primary: { label: "Reserve a date", href: book },
       secondary: { label: "All services", href: "/#services" },
     },
@@ -373,7 +373,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
         {
           title: "One-on-one time",
           detail:
-            "Every dog gets individual attention with Jackye or Todd—not just group supervision.",
+            "Every dog gets individual attention with Jackye or Todd, on top of group supervision.",
         },
         {
           title: "Love and couch time",
@@ -393,7 +393,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
         {
           title: "Real rest",
           detail:
-            "Quiet breaks and naps help dogs regulate so they go home fulfilled—not overstimulated and wired.",
+            "Quiet breaks and naps help dogs regulate so they go home tired and settled instead of wired.",
         },
         {
           title: "A new theme every week",
@@ -406,7 +406,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "What is Camp Clayton?",
         answer:
-          "Camp Clayton is our themed take on doggie daycare in our China Spring home, serving dog families across the Waco area. Dogs get supervised play, enrichment, rest, and individual attention — with a different theme layered in each week. It is not overnight camp, a children's camp, or a separate facility.",
+          "Camp Clayton is our themed take on doggie daycare in our China Spring home, serving dog families across the Waco area. Dogs get supervised play, enrichment, rest, and individual attention, with a different theme layered in each week. It is not overnight camp, a children's camp, or a separate facility.",
       },
       {
         question: "Do I have to book the whole week?",
