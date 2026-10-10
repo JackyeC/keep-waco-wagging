@@ -21,14 +21,14 @@ export function TrustSection() {
             Backed by real Waco dog people.
           </h2>
           <p className="dek mt-5">
-            Keep Waco Wagging is powered by the family behind Platinum Scoops —
+            Keep Waco Wagging is powered by the family behind Platinum Scoops,
             trusted by local dog families for boarding, daycare, training, camp,
             and pet care.
           </p>
 
           <blockquote className="mt-6 border-l-2 border-rose pl-5">
             <p className="font-display text-[20px] leading-snug text-wag-sage italic">
-              &ldquo;They are not boarding. They are visiting — bathed in the
+              &ldquo;They are not boarding. They are visiting. Bathed in the
               kitchen sink, dried with the good towels.&rdquo;
             </p>
             <cite className="mt-2.5 block text-xs font-medium tracking-[0.16em] text-label-muted not-italic uppercase">

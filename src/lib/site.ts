@@ -12,13 +12,13 @@ export const brandLanguage = {
   brandByLine: "Keep Waco Wagging by Platinum Scoops",
   /** Longer relationship line for hero and footer context. */
   brandRelationship:
-    "Created by Jackye and Todd, the dog people behind Platinum Scoops — and built to help Waco dog parents, not just our own clients.",
+    "Created by Jackye and Todd, the dog people behind Platinum Scoops, built to help Waco dog parents, not just our own clients.",
   /** Provider line for boarding/daycare and other pet-care service pages. */
   petCareProvided: "Pet care provided by Platinum Scoops.",
   /** @deprecated Use brandByLine */
   presentedBy: "Keep Waco Wagging by Platinum Scoops",
   poweredBy:
-    "Keep Waco Wagging was created by the family behind Platinum Scoops. The site exists to help dog parents — not to sell one business.",
+    "Keep Waco Wagging was created by the family behind Platinum Scoops. The site exists to help dog parents, not to sell one business.",
   heroLine: "Give your dog their best Waco life.",
   servicesLine:
     "Poop scooping, boarding, daycare, training, wedding pet attendant services, and Camp Clayton themed daycare in Waco",
@@ -55,7 +55,7 @@ export const cityConfig = {
   tagline: brandLanguage.communityLine,
   url: "https://keepwacowagging.com",
   description:
-    "Keep Waco Wagging helps people who love their dogs like family give them the best life possible in Waco — local places, trusted care, events, and honest guidance for dog parents.",
+    "Keep Waco Wagging helps people who love their dogs like family give them the best life possible in Waco: local places, trusted care, events, and honest guidance for dog parents.",
   publicEmail: "info@keepwacowagging.com",
   keywords: [
     "dog-friendly Waco",

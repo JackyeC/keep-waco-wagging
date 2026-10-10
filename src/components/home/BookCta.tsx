@@ -9,7 +9,7 @@ export function BookCta() {
           Ready to book?
         </p>
         <h2 className="mx-auto mt-3 max-w-2xl font-display text-[42px] leading-tight font-medium">
-          Tell us what your dog needs — we&apos;ll point you to the right{" "}
+          Tell us what your dog needs. We&apos;ll point you to the right{" "}
           <span className="font-script text-[48px] text-blush">service</span>
         </h2>
         <p className="mt-3.5 text-[15.5px] font-light opacity-92">

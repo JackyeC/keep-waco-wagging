@@ -24,7 +24,7 @@ const services = [
     eyebrow: "Real-life skills",
     title: "Lifestyle training",
     detail:
-      "Patio manners, loose-leash walks, puppy field trips, and calm-home skills — coached in real Waco settings.",
+      "Patio manners, loose-leash walks, puppy field trips, and calm-home skills, coached in real Waco settings.",
     href: "/training",
     photo: designPhotos.svcTrain,
   },
@@ -32,7 +32,7 @@ const services = [
     eyebrow: "Weddings & events",
     title: "Dog of Honor wedding care",
     detail:
-      "A dedicated wedding dog chaperone — ceremony support, photos, potty breaks, and a safe handoff.",
+      "A dedicated wedding dog chaperone for ceremony support, photos, potty breaks, and a safe handoff.",
     href: "/pet-care/weddings-events",
     photo: designPhotos.svcWedding,
   },
@@ -40,7 +40,7 @@ const services = [
     eyebrow: "Themed daycare",
     title: brandLanguage.dogCampName,
     detail:
-      "Camp Clayton is our themed take on doggie daycare — a new weekly theme with play, enrichment, and rest. Come one day or make it a routine.",
+      "Camp Clayton is our themed take on doggie daycare: a new weekly theme with play, enrichment, and rest. Come one day or make it a routine.",
     href: "/camp-waco",
     photo: designPhotos.svcCamp,
     cta: "Explore Camp Clayton",

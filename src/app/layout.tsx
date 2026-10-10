@@ -38,7 +38,7 @@ const jost = Jost({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${brandLanguage.heroLine}`,
+    default: `${siteConfig.name} | ${brandLanguage.heroLine}`,
     template: "%s",
   },
   description: siteConfig.description,
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
       }
     : {}),
   openGraph: {
-    title: `${siteConfig.name} — ${brandLanguage.heroLine}`,
+    title: `${siteConfig.name} | ${brandLanguage.heroLine}`,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
@@ -66,13 +66,13 @@ export const metadata: Metadata = {
         url: "/pictures/og-share.webp",
         width: 1200,
         height: 630,
-        alt: "Keep Waco Wagging — group dog walk in Waco, Texas",
+        alt: "Keep Waco Wagging group dog walk in Waco, Texas",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — ${brandLanguage.heroLine}`,
+    title: `${siteConfig.name} | ${brandLanguage.heroLine}`,
     description: siteConfig.description,
     images: ["/pictures/og-share.webp"],
   },
