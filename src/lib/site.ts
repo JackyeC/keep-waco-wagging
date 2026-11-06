@@ -480,6 +480,34 @@ export const announcementBar = {
   showHeart: false,
 } as const;
 
+/**
+ * Black Friday 2026. Code WAGFRIDAY is a real Shopify discount:
+ * 25% off the "Black Friday Wag Sale" collection, Nov 27 00:00 CT to
+ * Nov 30 23:59 CT. Messages switch on and off by date, client-side.
+ */
+export const blackFridayPromo = {
+  code: "WAGFRIDAY",
+  teaserStartsAt: "2026-11-20T06:00:00Z",
+  startsAt: "2026-11-27T06:00:00Z",
+  endsAt: "2026-12-01T05:59:00Z",
+  teaserMessage: "Black Friday starts Fri 11/27 · 25% off with code WAGFRIDAY",
+  liveMessage: "Black Friday · 25% off tees, hoodies & totes · Code WAGFRIDAY",
+  cartNote: "Black Friday: 25% off with code WAGFRIDAY at checkout. Ends Mon 11/30.",
+} as const;
+
+export type PromoPhase = "off" | "teaser" | "live";
+
+export function blackFridayPhase(now: Date = new Date()): PromoPhase {
+  const t = now.getTime();
+  if (t >= Date.parse(blackFridayPromo.startsAt) && t <= Date.parse(blackFridayPromo.endsAt)) {
+    return "live";
+  }
+  if (t >= Date.parse(blackFridayPromo.teaserStartsAt) && t < Date.parse(blackFridayPromo.startsAt)) {
+    return "teaser";
+  }
+  return "off";
+}
+
 export const podcast = {
   enabled: false,
   name: "The Keep Waco Wagging Podcast",
