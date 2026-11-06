@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import { HowloweenCallout } from "@/components/weekend/HowloweenCallout";
 import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
 import {
   weekendEdition,
@@ -62,7 +63,8 @@ export function HomeWeekendPreview() {
           </article>
         ))}
       </div>
-      <div className="mt-8">
+      <div className="mt-8 space-y-6">
+        <HowloweenCallout />
         <MoveOnePurchase variant="callout" />
       </div>
     </section>
