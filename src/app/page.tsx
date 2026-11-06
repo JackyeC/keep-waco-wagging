@@ -3,6 +3,7 @@ import { DogMatchTeaser } from "@/components/dog-match/DogMatchTeaser";
 import { ChoosePath } from "@/components/home/ChoosePath";
 import { HomeApprovedNote } from "@/components/home/HomeApprovedNote";
 import { HomeBrandStory } from "@/components/home/HomeBrandStory";
+import { HomeCommunity } from "@/components/home/HomeCommunity";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeMerchStrip } from "@/components/home/HomeMerchStrip";
 import { HomeServicesBand } from "@/components/home/HomeServicesBand";
@@ -29,6 +30,7 @@ export default function HomePage() {
       <HomeHero />
       <HomeServicesBand />
       <ChoosePath />
+      <HomeCommunity />
       <HomeSoftProof />
       <DogMatchTeaser />
       <WagWatchPreview />

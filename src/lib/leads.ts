@@ -2,7 +2,7 @@ import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase/server";
 import { isEmailConfigured, sendLeadNotification } from "@/lib/email";
 import { isLeadNotificationRecipientConfigured } from "@/lib/leadNotificationConfig";
 import { logLeadPipelineOutcome } from "@/lib/leadPipelineLog";
-import { formatLeadSignupEmail } from "@/lib/signup";
+import { formatLeadSignupEmail, LEAD_SOURCE_FOUNDING } from "@/lib/signup";
 
 export type SubmissionType =
   | "lead"
@@ -65,6 +65,7 @@ function formatPayload(
       dog_name: payload.dog_name as string | null | undefined,
       zip_code: payload.zip_code as string | null | undefined,
       interests: payload.interests as string[] | undefined,
+      source: payload.source as string | null | undefined,
       source_page: payload.source_page as string | null | undefined,
       created_at: new Date().toISOString(),
     });
@@ -93,6 +94,10 @@ export async function saveSubmission(
   payload: Record<string, unknown>,
 ): Promise<SubmissionResult> {
   const config = configs[type];
+  const subject =
+    type === "lead" && payload.source === LEAD_SOURCE_FOUNDING
+      ? "New Wag Club founding membership interest"
+      : config.subject;
   const supabaseReady = isSupabaseConfigured();
   const emailReady = isEmailConfigured();
 
@@ -130,7 +135,7 @@ export async function saveSubmission(
 
   if (emailReady) {
     const notification = await sendLeadNotification(
-      config.subject,
+      subject,
       formatPayload(type, payload),
       { replyTo: extractCustomerReplyTo(payload) },
     );
@@ -152,7 +157,7 @@ export async function saveSubmission(
         table: config.table,
         stored: true,
         notified: false,
-        subject: config.subject,
+        subject,
         error: notificationError ??
           "Lead saved to Supabase but Resend notification failed. Check RESEND_API_KEY, RESEND_FROM_EMAIL, and Resend domain verification.",
       });
@@ -162,7 +167,7 @@ export async function saveSubmission(
         table: config.table,
         stored: true,
         notified: false,
-        subject: config.subject,
+        subject,
         error:
           "Lead saved but email notifications are not fully configured (RESEND_API_KEY and LEAD_NOTIFICATION_EMAIL).",
       });
@@ -172,7 +177,7 @@ export async function saveSubmission(
         table: config.table,
         stored: false,
         notified: true,
-        subject: config.subject,
+        subject,
       });
     } else {
       logLeadPipelineOutcome({
@@ -180,7 +185,7 @@ export async function saveSubmission(
         table: config.table,
         stored: supabaseSucceeded,
         notified: emailSucceeded,
-        subject: config.subject,
+        subject,
         resendMessageId,
       });
     }

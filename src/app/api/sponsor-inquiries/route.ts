@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { clampText, guardPublicFormPost } from "@/lib/formGuard";
 import { isValidLeadEmail, saveSubmission } from "@/lib/leads";
+import {
+  formatPartnershipNotes,
+  isPartnershipInterest,
+} from "@/lib/partnershipInquiry";
 
 export async function POST(request: Request) {
   try {
@@ -10,11 +14,24 @@ export async function POST(request: Request) {
     if (blocked) return blocked;
 
     const businessName = clampText(body.businessName, 200);
+    const contactName = clampText(body.contactName, 120);
     const email = body.email?.trim().toLowerCase() ?? "";
+    const sponsorType = clampText(body.sponsorType, 80);
+    const perk = clampText(body.proposedPerk, 500);
 
-    if (!businessName || !email) {
+    if (!businessName || !contactName || !email || !sponsorType || !perk) {
       return NextResponse.json(
-        { error: "Business name and email are required." },
+        {
+          error:
+            "Contact name, business name, email, type of interest, and a proposed perk or sponsorship interest are required.",
+        },
+        { status: 400 },
+      );
+    }
+
+    if (!isPartnershipInterest(sponsorType)) {
+      return NextResponse.json(
+        { error: "Please choose a type of interest." },
         { status: 400 },
       );
     }
@@ -28,12 +45,12 @@ export async function POST(request: Request) {
 
     const result = await saveSubmission("sponsor_inquiry", {
       business_name: businessName,
-      contact_name: clampText(body.contactName, 120) || null,
+      contact_name: contactName,
       email,
       phone: clampText(body.phone, 40) || null,
       website: clampText(body.website, 300) || null,
-      sponsor_type: clampText(body.sponsorType, 80) || null,
-      notes: clampText(body.notes, 2000) || null,
+      sponsor_type: sponsorType,
+      notes: formatPartnershipNotes(perk, clampText(body.notes, 1200)),
       status: "new",
     });
 

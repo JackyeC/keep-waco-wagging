@@ -64,7 +64,13 @@ export default function WacoWagClubPage() {
             <p>
               Welcome to <strong className="font-semibold text-bark">The Waco Wag Club</strong>.
             </p>
-            <p>No membership form required. Your dog already approved you.</p>
+            <p>
+              Your dog already approved you. Founding membership for{" "}
+              <a href="/wagclub" className="underline underline-offset-2">
+                The Wag Club
+              </a>{" "}
+              is a separate interest list and is not open for payment.
+            </p>
           </div>
         </div>
       </section>
