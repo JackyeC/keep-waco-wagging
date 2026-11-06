@@ -2,6 +2,8 @@
 
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { blackFridayPromo } from "@/lib/site";
+import { useBlackFridayPhase } from "@/lib/useBlackFridayPhase";
 import { formatShopPrice } from "@/lib/shopifyProductDetails";
 import { useShopCart } from "@/components/merch/ShopCartContext";
 import { useDialogFocus } from "@/lib/focusTrap";
@@ -18,6 +20,8 @@ export function ShopCartDrawer() {
     removeLine,
     checkout,
   } = useShopCart();
+
+  const promoLive = useBlackFridayPhase() === "live";
 
   const panelRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -159,6 +163,11 @@ export function ShopCartDrawer() {
           <p className="mt-2 text-xs font-light text-label-muted">
             Shipping and tax calculated at Shopify checkout.
           </p>
+          {promoLive && (
+            <p className="mt-2 rounded-md bg-soft-sage px-3 py-2 text-xs font-medium text-sage-ink">
+              {blackFridayPromo.cartNote}
+            </p>
+          )}
           <button
             type="button"
             onClick={checkout}
