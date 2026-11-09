@@ -197,7 +197,7 @@ export const mainNav: NavLink[] = [
   { label: "Dog Care", href: "/dog-care" },
   { label: "Dog Match", href: "/dog-match" },
   { label: "Wag Watch", href: "/wag-watch" },
-  { label: "Weekend", href: "/weekend" },
+  { label: "Events", href: "/events" },\n  { label: "Weekend", href: "/weekend" },
   { label: "Shop", href: "/shop" },
   { label: "Wag Club", href: "/#wag-club" },
 ];
@@ -213,7 +213,7 @@ export const secondaryNav: NavLink[] = [
   { label: "Camp Clayton", href: "/camp-waco" },
   { label: "Blog", href: "/blog" },
   { label: "Yappy Hours", href: "/yappy-hours" },
-  { label: "Waco Dog Weekend", href: "/weekend" },
+  { label: "Dog-Friendly Events", href: "/events" },\n  { label: "Waco Dog Weekend", href: "/weekend" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Gear Guide", href: "/gear-guide" },
