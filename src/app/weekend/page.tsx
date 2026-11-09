@@ -5,7 +5,7 @@ import { Section } from "@/components/ui/Section";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
 import { ctas, cityConfig } from "@/lib/site";
-import { servicePageMetadata } from "@/lib/metadata";
+import { servicePageMetadata } from "@/lib/metadata";\nimport { getUpcomingEvents } from "@/data/events";
 import {
   weekendEdition,
   weekendParkPick,
@@ -18,7 +18,7 @@ import {
   getNextDaycareTheme,
 } from "@/data/summerDaycare";
 
-export const metadata: Metadata = servicePageMetadata(
+export const revalidate = 600;\n\nexport const metadata: Metadata = servicePageMetadata(
   "/weekend",
   "Waco Dog Weekend | What to do with your dog in Waco",
   "Recurring Saturday stops, a North Waco park pick, and the current Camp Clayton week — plus when to leave your dog home.",
@@ -81,7 +81,7 @@ function PlaceCard({
 }
 
 export default function WeekendPage() {
-  const currentCamp = getCurrentDaycareTheme();
+  const upcomingEvents = getUpcomingEvents().slice(0, 4);\n  const currentCamp = getCurrentDaycareTheme();
   const campWeek = currentCamp ?? getNextDaycareTheme();
   const campEyebrow = currentCamp
     ? "This week at Camp Clayton"
