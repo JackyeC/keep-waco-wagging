@@ -6,6 +6,7 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { MoveOnePurchase } from "@/components/weekend/MoveOnePurchase";
 import { ctas, cityConfig } from "@/lib/site";
 import { servicePageMetadata } from "@/lib/metadata";
+import { getUpcomingEvents } from "@/data/events";
 import {
   weekendEdition,
   weekendParkPick,
@@ -17,6 +18,8 @@ import {
   getCurrentDaycareTheme,
   getNextDaycareTheme,
 } from "@/data/summerDaycare";
+
+export const revalidate = 600;
 
 export const metadata: Metadata = servicePageMetadata(
   "/weekend",
@@ -81,6 +84,7 @@ function PlaceCard({
 }
 
 export default function WeekendPage() {
+  const upcomingEvents = getUpcomingEvents().slice(0, 4);
   const currentCamp = getCurrentDaycareTheme();
   const campWeek = currentCamp ?? getNextDaycareTheme();
   const campEyebrow = currentCamp
@@ -119,6 +123,41 @@ export default function WeekendPage() {
           </div>
         </div>
       </section>
+
+      {upcomingEvents.length ? (
+        <Section tone="paper">
+          <p className="eyebrow tracking-[0.22em]">Upcoming dog-friendly events</p>
+          <h2 className="heading mt-2 text-[clamp(1.8rem,3.4vw,2.4rem)]">
+            Put these on the dog calendar
+          </h2>
+          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-body-muted">
+            Verified Waco-area events where dogs are explicitly welcome or the
+            event is specifically for dogs.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {upcomingEvents.map((event) => (
+              <PlaceCard
+                key={event.id}
+                title={event.title}
+                when={`${event.dateLabel} · ${event.timeLabel}`}
+                address={`${event.venue} · ${event.address}`}
+                copy={event.whyShare}
+                dogNote={
+                  event.warning
+                    ? `${event.dogPolicy} Heads up: ${event.warning}`
+                    : event.dogPolicy
+                }
+                href={event.sourceUrl}
+              />
+            ))}
+          </div>
+          <div className="mt-7">
+            <Button href="/events" variant="sage">
+              See the full Dog-Friendly Waco calendar
+            </Button>
+          </div>
+        </Section>
+      ) : null}
 
       <Section tone="paper">
         <p className="eyebrow tracking-[0.22em]">Easy local stops</p>

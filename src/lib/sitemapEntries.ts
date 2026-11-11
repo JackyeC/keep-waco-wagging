@@ -37,6 +37,7 @@ const INDEXABLE_STATIC_ROUTES: {
   { route: "/dog-match/how-we-match", priority: 0.5, changeFrequency: "monthly" },
   { route: "/contact", priority: 0.75, changeFrequency: "monthly" },
   { route: "/about", priority: 0.7, changeFrequency: "monthly" },
+  { route: "/events", priority: 0.78, changeFrequency: "daily" },
   { route: "/weekend", priority: 0.7, changeFrequency: "weekly" },
   { route: "/yappy-hours", priority: 0.6, changeFrequency: "weekly" },
   { route: "/blog", priority: 0.55, changeFrequency: "weekly" },
