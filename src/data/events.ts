@@ -65,11 +65,33 @@ export const dogFriendlyEvents: DogFriendlyEvent[] = [
     lastVerified: "2026-11-09",
   },
   {
+    id: "pet-circle-farmers-market-nov-14-2026",
+    title: "Pet Circle at the Waco Downtown Farmers Market",
+    start: "2026-11-14T09:00:00-06:00",
+    end: "2026-11-14T13:00:00-06:00",
+    dateLabel: "Saturday, November 14",
+    timeLabel: "9 AM–1 PM",
+    venue: "Waco Downtown Farmers Market",
+    address: "Bridge Street Plaza · 200 E. Bridge St., Waco, TX",
+    category: "Dog-friendly market / rescue outreach",
+    dogPolicy:
+      "Leashed dogs are welcome at the market. Clean up after your dog and give other dogs space.",
+    cost: "No event admission or registration fee is listed.",
+    requirements:
+      "Pet Circle is scheduled for community outreach. Do not assume adoptable animals will be onsite unless Pet Circle confirms it.",
+    whyShare:
+      "An easy Saturday outing where dog parents can shop local with their pups and learn about Pet Circle's adoption, fostering, and animal-welfare programs.",
+    sourceUrl: "https://www.petcirclewaco.org/Events",
+    sourceLabel: "Pet Circle",
+    featured: true,
+    lastVerified: "2026-11-11",
+  },
+  {
     id: "dash-for-daisies-november-2026",
     title: "Dash for Daisies Dachshund Derby",
     start: "2026-11-15T12:00:00-06:00",
     dateLabel: "Sunday, November 15",
-    timeLabel: "Event listing starts at noon",
+    timeLabel: "Event starts at noon · race registration 3:30–4:30 PM",
     venue: "The Will",
     address: "5984 N. State Hwy 6, Waco, TX",
     category: "Dog-specific event / dachshund derby",
@@ -85,7 +107,7 @@ export const dogFriendlyEvents: DogFriendlyEvent[] = [
     warning:
       "An older November 8 event page is still online. The Will's current featured calendar shows November 15.",
     featured: true,
-    lastVerified: "2026-11-09",
+    lastVerified: "2026-11-11",
   },
   {
     id: "richland-mall-pet-photos-santa-2026",
@@ -109,6 +131,27 @@ export const dogFriendlyEvents: DogFriendlyEvent[] = [
     sourceLabel: "Richland Mall",
     featured: true,
     lastVerified: "2026-11-09",
+  },
+  {
+    id: "dash-for-daisies-december-2026",
+    title: "Dash for Daisies Dachshund Derby",
+    start: "2026-12-13T12:00:00-06:00",
+    dateLabel: "Sunday, December 13",
+    timeLabel: "Starts at noon",
+    venue: "The Will",
+    address: "5984 N. State Hwy 6, Waco, TX",
+    category: "Dog-specific event / dachshund derby",
+    dogPolicy:
+      "Dog-centered event. Bring your dachshund to race or come cheer on the weenie dogs.",
+    cost: "Current December listing does not publish a race-entry fee.",
+    requirements:
+      "Check The Will's current event page before you go in case the race schedule changes.",
+    whyShare:
+      "A December return of one of Waco's most dog-specific recurring events and a fun outing for dachshund families and spectators.",
+    sourceUrl: "https://www.thewillofwaco.com/themainstage",
+    sourceLabel: "The Will",
+    featured: true,
+    lastVerified: "2026-11-11",
   },
   {
     id: "waco-wonderland-2026",
