@@ -1,5 +1,5 @@
 import { cityConfig } from "@/lib/site";
-import { getRoverDaycareStandardRate } from "@/data/rover";
+import { getRoverDaycareStandardRate, roverPrices } from "@/data/rover";
 import { campClaytonThemePhotos } from "@/data/summerDaycarePhotos";
 
 // Camp Clayton themed daycare calendar for Keep Waco Wagging.
@@ -75,8 +75,7 @@ export const campClayton = {
   hoursShort: "Monday–Friday · 8 AM–6 PM",
   heatNote:
     "Waco-area summers get hot. We schedule active play for cooler parts of the day, keep fresh water available, use shaded and air-conditioned rest areas, and watch every dog for signs of overheating.",
-  bookingNote:
-    "Choose one day, several days or a regular weekday schedule. No full-week commitment is required.",
+  bookingNote: `Choose one day, several days or a regular weekday schedule. No full-week commitment is required. Holidays and peak dates are ${roverPrices.daycare.holiday}. Rover confirms the price for your dates.`,
   bookingRateLine: `${daycareRate} · Monday–Friday, 8 AM–6 PM`,
 } as const;
 

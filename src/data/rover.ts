@@ -6,14 +6,14 @@ import { cityConfig } from "@/lib/site";
  */
 export const roverPrices = {
   boarding: {
-    /** Verified public Rover starting rate */
-    standard: "$47 per night",
-    holiday: "$40 per night",
-    additionalDog: "+$20 per dog, per night",
+    /** Verified against the live Rover listing 2026-11-20 */
+    standard: "$45 per night",
+    holiday: "$50 per night",
+    additionalDog: "+$36 per dog, per night",
     puppy: "$50 per night",
     additionalCat: "+$21 per cat, per night",
-    extendedStay7Plus: "$35 per night",
-    pickupDropoffRoundTrip: "+$25 per round trip",
+    extendedStay7Plus: "$45 per night",
+    pickupDropoffRoundTrip: "+$40 per round trip",
   },
   dropIn: {
     standard: "$13 per visit",
@@ -23,13 +23,13 @@ export const roverPrices = {
     puppy: "$15 per visit",
   },
   daycare: {
-    /** Verified public Rover starting rate */
+    /** Verified against the live Rover listing 2026-11-20 */
     standard: "$37 per day",
-    holiday: "$36 per day",
-    additionalDog: "+$24 per dog, per day",
-    puppy: "$33 per day",
-    bathingGrooming: "+$15 each",
-    pickupDropoffPerDay: "$25 per day",
+    holiday: "$45 per day",
+    additionalDog: "+$30 per dog, per day",
+    puppy: "$41 per day",
+    bathingGrooming: "+$25 each",
+    pickupDropoffPerDay: "$40 per day",
   },
   walking: {
     standard: "$15 per walk",
@@ -42,7 +42,7 @@ export const roverPrices = {
 
 /** Public-facing starting-rate lines for landing pages (Rover-labeled). */
 export const roverPublicStartingRates = {
-  boarding: "From $47/night on Rover",
+  boarding: "From $45/night on Rover",
   daycare: "From $37/day on Rover",
 } as const;
 
@@ -61,11 +61,11 @@ export const roverRateCategories: readonly RoverRateCategory[] = [
     title: "Boarding in the sitter's home",
     lines: [
       { label: "Boarding", price: roverPrices.boarding.standard },
-      { label: "Holiday rate", price: roverPrices.boarding.holiday },
+      { label: "Holiday and peak dates", price: roverPrices.boarding.holiday },
       { label: "Additional dog", price: roverPrices.boarding.additionalDog },
       { label: "Puppy rate", price: roverPrices.boarding.puppy },
       { label: "Additional cat", price: roverPrices.boarding.additionalCat },
-      { label: "Stays of 7 nights or more", price: roverPrices.boarding.extendedStay7Plus },
+      { label: "Stays of 14 nights or more", price: roverPrices.boarding.extendedStay7Plus },
       { label: "Sitter pickup and drop-off", price: roverPrices.boarding.pickupDropoffRoundTrip },
     ],
   },
@@ -83,7 +83,7 @@ export const roverRateCategories: readonly RoverRateCategory[] = [
     title: "Doggy day care",
     lines: [
       { label: "Standard daycare", price: roverPrices.daycare.standard },
-      { label: "Holiday rate", price: roverPrices.daycare.holiday },
+      { label: "Holiday and peak dates", price: roverPrices.daycare.holiday },
       { label: "Additional dog", price: roverPrices.daycare.additionalDog },
       { label: "Puppy rate", price: roverPrices.daycare.puppy },
       { label: "Bathing or grooming add-on", price: roverPrices.daycare.bathingGrooming },

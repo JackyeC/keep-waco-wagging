@@ -171,6 +171,35 @@ export const wagWatchItems: WagWatchItem[] = [
     },
     draft: false,
   },
+  {
+    id: "thanksgiving-dog-food-safety-2026",
+    slug: "thanksgiving-table-food-and-your-dog",
+    headline: "Thanksgiving plates and your dog: what stays on the table",
+    shortSummary:
+      "Turkey bones, onions, grapes, raisins, and dessert are the usual Thanksgiving trouble for dogs. Here is the short list and who to call in Waco if something goes wrong.",
+    whatHappened:
+      "Thanksgiving is Thursday, November 26. The American Veterinary Medical Association publishes a holiday safety guide every year because rich food, bones, and busy houses add up to avoidable vet visits.",
+    whyCare:
+      "Fatty foods are hard for dogs to digest. Poultry bones can damage the digestive tract. Onions, raisins, and grapes are poisonous to pets. Chocolate is harmful, and the sweetener xylitol, found in some sugar-free baked goods, can be deadly to dogs.",
+    whatToDo:
+      "Keep the feast on the table and off the floor. Skip the pie and the bones. If you want your dog to have a holiday treat, give one made for dogs. Take the trash out before the nap, and tell guests not to share from their plates. If your dog eats something on the list, call your vet or an emergency clinic right away.",
+    wacoAngle:
+      "Waco Animal Emergency Clinic (3901 Jack Kultgen Fwy.) handles after-hours and holiday emergencies. Save the number before Thursday: (254) 752-6100.",
+    category: "Health & Safety",
+    geographicScope: "Waco & McLennan County",
+    publishedDate: "2026-11-20",
+    urgency: "Good to Know",
+    expiresAt: "2026-11-30",
+    sourceUrls: [
+      "https://www.avma.org/resources/pet-owners/petcare/thanksgiving-pet-safety",
+    ],
+    sourceNames: [
+      "American Veterinary Medical Association: Thanksgiving pet safety",
+    ],
+    campCtaNote:
+      "Full house on Thursday? Camp Clayton is open all of Pawsgiving Week, Thanksgiving Day included.",
+    draft: false,
+  },
 ];
 
 function isExpired(item: WagWatchItem, now = new Date()): boolean {

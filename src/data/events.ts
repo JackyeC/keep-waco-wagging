@@ -133,6 +133,47 @@ export const dogFriendlyEvents: DogFriendlyEvent[] = [
     lastVerified: "2026-11-09",
   },
   {
+    id: "pet-circle-petco-adoption-nov-21-2026",
+    title: "Pet Circle Adoption Event at Petco",
+    start: "2026-11-21T14:00:00-06:00",
+    end: "2026-11-21T17:00:00-06:00",
+    dateLabel: "Saturday, November 21",
+    timeLabel: "2–5 PM",
+    venue: "Petco, Central Texas Marketplace",
+    address: "2404 W. Loop 340, Waco, TX",
+    category: "Adoption event / rescue",
+    dogPolicy:
+      "Adoptable shelter dogs will be onsite. Petco is a pet store, so leashed dogs are generally welcome inside. Give the shelter dogs space.",
+    cost: "No event admission is listed. Adoption fees apply if you adopt.",
+    requirements:
+      "If you bring your own dog to meet a possible new sibling, ask Pet Circle staff how they want to handle the introduction.",
+    whyShare:
+      "A low-key way to meet adoptable Waco shelter dogs on a Saturday afternoon, or to bring the friend who keeps saying maybe someday.",
+    sourceUrl: "https://www.petcirclewaco.org/Events",
+    sourceLabel: "Pet Circle",
+    featured: true,
+    lastVerified: "2026-11-20",
+  },
+  {
+    id: "pet-circle-half-price-adoptions-nov-21-2026",
+    title: "Half Price Adoptions at Pet Circle",
+    start: "2026-11-21T10:00:00-06:00",
+    end: "2026-11-21T17:00:00-06:00",
+    dateLabel: "Saturday, November 21",
+    timeLabel: "10 AM–5 PM",
+    venue: "Pet Circle Regional Animal Center",
+    address: "2032 Circle Road, Waco, TX",
+    category: "Adoption event / rescue",
+    dogPolicy:
+      "This is a shelter visit to meet adoptable dogs and cats. Leave your own dog at home unless Pet Circle staff ask you to bring them for a meet.",
+    cost: "Adoption fees are 50% off on weekends.",
+    whyShare:
+      "Half price adoption fees every weekend make this a good time to meet the dogs waiting at Waco's shelter.",
+    sourceUrl: "https://www.petcirclewaco.org/Events",
+    sourceLabel: "Pet Circle",
+    lastVerified: "2026-11-20",
+  },
+  {
     id: "dash-for-daisies-december-2026",
     title: "Dash for Daisies Dachshund Derby",
     start: "2026-12-13T12:00:00-06:00",

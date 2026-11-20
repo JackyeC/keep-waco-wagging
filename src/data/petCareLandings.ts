@@ -258,11 +258,11 @@ export const boardingLanding: PetCareLandingConfig = {
         label: "Boarding (starting)",
         price: roverPublicStartingRates.boarding,
       },
-      { label: "Holiday rate", price: roverPrices.boarding.holiday },
+      { label: "Holiday and peak dates", price: roverPrices.boarding.holiday },
       { label: "Additional dog", price: roverPrices.boarding.additionalDog },
       { label: "Puppy rate", price: roverPrices.boarding.puppy },
       {
-        label: "Stays of 7 nights or more",
+        label: "Stays of 14 nights or more",
         price: roverPrices.boarding.extendedStay7Plus,
       },
       {
@@ -510,7 +510,7 @@ export const daycareLanding: PetCareLandingConfig = {
         label: "Daycare (starting)",
         price: roverPublicStartingRates.daycare,
       },
-      { label: "Holiday rate", price: roverPrices.daycare.holiday },
+      { label: "Holiday and peak dates", price: roverPrices.daycare.holiday },
       { label: "Additional dog", price: roverPrices.daycare.additionalDog },
       { label: "Puppy rate", price: roverPrices.daycare.puppy },
       {
