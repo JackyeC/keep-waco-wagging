@@ -10,6 +10,9 @@ import {
 
 const brandLinks = [
   { label: "Shop", href: "/shop" },
+  { label: "Size guide", href: "/shop/size-guide" },
+  { label: "Shipping", href: "/shop/shipping" },
+  { label: "Returns", href: "/shop/returns" },
   { label: "Wag Club", href: "/wagclub" },
   { label: "About", href: "/about" },
 ];

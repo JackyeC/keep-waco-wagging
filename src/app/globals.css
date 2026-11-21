@@ -383,3 +383,42 @@ a.hover\:text-wag-sage:hover,
 a.text-wag-sage:hover {
   color: var(--color-rose-deep);
 }
+
+.shop-policy {
+  font-size: 0.975rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--color-body-muted);
+}
+
+.shop-policy h2 {
+  margin-top: 1.75rem;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 500;
+  color: var(--color-serif-ink);
+}
+
+.shop-policy p,
+.shop-policy li {
+  margin-top: 0.75rem;
+}
+
+.shop-policy ul,
+.shop-policy ol {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.shop-policy ul {
+  list-style: disc;
+}
+
+.shop-policy ol {
+  list-style: decimal;
+}
+
+.shop-policy a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

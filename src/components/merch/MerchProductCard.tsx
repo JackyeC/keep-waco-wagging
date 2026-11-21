@@ -9,6 +9,7 @@ import type { MerchProduct } from "@/data/merchStore";
 import { findVariant } from "@/lib/shopifyProductDetails";
 import { productStorefrontUrl } from "@/lib/shopifyProductDetails";
 import { garmentColorHex, isGarmentColorOption } from "@/lib/merchColors";
+import { publicMerchAlt, publicMerchBenefit } from "@/lib/merchCopy";
 import { trackShopEvent } from "@/lib/shopAnalytics";
 
 function OptionPills({
@@ -84,12 +85,33 @@ export function MerchProductCard({
   trackDetailView = false,
   detailViewSource = "shop",
   badge,
+  href,
+  showBenefit = false,
+  ctaStyle = "link",
+  frame = "portrait",
+  showImage = true,
+  linkTitle = true,
+  titleLevel = "h3",
+  priority = false,
+  purchaseNote,
+  layout = "stack",
 }: {
   product: MerchProduct;
   trackDetailView?: boolean;
   detailViewSource?: string;
   /** Optional merchandising label (e.g. "Club Favorite", "New Drop"). */
   badge?: string;
+  /** On-site product page by default. Pass a full URL only for a true off-site handoff. */
+  href?: string;
+  showBenefit?: boolean;
+  ctaStyle?: "link" | "button";
+  frame?: "portrait" | "square";
+  showImage?: boolean;
+  linkTitle?: boolean;
+  titleLevel?: "h1" | "h3";
+  priority?: boolean;
+  purchaseNote?: string;
+  layout?: "stack" | "lead";
 }) {
   const { addProduct, cartOptionsByHandle } = useShopCart();
   const [option1, setOption1] = useState<string | null>(
@@ -101,8 +123,20 @@ export function MerchProductCard({
   const [error, setError] = useState<string | null>(null);
 
   const cart = cartOptionsByHandle[product.slug];
+  const detailHref = href ?? `/shop/product/${product.slug}`;
+  const external = detailHref.startsWith("http");
   const storefrontUrl = product.shopifyProductUrl ?? productStorefrontUrl(product.slug);
   const supportsCart = product.supportsLocalCart && cart?.supportsLocalCart;
+  const benefit = showBenefit
+    ? publicMerchBenefit(product.description, product.name)
+    : "";
+  const imageAlt = publicMerchAlt(product.name, product.image?.alt, benefit);
+  const TitleTag = titleLevel;
+  const titleClass =
+    titleLevel === "h1"
+      ? "font-display text-[clamp(2rem,4vw,3.1rem)] leading-[1.02] font-medium text-serif-ink"
+      : "line-clamp-2 min-h-[2.6em] font-display text-[19px] leading-snug font-medium text-serif-ink";
+  const frameClass = frame === "square" ? "aspect-square" : "aspect-[4/5]";
 
   const selectedVariant = useMemo(() => {
     if (!cart) return undefined;
@@ -154,44 +188,87 @@ export function MerchProductCard({
     onSelect(value);
   }
 
+  const linkProps = external
+    ? { target: "_blank" as const, rel: "noopener noreferrer" }
+    : {};
+
+  const title = linkTitle ? (
+    <a
+      href={detailHref}
+      {...linkProps}
+      className={`${titleClass} hover:text-rose-deep`}
+      onClick={() =>
+        trackShopEvent(external ? "view_on_shopify" : "product_card_click", analyticsPayload())
+      }
+    >
+      {product.name}
+    </a>
+  ) : (
+    <TitleTag className={titleClass}>{product.name}</TitleTag>
+  );
+
+  const buyClass =
+    ctaStyle === "button"
+      ? "btn-pill btn-sage mt-4 min-h-11 w-full px-4 py-3 text-[11px] disabled:cursor-not-allowed disabled:opacity-50"
+      : "text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline decoration-border underline-offset-4 transition-colors hover:text-rose hover:decoration-rose disabled:cursor-not-allowed disabled:opacity-50";
+
   return (
-    <article ref={viewRef} className="group flex h-full flex-col">
-      <a
-        href={storefrontUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block"
-        onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
-      >
-        <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray">
-          {badge && (
-            <span className="absolute top-3 left-3 z-10 bg-cream/95 px-2.5 py-1 text-[10px] font-medium tracking-[0.14em] text-label-muted uppercase">
-              {badge}
-            </span>
-          )}
-          {product.image?.src ? (
-            <ShopifyProductImage
-              src={product.image.src}
-              alt={product.image.alt}
-              sizes="(max-width: 640px) calc(100vw - 3rem), (max-width: 1024px) calc(50vw - 3rem), 360px"
-              className="object-contain p-5 transition-transform duration-700 ease-out group-hover:scale-[1.03] sm:p-6"
-            />
-          ) : (
-            <ImagePlaceholder alt={product.name} />
-          )}
-        </div>
-      </a>
+    <article
+      ref={viewRef}
+      className={
+        layout === "lead" && showImage
+          ? "group grid grid-cols-[7.75rem_minmax(0,1fr)] items-start gap-3 sm:grid-cols-[17rem_minmax(0,1fr)] sm:gap-8"
+          : "group flex h-full flex-col"
+      }
+    >
+      {showImage && (
+        <a
+          href={detailHref}
+          {...linkProps}
+          className="block"
+          onClick={() =>
+            trackShopEvent(
+              external ? "view_on_shopify" : "product_card_click",
+              analyticsPayload(),
+            )
+          }
+        >
+          <div className={`relative ${frameClass} overflow-hidden bg-garment-tray`}>
+            {badge && (
+              <span className="absolute top-3 left-3 z-10 bg-cream/95 px-2.5 py-1 text-[10px] font-medium tracking-[0.14em] text-label-muted uppercase">
+                {badge}
+              </span>
+            )}
+            {product.image?.src ? (
+              <ShopifyProductImage
+                src={product.image.src}
+                alt={imageAlt}
+                priority={priority}
+                sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 280px"
+                className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-[1.03] sm:p-5"
+              />
+            ) : (
+              <ImagePlaceholder alt={imageAlt} />
+            )}
+          </div>
+        </a>
+      )}
 
-      <div className="flex flex-1 flex-col pt-4">
-        <h3 className="font-display text-[19px] font-medium leading-snug text-serif-ink">
-          {product.name}
-        </h3>
+      <div className={`flex flex-1 flex-col ${showImage && layout !== "lead" ? "pt-4" : ""}`}>
+        {title}
 
+        {benefit && (
+          <p className="mt-2 line-clamp-2 min-h-[2.5em] text-[14px] leading-snug font-light text-body-muted">
+            {benefit}
+          </p>
+        )}
+
+        <div className={layout === "stack" ? "mt-auto" : ""}>
         {displayPrice && (
-          <p className="mt-1 text-[13px] font-light text-body-muted">
+          <p className="mt-2 text-[15px] font-medium text-serif-ink">
             {displayPrice}
             {selectedVariant && !selectedVariant.available && (
-              <span className="ml-2 text-xs text-rose-deep">Sold out</span>
+              <span className="ml-2 text-xs font-normal text-rose-deep">Sold out</span>
             )}
           </p>
         )}
@@ -229,13 +306,13 @@ export function MerchProductCard({
           </p>
         )}
 
-        <div className="mt-4">
+        <div className={ctaStyle === "button" ? "" : "mt-4"}>
           {supportsCart ? (
             <button
               type="button"
               onClick={handleAdd}
               disabled={selectedVariant !== undefined && !selectedVariant.available}
-              className="text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline decoration-border underline-offset-4 transition-colors hover:text-rose hover:decoration-rose disabled:cursor-not-allowed disabled:opacity-50"
+              className={buyClass}
             >
               Add to bag
             </button>
@@ -244,12 +321,18 @@ export function MerchProductCard({
               href={storefrontUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline decoration-border underline-offset-4 hover:text-rose hover:decoration-rose"
+              className={buyClass}
               onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
             >
-              Shop
+              Continue on Shopify
             </a>
           )}
+        </div>
+        {purchaseNote && (
+          <p className="mt-3 text-[12px] leading-relaxed font-light text-label-muted">
+            {purchaseNote}
+          </p>
+        )}
         </div>
       </div>
     </article>

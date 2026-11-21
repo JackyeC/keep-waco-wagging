@@ -10,11 +10,15 @@ export function ShopifyProductImage({
   alt,
   sizes,
   className,
+  priority = false,
+  width = 1200,
 }: {
   src?: string;
   alt: string;
   sizes: string;
   className?: string;
+  priority?: boolean;
+  width?: number;
 }) {
   const [failed, setFailed] = useState(false);
 
@@ -24,10 +28,11 @@ export function ShopifyProductImage({
 
   return (
     <Image
-      src={shopifySizedSrc(src, 800)}
+      src={src.startsWith("/") ? src : shopifySizedSrc(src, width)}
       alt={alt}
       fill
-      unoptimized
+      unoptimized={!src.startsWith("/")}
+      priority={priority}
       sizes={sizes}
       className={className}
       onError={() => setFailed(true)}

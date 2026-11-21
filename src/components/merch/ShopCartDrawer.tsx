@@ -190,7 +190,7 @@ export function ShopCartToast() {
     <div
       role="status"
       aria-live="polite"
-      className="fixed bottom-6 left-1/2 z-[70] max-w-[min(92vw,420px)] -translate-x-1/2 rounded-full bg-bark px-5 py-3 text-center text-sm font-light text-cream shadow-[0_10px_30px_rgba(0,0,0,0.24)] motion-safe:animate-[kwwToast_0.35s_ease-out]"
+      className="fixed bottom-40 left-1/2 z-[70] max-w-[min(92vw,420px)] -translate-x-1/2 rounded-full bg-bark px-5 py-3 text-center text-sm font-light text-cream shadow-[0_10px_30px_rgba(0,0,0,0.24)] motion-safe:animate-[kwwToast_0.35s_ease-out]"
     >
       {toast}
     </div>
