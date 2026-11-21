@@ -34,7 +34,7 @@ describe("shop favorites", () => {
       }),
       product({
         slug: bandana.handle,
-        name: "Keep Waco Wagging Clip-On Dog Bandana",
+        name: shopFavoritePicks[0].alt,
         gallery: [
           {
             src: `https://cdn.shopify.com/${placeholderDogImageIds[0]}_2048.jpg`,
@@ -58,7 +58,7 @@ describe("shop favorites", () => {
   it("keeps the hero photo off the favorites row", () => {
     const hero = product({
       slug: shopHeroPick.handle,
-      name: "Australian Shepherd Waco Skyline Hoodie",
+      name: "The Wag Club Tee",
       gallery: [
         {
           src: `https://cdn.shopify.com/${shopHeroPick.imageMatch}_2048.jpg`,
@@ -84,6 +84,9 @@ describe("shop favorites", () => {
       false,
     );
     assert.equal(resolvedFavorites.length, shopFavoritePicks.length);
+    const featured = [shopHeroPick.handle, ...shopFavoritePicks.map((pick) => pick.handle)];
+    assert.equal(featured.some((handle) => handle.includes("things-we-do")), false);
+    assert.equal(new Set(featured).size, featured.length);
   });
 
   it("flags the print-on-demand dog mockups", () => {

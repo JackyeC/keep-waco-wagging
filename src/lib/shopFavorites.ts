@@ -2,37 +2,35 @@ import type { MerchProduct } from "@/data/merchStore";
 import { isPlaceholderDogImage } from "@/lib/shopImagePolicy";
 
 /**
- * Real product photos from the live catalog. No mugs, no blank shots,
- * and no mockup dogs. The printed art is the product. Shiloh is the only
- * real dog approved for this shop, and these frames do not use a dog photo.
- * The hero photo is not one of the four favorites.
+ * Wag Club and the paw print tees, from the live catalog.
+ * No mugs, no loud colorways, no mockup dogs. Shiloh is the only real dog
+ * approved for this shop, and these frames do not use a dog photo.
+ * The hero product is not repeated in the favorites row.
+ *
+ * The Pack Tee is the same paw artwork family, but its front photo shows a
+ * mug and the other frames are blank backs, so it stays off this row.
  */
 export const shopHeroPick = {
-  handle: "keep-waco-wagging-australian-shepherd-hoodie",
-  imageMatch: "1407993642293467898",
-  alt: "Australian Shepherd Waco skyline hoodie",
+  handle: "wag-club-t-shirt-the-wag-club-paw-print-tee-keep-waco-wagging",
+  imageMatch: "12969041703673114159",
+  alt: "The Wag Club tee in cream, with the paw emblem",
 } as const;
 
 export const shopFavoritePicks = [
   {
-    handle: "keep-waco-wagging-clip-on-pet-bandana",
-    imageMatch: "1073059622731279723",
-    alt: "Keep Waco Wagging clip-on dog bandana with the Waco skyline",
-  },
-  {
-    handle: "keep-waco-wagging-sticker-golden-skyline",
-    imageMatch: "672840462404029373",
-    alt: "Golden retriever Waco skyline sticker",
-  },
-  {
-    handle: "dog-rescue-volunteer-t-shirt-things-we-do-at-keep-waco-wagging-graphic-tee",
-    imageMatch: "5151942644271125694",
-    alt: "Things We Do at Keep Waco Wagging tee",
+    handle: "wag-club-weekender-bag-keep-waco-wagging-travel-tote",
+    imageMatch: "10274178421619052137",
+    alt: "The Wag Club weekender with the paw emblem",
   },
   {
     handle: "keep-waco-wagging-dog-t-shirt-cute-paw-print-graphic-tee",
     imageMatch: "10135971154443887651",
-    alt: "Keep Waco Wagging paw print tee",
+    alt: "Keep Waco Wagging paw print tee in black",
+  },
+  {
+    handle: "keep-waco-wagging-dog-t-shirt-cute-paw-print-rescue-tee",
+    imageMatch: "17713565362421050226",
+    alt: "Keep Waco Wagging rescue paw tee in white",
   },
 ] as const;
 

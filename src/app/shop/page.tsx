@@ -148,34 +148,28 @@ export default async function ShopPage() {
           </p>
         </section>
       ) : (
-        <div className="mx-auto max-w-[1100px] px-5 pt-8 pb-20 sm:px-6">
+        <div className="mx-auto max-w-[1100px] px-5 pt-16 pb-24 sm:px-6 sm:pt-20">
           {favorites.length > 0 && (
             <section id="shop-favorites" className="scroll-mt-28">
               <SectionIntro
                 title="Shop favorites"
-                dek="A bandana, breed art, and tees printed with dogs."
+                dek="The Wag Club weekender, and the paw print tees."
               />
-              <div className="mt-8 grid grid-cols-2 items-stretch gap-4 lg:grid-cols-4 lg:gap-6">
+              <div className="mx-auto mt-12 flex max-w-[960px] flex-wrap justify-center gap-x-4 gap-y-6 sm:gap-x-6">
                 {favorites.map((favorite) => (
-                  <ShopFavoriteCard key={favorite.product.slug} favorite={favorite} />
+                  <div
+                    key={favorite.product.slug}
+                    className="w-[calc(50%-0.5rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+                  >
+                    <ShopFavoriteCard favorite={favorite} />
+                  </div>
                 ))}
               </div>
             </section>
           )}
 
-          <nav
-            aria-label="Shop sections"
-            className="mt-10 flex flex-nowrap justify-center gap-x-4 overflow-x-auto text-[11px] font-medium tracking-[0.12em] text-label-muted uppercase sm:gap-x-5 sm:text-xs sm:tracking-[0.14em]"
-          >
-            <a href="#shop-favorites" className="shrink-0 hover:text-serif-ink">Favorites</a>
-            <a href="#breed-lines" className="shrink-0 hover:text-serif-ink">Lines</a>
-            <a href="#shop-by-breed" className="shrink-0 hover:text-serif-ink">Shop by breed</a>
-            <a href="#wag-club" className="shrink-0 hover:text-serif-ink">Wag Club</a>
-            <a href="#more-from-kww" className="shrink-0 hover:text-serif-ink">More</a>
-          </nav>
-
           {merch.lines.length > 0 && (
-            <section id="breed-lines" className="scroll-mt-28 mt-10 sm:mt-14">
+            <section id="breed-lines" className="scroll-mt-28 mt-20 sm:mt-28">
               <SectionIntro
                 title="One design, your breed"
                 dek="The skyline pieces share a design. Pick the line, then pick the dog."
@@ -195,7 +189,7 @@ export default async function ShopPage() {
           )}
 
           {merch.breeds.length > 0 && (
-            <section id="shop-by-breed" className="scroll-mt-28 mt-16 sm:mt-20">
+            <section id="shop-by-breed" className="scroll-mt-28 mt-20 sm:mt-28">
               <SectionIntro
                 title="Shop by breed"
                 dek="Pick your dog. You'll see only the pieces we print for that breed."
@@ -217,7 +211,7 @@ export default async function ShopPage() {
             </section>
           )}
 
-          <section id="wag-club" className="scroll-mt-28 mt-16 sm:mt-20">
+          <section id="wag-club" className="scroll-mt-28 mt-20 sm:mt-28">
             <div className="mx-auto max-w-3xl rounded-[24px] border border-border bg-soft-cream px-6 py-8 text-center sm:px-10 sm:py-10">
               <Image
                 src="/wagclub/wag-club-emblem.webp"
@@ -255,7 +249,7 @@ export default async function ShopPage() {
             </div>
           </section>
 
-          <section id="more-from-kww" className="scroll-mt-28 mt-16 sm:mt-20">
+          <section id="more-from-kww" className="scroll-mt-28 mt-20 sm:mt-28">
             <SectionIntro
               title="More from Keep Waco Wagging"
               dek={
