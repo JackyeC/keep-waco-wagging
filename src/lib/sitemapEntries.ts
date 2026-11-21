@@ -43,7 +43,6 @@ const INDEXABLE_STATIC_ROUTES: {
   { route: "/blog", priority: 0.55, changeFrequency: "weekly" },
   { route: "/gear-guide", priority: 0.55, changeFrequency: "monthly" },
   { route: "/shop", priority: 0.45, changeFrequency: "weekly" },
-  { route: "/waco-wag-club", priority: 0.45, changeFrequency: "monthly" },
   { route: "/sponsors", priority: 0.4, changeFrequency: "monthly" },
 ];
 
