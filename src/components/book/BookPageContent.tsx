@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { designPhotos } from "@/data/designPhotos";
+import { PawsgivingWeekNote } from "@/components/camp/PawsgivingWeekNote";
 import { HomeNewsletter } from "@/components/home/HomeNewsletter";
 import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
@@ -78,6 +79,7 @@ const bookingPaths: BookingPath[] = [
 export function BookPageContent() {
   return (
     <>
+      <PawsgivingWeekNote variant="banner" />
       <section className="mx-auto max-w-[1200px] px-6 pt-10 pb-4">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <div>

@@ -1,3 +1,4 @@
+import { PawsgivingWeekNote } from "@/components/camp/PawsgivingWeekNote";
 import { SummerCampCalendar } from "@/components/camp/SummerCampCalendar";
 import type { Metadata } from "next";
 import { CampClaytonExplainer } from "@/components/camp/CampClaytonExplainer";
@@ -17,7 +18,15 @@ export const metadata: Metadata = servicePageMetadata(
 
 export default function CampWacoPage() {
   return (
-    <ServicePageView config={config} beforeIncluded={<CampClaytonExplainer />}>
+    <ServicePageView
+      config={config}
+      beforeIncluded={
+        <>
+          <PawsgivingWeekNote variant="section" />
+          <CampClaytonExplainer />
+        </>
+      }
+    >
       <CampClaytonLifePhotos />
       <div className="mx-auto max-w-[1200px] px-6">
         <SummerCampCalendar id="calendar" variant="full" className="mt-14" />

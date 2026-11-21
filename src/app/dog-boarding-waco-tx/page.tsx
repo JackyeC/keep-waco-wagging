@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PawsgivingWeekNote } from "@/components/camp/PawsgivingWeekNote";
 import { PetCareServiceLanding } from "@/components/pet-care/PetCareServiceLanding";
 import { getPetCareLanding } from "@/data/petCareLandings";
 import { servicePageMetadata } from "@/lib/metadata";
@@ -13,5 +14,10 @@ export const metadata: Metadata = servicePageMetadata(
 );
 
 export default function DogBoardingWacoTxPage() {
-  return <PetCareServiceLanding config={config} />;
+  return (
+    <>
+      <PawsgivingWeekNote variant="banner" />
+      <PetCareServiceLanding config={config} />
+    </>
+  );
 }
