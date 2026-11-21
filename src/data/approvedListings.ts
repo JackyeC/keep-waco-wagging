@@ -809,7 +809,9 @@ export function getApprovedListingBySlug(slug: string): ApprovedListing | undefi
 }
 
 export function getApprovedListingsByGroup(group: ListingGroup): ApprovedListing[] {
-  return approvedListings.filter((listing) => listing.group === group);
+  return approvedListings.filter(
+    (listing) => listing.group === group && listing.isSample !== true,
+  );
 }
 
 /** Real listings only — fictional sample pages stay out of the sitemap. */

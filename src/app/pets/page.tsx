@@ -8,28 +8,28 @@ import { AdSlot } from "@/components/AdSlot";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { Badge } from "@/components/ui/Badge";
 import { SitePhoto } from "@/components/SitePhoto";
-import { getPetOfTheWeek, getUploadedPets, getWallPets } from "@/data/pets";
-import { photoLibrary, photoLibraryStats } from "@/data/photoLibrary";
+import { getPetOfTheWeek, getShilohPhotos, getUploadedPets, getWallPets } from "@/data/pets";
 import { sitePhotos } from "@/data/sitePhotos";
 import { servicePageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = servicePageMetadata(
   "/pets",
   "Waco Pets — The Wagging Wall",
-  "Meet the dogs of Waco. The Wagging Wall showcases local pups from Woodway, Hewitt, Robinson, China Spring, and beyond — plus a weekly Pet of the Week.",
+  "Meet Shiloh, Keep Waco Wagging's Pet of the Week, and submit your own dog for the Wagging Wall. Community dogs are featured only with owner permission.",
 );
 
 export default function PetsPage() {
   const star = getPetOfTheWeek();
   const wall = getWallPets();
   const uploaded = getUploadedPets();
+  const shilohPhotos = getShilohPhotos();
 
   return (
     <>
       <PageHeader
         eyebrow="The Wagging Wall"
         title="Meet the dogs of Waco"
-        description="A community showcase of local pups from across McLennan County. Submit your dog, say hi to your neighbors' pets, and meet our weekly Pet of the Week."
+        description="Meet Shiloh, Jackye and Todd's dog and this week's Pet of the Week. Want your dog on the wall? Submit a photo — we only feature community dogs whose owners have given permission."
         tone="sky"
         image={sitePhotos.hero}
       />
@@ -78,6 +78,26 @@ export default function PetsPage() {
         </div>
       </Section>
 
+      {shilohPhotos.length > 1 && (
+        <Section tone="paper">
+          <SectionHeading
+            eyebrow="At home"
+            title="More photos of Shiloh"
+            description="Jackye and Todd's dog, including the couch photo from home."
+          />
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {shilohPhotos.map((photo) => (
+              <div
+                key={photo.src}
+                className="relative aspect-[3/4] overflow-hidden rounded-card ring-1 ring-inset ring-clay/70"
+              >
+                <SitePhoto src={photo.src} alt={photo.alt} sizes="(max-width: 768px) 100vw, 40vw" />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
       {uploaded.length > 0 && (
         <Section tone="sky">
           <SectionHeading
@@ -93,25 +113,6 @@ export default function PetsPage() {
         </Section>
       )}
 
-      {photoLibraryStats.total > 0 && (
-        <Section tone="paper">
-          <SectionHeading
-            eyebrow="Photo gallery"
-            title={`${photoLibraryStats.total} moments from Waco dog life`}
-            description="Every image you add to source-photos/ lands here and across the site."
-          />
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {photoLibrary.map((photo) => (
-              <div
-                key={photo.src}
-                className="relative aspect-[4/3] overflow-hidden rounded-card ring-1 ring-inset ring-clay/70"
-              >
-                <SitePhoto src={photo.src} alt={photo.alt} sizes="(max-width: 768px) 50vw, 25vw" />
-              </div>
-            ))}
-          </div>
-        </Section>
-      )}
 
       {/* The Wagging Wall + sponsor rail */}
       <Section tone="sand">
@@ -121,9 +122,15 @@ export default function PetsPage() {
         />
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_300px]">
           <div className="grid gap-6 sm:grid-cols-2">
-            {wall.map((pet) => (
-              <PetCard key={pet.id} pet={pet} />
-            ))}
+            {wall.length > 0 ? (
+              wall.map((pet) => <PetCard key={pet.id} pet={pet} />)
+            ) : (
+              <p className="sm:col-span-2 rounded-card bg-cream/60 p-6 text-[15px] leading-relaxed text-bark-soft ring-1 ring-inset ring-clay/70">
+                No community dogs are on the wall yet. We only feature a client
+                or neighbor dog after the owner has given permission. Submit
+                yours below and we will review it first.
+              </p>
+            )}
           </div>
           <div className="lg:sticky lg:top-20 lg:self-start">
             <AdSlot placement="pets" />

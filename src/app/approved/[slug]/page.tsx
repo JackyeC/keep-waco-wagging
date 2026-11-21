@@ -22,19 +22,19 @@ import {
 } from "@/components/approved/ApprovedStatusBadge";
 import { ApprovedAtAGlance } from "@/components/approved/ApprovedAttributes";
 import {
-  approvedListings,
   getApprovedListingBySlug,
+  getIndexableApprovedListings,
   pendingConfig,
   sourceTypeLabels,
   wouldWeTakeOurDog,
   type ApprovedListing,
   type Source,
 } from "@/data/approvedListings";
-import { servicePageMetadata, noindexRobots } from "@/lib/metadata";
+import { servicePageMetadata } from "@/lib/metadata";
 import { cityConfig } from "@/lib/site";
 
 export function generateStaticParams() {
-  return approvedListings.map((listing) => ({ slug: listing.slug }));
+  return getIndexableApprovedListings().map((listing) => ({ slug: listing.slug }));
 }
 
 export async function generateMetadata({
@@ -44,7 +44,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const listing = getApprovedListingBySlug(slug);
-  if (!listing) return { title: "Listing not found | Keep Waco Wagging Approved" };
+  if (!listing || listing.isSample) return { title: "Listing not found | Keep Waco Wagging Approved" };
   const metadata = servicePageMetadata(
     `/approved/${listing.slug}`,
     `${listing.name} | Keep Waco Wagging Approved`,
@@ -53,8 +53,7 @@ export async function generateMetadata({
       ? { src: listing.featuredImage.src, alt: listing.featuredImage.alt }
       : undefined,
   );
-  if (!listing.isSample) return metadata;
-  return { ...metadata, robots: noindexRobots };
+  return metadata;
 }
 
 function mapsUrl(listing: ApprovedListing): string | undefined {
@@ -151,7 +150,7 @@ export default async function ApprovedListingPage({
 }) {
   const { slug } = await params;
   const listing = getApprovedListingBySlug(slug);
-  if (!listing) notFound();
+  if (!listing || listing.isSample) notFound();
 
   const directions = mapsUrl(listing);
   const isPending = listing.evaluationStatus === "pending" || !listing.status;
@@ -192,11 +191,6 @@ export default async function ApprovedListingPage({
               <h1 className="mt-2 text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.05]">
                 {listing.name}
               </h1>
-              {listing.isSample && (
-                <p className="mt-3 inline-block rounded-full bg-cream px-3 py-1 text-[11px] font-medium tracking-[0.12em] text-label-muted uppercase ring-1 ring-border">
-                  Sample listing — layout preview only
-                </p>
-              )}
               {listing.address && (
                 <p className="mt-4 flex items-center gap-2 text-[14px] text-bark-soft">
                   <MapPin className="h-4 w-4 shrink-0 text-wag-sage" aria-hidden="true" />

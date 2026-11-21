@@ -74,14 +74,6 @@ export default function ApprovedDirectoryPage() {
         tone="sage"
       />
 
-      <div className="bg-gold-100">
-        <div className="mx-auto max-w-[1200px] px-6 py-3 text-center text-[13px] text-gold-600">
-          <strong className="font-semibold">Preview:</strong> sample listings
-          show how an evaluated report looks; real places appear as
-          research leads until Keep Waco Wagging has evaluated them.
-        </div>
-      </div>
-
       {/* Status legend */}
       <Section tone="paper">
         <SectionHeading

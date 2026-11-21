@@ -49,8 +49,6 @@ const careLinks = [
     icon: Sun,
     title: "Texas heat",
     copy: "Pavement burns paws. Parked cars kill dogs. This is the first local skill, not a seasonal aside.",
-    href: "/wag-watch/waco-dog-heat-safety",
-    cta: "Read the heat playbook",
   },
 ];
 
@@ -131,12 +129,11 @@ export default function NewDogInWacoPage() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           {careLinks.map((item) => {
             const Icon = item.icon;
-            return (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="card-panel group flex flex-col p-6 transition-colors hover:border-wag-sage"
-              >
+            const className =
+              "card-panel group flex flex-col p-6 transition-colors" +
+              (item.href ? " hover:border-wag-sage" : "");
+            const inner = (
+              <>
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sage-100 text-wag-sage">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </span>
@@ -146,10 +143,24 @@ export default function NewDogInWacoPage() {
                 <p className="mt-2 flex-1 text-[14px] leading-relaxed text-body-muted">
                   {item.copy}
                 </p>
-                <span className="mt-4 text-xs font-medium tracking-[0.12em] text-rose-deep uppercase group-hover:text-wag-sage">
-                  {item.cta} →
-                </span>
-              </Link>
+                {item.cta && item.href ? (
+                  <span className="mt-4 text-xs font-medium tracking-[0.12em] text-rose-deep uppercase group-hover:text-wag-sage">
+                    {item.cta} →
+                  </span>
+                ) : null}
+              </>
+            );
+            if (item.href) {
+              return (
+                <Link key={item.title} href={item.href} className={className}>
+                  {inner}
+                </Link>
+              );
+            }
+            return (
+              <div key={item.title} className={className}>
+                {inner}
+              </div>
             );
           })}
         </div>
