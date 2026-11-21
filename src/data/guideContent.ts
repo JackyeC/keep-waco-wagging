@@ -1,3 +1,8 @@
+import {
+  wacoDogParkGuideSections,
+  wacoDogParkGuideSources,
+} from "@/lib/wacoDogParks";
+
 export type GuideSection = {
   heading?: string;
   paragraphs: string[];
@@ -70,34 +75,7 @@ export const guideContent: Record<string, GuideSection[]> = {
       ],
     },
   ],
-  "best-waco-parks-for-dogs": [
-    {
-      paragraphs: [
-        "Waco has everything from shaded river trails to fenced bark parks. The best park for your dog depends on age, reactivity, and how much off-leash time you need. Always follow posted leash rules and bring water in Texas heat.",
-      ],
-    },
-    {
-      heading: "Trails and green space",
-      paragraphs: [
-        "Cameron Park and the Brazos River corridor offer shaded trails popular with Waco dog walkers. North Waco Park on Edna Avenue is another city park option with green space — check current park rules before letting dogs off leash anywhere except designated areas.",
-        "For a structured outing, go early in the morning or near sunset when pavement and air temperature are safer for paws.",
-      ],
-    },
-    {
-      heading: "Fenced dog parks",
-      paragraphs: [
-        "If your dog needs a true off-leash run, look for fenced dog parks in Waco and surrounding communities such as Bellmead. Watch the gate when entering and leaving — that is when many scuffles start.",
-        "Puppies, seniors, and reactive dogs may do better on-leash trails than inside a busy fenced park. Match the environment to your dog, not the other way around.",
-      ],
-    },
-    {
-      heading: "Park etiquette in Waco",
-      paragraphs: [
-        "Scoop waste, respect leash laws, and give other dogs space even when yours is friendly. If your dog is still learning recall or tends to rush greetings, keep them on leash until you are confident.",
-        "Park hours, closures, and rules can change. Verify with the City of Waco or the managing agency before you drive out.",
-      ],
-    },
-  ],
+  "best-waco-parks-for-dogs": wacoDogParkGuideSections,
   "the-waco-puppy-socialization-checklist": [
     {
       paragraphs: [
@@ -488,16 +466,7 @@ const guideSources: Record<string, GuideSource[]> = {
       href: "https://avsab.org/resources/position-statements/",
     },
   ],
-  "best-waco-parks-for-dogs": [
-    {
-      label: "City of Waco — Cameron Park trail rules",
-      href: "https://www.waco-texas.com/Departments/Parks-Recreation/Cameron-Park/Cameron-Park-Trail-System-Rules",
-    },
-    {
-      label: "City of Waco — North Waco Park",
-      href: "https://www.waco-texas.com/Departments/Parks-Recreation/Parks-Playgrounds-Splash-Pads-Trails/North-Waco-Park",
-    },
-  ],
+  "best-waco-parks-for-dogs": wacoDogParkGuideSources,
   "the-waco-puppy-socialization-checklist": [
     {
       label: "AVSAB — puppy socialization position statement",

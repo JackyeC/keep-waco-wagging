@@ -13,7 +13,7 @@ export const platinumScoops = {
   description:
     "Platinum Scoops is a Waco-based, family-run pet care and pet waste removal business founded by Jackye and Todd Clayton. We help local dog families keep their yards cleaner, fresher, and easier to enjoy through reliable scooping, odor support, and practical pet care services.",
   pricing:
-    "Recurring scooping starts at $25/week, with the first cleanup included. No long-term commitment. Cancel anytime.",
+    "Weekly service starts at $25 a visit for 1 to 2 dogs. The initial cleanup starts at $100. No long term commitment. Cancel anytime.",
   petCarePricing:
     "Boarding and daycare availability may vary. Visit our booking page for current availability and service details.",
   trustSignals: [

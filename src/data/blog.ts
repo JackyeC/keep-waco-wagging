@@ -52,10 +52,10 @@ export const blogPosts: BlogPost[] = [
     title: "Best Waco Parks for Dogs",
     category: "Dog-Friendly Waco",
     excerpt:
-      "From Cameron Park's shaded trails to fenced bark parks in Bellmead, here are our favorite green spaces for every kind of dog.",
+      "Cameron Park and North Waco Park are solid leashed walks. The HOT Dog Park is closed, and other off leash spots need a check before you go. Last checked November 2026.",
     readTime: "7 min read",
     date: "2026-05-20",
-    updated: "2026-07-30",
+    updated: "2026-11-21",
     author: "Keep Waco Wagging",
     indexable: true,
   },

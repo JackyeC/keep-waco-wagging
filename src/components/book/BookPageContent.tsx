@@ -20,9 +20,9 @@ type BookingPath = {
 const bookingPaths: BookingPath[] = [
   {
     title: "Poop scoop & yard care",
-    eyebrow: "From $25/week",
+    eyebrow: "From $25 a visit",
     description:
-      "Recurring pet waste removal and one-time yard cleanups across greater Waco.",
+      "Weekly service for 1 to 2 dogs, plus one time yard cleanups. The initial cleanup starts at $100.",
     href: ctas.bookScoops.href,
     external: true,
     label: ctas.bookScoops.label,
