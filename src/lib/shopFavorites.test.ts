@@ -5,7 +5,7 @@ import {
   resolveShopFavorites,
   resolveShopHero,
   shopFavoritePicks,
-  shopHeroPick,
+  shopHeroPicks,
 } from "@/lib/shopFavorites";
 import {
   isPlaceholderDogImage,
@@ -55,38 +55,46 @@ describe("shop favorites", () => {
     assert.equal(favorites.some((item) => isPlaceholderDogImage(item.src)), false);
   });
 
-  it("keeps the hero photo off the favorites row", () => {
-    const hero = product({
-      slug: shopHeroPick.handle,
-      name: "The Wag Club Tee",
-      gallery: [
-        {
-          src: `https://cdn.shopify.com/${shopHeroPick.imageMatch}_2048.jpg`,
-          alt: "hoodie",
-        },
-      ],
-    });
-    const favorites = shopFavoritePicks.map((pick) =>
-      product({
-        slug: pick.handle,
-        name: pick.alt,
-        image: {
-          src: `https://cdn.shopify.com/${pick.imageMatch}_2048.jpg`,
-          alt: pick.alt,
-        },
-      }),
-    );
-    const resolvedHero = resolveShopHero([hero, ...favorites]);
-    const resolvedFavorites = resolveShopFavorites([hero, ...favorites]);
-    assert.equal(resolvedHero?.product.slug, shopHeroPick.handle);
-    assert.equal(
-      resolvedFavorites.some((item) => item.product.slug === shopHeroPick.handle),
-      false,
+  it("keeps the hero photos off the favorites row", () => {
+    const byHandle = new Map<string, ReturnType<typeof product>>();
+    for (const pick of [...shopHeroPicks, ...shopFavoritePicks]) {
+      const existing = byHandle.get(pick.handle);
+      const image = {
+        src: `https://cdn.shopify.com/${pick.imageMatch}_2048.jpg`,
+        alt: pick.alt,
+      };
+      if (existing) {
+        existing.gallery = [...(existing.gallery ?? []), image];
+        continue;
+      }
+      byHandle.set(
+        pick.handle,
+        product({
+          slug: pick.handle,
+          name: pick.alt,
+          gallery: [image],
+        }),
+      );
+    }
+    const products = [...byHandle.values()];
+    const resolvedHero = resolveShopHero(products);
+    const resolvedFavorites = resolveShopFavorites(products);
+    assert.deepEqual(
+      resolvedHero.map((item) => item.product.slug),
+      shopHeroPicks.map((pick) => pick.handle),
     );
     assert.equal(resolvedFavorites.length, shopFavoritePicks.length);
-    const featured = [shopHeroPick.handle, ...shopFavoritePicks.map((pick) => pick.handle)];
-    assert.equal(featured.some((handle) => handle.includes("things-we-do")), false);
-    assert.equal(new Set(featured).size, featured.length);
+    const heroImages = shopHeroPicks.map((pick) => pick.imageMatch);
+    const favoriteImages = shopFavoritePicks.map((pick) => pick.imageMatch);
+    assert.equal(
+      resolvedFavorites.some((item) => heroImages.some((id) => item.src.includes(id))),
+      false,
+    );
+    assert.equal(new Set([...heroImages, ...favoriteImages]).size, 6);
+    const handles = [...shopHeroPicks, ...shopFavoritePicks].map((pick) => pick.handle);
+    assert.equal(handles.some((handle) => handle.includes("things-we-do")), false);
+    assert.equal(handles.some((handle) => handle.includes("wag-club")), false);
+    assert.equal(handles.some((handle) => handle.includes("paw-print")), false);
   });
 
   it("flags the print-on-demand dog mockups", () => {

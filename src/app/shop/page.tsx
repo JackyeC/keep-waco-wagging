@@ -29,7 +29,7 @@ const pageDescription =
 
 export async function generateMetadata(): Promise<Metadata> {
   const { allProducts } = await getShopCatalogView();
-  const favorite = resolveShopHero(allProducts) ?? resolveShopFavorites(allProducts)[0];
+  const favorite = resolveShopHero(allProducts)[0] ?? resolveShopFavorites(allProducts)[0];
   return servicePageMetadata(
     "/shop",
     pageTitle,
@@ -110,7 +110,7 @@ export default async function ShopPage() {
   const storefrontUrl = getShopifyStorefrontUrl();
   const giftCard = findGiftCardProduct(allProducts);
   const offerCount = giftCard ? 3 : 2;
-  const hero = resolveShopHero(allProducts);
+  const heroes = resolveShopHero(allProducts);
   const favorites = resolveShopFavorites(allProducts);
 
   return (
@@ -118,9 +118,9 @@ export default async function ShopPage() {
       <ShopJsonLd
         products={allProducts}
         cartOptionsByHandle={cartOptionsByHandle}
-        image={hero?.src ?? favorites[0]?.src}
+        image={heroes[0]?.src ?? favorites[0]?.src}
       />
-      <ShopHero hero={hero} />
+      <ShopHero heroes={heroes} />
 
       {error && (
         <section className="mx-auto max-w-[1100px] px-5 pt-8 text-center sm:px-6">
@@ -153,16 +153,11 @@ export default async function ShopPage() {
             <section id="shop-favorites" className="scroll-mt-28">
               <SectionIntro
                 title="Shop favorites"
-                dek="The Wag Club weekender, and the paw print tees."
+                dek="Dog Mom, Dog Dad, and the Waco Dog Walking Club."
               />
-              <div className="mx-auto mt-12 flex max-w-[960px] flex-wrap justify-center gap-x-4 gap-y-6 sm:gap-x-6">
+              <div className="mt-12 grid grid-cols-2 items-stretch gap-4 lg:grid-cols-4 lg:gap-6">
                 {favorites.map((favorite) => (
-                  <div
-                    key={favorite.product.slug}
-                    className="w-[calc(50%-0.5rem)] sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
-                  >
-                    <ShopFavoriteCard favorite={favorite} />
-                  </div>
+                  <ShopFavoriteCard key={favorite.src} favorite={favorite} />
                 ))}
               </div>
             </section>

@@ -19,10 +19,9 @@ export const batch1FeatureNowHandles = [
   "waco-dog-mom-coffee-mug-dog-mom-social-club-accent-ceramic-mug-11-15oz",
 ] as const;
 
-/** CONDITIONAL — owner artwork revision pending; not displayed on storefront */
-export const batch1ConditionalArtworkHandles = [
-  "waco-skyline-t-shirt-waco-dog-dad-graphic-tee",
-] as const;
+/** CONDITIONAL — owner artwork revision pending; not displayed on storefront.
+ * Waco Dog Dad Skyline Tee was cleared for the shop when the owner asked to feature it. */
+export const batch1ConditionalArtworkHandles = [] as const;
 
 /** Removed from curated collection — still live in Shopify; not featured on collection */
 export const batch1HeldFromCuratedHandles = [

@@ -21,7 +21,7 @@ export function ShopFavoriteCard({ favorite }: { favorite: ShopFavorite }) {
             href={`/shop/product/${favorite.product.slug}`}
             className="hover:text-rose-deep"
           >
-            {favorite.product.name}
+            {favorite.title ?? favorite.product.name}
           </Link>
         </h3>
         <div className="mt-auto pt-4">
