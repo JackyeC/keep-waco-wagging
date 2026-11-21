@@ -2,8 +2,9 @@
  * Swappable shop art. Drop a file at the public path and the page picks it up.
  * Until then, product cards and breed tiles use the Shopify photo for that item.
  *
- * Hero and Open Graph files in /public/shop/merch are temporary compositions
- * of a real catalog photo on the site cream. Replace the files. Keep the sizes.
+ * Hero and Open Graph slots in /public/shop/merch are empty until a real
+ * product photo, or a photo of Shiloh, is added. Do not put a mug or a
+ * placeholder dog in those files.
  */
 
 export const shopGraphics = {
@@ -11,7 +12,7 @@ export const shopGraphics = {
     src: "/shop/merch/hero.webp",
     width: 2400,
     height: 1067,
-    alt: "Keep Waco Wagging shop banner space. A golden retriever skyline mug sits to the side so the center stays open for the headline.",
+    alt: "Keep Waco Wagging shop banner space. Leave the center open for the headline.",
   },
   heroMobile: {
     src: "/shop/merch/hero-mobile.webp",

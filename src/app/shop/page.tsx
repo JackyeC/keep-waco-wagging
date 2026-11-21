@@ -7,17 +7,18 @@ import {
   BreedChoiceItem,
 } from "@/components/merch/BreedChoice";
 import { BreedLineCard } from "@/components/merch/BreedLineCard";
+import { ShopFavoriteCard } from "@/components/merch/ShopFavoriteCard";
 import { ShopHero } from "@/components/merch/ShopHero";
 import { ShopPromo } from "@/components/merch/ShopPromo";
 import { ShopPurchaseNotes } from "@/components/merch/ShopPurchaseNotes";
 import { ShopShell } from "@/components/merch/ShopShell";
 import { ShopTrust } from "@/components/merch/ShopTrust";
 import { ShopJsonLd } from "@/components/seo/ShopJsonLd";
-import { shopGraphics } from "@/data/shopGraphics";
 import type { MerchProduct } from "@/data/merchStore";
 import { getShopifyStorefrontUrl } from "@/data/merchStore";
 import { servicePageMetadata } from "@/lib/metadata";
 import { getShopCatalogView } from "@/lib/shopCatalogView";
+import { resolveShopFavorites } from "@/lib/shopFavorites";
 import { findGiftCardProduct } from "@/lib/shopPublicCatalog";
 
 export const revalidate = 600;
@@ -26,17 +27,23 @@ const pageTitle = "Waco Dog Merch | Tees, Hoodies, and Totes | Keep Waco Wagging
 const pageDescription =
   "Shop Waco dog merch from Keep Waco Wagging in China Spring, TX. Breed skyline tees, hoodies, crewnecks, and totes, made to order by Jackye and Todd.";
 
-export const metadata: Metadata = servicePageMetadata(
-  "/shop",
-  pageTitle,
-  pageDescription,
-  {
-    src: shopGraphics.og.src,
-    alt: shopGraphics.og.alt,
-    width: shopGraphics.og.width,
-    height: shopGraphics.og.height,
-  },
-);
+export async function generateMetadata(): Promise<Metadata> {
+  const { allProducts } = await getShopCatalogView();
+  const favorite = resolveShopFavorites(allProducts)[0];
+  return servicePageMetadata(
+    "/shop",
+    pageTitle,
+    pageDescription,
+    favorite
+      ? {
+          src: favorite.src,
+          alt: favorite.alt,
+          width: 1200,
+          height: 1200,
+        }
+      : undefined,
+  );
+}
 
 const WAG_CLUB_PERKS = [
   "Weekend ideas",
@@ -103,14 +110,16 @@ export default async function ShopPage() {
   const storefrontUrl = getShopifyStorefrontUrl();
   const giftCard = findGiftCardProduct(allProducts);
   const offerCount = giftCard ? 3 : 2;
+  const favorites = resolveShopFavorites(allProducts);
 
   return (
     <ShopShell cartOptionsByHandle={cartOptionsByHandle}>
       <ShopJsonLd
         products={allProducts}
         cartOptionsByHandle={cartOptionsByHandle}
+        image={favorites[0]?.src}
       />
-      <ShopHero />
+      <ShopHero favorites={favorites} />
 
       {error && (
         <section className="mx-auto max-w-[1100px] px-5 pt-8 text-center sm:px-6">
@@ -139,10 +148,25 @@ export default async function ShopPage() {
         </section>
       ) : (
         <div className="mx-auto max-w-[1100px] px-5 pt-8 pb-20 sm:px-6">
+          {favorites.length > 0 && (
+            <section id="shop-favorites" className="scroll-mt-28">
+              <SectionIntro
+                title="Shop favorites"
+                dek="A bandana, breed art, and tees printed with dogs."
+              />
+              <div className="mt-8 grid grid-cols-2 items-stretch gap-4 lg:grid-cols-4 lg:gap-6">
+                {favorites.map((favorite) => (
+                  <ShopFavoriteCard key={favorite.product.slug} favorite={favorite} />
+                ))}
+              </div>
+            </section>
+          )}
+
           <nav
             aria-label="Shop sections"
-            className="flex flex-nowrap justify-center gap-x-4 overflow-x-auto text-[11px] font-medium tracking-[0.12em] text-label-muted uppercase sm:gap-x-5 sm:text-xs sm:tracking-[0.14em]"
+            className="mt-10 flex flex-nowrap justify-center gap-x-4 overflow-x-auto text-[11px] font-medium tracking-[0.12em] text-label-muted uppercase sm:gap-x-5 sm:text-xs sm:tracking-[0.14em]"
           >
+            <a href="#shop-favorites" className="shrink-0 hover:text-serif-ink">Favorites</a>
             <a href="#breed-lines" className="shrink-0 hover:text-serif-ink">Lines</a>
             <a href="#shop-by-breed" className="shrink-0 hover:text-serif-ink">Shop by breed</a>
             <a href="#wag-club" className="shrink-0 hover:text-serif-ink">Wag Club</a>

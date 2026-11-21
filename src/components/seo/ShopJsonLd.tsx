@@ -1,5 +1,4 @@
 import { JsonLd } from "@/components/seo/JsonLd";
-import { shopGraphics } from "@/data/shopGraphics";
 import type { MerchProduct } from "@/data/merchStore";
 import { parseShopPrice } from "@/lib/merchLines";
 import { publicMerchDescription } from "@/lib/merchCopy";
@@ -90,11 +89,13 @@ export function ShopJsonLd({
   cartOptionsByHandle,
   pageUrl = `${cityConfig.url}/shop`,
   pageName = "Shop",
+  image,
 }: {
   products: MerchProduct[];
   cartOptionsByHandle: Record<string, ProductCartOptions>;
   pageUrl?: string;
   pageName?: string;
+  image?: string;
 }) {
   const store = {
     "@context": "https://schema.org",
@@ -102,7 +103,7 @@ export function ShopJsonLd({
     "@id": STORE_ID,
     name: cityConfig.name,
     url: `${cityConfig.url}/shop`,
-    image: `${cityConfig.url}${shopGraphics.og.src}`,
+    ...(image ? { image } : {}),
     telephone: "+1-254-726-6737",
     parentOrganization: { "@id": `${cityConfig.url}/#organization` },
     address: {

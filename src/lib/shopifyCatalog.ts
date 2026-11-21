@@ -3,6 +3,7 @@ import type { MerchCategory, MerchProduct } from "@/data/merchStore";
 import { curateCatalog } from "@/data/merchCuration";
 import { merchCategoryMeta, shopifyStoreConfig } from "@/data/merchStore";
 import { publicMerchDescription } from "@/lib/merchCopy";
+import { isPlaceholderDogImage } from "@/lib/shopImagePolicy";
 import {
   parseProductCartOptions,
   type ProductCartOptions,
@@ -61,6 +62,7 @@ function pickGallery(
     .map((image, index) => {
       const src = image.src ? absoluteImageSrc(image.src) : "";
       if (!src) return null;
+      if (isPlaceholderDogImage(src)) return null;
       const alt = image.alt?.trim() || `${name}, photo ${index + 1}`;
       return { src, alt, index };
     })
@@ -72,7 +74,7 @@ function pickGallery(
     /size|chart/i.test(`${image.alt} ${image.src}`),
   );
   const rest = normalized.filter((image) => !charts.includes(image));
-  return [...rest.slice(0, 4), ...charts.slice(0, 2)].map(({ src, alt }) => ({
+  return [...rest.slice(0, 8), ...charts.slice(0, 2)].map(({ src, alt }) => ({
     src,
     alt,
   }));
@@ -243,7 +245,7 @@ async function fetchFreshShopifyCatalog(): Promise<ShopifyCatalogResult> {
  */
 export const fetchShopifyCatalog = unstable_cache(
   fetchFreshShopifyCatalog,
-  ["shopify-catalog-v2", SHOPIFY_PRODUCTS_URL],
+  ["shopify-catalog-v3", SHOPIFY_PRODUCTS_URL],
   {
     revalidate: SHOPIFY_CATALOG_REVALIDATE_SECONDS,
     tags: ["shopify-catalog"],
