@@ -16,17 +16,27 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/cool-dog-owner",
-        destination: "/waco-wag-club",
+        destination: "/wagclub",
         permanent: true,
       },
       {
         source: "/cool-dog-owner-club",
-        destination: "/waco-wag-club",
+        destination: "/wagclub",
         permanent: true,
       },
       {
         source: "/the-cool-dog-owner-club",
-        destination: "/waco-wag-club",
+        destination: "/wagclub",
+        permanent: true,
+      },
+      {
+        source: "/waco-wag-club",
+        destination: "/wagclub",
+        permanent: true,
+      },
+      {
+        source: "/camp-clayton",
+        destination: "/camp-waco",
         permanent: true,
       },
     ];

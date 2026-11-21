@@ -107,7 +107,7 @@ export const cityConfig = {
     phoneHref: "tel:+12547266737",
     email: "info@keepwacowagging.com",
     pricingNote:
-      "Recurring scooping starts at $25/week, with the first cleanup included. No long-term commitment. Cancel anytime.",
+      "Weekly service starts at $25 a visit for 1 to 2 dogs. The initial cleanup starts at $100. No long term commitment. Cancel anytime.",
   },
   rover: {
     profileUrl:

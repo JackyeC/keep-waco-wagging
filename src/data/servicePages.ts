@@ -50,13 +50,13 @@ export const servicePages: Record<string, ServicePageConfig> = {
     slug: "platinum-scoops",
     seo: {
       title: "Poop Scooping Waco | Platinum Scoops",
-      description: `Weekly dog waste removal in Waco from $25/week with the first cleanup included. ${cityConfig.sponsor.name} pet waste removal, not a side gig.`,
+      description: `Weekly dog waste removal in Waco from $25 a visit for 1 to 2 dogs. The initial cleanup starts at $100. ${cityConfig.sponsor.name} pet waste removal, not a side gig.`,
     },
     hero: {
       eyebrow: "Platinum Scoops · Poop scooping & yard care",
       title: "Scooped, fresh, and ready to romp",
       scriptWord: "romp",
-      metaLine: "From $25 / week · first cleanup included",
+      metaLine: "From $25 a visit for 1 to 2 dogs. Initial cleanup starts at $100.",
       description:
         "Weekly scooping, one-time cleanups, and odor support so your yard stays usable through the Texas heat, and your dog stays happy in it.",
       image: designPhotos.svcScoop,
@@ -99,7 +99,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
         number: "02",
         title: "We scoop on schedule",
         detail:
-          "Same friendly faces, same day each week. First cleanup is on us.",
+          "Same friendly faces, same day each week. The initial cleanup starts at $100.",
       },
       {
         number: "03",
@@ -116,7 +116,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       },
       {
         question: "How much does poop scooping cost in Waco?",
-        answer: `Recurring scooping starts at $25 per week, with the first cleanup included. ${cityConfig.sponsor.pricingNote}`,
+        answer: cityConfig.sponsor.pricingNote,
       },
       {
         question: "Where do you scoop?",
@@ -131,9 +131,9 @@ export const servicePages: Record<string, ServicePageConfig> = {
     cta: {
       variant: "clay",
       eyebrow: "Ready for a cleaner yard?",
-      title: "Start weekly scooping from $25",
+      title: "Start weekly scooping from $25 a visit",
       scriptWord: "$25",
-      subtitle: `First cleanup included · Call ${cityConfig.sponsor.phoneDisplay} · ${cityConfig.publicEmail}`,
+      subtitle: `Initial cleanup starts at $100. Call ${cityConfig.sponsor.phoneDisplay}. ${cityConfig.publicEmail}`,
       primary: { label: "Book a scoop", href: jobber, external: true },
       secondary: { label: "All services", href: "/#services" },
     },

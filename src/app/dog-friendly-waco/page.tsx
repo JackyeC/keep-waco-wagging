@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { DogDirectoryBrowser } from "@/components/DogDirectoryBrowser";
+import { DogRunNote } from "@/components/directory/DogRunNote";
 import { ServiceFaqSection } from "@/components/service/ServiceFaqSection";
 import {
   DirectoryIndexJsonLd,
@@ -104,6 +105,8 @@ export default function DogFriendlyWacoPage() {
           </Link>
         </div>
       </div>
+
+      <DogRunNote />
 
       {/* Explore Waco With Your Dog */}
       <Section tone="paper">

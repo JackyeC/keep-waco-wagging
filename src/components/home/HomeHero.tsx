@@ -34,9 +34,9 @@ export function HomeHero() {
           <p className="text-[11px] font-medium tracking-[0.2em] text-cream/70 uppercase">
             For Waco dog parents
           </p>
-          <p className="mt-3 font-display text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95] font-medium tracking-[-0.02em] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
+          <h1 className="mt-3 font-display text-[clamp(2.75rem,7vw,4.75rem)] leading-[0.95] font-medium tracking-[-0.02em] text-cream drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
             {brandLanguage.heroLine.replace(/\.$/, "")}
-          </p>
+          </h1>
           <p className="mt-4 max-w-md text-[15px] font-light leading-relaxed text-cream/90">
             Boarding, daycare, training and poop scooping from Jackye and Todd,
             plus an honest local guide to where your dog is welcome in Waco

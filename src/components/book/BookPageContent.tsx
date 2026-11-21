@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { designPhotos } from "@/data/designPhotos";
+import { PawsgivingWeekNote } from "@/components/camp/PawsgivingWeekNote";
 import { HomeNewsletter } from "@/components/home/HomeNewsletter";
 import { brandLanguage, cityConfig, ctas } from "@/lib/site";
 
@@ -19,9 +20,9 @@ type BookingPath = {
 const bookingPaths: BookingPath[] = [
   {
     title: "Poop scoop & yard care",
-    eyebrow: "From $25/week",
+    eyebrow: "From $25 a visit",
     description:
-      "Recurring pet waste removal and one-time yard cleanups across greater Waco.",
+      "Weekly service for 1 to 2 dogs, plus one time yard cleanups. The initial cleanup starts at $100.",
     href: ctas.bookScoops.href,
     external: true,
     label: ctas.bookScoops.label,
@@ -78,6 +79,7 @@ const bookingPaths: BookingPath[] = [
 export function BookPageContent() {
   return (
     <>
+      <PawsgivingWeekNote variant="banner" />
       <section className="mx-auto max-w-[1200px] px-6 pt-10 pb-4">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <div>

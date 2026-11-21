@@ -38,6 +38,9 @@ describe("sitemap entries", () => {
       assert.equal(urls.includes(canonicalUrl(path)), true, path);
     }
 
+    assert.equal(urls.includes(canonicalUrl("/wagclub")), true);
+    assert.equal(urls.includes(canonicalUrl("/waco-wag-club")), false);
+    assert.equal(urls.includes(canonicalUrl("/camp-clayton")), false);
     assert.equal(urls.includes(canonicalUrl("/dog-friendly-waco/street-dog-cafe")), true);
     assert.equal(
       urls.filter((url) => url.includes("/dog-friendly-waco/")).length,
