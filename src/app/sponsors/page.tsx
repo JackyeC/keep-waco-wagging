@@ -13,7 +13,7 @@ import { brandLanguage } from "@/lib/site";
 export const metadata: Metadata = servicePageMetadata(
   "/sponsors",
   "Sponsor Keep Waco Wagging | Reach Waco Dog Parents",
-  `${brandLanguage.communityLine}. Sponsor placements include camp weeks, photo booths, treats, and community partner spots.`,
+  `${brandLanguage.communityLine} Sponsor placements include camp weeks, photo booths, treats, and community partner spots.`,
 );
 
 export default function SponsorsPage() {

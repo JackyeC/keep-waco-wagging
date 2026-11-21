@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { servicePageMetadata } from "@/lib/metadata";
-import { cityConfig, monetization } from "@/lib/site";
+import { monetization } from "@/lib/site";
 
 export const metadata: Metadata = servicePageMetadata(
   "/affiliate-disclosure",
   "Affiliate Disclosure",
-  `Affiliate and sponsorship disclosure for ${cityConfig.name}.`,
+  "How Keep Waco Wagging handles Amazon affiliate links and labeled sponsorships, and how Platinum Scoops fits in. The guide stays useful for Waco dog parents first.",
 );
 
 export default function AffiliateDisclosurePage() {
