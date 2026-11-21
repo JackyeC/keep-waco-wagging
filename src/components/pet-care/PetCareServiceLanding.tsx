@@ -9,6 +9,7 @@ import {
 import { brandLanguage, cityConfig } from "@/lib/site";
 import { roverCredentialsLine } from "@/lib/roverCredentials";
 import { testimonialExcerpt } from "@/data/testimonials";
+import { roverPrices } from "@/data/rover";
 
 function TrustStrip() {
   return (
@@ -58,8 +59,10 @@ export function PetCareServiceLanding({
             config.serviceKind === "boarding"
               ? "Home-based dog boarding"
               : "Home-based dog daycare",
-          price:
-            config.serviceKind === "boarding" ? "47" : "37",
+          price: (config.serviceKind === "boarding"
+            ? roverPrices.boarding.standard
+            : roverPrices.daycare.standard
+          ).replace(/[^0-9.]/g, ""),
           priceCurrency: "USD",
           description: config.seo.description,
         }}
