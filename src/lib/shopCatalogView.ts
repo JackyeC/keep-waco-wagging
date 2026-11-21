@@ -3,6 +3,7 @@ import {
   buildMerchMerchandising,
   type ShopMerchandising,
 } from "@/lib/merchLines";
+import { visibleShopProducts } from "@/lib/shopPublicCatalog";
 import type { MerchProduct } from "@/data/merchStore";
 import type { ProductCartOptions } from "@/lib/shopifyProductDetails";
 
@@ -16,9 +17,10 @@ export type ShopCatalogView = {
 
 export async function getShopCatalogView(): Promise<ShopCatalogView> {
   const catalog = await fetchShopifyCatalog();
+  const allProducts = visibleShopProducts(catalog.allProducts ?? []);
   return {
     ...catalog,
-    allProducts: catalog.allProducts ?? [],
-    merch: buildMerchMerchandising(catalog.allProducts ?? []),
+    allProducts,
+    merch: buildMerchMerchandising(allProducts),
   };
 }

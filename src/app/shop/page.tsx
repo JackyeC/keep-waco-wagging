@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import {
+  BreedChoice,
+  BreedChoiceGrid,
+  BreedChoiceItem,
+} from "@/components/merch/BreedChoice";
 import { BreedLineCard } from "@/components/merch/BreedLineCard";
-import { BreedTile } from "@/components/merch/BreedTile";
-import { MerchProductCard } from "@/components/merch/MerchProductCard";
 import { ShopHero } from "@/components/merch/ShopHero";
 import { ShopPromo } from "@/components/merch/ShopPromo";
 import { ShopPurchaseNotes } from "@/components/merch/ShopPurchaseNotes";
@@ -10,13 +14,11 @@ import { ShopShell } from "@/components/merch/ShopShell";
 import { ShopTrust } from "@/components/merch/ShopTrust";
 import { ShopJsonLd } from "@/components/seo/ShopJsonLd";
 import { shopGraphics } from "@/data/shopGraphics";
-import { pickFeaturedProducts } from "@/data/merchCuration";
 import type { MerchProduct } from "@/data/merchStore";
 import { getShopifyStorefrontUrl } from "@/data/merchStore";
-import { breedFromCatalog } from "@/lib/merchLines";
 import { servicePageMetadata } from "@/lib/metadata";
 import { getShopCatalogView } from "@/lib/shopCatalogView";
-import { breedArtSrc, withProductArt } from "@/lib/shopSlots";
+import { findGiftCardProduct } from "@/lib/shopPublicCatalog";
 
 export const revalidate = 600;
 
@@ -36,60 +38,71 @@ export const metadata: Metadata = servicePageMetadata(
   },
 );
 
-const PURCHASE_NOTE = "Made to order. Shipping at checkout.";
+const WAG_CLUB_PERKS = [
+  "Weekend ideas",
+  "Wag Watch notes",
+  "Local recommendations",
+] as const;
 
-/** Totes show the dog larger than a folded hoodie, so the breed grid is easier to scan. */
-function breedTileSample(products: MerchProduct[]): MerchProduct | undefined {
+function SectionIntro({
+  title,
+  dek,
+}: {
+  title: string;
+  dek: string;
+}) {
   return (
-    products.find((product) => /tote/i.test(`${product.name} ${product.productType ?? ""}`)) ??
-    products.find((product) => /tee|t-shirt/i.test(`${product.name} ${product.productType ?? ""}`)) ??
-    products[0]
+    <div className="mx-auto max-w-2xl text-center">
+      <h2 className="heading text-[clamp(1.8rem,3vw,2.4rem)]">{title}</h2>
+      <p className="mt-2 text-[15px] leading-relaxed font-light text-body-muted">{dek}</p>
+    </div>
   );
 }
 
-function moreGroups(products: MerchProduct[]) {
-  const groups: { id: string; title: string; products: MerchProduct[] }[] = [
-    { id: "tees", title: "Tees with a point of view", products: [] },
-    { id: "bags", title: "Bags", products: [] },
-    { id: "mugs", title: "Mugs", products: [] },
-    { id: "dogs", title: "For the dog", products: [] },
-    { id: "more", title: "Stickers and gifts", products: [] },
-  ];
+function OfferCard({
+  href,
+  eyebrow,
+  title,
+  body,
+  cta,
+}: {
+  href: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  cta: string;
+}) {
+  return (
+    <a
+      href={href}
+      className="flex h-full flex-col rounded-[20px] border border-border bg-soft-cream px-5 py-6 text-center transition-colors hover:border-wag-sage"
+    >
+      <p className="text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
+        {eyebrow}
+      </p>
+      <h3 className="mt-2 font-display text-[1.45rem] leading-tight font-medium text-serif-ink">
+        {title}
+      </h3>
+      <p className="mt-3 flex-1 text-[14px] leading-relaxed font-light text-body-muted">
+        {body}
+      </p>
+      <span className="btn-pill btn-sage mt-6 inline-flex min-h-11 w-full items-center justify-center px-4 py-3 text-[11px]">
+        {cta}
+      </span>
+    </a>
+  );
+}
 
-  for (const product of products) {
-    const hay = `${product.name} ${product.productType ?? ""}`.toLowerCase();
-    if (/tee|t-shirt|shirt/.test(hay) && !/hoodie|crewneck|sweatshirt/.test(hay)) {
-      groups[0]!.products.push(product);
-    } else if (/weekender|tote|bag/.test(hay)) {
-      groups[1]!.products.push(product);
-    } else if (/mug|tumbler/.test(hay)) {
-      groups[2]!.products.push(product);
-    } else if (/bandana|collar/.test(hay)) {
-      groups[3]!.products.push(product);
-    } else {
-      groups[4]!.products.push(product);
-    }
-  }
-
-  return groups.filter((group) => group.products.length > 0);
+function giftCardCopy(product: MerchProduct): string {
+  return product.price ? `${product.name}. ${product.price}.` : `${product.name}.`;
 }
 
 export default async function ShopPage() {
   const { allProducts, cartOptionsByHandle, error, merch } =
     await getShopCatalogView();
   const storefrontUrl = getShopifyStorefrontUrl();
-  const featured = pickFeaturedProducts(merch.singles, 4);
-  const leadSource = featured[0] ?? merch.singles[0];
-  const lead = leadSource ? withProductArt(leadSource) : undefined;
-  const highlights = featured
-    .filter((product) => product.slug !== lead?.slug)
-    .slice(0, 3)
-    .map(withProductArt);
-  const used = new Set([lead?.slug, ...highlights.map((product) => product.slug)]);
-  const rest = merch.singles
-    .filter((product) => !used.has(product.slug))
-    .map(withProductArt);
-  const groups = moreGroups(rest);
+  const giftCard = findGiftCardProduct(allProducts);
+  const offerCount = giftCard ? 3 : 2;
 
   return (
     <ShopShell cartOptionsByHandle={cartOptionsByHandle}>
@@ -100,7 +113,7 @@ export default async function ShopPage() {
       <ShopHero />
 
       {error && (
-        <section className="mx-auto max-w-[1200px] px-5 pt-8 sm:px-6">
+        <section className="mx-auto max-w-[1100px] px-5 pt-8 text-center sm:px-6">
           <p className="text-sm font-light text-body-muted-light">
             {error}{" "}
             {storefrontUrl && (
@@ -125,143 +138,139 @@ export default async function ShopPage() {
           </p>
         </section>
       ) : (
-        <div className="mx-auto max-w-[1200px] px-5 pt-8 pb-20 sm:px-6">
-          <nav aria-label="Shop sections" className="flex flex-nowrap gap-x-5 overflow-x-auto text-xs font-medium tracking-[0.14em] text-label-muted uppercase">
-            <a href="#the-edit" className="hover:text-serif-ink">The edit</a>
-            <a href="#breed-lines" className="hover:text-serif-ink">Breed lines</a>
-            <a href="#shop-by-breed" className="hover:text-serif-ink">Shop by breed</a>
-            {rest.length > 0 && (
-              <a href="#more" className="hover:text-serif-ink">More designs</a>
-            )}
+        <div className="mx-auto max-w-[1100px] px-5 pt-8 pb-20 sm:px-6">
+          <nav
+            aria-label="Shop sections"
+            className="flex flex-nowrap justify-center gap-x-4 overflow-x-auto text-[11px] font-medium tracking-[0.12em] text-label-muted uppercase sm:gap-x-5 sm:text-xs sm:tracking-[0.14em]"
+          >
+            <a href="#breed-lines" className="shrink-0 hover:text-serif-ink">Lines</a>
+            <a href="#shop-by-breed" className="shrink-0 hover:text-serif-ink">Shop by breed</a>
+            <a href="#wag-club" className="shrink-0 hover:text-serif-ink">Wag Club</a>
+            <a href="#more-from-kww" className="shrink-0 hover:text-serif-ink">More</a>
           </nav>
 
-          <section id="the-edit" className="scroll-mt-28 mt-8">
-            <h2 className="heading text-[clamp(1.7rem,3vw,2.4rem)]">The edit</h2>
-            <p className="mt-2 max-w-xl text-[15px] leading-relaxed font-light text-body-muted">
-              Start with a favorite. Breed lines are just below.
-            </p>
-            {lead && (
-              <div className="mt-5 max-w-3xl">
-                <MerchProductCard
-                  product={lead}
-                  layout="lead"
-                  frame="square"
-                  showBenefit
-                  ctaStyle="button"
-                  priority
-                  purchaseNote={PURCHASE_NOTE}
-                  detailViewSource="shop_lead"
-                />
-                {breedFromCatalog(lead) && (
-                  <p className="mt-3 text-sm font-light text-label-muted">
-                    <Link
-                      href={`/shop/breed/${breedFromCatalog(lead)!.id}`}
-                      className="underline underline-offset-2 hover:text-rose-deep"
-                    >
-                      More {breedFromCatalog(lead)!.label} pieces
-                    </Link>
-                  </p>
-                )}
-              </div>
-            )}
-            <div className="mt-4 max-w-xl">
-              <ShopPurchaseNotes />
-            </div>
-            <div className="mt-6 max-w-3xl">
-              <ShopPromo />
-            </div>
-            {highlights.length > 0 && (
-              <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {highlights.map((product) => (
-                  <MerchProductCard
-                    key={product.id}
-                    product={product}
-                    frame="square"
-                    showBenefit
-                    ctaStyle="button"
-                    purchaseNote={PURCHASE_NOTE}
-                  />
-                ))}
-              </div>
-            )}
-          </section>
-
           {merch.lines.length > 0 && (
-            <section id="breed-lines" className="scroll-mt-28 mt-16">
-              <h2 className="heading text-[clamp(1.8rem,3vw,2.4rem)]">
-                One design, your breed
-              </h2>
-              <p className="mt-2 max-w-xl text-[15px] leading-relaxed font-light text-body-muted">
-                The skyline pieces share a design. Pick the line, then pick the dog.
-              </p>
-              <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <section id="breed-lines" className="scroll-mt-28 mt-10 sm:mt-14">
+              <SectionIntro
+                title="One design, your breed"
+                dek="The skyline pieces share a design. Pick the line, then pick the dog."
+              />
+              <div className="mt-8 grid grid-cols-2 items-stretch gap-4 lg:grid-cols-4 lg:gap-6">
                 {merch.lines.map((line) => (
                   <BreedLineCard key={line.id} line={line} />
                 ))}
+              </div>
+              <div className="mx-auto mt-6 max-w-xl text-center">
+                <ShopPurchaseNotes />
+              </div>
+              <div className="mx-auto mt-6 max-w-2xl">
+                <ShopPromo />
               </div>
             </section>
           )}
 
           {merch.breeds.length > 0 && (
-            <section id="shop-by-breed" className="scroll-mt-28 mt-16">
-              <h2 className="heading text-[clamp(1.8rem,3vw,2.4rem)]">
-                Shop by breed
-              </h2>
-              <p className="mt-2 max-w-xl text-[15px] leading-relaxed font-light text-body-muted">
-                Pick your dog. You&apos;ll see only the pieces we actually print for that breed.
-              </p>
-              <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            <section id="shop-by-breed" className="scroll-mt-28 mt-16 sm:mt-20">
+              <SectionIntro
+                title="Shop by breed"
+                dek="Pick your dog. You'll see only the pieces we print for that breed."
+              />
+              <BreedChoiceGrid>
                 {merch.breeds.map((breed) => {
-                  const sample = breedTileSample(breed.products);
-                  const src = sample?.image?.src
-                    ? breedArtSrc(breed.id, sample.image.src)
-                    : undefined;
                   const count = breed.products.length;
                   return (
-                    <li key={breed.id}>
-                      <BreedTile
+                    <BreedChoiceItem key={breed.id}>
+                      <BreedChoice
                         href={`/shop/breed/${breed.id}`}
-                        src={src}
-                        alt={`${breed.label}, Keep Waco Wagging`}
                         label={breed.label}
                         detail={`${count} ${count === 1 ? "piece" : "pieces"}`}
                       />
-                    </li>
+                    </BreedChoiceItem>
                   );
                 })}
-              </ul>
+              </BreedChoiceGrid>
             </section>
           )}
 
-          {groups.length > 0 && (
-            <section id="more" className="scroll-mt-28 mt-16">
-              <h2 className="heading text-[clamp(1.8rem,3vw,2.4rem)]">
-                More from the shop
+          <section id="wag-club" className="scroll-mt-28 mt-16 sm:mt-20">
+            <div className="mx-auto max-w-3xl rounded-[24px] border border-border bg-soft-cream px-6 py-8 text-center sm:px-10 sm:py-10">
+              <Image
+                src="/wagclub/wag-club-emblem.webp"
+                alt="The Wag Club emblem"
+                width={240}
+                height={160}
+                className="mx-auto h-auto w-28"
+              />
+              <h2 className="heading mt-4 text-[clamp(1.8rem,3vw,2.4rem)]">
+                The Wag Club
               </h2>
-              <p className="mt-2 max-w-xl text-[15px] leading-relaxed font-light text-body-muted">
-                The designs that are not a breed set. Each one stands on its own.
+              <p className="mt-2 font-display text-[1.25rem] font-medium text-serif-ink">
+                Dogs. Waco. People who get it.
               </p>
-              {groups.map((group) => (
-                <div key={group.id} className="mt-10">
-                  <h3 className="font-display text-[1.55rem] font-medium text-serif-ink">
-                    {group.title}
-                  </h3>
-                  <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                    {group.products.map((product) => (
-                      <MerchProductCard
-                        key={product.id}
-                        product={product}
-                        frame="square"
-                        showBenefit
-                        ctaStyle="button"
-                        purchaseNote={PURCHASE_NOTE}
-                      />
-                    ))}
-                  </div>
+              <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed font-light text-body-muted">
+                Weekend ideas, Wag Watch notes, and local recommendations. Wear
+                your shirt. Find your people. Free to join.
+              </p>
+              <ul className="mt-5 flex flex-wrap justify-center gap-2">
+                {WAG_CLUB_PERKS.map((perk) => (
+                  <li
+                    key={perk}
+                    className="rounded-full border border-border px-3 py-1 text-[12px] font-light text-body-muted"
+                  >
+                    {perk}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/wagclub"
+                className="btn-pill btn-sage mt-6 inline-flex min-h-11 px-7 py-3"
+              >
+                See The Wag Club
+              </Link>
+            </div>
+          </section>
+
+          <section id="more-from-kww" className="scroll-mt-28 mt-16 sm:mt-20">
+            <SectionIntro
+              title="More from Keep Waco Wagging"
+              dek={
+                giftCard
+                  ? "Care, a cleaner yard, and a gift for the shop."
+                  : "Care and a cleaner yard."
+              }
+            />
+            <div className="mt-8 flex flex-wrap justify-center gap-4 sm:gap-6">
+              <div className={`h-full ${offerCount === 3 ? "w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]" : "w-full max-w-md sm:w-[calc(50%-0.75rem)]"}`}>
+              <OfferCard
+                href="/book"
+                eyebrow="Boarding and daycare"
+                title="Camp Waco"
+                body="Home boarding and Camp Clayton daycare for dogs in the Waco area."
+                cta="Book care"
+              />
+              </div>
+              <div className={`h-full ${offerCount === 3 ? "w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]" : "w-full max-w-md sm:w-[calc(50%-0.75rem)]"}`}>
+              <OfferCard
+                href="/platinum-scoops"
+                eyebrow="Yard cleanup"
+                title="Platinum Scoops"
+                body="Initial cleanup from $100. Weekly scooping from $25."
+                cta="See Platinum Scoops"
+              />
+              </div>
+              {giftCard && (
+                <div className="h-full w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
+                <OfferCard
+                  href={`/shop/product/${giftCard.slug}`}
+                  eyebrow="Give the shop"
+                  title="Gift card"
+                  body={giftCardCopy(giftCard)}
+                  cta="Shop the gift card"
+                />
                 </div>
-              ))}
-            </section>
-          )}
+              )}
+            </div>
+          </section>
 
           <ShopTrust />
         </div>

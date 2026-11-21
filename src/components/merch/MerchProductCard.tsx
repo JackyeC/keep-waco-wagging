@@ -135,7 +135,7 @@ export function MerchProductCard({
   const titleClass =
     titleLevel === "h1"
       ? "font-display text-[clamp(2rem,4vw,3.1rem)] leading-[1.02] font-medium text-serif-ink"
-      : "font-display text-[19px] leading-snug font-medium text-serif-ink";
+      : "line-clamp-2 min-h-[2.6em] font-display text-[19px] leading-snug font-medium text-serif-ink";
   const frameClass = frame === "square" ? "aspect-square" : "aspect-[4/5]";
 
   const selectedVariant = useMemo(() => {
@@ -258,11 +258,12 @@ export function MerchProductCard({
         {title}
 
         {benefit && (
-          <p className="mt-2 line-clamp-3 text-[14px] leading-snug font-light text-body-muted">
+          <p className="mt-2 line-clamp-2 min-h-[2.5em] text-[14px] leading-snug font-light text-body-muted">
             {benefit}
           </p>
         )}
 
+        <div className={layout === "stack" ? "mt-auto" : ""}>
         {displayPrice && (
           <p className="mt-2 text-[15px] font-medium text-serif-ink">
             {displayPrice}
@@ -332,6 +333,7 @@ export function MerchProductCard({
             {purchaseNote}
           </p>
         )}
+        </div>
       </div>
     </article>
   );

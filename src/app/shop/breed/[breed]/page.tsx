@@ -69,20 +69,20 @@ export default async function BreedShopPage({
         pageUrl={`${cityConfig.url}/shop/breed/${shelf.id}`}
         pageName={`${shelf.label} merch`}
       />
-      <div className="mx-auto max-w-[1200px] px-5 py-10 sm:px-6">
+      <div className="mx-auto max-w-[1100px] px-5 py-10 text-center sm:px-6">
         <p className="text-[11px] font-medium tracking-[0.16em] text-label-muted uppercase">
           Shop by breed
         </p>
         <h1 className="mt-2 font-display text-[clamp(2.2rem,5vw,3.5rem)] leading-[1.02] font-medium text-serif-ink">
           {shelf.label}
         </h1>
-        <p className="mt-3 max-w-xl text-[16px] leading-relaxed font-light text-body-muted">
+        <p className="mx-auto mt-3 max-w-xl text-[16px] leading-relaxed font-light text-body-muted">
           Pieces we print with a {shelf.label} and the Waco skyline. Nothing else is in this set.
         </p>
-        <div className="mt-5 max-w-xl">
+        <div className="mx-auto mt-5 max-w-xl">
           <ShopPurchaseNotes />
         </div>
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid items-stretch gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
             <MerchProductCard
               key={product.slug}
