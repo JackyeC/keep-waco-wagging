@@ -15,7 +15,7 @@ import { servicePageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = servicePageMetadata(
   "/pets",
   "Waco Pets — The Wagging Wall",
-  "Meet Shiloh, Keep Waco Wagging's Pet of the Week, and submit your own dog for the Wagging Wall. Community dogs are featured only with owner permission.",
+  "Meet Shiloh, Keep Waco Wagging's Pet of the Week, plus Stella, Diesel, and Freddie. Submit your own dog for the Wagging Wall — we only feature community dogs with owner permission.",
 );
 
 export default function PetsPage() {
@@ -29,7 +29,7 @@ export default function PetsPage() {
       <PageHeader
         eyebrow="The Wagging Wall"
         title="Meet the dogs of Waco"
-        description="Meet Shiloh, Jackye and Todd's dog and this week's Pet of the Week. Want your dog on the wall? Submit a photo — we only feature community dogs whose owners have given permission."
+        description="Meet Shiloh, Jackye and Todd's dog and this week's Pet of the Week, along with Stella, Diesel, and Freddie. Want your dog on the wall? Submit a photo — we only feature community dogs whose owners have given permission."
         tone="sky"
         image={sitePhotos.hero}
       />

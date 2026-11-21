@@ -2,9 +2,8 @@ import type { Pet } from "@/lib/types";
 import { cityConfig } from "@/lib/site";
 
 /**
- * Family dogs for internal / about use. Scoop was fictional and was removed.
- * Stella and Diesel appear in source-photo folders but are not shown on
- * public pages until Jackye confirms they should be named there.
+ * Family dogs. Scoop was fictional and was removed.
+ * Stella, Diesel, and Shiloh are Jackye and Todd's dogs.
  */
 export const founderPack: Pet[] = [
   {
@@ -16,5 +15,25 @@ export const founderPack: Pet[] = [
     bio: "Jackye and Todd's dog.",
     tags: ["family dog"],
     photoUrl: "/pets/shiloh-jackye.webp",
+  },
+  {
+    id: "fp-stella",
+    name: "Stella",
+    breed: "Goldendoodle",
+    neighborhood: "Waco",
+    ownerName: cityConfig.founders.names,
+    bio: "Jackye and Todd's dog.",
+    tags: ["family dog"],
+    photoUrl: "/pets/stella.webp",
+  },
+  {
+    id: "fp-diesel",
+    name: "Diesel",
+    breed: "Mixed breed",
+    neighborhood: "Waco",
+    ownerName: cityConfig.founders.names,
+    bio: "Jackye and Todd's dog.",
+    tags: ["family dog"],
+    photoUrl: "/pets/diesel.webp",
   },
 ];
