@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { MerchProduct } from "@/data/merchStore";
-import { resolveShopFavorites, shopFavoritePicks } from "@/lib/shopFavorites";
+import {
+  resolveShopFavorites,
+  resolveShopHero,
+  shopFavoritePicks,
+  shopHeroPick,
+} from "@/lib/shopFavorites";
 import {
   isPlaceholderDogImage,
   placeholderDogImageIds,
@@ -48,6 +53,37 @@ describe("shop favorites", () => {
     assert.match(favorites[0]?.src ?? "", new RegExp(bandana.imageMatch));
     assert.equal(favorites.some((item) => /mug/i.test(item.product.name)), false);
     assert.equal(favorites.some((item) => isPlaceholderDogImage(item.src)), false);
+  });
+
+  it("keeps the hero photo off the favorites row", () => {
+    const hero = product({
+      slug: shopHeroPick.handle,
+      name: "Australian Shepherd Waco Skyline Hoodie",
+      gallery: [
+        {
+          src: `https://cdn.shopify.com/${shopHeroPick.imageMatch}_2048.jpg`,
+          alt: "hoodie",
+        },
+      ],
+    });
+    const favorites = shopFavoritePicks.map((pick) =>
+      product({
+        slug: pick.handle,
+        name: pick.alt,
+        image: {
+          src: `https://cdn.shopify.com/${pick.imageMatch}_2048.jpg`,
+          alt: pick.alt,
+        },
+      }),
+    );
+    const resolvedHero = resolveShopHero([hero, ...favorites]);
+    const resolvedFavorites = resolveShopFavorites([hero, ...favorites]);
+    assert.equal(resolvedHero?.product.slug, shopHeroPick.handle);
+    assert.equal(
+      resolvedFavorites.some((item) => item.product.slug === shopHeroPick.handle),
+      false,
+    );
+    assert.equal(resolvedFavorites.length, shopFavoritePicks.length);
   });
 
   it("flags the print-on-demand dog mockups", () => {

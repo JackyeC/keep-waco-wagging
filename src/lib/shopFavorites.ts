@@ -5,7 +5,14 @@ import { isPlaceholderDogImage } from "@/lib/shopImagePolicy";
  * Real product photos from the live catalog. No mugs, no blank shots,
  * and no mockup dogs. The printed art is the product. Shiloh is the only
  * real dog approved for this shop, and these frames do not use a dog photo.
+ * The hero photo is not one of the four favorites.
  */
+export const shopHeroPick = {
+  handle: "keep-waco-wagging-australian-shepherd-hoodie",
+  imageMatch: "1407993642293467898",
+  alt: "Australian Shepherd Waco skyline hoodie",
+} as const;
+
 export const shopFavoritePicks = [
   {
     handle: "keep-waco-wagging-clip-on-pet-bandana",
@@ -37,6 +44,17 @@ export type ShopFavorite = {
 
 function isMug(product: MerchProduct): boolean {
   return /mug/i.test(`${product.name} ${product.productType ?? ""} ${product.slug}`);
+}
+
+export function resolveShopHero(products: MerchProduct[]): ShopFavorite | null {
+  const product = products.find((item) => item.slug === shopHeroPick.handle);
+  if (!product || isMug(product)) return null;
+  const matched = [product.image, ...(product.gallery ?? [])].find(
+    (image) =>
+      image?.src.includes(shopHeroPick.imageMatch) && !isPlaceholderDogImage(image.src),
+  );
+  if (!matched?.src) return null;
+  return { product, src: matched.src, alt: shopHeroPick.alt };
 }
 
 export function resolveShopFavorites(products: MerchProduct[]): ShopFavorite[] {

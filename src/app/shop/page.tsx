@@ -18,7 +18,7 @@ import type { MerchProduct } from "@/data/merchStore";
 import { getShopifyStorefrontUrl } from "@/data/merchStore";
 import { servicePageMetadata } from "@/lib/metadata";
 import { getShopCatalogView } from "@/lib/shopCatalogView";
-import { resolveShopFavorites } from "@/lib/shopFavorites";
+import { resolveShopFavorites, resolveShopHero } from "@/lib/shopFavorites";
 import { findGiftCardProduct } from "@/lib/shopPublicCatalog";
 
 export const revalidate = 600;
@@ -29,7 +29,7 @@ const pageDescription =
 
 export async function generateMetadata(): Promise<Metadata> {
   const { allProducts } = await getShopCatalogView();
-  const favorite = resolveShopFavorites(allProducts)[0];
+  const favorite = resolveShopHero(allProducts) ?? resolveShopFavorites(allProducts)[0];
   return servicePageMetadata(
     "/shop",
     pageTitle,
@@ -110,6 +110,7 @@ export default async function ShopPage() {
   const storefrontUrl = getShopifyStorefrontUrl();
   const giftCard = findGiftCardProduct(allProducts);
   const offerCount = giftCard ? 3 : 2;
+  const hero = resolveShopHero(allProducts);
   const favorites = resolveShopFavorites(allProducts);
 
   return (
@@ -117,9 +118,9 @@ export default async function ShopPage() {
       <ShopJsonLd
         products={allProducts}
         cartOptionsByHandle={cartOptionsByHandle}
-        image={favorites[0]?.src}
+        image={hero?.src ?? favorites[0]?.src}
       />
-      <ShopHero favorites={favorites} />
+      <ShopHero hero={hero} />
 
       {error && (
         <section className="mx-auto max-w-[1100px] px-5 pt-8 text-center sm:px-6">

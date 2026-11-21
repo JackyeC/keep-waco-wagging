@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ShopifyProductImage } from "@/components/merch/ShopifyProductImage";
 import type { ShopFavorite } from "@/lib/shopFavorites";
 
-export function ShopHero({ favorites }: { favorites: ShopFavorite[] }) {
+export function ShopHero({ hero }: { hero: ShopFavorite | null }) {
   return (
     <section className="bg-[#efe7db]" aria-labelledby="shop-hero-title">
       <div className="mx-auto max-w-[1100px] px-5 py-8 text-center sm:px-6 sm:py-10">
@@ -24,25 +24,19 @@ export function ShopHero({ favorites }: { favorites: ShopFavorite[] }) {
         >
           Shop favorites
         </a>
-        {favorites.length > 0 && (
-          <ul className="mx-auto mt-8 grid max-w-[680px] grid-cols-2 gap-3 sm:gap-4">
-            {favorites.map((favorite) => (
-              <li key={favorite.product.slug}>
-                <Link
-                  href={`/shop/product/${favorite.product.slug}`}
-                  className="relative block aspect-square overflow-hidden rounded-[20px] bg-white"
-                >
-                  <ShopifyProductImage
-                    src={favorite.src}
-                    alt={favorite.alt}
-                    priority
-                    sizes="(max-width: 640px) 46vw, 320px"
-                    className="object-contain object-center p-3"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
+        {hero && (
+          <Link
+            href={`/shop/product/${hero.product.slug}`}
+            className="relative mx-auto mt-8 block aspect-square w-full max-w-[440px] overflow-hidden rounded-[20px] bg-white"
+          >
+            <ShopifyProductImage
+              src={hero.src}
+              alt={hero.alt}
+              priority
+              sizes="(max-width: 640px) 90vw, 440px"
+              className="object-contain object-center p-4"
+            />
+          </Link>
         )}
       </div>
     </section>

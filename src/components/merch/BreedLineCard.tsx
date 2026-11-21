@@ -16,13 +16,14 @@ export function BreedLineCard({ line }: { line: ShopLine }) {
   return (
     <article className="flex h-full flex-col rounded-[20px] border border-border bg-soft-cream p-3">
       <Link href={`/shop/line/${line.id}`} className="block">
-        <div className="relative aspect-square overflow-hidden rounded-[14px] bg-garment-tray">
+        <div className="relative aspect-square overflow-hidden rounded-[14px] bg-white">
           {src ? (
             <ShopifyProductImage
               src={src}
               alt={alt}
+              priority
               sizes="(max-width: 640px) 46vw, 280px"
-              className="object-contain p-4 sm:p-6"
+              className="object-contain p-2"
             />
           ) : null}
         </div>
