@@ -42,7 +42,10 @@ const INDEXABLE_STATIC_ROUTES: {
   { route: "/yappy-hours", priority: 0.6, changeFrequency: "weekly" },
   { route: "/blog", priority: 0.55, changeFrequency: "weekly" },
   { route: "/gear-guide", priority: 0.55, changeFrequency: "monthly" },
-  { route: "/shop", priority: 0.45, changeFrequency: "weekly" },
+  { route: "/shop", priority: 0.7, changeFrequency: "weekly" },
+  { route: "/shop/shipping", priority: 0.35, changeFrequency: "monthly" },
+  { route: "/shop/returns", priority: 0.35, changeFrequency: "monthly" },
+  { route: "/shop/size-guide", priority: 0.4, changeFrequency: "monthly" },
   { route: "/waco-wag-club", priority: 0.45, changeFrequency: "monthly" },
   { route: "/sponsors", priority: 0.4, changeFrequency: "monthly" },
 ];

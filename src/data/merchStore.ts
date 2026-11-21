@@ -58,6 +58,12 @@ export type MerchProduct = {
   availability: MerchAvailability;
   featured?: boolean;
   category?: MerchCategory;
+  /** Shopify product_type, when the catalog sent one. */
+  productType?: string;
+  /** Shopify tags, including `Breed:` and `Product Type:` when present. */
+  tags?: string[];
+  /** A short gallery. The first image is the card image. */
+  gallery?: { src: string; alt: string }[];
   /** Local bag support — populated from live Shopify variant data */
   supportsLocalCart?: boolean;
   cartOption1Label?: string | null;
