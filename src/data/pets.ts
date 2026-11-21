@@ -5,8 +5,9 @@ import { cityConfig } from "@/lib/site";
  * Community pet showcase — "The Wagging Wall".
  *
  * Only verified dogs belong here. Fictional placeholders were removed on
- * Nov 21, 2026. Client dogs stay off the public wall until a written owner
- * permission record is on file. Shiloh is Jackye and Todd's dog.
+ * Nov 21, 2026. Shiloh, Stella, and Diesel are Jackye and Todd's dogs.
+ * Freddie is featured with Jackye's owner approval (Nov 21, 2026).
+ * Other named dogs stay off this page until Jackye confirms them.
  */
 export const pets: Pet[] = [
   {
@@ -41,12 +42,43 @@ export function getShilohPhotos(): { src: string; alt: string }[] {
 }
 
 export function getWallPets(): Pet[] {
-  return [];
+  return [
+    {
+      id: "p-stella",
+      name: "Stella",
+      breed: "Goldendoodle",
+      neighborhood: "Waco",
+      ownerName: cityConfig.founders.names,
+      bio: "Jackye and Todd's dog.",
+      tags: ["family dog"],
+      photoUrl: "/pets/stella.webp",
+    },
+    {
+      id: "p-diesel",
+      name: "Diesel",
+      breed: "Mixed breed",
+      neighborhood: "Waco",
+      ownerName: cityConfig.founders.names,
+      bio: "Jackye and Todd's dog.",
+      tags: ["family dog"],
+      photoUrl: "/pets/diesel.webp",
+    },
+    {
+      id: "p-freddie",
+      name: "Freddie",
+      breed: "Mixed breed",
+      neighborhood: "Waco",
+      ownerName: "Featured with owner permission",
+      bio: "Featured on the Wagging Wall with owner permission.",
+      tags: ["featured"],
+      photoUrl: "/pets/freddie.webp",
+    },
+  ];
 }
 
 /**
  * Client-folder uploads stay off the public wall until Jackye confirms
- * written owner permission. Freddie and other named folders are not listed here.
+ * written owner permission, except dogs she has already approved.
  */
 export function getUploadedPets(): Pet[] {
   return [];
