@@ -43,7 +43,7 @@ Drop a photo in each folder if you want to override without editing `curated.jso
 | `boarding-indoor/` | Pet care page |
 | `training/` | Training sections |
 | `founders/` | About page — Jackye & Todd |
-| `pets-scoop/`, `pets-stella/`, etc. | Pack photos on About |
+| `pets-shiloh/` | Solo photo of Shiloh, only after it is approved for the site |
 | `shop/` | Optional overrides for `/shop` product cards (name files `{product-id}.jpg`) |
 
 ## Shop product photos
@@ -53,7 +53,7 @@ The `/shop` page uses **your Waco dog photos**, not Amazon packshots. Defaults a
 ## Everything else counts too
 
 - **Loose files** in this folder (e.g. `IMG_1234.jpeg`) → photo gallery
-- **Named folders** (e.g. `Freddie/`) → pet card + all photos in the gallery
+- **Named folders** stay in the photo library. They do not become a public dog profile. Add a dog in `src/data/pets.ts` only when that owner has given permission.
 - **Multiple photos in one folder** → every image appears in the gallery
 - **`blog-candidates/`** → review only; never processed automatically
 
