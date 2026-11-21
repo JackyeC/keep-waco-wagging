@@ -4,7 +4,7 @@
  * 1. curated.json — hand-picked best photo per slot (if present)
  * 2. Labeled slot folders — fallback when no curated pick
  * 3. Every image → library (featured picks sorted first for blog/gallery)
- * 4. Named pet folders (Freddie/, etc.) → pet cards
+ * 4. Named pet folders are copied into the library only. They are not published as dogs.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -134,26 +134,6 @@ const slots = [
     outputs: [
       { dir: PICTURES, file: "yappy-hours-card.webp", width: 960, height: 540, quality: 78 },
     ],
-  },
-  {
-    key: "pets-scoop",
-    folder: "pets-scoop",
-    outputs: [{ dir: PETS, file: "scoop.webp", width: 800, height: 800 }],
-  },
-  {
-    key: "pets-stella",
-    folder: "pets-stella",
-    outputs: [{ dir: PETS, file: "stella.webp", width: 800, height: 800 }],
-  },
-  {
-    key: "pets-diesel",
-    folder: "pets-diesel",
-    outputs: [{ dir: PETS, file: "diesel.webp", width: 800, height: 800 }],
-  },
-  {
-    key: "pets-shiloh",
-    folder: "pets-shiloh",
-    outputs: [{ dir: PETS, file: "shiloh.webp", width: 800, height: 800 }],
   },
 ];
 
@@ -314,39 +294,9 @@ for (const slot of slots) {
   }
 }
 
-// --- Phase 2: named pet folders ---
+// Named folders stay in the library below. They are not turned into public dog cards.
 const petFolders = [];
-let petOutputs = 0;
-
-console.log("\n── Pet folders ──\n");
-
-for (const entry of fs.readdirSync(SOURCE, { withFileTypes: true })) {
-  if (!entry.isDirectory() || entry.name.startsWith(".")) continue;
-  if (SLOT_FOLDERS.has(entry.name)) continue;
-  if (entry.name.startsWith("pets-")) continue;
-  if (entry.name === "shop") continue;
-  if (entry.name === REVIEW_INBOX) continue;
-
-  const folderPath = path.join(SOURCE, entry.name);
-  const images = listImagesInFolder(folderPath);
-  if (images.length === 0) continue;
-
-  const curatedPick = curated.petFolders?.[entry.name];
-  const curatedPath = curatedPick ? resolveCurated(curatedPick) : null;
-  const sourcePath = curatedPath ?? images[0].path;
-  const sourceLabel = curatedPath ? `${curatedPick} ★` : `${entry.name}/${images[0].name}`;
-
-  const slug = entry.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-  await writeWebp(sourcePath, path.join(PETS, `${slug}.webp`), 800, 800);
-  petFolders.push({
-    folder: entry.name,
-    slug,
-    photoUrl: `/pets/${slug}.webp`,
-    count: images.length,
-  });
-  console.log(`✓ pets/${slug}.webp ← ${sourceLabel} (${images.length} in folder)`);
-  petOutputs++;
-}
+const petOutputs = 0;
 
 // --- Phase 2b: shop product cards (your photos, not Amazon packshots) ---
 let shopOutputs = 0;

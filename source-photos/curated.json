@@ -14,15 +14,9 @@
     "founders": "founders/jackye and todd.jpg",
     "community": "IMG_9496.jpeg",
     "yappy-hours-hero": "yappy-hours/IMG_3544.png",
-    "yappy-hours-card": "yappy-hours/IMG_3488.png",
-    "pets-scoop": "scooping/Diesel.webp",
-    "pets-stella": "hero/stella diesel walkies.webp",
-    "pets-diesel": "boarding-indoor/Diesel1.webp",
-    "pets-shiloh": "boarding-home/shi and diesel.webp"
+    "yappy-hours-card": "yappy-hours/IMG_3488.png"
   },
-  "petFolders": {
-    "Freddie": "Freddie/IMG_4910.JPG"
-  },
+  "petFolders": {},
   "shop": {
     "paw-wax": "IMG_9496.jpeg",
     "cooling-mat": "Freddie/IMG_4785.JPG",
