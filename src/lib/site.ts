@@ -48,11 +48,6 @@ export const brandLanguage = {
     label: "YouTube",
     url: "https://www.youtube.com/@KeepWacoWagging",
   },
-  platinumScoopsInstagram: {
-    handle: "@platinum_scoops",
-    url: "https://www.instagram.com/platinum_scoops/",
-    cta: "Follow @platinum_scoops",
-  },
 } as const;
 
 export const cityConfig = {
@@ -420,8 +415,8 @@ const platinumScoopsSocialChannels: SocialLink[] = [
   },
   {
     id: "instagram",
-    label: brandLanguage.platinumScoopsInstagram.handle,
-    href: brandLanguage.platinumScoopsInstagram.url,
+    label: brandLanguage.instagram.handle,
+    href: brandLanguage.instagram.url,
     external: true,
   },
   {
