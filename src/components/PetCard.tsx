@@ -21,15 +21,21 @@ export function PetCard({ pet }: { pet: Pet }) {
             </span>
           )}
         </div>
-        <p className="text-sm text-bark-soft">{pet.breed}</p>
-        <p className="mt-1 inline-flex items-center gap-1 text-xs text-bark-soft">
-          <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-          {pet.neighborhood}
-        </p>
+        {pet.breed ? (
+          <p className="text-sm text-bark-soft">{pet.breed}</p>
+        ) : null}
+        {pet.neighborhood ? (
+          <p className="mt-1 inline-flex items-center gap-1 text-xs text-bark-soft">
+            <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+            {pet.neighborhood}
+          </p>
+        ) : null}
 
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-bark-soft">
-          {pet.bio}
-        </p>
+        {pet.bio ? (
+          <p className="mt-3 flex-1 text-sm leading-relaxed text-bark-soft">
+            {pet.bio}
+          </p>
+        ) : null}
 
         {pet.funFact && (
           <p className="mt-3 inline-flex items-start gap-1.5 rounded-xl bg-sage-50 px-3 py-2 text-xs text-sage-800">
@@ -51,9 +57,13 @@ export function PetCard({ pet }: { pet: Pet }) {
           </div>
         )}
 
-        <p className="mt-3 text-xs text-bark-faint">
-          Loved by {pet.ownerName}
-        </p>
+        {pet.ownerName ? (
+          <p className="mt-3 text-xs text-bark-faint">
+            {pet.ownerName === "Featured with owner permission"
+              ? pet.ownerName
+              : `Loved by ${pet.ownerName}`}
+          </p>
+        ) : null}
       </div>
     </article>
   );

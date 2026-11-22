@@ -66,9 +66,9 @@ export const campClayton = {
   title: "Camp Clayton",
   descriptor: "Themed doggie daycare by Keep Waco Wagging",
   intro:
-    "Camp Clayton is our small-group, home-based doggie daycare in our China Spring home, serving dog families across the Waco area. Every dog gets one-on-one time, plenty of love, puzzles and Kongs, supervised play, real rest, and a spot on the couch with us.",
+    "Camp Clayton is our small-group, home-based doggie daycare in our Waco home, serving dog families across the area. Every dog gets one-on-one time, plenty of love, puzzles and Kongs, supervised play, real rest, and a spot on the couch with us.",
   locationLine:
-    "our China Spring home, serving dog families across the Waco area",
+    "our Waco home, serving dog families across the area",
   dailyRate: daycareRate,
   bookingUrl: cityConfig.rover.profileUrl,
   hours: "Monday–Friday, 8 AM–6 PM",

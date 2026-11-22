@@ -26,7 +26,9 @@ const exploreLinks = [
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const instagram = socialLinksConfig.links.find((l) => l.id === "instagram");
+  const officialSocials = socialLinksConfig.links.filter((l) =>
+    l.href && (l.id === "instagram" || l.id === "facebook" || l.id === "youtube"),
+  );
 
   return (
     <footer className="site-footer mx-auto max-w-[1200px] px-6 pt-16 pb-10">
@@ -124,18 +126,18 @@ export function Footer() {
                 {cityConfig.publicEmail}
               </a>
             </li>
-            {instagram?.href && (
-              <li>
+            {officialSocials.map((link) => (
+              <li key={link.id}>
                 <a
-                  href={instagram.href}
+                  href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[13.5px] text-sage-ink hover:text-rose-deep"
                 >
-                  {brandLanguage.instagram.handle}
+                  {link.label}
                 </a>
               </li>
-            )}
+            ))}
             <li>
               <Link
                 href="/contact"
@@ -150,7 +152,8 @@ export function Footer() {
 
       <p className="mt-10 text-xs font-light tracking-wide text-label-muted">
         © {year} {cityConfig.legalEntity} · {cityConfig.homeCity},{" "}
-        {cityConfig.stateAbbr} {cityConfig.homeZip}
+        {cityConfig.stateAbbr}
+        {cityConfig.homeZip ? ` ${cityConfig.homeZip}` : ""}
         {" · "}
         <Link href="/privacy" className="hover:text-rose-deep">
           Privacy

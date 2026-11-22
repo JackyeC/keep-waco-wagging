@@ -9,7 +9,7 @@ export const signupCopy = {
   success:
     "You're on the list! We'll send Camp Clayton updates, local pet news, and special openings when they're available.",
   successSocial:
-    "Want to see the dogs in action? Follow Platinum Scoops on Instagram: @platinum_scoops.",
+    "Want to see the dogs in action? Follow Keep Waco Wagging on Instagram: @keepwacowagging.",
   error: "Something went wrong. Please try again.",
   brandLine: "Keep Waco Wagging, presented by Platinum Scoops.",
 } as const;

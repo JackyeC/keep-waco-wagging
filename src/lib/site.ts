@@ -30,22 +30,35 @@ export const brandLanguage = {
   sponsorCampInquiry: "Interested in sponsoring a future camp week? Contact us.",
   communityPartnersWelcome: "Community partners welcome",
   instagram: {
+    handle: "@keepwacowagging",
+    url: "https://www.instagram.com/keepwacowagging/",
+    cta: "Follow @keepwacowagging",
+    followLine:
+      "Follow @keepwacowagging for community updates, local pet care notes, and Waco pup fun.",
+    socialLine:
+      "Follow the pups, community updates, and behind-the-scenes fun on Instagram at @keepwacowagging.",
+    actionLine:
+      "Want to see the dogs in action? Follow Keep Waco Wagging on Instagram: @keepwacowagging.",
+  },
+  facebook: {
+    label: "Facebook",
+    url: "https://www.facebook.com/KeepWacoWagging/",
+  },
+  youtube: {
+    label: "YouTube",
+    url: "https://www.youtube.com/@KeepWacoWagging",
+  },
+  platinumScoopsInstagram: {
     handle: "@platinum_scoops",
     url: "https://www.instagram.com/platinum_scoops/",
     cta: "Follow @platinum_scoops",
-    followLine:
-      "Follow @platinum_scoops for dog daycare moments, local pet care updates, and Waco pup fun.",
-    socialLine:
-      "Follow the pups, community updates, and behind-the-scenes fun on Instagram at @platinum_scoops.",
-    actionLine:
-      "Want to see the dogs in action? Follow Platinum Scoops on Instagram: @platinum_scoops.",
   },
 } as const;
 
 export const cityConfig = {
   city: "Waco",
-  homeCity: "China Spring",
-  homeZip: "76633",
+  homeCity: "Waco",
+  homeZip: "",
   legalEntity: "Keep Waco Wagging by Platinum Scoops LLC",
   state: "Texas",
   stateAbbr: "TX",
@@ -375,7 +388,29 @@ export type SocialLink = {
   external?: boolean;
 };
 
-/** Verified Platinum Scoops channel URLs — add entries here as accounts go live. */
+/** Official Keep Waco Wagging social accounts confirmed by Jackye. */
+const keepWacoWaggingSocialChannels: SocialLink[] = [
+  {
+    id: "instagram",
+    label: brandLanguage.instagram.handle,
+    href: brandLanguage.instagram.url,
+    external: true,
+  },
+  {
+    id: "facebook",
+    label: brandLanguage.facebook.label,
+    href: brandLanguage.facebook.url,
+    external: true,
+  },
+  {
+    id: "youtube",
+    label: brandLanguage.youtube.label,
+    href: brandLanguage.youtube.url,
+    external: true,
+  },
+];
+
+/** Verified Platinum Scoops channel URLs — used on Platinum Scoops' own page. */
 const platinumScoopsSocialChannels: SocialLink[] = [
   {
     id: "facebook",
@@ -385,8 +420,8 @@ const platinumScoopsSocialChannels: SocialLink[] = [
   },
   {
     id: "instagram",
-    label: brandLanguage.instagram.handle,
-    href: brandLanguage.instagram.url,
+    label: brandLanguage.platinumScoopsInstagram.handle,
+    href: brandLanguage.platinumScoopsInstagram.url,
     external: true,
   },
   {
@@ -426,14 +461,18 @@ const platinumScoopsSocialChannels: SocialLink[] = [
 ];
 
 /** Returns only social links with a confirmed, non-placeholder URL. */
-export function getLiveSocialLinks(links: readonly SocialLink[] = platinumScoopsSocialChannels): SocialLink[] {
+export function getPlatinumScoopsSocialLinks(): SocialLink[] {
+  return getLiveSocialLinks(platinumScoopsSocialChannels);
+}
+
+export function getLiveSocialLinks(links: readonly SocialLink[] = keepWacoWaggingSocialChannels): SocialLink[] {
   return links.filter(
     (link): link is SocialLink & { href: string } =>
       Boolean(link.href && link.href !== "#"),
   );
 }
 
-/** Social + contact links — Platinum Scoops accounts, KWW audience. */
+/** Social + contact links — official Keep Waco Wagging accounts. */
 export const socialLinksConfig = {
   sectionTitle: brandLanguage.poweredBy,
   sectionBlurb: brandLanguage.instagram.followLine,

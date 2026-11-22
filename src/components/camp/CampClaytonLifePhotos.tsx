@@ -9,7 +9,7 @@ export function CampClaytonLifePhotos() {
         <h2 className="heading mt-1.5 text-[38px]">Life at Camp Clayton</h2>
         <p className="dek mx-auto mt-3 max-w-2xl">
           Supervised play, one-on-one time, enrichment, and real rest in our
-          China Spring home, serving dog families across the Waco area.
+          Waco home, serving dog families across the area.
         </p>
       </div>
       <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
