@@ -12,7 +12,7 @@ const camp = "/pictures/camp-clayton";
 
 export const campClaytonHeroPhoto: CampClaytonPhoto = {
   src: "/pictures/summer-camp-hero.webp",
-  alt: "A dog cooling off in the backyard splash pool at Camp Clayton in China Spring, serving dog families across the Waco area",
+  alt: "A dog cooling off in the backyard splash pool at Camp Clayton in Waco, serving dog families across the area",
   objectPosition: "center 28%",
 };
 

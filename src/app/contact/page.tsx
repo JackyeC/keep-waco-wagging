@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/ui/Section";
 import { ContactForm } from "@/components/ContactForm";
 import { servicePageMetadata } from "@/lib/metadata";
-import { cityConfig } from "@/lib/site";
+import { cityConfig, socialLinksConfig } from "@/lib/site";
 
 export const metadata: Metadata = servicePageMetadata(
   "/contact",
@@ -38,6 +38,28 @@ export default function ContactPage() {
                 {cityConfig.sponsor.phoneDisplay} ({cityConfig.sponsor.phoneNumeric})
               </a>
             </p>
+            <ul className="mt-4 flex flex-col gap-2 text-sm">
+              {socialLinksConfig.links
+                .filter(
+                  (link) =>
+                    link.href &&
+                    (link.id === "instagram" ||
+                      link.id === "facebook" ||
+                      link.id === "youtube"),
+                )
+                .map((link) => (
+                  <li key={link.id}>
+                    <a
+                      className="font-semibold text-sage-700"
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+            </ul>
           </aside>
         </div>
       </Section>

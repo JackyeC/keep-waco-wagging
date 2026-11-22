@@ -187,7 +187,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "Is this a kennel or warehouse boarding?",
         answer:
-          "No. Your dog stays in our China Spring home, serving dog families across the Waco area, with full-time attention, daily walks, enrichment and rest.",
+          "No. Your dog stays in our Waco home, serving dog families across the area, with full-time attention, daily walks, enrichment and rest.",
       },
       {
         question: "How do I book daycare or boarding?",
@@ -338,16 +338,16 @@ export const servicePages: Record<string, ServicePageConfig> = {
   "summer-daycare": {
     slug: "camp-waco",
     seo: {
-      title: "Camp Clayton | Small-Group Doggie Daycare Near Waco, TX",
+      title: "Camp Clayton | Small-Group Doggie Daycare in Waco, TX",
       description:
-        "Camp Clayton is themed, small-group doggie daycare in China Spring serving the Waco area. Every dog gets personal attention, enrichment, supervised play, couch time and real rest.",
+        "Camp Clayton is themed, small-group doggie daycare in Waco. Every dog gets personal attention, enrichment, supervised play, couch time and real rest.",
     },
     hero: {
       eyebrow: "Themed doggie daycare by Keep Waco Wagging",
       title: "Camp Clayton",
       scriptWord: "Camp Clayton",
       description:
-        "Camp Clayton is our small-group, home-based doggie daycare in our China Spring home, serving dog families across the Waco area. Every dog gets one-on-one time, plenty of love, puzzles and Kongs, supervised play, real rest, and a spot on the couch with us. Every week brings a new theme, but every day is built around the dog in front of us.",
+        "Camp Clayton is our small-group, home-based doggie daycare in our Waco home, serving dog families across the area. Every dog gets one-on-one time, plenty of love, puzzles and Kongs, supervised play, real rest, and a spot on the couch with us. Every week brings a new theme, but every day is built around the dog in front of us.",
       facts: [
         "Monday–Friday · 8 AM–6 PM",
         "From $37 per day",
@@ -356,7 +356,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       ],
       image: {
         src: "/pictures/summer-camp-hero.webp",
-        alt: "A dog cooling off in the backyard splash pool at Camp Clayton in China Spring, serving the Waco area",
+        alt: "A dog cooling off in the backyard splash pool at Camp Clayton in Waco",
         objectPosition: "center 28%",
       },
       primary: {
@@ -406,7 +406,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       {
         question: "What is Camp Clayton?",
         answer:
-          "Camp Clayton is our themed take on doggie daycare in our China Spring home, serving dog families across the Waco area. Dogs get supervised play, enrichment, rest, and individual attention, with a different theme layered in each week. It is not overnight camp, a children's camp, or a separate facility.",
+          "Camp Clayton is our themed take on doggie daycare in our Waco home, serving dog families across the area. Dogs get supervised play, enrichment, rest, and individual attention, with a different theme layered in each week. It is not overnight camp, a children's camp, or a separate facility.",
       },
       {
         question: "Do I have to book the whole week?",
@@ -425,7 +425,7 @@ export const servicePages: Record<string, ServicePageConfig> = {
       },
     ],
     cta: {
-      eyebrow: "Doggie daycare near Waco",
+      eyebrow: "Doggie daycare in Waco",
       title: "Book a day at Camp Clayton",
       scriptWord: "Camp Clayton",
       subtitle:

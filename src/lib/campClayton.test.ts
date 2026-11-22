@@ -250,9 +250,11 @@ describe("Camp Clayton booking and photos", () => {
   it("uses Camp Clayton as the brand name on the camp page", () => {
     const page = getServicePage("summer-daycare");
     assert.equal(page.hero.title, "Camp Clayton");
-    assert.equal(page.hero.description.includes("China Spring"), true);
+    assert.equal(page.hero.description.includes("China Spring"), false);
+    assert.equal(page.hero.description.includes("Waco home"), true);
     assert.equal(page.seo.title.startsWith("Camp Clayton"), true);
     assert.equal(page.seo.title.includes("Camp Waco"), false);
-    assert.equal(page.seo.description.includes("China Spring"), true);
+    assert.equal(page.seo.description.includes("China Spring"), false);
+    assert.equal(page.seo.description.includes("in Waco"), true);
   });
 });

@@ -7,7 +7,8 @@ import { cityConfig } from "@/lib/site";
  * Only verified dogs belong here. Fictional placeholders were removed on
  * Nov 21, 2026. Shiloh, Stella, and Diesel are Jackye and Todd's dogs.
  * Freddie is featured with Jackye's owner approval (Nov 21, 2026).
- * Other named dogs stay off this page until Jackye confirms them.
+ * A Wag Club friend (unnamed, owner permission Nov 21, 2026) is also
+ * on the wall. Other named dogs stay off this page until Jackye confirms them.
  */
 export const pets: Pet[] = [
   {
@@ -72,6 +73,16 @@ export function getWallPets(): Pet[] {
       bio: "Featured on the Wagging Wall with owner permission.",
       tags: ["featured"],
       photoUrl: "/pets/freddie.webp",
+    },
+    {
+      id: "p-wag-club-friend",
+      name: "A Wag Club friend",
+      breed: "",
+      neighborhood: "Waco",
+      ownerName: "Featured with owner permission",
+      bio: "",
+      tags: ["featured"],
+      photoUrl: "/pets/wag-club-friend.webp",
     },
   ];
 }
