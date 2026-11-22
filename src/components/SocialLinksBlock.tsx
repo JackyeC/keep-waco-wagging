@@ -9,7 +9,7 @@ type SocialLinksBlockProps = {
   hideTitle?: boolean;
 };
 
-/** Reusable social + contact links — Instagram leads to Platinum Scoops, not a KWW account. */
+/** Reusable social + contact links — Instagram leads to @keepwacowagging. */
 export function SocialLinksBlock({
   className,
   size = "md",
