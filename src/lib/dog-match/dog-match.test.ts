@@ -12,6 +12,7 @@ import type { BreedProfile, QuizAnswers } from "@/data/dog-match/types";
 import { LAST_REVIEWED } from "@/data/dog-match/sources";
 import { pickLoveBut, popularityLabel, rankMatches, scoreDog } from "./score";
 import { searchDogs } from "./search";
+import { decodeAnswers, encodeAnswers, dogMatchSharePath } from "./share";
 
 function answers(overrides: Partial<QuizAnswers> = {}): QuizAnswers {
   return {
@@ -473,3 +474,49 @@ describe("DIRECT / DERIVED / UNKNOWN trait handling", () => {
   });
 });
 
+
+describe("Dog Match share links", () => {
+  it("round-trips quiz answers through the share encoding", () => {
+    const quiz = answers();
+    const encoded = encodeAnswers(quiz);
+    assert.equal(decodeAnswers(encoded)?.homeType, quiz.homeType);
+    assert.deepEqual(decodeAnswers(encoded), quiz);
+    assert.match(dogMatchSharePath(quiz), /^\/dog-match\?m=/);
+  });
+
+  it("still round-trips when Buffer cannot use base64url, like the browser polyfill", () => {
+    const originalFrom = Buffer.from;
+    const originalToString = Buffer.prototype.toString;
+    const originalIsEncoding = Buffer.isEncoding;
+
+    const fromWithEncoding = originalFrom as (data: unknown, encoding?: string) => Buffer;
+    Buffer.isEncoding = ((encoding: string) =>
+      encoding !== "base64url" && originalIsEncoding(encoding)) as typeof Buffer.isEncoding;
+    (Buffer as unknown as { from: (data: unknown, encoding?: string) => Buffer }).from = (
+      data: unknown,
+      encoding?: string,
+    ) => {
+      if (encoding === "base64url") {
+        throw new TypeError("Unknown encoding: base64url");
+      }
+      return fromWithEncoding(data, encoding);
+    };
+    Buffer.prototype.toString = function (this: Buffer, encoding?: string, start?: number, end?: number) {
+      if (encoding === "base64url") {
+        throw new TypeError("Unknown encoding: base64url");
+      }
+      return originalToString.call(this, encoding as BufferEncoding, start, end);
+    };
+
+    try {
+      const quiz = answers();
+      const encoded = encodeAnswers(quiz);
+      assert.ok(encoded.length > 0);
+      assert.deepEqual(decodeAnswers(encoded), quiz);
+    } finally {
+      Buffer.from = originalFrom;
+      Buffer.prototype.toString = originalToString;
+      Buffer.isEncoding = originalIsEncoding;
+    }
+  });
+});
