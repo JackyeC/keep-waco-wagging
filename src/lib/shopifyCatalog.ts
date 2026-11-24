@@ -2,7 +2,10 @@ import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import type { MerchCategory, MerchProduct } from "@/data/merchStore";
 import { merchCategoryMeta, shopifyStoreConfig } from "@/data/merchStore";
-import { isPublishedStorefrontProduct } from "@/lib/shopCatalogRules";
+import {
+  isMissingStorefrontProductResponse,
+  isPublishedStorefrontProduct,
+} from "@/lib/shopCatalogRules";
 import {
   parseProductCartOptions,
   type ProductCartOptions,
@@ -289,25 +292,24 @@ export const fetchShopifyProduct = cache(
   async (
     handle: string,
   ): Promise<{ product: MerchProduct; cartOptions: ProductCartOptions } | null> => {
-    try {
-      const res = await fetch(
-        `${shopifyStoreConfig.storefrontUrl}/products/${encodeURIComponent(handle)}.json`,
-        { cache: "no-store" },
-      );
-      if (!res.ok) return null;
-      const data = (await res.json()) as { product?: ShopifyApiProduct };
-      const product = data.product;
-      if (!product || !isPublishedStorefrontProduct(product)) return null;
-
-      const cartOptionsByHandle: Record<string, ProductCartOptions> = {};
-      const mapped = mapProduct(product, cartOptionsByHandle, 4000);
-      const cartOptions = cartOptionsByHandle[product.handle];
-      if (!mapped || !cartOptions) return null;
-      return { product: mapped, cartOptions };
-    } catch (error) {
-      console.error("Shopify product fetch failed", error);
-      return null;
+    const res = await fetch(
+      `${shopifyStoreConfig.storefrontUrl}/products/${encodeURIComponent(handle)}.json`,
+      { cache: "no-store" },
+    );
+    if (isMissingStorefrontProductResponse(res.status)) return null;
+    if (!res.ok) {
+      throw new Error(`Shopify product request failed (${res.status})`);
     }
+
+    const data = (await res.json()) as { product?: ShopifyApiProduct };
+    const product = data.product;
+    if (!product || !isPublishedStorefrontProduct(product)) return null;
+
+    const cartOptionsByHandle: Record<string, ProductCartOptions> = {};
+    const mapped = mapProduct(product, cartOptionsByHandle, 4000);
+    const cartOptions = cartOptionsByHandle[product.handle];
+    if (!mapped || !cartOptions) return null;
+    return { product: mapped, cartOptions };
   },
 );
 

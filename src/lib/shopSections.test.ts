@@ -2,7 +2,10 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type { MerchProduct } from "@/data/merchStore";
 import { groupShopProducts } from "@/lib/shopSections";
-import { isPublishedStorefrontProduct } from "@/lib/shopCatalogRules";
+import {
+  isMissingStorefrontProductResponse,
+  isPublishedStorefrontProduct,
+} from "@/lib/shopCatalogRules";
 
 function product(
   slug: string,
@@ -25,6 +28,13 @@ describe("shop catalog rules", () => {
     assert.equal(isPublishedStorefrontProduct({ published_at: "  " }), false);
     assert.equal(isPublishedStorefrontProduct({ published_at: null }), false);
     assert.equal(isPublishedStorefrontProduct({}), false);
+  });
+
+  it("treats only a 404 as a missing product", () => {
+    assert.equal(isMissingStorefrontProductResponse(404), true);
+    assert.equal(isMissingStorefrontProductResponse(429), false);
+    assert.equal(isMissingStorefrontProductResponse(500), false);
+    assert.equal(isMissingStorefrontProductResponse(200), false);
   });
 
   it("places every product in exactly one shop section", () => {
