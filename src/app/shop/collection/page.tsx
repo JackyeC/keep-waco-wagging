@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { connection } from "next/server";
 import { ArrowLeft } from "lucide-react";
 import {
   batch1CuratedCollectionMeta,
@@ -9,15 +10,13 @@ import { merchAnchorLine } from "@/data/merchCuration";
 import { ShopBagButton } from "@/components/merch/ShopCartDrawer";
 import { ShopExperience } from "@/components/merch/ShopExperience";
 import { ShopProductGrid } from "@/components/merch/ShopProductGrid";
-import {
-  getShopifyStorefrontUrl,
-  shopifyStoreConfig,
-} from "@/data/merchStore";
+import { shopifyStoreConfig } from "@/data/merchStore";
 import { servicePageMetadata } from "@/lib/metadata";
 import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
 import type { MerchProduct } from "@/data/merchStore";
 
-export const revalidate = 600;
+export const revalidate = 0;
+export const maxDuration = 30;
 
 const pageTitle = "Waco Dog Life Collection | Keep Waco Wagging";
 const pageDescription =
@@ -61,10 +60,10 @@ function pickCuratedProducts(
 }
 
 export default async function CuratedCollectionPage() {
+  await connection();
   const { products: catalog, cartOptionsByHandle, error } =
     await fetchShopifyCatalog();
   const curated = pickCuratedProducts(catalog);
-  const storefrontUrl = getShopifyStorefrontUrl();
 
   return (
     <ShopExperience cartOptionsByHandle={cartOptionsByHandle}>
@@ -111,6 +110,9 @@ export default async function CuratedCollectionPage() {
 
         <aside className="mt-10 max-w-2xl rounded-[18px] border border-border bg-soft-cream p-5">
           <p className="text-sm font-light leading-relaxed text-body-muted-light">
+            {shopifyStoreConfig.holidayOrderNote}
+          </p>
+          <p className="mt-2 text-sm font-light leading-relaxed text-body-muted-light">
             {shopifyStoreConfig.fulfillmentNote}
           </p>
           <p className="mt-2 text-xs font-light text-label-muted">
@@ -121,20 +123,11 @@ export default async function CuratedCollectionPage() {
           </p>
         </aside>
 
-        {storefrontUrl && (
-          <p className="mt-8 text-center text-[11px] font-light text-label-muted">
-            Operational access:{" "}
-            <a
-              href={storefrontUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-wag-sage"
-            >
-              full Shopify catalog
-            </a>{" "}
-            (not promoted — 84 products)
-          </p>
-        )}
+        <p className="mt-8 text-center text-[11px] font-light text-label-muted">
+          <Link href="/shop" className="underline hover:text-wag-sage">
+            Browse the full shop
+          </Link>
+        </p>
       </div>
     </ShopExperience>
   );

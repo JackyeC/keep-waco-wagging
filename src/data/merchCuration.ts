@@ -21,8 +21,10 @@ export const merchPurposeLine =
 export const featuredProductHandles = batch1CuratedHandles;
 
 /**
- * SKUs hidden on keepwacowagging.com/shop until drafted in Shopify.
- * Source: output/BATCH1_PRODUCT_CURATION.csv (HIDE + DUPLICATE)
+ * Older hide list from the batch-1 curation pass.
+ * /shop now lists every product Shopify has published to the Online Store.
+ * This set is not applied to that page. Drafts stay off the site because
+ * they are not in the public catalog.
  */
 export const excludedProductHandles = batch1ExcludedHandles;
 

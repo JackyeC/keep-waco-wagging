@@ -85,10 +85,18 @@ export function findVariant(
 
 export function buildShopifyCartUrl(
   lines: { variantId: number; qty: number }[],
+  discountCode?: string,
 ): string {
   if (lines.length === 0) return shopifyStoreConfig.storefrontUrl;
   const items = lines.map((l) => `${l.variantId}:${l.qty}`).join(",");
-  return `${shopifyStoreConfig.storefrontUrl}/cart/${items}`;
+  const url = new URL(`${shopifyStoreConfig.storefrontUrl}/cart/${items}`);
+  if (discountCode) url.searchParams.set("discount", discountCode);
+  return url.toString();
+}
+
+/** Browse path on this site. Checkout uses buildShopifyCartUrl. */
+export function shopProductPath(handle: string): string {
+  return `/shop/${encodeURIComponent(handle)}`;
 }
 
 export function productStorefrontUrl(handle: string): string {

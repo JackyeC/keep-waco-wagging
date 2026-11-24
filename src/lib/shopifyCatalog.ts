@@ -1,15 +1,29 @@
 import { unstable_cache } from "next/cache";
+import { cache } from "react";
 import type { MerchCategory, MerchProduct } from "@/data/merchStore";
-import { curateCatalog } from "@/data/merchCuration";
 import { merchCategoryMeta, shopifyStoreConfig } from "@/data/merchStore";
+import {
+  isMissingStorefrontProductResponse,
+  isPublishedStorefrontProduct,
+} from "@/lib/shopCatalogRules";
 import {
   parseProductCartOptions,
   type ProductCartOptions,
   type ShopifyRawVariant,
 } from "@/lib/shopifyProductDetails";
 
-const SHOPIFY_PRODUCTS_URL = `${shopifyStoreConfig.storefrontUrl}/products.json?limit=250`;
-const SHOPIFY_CATALOG_REVALIDATE_SECONDS = 600;
+const PAGE_LIMIT = 250;
+const MAX_PAGES = 20;
+const SHOPIFY_PRODUCTS_PATH = "/products.json";
+const WAG_FRIDAY_PRODUCTS_PATH =
+  "/collections/black-friday-wag-sale/products.json";
+
+/**
+ * Homepage merch strip only. /shop renders this catalog uncached so a Shopify
+ * price edit is on the next page view. The previous 10-minute page cache was
+ * serving stale prices until a later visitor triggered regeneration.
+ */
+export const SHOPIFY_CATALOG_REVALIDATE_SECONDS = 60;
 
 const CATEGORY_ORDER: MerchCategory[] = [
   "pet_accessories",
@@ -24,9 +38,11 @@ type ShopifyApiProduct = {
   id: number;
   title: string;
   handle: string;
+  published_at?: string | null;
   body_html?: string;
   product_type?: string;
-  tags?: string[];
+  /** List feed returns an array. The single-product feed returns a comma-separated string. */
+  tags?: string[] | string;
   options?: { name: string; values: string[] }[];
   images?: { src: string; alt?: string | null }[];
   variants?: ShopifyRawVariant[];
@@ -56,10 +72,15 @@ function cleanListingDescription(html: string): string {
     .trim();
 }
 
+function tagText(tags: ShopifyApiProduct["tags"]): string {
+  if (Array.isArray(tags)) return tags.join(" ");
+  return tags ?? "";
+}
+
 function getMerchCategory(product: ShopifyApiProduct): MerchCategory {
   const type = (product.product_type ?? "").toLowerCase();
   const title = product.title.toLowerCase();
-  const tags = (product.tags ?? []).join(" ").toLowerCase();
+  const tags = tagText(product.tags).toLowerCase();
 
   if (
     type === "pets" ||
@@ -100,9 +121,10 @@ function variantNote(product: ShopifyApiProduct): string | undefined {
 function mapProduct(
   product: ShopifyApiProduct,
   cartOptionsByHandle: Record<string, ProductCartOptions>,
+  descriptionLimit = 220,
 ): MerchProduct | null {
   const storefront = shopifyStoreConfig.storefrontUrl;
-  if (!storefront) return null;
+  if (!storefront || !isPublishedStorefrontProduct(product)) return null;
 
   const image = product.images?.[0];
   const imageSrc = image?.src?.startsWith("//")
@@ -110,7 +132,6 @@ function mapProduct(
     : image?.src;
   const variant =
     product.variants?.find((v) => v.available !== false) ?? product.variants?.[0];
-  if (!imageSrc || !variant?.price) return null;
 
   const optionNames = {
     option1: product.options?.[0]?.name,
@@ -125,18 +146,22 @@ function mapProduct(
 
   const description = cleanListingDescription(product.body_html ?? "");
   const shortDescription =
-    description.length > 200 ? `${description.slice(0, 197).trim()}…` : description;
+    description.length > descriptionLimit
+      ? `${description.slice(0, descriptionLimit - 1).trim()}…`
+      : description;
 
   return {
     id: `shopify-${product.id}`,
     name: product.title,
     slug: product.handle,
     description: shortDescription || product.title,
-    image: {
-      src: imageSrc,
-      alt: image?.alt?.trim() || product.title,
-    },
-    price: formatPrice(variant.price),
+    image: imageSrc
+      ? {
+          src: imageSrc,
+          alt: image?.alt?.trim() || product.title,
+        }
+      : undefined,
+    price: variant?.price ? formatPrice(variant.price) : undefined,
     sizesOrColorsNote: variantNote(product),
     shopifyProductUrl: `${storefront}/products/${product.handle}`,
     availability: "available",
@@ -169,32 +194,57 @@ function sortProducts(products: MerchProduct[]): MerchProduct[] {
   });
 }
 
+function shopifyJsonUrl(pathname: string, page: number): string {
+  const url = new URL(pathname, shopifyStoreConfig.storefrontUrl);
+  url.searchParams.set("limit", String(PAGE_LIMIT));
+  url.searchParams.set("page", String(page));
+  return url.toString();
+}
+
+/**
+ * Public Online Store feed. Drafts are absent. `published_at` is checked
+ * again so an unpublished row cannot slip through if the payload changes.
+ */
+async function fetchProductPages(pathname: string): Promise<ShopifyApiProduct[]> {
+  const products: ShopifyApiProduct[] = [];
+  const seen = new Set<number>();
+
+  for (let page = 1; page <= MAX_PAGES; page += 1) {
+    const res = await fetch(shopifyJsonUrl(pathname, page), { cache: "no-store" });
+    if (!res.ok) {
+      if (page === 1) {
+        throw new Error(`Shopify catalog request failed (${res.status})`);
+      }
+      break;
+    }
+
+    const data = (await res.json()) as { products?: ShopifyApiProduct[] };
+    const batch = data.products ?? [];
+    let added = 0;
+    for (const product of batch) {
+      if (seen.has(product.id)) continue;
+      seen.add(product.id);
+      if (!isPublishedStorefrontProduct(product)) continue;
+      products.push(product);
+      added += 1;
+    }
+    if (batch.length < PAGE_LIMIT || added === 0) break;
+  }
+
+  return products;
+}
+
 async function fetchFreshShopifyCatalog(): Promise<ShopifyCatalogResult> {
   const cartOptionsByHandle: Record<string, ProductCartOptions> = {};
 
   try {
-    // Shopify's raw response is ~2.3 MB, above Next.js' per-entry Data Cache
-    // limit. Fetch it uncached, discard unused fields, then cache only the
-    // substantially smaller mapped catalog returned by this function.
-    const res = await fetch(SHOPIFY_PRODUCTS_URL, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      return {
-        products: [],
-        cartOptionsByHandle,
-        error: "Could not load products from Shopify.",
-      };
-    }
-
-    const data = (await res.json()) as { products?: ShopifyApiProduct[] };
-    const mapped = (data.products ?? [])
-      .map((p) => mapProduct(p, cartOptionsByHandle))
-      .filter((p): p is MerchProduct => p !== null);
+    const raw = await fetchProductPages(SHOPIFY_PRODUCTS_PATH);
+    const mapped = raw
+      .map((product) => mapProduct(product, cartOptionsByHandle))
+      .filter((product): product is MerchProduct => product !== null);
 
     return {
-      products: curateCatalog(sortProducts(mapped)),
+      products: sortProducts(mapped),
       cartOptionsByHandle,
     };
   } catch {
@@ -207,19 +257,59 @@ async function fetchFreshShopifyCatalog(): Promise<ShopifyCatalogResult> {
 }
 
 /**
- * Live catalog used by shop routes.
- *
- * This project does not enable Cache Components, so `unstable_cache` is the
- * supported Next.js 16 cache API for the transformed non-fetch result. Both
- * shop routes share the same reduced catalog for ten minutes instead of
- * downloading Shopify's full feed on every render.
+ * Uncached catalog for /shop and product pages. `cache: "no-store"` opts those
+ * routes into dynamic rendering, so the HTML is not the stale ISR snapshot
+ * that was still showing the old Printify prices.
  */
-export const fetchShopifyCatalog = unstable_cache(
+export const fetchShopifyCatalog = cache(fetchFreshShopifyCatalog);
+
+/**
+ * Short cache for the homepage strip only. This project does not enable Cache
+ * Components, so `unstable_cache` is the supported Next.js 16 API for the
+ * mapped result. The cache key is versioned so a deploy does not reuse a
+ * previous catalog entry.
+ */
+export const fetchCachedShopifyCatalog = unstable_cache(
   fetchFreshShopifyCatalog,
-  ["shopify-catalog-v1", SHOPIFY_PRODUCTS_URL],
+  ["shopify-catalog-v2", shopifyStoreConfig.storefrontUrl],
   {
     revalidate: SHOPIFY_CATALOG_REVALIDATE_SECONDS,
     tags: ["shopify-catalog"],
+  },
+);
+
+/** Handles in the Black Friday Wag Sale collection. Empty when Shopify is down. */
+export const fetchWagFridayHandles = cache(async (): Promise<string[]> => {
+  try {
+    const products = await fetchProductPages(WAG_FRIDAY_PRODUCTS_PATH);
+    return products.map((product) => product.handle);
+  } catch {
+    return [];
+  }
+});
+
+export const fetchShopifyProduct = cache(
+  async (
+    handle: string,
+  ): Promise<{ product: MerchProduct; cartOptions: ProductCartOptions } | null> => {
+    const res = await fetch(
+      `${shopifyStoreConfig.storefrontUrl}/products/${encodeURIComponent(handle)}.json`,
+      { cache: "no-store" },
+    );
+    if (isMissingStorefrontProductResponse(res.status)) return null;
+    if (!res.ok) {
+      throw new Error(`Shopify product request failed (${res.status})`);
+    }
+
+    const data = (await res.json()) as { product?: ShopifyApiProduct };
+    const product = data.product;
+    if (!product || !isPublishedStorefrontProduct(product)) return null;
+
+    const cartOptionsByHandle: Record<string, ProductCartOptions> = {};
+    const mapped = mapProduct(product, cartOptionsByHandle, 4000);
+    const cartOptions = cartOptionsByHandle[product.handle];
+    if (!mapped || !cartOptions) return null;
+    return { product: mapped, cartOptions };
   },
 );
 

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { merchAnchorLine, pickFeaturedProducts } from "@/data/merchCuration";
 import { getFeaturedMerchProducts } from "@/data/merchStore";
-import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
+import { fetchCachedShopifyCatalog } from "@/lib/shopifyCatalog";
+import { shopProductPath } from "@/lib/shopifyProductDetails";
 import { ShopifyProductImage } from "@/components/merch/ShopifyProductImage";
 
 const FEATURED_COUNT = 4;
 
 export async function HomeMerchStrip() {
-  const { products: catalog } = await fetchShopifyCatalog();
+  const { products: catalog } = await fetchCachedShopifyCatalog();
   const featured =
     catalog.length > 0
       ? pickFeaturedProducts(catalog, FEATURED_COUNT)
@@ -36,7 +37,7 @@ export async function HomeMerchStrip() {
       <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">
         {featured.map((product) => (
           <li key={product.id}>
-            <Link href="/shop" className="group block">
+            <Link href={shopProductPath(product.slug)} className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray">
                 <ShopifyProductImage
                   src={product.image?.src}

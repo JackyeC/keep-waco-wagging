@@ -1,5 +1,3 @@
-import { shopifyStoreConfig } from "@/data/merchStore";
-
 export const hoodieColors = [
   { name: "Black", hex: "#2B2B2B" },
   { name: "Navy", hex: "#2B3A55" },
@@ -53,7 +51,7 @@ export const featuredHoodies: HoodieProductConfig[] = [
 export const hoodieDisplayPrice = 58;
 
 export function hoodieProductUrl(handle: string): string {
-  return `${shopifyStoreConfig.storefrontUrl}/products/${handle}`;
+  return `/shop/${handle}`;
 }
 
 export function formatHoodiePrice(amount: number): string {
