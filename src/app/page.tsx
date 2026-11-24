@@ -14,7 +14,8 @@ import { designPhotos } from "@/data/designPhotos";
 import { servicePageMetadata } from "@/lib/metadata";
 import { brandLanguage } from "@/lib/site";
 
-export const revalidate = 600;
+export const revalidate = 60;
+export const maxDuration = 30;
 
 export const metadata: Metadata = servicePageMetadata(
   "/",

@@ -1,29 +1,27 @@
 import type { Metadata } from "next";
-import {
-  HoodieShopHero,
-  featuredHoodieHandles,
-} from "@/components/merch/HoodieShopSection";
+import Link from "next/link";
+import { connection } from "next/server";
+import { HoodieShopHero } from "@/components/merch/HoodieShopSection";
 import { ShopBagButton } from "@/components/merch/ShopCartDrawer";
 import { ShopExperience } from "@/components/merch/ShopExperience";
 import { ShopProductGrid } from "@/components/merch/ShopProductGrid";
 import {
-  getAccessoryProducts,
   merchAnchorLine,
   pickFeaturedProducts,
 } from "@/data/merchCuration";
 import {
   batch1CuratedCollectionMeta,
 } from "@/data/batch1CuratedCollection";
-import {
-  getShopifyStorefrontUrl,
-  shopifyStoreConfig,
-} from "@/data/merchStore";
+import { shopifyStoreConfig } from "@/data/merchStore";
 import { designPhotos } from "@/data/designPhotos";
 import { servicePageMetadata } from "@/lib/metadata";
-import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
-import { cityConfig } from "@/lib/site";
+import { fetchShopifyCatalog, fetchWagFridayHandles } from "@/lib/shopifyCatalog";
+import { groupShopProducts, type ShopSectionId } from "@/lib/shopSections";
+import { blackFridayPromo, cityConfig } from "@/lib/site";
 
-export const revalidate = 600;
+/** Render on each request so Shopify price edits are not stuck in ISR HTML. */
+export const revalidate = 0;
+export const maxDuration = 30;
 
 const pageTitle = "Keep Waco Wagging Merch | Waco Dog Apparel";
 const pageDescription =
@@ -67,18 +65,21 @@ function ShopBagBar() {
   );
 }
 
-type ShopCategory = "featured" | "hoodies" | "tees" | "accessories";
+type ShopCategory = "featured" | "sale" | ShopSectionId;
 
 function CategoryNav({
   counts,
 }: {
-  counts: Record<ShopCategory, number>;
+  counts: Partial<Record<ShopCategory, number>>;
 }) {
   const tabs: { id: ShopCategory; label: string }[] = [
+    { id: "sale", label: "Black Friday" },
     { id: "featured", label: "Featured" },
     { id: "hoodies", label: "Hoodies" },
+    { id: "crewnecks", label: "Crewnecks" },
     { id: "tees", label: "Tees" },
     { id: "accessories", label: "Accessories" },
+    { id: "more", label: "More" },
   ];
 
   return (
@@ -87,7 +88,7 @@ function CategoryNav({
       className="flex flex-wrap gap-x-6 gap-y-2 border-b border-border pb-4"
     >
       {tabs.map((tab) =>
-        counts[tab.id] > 0 ? (
+        (counts[tab.id] ?? 0) > 0 ? (
           <a
             key={tab.id}
             href={`#${tab.id}`}
@@ -101,28 +102,34 @@ function CategoryNav({
   );
 }
 
-export default async function ShopPage() {
+export default async function ShopPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ promo?: string }>;
+}) {
+  await connection();
+  const { promo } = await searchParams;
   const { products: catalog, cartOptionsByHandle, error } =
     await fetchShopifyCatalog();
   const storeLive = catalog.length > 0;
-  const featured = pickFeaturedProducts(catalog, batch1CuratedCollectionMeta.maxProducts);
-  const hoodies = catalog.filter((p) => featuredHoodieHandles.includes(p.slug));
-  const accessories = getAccessoryProducts(catalog);
-  const tees = catalog.filter(
-    (p) =>
-      /tee|t-shirt|shirt/i.test(`${p.slug} ${p.name}`) &&
-      !/hoodie|sweatshirt|mug|tote|hat|bandana/i.test(p.slug) &&
-      !hoodies.some((h) => h.id === p.id) &&
-      !accessories.some((a) => a.id === p.id),
-  );
-  const storefrontUrl = getShopifyStorefrontUrl();
+  const saleRequested = promo === "wagfriday";
+  const saleHandles = saleRequested ? await fetchWagFridayHandles() : [];
+  const saleProducts = saleRequested
+    ? catalog.filter((product) => saleHandles.includes(product.slug))
+    : [];
+  const showingSale = saleProducts.length > 0;
+  const featured = showingSale
+    ? []
+    : pickFeaturedProducts(catalog, batch1CuratedCollectionMeta.maxProducts);
+  const sections = showingSale ? [] : groupShopProducts(catalog);
 
-  const counts = {
+  const counts: Partial<Record<ShopCategory, number>> = {
+    sale: showingSale ? saleProducts.length : 0,
     featured: featured.length,
-    hoodies: hoodies.length,
-    tees: tees.length,
-    accessories: accessories.length,
   };
+  for (const section of sections) {
+    counts[section.id] = section.products.length;
+  }
 
   return (
     <ShopExperience cartOptionsByHandle={cartOptionsByHandle}>
@@ -131,65 +138,73 @@ export default async function ShopPage() {
 
       {error && (
         <section className="mx-auto max-w-[1200px] px-6 pt-8">
-          <p className="text-sm font-light text-body-muted-light">
-            {error}{" "}
-            {storefrontUrl && (
-              <a href={storefrontUrl} className="text-rose-deep underline underline-offset-2 hover:text-wag-sage">
-                Browse on Shopify
-              </a>
-            )}
-          </p>
+          <p className="text-sm font-light text-body-muted-light">{error}</p>
         </section>
       )}
 
       {storeLive ? (
         <div className="mx-auto max-w-[1200px] px-6 pt-12 pb-20">
+          <p className="mb-8 max-w-xl text-[13px] font-light leading-relaxed text-label-muted">
+            {shopifyStoreConfig.holidayOrderNote}
+          </p>
+          {saleRequested && !showingSale && (
+            <p className="mb-8 max-w-xl text-sm font-light text-body-muted-light">
+              The sale list did not load. Everything currently published is below.
+            </p>
+          )}
           <CategoryNav counts={counts} />
 
-          <section id="featured" className="mt-12 scroll-mt-28">
-            <div className="max-w-xl">
-              <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
-                Featured
-              </h2>
-              <p className="dek mt-2 text-[15px]">{merchAnchorLine}</p>
-            </div>
-            <div className="mt-8">
-              <ShopProductGrid products={featured} columns={4} />
-            </div>
-          </section>
-
-          {hoodies.length > 0 && (
-            <section id="hoodies" className="mt-20 scroll-mt-28">
-              <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
-                Hoodies
-              </h2>
+          {showingSale && (
+            <section id="sale" className="mt-12 scroll-mt-28">
+              <div className="max-w-xl">
+                <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
+                  Black Friday Wag Sale
+                </h2>
+                <p className="dek mt-2 text-[15px]">{blackFridayPromo.bannerMessage}</p>
+                <Link
+                  href="/shop"
+                  className="mt-3 inline-block text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline underline-offset-4"
+                >
+                  Browse the full shop
+                </Link>
+              </div>
               <div className="mt-8">
-                <ShopProductGrid products={hoodies} columns={3} />
+                <ShopProductGrid products={saleProducts} columns={4} />
               </div>
             </section>
           )}
 
-          {tees.length > 0 && (
-            <section id="tees" className="mt-20 scroll-mt-28">
-              <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
-                Tees
-              </h2>
+          {featured.length > 0 && (
+            <section id="featured" className="mt-12 scroll-mt-28">
+              <div className="max-w-xl">
+                <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
+                  Featured
+                </h2>
+                <p className="dek mt-2 text-[15px]">{merchAnchorLine}</p>
+              </div>
               <div className="mt-8">
-                <ShopProductGrid products={tees.slice(0, 12)} columns={4} />
+                <ShopProductGrid products={featured} columns={4} />
               </div>
             </section>
           )}
 
-          {accessories.length > 0 && (
-            <section id="accessories" className="mt-20 scroll-mt-28">
+          {sections.map((section) => (
+            <section
+              key={section.id}
+              id={section.id}
+              className="mt-20 scroll-mt-28"
+            >
               <h2 className="heading text-[clamp(1.75rem,3vw,2.35rem)]">
-                Accessories
+                {section.label}
               </h2>
               <div className="mt-8">
-                <ShopProductGrid products={accessories.slice(0, 12)} columns={4} />
+                <ShopProductGrid
+                  products={section.products}
+                  columns={section.id === "hoodies" || section.id === "crewnecks" ? 3 : 4}
+                />
               </div>
             </section>
-          )}
+          ))}
 
           <p className="mt-16 max-w-lg text-[13px] font-light leading-relaxed text-label-muted">
             {shopifyStoreConfig.fulfillmentNote}{" "}
@@ -203,18 +218,8 @@ export default async function ShopPage() {
           </p>
           <p className="body-light mx-auto mt-3 max-w-md text-sm">
             {error ??
-              "We could not reach Shopify. Try again in a moment or visit the store directly."}
+              "We could not reach Shopify. Refresh in a moment and the shop will load here."}
           </p>
-          {storefrontUrl && (
-            <a
-              href={storefrontUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-block text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline underline-offset-4"
-            >
-              Visit Shopify store
-            </a>
-          )}
         </section>
       )}
     </ShopExperience>

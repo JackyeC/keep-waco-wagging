@@ -518,17 +518,21 @@ export const announcementBar = {
 
 /**
  * Black Friday 2026. Code WAGFRIDAY is a real Shopify discount:
- * 25% off the "Black Friday Wag Sale" collection, Nov 27 00:00 CT to
- * Nov 30 23:59 CT. Messages switch on and off by date, client-side.
+ * 25% off the Black Friday Wag Sale collection, Nov 27 00:00 CT through
+ * Nov 30 11:59 PM CT. The banner stays up through that minute, then hides.
+ * Browsing stays on this site. The code is applied at Shopify checkout.
  */
 export const blackFridayPromo = {
   code: "WAGFRIDAY",
   teaserStartsAt: "2026-11-20T06:00:00Z",
   startsAt: "2026-11-27T06:00:00Z",
-  endsAt: "2026-12-01T05:59:00Z",
-  teaserMessage: "Black Friday starts Fri 11/27 · 25% off with code WAGFRIDAY",
-  liveMessage: "Black Friday · 25% off tees, hoodies & totes · Code WAGFRIDAY",
-  cartNote: "Black Friday: 25% off with code WAGFRIDAY at checkout. Ends Mon 11/30.",
+  /** 11:59:59.999 PM Central on Nov 30, 2026 (CST, UTC-6). */
+  endsAt: "2026-12-01T05:59:59.999Z",
+  href: "/shop?promo=wagfriday",
+  bannerMessage: "WAGFRIDAY: 25% off Nov 27 to Nov 30. Use code WAGFRIDAY.",
+  teaserMessage: "WAGFRIDAY: 25% off Nov 27 to Nov 30. Use code WAGFRIDAY.",
+  liveMessage: "WAGFRIDAY: 25% off Nov 27 to Nov 30. Use code WAGFRIDAY.",
+  cartNote: "WAGFRIDAY: 25% off Nov 27 to Nov 30. Use code WAGFRIDAY.",
 } as const;
 
 export type PromoPhase = "off" | "teaser" | "live";

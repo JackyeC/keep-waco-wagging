@@ -1,13 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { ShopifyProductImage } from "@/components/merch/ShopifyProductImage";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { useShopCart } from "@/components/merch/ShopCartContext";
 import { useProductDetailViewTracking } from "@/components/merch/useProductDetailViewTracking";
 import type { MerchProduct } from "@/data/merchStore";
-import { findVariant } from "@/lib/shopifyProductDetails";
-import { productStorefrontUrl } from "@/lib/shopifyProductDetails";
+import { findVariant, shopProductPath } from "@/lib/shopifyProductDetails";
 import { garmentColorHex, isGarmentColorOption } from "@/lib/merchColors";
 import { trackShopEvent } from "@/lib/shopAnalytics";
 
@@ -101,7 +101,7 @@ export function MerchProductCard({
   const [error, setError] = useState<string | null>(null);
 
   const cart = cartOptionsByHandle[product.slug];
-  const storefrontUrl = product.shopifyProductUrl ?? productStorefrontUrl(product.slug);
+  const productHref = shopProductPath(product.slug);
   const supportsCart = product.supportsLocalCart && cart?.supportsLocalCart;
 
   const selectedVariant = useMemo(() => {
@@ -156,12 +156,10 @@ export function MerchProductCard({
 
   return (
     <article ref={viewRef} className="group flex h-full flex-col">
-      <a
-        href={storefrontUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href={productHref}
         className="block"
-        onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
+        onClick={() => trackShopEvent("product_card_click", analyticsPayload())}
       >
         <div className="relative aspect-[4/5] overflow-hidden bg-garment-tray">
           {badge && (
@@ -180,11 +178,13 @@ export function MerchProductCard({
             <ImagePlaceholder alt={product.name} />
           )}
         </div>
-      </a>
+      </Link>
 
       <div className="flex flex-1 flex-col pt-4">
         <h3 className="font-display text-[19px] font-medium leading-snug text-serif-ink">
-          {product.name}
+          <Link href={productHref} className="hover:text-wag-sage">
+            {product.name}
+          </Link>
         </h3>
 
         {displayPrice && (
@@ -240,15 +240,13 @@ export function MerchProductCard({
               Add to bag
             </button>
           ) : (
-            <a
-              href={storefrontUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={productHref}
               className="text-xs font-medium tracking-[0.14em] text-wag-sage uppercase underline decoration-border underline-offset-4 hover:text-rose hover:decoration-rose"
-              onClick={() => trackShopEvent("view_on_shopify", analyticsPayload())}
+              onClick={() => trackShopEvent("product_card_click", analyticsPayload())}
             >
-              Shop
-            </a>
+              View
+            </Link>
           )}
         </div>
       </div>

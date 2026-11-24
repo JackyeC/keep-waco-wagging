@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ShopExperience } from "@/components/merch/ShopExperience";
 import { MerchProductCard } from "@/components/merch/MerchProductCard";
 import { pickFeaturedProducts } from "@/data/merchCuration";
-import { fetchShopifyCatalog } from "@/lib/shopifyCatalog";
+import { fetchCachedShopifyCatalog } from "@/lib/shopifyCatalog";
 import { ctas } from "@/lib/site";
 
 /** Curated merchandising labels — brand/curation terms, not sales stats. */
@@ -16,7 +16,7 @@ const dropBadges = [
 const DROP_COUNT = 4;
 
 export async function HomeDrop() {
-  const { products: catalog, cartOptionsByHandle } = await fetchShopifyCatalog();
+  const { products: catalog, cartOptionsByHandle } = await fetchCachedShopifyCatalog();
   const drop = pickFeaturedProducts(catalog, DROP_COUNT);
 
   return (

@@ -10,12 +10,8 @@ export function AnnouncementBar() {
   const phase = useBlackFridayPhase();
 
   const base = announcementBar.messages.filter((m) => m.trim());
-  const messages =
-    phase === "live"
-      ? [blackFridayPromo.liveMessage]
-      : phase === "teaser"
-        ? [blackFridayPromo.teaserMessage, ...base]
-        : base;
+  const promoOn = phase === "live" || phase === "teaser";
+  const messages = promoOn ? [blackFridayPromo.bannerMessage] : base;
 
   const [index, setIndex] = useState(0);
 
@@ -36,28 +32,26 @@ export function AnnouncementBar() {
     return null;
   }
 
-  const isPromo = phase === "live";
-
   return (
     <div
       className={
-        isPromo
-          ? "site-announcement border-b border-border/80 bg-sage-ink px-4 py-2 text-center"
+        promoOn
+          ? "site-announcement border-b border-border/80 bg-sage-ink px-4 py-2.5 text-center"
           : "site-announcement border-b border-border/80 bg-soft-cream px-4 py-2 text-center"
       }
     >
       <p
         key={`${phase}-${index}`}
         className={
-          isPromo
-            ? "animate-[kwwFade_0.5s_ease] text-[11px] font-semibold tracking-[0.18em] text-white uppercase"
+          promoOn
+            ? "animate-[kwwFade_0.5s_ease] text-[13px] font-medium leading-relaxed text-white"
             : "animate-[kwwFade_0.5s_ease] text-[11px] font-medium tracking-[0.18em] text-label-muted uppercase"
         }
         aria-live="polite"
       >
-        {isPromo ? (
-          <a href="/shop" className="underline-offset-4 hover:underline">
-            {messages[index % messages.length]}
+        {promoOn ? (
+          <a href={blackFridayPromo.href} className="underline-offset-4 hover:underline">
+            {blackFridayPromo.bannerMessage}
           </a>
         ) : (
           messages[index % messages.length]

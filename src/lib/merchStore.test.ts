@@ -22,6 +22,14 @@ describe("merchStore", () => {
     }
   });
 
+  it("states the holiday lead time without inventing a cutoff date", () => {
+    assert.equal(
+      shopifyStoreConfig.holidayOrderNote,
+      "Orders are made to order in 3 to 5 business days plus shipping. Order early for the holidays.",
+    );
+    assert.equal(/christmas|december \d|cutoff|order by/i.test(shopifyStoreConfig.holidayOrderNote), false);
+  });
+
   it("reports live store when Shopify products are configured", () => {
     assert.equal(shopifyStoreConfig.enabled, true);
     assert.equal(liveMerchProducts.length > 0, true);

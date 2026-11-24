@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import type { ProductCartOptions } from "@/lib/shopifyProductDetails";
+import { blackFridayPhase, blackFridayPromo } from "@/lib/site";
 import {
   buildShopifyCartUrl,
   findVariant,
@@ -123,7 +124,10 @@ export function ShopCartProvider({
     }): { ok: true } | { ok: false; reason: string } => {
       const cart = cartOptionsByHandle[input.handle];
       if (!cart?.supportsLocalCart) {
-        return { ok: false, reason: "This item opens on Shopify to choose options." };
+        return {
+          ok: false,
+          reason: "Choose a size and color on the product page, then add it to your bag.",
+        };
       }
 
       const variant = findVariant(cart, input.option1, input.option2);
@@ -202,7 +206,9 @@ export function ShopCartProvider({
       line_count: lines.length,
       source: "shop_bag",
     });
-    window.open(buildShopifyCartUrl(payload), "_blank", "noopener");
+    const discount =
+      blackFridayPhase() === "live" ? blackFridayPromo.code : undefined;
+    window.open(buildShopifyCartUrl(payload, discount), "_blank", "noopener");
   }, [lines]);
 
   const count = useMemo(

@@ -85,6 +85,8 @@ export const shopifyStoreConfig = {
   collectionUrl: `${SHOPIFY_STORE}/collections/all`,
   fulfillmentNote:
     "Products are made to order and fulfilled through Printify via our Shopify store. Shipping details are shown at checkout.",
+  holidayOrderNote:
+    "Orders are made to order in 3 to 5 business days plus shipping. Order early for the holidays.",
   externalCheckoutNote:
     "Checkout happens on our Shopify store — you will leave keepwacowagging.com to complete your order.",
   priceDisplayNote:
