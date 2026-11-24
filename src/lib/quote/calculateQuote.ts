@@ -1,36 +1,114 @@
 import { formatCents, percentOfCents } from "./money";
 
-export const DEFAULT_FIRST_DOG_NIGHTLY_CENTS = 4700;
-export const DEFAULT_ADDITIONAL_DOG_PERCENT = 50;
-
 export const ON_TIME_MAX_MINUTES = 120;
 export const LATE_MAX_MINUTES = 480;
-
-export const MIN_DOGS = 1;
+export const EXTENDED_STAY_MIN_NIGHTS = 14;
+export const MIN_DOGS = 0;
 export const MAX_DOGS = 20;
+export const MAX_BATHS = 20;
+
+export const DEFAULT_TRANSPORTATION_CENTS = 4000;
+
+export type BoardingCategory =
+  | "standard"
+  | "puppy"
+  | "holiday"
+  | "extended-stay";
 
 export type PickupStatus = "on-time" | "late" | "very-late";
 
+export type FitCheckStatus =
+  | "completed-approved"
+  | "scheduled"
+  | "required-before-booking"
+  | "returning-approved"
+  | "rover";
+
+export type ClientRelationship =
+  | "new"
+  | "returning"
+  | "legacy-friends-family"
+  | "rover";
+
 export type QuoteRates = {
-  firstDogNightlyCents: number;
-  additionalDogPercent: number;
+  standardFirstDogCents: number;
+  puppyFirstDogCents: number;
+  holidayFirstDogCents: number;
+  extendedStayFirstDogCents: number;
+  sharedAdditionalCents: number;
+  separateCareAdditionalCents: number;
+  extendedStaySharedAdditionalCents: number;
+  bathCents: number;
 };
 
+export const DEFAULT_QUOTE_RATES: QuoteRates = {
+  standardFirstDogCents: 5000,
+  puppyFirstDogCents: 5500,
+  holidayFirstDogCents: 6000,
+  extendedStayFirstDogCents: 4700,
+  sharedAdditionalCents: 3000,
+  separateCareAdditionalCents: 4000,
+  extendedStaySharedAdditionalCents: 2800,
+  bathCents: 2500,
+};
+
+export const BOARDING_CATEGORY_LABELS: Record<BoardingCategory, string> = {
+  standard: "Standard",
+  puppy: "Puppy",
+  holiday: "Holiday",
+  "extended-stay": "Extended stay",
+};
+
+export const FIT_CHECK_OPTIONS: { value: FitCheckStatus; label: string }[] = [
+  { value: "required-before-booking", label: "Required before booking" },
+  { value: "scheduled", label: "Scheduled" },
+  { value: "completed-approved", label: "Completed and approved" },
+  { value: "returning-approved", label: "Returning client already approved" },
+  { value: "rover", label: "Not applicable — Rover booking" },
+];
+
+export const CLIENT_RELATIONSHIP_OPTIONS: {
+  value: ClientRelationship;
+  label: string;
+}[] = [
+  { value: "new", label: "New client" },
+  { value: "returning", label: "Returning client" },
+  { value: "legacy-friends-family", label: "Legacy / Friends & Family" },
+  { value: "rover", label: "Rover client" },
+];
+
 export type QuoteInput = QuoteRates & {
-  dogCount: number;
+  boardingCategory: BoardingCategory;
+  firstDogCount: number;
+  sharedAdditionalCount: number;
+  separateCareCount: number;
   dropoffDate: string;
   dropoffTime: string;
   pickupDate: string;
   pickupTime: string;
   transportationCents: number;
+  bathCount: number;
+  adjustmentCents: number;
+  adjustmentReason: string;
+  internalNotes: string;
+  clientRelationship: ClientRelationship;
+  fitCheckStatus: FitCheckStatus;
 };
 
-export type DogQuoteLine = {
-  dogNumber: number;
+export type DogGroupLine = {
+  key: "first" | "shared" | "separate";
+  label: string;
+  count: number;
   nightlyCents: number;
   nights: number;
   boardingCents: number;
   extendedCareCents: number;
+};
+
+export type BookingStatusCard = {
+  title: string;
+  detail: string;
+  tone: "estimate" | "ready" | "rover";
 };
 
 export type QuoteErrorCode =
@@ -39,7 +117,10 @@ export type QuoteErrorCode =
   | "pickup-before-dropoff"
   | "same-day"
   | "invalid-dogs"
-  | "invalid-rates";
+  | "invalid-rates"
+  | "extended-stay-ineligible"
+  | "missing-adjustment-reason"
+  | "negative-total";
 
 export type QuoteFailure = {
   ok: false;
@@ -50,16 +131,32 @@ export type QuoteFailure = {
 export type QuoteSuccess = {
   ok: true;
   dogCount: number;
+  firstDogCount: number;
+  sharedAdditionalCount: number;
+  separateCareCount: number;
   nights: number;
+  extendedStayEligible: boolean;
+  boardingCategory: BoardingCategory;
+  boardingCategoryLabel: string;
+  firstDogNightlyCents: number;
+  sharedAdditionalNightlyCents: number;
+  separateCareNightlyCents: number;
   pickupStatus: PickupStatus;
   pickupStatusLabel: string;
   pickupStatusDetail: string;
   pickupStatusCare: string;
-  dogs: DogQuoteLine[];
+  groups: DogGroupLine[];
   boardingCents: number;
   extendedCareCents: number;
+  bathCount: number;
+  bathCents: number;
   transportationCents: number;
+  adjustmentCents: number;
+  adjustmentReason: string;
+  internalNotes: string;
+  subtotalBeforeAdjustmentCents: number;
   totalCents: number;
+  bookingStatus: BookingStatusCard;
   dropoffDate: string;
   dropoffTime: string;
   pickupDate: string;
@@ -74,8 +171,14 @@ const ERROR_MESSAGES: Record<QuoteErrorCode, string> = {
   "pickup-before-dropoff": "Pickup needs to be after drop-off.",
   "same-day":
     "Overnight boarding needs at least one night. Pickup is the same day as drop-off.",
-  "invalid-dogs": "Choose at least one dog.",
-  "invalid-rates": "Check the rate settings. First-dog rate should be more than $0.",
+  "invalid-dogs": "Add at least one dog to see a quote.",
+  "invalid-rates": "Check the rate settings. Nightly rates should be $0 or more, and the first-dog rate should be more than $0 when a primary dog is included.",
+  "extended-stay-ineligible":
+    "Extended stay needs 14 or more nights. Choose Standard, Puppy, or Holiday.",
+  "missing-adjustment-reason":
+    "Add a reason for the client adjustment before using a non-zero amount.",
+  "negative-total":
+    "The client adjustment would make the total less than $0. Reduce the adjustment.",
 };
 
 type Ymd = { y: number; m: number; d: number };
@@ -115,12 +218,24 @@ export function calendarNights(fromDate: string, toDate: string): number | null 
   return Math.round(ms / 86_400_000);
 }
 
-export function nightlyRateCents(
-  dogNumber: number,
+export function firstDogNightlyCents(
+  category: BoardingCategory,
   rates: QuoteRates,
 ): number {
-  if (dogNumber <= 1) return rates.firstDogNightlyCents;
-  return percentOfCents(rates.firstDogNightlyCents, rates.additionalDogPercent);
+  if (category === "puppy") return rates.puppyFirstDogCents;
+  if (category === "holiday") return rates.holidayFirstDogCents;
+  if (category === "extended-stay") return rates.extendedStayFirstDogCents;
+  return rates.standardFirstDogCents;
+}
+
+export function sharedAdditionalNightlyCents(
+  category: BoardingCategory,
+  rates: QuoteRates,
+): number {
+  if (category === "extended-stay") {
+    return rates.extendedStaySharedAdditionalCents;
+  }
+  return rates.sharedAdditionalCents;
 }
 
 export function classifyPickup(
@@ -168,21 +283,133 @@ function extendedCareMultiplierPercent(status: PickupStatus): number {
   return 0;
 }
 
-export function calculateQuote(input: QuoteInput): QuoteResult {
-  if (
-    !Number.isInteger(input.dogCount) ||
-    input.dogCount < MIN_DOGS ||
-    input.dogCount > MAX_DOGS
-  ) {
-    return { ok: false, error: "invalid-dogs", message: ERROR_MESSAGES["invalid-dogs"] };
+export function bookingStatusCard(
+  relationship: ClientRelationship,
+  fitCheck: FitCheckStatus,
+): BookingStatusCard {
+  if (relationship === "rover" || fitCheck === "rover") {
+    return {
+      title: "Booking status: Rover estimate",
+      detail:
+        "Confirm the final booking and payment details through Rover.",
+      tone: "rover",
+    };
+  }
+
+  if (fitCheck === "scheduled") {
+    return {
+      title: "Booking status: Estimate only",
+      detail:
+        "Fit Check is scheduled; booking remains subject to approval, availability, and final care review.",
+      tone: "estimate",
+    };
+  }
+
+  if (relationship === "new" && fitCheck !== "completed-approved") {
+    return {
+      title: "Booking status: Estimate only",
+      detail:
+        "A Meet & Greet / Fit Check is required and must be approved before a first boarding stay can be confirmed.",
+      tone: "estimate",
+    };
+  }
+
+  if (fitCheck === "completed-approved") {
+    return {
+      title: "Booking status: Fit Check complete",
+      detail: "Quote remains subject to date availability and final care review.",
+      tone: "ready",
+    };
   }
 
   if (
-    !Number.isFinite(input.firstDogNightlyCents) ||
-    input.firstDogNightlyCents <= 0 ||
-    !Number.isFinite(input.additionalDogPercent) ||
-    input.additionalDogPercent < 0
+    (relationship === "returning" ||
+      relationship === "legacy-friends-family") &&
+    fitCheck === "returning-approved"
   ) {
+    return {
+      title: "Booking status: Returning-client estimate",
+      detail: "Booking remains subject to availability and final care review.",
+      tone: "ready",
+    };
+  }
+
+  return {
+    title: "Booking status: Estimate only",
+    detail: "Booking remains subject to availability and final care review.",
+    tone: "estimate",
+  };
+}
+
+function isWholeCount(value: number, min: number, max: number): boolean {
+  return Number.isInteger(value) && value >= min && value <= max;
+}
+
+function rateIsValid(cents: number): boolean {
+  return Number.isFinite(cents) && cents >= 0;
+}
+
+export function calculateQuote(input: QuoteInput): QuoteResult {
+  const firstDogCount = input.firstDogCount;
+  const sharedAdditionalCount = input.sharedAdditionalCount;
+  const separateCareCount = input.separateCareCount;
+  const dogCount =
+    firstDogCount + sharedAdditionalCount + separateCareCount;
+
+  if (
+    !isWholeCount(firstDogCount, 0, 1) ||
+    !isWholeCount(sharedAdditionalCount, 0, MAX_DOGS) ||
+    !isWholeCount(separateCareCount, 0, MAX_DOGS) ||
+    dogCount > MAX_DOGS
+  ) {
+    return {
+      ok: false,
+      error: "invalid-dogs",
+      message: ERROR_MESSAGES["invalid-dogs"],
+    };
+  }
+
+  if (dogCount < 1) {
+    return {
+      ok: false,
+      error: "invalid-dogs",
+      message: ERROR_MESSAGES["invalid-dogs"],
+    };
+  }
+
+  const rates: QuoteRates = {
+    standardFirstDogCents: Math.round(input.standardFirstDogCents),
+    puppyFirstDogCents: Math.round(input.puppyFirstDogCents),
+    holidayFirstDogCents: Math.round(input.holidayFirstDogCents),
+    extendedStayFirstDogCents: Math.round(input.extendedStayFirstDogCents),
+    sharedAdditionalCents: Math.round(input.sharedAdditionalCents),
+    separateCareAdditionalCents: Math.round(input.separateCareAdditionalCents),
+    extendedStaySharedAdditionalCents: Math.round(
+      input.extendedStaySharedAdditionalCents,
+    ),
+    bathCents: Math.round(input.bathCents),
+  };
+
+  const selectedFirstRate = firstDogNightlyCents(input.boardingCategory, rates);
+  if (
+    !rateIsValid(rates.standardFirstDogCents) ||
+    !rateIsValid(rates.puppyFirstDogCents) ||
+    !rateIsValid(rates.holidayFirstDogCents) ||
+    !rateIsValid(rates.extendedStayFirstDogCents) ||
+    !rateIsValid(rates.sharedAdditionalCents) ||
+    !rateIsValid(rates.separateCareAdditionalCents) ||
+    !rateIsValid(rates.extendedStaySharedAdditionalCents) ||
+    !rateIsValid(rates.bathCents) ||
+    (firstDogCount > 0 && selectedFirstRate <= 0)
+  ) {
+    return {
+      ok: false,
+      error: "invalid-rates",
+      message: ERROR_MESSAGES["invalid-rates"],
+    };
+  }
+
+  if (!isWholeCount(input.bathCount, 0, MAX_BATHS)) {
     return {
       ok: false,
       error: "invalid-rates",
@@ -233,6 +460,15 @@ export function calculateQuote(input: QuoteInput): QuoteResult {
     return { ok: false, error: "same-day", message: ERROR_MESSAGES["same-day"] };
   }
 
+  const extendedStayEligible = nights >= EXTENDED_STAY_MIN_NIGHTS;
+  if (input.boardingCategory === "extended-stay" && !extendedStayEligible) {
+    return {
+      ok: false,
+      error: "extended-stay-ineligible",
+      message: ERROR_MESSAGES["extended-stay-ineligible"],
+    };
+  }
+
   const pickupStatus = classifyPickup(input.dropoffTime, input.pickupTime);
   if (!pickupStatus) {
     return {
@@ -242,45 +478,120 @@ export function calculateQuote(input: QuoteInput): QuoteResult {
     };
   }
 
-  const carePercent = extendedCareMultiplierPercent(pickupStatus);
-  const transportationCents = Math.max(0, Math.round(input.transportationCents));
-  const rates: QuoteRates = {
-    firstDogNightlyCents: Math.round(input.firstDogNightlyCents),
-    additionalDogPercent: input.additionalDogPercent,
-  };
+  const adjustmentCents = Math.round(input.adjustmentCents);
+  const adjustmentReason = input.adjustmentReason.trim();
+  if (adjustmentCents !== 0 && adjustmentReason === "") {
+    return {
+      ok: false,
+      error: "missing-adjustment-reason",
+      message: ERROR_MESSAGES["missing-adjustment-reason"],
+    };
+  }
 
-  const dogs: DogQuoteLine[] = [];
-  for (let dogNumber = 1; dogNumber <= input.dogCount; dogNumber += 1) {
-    const nightlyCents = nightlyRateCents(dogNumber, rates);
-    dogs.push({
-      dogNumber,
-      nightlyCents,
+  const carePercent = extendedCareMultiplierPercent(pickupStatus);
+  const firstNightly = firstDogNightlyCents(input.boardingCategory, rates);
+  const sharedNightly = sharedAdditionalNightlyCents(
+    input.boardingCategory,
+    rates,
+  );
+  const separateNightly = rates.separateCareAdditionalCents;
+  const transportationCents = Math.max(0, Math.round(input.transportationCents));
+  const bathLineCents = input.bathCount * rates.bathCents;
+
+  const groups: DogGroupLine[] = [];
+  if (firstDogCount > 0) {
+    groups.push({
+      key: "first",
+      label: `First dog (${BOARDING_CATEGORY_LABELS[input.boardingCategory]})`,
+      count: firstDogCount,
+      nightlyCents: firstNightly,
       nights,
-      boardingCents: nightlyCents * nights,
-      extendedCareCents: percentOfCents(nightlyCents, carePercent),
+      boardingCents: firstNightly * nights * firstDogCount,
+      extendedCareCents:
+        firstDogCount * percentOfCents(firstNightly, carePercent),
+    });
+  }
+  if (sharedAdditionalCount > 0) {
+    groups.push({
+      key: "shared",
+      label:
+        sharedAdditionalCount === 1
+          ? "Shared-household additional dog"
+          : "Shared-household additional dogs",
+      count: sharedAdditionalCount,
+      nightlyCents: sharedNightly,
+      nights,
+      boardingCents: sharedNightly * nights * sharedAdditionalCount,
+      extendedCareCents:
+        sharedAdditionalCount * percentOfCents(sharedNightly, carePercent),
+    });
+  }
+  if (separateCareCount > 0) {
+    groups.push({
+      key: "separate",
+      label:
+        separateCareCount === 1
+          ? "Separate-care additional dog"
+          : "Separate-care additional dogs",
+      count: separateCareCount,
+      nightlyCents: separateNightly,
+      nights,
+      boardingCents: separateNightly * nights * separateCareCount,
+      extendedCareCents:
+        separateCareCount * percentOfCents(separateNightly, carePercent),
     });
   }
 
-  const boardingCents = dogs.reduce((sum, dog) => sum + dog.boardingCents, 0);
-  const extendedCareCents = dogs.reduce(
-    (sum, dog) => sum + dog.extendedCareCents,
+  const boardingCents = groups.reduce((sum, group) => sum + group.boardingCents, 0);
+  const extendedCareCents = groups.reduce(
+    (sum, group) => sum + group.extendedCareCents,
     0,
   );
+  const subtotalBeforeAdjustmentCents =
+    boardingCents + extendedCareCents + bathLineCents + transportationCents;
+  const totalCents = subtotalBeforeAdjustmentCents + adjustmentCents;
+  if (totalCents < 0) {
+    return {
+      ok: false,
+      error: "negative-total",
+      message: ERROR_MESSAGES["negative-total"],
+    };
+  }
+
   const copy = pickupStatusCopy(pickupStatus);
 
   return {
     ok: true,
-    dogCount: input.dogCount,
+    dogCount,
+    firstDogCount,
+    sharedAdditionalCount,
+    separateCareCount,
     nights,
+    extendedStayEligible,
+    boardingCategory: input.boardingCategory,
+    boardingCategoryLabel: BOARDING_CATEGORY_LABELS[input.boardingCategory],
+    firstDogNightlyCents: firstNightly,
+    sharedAdditionalNightlyCents: sharedNightly,
+    separateCareNightlyCents: separateNightly,
     pickupStatus,
     pickupStatusLabel: copy.label,
     pickupStatusDetail: copy.detail,
     pickupStatusCare: copy.care,
-    dogs,
+    groups,
     boardingCents,
     extendedCareCents,
+    bathCount: input.bathCount,
+    bathCents: bathLineCents,
     transportationCents,
-    totalCents: boardingCents + extendedCareCents + transportationCents,
+    adjustmentCents,
+    adjustmentReason,
+    internalNotes: input.internalNotes.trim(),
+    subtotalBeforeAdjustmentCents,
+    totalCents,
+    bookingStatus: bookingStatusCard(
+      input.clientRelationship,
+      input.fitCheckStatus,
+    ),
     dropoffDate: input.dropoffDate,
     dropoffTime: input.dropoffTime,
     pickupDate: input.pickupDate,
@@ -310,19 +621,20 @@ export function buildQuoteScript(quote: QuoteSuccess): string {
   const dogPart = quote.dogCount === 1 ? "1 dog" : `${quote.dogCount} dogs`;
   const from = `${formatWeekday(quote.dropoffDate)} at ${formatClockTime(quote.dropoffTime)}`;
   const through = `${formatWeekday(quote.pickupDate)} at ${formatClockTime(quote.pickupTime)}`;
-  const late = quote.pickupStatus !== "on-time";
-  const transport = quote.transportationCents > 0;
+  const extras: string[] = [];
+  if (quote.pickupStatus !== "on-time") extras.push("the late pickup");
+  if (quote.bathCount === 1) extras.push("a bath");
+  if (quote.bathCount > 1) extras.push(`${quote.bathCount} baths`);
+  if (quote.transportationCents > 0) extras.push("pickup and drop-off");
 
   let including = "";
-  if (late && transport) {
-    including = ", including the late pickup and pickup and drop-off";
-  } else if (late) {
-    including = ", including the late pickup";
-  } else if (transport) {
-    including = ", including pickup and drop-off";
+  if (extras.length === 1) including = `, including ${extras[0]}`;
+  if (extras.length === 2) including = `, including ${extras[0]} and ${extras[1]}`;
+  if (extras.length > 2) {
+    including = `, including ${extras.slice(0, -1).join(", ")}, and ${extras[extras.length - 1]}`;
   }
 
-  return `For ${dogPart} from ${from} through ${through}${including}, your total would be ${formatCents(quote.totalCents)}.`;
+  return `For ${dogPart} from ${from} through ${through}${including}, the estimated total would be ${formatCents(quote.totalCents)}.`;
 }
 
 export function addCalendarDays(isoDate: string, days: number): string {
